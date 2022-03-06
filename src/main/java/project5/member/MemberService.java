@@ -14,4 +14,10 @@ public class MemberService {
 	public List<MemberVO> list() {
 		return dao.list();
 	}
+	
+	public MemberVO login(MemberVO vo) {
+		return dao.login(vo);
+	}
+
+	
 }

@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberDao {
 	public List<MemberVO> list();
+	public MemberVO login(MemberVO vo);
+	
 }

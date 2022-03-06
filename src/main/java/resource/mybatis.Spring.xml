@@ -6,6 +6,7 @@
 	<mappers>
 		<mapper resource="resource/DeptMapper.xml" />
 		<mapper resource="resource/MemberMapper.xml" />
+		<mapper resource="resource/ScheduleMapper.xml" />
 	</mappers>
 
 

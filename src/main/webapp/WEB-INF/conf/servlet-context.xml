@@ -40,7 +40,7 @@
 		<property name="configLocation" value="classpath:resource/mybatis.Spring.xml"/>
 	</bean>
 	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	 	<property name="basePackage" value="project5.dept"/>
+	 	<property name="basePackage" value="project5"/>
 	 </bean>
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="WEB-INF\views\"/>	 

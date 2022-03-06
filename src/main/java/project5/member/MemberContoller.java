@@ -1,15 +1,33 @@
 package project5.member;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import oracle.net.aso.d;
 
 @Controller
 public class MemberContoller {
-	@RequestMapping("/member.do")
-	public String login(Model d, MemberVO m) {
-		d.addAttribute("psc", "로그인시도");
+	@Autowired
+	MemberService service;
+	
+	@GetMapping("/login.do")
+	public String login() {
 		return "member/login";
 	}
+	
+	@RequestMapping("/login.do")
+	public String login(Model d, MemberVO vo) {
+		if(service.login(vo)==null) {
+			d.addAttribute("psc", "fail");
+			return "member/login";
+		}else {
+			d.addAttribute("psc", "success");
+			return "/main.do";
+		}
+	}
 
+	
 }
