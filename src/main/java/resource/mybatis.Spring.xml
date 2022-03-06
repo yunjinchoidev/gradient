@@ -6,5 +6,6 @@
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/MemberMapper.xml" />
+		<mapper resource="resource/DeptMapper.xml" />
 	</mappers>
 </configuration>
