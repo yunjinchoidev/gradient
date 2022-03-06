@@ -7,16 +7,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 public class DeptController {
-	
 	@Autowired
 	DeptService service;
-	
+
 	@RequestMapping("/deptList.do")
 	public String deptList(Model d) {
 		d.addAttribute("list", service.getList());
-		return "dept/list";
+		return "/dept/list";
 	}
-	
-	
-	
 }
