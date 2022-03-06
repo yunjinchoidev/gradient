@@ -14,15 +14,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript">
-	$(document).ready(function() {
-<%-- 
-		
-		--%>
-	});
 </script>
 </head>
 
 <body>
+	<%@ include file="../common/header.jsp"%>
 	<div">
 		<h2>타이틀</h2>
 	</div>
@@ -38,7 +34,7 @@
 				</tr>
 			</thead>
 			<tbody>
-				<c:forEach var="list" items="list">
+				<c:forEach var="list" items="${list}">
 					<tr>
 						<td>${list.deptno }</td>
 						<td>${list.dname }</td>

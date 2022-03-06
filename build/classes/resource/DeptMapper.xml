@@ -2,9 +2,9 @@
 <!DOCTYPE mapper
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-	
+
 <mapper namespace="project5.dept.DeptDao">
 	<select id="getList" resultType="project5.dept.DeptVO">
-		select * from dept;
+		select * from dept
 	</select>
 </mapper>
