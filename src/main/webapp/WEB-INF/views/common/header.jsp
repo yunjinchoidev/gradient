@@ -114,7 +114,7 @@ $(document).ready(function(){
             
 
             <li class="sidebar-item  ">
-                <a href="/project5/scheduleList.do" class='sidebar-link'>
+                <a href="/project5/unifyIndex.do" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>
                     <span>통합[프로젝트 개괄]</span>
                 </a>
