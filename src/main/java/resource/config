@@ -5,6 +5,7 @@ jdbc.user=scott
 jdbc.pass=tiger
 
 
+
 # 업로드할 파일 경로 설정
 # 파일업로드 aws 시스템 경로로 지정..
 upload=C:/a01_javaexp/z01_upload/
