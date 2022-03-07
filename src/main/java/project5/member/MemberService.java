@@ -18,6 +18,10 @@ public class MemberService {
 	public MemberVO login(MemberVO vo) {
 		return dao.login(vo);
 	}
+
+	public MemberVO logout() {
+		return dao.logout();
+	}
 	
 	public void register(MemberVO vo) {
 		dao.register(vo);

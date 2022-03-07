@@ -3,14 +3,30 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.member.MemberDao">
-	<select id="list">
-		select * from member;
+
+	<select id="list" resultType="project5.member.MemberVO">
+		select * from member
 	</select>
-	<select id="login" parameterType="String"
-		resultType="project5.member.MemberVO">
+
+	<insert id="register">
+		insert into member
+		values(seq_member.nextval,#{id},#{pass},#{name},#{point},#{auth})
+	</insert>
+
+	<select id="login" resultType="project5.member.MemberVO"
+		parameterType="project5.member.MemberVO">
 		select *
 		from member
-		where id=#{id}
-		and pass=#{pass}
+		where id=#{id} and pass=#{pass}
 	</select>
+
+	<select id="logout" resultType="project5.member.MemberVO">
+		select *
+		from member
+		where id='4d3c2b1a'
+	</select>
+	
+	
+
+
 </mapper>

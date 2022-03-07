@@ -8,5 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface MemberDao {
 	public List<MemberVO> list();
 	public MemberVO login(MemberVO vo);
+	public MemberVO logout();
 	public void register(MemberVO vo);
 }

@@ -13,6 +13,20 @@
 <head>
 <meta charset="UTF-8">
 <title>쌍용 5조 PMBOK 메인 페이지</title>
+<script>
+$(document).ready(function(){
+	var psc = "${psc}";
+	
+	if(psc=="success"){
+		alert("로그인 성공하셨습니다.");
+	}
+	
+	if(psc=="logout"){
+		alert("로그아웃 되었습니다.");
+	}
+})
+
+</script>
 </head>
 
 <body>

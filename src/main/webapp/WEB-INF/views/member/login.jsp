@@ -21,6 +21,17 @@
 	href="/project5/resources/dist/assets/css/pages/auth.css">
 </head>
 
+<script>
+$(documnet).ready(function(){
+	var psc = "${psc}";
+	if(psc=="fail"){
+		alert("아이디 비밀번호가 맞지 않습니다.");
+	}
+})
+</script>
+
+
+
 <body>
 	<div id="auth">
 
@@ -37,7 +48,7 @@
 						아이디와 비밀번호를 <br>입력하시오
 					</p>
 
-					<form action="index.html">
+					<form action="/project5/login.do" method="post">
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"
 								placeholder="id" name="id">
@@ -62,7 +73,7 @@
 					</form>
 					<div class="text-center mt-5 text-lg fs-4">
 						<p class="text-gray-600">
-							계정이 없습니까? <a href="/project5/registerForm.do" class="font-bold">회원가입
+							계정이 없습니까? <a href="/project5/memberRegisterForm.do" class="font-bold">회원가입
 							</a>.
 						</p>
 						<p>
