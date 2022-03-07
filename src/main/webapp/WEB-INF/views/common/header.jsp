@@ -31,7 +31,7 @@
     <div class="sidebar-header">
         <div class="d-flex justify-content-between">
             <div class="logo">
-                <a href="index.html"><img src="/project5/resources/a.png" alt="Logo" srcset=""></a>
+                <a href="/project5/main.do"><img src="/project5/resources/a.png" alt="Logo" srcset=""></a>
             </div>
             <div class="toggler">
                 <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -49,6 +49,18 @@
                 </a>
             </li>
 
+            <li class="sidebar-item  ">
+                <a href="/project5/scheduleList.do" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>통합</span>
+                </a>
+            </li>
+            <li class="sidebar-item  ">
+                <a href="/project5/scheduleList.do" class='sidebar-link'>
+                    <i class="bi bi-grid-fill"></i>
+                    <span>범위</span>
+                </a>
+            </li>
             <li class="sidebar-item  ">
                 <a href="/project5/scheduleList.do" class='sidebar-link'>
                     <i class="bi bi-grid-fill"></i>

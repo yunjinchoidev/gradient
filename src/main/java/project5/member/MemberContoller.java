@@ -28,6 +28,16 @@ public class MemberContoller {
 			return "/main.do";
 		}
 	}
+	
+	@RequestMapping("/registerForm.do")
+	public String registerForm() {
+		return "member/registerForm";
+	}
+	@RequestMapping("/register.do")
+	public String register(Model d) {
+		d.addAttribute("psc", "success");
+		return "member/main.do";
+	}
 
 	
 }
