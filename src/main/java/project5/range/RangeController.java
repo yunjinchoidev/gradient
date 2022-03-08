@@ -10,5 +10,10 @@ public class RangeController {
 	public String unifyIndex() {
 		return "range/Kanban";
 	}
+
+	@RequestMapping("/range.do")
+	public String range() {
+		return "range/list";
+	}
 	
 }

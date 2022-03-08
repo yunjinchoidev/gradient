@@ -83,6 +83,16 @@
 
 
 						<li class="sidebar-item  has-sub"><a href="#"
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>MY</span>	</a>
+					
+
+							<ul class="submenu ">
+								<li class="submenu-item "><a href="/project5/unifyList.do">MY PROJECT</a></li>
+							</ul></li>
+							
+							
+							
+						<li class="sidebar-item  has-sub"><a href="#"
 							class='sidebar-link'> <i class="bi bi-stack"></i> <span>통합[총괄]</span>	</a>
 					
 
@@ -95,6 +105,8 @@
 										시작 & 종료</a></li>		
 								<li class="submenu-item "><a href="/project5/unifyManage.do">프로젝트
 										관리</a></li>
+								<li class="submenu-item "><a href="/project5/unifyIndex.do">프로젝트
+										대시 보드</a></li>
 								
 							</ul></li>
 
@@ -108,17 +120,17 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/rangeKanban.do">범위 관리 1(칸반)
+								<li class="submenu-item "><a href="/project5/range.do">범위 관리 1(칸반)
 										 </a></li>
 								<li class="submenu-item "><a href="/project5/wbs.do">범위 관리 2(WBS)
 										 </a></li>
 								<li class="submenu-item "><a href="/project5/output.do">산출물
 										관리 </a></li>
-								<li class="submenu-item "><a href="/project5/cost.do">원가 관리</a>
+								<li class="submenu-item "><a href="/project5/cost.do">예산 관리</a>
 								</li>
 								<li class="submenu-item "><a href="/project5/quality.do">품질 관리</a>
 								</li>
-								<li class="submenu-item "><a href="/project5/resource.do">자원/인적 관리</a>
+								<li class="submenu-item "><a href="/project5/resource.do">인적 관리</a>
 								</li>
 								<li class="submenu-item "><a href="/project5/risk.do">리스크</a>
 								</li>
