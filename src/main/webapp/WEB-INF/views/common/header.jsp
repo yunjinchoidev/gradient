@@ -116,7 +116,7 @@
 
 
 						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>프로젝트[세부]</span>
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>프로젝트</span>
 						</a>
 
 							<ul class="submenu ">
