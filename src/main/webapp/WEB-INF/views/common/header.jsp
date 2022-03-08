@@ -92,12 +92,12 @@
 
 							<ul class="submenu ">
 								<li class="submenu-item "><a href="component-alert.html">범위
-										(요구사항정의서, WBS)</a></li>
+										(요구사항정의서, WBS) 관리 </a></li>
 								<li class="submenu-item "><a href="component-alert.html">산출물
 										관리</a></li>
-								<li class="submenu-item "><a href="component-alert.html">원가</a>
+								<li class="submenu-item "><a href="component-alert.html">원가 관리</a>
 								</li>
-								<li class="submenu-item "><a href="component-badge.html">품질</a>
+								<li class="submenu-item "><a href="component-badge.html">품질 관리</a>
 								</li>
 								<li class="submenu-item "><a
 									href="component-breadcrumb.html">자원</a></li>
@@ -126,7 +126,7 @@
 
 
 						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>일정</span>
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>일정 관리</span>
 						</a>
 
 							<ul class="submenu ">
