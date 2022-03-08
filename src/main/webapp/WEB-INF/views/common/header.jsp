@@ -87,25 +87,30 @@
 
 
 						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>프로젝트</span>
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>프로젝트[세부]</span>
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="component-alert.html">범위
-										(요구사항정의서, WBS) 관리 </a></li>
-								<li class="submenu-item "><a href="component-alert.html">산출물
-										관리</a></li>
-								<li class="submenu-item "><a href="component-alert.html">원가 관리</a>
+								<li class="submenu-item "><a href="/project5/rangeKanban.do">범위 관리 1(칸반)
+										 </a></li>
+								<li class="submenu-item "><a href="/project5/wbs.do">범위 관리 2(WBS)
+										 </a></li>
+								<li class="submenu-item "><a href="/project5/output.do">산출물
+										관리 </a></li>
+								<li class="submenu-item "><a href="/project5/cost.do">원가 관리</a>
 								</li>
-								<li class="submenu-item "><a href="component-badge.html">품질 관리</a>
+								<li class="submenu-item "><a href="/project5/quality.do">품질 관리</a>
 								</li>
-								<li class="submenu-item "><a
-									href="component-breadcrumb.html">자원</a></li>
-								<li class="submenu-item "><a href="component-button.html">리스크</a>
+								<li class="submenu-item "><a href="/project5/resource.do">자원/인적 관리</a>
 								</li>
-								<li class="submenu-item "><a href="component-card.html">조달</a>
+								<li class="submenu-item "><a href="/project5/risk.do">리스크</a>
+								</li>
+								<li class="submenu-item "><a href="/project5/support.do">조달</a>
 								</li>
 							</ul></li>
+
+
+
 
 						<li class="sidebar-item  has-sub"><a href="#"
 							class='sidebar-link'> <i class="bi bi-stack"></i> <span>통합[프로젝트
@@ -113,11 +118,15 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="component-alert.html">프로젝트
+								<li class="submenu-item "><a href="/project5/unifyList.do">프로젝트
 										계획</a></li>
-								<li class="submenu-item "><a href="component-alert.html">프로젝트
-										수주서</a></li>
-								<li class="submenu-item "><a href="component-alert.html">프로젝트
+								<li class="submenu-item "><a href="/project5/unifyindex.do">프로젝트
+										수주</a></li>
+								<li class="submenu-item "><a href="/project5/unifyManage.do">프로젝트
+										관리</a></li>
+								<li class="submenu-item "><a href="/project5/unify/start.do">프로젝트
+										시작</a></li>
+								<li class="submenu-item "><a href="/project5/unifyEnd.do">프로젝트
 										종료</a></li>
 							</ul></li>
 
@@ -133,11 +142,11 @@
 								<li class="submenu-item "><a href="component-alert.html">간트차트</a>
 								</li>
 
-								<li class="submenu-item "><a href="component-alert.html">캘린더</a>
+								<li class="submenu-item "><a href="/project5/calendar.do">캘린더</a>
 								</li>
-								<li class="submenu-item "><a href="component-badge.html">일정관리
+								<li class="submenu-item "><a href="/project5/scheduleList.do">일정관리
 										계획</a></li>
-								<li class="submenu-item "><a href="component-badge.html">Today I to do
+								<li class="submenu-item "><a href="/project5/todayItodo.do">Today I to do
 										</a></li>
 										
 							</ul></li>
@@ -149,7 +158,7 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="component-alert.html">회의공간</a>
+								<li class="submenu-item "><a href="/project5/communicationList.do">회의공간</a>
 								</li>
 
 								<li class="submenu-item "><a href="component-alert.html">채팅</a>

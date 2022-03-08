@@ -10,6 +10,11 @@ public class UnifyController {
 	public String unifyIndex() {
 		return "unify/index";
 	}
+
+	@RequestMapping("/unifyList.do")
+	public String unifyList() {
+		return "unify/list";
+	}
 	
 	
 	
