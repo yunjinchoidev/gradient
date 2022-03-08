@@ -1,14 +1,14 @@
-package project5.quality;
+package project5.notice;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class QualityController {
+public class NoticeController {
 	
-	@RequestMapping("/quality.do")
+	@RequestMapping("/notice.do")
 	public String unifyIndex() {
-		return "quality/list";
+		return "notice/list";
 	}
 
 	

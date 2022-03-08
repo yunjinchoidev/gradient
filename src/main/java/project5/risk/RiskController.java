@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class RiskController {
 	
-	@RequestMapping("/communiList.do")
+	@RequestMapping("/risk.do")
 	public String unifyIndex() {
-		return "communication/list";
+		return "risk/list";
 	}
 
 	

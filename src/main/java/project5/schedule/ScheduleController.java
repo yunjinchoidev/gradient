@@ -20,4 +20,10 @@ public class ScheduleController {
 	public String schduleInsertForm() {
 		return "/schedule/InsertForm";
 	}
+	
+	@RequestMapping("/gantt.do")
+	public String gantt(Model d) {
+		return "/schedule/Gantt";
+	}
+	
 }

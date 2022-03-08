@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class ResourceController {
 	
-	@RequestMapping("/communiList.do")
+	@RequestMapping("/resource.do")
 	public String unifyIndex() {
-		return "communication/list";
+		return "resource/list";
 	}
 
 	

@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class OutputController {
 	
-	@RequestMapping("/communiList.do")
+	@RequestMapping("/output.do")
 	public String unifyIndex() {
-		return "communication/list";
+		return "output/list";
 	}
 
 	

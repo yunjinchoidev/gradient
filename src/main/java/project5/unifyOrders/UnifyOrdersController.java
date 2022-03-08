@@ -1,18 +1,14 @@
-package project5.quality;
+package project5.unifyOrders;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class QualityController {
+public class UnifyOrdersController {
 	
-	@RequestMapping("/quality.do")
+	@RequestMapping("/unifyOrders.do")
 	public String unifyIndex() {
-		return "quality/list";
+		return "unify/orders";
 	}
-
-	
-	
-	
 	
 }

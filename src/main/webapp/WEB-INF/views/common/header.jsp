@@ -82,6 +82,23 @@
 
 
 
+						<li class="sidebar-item  has-sub"><a href="#"
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>통합[총괄]</span>	</a>
+					
+
+							<ul class="submenu ">
+								<li class="submenu-item "><a href="/project5/unifyList.do">프로젝트
+										계획 관리</a></li>
+								<li class="submenu-item "><a href="/project5/unifyOrders.do">프로젝트
+										수주 관리</a></li>
+								<li class="submenu-item "><a href="/project5/unifyStart.do">프로젝트
+										시작 & 종료</a></li>		
+								<li class="submenu-item "><a href="/project5/unifyManage.do">프로젝트
+										관리</a></li>
+								
+							</ul></li>
+
+
 
 
 
@@ -112,24 +129,7 @@
 
 
 
-						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>통합[프로젝트
-									총괄]</span>
-						</a>
-
-							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/unifyList.do">프로젝트
-										계획</a></li>
-								<li class="submenu-item "><a href="/project5/unifyindex.do">프로젝트
-										수주</a></li>
-								<li class="submenu-item "><a href="/project5/unifyManage.do">프로젝트
-										관리</a></li>
-								<li class="submenu-item "><a href="/project5/unify/start.do">프로젝트
-										시작</a></li>
-								<li class="submenu-item "><a href="/project5/unifyEnd.do">프로젝트
-										종료</a></li>
-							</ul></li>
-
+				
 
 
 
@@ -139,7 +139,7 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="component-alert.html">간트차트</a>
+								<li class="submenu-item "><a href="/project5/gantt.do">간트차트</a>
 								</li>
 
 								<li class="submenu-item "><a href="/project5/calendar.do">캘린더</a>
@@ -158,16 +158,46 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/communicationList.do">회의공간</a>
+								<li class="submenu-item "><a href="/project5/conference.do">회의공간</a>
 								</li>
 
-								<li class="submenu-item "><a href="component-alert.html">채팅</a>
+								<li class="submenu-item "><a href="/project5/chat.do">채팅</a>
 								</li>
-								<li class="submenu-item "><a href="component-badge.html">소통
-										계획</a></li>
 							</ul></li>
+					
+					
+						<li class="sidebar-item  has-sub"><a href="#"
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span onclick="location.href='/project5/notice.do'">공지사항</span>
+						</a>
+
+							</li>
+					
+					
+					
+					
+					
 					</ul>
+					
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				<button class="sidebar-toggler btn x">
 					<i data-feather="x"></i>
 				</button>

@@ -4,7 +4,6 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="project5.fullCalendar.A10_FullCalDao">
-
 	<resultMap type="calendar" id="calResult">
 		<result property="start" column="start1"/>
 		<result property="end" column="end1"/>

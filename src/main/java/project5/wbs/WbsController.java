@@ -1,18 +1,14 @@
-package project5.quality;
+package project5.wbs;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class QualityController {
+public class WbsController {
 	
-	@RequestMapping("/quality.do")
+	@RequestMapping("/wbs.do")
 	public String unifyIndex() {
-		return "quality/list";
+		return "wbs/list";
 	}
-
-	
-	
-	
 	
 }
