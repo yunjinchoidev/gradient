@@ -81,33 +81,36 @@
 						</c:if>
 
 
+						<li class="sidebar-item  "><a href="/project5/logout.do"
+							class='sidebar-link' > <i
+								class="bi bi-grid-fill"></i> <span>대시보드</span>
+						</a></li>
+						<li class="sidebar-item  "><a href="/project5/logout.do"
+							class='sidebar-link' > <i
+								class="bi bi-grid-fill"></i> <span>내 작업 목록</span>
+						</a></li>
+						
+						
+
+
 
 						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>MY</span>	</a>
-					
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>통합[총괄]</span>
+						</a>
 
-							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/unifyList.do">MY PROJECT</a></li>
-							</ul></li>
-							
-							
-							
-						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>통합[총괄]</span>	</a>
-					
 
 							<ul class="submenu ">
 								<li class="submenu-item "><a href="/project5/unifyList.do">프로젝트
 										계획 관리</a></li>
-								<li class="submenu-item "><a href="/project5/unifyOrders.do">프로젝트
-										수주 관리</a></li>
+								<li class="submenu-item "><a
+									href="/project5/unifyOrders.do">프로젝트 수주 관리</a></li>
 								<li class="submenu-item "><a href="/project5/unifyStart.do">프로젝트
-										시작 & 종료</a></li>		
-								<li class="submenu-item "><a href="/project5/unifyManage.do">프로젝트
-										관리</a></li>
+										시작 & 종료</a></li>
+								<li class="submenu-item "><a
+									href="/project5/unifyManage.do">프로젝트 관리</a></li>
 								<li class="submenu-item "><a href="/project5/unifyIndex.do">프로젝트
 										대시 보드</a></li>
-								
+
 							</ul></li>
 
 
@@ -120,18 +123,18 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/range.do">범위 관리 1(칸반)
-										 </a></li>
-								<li class="submenu-item "><a href="/project5/wbs.do">범위 관리 2(WBS)
-										 </a></li>
+								<li class="submenu-item "><a href="/project5/range.do">범위
+										관리 1(칸반) </a></li>
+								<li class="submenu-item "><a href="/project5/wbs.do">범위
+										관리 2(WBS) </a></li>
 								<li class="submenu-item "><a href="/project5/output.do">산출물
 										관리 </a></li>
-								<li class="submenu-item "><a href="/project5/cost.do">예산 관리</a>
-								</li>
-								<li class="submenu-item "><a href="/project5/quality.do">품질 관리</a>
-								</li>
-								<li class="submenu-item "><a href="/project5/resource.do">인적 관리</a>
-								</li>
+								<li class="submenu-item "><a href="/project5/cost.do">예산
+										관리</a></li>
+								<li class="submenu-item "><a href="/project5/quality.do">품질
+										관리</a></li>
+								<li class="submenu-item "><a href="/project5/resource.do">인적
+										관리</a></li>
 								<li class="submenu-item "><a href="/project5/risk.do">리스크</a>
 								</li>
 								<li class="submenu-item "><a href="/project5/support.do">조달</a>
@@ -141,13 +144,14 @@
 
 
 
-				
+
 
 
 
 
 						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>일정 관리</span>
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>일정
+									관리</span>
 						</a>
 
 							<ul class="submenu ">
@@ -156,11 +160,11 @@
 
 								<li class="submenu-item "><a href="/project5/calendar.do">캘린더</a>
 								</li>
-								<li class="submenu-item "><a href="/project5/scheduleList.do">일정관리
-										계획</a></li>
-								<li class="submenu-item "><a href="/project5/todayItodo.do">Today I to do
-										</a></li>
-										
+								<li class="submenu-item "><a
+									href="/project5/scheduleList.do">일정관리 계획</a></li>
+								<li class="submenu-item "><a href="/project5/todayItodo.do">Today
+										I to do </a></li>
+
 							</ul></li>
 
 
@@ -176,40 +180,39 @@
 								<li class="submenu-item "><a href="/project5/chat.do">채팅</a>
 								</li>
 							</ul></li>
-					
-					
-						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span onclick="location.href='/project5/notice.do'">공지사항</span>
-						</a>
 
-							</li>
-					
-					
-					
-					
-					
+
+						<li class="sidebar-item  has-sub"><a href="#"
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span
+								onclick="location.href='/project5/notice.do'">공지사항</span>
+						</a></li>
+
+
+
+
+
 					</ul>
-					
-					
-					
-					
-					
-					
-					
-					
-					
+
+
+
+
+
+
+
+
+
 				</div>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+
+
+
+
+
+
+
+
+
+
+
 				<button class="sidebar-toggler btn x">
 					<i data-feather="x"></i>
 				</button>
