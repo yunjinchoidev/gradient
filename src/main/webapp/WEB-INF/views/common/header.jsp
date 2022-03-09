@@ -25,10 +25,16 @@
 	href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
 <link rel="stylesheet"
 	href="/project5/resources/dist/assets/css/app.css">
+<link rel="stylesheet" 
+	href="/project5/resources/dist/assets/vendors/simple-datatables/style.css">
 <link rel="shortcut icon"
 	href="/project5/resources/dist/assets/images/favicon.svg"
 	type="image/x-icon">
+
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
+	
 </head>
 
 <script>
@@ -221,12 +227,12 @@
 			</header>
 		</div>
 	</div>
-	<script
-		src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script
-		src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
-
+	
+	<script src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
+	<script src="/project5/resources/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
 	<script src="/project5/resources/dist/assets/js/main.js"></script>
+	
 </body>
 
 </html>
