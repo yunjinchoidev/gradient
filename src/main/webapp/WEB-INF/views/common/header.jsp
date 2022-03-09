@@ -81,48 +81,27 @@
 						</c:if>
 
 
-						<li class="sidebar-item  "><a href="/project5/logout.do"
-							class='sidebar-link' > <i
-								class="bi bi-grid-fill"></i> <span>대시보드</span>
+						<li class="sidebar-item  "><a href="/project5/dashBoard.do"
+							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>대시보드</span>
 						</a></li>
-						<li class="sidebar-item  "><a href="/project5/logout.do"
-							class='sidebar-link' > <i
-								class="bi bi-grid-fill"></i> <span>내 작업 목록</span>
+
+						<li class="sidebar-item  "><a href="/project5/allProject.do"
+							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
+									공개된 모든 프로젝트</span>
 						</a></li>
-						
-						
-
-
-
-						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>통합[총괄]</span>
-						</a>
-
-
-							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/unifyList.do">프로젝트
-										계획 관리</a></li>
-								<li class="submenu-item "><a
-									href="/project5/unifyOrders.do">프로젝트 수주 관리</a></li>
-								<li class="submenu-item "><a href="/project5/unifyStart.do">프로젝트
-										시작 & 종료</a></li>
-								<li class="submenu-item "><a
-									href="/project5/unifyManage.do">프로젝트 관리</a></li>
-								<li class="submenu-item "><a href="/project5/unifyIndex.do">프로젝트
-										대시 보드</a></li>
-
-							</ul></li>
 
 
 
 
 
-
-						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>프로젝트</span>
+						<li class="sidebar-item  has-sub"><a href="/project5/projectHome.do"
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>내
+									프로젝트</span>
 						</a>
 
 							<ul class="submenu ">
+								<li class="submenu-item "><a href="/project5/projectHome.do">홈
+									 </a></li>
 								<li class="submenu-item "><a href="/project5/range.do">범위
 										관리 1(칸반) </a></li>
 								<li class="submenu-item "><a href="/project5/wbs.do">범위
@@ -140,10 +119,6 @@
 								<li class="submenu-item "><a href="/project5/support.do">조달</a>
 								</li>
 							</ul></li>
-
-
-
-
 
 
 
@@ -174,12 +149,19 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/conference.do">회의공간</a>
+								<li class="submenu-item "><a href="/project5/conference.do">회의</a>
 								</li>
 
 								<li class="submenu-item "><a href="/project5/chat.do">채팅</a>
 								</li>
 							</ul></li>
+
+
+
+						<li class="sidebar-item  "><a href="/project5/logout.do"
+							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>내
+									작업 목록 / 작업물</span>
+						</a></li>
 
 
 						<li class="sidebar-item  has-sub"><a href="#"
@@ -189,16 +171,29 @@
 
 
 
+						<li class="sidebar-item  has-sub"><a href="#"
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>
+									관리자 페이지 [PM]</span>
+						</a>
+
+
+							<ul class="submenu ">
+								<li class="submenu-item "><a href="/project5/unifyList.do">프로젝트
+										계획 관리</a></li>
+								<li class="submenu-item "><a
+									href="/project5/unifyOrders.do">프로젝트 수주 관리</a></li>
+								<li class="submenu-item "><a href="/project5/unifyStart.do">프로젝트
+										시작 & 종료</a></li>
+								<li class="submenu-item "><a
+									href="/project5/unifyManage.do">프로젝트 관리</a></li>
+								<li class="submenu-item "><a href="/project5/unifyIndex.do">프로젝트
+										대시 보드</a></li>
+
+							</ul></li>
+
 
 
 					</ul>
-
-
-
-
-
-
-
 
 
 				</div>

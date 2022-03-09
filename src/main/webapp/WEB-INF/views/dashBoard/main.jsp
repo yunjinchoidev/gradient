@@ -31,7 +31,7 @@ $(document).ready(function(){
 
 <body>
 
-	<%@ include file="common/header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
 
 
 	<div id="main">
@@ -40,8 +40,8 @@ $(document).ready(function(){
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>쌍용 5조 PMPBOK</h3>
-						<p class="text-subtitle text-muted">최윤진, 마혜민, 문재영, 신지호, 윤혜정, 장훈주</p>
+						<h3>대시보드</h3>
+						<p class="text-subtitle text-muted">대시보드입니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -55,11 +55,11 @@ $(document).ready(function(){
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h5 class="card-title">안녕하세요? </h5>
+								<h5 class="card-title">대시보드입니다. </h5>
 							</div>
 							<div class="card-body">
-								프로젝트 기간 <br> 2022년 3월 4일 ~ 4월 12일 <br><br> <a
-									href="https://github.com/yunjinchoidev/project5" target="_blank">깃허브 링크입니다.<br><br>
+								대시보드입니다. <a
+									href="https://github.com/yunjinchoidev/project5" target="_blank">대시보드입니다.<br><br>
 									</a>
 							</div>
 						</div>
@@ -67,98 +67,6 @@ $(document).ready(function(){
 				</div>
 			</section>
 			
-			
-				<!-- Groups section start -->
-			<section id="groups">
-				<div class="row match-height">
-					<div class="col-12 mt-3 mb-1">
-						<h4 class="section-title text-uppercase">5조</h4>
-					</div>
-				</div>
-				<div class="row match-height">
-					<div class="col-12">
-						<div class="card-group">
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/cyj.jpg"
-										alt="Card image cap"  style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">최윤진</h4>
-										<p class="card-text">안녕하세요. 프로젝트 조장을 맡았습니다.</p>
-										<small class="text-muted">3월 9일</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/mhm.png"
-										alt="Card image cap"  style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">마혜민</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/mjy.jpg"
-										alt="Card image cap"  style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">문재영</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/sjh.jpg"
-										alt="Card image cap" style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">신지호</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/yhj.jpg"
-										alt="Card image cap" style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">윤혜정</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/jhj.jpg"
-										alt="Card image cap" style="width: 100%; height: 200px;">
-									<div class="card-body">
-										<h4 class="card-title">장훈주</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
 		</div>
 
 
@@ -192,8 +100,8 @@ $(document).ready(function(){
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>개발의 기록</h3>
-						<p class="text-subtitle text-muted">노션에 프로젝트의 여정을 기록해두었습니다.</p>
+						<h3>현황</h3>
+						<p class="text-subtitle text-muted">현황입니다</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -213,13 +121,11 @@ $(document).ready(function(){
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
-									<h4 class="card-title">회의록</h4>
-									<p class="card-text">Gummies bonbon apple pie fruitcake
-										icing biscuit apple pie jelly-o sweet roll. Toffee sugar plum
-										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
+									<h4 class="card-title">리스크 관리</h4>
+									<p class="card-text">이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.</p>
 								</div>
 								<img class="img-fluid w-100"
-									src="/project5/resources/dist/assets/images/samples/banana.jpg"
+									src="/project5/resources/image/risk.png"
 									alt="Card image cap">
 							</div>
 							<div class="card-footer d-flex justify-content-between">
