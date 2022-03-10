@@ -19,6 +19,7 @@
 	href="/project5/resources/dist/assets/css/app.css">
 <link rel="stylesheet"
 	href="/project5/resources/dist/assets/css/pages/auth.css">
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <script>

@@ -164,7 +164,7 @@ $(document).ready(function(e){
     }
     
     $.ajax({
-      url: '/project5/uploadAjaxAction',
+      url: '/project5/uploadFormAction',
       processData: false, 
       contentType: false,data: 
       formData,type: 'POST',

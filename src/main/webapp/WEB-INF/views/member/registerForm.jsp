@@ -19,11 +19,44 @@
 	href="/project5/resources/dist/assets/css/app.css">
 <link rel="stylesheet"
 	href="/project5/resources/dist/assets/css/pages/auth.css">
+	
+	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+	
+	<style>
+		/* 중복아이디 존재하지 않는경우 */
+	.id_input_re_1{
+		color : green;
+		display : none;
+	}
+	/* 중복아이디 존재하는 경우 */
+	.id_input_re_2{
+		color : red;
+		display : none;
+	}
+	</style>
 </head>
 <script>
 	$(document).ready(function() {
-	})
+		
+		$('.id_input').on("propertychange change keyup paste input", function(){
+			console.log(memberId);
+			var memberId = $('.id_input').val();			
+			var data = {memberId : memberId}			
+			$.ajax({
+				type : "post",
+				url : "/project5/memberIdChk.do",
+				data : data
+			}); 
+		});
+		})
+	
+	
+	
+	
+	
+	
 </script>
+
 <body>
 	<div id="auth">
 		<div class="row h-100">
@@ -37,6 +70,34 @@
 					<h1 class="auth-title">회원가입</h1>
 					<p class="auth-subtitle mb-5">Input your data to register to
 						our website.</p>
+
+
+
+
+					<input type="text" name="memberId" class="id_input">
+						<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
+						<span class="id_input_re_2">아이디가 이미 존재합니다.</span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 					<form action="/project5/memberRegister.do" method="post">
 						<div class="form-group position-relative has-icon-left mb-4">

@@ -25,6 +25,9 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,12 +38,55 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Log4j
 public class UploadController {
 
+		
+
+	
+	@RequestMapping(value = "/memberIdChk.do", method = RequestMethod.POST)
+	@ResponseBody
+	public void memberIdChkPOST(@RequestParam("memberId") String memid) throws Exception{
+		System.out.println("gogo");
+	} 
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/uploadForm")
 	public String uploadForm() {
 
 		return "pageJsonReport";
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@PostMapping("/uploadFormAction")
 	public String uploadFormPost(MultipartFile[] uploadFile, Model model) {
 
