@@ -20,7 +20,12 @@
 		$("#regBtn").click(function(){
 			$("#regForm").submit();
 		});
+	
 	});
+	
+	function goDetail(){
+		$("#detailModal").modal('show');
+	}
 </script>
 </head>
 
@@ -89,7 +94,7 @@
 									</thead>
 
 									<tbody>
-                        				<tr>
+                        				<tr onclick="goDetail()">
 				                            <td>버튼 이슈</td>
 				                            <td>정부지원 4차 프로젝트</td>
 				                            <td>2022-03-09</td>
@@ -136,7 +141,7 @@
 								</table>
 								
 								<button style="margin: auto;display:block;" 
-								class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#regForm">등록</button>
+								class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#regModal">등록</button>
 								
 							</div>
 
@@ -166,7 +171,7 @@
 	</div>
 	
 	<!-- 등록 Modal -->
-  	<div class="modal fade text-left" id="regForm" tabindex="-1" role="dialog"
+  	<div class="modal fade text-left" id="regModal" tabindex="-1" role="dialog"
        	aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
@@ -182,7 +187,7 @@
                 <div class="modal-body" style="margin:10px;">
                 	<!-- 프로젝트 select box -->
                 	<div id="prjselect">
-                    	<select class="form-select">
+                    	<select class="form-select" style="text-align:center;">
                     		<option>프로젝트1</option>
                     		<option>프로젝트2</option>
                     	</select>
@@ -205,7 +210,7 @@
                     </div>
                     
                     <!-- 상세내용 -->
-                    <div id="detailcontent" style="margin-top: 10px;">
+                    <div id="regcontent" style="margin-top: 10px;">
                     	<textarea name="content" placeholder="상세 내용" class="form-control" rows="5" cols="5"></textarea>
                     </div>
                     
@@ -245,6 +250,102 @@
 </div>
 
 <!-- 상세화면 Modal -->
+<div class="modal fade text-left" id="detailModal" tabindex="-1" role="dialog"
+       	aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">리스크 상세화면</h4>
+                <button type="button" class="close" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <form id="detailForm">
+            	<!-- 모달 상세정보 영역 -->
+                <div class="modal-body">
+                <!-- 날짜 영역 -->
+                	<div id="writedatediv" style="margin-left:360px; ">
+                		2022-03-10
+                	</div>
+                <!-- 프로젝트 영역 -->
+                	<div id="detailprj">
+                		<input class="form-control" type="text" value="프로젝트1" readonly="readonly"
+                			style="background-color:white; color:black;text-align: center;"  >
+                	</div>
+                	<!-- 중요도, 리스크명 영역  -->
+                	<!-- 중요도 -->
+                	<div id="detailheader" style="display:flex;margin-top: 10px;">
+                		<div id="detailimport" style="flex:1;margin-right:5px;">
+                			<input class="form-control" type="text" value="중요" readonly="readonly"
+                				style="background-color: #C0392B; color: white; text-align:center;" >
+                		</div>
+                	<!-- 제목 -->
+                		<div id="detailtitle" style="flex:4;">
+                			<input class="form-control" type="text" value="버튼 이슈" readonly="readonly"
+                				style="background-color: white; color:black; text-align:center;" >
+                		</div>          
+                	</div>
+                	<!-- 리스크 상세 내용 -->
+                	<div id="detailcontent" style="margin-top: 10px;">
+                    	<textarea name="content" class="form-control" rows="5" cols="5" readonly="readonly"
+                    		style="background-color: white; color:black;">상세내용 입니다</textarea>
+                    </div>
+                    <!-- 담당자, 진행사항, 완료 예정일 -->
+                    <div id="detailfooter" style="display:flex; margin-top:10px;">
+                   	<!-- 담당자 -->
+                    	<div id="manager" style="flex:1;margin-right: 10px;">
+                    		<input class="form-control" type="text" value="김철수" readonly="readonly"
+                				style="background-color: white; color:black; text-align:center;" >
+                    	</div>
+                    <!-- 진행사항 -->
+                    	<div id="detailprogress" style="flex:1">
+                    		<input class="form-control" type="text" value="진행중" readonly="readonly"
+                				style="background-color: #F1C40F; color:white; text-align:center;" >
+                    	</div>
+					<!-- 완료 예정일 text -->
+						<div id="comdateText" style="flex:1;margin-left:50px;margin-top:7px;">
+							완료예정일
+						</div>
+                    <!-- 완료예정일 -->
+                    	<div id="detailcomdate" style="flex:2;">                
+                    		<input class="form-control" type="text" value="2022-03-10" readonly="readonly"
+                				style="background-color: white; color:black; text-align:center;"
+                				data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-original-title="완료예정일" >
+                    	</div>                    	
+                    	
+                    </div>
+                	   
+                </div>
+                <!-- 버튼 영역 -->
+                <div class="modal-footer">
+                
+                	<button type="button" id="delBtn" class="btn btn-danger ml-1"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">삭제</span>
+                    </button>
+                    
+                    <button type="button" id="uptBtn" class="btn btn-warning ml-1"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">수정</span>
+                    </button>
+                
+                    <button type="button" class="btn btn-light-secondary"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">닫기</span>
+                    </button>
+                    
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 수정 Modal -->
+
 
 </body>
 </html>
