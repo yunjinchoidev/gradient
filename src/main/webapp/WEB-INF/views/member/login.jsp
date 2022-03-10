@@ -41,7 +41,7 @@ $(documnet).ready(function(){
 				<div id="auth-left">
 					<div class="auth-logo">
 						<a href="/project5/main.do"><img
-							src="/project5/resources/dist/assets/images/logo/logo.png"
+							src="/project5/resources/logo.png"
 							alt="Logo"></a>
 					</div>
 					<h1 class="auth-title">로그인</h1>

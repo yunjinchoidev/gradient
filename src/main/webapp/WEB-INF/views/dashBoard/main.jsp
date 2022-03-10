@@ -118,6 +118,8 @@ $(document).ready(function(){
 			<section id="content-types">
 				<div class="row">
 					<div class="col-xl-4 col-md-6 col-sm-12">
+					
+					
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
@@ -133,94 +135,46 @@ $(document).ready(function(){
 								<button class="btn btn-light-primary">Read More</button>
 							</div>
 						</div>
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						<div class="card collapse-icon accordion-icon-rotate">
-							<div class="card-header">
-								<h1 class="card-title pl-1">Accordion</h1>
-							</div>
+
+
+
+						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
-									<div class="accordion" id="cardAccordion">
-										<div class="card">
-											<div class="card-header" id="headingOne"
-												data-bs-toggle="collapse" data-bs-target="#collapseOne"
-												aria-expanded="false" aria-controls="collapseOne"
-												role="button">
-												<span class="collapsed collapse-title">Accordion Item
-													1</span>
-											</div>
-											<div id="collapseOne" class="collapse pt-1"
-												aria-labelledby="headingOne" data-parent="#cardAccordion">
-												<div class="card-body">Cheesecake muffin cupcake
-													dragée lemon drops tiramisu cake gummies chocolate cake.
-													Marshmallow tart croissant. Tart dessert tiramisu marzipan
-													lollipop lemon drops.</div>
-											</div>
-										</div>
-										<div class="card collapse-header">
-											<div class="card-header" id="headingTwo"
-												data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-												aria-expanded="false" aria-controls="collapseTwo"
-												role="button">
-												<span class="collapsed collapse-title">Accordion Item
-													2</span>
-											</div>
-											<div id="collapseTwo" class="collapse pt-1"
-												aria-labelledby="headingTwo" data-parent="#cardAccordion">
-												<div class="card-body">Pastry pudding cookie toffee
-													bonbon jujubes jujubes powder topping. Jelly beans gummi
-													bears sweet roll bonbon muffin liquorice. Wafer lollipop
-													sesame snaps.</div>
-											</div>
-										</div>
-										<div class="card open">
-											<div class="card-header" id="headingThree"
-												data-bs-toggle="collapse" data-bs-target="#collapseThree"
-												aria-expanded="true" aria-controls="collapseThree"
-												role="button">
-												<span class="collapsed collapse-title">Accordion Item
-													3</span>
-											</div>
-											<div id="collapseThree" class="collapse show pt-1"
-												aria-labelledby="headingThree" data-parent="#cardAccordion">
-												<div class="card-body">Sweet pie candy jelly. Sesame
-													snaps biscuit sugar plum. Sweet roll topping fruitcake.
-													Caramels liquorice biscuit ice cream fruitcake cotton candy
-													tart.</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header" id="headingFour"
-												data-bs-toggle="collapse" data-bs-target="#collapseFour"
-												aria-expanded="false" aria-controls="collapseFour"
-												role="button">
-												<span class="collapsed  collapse-title">Accordion
-													Item 4</span>
-											</div>
-											<div id="collapseFour" class="collapse pt-1"
-												aria-labelledby="headingFour" data-parent="#cardAccordion">
-												<div class="card-body">Sweet pie candy jelly. Sesame
-													snaps biscuit sugar plum. Sweet roll topping fruitcake.
-													Caramels liquorice biscuit ice cream fruitcake cotton candy
-													tart.</div>
-											</div>
-										</div>
-									</div>
+									<h4 class="card-title">예산 관리</h4>
+									<p class="card-text">이곳에서 예산 관리를 하겠습니다.이곳에서 예산 관리를 하겠습니다.
+									이곳에서 예산 관리를 하겠습니다.이곳에서 예산 관리를 하겠습니다.이곳에서 예산 관리를 하겠습니다.
+									이곳에서 예산 관리를 하겠습니다.이곳에서 예산 관리를 하겠습니다.이곳에서 예산 관리를 하겠습니다.</p>
 								</div>
+								<img class="img-fluid w-100"
+									src="/project5/resources/image/burget.png"
+									alt="Card image cap">
+							</div>
+							<div class="card-footer d-flex justify-content-between">
+								<span>Card Footer</span>
+								<button class="btn btn-light-primary">Read More</button>
 							</div>
 						</div>
+
+						<div class="card">
+							<div class="card-content">
+								<div class="card-body">
+									<h4 class="card-title">조달 관리</h4>
+									<p class="card-text">이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 
+									이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 
+									이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. 이곳에서 조달 관리를 하겠습니다. </p>
+								</div>
+								<img class="img-fluid w-100"
+									src="/project5/resources/image/support.png"
+									alt="Card image cap">
+							</div>
+							<div class="card-footer d-flex justify-content-between">
+								<span>Card Footer</span>
+								<button class="btn btn-light-primary">Read More</button>
+							</div>
+						</div>
+						
+						
 					</div>
 					
 					
@@ -237,14 +191,14 @@ $(document).ready(function(){
 						<div class="card">
 							<div class="card-content">
 								<img
-									src="/project5/resources/dist/assets/images/samples/motorcycle.jpg"
+									src="/project5/resources/image/output.png"
 									class="card-img-top img-fluid" alt="singleminded">
 								<div class="card-body">
-									<h5 class="card-title">예산 관리</h5>
-									<p class="card-text">Chocolate sesame snaps apple pie
-										danish cupcake sweet roll jujubes tiramisu.Gummies bonbon
-										apple pie fruitcake icing biscuit apple pie jelly-o sweet
-										roll.</p>
+									<h5 class="card-title">산출물 관리</h5>
+									<p class="card-text">산출물 관리 산출물 관리 산출물 관리 산출물 관리 
+									산출물 관리 산출물 관리 산출물 관리 산출물 관리 산출물 관리 산출물 관리 
+									산출물 관리 산출물 관리 산출물 관리 산출물 관리 산출물 관리 산출물 관리 
+										</p>
 								</div>
 							</div>
 							<ul class="list-group list-group-flush">
@@ -257,24 +211,51 @@ $(document).ready(function(){
 						
 						<div class="card">
 							<div class="card-content">
+								<img
+									src="/project5/resources/image/quality.png"
+									class="card-img-top img-fluid" alt="singleminded">
 								<div class="card-body">
-									<h4 class="card-title mb-0">Video Card</h4>
-								</div>
-								<div
-									class="embed-responsive embed-responsive-item embed-responsive-16by9 w-100">
-									<iframe src="https://www.youtube.com/embed/2b9txcAt4e0"
-										style="width: 100%" height="300" allowfullscreen=""></iframe>
-								</div>
-								<div class="card-body">
-									<p class="card-text">Candy cupcake sugar plum oat cake
-										wafer marzipan jujubes. Jelly-o sesame snaps cheesecake
-										topping. Cupcake fruitcake macaroon donut pastry gummies
-										tiramisu chocolate bar muffin.</p>
-									<a href="#" class="card-link">Card link</a> <a href="#"
-										class="card-link">Another link</a>
+									<h5 class="card-title">품질 관리</h5>
+									<p class="card-text">품질 관리 품질 관리 품질 관리 품질 관리
+									품질 관리 품질 관리 품질 관리 품질 관리 품질 관리 품질 관리 품질 관리
+									품질 관리 품질 관리 품질 관리 품질 관리 품질 관리 품질 관리 품질 관리
+										</p>
 								</div>
 							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">Cras justo odio</li>
+								<li class="list-group-item">Dapibus ac facilisis in</li>
+								<li class="list-group-item">Vestibulum at eros</li>
+							</ul>
 						</div>
+						
+						<div class="card">
+							<div class="card-content">
+								<img
+									src="/project5/resources/image/human.png"
+									class="card-img-top img-fluid" alt="singleminded">
+								<div class="card-body">
+									<h5 class="card-title">인적 관리</h5>
+									<p class="card-text">인적 관리 인적 관리 인적 관리 
+									인적 관리 인적 관리 인적 관리 인적 관리 인적 관리 인적 관리 
+									인적 관리 인적 관리 인적 관리 인적 관리 인적 관리 인적 관리 
+									인적 관리 인적 관리 인적 관리 인적 관리 인적 관리 인적 관리 
+										</p>
+								</div>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">Cras justo odio</li>
+								<li class="list-group-item">Dapibus ac facilisis in</li>
+								<li class="list-group-item">Vestibulum at eros</li>
+							</ul>
+						</div>
+						
+						
+						
+						
+						
+						
+						
 					</div>
 					
 					
@@ -304,17 +285,17 @@ $(document).ready(function(){
 									<div class="carousel-inner">
 										<div class="carousel-item">
 											<img
-												src="/project5/resources/dist/assets/images/samples/architecture1.jpg"
+												src="/project5/resources/images/notice.jpg"
 												class="d-block w-100" alt="Image Architecture">
 										</div>
 										<div class="carousel-item active">
 											<img
-												src="/project5/resources/dist/assets/images/samples/bg-mountain.jpg"
+												src="/project5/resources/image/notice.png"
 												class="d-block w-100" alt="Image Mountain">
 										</div>
 										<div class="carousel-item">
 											<img
-												src="/project5/resources/dist/assets/images/samples/jump.jpg"
+												src="/project5/resources/image/progress.png"
 												class="d-block w-100" alt="Image Jump">
 										</div>
 									</div>
@@ -394,10 +375,10 @@ $(document).ready(function(){
 						<div class="card">
 							<div class="card-content">
 								<img class="card-img-top img-fluid"
-									src="/project5/resources/dist/assets/images/samples/origami.jpg"
+									src="/project5/resources/image/calendar.png"
 									alt="Card image cap" style="height: 20rem">
 								<div class="card-body">
-									<h4 class="card-title">Top Image Cap</h4>
+									<h4 class="card-title">캘린더</h4>
 									<p class="card-text">Jelly-o sesame snaps cheesecake
 										topping. Cupcake fruitcake macaroon donut pastry gummies
 										tiramisu chocolate bar muffin. Dessert bonbon caramels brownie
@@ -413,7 +394,7 @@ $(document).ready(function(){
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
-									<h4 class="card-title">Bottom Image Cap</h4>
+									<h4 class="card-title">간트차트</h4>
 									<p class="card-text">Jelly-o sesame snaps cheesecake
 										topping. Cupcake fruitcake macaroon donut pastry gummies
 										tiramisu chocolate bar muffin. Dessert bonbon caramels brownie
@@ -423,7 +404,7 @@ $(document).ready(function(){
 									<small class="text-muted">Last updated 3 mins ago</small>
 								</div>
 								<img class="card-img-bottom img-fluid"
-									src="/project5/resources/dist/assets/images/samples/water.jpg"
+									src="/project5/resources/image/gantte.png"
 									alt="Card image cap" style="height: 20rem; object-fit: cover;">
 							</div>
 						</div>

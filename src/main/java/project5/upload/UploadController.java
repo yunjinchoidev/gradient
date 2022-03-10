@@ -60,7 +60,7 @@ public class UploadController {
 	
 	
 	
-	@GetMapping("/uploadForm")
+	@GetMapping("/uploadForm.do")
 	public String uploadForm() {
 
 		return "pageJsonReport";
@@ -87,7 +87,7 @@ public class UploadController {
 	
 	
 	
-	@PostMapping("/uploadFormAction")
+	@PostMapping("/uploadFormAction.do")
 	public String uploadFormPost(MultipartFile[] uploadFile, Model model) {
 
 		String uploadFolder = "C:\\upload";
@@ -112,7 +112,7 @@ public class UploadController {
 	
 	
 	
-	@GetMapping("/uploadAjax")
+	@GetMapping("/uploadAjax.do")
 	public String uploadAjax() {
 
 		return "pageJsonReport";
@@ -151,7 +151,7 @@ public class UploadController {
 	
 	
 	
-	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@PostMapping(value = "/uploadAjaxAction.do", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
 
@@ -221,7 +221,7 @@ public class UploadController {
 	
 	
 	
-	@GetMapping("/display")
+	@GetMapping("/display.do")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
 		File file = new File("c:\\upload\\" + fileName);
@@ -246,7 +246,7 @@ public class UploadController {
 	
 	
 	
-	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
+	@GetMapping(value = "/download.do", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseBody
 	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName) {
 
@@ -292,7 +292,7 @@ public class UploadController {
 	
 	
 	
-	@PostMapping("/deleteFile")
+	@PostMapping("/deleteFile.do")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type) {
 

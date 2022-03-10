@@ -165,7 +165,7 @@
 
 
 
-						<li class="sidebar-item  "><a href="/project5/logout.do"
+						<li class="sidebar-item  "><a href="/project5/mywork.do"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>내
 									작업 목록 / 작업물</span>
 						</a></li>

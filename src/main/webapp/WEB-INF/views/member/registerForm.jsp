@@ -64,7 +64,7 @@
 				<div id="auth-left">
 					<div class="auth-logo">
 						<a href="index.html"><img
-							src="/project5/resources/dist/assets/images/logo/logo.png"
+							src="/project5/resources/logo.png"
 							alt="Logo"></a>
 					</div>
 					<h1 class="auth-title">회원가입</h1>

@@ -11,6 +11,11 @@
  --%>
 <html>
 <head>
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="/project5/resources/dist/assets/js/pages/ui-chartjs.js"></script>
+<script src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="/project5/resources/dist/assets/vendors/chartjs/Chart.min.js"></script>
 <meta charset="UTF-8">
 <title>쌍용 5조 PMBOK 메인 페이지</title>
 <script>
@@ -27,6 +32,9 @@ $(document).ready(function(){
 })
 
 </script>
+
+<style type="text/css">/* Chart.js */
+@keyframes chartjs-render-animation{from{opacity:.99}to{opacity:1}}.chartjs-render-monitor{animation:chartjs-render-animation 1ms}.chartjs-size-monitor,.chartjs-size-monitor-expand,.chartjs-size-monitor-shrink{position:absolute;direction:ltr;left:0;top:0;right:0;bottom:0;overflow:hidden;pointer-events:none;visibility:hidden;z-index:-1}.chartjs-size-monitor-expand>div{position:absolute;width:1000000px;height:1000000px;left:0;top:0}.chartjs-size-monitor-shrink>div{position:absolute;width:200%;height:200%;left:0;top:0}</style>
 </head>
 
 <body>
@@ -114,18 +122,26 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</div>
+			
+			
+			
+			
+			
+			
+			
 			<!-- Basic card section start -->
 			<section id="content-types">
 				<div class="row">
 					<div class="col-xl-4 col-md-6 col-sm-12">
+					
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
-									<h4 class="card-title">리스크 관리</h4>
-									<p class="card-text">이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.이곳에서 리스크 관리를 하겠습니다.</p>
+									<h4 class="card-title">프로젝트 1</h4>
+									<p class="card-text">프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1</p>
 								</div>
 								<img class="img-fluid w-100"
-									src="/project5/resources/image/risk.png"
+									src="/project5/resources/image/project.png"
 									alt="Card image cap">
 							</div>
 							<div class="card-footer d-flex justify-content-between">
@@ -133,6 +149,26 @@ $(document).ready(function(){
 								<button class="btn btn-light-primary">Read More</button>
 							</div>
 						</div>
+						<div class="card">
+							<div class="card-content">
+								<div class="card-body">
+									<h4 class="card-title">진행사항</h4>
+									<p class="card-text">###</p>
+								</div>
+								<img class="img-fluid w-100"
+									src="/project5/resources/image/progress.png"
+									alt="Card image cap">
+							</div>
+							<div class="card-footer d-flex justify-content-between">
+								<span>Card Footer</span>
+								<button class="btn btn-light-primary">Read More</button>
+							</div>
+						</div>
+						
+						
+						
+						
+						
 						<div class="card collapse-icon accordion-icon-rotate">
 							<div class="card-header">
 								<h1 class="card-title pl-1">Accordion</h1>
@@ -209,11 +245,15 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
 					<div class="col-xl-4 col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
 								<img
-									src="/project5/resources/dist/assets/images/samples/motorcycle.jpg"
+									src="/project5/resources/image/project.png"
 									class="card-img-top img-fluid" alt="singleminded">
 								<div class="card-body">
 									<h5 class="card-title">Be Single Minded</h5>
@@ -229,6 +269,33 @@ $(document).ready(function(){
 								<li class="list-group-item">Vestibulum at eros</li>
 							</ul>
 						</div>
+						
+						
+						
+						<div class="card">
+							<div class="card-content">
+								<img
+									src="/project5/resources/image/progress.png"
+									class="card-img-top img-fluid" alt="singleminded">
+								<div class="card-body">
+									<h5 class="card-title">Be Single Minded</h5>
+									<p class="card-text">Chocolate sesame snaps apple pie
+										danish cupcake sweet roll jujubes tiramisu.Gummies bonbon
+										apple pie fruitcake icing biscuit apple pie jelly-o sweet
+										roll.</p>
+								</div>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">Cras justo odio</li>
+								<li class="list-group-item">Dapibus ac facilisis in</li>
+								<li class="list-group-item">Vestibulum at eros</li>
+							</ul>
+						</div>
+						
+						
+						
+						
+						
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
@@ -250,6 +317,11 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
+					
 					<div class="col-xl-4 col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
@@ -347,7 +419,25 @@ $(document).ready(function(){
 								</div>
 							</div>
 						</div>
+						
+						
+						<div class="card">
+                                <div class="card-header">
+                                    <h4 class="card-title">Bar Chart</h4>
+                                </div>
+                                <div class="card-body"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
+                                    <canvas id="bar" width="455" height="227" style="display: block; width: 455px; height: 227px;" class="chartjs-render-monitor"></canvas>
+                                </div>
+                            </div>
+						
+						
+						
 					</div>
+					
+					
+					
+					
+					
 					<div class="col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">

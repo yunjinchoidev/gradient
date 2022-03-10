@@ -1,18 +1,63 @@
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"
-    import="java.util.*"
-    %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<c:set var="path" value="${pageContext.request.contextPath }"/>
-<fmt:requestEncoding value="utf-8"/>     
-	
-	
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8" import="java.util.*"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<fmt:requestEncoding value="utf-8" />
+
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+<style>
+.uploadResult {
+	width: 100%;
+	background-color: gray;
+}
+
+.uploadResult ul {
+	display: flex;
+	flex-flow: row;
+	justify-content: center;
+	align-items: center;
+}
+
+.uploadResult ul li {
+	list-style: none;
+	padding: 10px;
+}
+
+.uploadResult ul li img {
+	width: 100px;
+}
+</style>
+
+<style>
+.bigPictureWrapper {
+	position: absolute;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	top: 0%;
+	width: 100%;
+	height: 100%;
+	background-color: gray;
+	z-index: 100;
+}
+
+.bigPicture {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+</style>
+
+
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -21,14 +66,15 @@
 			<div class="row match-height">
 				<div class="col-12">
 					<div class="card">
-					
+
 						<div class="card-header">
 							<h4 class="card-title">공지사항 등록</h4>
 						</div>
-						
+
 						<div class="card-content">
 							<div class="card-body">
-								<form class="form" action="/project5/noticeWrite.do" method="post">
+								<form class="form" action="/project5/noticeWrite.do"
+									method="post">
 									<div class="row">
 										<div class="col-md-6 col-12">
 											<div class="form-group">
@@ -39,8 +85,8 @@
 										</div>
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="last-name-column">작성일</label> <input
-													type="date" id="last-name-column" class="form-control"
+												<label for="last-name-column">작성일</label> <input type="date"
+													id="last-name-column" class="form-control"
 													placeholder="writeDate" name="writeDateS">
 											</div>
 										</div>
@@ -74,19 +120,50 @@
 										</div>
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="email-id-column">Contents</label> <textarea
-													 class="form-control"
-													name="content" placeholder="content" rows="4"></textarea>
+												<label for="email-id-column">Contents</label>
+												<textarea class="form-control" name="content"
+													placeholder="content" rows="4"></textarea>
 											</div>
 										</div>
-											
-											
-											<div style="margin-bottom: 20px;">
-                                                <label for="formFileLg" class="form-label">파일 첨부Large file input
-                                                    example</label>
-                                                <input class="form-control form-control-lg" id="formFileLg" type="file" name="fileInfo" multiple >
-                                            </div>
-											
+
+
+										<div style="margin-bottom: 20px;">
+											<label for="formFileLg" class="form-label">파일 첨부Large
+												file input example</label> <input
+												class="form-control form-control-lg" id="formFileLg"
+												type="file" name="fileInfo" multiple>
+										</div>
+
+
+										<div class="row">
+											<div class="col-lg-12">
+												<div class="panel panel-default">
+
+													<div class="panel-heading">File Attach</div>
+													<!-- /.panel-heading -->
+													<div class="panel-body">
+														<div class="form-group uploadDiv">
+															<input type="file" name='uploadFile' multiple>
+														</div>
+
+														<div class='uploadResult'>
+															<ul>
+
+															</ul>
+														</div>
+
+
+													</div>
+													<!--  end panel-body -->
+
+												</div>
+												<!--  end panel-body -->
+											</div>
+											<!-- end panel -->
+										</div>
+										<!-- /.row -->
+
+										
 										
 										<div class="form-group col-12">
 											<div class="form-check">
@@ -126,6 +203,7 @@
 </body>
 <script>
 $(document).ready(function(e){
+	
   var formObj = $("form[role='form']");
   $("button[type='submit']").on("click", function(e){
     e.preventDefault();
@@ -138,6 +216,8 @@ $(document).ready(function(e){
   var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
   var maxSize = 5242880; //5MB
   
+  
+  // 파일 체크
   function checkExtension(fileName, fileSize){
     if(fileSize >= maxSize){
       alert("파일 사이즈 초과");
@@ -150,6 +230,11 @@ $(document).ready(function(e){
     return true;
   }
   
+  
+  
+  
+  
+  // 파일 정보를 전송받기
   $("input[type='file']").change(function(e){
     var formData = new FormData();
     var inputFile = $("input[name='fileInfo']");
@@ -164,12 +249,13 @@ $(document).ready(function(e){
     }
     
     $.ajax({
-      url: '/project5/uploadFormAction',
+      url: '/project5/uploadFormAction.do',
       processData: false, 
       contentType: false,data: 
       formData,type: 'POST',
       dataType:'json',
         success: function(result){
+          console.log("GG")
           console.log(result); 
 		  showUploadResult(result); //업로드 결과 처리 함수 
       }
@@ -184,8 +270,7 @@ $(document).ready(function(e){
   
   
   
-  
-  /*
+  ////////////// 뷰 단에 파일 정보를 보여주기 위한 함수
   function showUploadResult(uploadResultArr){
     if(!uploadResultArr || uploadResultArr.length == 0){ return; }
     var uploadUL = $(".uploadResult ul");
@@ -200,7 +285,7 @@ $(document).ready(function(e){
 			str += "<span> "+ obj.fileName+"</span>";
 			str += "<button type='button' data-file=\'"+fileCallPath+"\' "
 			str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-			str += "<img src='/display?fileName="+fileCallPath+"'>";
+			str += "<img src='/display.do?fileName="+fileCallPath+"'>";
 			str += "</div>";
 			str +"</li>";
 		}else{
@@ -212,18 +297,14 @@ $(document).ready(function(e){
 			str += "<span> "+ obj.fileName+"</span>";
 			str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
 			str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-			str += "<img src='/resources/img/attach.png'></a>";
+			str += "<img src='/project5/resources/img/attach.png'></a>";
 			str += "</div>";
 			str +"</li>";
 		}
 
     });
-    
     uploadUL.append(str);
   }
-*/
-  
-
   
 });
 
