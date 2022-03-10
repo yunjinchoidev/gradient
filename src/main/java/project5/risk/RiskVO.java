@@ -11,7 +11,14 @@ public class RiskVO {
 	private String importance;
 	private String title;
 	private Date writedate;
-	private Date comdate;
+	private String writedates;
+	private String comdate;
+	// 프로젝트 목록 조회 및 리스크 리스트 조회
+	private int prjkey;
+	private String prjname;
+	// 프로젝트 리스트 조회
+	private String name;
+	
 	public int getRiskkey() {
 		return riskkey;
 	}
@@ -60,13 +67,37 @@ public class RiskVO {
 	public void setWritedate(Date writedate) {
 		this.writedate = writedate;
 	}
-	public Date getComdate() {
+	public String getComdate() {
 		return comdate;
 	}
-	public void setComdate(Date comdate) {
+	public void setComdate(String comdate) {
 		this.comdate = comdate;
 	}
+	public int getPrjkey() {
+		return prjkey;
+	}
+	public void setPrjkey(int prjkey) {
+		this.prjkey = prjkey;
+	}
+	public String getPrjname() {
+		return prjname;
+	}
+	public void setPrjname(String prjname) {
+		this.prjname = prjname;
+	}
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	public String getWritedates() {
+		return writedates;
+	}
+	public void setWritedates(String writedates) {
+		this.writedates = writedates;
+	}
 	
-	
+		
 	
 }

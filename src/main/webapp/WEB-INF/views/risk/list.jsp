@@ -11,16 +11,30 @@
  --%>
 <html>
 <head>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script>
 	$(document).ready(function(){
+		
+		var msg = "${msg}";
+		
+		if(msg!=""){
+			alert(msg);
+			if(msg=="등록되었습니다"){
+				location.href="${path}/risk.do";
+			}
+		}
+		
 		$("#regBtn").click(function(){
-			$("#regForm").submit();
+			if(confirm('등록 하시겠습니까?')){
+				$('#regForm').submit();
+			}
 		});
-	
+		
+		
 	});
 	
 	function goDetail(){
@@ -94,48 +108,45 @@
 									</thead>
 
 									<tbody>
+									
+									<c:forEach var="rlist" items="${risklist}">
                         				<tr onclick="goDetail()">
-				                            <td>버튼 이슈</td>
-				                            <td>정부지원 4차 프로젝트</td>
-				                            <td>2022-03-09</td>
-				                            <td>2022-03-10</td>
+				                            <td>${rlist.title}</td>
+				                            <td>${rlist.prjname}</td>
+				                            <td>${rlist.writedates}</td>
+				                            <td>${rlist.comdate}</td>
 				                            <td>
-                               				<span class="badge bg-primary">낮음</span>
+				                            <!-- 중요도 값에 따라 색 변경 -->
+				                            <c:choose>
+				                            	<c:when test="${rlist.importance eq'낮음'}">
+                               						<span class="badge bg-primary">${rlist.importance}</span>
+                               					</c:when>
+                               					<c:when test="${rlist.importance eq'보통'}">
+                               						<span class="badge bg-warning">${rlist.importance}</span>
+                               					</c:when>
+                               					<c:when test="${rlist.importance eq'중요'}">
+                               						<span class="badge bg-danger">${rlist.importance}</span>
+                               					</c:when>
+                               				</c:choose>
                             				</td>
                             				<td>
-                               				<span class="badge bg-warning">진행중</span>
+                            				<!-- 진행사항 값에 따라 생 변경 -->
+                            				<c:choose>
+                            					<c:when test="${rlist.progress eq'진행중'}">
+                               						<span id="prog" class="badge bg-warning">${rlist.progress}</span>
+                               					</c:when>
+                               					<c:when test="${rlist.progress eq'대기'}">
+                               						<span id="prog" class="badge bg-primary">${rlist.progress}</span>
+                               					</c:when>
+                               					<c:when test="${rlist.progress eq'완료'}">
+                               						<span id="prog" class="badge bg-success">${rlist.progress}</span>
+                               					</c:when>
+                               				</c:choose>
                             				</td>
-                            				<td>김민수</td>
+                            				<td>${rlist.name}</td>
                        					 </tr>
-                       					 
-                       					 <tr>
-				                            <td>버튼 이슈2</td>
-				                            <td>정부지원 4차 프로젝트</td>
-				                            <td>2022-03-09</td>
-				                            <td>2022-03-10</td>
-				                            <td>
-                               				<span class="badge bg-danger">중요</span>
-                            				</td>
-                            				<td>
-                               				<span class="badge bg-success">완료</span>
-                            				</td>
-                            				<td>김철수</td>
-                       					 </tr>
-                       					 
-                       					 <tr>
-				                            <td>버튼 이슈3</td>
-				                            <td>정부지원 4차 프로젝트</td>
-				                            <td>2022-03-09</td>
-				                            <td>2022-03-10</td>
-				                            <td>
-                               				<span class="badge bg-warning">보통</span>
-                            				</td>
-                            				<td>
-                               				<span class="badge bg-primary">대기</span>
-                            				</td>
-                            				<td>김진수</td>
-                       					 </tr>
-                       					 	                       					 
+                       				</c:forEach>
+                       					                 					 	                       					 
 									</tbody>
 
 								</table>
@@ -182,14 +193,15 @@
                     <i data-feather="x"></i>
                 </button>
             </div>
-            <form id="regForm">
+            <form id="regForm" action="${path}/insertrisk.do" method="post">
             	<!-- 모달 입력 요소 영역 -->
                 <div class="modal-body" style="margin:10px;">
                 	<!-- 프로젝트 select box -->
                 	<div id="prjselect">
-                    	<select class="form-select" style="text-align:center;">
-                    		<option>프로젝트1</option>
-                    		<option>프로젝트2</option>
+                    	<select class="form-select" style="text-align:center;" name="prjkey">
+                    		<c:forEach var="prlist" items="${prjlist}">
+                    			<option value="${prlist.prjkey}">${prlist.prjname}</option>
+                    		</c:forEach>
                     	</select>
                     </div>
                     

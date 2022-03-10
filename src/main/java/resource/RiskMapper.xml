@@ -4,5 +4,28 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="project5.risk.RiskDao">
+	<!-- 리스크 등록, 프로젝트 조회 -->
+	<select id="selectprjlist" resultType="risk">
+		SELECT p.PROJECTKEY AS prjkey, p.NAME AS prjname
+		FROM MEMBER m , PROJECT p 
+		WHERE m.PROJECTKEY = p.PROJECTKEY
+		AND m.NAME = '홍길동'
+	</select>
 	
+	<!-- 리스크 리스트 조회 -->
+	<select id="riskboardlist" resultType="risk">
+		SELECT r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
+		TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name 
+		FROM RISK r, MEMBER m , PROJECT p 
+		WHERE r.MEMBERKEY = m.MEMBERKEY 
+		AND r.PROJECTKEY = p.PROJECTKEY
+		ORDER BY RISKKEY DESC
+	</select>
+	
+	<!-- 리스크 등록 -->
+	<insert id="insertRisk" parameterType="risk">
+		INSERT INTO risk VALUES (seq_risk.nextval,#{prjkey},1,
+			#{content},#{progress},sysdate,#{importance},#{title},to_date(#{comdate},'YYYY-MM-DD') )
+	</insert>
+
 </mapper>
