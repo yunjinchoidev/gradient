@@ -4,6 +4,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias alias="calendar" type="project5.fullCalendar.Calendar" />
+		<typeAlias alias="risk" type="project5.risk.RiskVO" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/DeptMapper.xml" />
@@ -13,5 +14,6 @@
 		<mapper resource="resource/ProjectMapper.xml" />
 		<mapper resource="resource/NoticeMapper.xml" />
 		<mapper resource="resource/FileInfoMapper.xml" />
+		<mapper resource="resource/RiskMapper.xml" />
 	</mappers>
 </configuration>
