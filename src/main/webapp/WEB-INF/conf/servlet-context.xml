@@ -56,6 +56,21 @@
 	<bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<property name="contentType" value="text/html; charset=utf-8"></property>
 	</bean>	
+	
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="port" value="587"/>
+		<property name="username" value="qmwmemrmaa@gmail.com"/>
+		<property name="password" value="Tkddyddhwh1!"/>
+		<!-- 보안 관련 설정 -->
+			<property name="javaMailProperties">
+				<props>
+					<prop key="mail.smtp.auth"></prop>
+					<prop key="mail.smtp.starttls.enable">true</prop>
+				</props>
+			</property>
+	</bean>
+	
 </beans>
 
 

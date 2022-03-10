@@ -10,5 +10,8 @@
 		<mapper resource="resource/MemberMapper.xml" />
 		<mapper resource="resource/ScheduleMapper.xml" />
 		<mapper resource="resource/CalendarMapper.xml" />
+		<mapper resource="resource/ProjectMapper.xml" />
+		<mapper resource="resource/NoticeMapper.xml" />
+		<mapper resource="resource/FileInfoMapper.xml" />
 	</mappers>
 </configuration>

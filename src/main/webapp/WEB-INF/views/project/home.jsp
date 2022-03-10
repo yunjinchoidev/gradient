@@ -17,8 +17,11 @@
 
 <body>
 	<%@ include file="../common/header.jsp"%>
+	
+	
+	
 	<div id="main">
-
+	
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
@@ -56,9 +59,12 @@
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+							
+							
+							
 							<div class="dataTable-top">
-								<div class="dataTable-dropdown">
-									<select class="dataTable-selector form-select"><option
+								<div class="dataTable-dropdown" style="width:30%;">
+									<select class="dataTable-selector form-select" ><option
 											value="5">5</option>
 										<option value="10" selected="">10</option>
 										<option value="15">15</option>
@@ -70,8 +76,12 @@
 										type="text">
 										<a href="/project5/projectWriteForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
 								</div>
-								
 							</div>
+							
+							
+							
+							
+							
 							<div class="dataTable-container">
 								<table class="table table-striped dataTable-table" id="table1">
 									<thead>

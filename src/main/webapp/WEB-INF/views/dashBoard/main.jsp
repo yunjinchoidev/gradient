@@ -133,6 +133,19 @@ $(document).ready(function(){
 								<button class="btn btn-light-primary">Read More</button>
 							</div>
 						</div>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 						<div class="card collapse-icon accordion-icon-rotate">
 							<div class="card-header">
 								<h1 class="card-title pl-1">Accordion</h1>
@@ -209,6 +222,17 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					<div class="col-xl-4 col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
@@ -216,7 +240,7 @@ $(document).ready(function(){
 									src="/project5/resources/dist/assets/images/samples/motorcycle.jpg"
 									class="card-img-top img-fluid" alt="singleminded">
 								<div class="card-body">
-									<h5 class="card-title">Be Single Minded</h5>
+									<h5 class="card-title">예산 관리</h5>
 									<p class="card-text">Chocolate sesame snaps apple pie
 										danish cupcake sweet roll jujubes tiramisu.Gummies bonbon
 										apple pie fruitcake icing biscuit apple pie jelly-o sweet
@@ -229,6 +253,8 @@ $(document).ready(function(){
 								<li class="list-group-item">Vestibulum at eros</li>
 							</ul>
 						</div>
+						
+						
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
@@ -250,6 +276,22 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					<div class="col-xl-4 col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">

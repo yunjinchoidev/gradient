@@ -1,6 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<fmt:requestEncoding value="utf-8"/>     
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -108,10 +116,8 @@
 							<ul class="submenu ">
 								<li class="submenu-item "><a href="/project5/projectHome.do">홈
 									 </a></li>
-								<li class="submenu-item "><a href="/project5/range.do">범위
-										관리 1(칸반) </a></li>
-								<li class="submenu-item "><a href="/project5/wbs.do">범위
-										관리 2(WBS) </a></li>
+								<li class="submenu-item "><a href="/project5/range.do">칸반 보드 </a></li>
+								<li class="submenu-item "><a href="/project5/wbs.do">간트차트 </a></li>
 								<li class="submenu-item "><a href="/project5/output.do">산출물
 										관리 </a></li>
 								<li class="submenu-item "><a href="/project5/cost.do">예산
@@ -136,15 +142,10 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/gantt.do">간트차트</a>
-								</li>
-
 								<li class="submenu-item "><a href="/project5/calendar.do">캘린더</a>
 								</li>
 								<li class="submenu-item "><a
-									href="/project5/scheduleList.do">일정관리 계획</a></li>
-								<li class="submenu-item "><a href="/project5/todayItodo.do">Today
-										I to do </a></li>
+									href="/project5/scheduleList.do">일정관련 공지</a></li>
 
 							</ul></li>
 
@@ -185,16 +186,9 @@
 
 							<ul class="submenu ">
 								<li class="submenu-item "><a href="/project5/unifyList.do">프로젝트
-										계획 관리</a></li>
-								<li class="submenu-item "><a
-									href="/project5/unifyOrders.do">프로젝트 수주 관리</a></li>
-								<li class="submenu-item "><a href="/project5/unifyStart.do">프로젝트
-										시작 & 종료</a></li>
-								<li class="submenu-item "><a
-									href="/project5/unifyManage.do">프로젝트 관리</a></li>
-								<li class="submenu-item "><a href="/project5/unifyIndex.do">프로젝트
-										대시 보드</a></li>
-
+										총괄 </a></li>
+								<li class="submenu-item "><a href="/project5/unifyStart.do">프로젝트 시작 & 종료
+										</a></li>
 							</ul></li>
 
 

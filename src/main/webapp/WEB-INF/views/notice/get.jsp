@@ -15,25 +15,25 @@
 					<div class="card">
 					
 						<div class="card-header">
-							<h4 class="card-title">프로젝트 공지사항</h4>
+							<h4 class="card-title">공지사항</h4>
 						</div>
 						
 						<div class="card-content">
 							<div class="card-body">
-								<form class="form" action="/project5/projectWrite.do">
+								<form class="form" action="/project5/noticeWrite.do" method="get">
 									<div class="row">
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="first-name-column">First Name</label> <input
+												<label for="first-name-column">공지 제목</label> <input
 													type="text" id="first-name-column" class="form-control"
-													placeholder="프로젝트 명" name="fname-column">
+													placeholder="title" name="title" value="${notice.title }" readonly="readonly">
 											</div>
 										</div>
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="last-name-column">Last Name</label> <input
-													type="text" id="last-name-column" class="form-control"
-													placeholder="Last Name" name="lname-column">
+												<label for="last-name-column">작성일</label> <input
+													type="date" id="last-name-column" class="form-control"
+													placeholder="writeDate" name="writeDate" value="${notice.writeDate }">
 											</div>
 										</div>
 										<div class="col-md-6 col-12">
@@ -68,7 +68,7 @@
 											<div class="form-group">
 												<label for="email-id-column">Contents</label> <textarea
 													 class="form-control"
-													name="contents" placeholder="Contents" rows="4"></textarea>
+													name="content" placeholder="content" rows="4" readonly="readonly">${notice.content }</textarea>
 											</div>
 										</div>
 											
@@ -83,16 +83,16 @@
 											</div>
 										</div>
 										<div class="col-12 d-flex justify-content-end">
-										<button type="button" class="btn btn-danger btn-icon icon-left">
-                                            <i class="fas fa-plane"></i> 뒤로가기
+										<button type="button" class="btn btn-danger btn-icon icon-left" style="height: 90%;" onclick="location.href='/project5/notice.do'">
+                                            <i class="fas fa-plane"></i> 목록으로
                                         </button>
-											<a href="/project5/projectHome.do" class="btn btn-info">뒤로가기</a>
-											<button type="submit" class="btn btn-primary me-1 mb-1">등록</button>
+											<button type="submit" class="btn btn-primary me-1 mb-1">수정하기</button>
 											<button type="reset"
-												class="btn btn-light-secondary me-1 mb-1">초기화</button>
+												class="btn btn-light-secondary me-1 mb-1">삭제하기</button>
 										</div>
 									</div>
 								</form>
+								
 							</div>
 						</div>
 					</div>

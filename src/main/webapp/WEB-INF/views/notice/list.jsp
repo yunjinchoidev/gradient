@@ -10,11 +10,19 @@
 
  --%>
 <html>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-
+<script>
+$(document).ready(function(){
+	var psc = "${psc}"
+	if(psc=="success"){
+		alert("공지사항 작성이 완료되었습니다.");
+	}
+})
+</script>
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
@@ -56,7 +64,7 @@
 								<div class="dataTable-search">
 									<input class="dataTable-input" placeholder="Search..."
 										type="text">
-										<a href="/project5/scheduleInsertForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
+										<a href="/project5/noticeWriteForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
 								</div>
 								
 							</div>
@@ -65,13 +73,13 @@
 									<thead>
 										<tr>
 											<th data-sortable="" style="width: 12.0176%;"><a
-												href="#" class="dataTable-sorter">Name</a></th>
+												href="#" class="dataTable-sorter">번호</a></th>
 											<th data-sortable="" style="width: 42.9989%;"><a
-												href="#" class="dataTable-sorter">Email</a></th>
+												href="#" class="dataTable-sorter">제목</a></th>
 											<th data-sortable="" style="width: 18.0816%;"><a
-												href="#" class="dataTable-sorter">Phone</a></th>
+												href="#" class="dataTable-sorter">작성일</a></th>
 											<th data-sortable="" style="width: 16.3175%;"><a
-												href="#" class="dataTable-sorter">City</a></th>
+												href="#" class="dataTable-sorter">조회수</a></th>
 											<th data-sortable="" style="width: 10.8049%;"><a
 												href="#" class="dataTable-sorter">Status</a></th>
 										</tr>
@@ -82,11 +90,11 @@
 
 									<tbody>
 										<c:forEach var="list" items="${list}">
-											<tr>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
+											<tr onclick="location.href='/project5/noticeGet.do?noticekey='+${list.noticekey}">
+												<td>${list.title }</td>
+												<td>${list.title }</td>
+												<td>${list.writeDate }</td>
+												<td>${list.cnt }</td>
 												<td><span class="badge bg-success">Active</span></td>
 											</tr>
 										</c:forEach>

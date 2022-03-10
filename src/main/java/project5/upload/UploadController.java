@@ -36,12 +36,13 @@ import net.coobird.thumbnailator.Thumbnailator;
 public class UploadController {
 
 	@GetMapping("/uploadForm")
-	public void uploadForm() {
+	public String uploadForm() {
 
+		return "pageJsonReport";
 	}
 
 	@PostMapping("/uploadFormAction")
-	public void uploadFormPost(MultipartFile[] uploadFile, Model model) {
+	public String uploadFormPost(MultipartFile[] uploadFile, Model model) {
 
 		String uploadFolder = "C:\\upload";
 
@@ -54,12 +55,21 @@ public class UploadController {
 			} catch (Exception e) {
 			} // end catch
 		} // end for
+		
+		
+		
+		return "pageJsonReport";
 
 	}
 
+	
+	
+	
+	
 	@GetMapping("/uploadAjax")
-	public void uploadAjax() {
+	public String uploadAjax() {
 
+		return "pageJsonReport";
 	}
 
 	private String getFolder() {
@@ -88,6 +98,13 @@ public class UploadController {
 		return false;
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
@@ -148,17 +165,24 @@ public class UploadController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping("/display")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
-
 		File file = new File("c:\\upload\\" + fileName);
-
 		ResponseEntity<byte[]> result = null;
 
 		try {
 			HttpHeaders header = new HttpHeaders();
-
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 		} catch (IOException e) {
@@ -168,6 +192,14 @@ public class UploadController {
 		return result;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
 	@GetMapping(value = "/download", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
 	@ResponseBody
 	public ResponseEntity<Resource> downloadFile(@RequestHeader("User-Agent") String userAgent, String fileName) {
@@ -205,6 +237,15 @@ public class UploadController {
 		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@PostMapping("/deleteFile")
 	@ResponseBody
 	public ResponseEntity<String> deleteFile(String fileName, String type) {
@@ -234,4 +275,13 @@ public class UploadController {
 
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
