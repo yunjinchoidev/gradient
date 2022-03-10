@@ -27,7 +27,7 @@ public class MailService {
 			mmsg.setRecipient(RecipientType.TO, new InternetAddress(email.getReciever()));
 		} catch (MessagingException e) {
 			// TODO Auto-generated catch block
-			msg = "일반 에러 발생:"+e.getMessage()
+			msg = "일반 에러 발생:"+e.getMessage();
 		}
 		
 		return msg;
