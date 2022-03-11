@@ -62,7 +62,7 @@
 					<div class="d-flex justify-content-between">
 						<div class="logo">
 							<a href="/project5/main.do"><img
-								src="/project5/resources/a.png" alt="Logo" srcset=""></a>
+								src="/project5/resources/logo.png" alt="Logo" srcset=""></a>
 						</div>
 						<div class="toggler">
 							<a href="#" class="sidebar-hide d-xl-none d-block"><i
