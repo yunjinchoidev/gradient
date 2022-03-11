@@ -127,6 +127,11 @@
 										</div>
 
 
+
+
+
+
+
 										<div style="margin-bottom: 20px;">
 											<label for="formFileLg" class="form-label">파일 첨부Large
 												file input example</label> <input

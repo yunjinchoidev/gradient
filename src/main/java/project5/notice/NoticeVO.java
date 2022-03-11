@@ -1,7 +1,12 @@
 package project5.notice;
 
 import java.util.Date;
+import java.util.List;
 
+import lombok.Data;
+import project5.noticeAttach.NoticeAttachVO;
+
+@Data
 public class NoticeVO {
 	private int noticekey;
 	private String title;
@@ -11,6 +16,12 @@ public class NoticeVO {
 	private String writeDateS;
 	private int memberkey;
 
+	
+	private List<NoticeAttachVO> attachList;
+	
+	
+	
+	
 	public NoticeVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -88,6 +99,19 @@ public class NoticeVO {
 		this.writeDate = writeDate;
 	}
 
+	
+	
+	
+	
+	
+	public String getWriteDateS() {
+		return writeDateS;
+	}
+
+	public void setWriteDateS(String writeDateS) {
+		this.writeDateS = writeDateS;
+	}
+
 	public int getMemberkey() {
 		return memberkey;
 	}
@@ -95,5 +119,15 @@ public class NoticeVO {
 	public void setMemberkey(int memberkey) {
 		this.memberkey = memberkey;
 	}
+
+	public List<NoticeAttachVO> getAttachList() {
+		return attachList;
+	}
+
+	public void setAttachList(List<NoticeAttachVO> attachList) {
+		this.attachList = attachList;
+	}
+	
+	
 
 }
