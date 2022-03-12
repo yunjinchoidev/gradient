@@ -1,5 +1,8 @@
 package project5.member;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,22 +14,24 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
+import oracle.net.aso.d;
+import project5.mail.A10_MailService;
+import project5.mail.Mail;
+
 @Controller
 @SessionAttributes("member")
 public class MemberContoller {
 	@Autowired
 	MemberService service;
-	
-	
-	
-	
-	
-	
+
+	@Autowired
+	A10_MailService service2;
+
 	@ModelAttribute("member")
 	public MemberVO getUserVO() {
 		return new MemberVO();
 	}
-	
+
 	@GetMapping("/login.do")
 	public String login() {
 		return "member/login";
@@ -36,47 +41,81 @@ public class MemberContoller {
 	public String memberEdit() {
 		return "member/edit";
 	}
-	
+
 	@PostMapping("/login.do")
 	public String login(Model d, @ModelAttribute("member") MemberVO vo) {
 		vo = service.login(vo);
-		if(vo==null) {
-			d.addAttribute("psc", "fail");
-			System.out.println("fail");
-			return "member/login";
-		}else {
+		MemberVO vo2 = new MemberVO(1);
+		if (vo != null) {
 			d.addAttribute("psc", "success");
 			d.addAttribute("member", service.login(vo));
+			System.out.println("vo : "+vo);
 			System.out.println("로그인 성공하였습니다.");
-			return "forward:/main.do";
+			return "redirect:/main.do";
+		} else {
+			d.addAttribute("psc", "fail");
+			d.addAttribute("member", vo2);
+			System.out.println("vo : "+vo);
+			System.out.println("로그인 실패");
+			return "redirect:/login.do";
 		}
+
 	}
-	
-	
-	@RequestMapping("/logout.do")
-	public String logout(Model d,  @ModelAttribute("member") MemberVO vo) {
-		vo = service.logout();
-		d.addAttribute("psc", "logout");
+
+	@RequestMapping(value = "/logout.do")
+	public String userRemove(@ModelAttribute("member") MemberVO member, Model d) {
+		MemberVO vo = new MemberVO(1);
+		System.out.println("로그아웃 진입");
 		d.addAttribute("member", vo);
-		return "redirect:/main.do";
+		System.out.println(member);
+		System.out.println(member.getId());
+		System.out.println("로그아웃 성공");
+		return "redirect:/login.do";
 	}
-	
-	
-	
+
+	@RequestMapping(value = "/memberDeleteForm.do")
+	public String memberDeleteForm() {
+		return "member/deleteForm";
+	}
+
+	@RequestMapping(value = "/memberDelete.do")
+	public String memberDeleteForm(Model d, int memberkey, @ModelAttribute("member") MemberVO member) {
+		service.delete(memberkey);
+		MemberVO vo = new MemberVO(1);
+		d.addAttribute("member", vo);
+		return "member/deleteResult";
+	}
+
 	@RequestMapping("/memberRegisterForm.do")
-	public String registerForm() {
+	public String registerForm(Model d) {
+		d.addAttribute("reginum", service.reginum());
 		return "member/registerForm";
 	}
-	
-	
-	@RequestMapping("/memberRegister.do")
-	public String register(Model d, MemberVO vo) {
-		service.register(vo);
-		d.addAttribute("psc", "success");
-		return "forward:/main.do";
-	}
-	
-	
 
-	
+	@RequestMapping("/memberRegister.do")
+	public String register(Model d, MemberVO vo, Mail mail) {
+		System.out.println(vo.getMemberkey());
+		System.out.println(mail.toString());
+		d.addAttribute("psc", service2.sendidpassMail(vo.getMemberkey(), mail.getReciever()));
+		System.out.println("임시 아이디 비밀번호 발급 성공");
+		return "member/memberRegisterResult";
+	}
+
+	@RequestMapping("/memberRegisterResult.do")
+	public String memberRegisterResult() {
+		return "/member/memberRegisterResult";
+	}
+
+	@RequestMapping("/memberEdit.do")
+	public String memberEdit(MemberVO vo, Model d, @ModelAttribute("member") MemberVO member) {
+		System.out.println("회원 정보 수정 진입");
+		service.edit(vo);
+		MemberVO vo2 = new MemberVO(1);
+		d.addAttribute("member", vo2);
+		System.out.println("회원 정보 수정 완료");
+		d.addAttribute("psc", "success");
+		return "member/EditSuccess";
+
+	}
+
 }

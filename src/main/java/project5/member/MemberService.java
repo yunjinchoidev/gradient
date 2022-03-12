@@ -23,9 +23,23 @@ public class MemberService {
 		return dao.logout();
 	}
 	
-	public void register(MemberVO vo) {
-		dao.register(vo);
+	public void edit(MemberVO vo) {
+		dao.edit(vo);
 	}
+	
+	public int reginum() {
+		return dao.reginum();
+	}
+	
+	
+	public MemberVO get(int memberkey) {
+		return dao.get(memberkey);
+	}
+	
+	public void delete(int memberkey) {
+		dao.delete(memberkey);
+	}
+
 	
 	
 }

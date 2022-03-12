@@ -5,6 +5,12 @@ public class Mail {
 	private String sender;
 	private String title;
 	private String content;
+	
+	
+	
+	
+	
+	
 	public String getReciever() {
 		return reciever;
 	}

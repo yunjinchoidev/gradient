@@ -9,17 +9,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class A10_MailController {
+	
+	
 	@Autowired
 	private A10_MailService service;
+	
+	
 	// http://localhost:7080/springweb/mailFrm.do
-	@GetMapping("mailFrm.do")
+	@GetMapping("/mailFrm.do")
 	public String mailForm() {
-		return "mail/a10_mailForm.jsp";
+		return "mail/a10_mailForm";
 	}
-	@PostMapping("mailsend.do")
+	
+	
+	
+	
+	@PostMapping("/mailsend.do")
 	public String mailsend(Mail mail, Model d) {
 		System.out.println(mail.getReciever());
 		d.addAttribute("msg", service.sendMail(mail));
-		return "mail/a10_mailForm.jsp";
+		return "mail/a10_mailForm";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

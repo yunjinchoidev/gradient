@@ -10,13 +10,14 @@
 
  --%>
 <html>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <head>
 <meta charset="UTF-8">
 <title>쌍용 5조 PMBOK 메인 페이지</title>
-<script>
+<script type="text/javascript">
 $(document).ready(function(){
 	var psc = "${psc}";
-	
+	console.log("psc : "+psc);
 	if(psc=="success"){
 		alert("로그인 성공하셨습니다.");
 	}
@@ -25,6 +26,8 @@ $(document).ready(function(){
 		alert("로그아웃 되었습니다.");
 	}
 })
+
+
 
 </script>
 </head>

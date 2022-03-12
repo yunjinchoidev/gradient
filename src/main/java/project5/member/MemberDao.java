@@ -9,5 +9,9 @@ public interface MemberDao {
 	public List<MemberVO> list();
 	public MemberVO login(MemberVO vo);
 	public MemberVO logout();
-	public void register(MemberVO vo);
+	public void edit(MemberVO vo);
+	public int reginum();
+	public MemberVO get(int memberkey);
+	public void delete(int memberkey);
+	
 }

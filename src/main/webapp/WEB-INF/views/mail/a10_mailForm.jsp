@@ -52,40 +52,73 @@
 
 
 <body>
+
+<%@ include file="../common/header.jsp"%>
+
+
+
+<div id="main">
 <div class="jumbotron text-center">
   <h2 data-toggle="modal" data-target="#exampleModalCenter">메일발송</h2>
 </div>
+
+
+
 <div class="container">
-	<form method="post" action="${path }/mailsend.do">
+	<form method="post" action="/project5/mailsend.do">
+	
+	
+	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
 			<span class="input-group-text ">수신자</span>
 		</div>
-		<input name="reciever" class="form-control" placeholder="수신자 입력하세요"/>	
+		<input name="reciever" class="form-control" placeholder="수신자 입력하세요" values="안녕하세요? 쌍용 5조 PMBOK입니다."/>	
 	</div>	
+	
+	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
 			<span class="input-group-text"  >발신자</span>
 		</div>
 		<input name="sender" class="form-control"  reaonly
-				 value="ssangyoung7878@gmail.com"  placeholder="발신자 입력하세요"/>	
+				 value="qmwmemrmaa@gmail.com"  placeholder="발신자 입력하세요" />	
 	</div>	
+	
+	
+	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
 			<span class="input-group-text ">제목</span>
 		</div>
 		<input name="title" type="text"  placeholder="제목입력하세요" class="form-control" />
 	</div>		
+	
+	
+	
+	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
 			<span class="input-group-text ">내용</span>
 		</div>
 		<textarea cols="10" rows="10" name="content" class="form-control" placeholder="내용입력하세요"></textarea>	
 	</div>	
+	
+	
 	<div style="text-align:right;">
 		<input type="submit" class="btn btn-success" value="메일발송" id="sendMailBtn"/>
 	</div>	
 	</form>	
+    
+    
+    </div>
+    
+    
+    
+    
+    
+    
+    
     
 </div>
 </body>

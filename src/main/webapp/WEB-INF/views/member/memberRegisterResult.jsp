@@ -37,9 +37,7 @@
 </head>
 <script>
 	$(document).ready(function() {
-		$("#make").click(function(){
-			alert("이메일이 전송되었습니다!")
-		})
+		
 	});	
 </script>
 
@@ -47,46 +45,21 @@
 
 	<%@ include file="../common/header.jsp"%>
 	<div id="auth"  style="margin-left: 350px;">
-		<div class="row h-100" style="width: 900px; ">
+		<div class="row h-100" style="width: 1100px; ">
 			<div class="col-lg-5 col-12">
-				<div id="auth-left" style="width: 900px;">
-					<h1 class="auth-title">처음 오셨습니까?</h1>
-					<p class="auth-subtitle mb-5" >이메일을 입력하시오</p>
+				<div id="auth-left" style="width: 1100px; ">
+					<h1 class="auth-title">가입이 완료 되었습니다.<br> 메일을 확인하십시오</h1>
+					<p class="auth-subtitle mb-5">부주의로 인한 피해는 본사에서 책임지지 않습니다.</p>
 
 
-					<form action="/project5/memberRegister.do" method="post">
-						<div class="form-group position-relative has-icon-left mb-4">
-							<input type="text" class="form-control form-control-xl"
-								placeholder="가입번호 : ${reginum }" name="memberkey" readonly="readonly" value="${reginum }">
-							<div class="form-control-icon">
-								<i class="bi bi-envelope"></i>
-							</div>
-						</div>
-						
-						<div class="form-group position-relative has-icon-left mb-4">
-							<input type="email" class="form-control form-control-xl"
-								placeholder="이메일" name="reciever">
-							<div class="form-control-icon">
-								<i class="bi bi-person"></i>
-							</div>
-						</div>
-
-
-
-
-
-
-						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" id="make">임시 아이디/비밀번호 발급받기</button>
-					</form>
 					
-					
-					
-					
+					<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5"
+						onclick="location.href='/project5/login.do'">로그인 하기</button>
 					<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5"
 						onclick="location.href='/project5/main.do'">메인으로</button>
 					<div class="text-center mt-5 text-lg fs-4">
 						<p class='text-gray-600'>
-							이미 계정이 있습니까? <a href="/project5/login.do" class="font-bold">로그인</a>.
+							메일이 오지 않습니까? <a href="/project5/main.do" class="font-bold">고객센터</a>
 						</p>
 					</div>
 				</div>

@@ -5,22 +5,29 @@ public class MemberVO {
 	private String id;
 	private String pass;
 	private String name;
-	private int point;
 	private String auth;
+	private int projectkey;
+	private int deptno;
 
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public MemberVO(int memberkey, String id, String pass, String name, int point, String auth) {
+	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno) {
 		super();
 		this.memberkey = memberkey;
 		this.id = id;
 		this.pass = pass;
 		this.name = name;
-		this.point = point;
 		this.auth = auth;
+		this.projectkey = projectkey;
+		this.deptno = deptno;
+	}
+
+	public MemberVO(int deptno) {
+		super();
+		this.deptno = deptno;
 	}
 
 	public int getMemberkey() {
@@ -55,20 +62,28 @@ public class MemberVO {
 		this.name = name;
 	}
 
-	public int getPoint() {
-		return point;
-	}
-
-	public void setPoint(int point) {
-		this.point = point;
-	}
-
 	public String getAuth() {
 		return auth;
 	}
 
 	public void setAuth(String auth) {
 		this.auth = auth;
+	}
+
+	public int getProjectkey() {
+		return projectkey;
+	}
+
+	public void setProjectkey(int projectkey) {
+		this.projectkey = projectkey;
+	}
+
+	public int getDeptno() {
+		return deptno;
+	}
+
+	public void setDeptno(int deptno) {
+		this.deptno = deptno;
 	}
 
 }
