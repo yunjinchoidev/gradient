@@ -12,4 +12,11 @@ public interface RiskDao {
 	public List<RiskVO> selectprjlist();
 	// 리스크 등록
 	public void insertRisk(RiskVO ins);
+	// 리스크 상세정보
+	public RiskVO riskDetail(int riskkey);
+	// 리스크 삭제
+	public void delRisk(int riskkey);
+	// 리스크 수정
+	public void uptRisk(RiskVO upt);
+	
 }
