@@ -34,11 +34,22 @@
 			}
 		});
 		
+		var pageSize="${riskSch.pageSize}"
+			$("[name=pageSize]").val(pageSize);
+			$("[name=pageSize]").change(function(){
+				$("[name=curPage]").val(1);
+				$("#schform").submit();
+			});		
 		
 	});
 	
 	function goDetail(riskkey){
 		location.href="${path}/riskdetail.do?riskkey="+riskkey;		
+	}
+	
+	function goPage(riskkey){
+		$("[name=curPage]").val(riskkey);
+		$("#schform").submit();
 	}
 </script>
 </head>
@@ -64,28 +75,30 @@
 					</div>
 				</div>
 			</div>
+			
 			<section class="section">
 				<div class="card">
-					<div class="card-header">Simple Datatable</div>
 					<div class="card-body">
 						<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+						  <form id="schform" action="${path}/risk.do" method="post">
+						  	<input type="hidden" name="curPage" value="1"/>
 							<div class="dataTable-top">
 								<div class="dataTable-dropdown">
-									<select class="dataTable-selector form-select">
-										<option value="5">5</option>
-										<option value="10">10</option>
-										<option value="15">15</option>
-										<option value="20">20</option>
-										<option value="25">25</option>
+									<select name="pageSize" class="dataTable-selector form-select">
+										<option>5</option>
+										<option>10</option>
+										<option>15</option>
+										<option>20</option>
+										<option>25</option>
 									</select>
-									<label>entries per page</label>	
+									<label>게시글 수</label>	
 								</div>
 								
 								<div class="dataTable-search">
-									<input class="dataTable-input" placeholder="Search..." type="text">			
+									<input type="text" name="sch" class="dataTable-input" placeholder="Search..." type="text">			
 								</div>
-
 							</div>
+						  </form>
 							<div class="dataTable-container">
 								<table class="table table-striped dataTable-table" id="table1">
 									<thead>
@@ -157,19 +170,16 @@
 							</div>
 
 							<div class="dataTable-bottom">
-								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-								<ul
-									class="pagination pagination-primary float-end dataTable-pagination">
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="1">‹</a></li>
-									<li class="page-item active"><a href="#" class="page-link"
-										data-page="1">1</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="2">2</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="3">3</a></li>
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="2">›</a></li>
+								<div class="dataTable-info">전체 리스크: ${riskSch.count}</div>
+								<ul class="pagination pagination-primary float-end dataTable-pagination">
+									<li class="page-item pager"><a class="page-link"
+										href="javascript:goPage(${riskSch.startBlock!=1?riskSch.startBlock-1:1})">‹</a></li>
+									<c:forEach var="cnt" begin="${riskSch.startBlock}" end="${riskSch.endBlock}">
+	  									<li class="page-item ${cnt==riskSch.curPage?'active':''}"> <!-- 클릭한 현재 페이지 번호 -->
+	  									<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
+	 								</c:forEach>
+									<li class="page-item pager"><a class="page-link"
+										href="javascript:goPage(${riskSch.endBlock!=riskSch.pageCount?riskSch.endBlock+1:riskSch.endBlock})">›</a></li>
 								</ul>
 							</div>
 						</div>

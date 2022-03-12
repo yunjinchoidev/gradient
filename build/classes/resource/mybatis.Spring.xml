@@ -5,6 +5,7 @@
 	<typeAliases>
 		<typeAlias alias="calendar" type="project5.fullCalendar.Calendar" />
 		<typeAlias alias="risk" type="project5.risk.RiskVO" />
+		<typeAlias alias="riskSch" type="project5.risk.RiskSch" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/DeptMapper.xml" />

@@ -14,10 +14,14 @@ public class RiskController {
 	
 	//리스크 메인
 	@RequestMapping("/risk.do")
-	public String riskFrm(Model d) {
+	public String riskFrm(RiskSch sch, Model d,
+						  @RequestParam(name="sch",required=false) String schS) {
 		//리스크 게시판 목록
-		d.addAttribute("risklist",service.riskboardlist());
-		//리스크 등록 - 프로젝트 목록
+		d.addAttribute("risklist",service.riskboardlist(sch));
+		if(schS!=null && schS!="") {
+			d.addAttribute("risklist",service.schRiskList(sch));
+		}		
+	//리스크 등록 - 프로젝트 목록
 		d.addAttribute("prjlist",service.selectprjlist());
 		return "risk/list";
 	}

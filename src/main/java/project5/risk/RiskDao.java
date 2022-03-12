@@ -4,10 +4,11 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+
 @Repository
 public interface RiskDao {
 	// 리스크 게시판 조회
-	public List<RiskVO> riskboardlist();
+	public List<RiskVO> riskboardlist(RiskSch sch);
 	// 프로젝트 조회
 	public List<RiskVO> selectprjlist();
 	// 리스크 등록
@@ -18,5 +19,9 @@ public interface RiskDao {
 	public void delRisk(int riskkey);
 	// 리스크 수정
 	public void uptRisk(RiskVO upt);
+	// 총 게시글
+	public int totCnt(RiskSch sch);
+	// 리스크 게시글 검색
+	public List<RiskVO> schRiskList(RiskSch sch);
 	
 }

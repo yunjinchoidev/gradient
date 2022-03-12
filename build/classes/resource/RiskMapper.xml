@@ -4,6 +4,32 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="project5.risk.RiskDao">
+ 
+	<!-- 총 게시물 조회 -->
+	<select id="totCnt" resultType="int" parameterType="riskSch">
+		select count(*)
+		from RISK
+		where 1=1
+		<if test = "sch!=null and sch!=''">
+		AND title LIKE '%'||#{sch}||'%'
+		</if>
+	</select>
+	
+	<!-- 게시글 검색 -->
+	<select id="schRiskList" parameterType="riskSch" resultType="risk">
+	SELECT*
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
+		TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name
+		FROM RISK r , MEMBER m, PROJECT p  
+		WHERE r.MEMBERKEY = m.MEMBERKEY 
+		AND r.PROJECTKEY = p.PROJECTKEY
+		order by cnt asc )
+	where cnt BETWEEN #{start} AND #{end}*999
+	AND title LIKE '%'||#{sch}||'%'
+	order by cnt
+	</select>
+
 	<!-- 리스크 등록, 프로젝트 조회 -->
 	<select id="selectprjlist" resultType="risk">
 		SELECT p.PROJECTKEY AS prjkey, p.NAME AS prjname
@@ -13,13 +39,17 @@
 	</select>
 	
 	<!-- 리스크 리스트 조회 -->
-	<select id="riskboardlist" resultType="risk">
-		SELECT r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
-		TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name 
-		FROM RISK r, MEMBER m , PROJECT p 
-		WHERE r.MEMBERKEY = m.MEMBERKEY 
-		AND r.PROJECTKEY = p.PROJECTKEY
-		ORDER BY RISKKEY DESC
+	<select id="riskboardlist" resultType="risk" parameterType="riskSch">
+		SELECT*
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
+			TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name
+			FROM RISK r , MEMBER m, PROJECT p  
+			WHERE r.MEMBERKEY = m.MEMBERKEY 
+			AND r.PROJECTKEY = p.PROJECTKEY
+			order by cnt asc )
+		where cnt BETWEEN #{start} AND #{end}
+		order by cnt
 	</select>
 	
 	<!-- 리스크 게시글 조회 -->
@@ -32,7 +62,7 @@
 		AND r.PROJECTKEY = p.PROJECTKEY
 		AND RISKKEY = #{riskkey}
 	</select>
-	
+		
 	<!-- 리스크 등록 -->
 	<insert id="insertRisk" parameterType="risk">
 		INSERT INTO risk VALUES (seq_risk.nextval,#{prjkey},1,
@@ -57,5 +87,6 @@
 		WHERE 
 		RISKKEY = '14'
 	</update>
-
+	
+	
 </mapper>

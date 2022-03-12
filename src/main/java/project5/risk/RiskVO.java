@@ -97,7 +97,6 @@ public class RiskVO {
 	public void setWritedates(String writedates) {
 		this.writedates = writedates;
 	}
-	
+
 		
-	
 }
