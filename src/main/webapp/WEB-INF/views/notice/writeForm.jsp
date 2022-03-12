@@ -131,14 +131,14 @@
 
 
 
-
+										<!--  
 										<div style="margin-bottom: 20px;">
 											<label for="formFileLg" class="form-label">파일 첨부Large
 												file input example</label> <input
 												class="form-control form-control-lg" id="formFileLg"
 												type="file" name="fileInfo" multiple>
 										</div>
-
+											-->
 
 
 
@@ -183,19 +183,23 @@
 										</div>
 										<!-- /.row -->
 
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 										<div class="form-group col-12">
 											<div class="form-check">
 												<div class="checkbox">
@@ -205,33 +209,36 @@
 												</div>
 											</div>
 										</div>
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
-										
+
+
+
+
+
+
+
+
+
+
+
+
 										<div class="col-12 d-flex justify-content-end">
-										<button type="button" class="btn btn-danger btn-icon icon-left" style="height: 90%" onclick="location.href='/project5/notice.do'">
-                                            <i class="fas fa-plane"></i> 뒤로가기
-                                        </button>
+											<button type="button"
+												class="btn btn-danger btn-icon icon-left"
+												style="height: 90%"
+												onclick="location.href='/project5/notice.do'">
+												<i class="fas fa-plane"></i> 뒤로가기
+											</button>
 											<button type="submit" class="btn btn-primary me-1 mb-1">등록</button>
 											<button type="reset"
 												class="btn btn-light-secondary me-1 mb-1">초기화</button>
 										</div>
 									</div>
 								</form>
-								
-								
-								
-								
-								
+
+
+
+
+
 							</div>
 						</div>
 					</div>
@@ -239,39 +246,65 @@
 			</div>
 		</section>
 	</div>
+
+
 </body>
 
-
-
-
-
-
+</html>
 
 
 
 
 <script>
+
 $(document).ready(function(e){
-	
+
+
+  
   var formObj = $("form[role='form']");
+  
   $("button[type='submit']").on("click", function(e){
+    
     e.preventDefault();
+    
     console.log("submit clicked");
+    
+    var str = "";
+    
+    $(".uploadResult ul li").each(function(i, obj){
+      
+      var jobj = $(obj);
+      
+      console.dir(jobj);
+      console.log("-------------------------");
+      console.log(jobj.data("filename"));
+      
+      
+      str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+      str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+      str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+      str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+      
+    });
+    
+    console.log(str);
+    console.log("afsdfa");
+    formObj.append(str).submit();
+    console.log("전송");
+    
   });
+
   
-  
-  
-  ////////////////////////////////////////////////////////////////////////
   var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
   var maxSize = 5242880; //5MB
   
-  
-  // 파일 체크
   function checkExtension(fileName, fileSize){
+    
     if(fileSize >= maxSize){
       alert("파일 사이즈 초과");
       return false;
     }
+    
     if(regex.test(fileName)){
       alert("해당 종류의 파일은 업로드할 수 없습니다.");
       return false;
@@ -279,62 +312,64 @@ $(document).ready(function(e){
     return true;
   }
   
-  
-  
-  
-  
-  // 파일 정보를 전송받기
   $("input[type='file']").change(function(e){
+
     var formData = new FormData();
-    var inputFile = $("input[name='fileInfo']");
+    
+    var inputFile = $("input[name='uploadFile']");
     
     var files = inputFile[0].files;
     
     for(var i = 0; i < files.length; i++){
-      if(!checkExtension(files[i].name, files[i].size) ){ //////////////////////// 파일 체크
+
+      if(!checkExtension(files[i].name, files[i].size) ){
         return false;
       }
       formData.append("uploadFile", files[i]);
+      
     }
     
     $.ajax({
-      url: '/project5/uploadFormAction.do',
+      url: '/project5/uploadAjaxAction.do',
       processData: false, 
       contentType: false,data: 
       formData,type: 'POST',
       dataType:'json',
         success: function(result){
-          console.log("GG")
+          console.log("aaaaaaaaaaaaaaaaaaa");
           console.log(result); 
 		  showUploadResult(result); //업로드 결과 처리 함수 
+
+      },
+      error: function(result){
+          console.log("asdfads");
+          console.log(result); 
+    	  console.log("afsdfa")
       }
     }); //$.ajax
+    
   });  
   
-  
-  
-  
-  
-  
-  
-  
-  
-  ////////////// 뷰 단에 파일 정보를 보여주기 위한 함수
   function showUploadResult(uploadResultArr){
+	    
     if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+    
     var uploadUL = $(".uploadResult ul");
+    
     var str ="";
     
     $(uploadResultArr).each(function(i, obj){
+    
+		
 		if(obj.image){
-			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/s_"+obj.uuid +"_"+obj.fileName);
+			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
 			str += "<li data-path='"+obj.uploadPath+"'";
 			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
 			str +" ><div>";
 			str += "<span> "+ obj.fileName+"</span>";
 			str += "<button type='button' data-file=\'"+fileCallPath+"\' "
 			str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-			str += "<img src='/display.do?fileName="+fileCallPath+"'>";
+			str += "<img src='/project5/display.do?fileName="+fileCallPath+"'>";
 			str += "</div>";
 			str +"</li>";
 		}else{
@@ -352,23 +387,37 @@ $(document).ready(function(e){
 		}
 
     });
+    
     uploadUL.append(str);
   }
+
+  $(".uploadResult").on("click", "button", function(e){
+	    
+    console.log("delete file");
+      
+    var targetFile = $(this).data("file");
+    var type = $(this).data("type");
+    
+    var targetLi = $(this).closest("li");
+    
+    $.ajax({
+      url: '/project5/deleteFile.do',
+      data: {fileName: targetFile, type:type},
+      dataType:'text',
+      type: 'POST',
+        success: function(result){
+           alert(result);
+           
+           targetLi.remove();
+         }
+    }); //$.ajax
+   });
+
+
   
 });
 
 </script>
-</html>
-
-
-
-
-
-
-
-
-
-
 
 
 

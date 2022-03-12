@@ -84,8 +84,8 @@
 						</c:if>
 
 						<c:if test="${member.id ne null}">
-							<li class="sidebar-item  "><a href="#" class='sidebar-link'
-								onclick="confirm('정말 로그아웃하시겠습니까?')"> <i
+							<li class="sidebar-item  "><a href="/project5/memberEdit.do" class='sidebar-link'
+							> <i
 									class="bi bi-grid-fill"></i> <span>${member.id }님 로그인</span>
 							</a></li>
 							<li class="sidebar-item  "><a href="/project5/logout.do"

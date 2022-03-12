@@ -1,5 +1,12 @@
 package project5.noticeAttach;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
+@Data
+@Getter
+@Setter
 public class NoticeAttachVO {
 	private String uuid;
 	private String uploadPath;

@@ -15,5 +15,6 @@
 		<mapper resource="resource/NoticeMapper.xml" />
 		<mapper resource="resource/FileInfoMapper.xml" />
 		<mapper resource="resource/RiskMapper.xml" />
+		<mapper resource="resource/NoticeAttachMapper.xml" />
 	</mappers>
 </configuration>

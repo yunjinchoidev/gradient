@@ -34,16 +34,14 @@ $(documnet).ready(function(){
 
 
 <body>
-	<div id="auth">
 
-		<div class="row h-100">
-			<div class="col-lg-5 col-12">
-				<div id="auth-left">
-					<div class="auth-logo">
-						<a href="/project5/main.do"><img
-							src="/project5/resources/logo.png"
-							alt="Logo"></a>
-					</div>
+
+	<%@ include file="../common/header.jsp"%>
+
+	<div id="auth" style="margin-left: 350px;" >
+		<div class="row h-100" style="width: 900px; ">
+			<div class="col-lg-5 col-12" style="width: 900px;">
+				<div id="auth-left" style="width: 900px;">
 					<h1 class="auth-title">로그인</h1>
 					<p class="auth-subtitle mb-5">
 						아이디와 비밀번호를 <br>입력하시오
@@ -84,12 +82,15 @@ $(documnet).ready(function(){
 					</div>
 				</div>
 			</div>
+			<!-- 
 			<div class="col-lg-7 d-none d-lg-block">
 				<div id="auth-right"></div>
 			</div>
+			 -->
 		</div>
 
 	</div>
+	
 </body>
 
 </html>

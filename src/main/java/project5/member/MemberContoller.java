@@ -31,6 +31,11 @@ public class MemberContoller {
 	public String login() {
 		return "member/login";
 	}
+
+	@GetMapping("/memberEdit.do")
+	public String memberEdit() {
+		return "member/edit";
+	}
 	
 	@PostMapping("/login.do")
 	public String login(Model d, @ModelAttribute("member") MemberVO vo) {

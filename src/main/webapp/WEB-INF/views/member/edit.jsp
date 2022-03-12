@@ -48,8 +48,8 @@
 		<div class="row h-100" style="width: 900px; ">
 			<div class="col-lg-5 col-12">
 				<div id="auth-left" style="width: 900px; ">
-					<h1 class="auth-title">처음 오셨습니까?</h1>
-					<p class="auth-subtitle mb-5">사원번호와 직급, 이메일을 입력하시오</p>
+					<h1 class="auth-title">정보 수정</h1>
+					<p class="auth-subtitle mb-5">변경할 정보를 입력하십시오</p>
 
 
 					<form action="/project5/memberRegister.do" method="post">

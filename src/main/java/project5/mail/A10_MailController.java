@@ -14,14 +14,12 @@ public class A10_MailController {
 	// http://localhost:7080/springweb/mailFrm.do
 	@GetMapping("mailFrm.do")
 	public String mailForm() {
-		return "WEB-INF\\views\\a02_mvc\\a10_mailForm.jsp";
+		return "mail/a10_mailForm.jsp";
 	}
 	@PostMapping("mailsend.do")
 	public String mailsend(Mail mail, Model d) {
 		System.out.println(mail.getReciever());
-		
-		
 		d.addAttribute("msg", service.sendMail(mail));
-		return "WEB-INF\\views\\a02_mvc\\a10_mailForm.jsp";
+		return "mail/a10_mailForm.jsp";
 	}
 }
