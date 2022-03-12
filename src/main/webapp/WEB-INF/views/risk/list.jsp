@@ -20,7 +20,7 @@
 	$(document).ready(function(){
 		
 		var msg = "${msg}";
-		
+				
 		if(msg!=""){
 			alert(msg);
 			if(msg=="등록되었습니다"){
@@ -39,8 +39,8 @@
 			$("[name=pageSize]").change(function(){
 				$("[name=curPage]").val(1);
 				$("#schform").submit();
-			});		
-		
+			});	
+					
 	});
 	
 	function goDetail(riskkey){
@@ -51,6 +51,7 @@
 		$("[name=curPage]").val(riskkey);
 		$("#schform").submit();
 	}
+	
 </script>
 </head>
 
