@@ -30,7 +30,12 @@ public class RiskController {
 	@RequestMapping("/riskdetail.do")
 	public String riskdetail(int riskkey, Model d) {
 		System.out.println(riskkey);
+		//게시글 정보
 		d.addAttribute("rdlist",service.riskDetail(riskkey));
+		//댓글 정보
+		d.addAttribute("commlist",service.getCommList(riskkey));
+		//리스크 키
+		d.addAttribute("riskkey",riskkey);
 		return "risk/detail";
 	}
 	
@@ -51,14 +56,13 @@ public class RiskController {
 	}
 	
 	//리스크 수정화면
-		@RequestMapping("/riskuptdetail.do")
-		public String riskuptForm(int riskkey, Model d) {
-			System.out.println(riskkey);
-			d.addAttribute("rdlist",service.riskDetail(riskkey));
-			//리스크 등록 - 프로젝트 목록
-			d.addAttribute("prjlist",service.selectprjlist());
-			return "risk/uptdetail";
-		}
+	@RequestMapping("/riskuptdetail.do")
+	public String riskuptForm(int riskkey, Model d) {
+		d.addAttribute("rdlist",service.riskDetail(riskkey));
+		//리스크 등록 - 프로젝트 목록
+		d.addAttribute("prjlist",service.selectprjlist());
+		return "risk/uptdetail";
+	}
 
 	//리스크 수정
 	@RequestMapping("/uptrisk.do")
@@ -68,6 +72,35 @@ public class RiskController {
 		return "risk/uptdetail";
 	}
 	
+	// 댓글 등록
+	@RequestMapping("/insertcomm.do")
+	public String insertComm(InsRiskcomm ins, Model d) {
+		d.addAttribute("commmsg","댓글이 작성되었습니다");
+		service.insertcomm(ins);
+		return "risk/detail";
+	}
 	
+	// 답글 등록
+	@RequestMapping("/insertrecomm.do")
+	public String insertreComm(InsRiskcomm ins, Model d) {
+		d.addAttribute("commmsg","답글이 작성되었습니다");
+		service.insertrecomm(ins);
+		return "risk/detail";
+	}
 	
+	// 댓글 삭제
+	@RequestMapping("/delriskcomm.do")
+	public String delcomm(int rcommkey, Model d) {
+		d.addAttribute("commmsg","댓글이 삭제되었습니다");
+		service.delcomm(rcommkey);
+		return "risk/detail";
+	}
+	
+	//답글 삭제
+	@RequestMapping("/delriskrecomm.do")
+	public String delrecomm(int rrecommkey, Model d) {
+		d.addAttribute("commmsg","답글이 삭제되었습니다");
+		service.delrecomm(rrecommkey);
+		return "risk/detail";
+	}
 }
