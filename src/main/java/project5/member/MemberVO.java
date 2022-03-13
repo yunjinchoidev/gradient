@@ -1,5 +1,7 @@
 package project5.member;
 
+import java.util.List;
+
 public class MemberVO {
 	private int memberkey;
 	private String id;
@@ -10,6 +12,9 @@ public class MemberVO {
 	private int deptno;
 	private String email;
 
+	
+	
+	
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -26,6 +31,11 @@ public class MemberVO {
 		this.projectkey = projectkey;
 		this.deptno = deptno;
 		this.email = email;
+	}
+
+	public MemberVO(int deptno) {
+		super();
+		this.deptno = deptno;
 	}
 
 	public int getMemberkey() {
@@ -91,5 +101,6 @@ public class MemberVO {
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 
 }

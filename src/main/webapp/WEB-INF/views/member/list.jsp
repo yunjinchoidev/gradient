@@ -26,20 +26,23 @@ $(document).ready(function(){
 	var checked =$('input:checkbox[id="memberkey"]').val();
 	
 	 var delchk = []; // key 값을 담을 배열
-	 $('.chk:checked').each(function(){
-	        delchk.push($(this).val());
-	   	 console.log(this)  ;
-	 });
+	 
 	 
 
 	 
 	 
 	 $("#sendMail").click(function(e){
-		 confirm("정말 메일을 발송하시겠습니까?");
-		 e.preventDefault();
 		 
+		 $('input:checkbox[id="memberkey"]:checked').each(function(){
+		        delchk.push($(this).val());
+		   	 console.log(this)  ;
+		 });
 		 console.log("delchk : "+delchk);
 		 console.log("checked : "+checked);
+		 confirm("정말 메일을 발송하시겠습니까?");
+		 //confirm(delchk);
+		 e.preventDefault();
+
 		 
 		 formObj.submit();
 		 
@@ -173,7 +176,7 @@ $(document).ready(function(){
 												<td>
 												
 												
-												<form action="/project5/sendSelectMemberMail.do" method="post">
+												<form action="/project5/mailFrm2.do" method="post">
                                                 <div class="form-check">
                                                     <div class="custom-control custom-checkbox">
                                                         <input type="checkbox" class="form-check-input form-check-info chk" name="memberkey" value="${list.memberkey }" id="memberkey">
