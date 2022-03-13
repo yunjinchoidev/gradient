@@ -30,8 +30,8 @@
 <script src="https://developers.google.com/web/ilt/pwa/working-with-the-fetch-api" type="text/javascript"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
-		var box = "${box}"
-		console.log("box  : " + box);
+		var list = "${list}"
+		console.log("list  : " + list);
 		
 	});
 </script>
