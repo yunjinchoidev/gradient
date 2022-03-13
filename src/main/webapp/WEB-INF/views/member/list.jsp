@@ -11,7 +11,54 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+
+
+
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 </head>
+
+<script>
+$(document).ready(function(){
+	formObj = $("form");
+	
+	var checked =$('input:checkbox[id="memberkey"]').val();
+	
+	 var delchk = []; // key 값을 담을 배열
+	 $('.chk:checked').each(function(){
+	        delchk.push($(this).val());
+	   	 console.log(this)  ;
+	 });
+	 
+
+	 
+	 
+	 $("#sendMail").click(function(e){
+		 confirm("정말 메일을 발송하시겠습니까?");
+		 e.preventDefault();
+		 
+		 console.log("delchk : "+delchk);
+		 console.log("checked : "+checked);
+		 
+		 formObj.submit();
+		 
+	 })
+	 
+	 
+	 
+	 
+	
+});	
+		
+		
+	
+
+</script>
+
+
+
+
 <body>
 
 	<%@ include file="../common/header.jsp"%>
@@ -28,8 +75,7 @@
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>회원관리</h3>
-						<p class="text-subtitle text-muted">For user to check they
-							list</p>
+						<p class="text-subtitle text-muted">이곳에서 회원을 관리하십시오</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -42,9 +88,41 @@
 					</div>
 				</div>
 			</div>
+
+
+
+
 			<section class="section">
 				<div class="card">
-					<div class="card-header">Simple Datatable</div>
+					<div class="card-header">
+						당신을 위한 여러 기능들이 준비되어 있습니다.<br><br>
+
+
+						<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
+							<a href="" class="btn btn-dark" id="sendMail">메일발송</a>
+							<a href="#" class="btn btn-danger">추방</a> <a href="#"
+								class="btn btn-primary">평가</a> 
+								
+								
+								<!-- 
+								<a href="#"
+								class="btn btn-secondary">일정관리</a> <a href="#"
+								class="btn btn-info">회의록</a> <a href="#" class="btn btn-warning">채팅</a>
+							<a href="#" class="btn btn-danger">예산 관리</a> <a href="#"
+								class="btn btn-success">품질 관리</a> <a href="#"
+								class="btn btn-light">리스크 관리</a>
+								 -->
+								
+						</div>
+
+					</div>
+
+
+
+
+
+
+
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -78,18 +156,36 @@
 												class="dataTable-sorter">소속 부서</a></th>
 											<th data-sortable="" style="width: 11.051%;"><a href="#"
 												class="dataTable-sorter">관리</a></th>
+											<th data-sortable="" style="width: 11.051%;"><a href="#"
+												class="dataTable-sorter">선택</a></th>
 										</tr>
 									</thead>
 									<tbody>
 
 										<c:forEach var="list" items="${list }">
 											<tr>
-												<td>${list.memberkey} : ${list.name }</td>
-												<td>공백</td>
+												<td>${list.memberkey}:${list.name }</td>
+												<td>${list.email}</td>
 												<td>${list.auth }</td>
 												<td>${list.projectkey }</td>
 												<td>${list.deptno }</td>
 												<td><span class="badge bg-success">Active</span></td>
+												<td>
+												
+												
+												<form action="/project5/sendSelectMemberMail.do" method="post">
+                                                <div class="form-check">
+                                                    <div class="custom-control custom-checkbox">
+                                                        <input type="checkbox" class="form-check-input form-check-info chk" name="memberkey" value="${list.memberkey }" id="memberkey">
+                                                        <label class="form-check-label" for="customColorCheck5">Info</label>
+                                                    </div>
+                                                </div>
+                                                </form>
+                                           
+                                           
+                                           
+                                           
+                                            </td>
 											</tr>
 										</c:forEach>
 								</table>
