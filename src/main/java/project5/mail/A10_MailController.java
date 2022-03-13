@@ -3,6 +3,7 @@ package project5.mail;
 import java.util.List;import javax.lang.model.util.AbstractAnnotationValueVisitor14;
 
 import org.apache.ibatis.annotations.Param;
+import org.hibernate.validator.internal.engine.groups.ValidationOrderGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,8 +36,7 @@ public class A10_MailController {
 	@RequestMapping("/mailFrm2.do")
 	public String mailForm2(Model d, MemberVO vo) {
 		System.out.println(vo.getMemberkey());
-		d.addAttribute("box", service2.get(vo.getMemberkey()));
-		System.out.println(vo.getMemberkey());
+		d.addAttribute("member", service2.get(vo.getMemberkey()));
 		
 		return "mail/mailForm2";
 	}

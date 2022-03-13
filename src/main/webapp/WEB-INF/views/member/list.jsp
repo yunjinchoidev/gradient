@@ -23,16 +23,11 @@
 $(document).ready(function(){
 	formObj = $("form");
 	
-	var checked =$('input:checkbox[id="memberkey"]').val();
+
 	
 	 var delchk = []; // key 값을 담을 배열
-	 
-	 
-
-	 
-	 
 	 $("#sendMail").click(function(e){
-		 
+			var checked =$('input:checkbox[id="memberkey"]:checked').val();
 		 $('input:checkbox[id="memberkey"]:checked').each(function(){
 		        delchk.push($(this).val());
 		   	 console.log(this)  ;
