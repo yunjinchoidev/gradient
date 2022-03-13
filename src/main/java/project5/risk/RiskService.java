@@ -91,4 +91,24 @@ public class RiskService {
 	public void uptRisk(RiskVO upt) {
 		dao.uptRisk(upt);
 	}
+	// 댓글 등록
+	public void insertcomm(InsRiskcomm ins) {
+		dao.insertcomm(ins);
+	}
+	// 댓글 조회
+	public List<Riskcomm> getCommList(int riskkey){
+		return dao.getCommList(riskkey);
+	}
+	// 댓글 삭제
+	public void delcomm(int rcommkey) {
+		dao.delcomm(rcommkey);
+	}
+	//답글 등록
+	public void insertrecomm(InsRiskcomm ins) {
+		dao.insertrecomm(ins);
+	}
+	// 답글 삭제
+	public void delrecomm(int rcommkey) {
+		dao.delrecomm(rcommkey);;
+	}
 }
