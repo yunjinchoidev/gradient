@@ -94,7 +94,7 @@
 		
 	<!-- 리스크 등록 -->
 	<insert id="insertRisk" parameterType="risk">
-		INSERT INTO risk VALUES (seq_risk.nextval,#{prjkey},1,
+		INSERT INTO risk VALUES (seq_risk.nextval,#{prjkey},(SELECT m.MEMBERKEY FROM MEMBER m WHERE id = #{id}),
 			#{content},#{progress},sysdate,#{importance},#{title},to_date(#{comdate},'YYYY-MM-DD') )
 	</insert>
 	

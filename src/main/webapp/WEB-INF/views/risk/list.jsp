@@ -20,7 +20,6 @@
 	$(document).ready(function(){
 		
 		var msg = "${msg}";
-		var id = "${member.id}";
 					
 		if(msg!=""){
 			alert(msg);
@@ -254,6 +253,7 @@
                     	</div>
                     <!-- 완료예정일 -->
                     	<div id="comdatediv" style="flex:1; margin-top:5px;">
+                    		<input type="hidden" name="id" value="${member.id}">
                     		<input type=date name="comdate">
                     	</div>
                     </div>

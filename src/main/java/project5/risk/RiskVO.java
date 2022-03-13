@@ -18,7 +18,7 @@ public class RiskVO {
 	private String prjname;
 	// 프로젝트 리스트 조회
 	private String name;
-	//
+	// 작성자 id
 	private String id;
 	
 	public int getRiskkey() {
