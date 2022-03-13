@@ -34,11 +34,8 @@ public class A10_MailController {
 
 	@RequestMapping("/mailFrm2.do")
 	public String mailForm2(Model d, MemberVO vo) {
-	
-		int[] memberkeyList = new int[vo.getMemberkeyList().size()];
-		System.out.println(memberkeyList.length);
-		
-		d.addAttribute("box", vo.getEmail());
+		System.out.println(vo.getMemberkey());
+		d.addAttribute("box", service2.get(vo.getMemberkey()));
 		System.out.println(vo.getMemberkey());
 		
 		return "mail/mailForm2";

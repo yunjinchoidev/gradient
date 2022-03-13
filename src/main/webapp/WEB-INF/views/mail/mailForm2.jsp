@@ -70,7 +70,7 @@
 			<span class="input-group-text ">수신자</span>
 		</div>
 		<c:forEach var="box" items="${box }">
-		<input name="reciever" class="form-control" placeholder="수신자 입력하세요" value="${box}"/>	
+		<input name="reciever" class="form-control" placeholder="수신자 입력하세요" value="${box.email}"/>	
 		</c:forEach>
 	</div>	
 	
