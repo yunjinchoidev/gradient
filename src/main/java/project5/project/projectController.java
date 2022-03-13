@@ -1,5 +1,6 @@
 package project5.project;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,22 +8,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class projectController {
 
-	@RequestMapping("/projectHome.do")
-	public String projectHome(Model d) {
-		return "/project/home";
-	}
-
-	@RequestMapping("/projectWriteForm.do")
-	public String projectWriteForm(Model d) {
-		return "/project/write";
-	}
-
-	@RequestMapping("/projectWrite.do")
-	public String projectWrite(Model d) {
-		d.addAttribute("psc", "success");
-		return "redirect:/projectHome.do";
-	}
+	@Autowired
+	ProjectService service;
 	
+	
+	@RequestMapping("/projectList.do")
+	public String projectHome(Model d) {
+		d.addAttribute("list", service.list());
+		return "/unify/list";
+	}
+
+	
+	@RequestMapping("/projectTotalManage.do")
+	public String projectManage(Model d) {
+		return "/unify/manage";
+	}
+
 	
 	
 	

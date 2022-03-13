@@ -48,13 +48,15 @@
 <script>
 	$(document).ready(function() {
 		var auth = "${member.auth}";
-		$(".submenu-item").click(function() {
+		console.log("auth : "+auth);
+		$("#check").click(function() {
 
-			if (auth != "pm") {
-				console.log("자격이 없습니다.?")
-				alert("권한이 없습니다.")
+			if (auth != "PM") {
+				alert("권한이 없습니다.");
+				location.href="/project5/main.do"
 			} else {
-				alert("권한이 있습니다.")
+				
+				console.log("승인");
 			}
 		});
 	})
@@ -150,7 +152,7 @@
 							<ul class="submenu ">
 								<li class="submenu-item "><a
 									href="/project5/projectHome.do">홈 </a></li>
-								<li class="submenu-item "><a href="/project5/range.do">칸반
+								<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반
 										보드 </a></li>
 								<li class="submenu-item "><a href="/project5/wbs.do">간트차트
 								</a></li>
@@ -217,14 +219,14 @@
 									관리자 페이지 [PM]</span>
 						</a>
 
-							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/unifyList.do">프로젝트
+							<ul class="submenu " id="check">
+								<li class="submenu-item "><a href="/project5/projectTotalManage.do">프로젝트
 										총괄 </a></li>
-								<li class="submenu-item "><a href="/project5/unifyStart.do">프로젝트
+								<li class="submenu-item "><a href="/project5/projectList.do">프로젝트
 										시작 & 종료 </a></li>
 								<li class="submenu-item "><a href="/project5/mailFrm.do">이메일
 										발송 </a></li>
-								<li class="submenu-item "><a href="/project5/mailFrm.do">사용자
+								<li class="submenu-item "><a href="/project5/memberList.do">사용자
 										리스트 </a></li>
 							</ul></li>
 

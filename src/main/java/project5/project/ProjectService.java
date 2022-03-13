@@ -11,12 +11,9 @@ public class ProjectService {
 	@Autowired
 	ProjectDao dao;
 
-	public List<ProjectVO> getList() {
-		return dao.getList();
+	public List<ProjectVO> list() {
+		return dao.list();
 	}
 
-	public void insert(ProjectVO vo) {
-		 dao.insert(vo);
-	}
 
 }

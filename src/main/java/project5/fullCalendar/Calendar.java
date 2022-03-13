@@ -10,6 +10,8 @@ public class Calendar {
 	private String backgroundColor;
 	private String textColor;
 	private boolean allDay;
+	
+
 	public int getId() {
 		return id;
 	}

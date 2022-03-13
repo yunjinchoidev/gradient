@@ -117,5 +117,17 @@ public class MemberContoller {
 		return "member/EditSuccess";
 
 	}
+	
+	
+	
+	@RequestMapping("/memberList.do")
+	public String memberList(Model d) {
+		d.addAttribute("list", service.list());
+		return "member/list";
+	}
+	
+	
+	
+	
 
 }

@@ -5,7 +5,7 @@
 <mapper namespace="project5.member.MemberDao">
 
 	<select id="list" resultType="project5.member.MemberVO">
-		select * from member
+		select * from member order by memberkey
 	</select>
 
 	<insert id="edit" parameterType="project5.member.MemberVO">

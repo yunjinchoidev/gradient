@@ -6,7 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ProjectDao {
-	public List<ProjectVO> getList();
-	public void insert(ProjectVO vo);
+	public List<ProjectVO> list();
 	
 }

@@ -15,20 +15,17 @@
 <meta charset="UTF-8">
 <title>쌍용 5조 PMBOK 메인 페이지</title>
 <script type="text/javascript">
-$(document).ready(function(){
-	var psc = "${psc}";
-	console.log("psc : "+psc);
-	if(psc=="success"){
-		alert("로그인 성공하셨습니다.");
-	}
-	
-	if(psc=="logout"){
-		alert("로그아웃 되었습니다.");
-	}
-})
+	$(document).ready(function() {
+		var psc = "${psc}";
+		console.log("psc : " + psc);
+		if (psc == "success") {
+			alert("로그인 성공하셨습니다.");
+		}
 
-
-
+		if (psc == "logout") {
+			alert("로그아웃 되었습니다.");
+		}
+	})
 </script>
 </head>
 
@@ -44,12 +41,12 @@ $(document).ready(function(){
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>쌍용 5조 PMPBOK</h3>
-						<p class="text-subtitle text-muted">최윤진, 마혜민, 문재영, 신지호, 윤혜정, 장훈주</p>
+						<p class="text-subtitle text-muted">최윤진, 마혜민, 문재영, 신지호, 윤혜정,
+							장훈주</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
-							class="breadcrumb-header float-start float-lg-end">
-						</nav>
+							class="breadcrumb-header float-start float-lg-end"></nav>
 					</div>
 				</div>
 			</div>
@@ -58,20 +55,21 @@ $(document).ready(function(){
 					<div class="col-12">
 						<div class="card">
 							<div class="card-header">
-								<h5 class="card-title">안녕하세요? </h5>
+								<h5 class="card-title">안녕하세요?</h5>
 							</div>
 							<div class="card-body">
-								프로젝트 기간 <br> 2022년 3월 4일 ~ 4월 12일 <br><br> <a
-									href="https://github.com/yunjinchoidev/project5" target="_blank">깃허브 링크입니다.<br><br>
-									</a>
+								프로젝트 기간 <br> 2022년 3월 4일 ~ 4월 12일 <br> <br> <a
+									href="https://github.com/yunjinchoidev/project5"
+									target="_blank">깃허브 링크입니다.<br> <br>
+								</a>
 							</div>
 						</div>
 					</div>
 				</div>
 			</section>
-			
-			
-				<!-- Groups section start -->
+
+
+			<!-- Groups section start -->
 			<section id="groups">
 				<div class="row match-height">
 					<div class="col-12 mt-3 mb-1">
@@ -84,8 +82,8 @@ $(document).ready(function(){
 							<div class="card">
 								<div class="card-content">
 									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/cyj.jpg"
-										alt="Card image cap"  style="width: 100%; height: 200px">
+										src="/project5/resources/emoji/cyj.jpg" alt="Card image cap"
+										style="width: 100%; height: 200px">
 									<div class="card-body">
 										<h4 class="card-title">최윤진</h4>
 										<p class="card-text">안녕하세요. 프로젝트 조장을 맡았습니다.</p>
@@ -96,8 +94,8 @@ $(document).ready(function(){
 							<div class="card">
 								<div class="card-content">
 									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/mhm.png"
-										alt="Card image cap"  style="width: 100%; height: 200px">
+										src="/project5/resources/emoji/mhm.png" alt="Card image cap"
+										style="width: 100%; height: 200px">
 									<div class="card-body">
 										<h4 class="card-title">마혜민</h4>
 										<p class="card-text">This card has supporting text below
@@ -109,8 +107,8 @@ $(document).ready(function(){
 							<div class="card">
 								<div class="card-content">
 									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/mjy.jpg"
-										alt="Card image cap"  style="width: 100%; height: 200px">
+										src="/project5/resources/emoji/mjy.jpg" alt="Card image cap"
+										style="width: 100%; height: 200px">
 									<div class="card-body">
 										<h4 class="card-title">문재영</h4>
 										<p class="card-text">This card has supporting text below
@@ -122,8 +120,8 @@ $(document).ready(function(){
 							<div class="card">
 								<div class="card-content">
 									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/sjh.jpg"
-										alt="Card image cap" style="width: 100%; height: 200px">
+										src="/project5/resources/emoji/sjh.jpg" alt="Card image cap"
+										style="width: 100%; height: 200px">
 									<div class="card-body">
 										<h4 class="card-title">신지호</h4>
 										<p class="card-text">This card has supporting text below
@@ -135,8 +133,8 @@ $(document).ready(function(){
 							<div class="card">
 								<div class="card-content">
 									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/yhj.jpg"
-										alt="Card image cap" style="width: 100%; height: 200px">
+										src="/project5/resources/emoji/yhj.jpg" alt="Card image cap"
+										style="width: 100%; height: 200px">
 									<div class="card-body">
 										<h4 class="card-title">윤혜정</h4>
 										<p class="card-text">This card has supporting text below
@@ -148,8 +146,8 @@ $(document).ready(function(){
 							<div class="card">
 								<div class="card-content">
 									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/jhj.jpg"
-										alt="Card image cap" style="width: 100%; height: 200px;">
+										src="/project5/resources/emoji/jhj.jpg" alt="Card image cap"
+										style="width: 100%; height: 200px;">
 									<div class="card-body">
 										<h4 class="card-title">장훈주</h4>
 										<p class="card-text">This card has supporting text below
@@ -196,7 +194,7 @@ $(document).ready(function(){
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>개발의 기록</h3>
-						<p class="text-subtitle text-muted">노션에 프로젝트의 여정을 기록해두었습니다.</p>
+						<p class="text-subtitle text-muted">프로젝트의 여정을 기록해두었습니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -222,7 +220,7 @@ $(document).ready(function(){
 										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
 								</div>
 								<img class="img-fluid w-100"
-									src="/project5/resources/dist/assets/images/samples/banana.jpg"
+									src="/project5/resources/image/notionconference.png"
 									alt="Card image cap">
 							</div>
 							<div class="card-footer d-flex justify-content-between">
@@ -230,87 +228,51 @@ $(document).ready(function(){
 								<button class="btn btn-light-primary">Read More</button>
 							</div>
 						</div>
-						<div class="card collapse-icon accordion-icon-rotate">
-							<div class="card-header">
-								<h1 class="card-title pl-1">Accordion</h1>
-							</div>
-							<div class="card-content">
-								<div class="card-body">
-									<div class="accordion" id="cardAccordion">
-										<div class="card">
-											<div class="card-header" id="headingOne"
-												data-bs-toggle="collapse" data-bs-target="#collapseOne"
-												aria-expanded="false" aria-controls="collapseOne"
-												role="button">
-												<span class="collapsed collapse-title">Accordion Item
-													1</span>
-											</div>
-											<div id="collapseOne" class="collapse pt-1"
-												aria-labelledby="headingOne" data-parent="#cardAccordion">
-												<div class="card-body">Cheesecake muffin cupcake
-													dragée lemon drops tiramisu cake gummies chocolate cake.
-													Marshmallow tart croissant. Tart dessert tiramisu marzipan
-													lollipop lemon drops.</div>
-											</div>
-										</div>
-										<div class="card collapse-header">
-											<div class="card-header" id="headingTwo"
-												data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-												aria-expanded="false" aria-controls="collapseTwo"
-												role="button">
-												<span class="collapsed collapse-title">Accordion Item
-													2</span>
-											</div>
-											<div id="collapseTwo" class="collapse pt-1"
-												aria-labelledby="headingTwo" data-parent="#cardAccordion">
-												<div class="card-body">Pastry pudding cookie toffee
-													bonbon jujubes jujubes powder topping. Jelly beans gummi
-													bears sweet roll bonbon muffin liquorice. Wafer lollipop
-													sesame snaps.</div>
-											</div>
-										</div>
-										<div class="card open">
-											<div class="card-header" id="headingThree"
-												data-bs-toggle="collapse" data-bs-target="#collapseThree"
-												aria-expanded="true" aria-controls="collapseThree"
-												role="button">
-												<span class="collapsed collapse-title">Accordion Item
-													3</span>
-											</div>
-											<div id="collapseThree" class="collapse show pt-1"
-												aria-labelledby="headingThree" data-parent="#cardAccordion">
-												<div class="card-body">Sweet pie candy jelly. Sesame
-													snaps biscuit sugar plum. Sweet roll topping fruitcake.
-													Caramels liquorice biscuit ice cream fruitcake cotton candy
-													tart.</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header" id="headingFour"
-												data-bs-toggle="collapse" data-bs-target="#collapseFour"
-												aria-expanded="false" aria-controls="collapseFour"
-												role="button">
-												<span class="collapsed  collapse-title">Accordion
-													Item 4</span>
-											</div>
-											<div id="collapseFour" class="collapse pt-1"
-												aria-labelledby="headingFour" data-parent="#cardAccordion">
-												<div class="card-body">Sweet pie candy jelly. Sesame
-													snaps biscuit sugar plum. Sweet roll topping fruitcake.
-													Caramels liquorice biscuit ice cream fruitcake cotton candy
-													tart.</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-4 col-md-6 col-sm-12">
+
 						<div class="card">
 							<div class="card-content">
-								<img
-									src="/project5/resources/dist/assets/images/samples/motorcycle.jpg"
+								<div class="card-body">
+									<h4 class="card-title">산출물</h4>
+									<p class="card-text">Gummies bonbon apple pie fruitcake
+										icing biscuit apple pie jelly-o sweet roll. Toffee sugar plum
+										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
+								</div>
+								<img class="img-fluid w-100"
+									src="/project5/resources/image/ouroutput.png"
+									alt="Card image cap">
+							</div>
+							<div class="card-footer d-flex justify-content-between">
+								<span>Card Footer</span>
+								<button class="btn btn-light-primary">Read More</button>
+							</div>
+						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+					</div>
+
+
+
+
+
+
+
+
+					<div class="col-xl-4 col-md-6 col-sm-12">
+
+
+						<div class="card">
+							<div class="card-content">
+								<img src="/project5/resources/image/introduce.png"
 									class="card-img-top img-fluid" alt="singleminded">
 								<div class="card-body">
 									<h5 class="card-title">Be Single Minded</h5>
@@ -326,79 +288,8 @@ $(document).ready(function(){
 								<li class="list-group-item">Vestibulum at eros</li>
 							</ul>
 						</div>
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<h4 class="card-title mb-0">Video Card</h4>
-								</div>
-								<div
-									class="embed-responsive embed-responsive-item embed-responsive-16by9 w-100">
-									<iframe src="https://www.youtube.com/embed/2b9txcAt4e0"
-										style="width: 100%" height="300" allowfullscreen=""></iframe>
-								</div>
-								<div class="card-body">
-									<p class="card-text">Candy cupcake sugar plum oat cake
-										wafer marzipan jujubes. Jelly-o sesame snaps cheesecake
-										topping. Cupcake fruitcake macaroon donut pastry gummies
-										tiramisu chocolate bar muffin.</p>
-									<a href="#" class="card-link">Card link</a> <a href="#"
-										class="card-link">Another link</a>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-xl-4 col-md-6 col-sm-12">
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<h4 class="card-title">Carousel</h4>
-									<h6 class="card-subtitle">Support card subtitle</h6>
-								</div>
-								<div id="carouselExampleSlidesOnly" class="carousel slide"
-									data-bs-ride="carousel">
-									<div class="carousel-inner">
-										<div class="carousel-item">
-											<img
-												src="/project5/resources/dist/assets/images/samples/architecture1.jpg"
-												class="d-block w-100" alt="Image Architecture">
-										</div>
-										<div class="carousel-item active">
-											<img
-												src="/project5/resources/dist/assets/images/samples/bg-mountain.jpg"
-												class="d-block w-100" alt="Image Mountain">
-										</div>
-										<div class="carousel-item">
-											<img
-												src="/project5/resources/dist/assets/images/samples/jump.jpg"
-												class="d-block w-100" alt="Image Jump">
-										</div>
-									</div>
-									<a class="carousel-control-prev"
-										href="#carouselExampleControls" role="button"
-										data-bs-slide="prev"> <span
-										class="carousel-control-prev-icon" aria-hidden="true"></span>
-										<span class="visually-hidden">Previous</span>
-									</a> <a class="carousel-control-next"
-										href="#carouselExampleControls" role="button"
-										data-bs-slide="next"> <span
-										class="carousel-control-next-icon" aria-hidden="true"></span>
-										<span class="visually-hidden">Next</span>
-									</a>
-								</div>
-								<div class="card-body">
-									<p class="card-text">Lorem ipsum dolor sit amet consectetur
-										adipisicing elit. Sunt assumenda mollitia officia dolorum eius
-										quasi.Chocolate sesame snaps apple pie danish cupcake sweet
-										roll jujubes tiramisu.</p>
-									<p class="card-text">Gummies bonbon apple pie fruitcake
-										icing biscuit apple pie jelly-o sweet roll. Toffee sugar plum
-										sugar plum jelly-o jujubes bonbon dessert carrot cake. Sweet
-										pie candy jelly. Sesame snaps biscuit sugar plum. Sweet roll
-										topping fruitcake. Caramels liquorice biscuit ice cream
-										fruitcake cotton candy tart.</p>
-								</div>
-							</div>
-						</div>
+
+
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
@@ -445,6 +336,39 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+
+
+
+
+
+
+
+
+
+
+
+
+					<div class="col-xl-4 col-md-6 col-sm-12">
+						<div class="card">
+							<div class="card-content">
+								<div class="card-body">
+									<h4 class="card-title">후기</h4>
+									<p class="card-text">Gummies bonbon apple pie fruitcake
+										icing biscuit apple pie jelly-o sweet roll. Toffee sugar plum
+										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
+								</div>
+								<img class="img-fluid w-100"
+									src="/project5/resources/image/after.png"
+									alt="Card image cap">
+							</div>
+							<div class="card-footer d-flex justify-content-between">
+								<span>Card Footer</span>
+								<button class="btn btn-light-primary">Read More</button>
+							</div>
+						</div>
+
+
+					</div>
 					<div class="col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
@@ -488,7 +412,7 @@ $(document).ready(function(){
 			<!-- Basic Card types section end -->
 
 
-		
+
 		</div>
 
 		<footer>
