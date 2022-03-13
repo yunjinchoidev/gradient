@@ -49,11 +49,9 @@
 	</select>
 
 	<!-- 리스크 등록, 프로젝트 조회 -->
-	<select id="selectprjlist" resultType="risk">
+	<select id="selectprjlist" resultType="risk" parameterType="string">
 		SELECT p.PROJECTKEY AS prjkey, p.NAME AS prjname
-		FROM MEMBER m , PROJECT p 
-		WHERE m.PROJECTKEY = p.PROJECTKEY
-		AND m.NAME = '홍길동'
+		FROM PROJECT p
 	</select>
 	
 	<!-- 리스크 리스트 조회 -->
@@ -142,7 +140,7 @@
 		TITLE = #{title},
 		COMDATE = #{comdate}
 		WHERE 
-		RISKKEY = '14'
+		RISKKEY = #{riskkey}
 	</update>
 	
 	

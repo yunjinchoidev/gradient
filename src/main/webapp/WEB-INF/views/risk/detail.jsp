@@ -23,7 +23,6 @@
 	width: 1000px;
 	height: 300px;
 	margin:0 auto;
-	border:solid red;
 	overflow: auto;
 }
 
@@ -32,7 +31,6 @@
 	height: 300px;
 	margin:0 auto;
 	margin-top:30px;
-	border:solid red;
 }
 
 #recommwrite{
@@ -40,7 +38,6 @@
 	height: 300px;
 	margin:0 auto;
 	margin-top:30px;
-	border:solid red;
 }
 
 </style>

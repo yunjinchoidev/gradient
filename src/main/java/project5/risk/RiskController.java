@@ -3,8 +3,13 @@ package project5.risk;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import project5.member.MemberVO;
 
 @Controller
 public class RiskController {
@@ -13,6 +18,7 @@ public class RiskController {
 	private RiskService service;
 	
 	//리스크 메인
+	
 	@RequestMapping("/risk.do")
 	public String riskFrm(RiskSch sch, Model d,
 						  @RequestParam(name="sch",required=false) String schS) {
@@ -20,12 +26,14 @@ public class RiskController {
 		d.addAttribute("risklist",service.riskboardlist(sch));
 		if(schS!=null && schS!="") {
 			d.addAttribute("risklist",service.schRiskList(sch));
-		}		
-	//리스크 등록 - 프로젝트 목록
+		}	
+		
+		//리스크 등록 - 프로젝트 목록
 		d.addAttribute("prjlist",service.selectprjlist());
+
 		return "risk/list";
 	}
-	
+
 	//리스크 상세화면
 	@RequestMapping("/riskdetail.do")
 	public String riskdetail(int riskkey, Model d) {
