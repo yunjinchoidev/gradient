@@ -7,34 +7,34 @@
 
 
 	<insert id="insert">
-		insert into notice_attach (uuid, uploadpath,
+		insert into notice_Attach (uuid, uploadpath,
 		filename,
-		filetype, bno)
+		filetype, noticekey)
 		values (#{uuid}, #{uploadPath}, #{fileName},
-		#{fileType}, #{noticekey} )
+		#{fileType},1)
 	</insert>
 
 	<delete id="delete">
 
-		delete from notice_attach where uuid = #{uuid}
+		delete from notice_Attach where uuid = #{uuid}
 
 	</delete>
 
 	<select id="findByBno"
 		resultType="project5.noticeAttach.NoticeAttachVO">
-		select * from notice_attach where noticekey = #{noticekey}
+		select * from notice_Attach where noticekey = #{noticekey}
 	</select>
 
 	<delete id="deleteAll">
 
-		delete notice_attach where noticekey = #{noticekey}
+		delete notice_Attach where noticekey = #{noticekey}
 
 	</delete>
 
 	<select id="getOldFiles"
 		resultType="project5.noticeAttach.NoticeAttachVO">
 
-		select * from notice_attach where uploadpath =
+		select * from notice_Attach where uploadpath =
 		to_char(sysdate -1 ,'yyyy\mm\dd')
 
 	</select>

@@ -5,6 +5,23 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+
+<script>
+$(document).ready(function(){
+	var noticekey = "${notice.noticekey}"
+	console.log("noticekey : "+noticekey);
+	$("#del").click(function(){
+		confirm("정말 삭제하시겠습니까?");
+		location.href="/project5/noticeDelete.do?noticekey="+noticekey;
+	})
+})
+
+</script>
+
+
+
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -20,7 +37,6 @@
 						
 						<div class="card-content">
 							<div class="card-body">
-								<form class="form" action="/project5/noticeWrite.do" method="get">
 									<div class="row">
 										<div class="col-md-6 col-12">
 											<div class="form-group">
@@ -31,11 +47,32 @@
 										</div>
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="last-name-column">작성일</label> <input
-													type="date" id="last-name-column" class="form-control"
-													placeholder="writeDate" name="writeDate" value="${notice.writeDate }">
+												<label for="first-name-column">조회수</label> <input
+													type="text" id="first-name-column" class="form-control"
+													placeholder="title" name="title" value="${notice.cnt }" readonly="readonly">
 											</div>
 										</div>
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="first-name-column">작성자</label> <input
+													type="text" id="first-name-column" class="form-control"
+													placeholder="title" name="title" value="${notice.name }" readonly="readonly">
+											</div>
+										</div>
+										
+										
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="last-name-column">작성일</label> <input
+													 id="last-name-column" class="form-control" readonly="readonly"
+													placeholder="writeDate" name="writeDate" value='<fmt:formatDate type="both" value="${notice.writeDate}" />'/>	
+											</div>
+										</div>
+										
+									
+										
+										
+										
 										<div class="col-md-6 col-12">
 											<div class="form-group">
 												<label for="city-column">City</label> <input type="text"
@@ -73,6 +110,50 @@
 										</div>
 											
 										
+												<div class="row">
+											<div class="col-lg-12">
+												<div class="panel panel-default">
+
+													<div class="panel-heading">File Attach</div>
+													<!-- /.panel-heading -->
+													<div class="panel-body">
+														<div class="form-group uploadDiv">
+															<input type="file" name='uploadFile' multiple>
+														</div>
+
+														<div class='uploadResult'>
+															<ul>
+
+															</ul>
+														</div>
+
+
+													</div>
+													<!--  end panel-body -->
+
+												</div>
+												<!--  end panel-body -->
+											</div>
+											<!-- end panel -->
+										</div>
+										<!-- /.row -->
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
+										
 										<div class="form-group col-12">
 											<div class="form-check">
 												<div class="checkbox">
@@ -88,10 +169,9 @@
                                         </button>
 											<button type="submit" class="btn btn-primary me-1 mb-1">수정하기</button>
 											<button type="reset"
-												class="btn btn-light-secondary me-1 mb-1">삭제하기</button>
+												class="btn btn-light-secondary me-1 mb-1" id="del">삭제하기</button>
 										</div>
 									</div>
-								</form>
 								
 							</div>
 						</div>

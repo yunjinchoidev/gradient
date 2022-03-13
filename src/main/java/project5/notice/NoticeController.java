@@ -9,7 +9,10 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;import project5.upload.AttachFileDTO;
+import org.springframework.web.bind.annotation.RequestMapping;
+
+import project5.member.MemberService;
+import project5.upload.AttachFileDTO;
 import project5.upload.UploadController;
 
 @Controller
@@ -21,6 +24,9 @@ public class NoticeController {
 	@Autowired
 	NoticeService service;
 
+	@Autowired
+	MemberService service2;
+	
 	@RequestMapping("/notice.do")
 	public String unifyIndex(Model d) {
 		d.addAttribute("list", service.getList());
@@ -36,31 +42,36 @@ public class NoticeController {
 	@RequestMapping("/noticeWrite.do")
 	public String noticeWrite(Model d, NoticeVO vo) {
 		
-		
-		
 		log.info("====================");
-		
-		
 		if(vo.getAttachList() != null ) {
 			System.out.println(vo.getAttachList().get(0));
 		}
 		
-		
-		
-		
  		log.info("NotiveVO :"+vo);
 		service.insert(vo);
-		d.addAttribute("psc", "success");
+		d.addAttribute("psc", "write");
 		System.out.println("공지사항 작성 완료");
-		return "redirect:/notice.do";
+		return "forward:/notice.do";
 	}
 
 	@RequestMapping("/noticeGet.do")
 	public String noticeGet(Model d, int noticekey) {
 		d.addAttribute("notice", service.get(noticekey));
-		d.addAttribute("psc", "success");
-		System.out.println("공지사항 조회 완료");
 		return "notice/get";
 	}
+	
+	@RequestMapping("/noticeDelete.do")
+	public String noticeDelete(Model d, int noticekey) {
+		service.delete(noticekey);
+		d.addAttribute("psc", "delete");
+		System.out.println("공지사항 삭제 완료");
+		return "forward:/notice.do";
+	}
+	
+	
+	
+	
+	
+	
 
 }

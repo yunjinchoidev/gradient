@@ -17,10 +17,31 @@
 </head>
 <script>
 $(document).ready(function(){
-	var psc = "${psc}"
-	if(psc=="success"){
+	var psc = "${psc}";
+	
+	
+	console.log("psc : " + psc);
+	var name = "${member.name}"
+	console.log("member.name : " + name);
+
+	if(psc=="write"){
 		alert("공지사항 작성이 완료되었습니다.");
 	}
+	if(psc=="delete"){
+		alert("공지사항 삭제가 완료되었습니다.");
+	}
+	
+	$("#write").click(function(){
+		if(name == ""){
+			alert("접근 권한이 없습니다.")
+			location.href="/project5/notice.do";
+		}else{
+			location.href="/project5/noticeWriteForm.do";
+		}
+	})
+	
+	
+	
 })
 </script>
 <body>
@@ -64,7 +85,7 @@ $(document).ready(function(){
 								<div class="dataTable-search">
 									<input class="dataTable-input" placeholder="Search..."
 										type="text">
-										<a href="/project5/noticeWriteForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
+										<a href="/project5/noticeWriteForm.do" class="btn btn-danger" id="write" style="text-align: right">글쓰기</a>
 								</div>
 								
 							</div>
@@ -78,8 +99,10 @@ $(document).ready(function(){
 												href="#" class="dataTable-sorter">제목</a></th>
 											<th data-sortable="" style="width: 18.0816%;"><a
 												href="#" class="dataTable-sorter">작성일</a></th>
-											<th data-sortable="" style="width: 16.3175%;"><a
+											<th data-sortable="" style="width: 8.3175%;"><a
 												href="#" class="dataTable-sorter">조회수</a></th>
+											<th data-sortable="" style="width: 8%;"><a
+												href="#" class="dataTable-sorter">작성자</a></th>
 											<th data-sortable="" style="width: 10.8049%;"><a
 												href="#" class="dataTable-sorter">Status</a></th>
 										</tr>
@@ -91,10 +114,11 @@ $(document).ready(function(){
 									<tbody>
 										<c:forEach var="list" items="${list}">
 											<tr onclick="location.href='/project5/noticeGet.do?noticekey='+${list.noticekey}">
-												<td>${list.title }</td>
+												<td>${list.noticekey }</td>
 												<td>${list.title }</td>
 												<td>${list.writeDate }</td>
 												<td>${list.cnt }</td>
+												<td>${list.name }</td>
 												<td><span class="badge bg-success">Active</span></td>
 											</tr>
 										</c:forEach>

@@ -73,8 +73,8 @@
 
 						<div class="card-content">
 							<div class="card-body">
-								<form class="form" action="/project5/noticeWrite.do"
-									method="post">
+								<form class="form" action="/project5/noticeWrite.do"	method="post">
+									<input type="hidden" name="memberkey" value="${member.memberkey }">
 									<div class="row">
 										<div class="col-md-6 col-12">
 											<div class="form-group">
@@ -139,11 +139,6 @@
 												type="file" name="fileInfo" multiple>
 										</div>
 											-->
-
-
-
-
-
 
 
 
@@ -261,25 +256,21 @@ $(document).ready(function(e){
 
 
   
-  var formObj = $("form[role='form']");
+  var formObj = $("form");
   
   $("button[type='submit']").on("click", function(e){
     
-    e.preventDefault();
+   e.preventDefault();
     
     console.log("submit clicked");
     
     var str = "";
-    
+	console.log("attachList 대기 ")    
     $(".uploadResult ul li").each(function(i, obj){
-      
       var jobj = $(obj);
-      
       console.dir(jobj);
       console.log("-------------------------");
       console.log(jobj.data("filename"));
-      
-      
       str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
       str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
       str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
@@ -287,9 +278,9 @@ $(document).ready(function(e){
       
     });
     
-    console.log(str);
-    console.log("afsdfa");
-    formObj.append(str).submit();
+    console.log("str"+str);
+	console.log("attachList 끝 ");   
+   formObj.append(str).submit();
     console.log("전송");
     
   });

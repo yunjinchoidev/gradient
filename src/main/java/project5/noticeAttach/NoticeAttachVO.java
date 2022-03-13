@@ -15,6 +15,16 @@ public class NoticeAttachVO {
 
 	private int noticekey;
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public NoticeAttachVO() {
 		super();
 		// TODO Auto-generated constructor stub
