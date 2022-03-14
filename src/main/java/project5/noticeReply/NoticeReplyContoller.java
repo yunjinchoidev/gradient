@@ -1,5 +1,6 @@
 package project5.noticeReply;
 
+import java.security.AlgorithmConstraints;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -20,8 +21,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import lombok.AllArgsConstructor;
 import project5.paging.Criteria;
-
-
 
 @RestController
 @AllArgsConstructor
@@ -47,55 +46,36 @@ public class NoticeReplyContoller {
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	@GetMapping(value = "/{rno}.do", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public String get(@PathVariable("rno") int rno, Model d) {
-		log.info("get: " + rno);
-		System.out.println("대기");
-		System.out.println("대기");
-		System.out.println("대기");
-		System.out.println("대기");
-		System.out.println("대기");
-		System.out.println("대기");
-		System.out.println("대기");
-		System.out.println("대기");
-		System.out.println("대기");
-		System.out.println("대기");
-		System.out.println(service.get(rno));
-		System.out.println("===================================");
-		d.addAttribute("get",service.get(rno));
-		return "pageJsonReport";
-	}
-	
-	
-	
-	
-	
-	
-
 	@RequestMapping(method = { RequestMethod.PUT,
 			RequestMethod.PATCH }, value = "/{rno}.do", consumes = "application/json", produces = {
 					MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> modify(@RequestBody NoticeReplyVO vo, @PathVariable("rno") int rno) {
-
 		vo.setRno(rno);
-
 		log.info("rno: " + rno);
 		log.info("modify: " + vo);
-
 		return service.modify(vo) == 1 ? new ResponseEntity<>("success", HttpStatus.OK)
 				: new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+	}
+	
+	
 
+	@GetMapping("/get/{rno}.do")
+	public NoticeReplyVO get(@PathVariable("rno") int rno, Model d) {
+		log.info("a"+service.get(rno));
+		return service.get(rno);
 	}
 
+	
+	@GetMapping("pages/{noticekey}/{page}.do")
+	public List<NoticeReplyVO> getList(@PathVariable("noticekey") int noticekey,@PathVariable("page") int page, Model d) {
+
+		Criteria cri = new Criteria(1, 10);
+		// service.getList(cri, noticekey)
+		// log.info(cri);
+		log.info("getList................." + service.getList(cri, noticekey));
+
+		return service.getList(cri, noticekey);
+	}
 	
 	
 	
@@ -113,33 +93,6 @@ public class NoticeReplyContoller {
 
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	 @GetMapping(value = "/pages/{noticekey}/{page}.do", 
-			 produces = {
-					 MediaType.APPLICATION_XML_VALUE,
-					 MediaType.APPLICATION_JSON_UTF8_VALUE })
-	 public ResponseEntity<List<NoticeReplyVO>> getList(
-			 @PathVariable("page") int page,
-			 @PathVariable("noticekey") int noticekey) {
-	
-		 
-		 log.info("getList.................");
-		 Criteria cri = new Criteria(page,10);
-		// log.info(cri);
-	
-	 return new ResponseEntity<>(service.getList(cri, noticekey), HttpStatus.OK);
-	 }
-
-	 
-	 
-	 
-	 
 //	@GetMapping(value = "/pages/{bno}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
 //			MediaType.APPLICATION_JSON_UTF8_VALUE })
 //	public ResponseEntity<NoticeReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("noticekey") int noticekey) {

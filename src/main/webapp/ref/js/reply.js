@@ -45,27 +45,42 @@ var replyService = (function() {
 	function getList(param, callback, error) {
 
 	    var noticekey = param.noticekey;
-	    var page = param.page || 1;
-	    
-	    $.getJSON("/project5/pages/" + noticekey + "/" + page + ".do",
+	    var page = param.page;
+	       console.log("조회 시도")
+	    $.getJSON("/project5/pages/" + noticekey + "/"+page+".do",
 	        function(data) {
 	    	
 	          if (callback) {
-	            //callback(data); // 댓글 목록만 가져오는 경우 
-	            callback(data.replyCnt, data.list); //댓글 숫자와 목록을 가져오는 경우 
+	            callback(data); // 댓글 목록만 가져오는 경우 
+	            //callback(data.replyCnt, data.list); //댓글 숫자와 목록을 가져오는 경우 
+	            console.log("조회 성공")
 	          }
-	        }).fail(function(xhr, status, err) {
+	        })
+	        .fail(function(xhr, status, err) {
 	      if (error) {
 	        error();
+	          console.log("조회 성공")
+	        alert("fasdfa");
 	      }
 	    });
+	    
+	    
 	  }
+
+
+
+
+
+
+
+
+
 
 	
 	function remove(rno, callback, error) {
 		$.ajax({
 			type : 'delete',
-			url : '/project5/' + rno,
+			url : '/project5/' + rno +'.do',
 			success : function(deleteResult, status, xhr) {
 				if (callback) {
 					callback(deleteResult);
@@ -85,7 +100,7 @@ var replyService = (function() {
 
 		$.ajax({
 			type : 'put',
-			url : '/project5/' + reply.rno,
+			url : '/project5/' + reply.rno  + '.do',
 			data : JSON.stringify(reply),
 			contentType : "application/json; charset=utf-8",
 			success : function(result, status, xhr) {
@@ -102,8 +117,7 @@ var replyService = (function() {
 	}
 
 	function get(rno, callback, error) {
-
-		$.get("/project5/" + rno + ".json", function(result) {
+		$.get("/project5/get/" + rno +".do", function(result) {
 
 			if (callback) {
 				callback(result);

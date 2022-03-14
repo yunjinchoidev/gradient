@@ -18,11 +18,16 @@ public class A20_FullCalController {
 	private A10_FullCalService service;
 	
 	
+	
+	
 	// http://localhost:7080/springweb/calendar.do
 	@GetMapping("calendar.do")
 	public String calendar() {
 		return "schedule/fullCalendar";
 	}
+	
+	
+	
 	// http://localhost:7080/springweb/calList.do
 	@RequestMapping("getCalendarList.do")
 	public String calList(Model d) {
@@ -31,11 +36,19 @@ public class A20_FullCalController {
 	}
 
 	
+	
+	
+	
+	
 	@RequestMapping("getCalendarIndividaulList.do")
 	public String calList(Model d, MemberVO vo) {
 		d.addAttribute("calList", service.getCalendarIndividaulList(vo.getMemberkey()));	
 		return "pageJsonReport";
 	}
+	
+	
+	
+	
 	
 	
 	

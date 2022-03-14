@@ -12,11 +12,17 @@
 		#{replyer})
 	</insert>
 
-	<select id="read" resultType="project5.noticeReply.NoticeReplyVO">
+	<select id="read"
+		resultType="project5.noticeReply.NoticeReplyVO">
 		select * from notice_reply where
 		rno =
 		#{rno}
 	</select>
+
+
+
+
+
 
 
 	<delete id="delete">
@@ -42,17 +48,17 @@
 		noticekey = #{noticekey} order by rno
 		asc
 	</select>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
 	<!-- <select id="getListWithPaging" resultType="project5.noticeReply.NoticeReplyVO"> 
 		<![CDATA[ select rno, noticekey, reply, replyer, replydate, updatedate from 
 		( select /*+INDEX(notice_reply idx_reply) */ rownum rn, rno, noticekey, reply, 
