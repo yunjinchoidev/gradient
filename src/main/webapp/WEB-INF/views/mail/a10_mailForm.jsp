@@ -67,8 +67,6 @@
 <div class="container">
 	<form method="post" action="/project5/mailsend.do">
 	
-	
-	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
 			<span class="input-group-text ">수신자</span>
@@ -85,17 +83,12 @@
 				 value="qmwmemrmaa@gmail.com"  placeholder="발신자 입력하세요" />	
 	</div>	
 	
-	
-	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
 			<span class="input-group-text ">제목</span>
 		</div>
 		<input name="title" type="text"  placeholder="제목입력하세요" class="form-control" />
 	</div>		
-	
-	
-	
 	
 	<div class="input-group mb-3">	
 		<div class="input-group-prepend ">
@@ -109,7 +102,6 @@
 		<input type="submit" class="btn btn-success" value="메일발송" id="sendMailBtn"/>
 	</div>	
 	</form>	
-    
     
     </div>
     

@@ -30,12 +30,11 @@ public class NoticeController {
 	@RequestMapping("/notice.do")
 	public String notice(Model d, NoticeSch sch) {
 		d.addAttribute("list", service.getList(sch));
-		
-		
 		System.out.println("공지사항 리스트 조회 완료");
 		return "notice/list";
 	}
 
+	
 	@RequestMapping("/noticeWriteForm.do")
 	public String noticeWriteFrom() {
 		return "notice/writeForm";

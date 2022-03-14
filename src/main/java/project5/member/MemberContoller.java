@@ -57,7 +57,6 @@ public class MemberContoller {
 			d.addAttribute("member", vo2);
 			System.out.println("vo : "+vo);
 			System.out.println("로그인 실패");
-			
 			return "/member/loginFail";
 		}
 		
@@ -121,8 +120,7 @@ public class MemberContoller {
 		System.out.println("회원 정보 수정 완료");
 		d.addAttribute("psc", "success");
 		return "member/EditSuccess";
-
-	}
+		}
 	
 	
 	

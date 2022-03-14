@@ -52,24 +52,19 @@
 				<div id="auth-left" style="width: 900px;">
 					<h1 class="auth-title">처음 오셨습니까?</h1>
 					<p class="auth-subtitle mb-5" >이메일을 입력하시오</p>
-
-
 					<form action="/project5/memberRegister.do" method="post">
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"
 								placeholder="가입번호 : ${reginum }" name="memberkey" readonly="readonly" value="${reginum }">
-							<div class="form-control-icon">
-								<i class="bi bi-envelope"></i>
-							</div>
+							<div class="form-control-icon"><i class="bi bi-envelope"></i></div>
 						</div>
-						
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="email" class="form-control form-control-xl"
 								placeholder="이메일" name="reciever">
-							<div class="form-control-icon">
-								<i class="bi bi-person"></i>
-							</div>
-						</div>
+							<div class="form-control-icon"><i class="bi bi-person"></i></div></div>
+								
+						
+						
 
 
 

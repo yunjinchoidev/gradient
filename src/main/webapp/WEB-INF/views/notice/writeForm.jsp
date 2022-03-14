@@ -336,10 +336,8 @@ $(document).ready(function(e){
       formData,type: 'POST',
       dataType:'json',
         success: function(result){
-          console.log("aaaaaaaaaaaaaaaaaaa");
           console.log(result); 
-		  showUploadResult(result); //업로드 결과 처리 함수 
-
+		  showUploadResult(result); 
       },
       error: function(result){
           console.log("asdfads");

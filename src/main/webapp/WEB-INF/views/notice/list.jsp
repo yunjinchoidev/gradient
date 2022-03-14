@@ -161,9 +161,7 @@
 											    				&nbsp;&nbsp;
 											    				<c:if test="${list.level>1 and sts.last }">
 											<img width="25" height="15" src="${path}/a02_img/reply1.PNG" />
-											    					a
 											    				</c:if>
-											    				a
 											    				<%-- level 만큼 공백을 넣고, 마지막(sts.last)에 답글이미지 삽입  --%>
 									</c:forEach> ${list.title }</td>
 
@@ -196,8 +194,6 @@
 							name="title" value="${noticeSch.title}" placeholder="제목">
 						<input class="dataTable-input" placeholder="Search..." type="text"
 							name="writer" value="${noticeSch.content}" placeholder="작성자">
-
-
 						<button class="btn btn-info" type="submit">조회</button>
 						<button class="btn btn-success" id="regBtn" type="button">등록</button>
 

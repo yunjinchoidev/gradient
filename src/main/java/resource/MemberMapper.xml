@@ -14,7 +14,8 @@
 		pass=#{pass},
 		name=#{name},
 		auth=#{auth},
-		deptno=#{deptno}
+		deptno=#{deptno},
+		email=#{email}
 		where
 		memberkey=#{memberkey}
 	</insert>

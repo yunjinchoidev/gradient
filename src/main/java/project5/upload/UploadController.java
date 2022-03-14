@@ -89,51 +89,36 @@ public class UploadController {
 		// make yyyy/MM/dd folder
 
 		for (MultipartFile multipartFile : uploadFile) {
-
 			AttachFileDTO attachDTO = new AttachFileDTO();
-
 			String uploadFileName = multipartFile.getOriginalFilename();
-
 			// IE has file path
 			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
 			log.info("only file name: " + uploadFileName);
 			attachDTO.setFileName(uploadFileName);
-
 			UUID uuid = UUID.randomUUID();
-
 			uploadFileName = uuid.toString() + "_" + uploadFileName;
-
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
 				multipartFile.transferTo(saveFile);
-
 				attachDTO.setUuid(uuid.toString());
 				attachDTO.setUploadPath(uploadFolderPath);
-
 				// check image type file
 				if (checkImageType(saveFile)) {
-
 					attachDTO.setImage(true);
-
 					/*
 					 FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" +
 					 uploadFileName));
 
 					 Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100,
 					 100);
-
-					 
 					 thumbnail.close();
 					 */
 				}
-
 				// add to List
 				list.add(attachDTO);
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-
 		} // end for
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
@@ -146,18 +131,12 @@ public class UploadController {
 	@GetMapping("/display.do")
 	@ResponseBody
 	public ResponseEntity<byte[]> getFile(String fileName) {
-
 		log.info("fileName: " + fileName);
-
 		File file = new File("c:\\upload\\" + fileName);
-
 		log.info("file: " + file);
-
 		ResponseEntity<byte[]> result = null;
-
 		try {
 			HttpHeaders header = new HttpHeaders();
-
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 		} catch (IOException e) {
