@@ -22,7 +22,7 @@
 
 	<select id="findByBno"
 		resultType="project5.noticeAttach.NoticeAttachVO">
-		select * from notice_Attach where noticekey = #{noticekey}
+		select * from notice_Attach where noticekey = 1
 	</select>
 
 	<delete id="deleteAll">

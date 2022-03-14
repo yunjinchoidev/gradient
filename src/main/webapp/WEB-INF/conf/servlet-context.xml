@@ -21,7 +21,7 @@
    		http://www.springframework.org/schema/websocket
 		http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
-
+<mvc:annotation-driven />
 	<context:annotation-config />
 
 
@@ -91,7 +91,7 @@
 
 
 
-<mvc:annotation-driven />
+
 
 
 

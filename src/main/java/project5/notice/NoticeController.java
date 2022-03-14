@@ -28,8 +28,10 @@ public class NoticeController {
 	MemberService service2;
 	
 	@RequestMapping("/notice.do")
-	public String unifyIndex(Model d) {
-		d.addAttribute("list", service.getList());
+	public String notice(Model d, NoticeSch sch) {
+		d.addAttribute("list", service.getList(sch));
+		
+		
 		System.out.println("공지사항 리스트 조회 완료");
 		return "notice/list";
 	}
@@ -54,6 +56,22 @@ public class NoticeController {
 		return "forward:/notice.do";
 	}
 
+	
+	@RequestMapping("/noticeUpdateForm.do")
+	public String noticeUpdateFrom(Model d, NoticeVO vo) {
+		d.addAttribute("notice", service.get(vo.getNoticekey()));
+		return "notice/update";
+	}
+
+	@RequestMapping("/noticeUpdate.do")
+	public String noticeUpdate(Model d, NoticeVO vo) {
+		service.update(vo);
+		d.addAttribute("psc", "update");
+		return "forward:/notice.do";
+	}
+	
+	
+	
 	@RequestMapping("/noticeGet.do")
 	public String noticeGet(Model d, int noticekey) {
 		d.addAttribute("notice", service.get(noticekey));

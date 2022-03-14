@@ -59,6 +59,15 @@
 
 
 </head>
+<script>
+
+
+
+</script>
+
+
+
+
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
@@ -350,8 +359,6 @@ $(document).ready(function(e){
     var str ="";
     
     $(uploadResultArr).each(function(i, obj){
-    
-		
 		if(obj.image){
 			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
 			str += "<li data-path='"+obj.uploadPath+"'";

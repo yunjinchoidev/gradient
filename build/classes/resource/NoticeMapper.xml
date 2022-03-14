@@ -4,14 +4,40 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="project5.notice.NoticeDao">
-	
-	<select id="getList" resultType="project5.notice.NoticeVO2">
-		SELECT noticekey, title,
-		content, VIEWs, writedate, m.NAME name
-		FROM notice n, MEMBER m
-		WHERE n.MEMBERKEY = m.MEMBERKEY
-		order by noticekey
+
+	<select id="getList" resultType="project5.notice.NoticeVO2" parameterType="project5.notice.NoticeSch">
+			select a.*, m.name
+		from (
+			select rownum cnt, level, b.* 
+			from notice b
+			where 1=1
+			START WITH refno=0
+			CONNECT BY PRIOR noticekey=refno
+			ORDER siblings BY noticekey desc ) a, MEMBER m
+			where cnt between #{start} and #{end}
+		AND a.memberkey = m.memberkey
+		ORDER BY noticekey
 	</select>
+
+
+	<select id="totCnt" resultType="int">
+			select count(*)
+			from notice 
+			where 1=1
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<select id="get" resultType="project5.notice.NoticeVO2"
 		parameterType="int">
@@ -33,6 +59,16 @@
 		where noticekey=#{noticekey}
 		</insert>
 	
+	
+	
+	<update id="update" parameterType="project5.notice.NoticeVO">
+	update notice
+	set 
+	title=#{title},
+	content=#{content}
+	where noticekey=#{noticekey}
+	
+	</update>
 	
 	
 	

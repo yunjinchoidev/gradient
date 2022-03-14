@@ -1,13 +1,14 @@
 package project5.noticeReply;
 
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,14 +18,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import lombok.AllArgsConstructor;
+import project5.paging.Criteria;
+
+
+
 @RestController
+@AllArgsConstructor
 public class NoticeReplyContoller {
 	private static final Logger log = LoggerFactory.getLogger(NoticeReplyContoller.class);
 
 	@Autowired
 	private NoticeReplyService service;
 
-	@PostMapping(value = "/new.do", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
+	@PostMapping(value = "/NoticeReplyNew.do", consumes = "application/json", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> create(@RequestBody NoticeReplyVO vo) {
 
 		log.info("ReplyVO: " + vo);
@@ -49,14 +56,33 @@ public class NoticeReplyContoller {
 	
 	
 	
-	@GetMapping(value = "/{rno}", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<NoticeReplyVO> get(@PathVariable("rno") int rno) {
+	@GetMapping(value = "/{rno}.do", produces = { MediaType.APPLICATION_XML_VALUE, MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public String get(@PathVariable("rno") int rno, Model d) {
 		log.info("get: " + rno);
-		return new ResponseEntity<>(service.get(rno), HttpStatus.OK);
+		System.out.println("대기");
+		System.out.println("대기");
+		System.out.println("대기");
+		System.out.println("대기");
+		System.out.println("대기");
+		System.out.println("대기");
+		System.out.println("대기");
+		System.out.println("대기");
+		System.out.println("대기");
+		System.out.println("대기");
+		System.out.println(service.get(rno));
+		System.out.println("===================================");
+		d.addAttribute("get",service.get(rno));
+		return "pageJsonReport";
 	}
+	
+	
+	
+	
+	
+	
 
 	@RequestMapping(method = { RequestMethod.PUT,
-			RequestMethod.PATCH }, value = "/{rno}", consumes = "application/json", produces = {
+			RequestMethod.PATCH }, value = "/{rno}.do", consumes = "application/json", produces = {
 					MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> modify(@RequestBody NoticeReplyVO vo, @PathVariable("rno") int rno) {
 
@@ -70,7 +96,14 @@ public class NoticeReplyContoller {
 
 	}
 
-	@DeleteMapping(value = "/{rno}", produces = { MediaType.TEXT_PLAIN_VALUE })
+	
+	
+	
+	
+	
+	
+	
+	@DeleteMapping(value = "/{rno}.do", produces = { MediaType.TEXT_PLAIN_VALUE })
 	public ResponseEntity<String> remove(@PathVariable("rno") int rno) {
 
 		log.info("remove: " + rno);
@@ -80,25 +113,36 @@ public class NoticeReplyContoller {
 
 	}
 
-//	 @GetMapping(value = "/pages/{bno}/{page}", 
-//			 produces = {
-//					 MediaType.APPLICATION_XML_VALUE,
-//					 MediaType.APPLICATION_JSON_UTF8_VALUE })
-//	 public ResponseEntity<List<ReplyVO>> getList(
-//			 @PathVariable("page") int page,
-//			 @PathVariable("bno") Long bno) {
-//	
-//		 
-//		 log.info("getList.................");
-//		 Criteria cri = new Criteria(page,10);
-//		 log.info(cri);
-//	
-//	 return new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
-//	 }
-//
+	
+	
+	
+	
+	
+	
+	
+	 @GetMapping(value = "/pages/{noticekey}/{page}.do", 
+			 produces = {
+					 MediaType.APPLICATION_XML_VALUE,
+					 MediaType.APPLICATION_JSON_UTF8_VALUE })
+	 public ResponseEntity<List<NoticeReplyVO>> getList(
+			 @PathVariable("page") int page,
+			 @PathVariable("noticekey") int noticekey) {
+	
+		 
+		 log.info("getList.................");
+		 Criteria cri = new Criteria(page,10);
+		// log.info(cri);
+	
+	 return new ResponseEntity<>(service.getList(cri, noticekey), HttpStatus.OK);
+	 }
+
+	 
+	 
+	 
+	 
 //	@GetMapping(value = "/pages/{bno}/{page}", produces = { MediaType.APPLICATION_XML_VALUE,
 //			MediaType.APPLICATION_JSON_UTF8_VALUE })
-//	public ResponseEntity<ReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("bno") Long bno) {
+//	public ResponseEntity<NoticeReplyPageDTO> getList(@PathVariable("page") int page, @PathVariable("noticekey") int noticekey) {
 //
 //		Criteria cri = new Criteria(page, 10);
 //

@@ -14,6 +14,15 @@
 	<select id="getCalendarList" resultMap="calResult">
 		select * from calendar
 	</select>
+
+	<select id="getAllCalendar">
+		select * from calendar
+	</select>
+	
+	
+	
+	
+	
 	<insert id="insertCalendar" parameterType="calendar">
 		INSERT INTO calendar values(cal_seq.nextval, 
 			#{title},#{start},#{end},#{content},#{borderColor},#{backgroundColor},

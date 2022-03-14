@@ -7,6 +7,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import project5.paging.Criteria;
+
 @Service
 public class NoticeReplyService {
 
@@ -22,13 +24,16 @@ public class NoticeReplyService {
 	}
 
 	public NoticeReplyVO get(int rno) {
-
 		log.info("get......" + rno);
-
 		return mapper.read(rno);
 
 	}
 
+	
+	
+	
+	
+	
 	public int modify(NoticeReplyVO vo) {
 
 		log.info("modify......" + vo);
@@ -44,19 +49,28 @@ public class NoticeReplyService {
 		return mapper.delete(rno);
 
 	}
+	public List<NoticeReplyVO> getList(Criteria cri, int noticekey) {
+		log.info("get Reply List of a Board " + noticekey);
+		return mapper.getListWithPaging(cri, noticekey);
+	}
 
-	/*
-	 * @Override public List<NoticeReplyVO> getList(Criteria cri, Long bno) {
-	 * 
-	 * log.info("get Reply List of a Board " + bno);
-	 * 
-	 * return mapper.getListWithPaging(cri, bno);
-	 * 
-	 * }
-	 * 
-	 * @Override public ReplyPageDTO getListPage(Criteria cri, Long bno) {
-	 * 
-	 * return new ReplyPageDTO(mapper.getCountByBno(bno),
-	 * mapper.getListWithPaging(cri, bno)); }
-	 */
+	
+	
+	
+	
+//	@Override
+//	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
+//
+//		return new ReplyPageDTO(mapper.getCountByBno(bno), mapper.getListWithPaging(cri, bno));
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
