@@ -6,6 +6,7 @@
 		<typeAlias alias="calendar" type="project5.fullCalendar.Calendar" />
 		<typeAlias alias="risk" type="project5.risk.RiskVO" />
 		<typeAlias alias="riskSch" type="project5.risk.RiskSch" />
+		<typeAlias alias="minutes" type="project5.communication.minutesVO" />
 		<typeAlias alias="rcomm" type="project5.risk.Riskcomm" />
 		<typeAlias alias="insrcomm" type="project5.risk.InsRiskcomm" />
 	</typeAliases>
@@ -20,5 +21,6 @@
 		<mapper resource="resource/FileInfoMapper.xml" />
 		<mapper resource="resource/RiskMapper.xml" />
 		<mapper resource="resource/NoticeAttachMapper.xml" />
+		<mapper resource="resource/CommunicationMapper.xml" />
 	</mappers>
 </configuration>
