@@ -1,33 +1,32 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"
+    import="java.util.*"
+    %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
-    
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/project5/resources/dist/assets/css/bootstrap.css">
-    
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/project5/resources/dist/assets/css/bootstrap.css">
 <link rel="stylesheet" href="/project5/resources/dist/assets/css/pages/email.css">
+<link rel="stylesheet" href="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet" href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet" href="/project5/resources/dist/assets/css/app.css">
+<link rel="shortcut icon" href="/project5/resources/dist/assets/images/favicon.svg" type="image/x-icon">
 
-    <link rel="stylesheet" href="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
-    <link rel="stylesheet" href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
-    <link rel="stylesheet" href="/project5/resources/dist/assets/css/app.css">
-    <link rel="shortcut icon" href="/project5/resources/dist/assets/images/favicon.svg" type="image/x-icon">
 
-<script src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-<script src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
-<script src="/project5/resources/dist/assets/js/main.js"><script src="assets/js/bootstrap.bundle.min.js"></script></script>
+</head>
 <body>
 
 
-	<%@ include file="../common/header.jsp"%>
-
-
-
+<%@ include file="../common/header.jsp"%>
 <div id="main">
             <header class="mb-3">
                 <a href="#" class="burger-btn d-block d-xl-none">
@@ -39,8 +38,8 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>나의 작업 목록</h3>
-                <p class="text-subtitle text-muted">An application for user to check email inbox</p>
+                <h3>내 작업 목록</h3>
+                <p class="text-subtitle text-muted">내가 해야 하는 일</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
@@ -72,6 +71,46 @@
                         <div class="sidebar-menu-list ps">
                             <!-- sidebar menu  -->
                             <div class="list-group list-group-messages">
+                            
+                            
+                            
+                             
+                              <a href="#" class="list-group-item">
+                                    <div class="fonticon-wrap d-inline me-3">
+
+                                        <svg class="bi" width="1.5em" height="1.5em" fill="currentColor">
+                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
+                                        </svg>
+                                    </div>
+                                    7일전 
+                                </a>
+                            
+                              <a href="#" class="list-group-item">
+                                    <div class="fonticon-wrap d-inline me-3">
+
+                                        <svg class="bi" width="1.5em" height="1.5em" fill="currentColor">
+                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
+                                        </svg>
+                                    </div>
+                                    3일전 
+                                </a>
+                                
+                                
+                                  <a href="#" class="list-group-item">
+                                    <div class="fonticon-wrap d-inline me-3">
+
+                                        <svg class="bi" width="1.5em" height="1.5em" fill="currentColor">
+                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
+                                        </svg>
+                                    </div>
+                                    1일전 
+                                </a>
+                                
+                                
+                            
+                            
+                            
+                            
                                 <a href="#" class="list-group-item pt-0 active" id="inbox-menu">
                                     <div class="fonticon-wrap d-inline me-3">
 
@@ -80,7 +119,7 @@
                                         </svg>
                                         
                                     </div>
-                                    Inbox
+                                    중요
                                     <span class="badge badge-light-primary badge-pill badge-round float-right mt-50">5</span>
                                 </a>
                                 <a href="#" class="list-group-item">
@@ -90,7 +129,7 @@
                                             <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#archive"></use>
                                         </svg>
                                     </div>
-                                    Sent
+                                    시급
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <div class="fonticon-wrap d-inline me-3">
@@ -98,8 +137,11 @@
                                         <svg class="bi" width="1.5em" height="1.5em" fill="currentColor">
                                             <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#pencil"></use>
                                         </svg>
-                                    </div> Draft
+                                    </div> 완료
                                 </a>
+                                
+                                
+                                
                                 <a href="#" class="list-group-item">
                                     <div class="fonticon-wrap d-inline me-3">
 
@@ -107,7 +149,7 @@
                                             <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
                                         </svg>
                                     </div>
-                                    Starred
+                                    파일함
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <div class="fonticon-wrap d-inline me-3">
@@ -116,7 +158,7 @@
                                             <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#info-circle"></use>
                                         </svg>
                                     </div>
-                                    Spam
+                                    이미지 모아 보기
                                     <span class="badge badge-light-danger badge-pill badge-round float-right mt-50">3</span>
                                 </a>
                                 <a href="#" class="list-group-item">
@@ -125,12 +167,40 @@
                                             <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash"></use>
                                         </svg>
                                     </div>
-                                    Trash
+                                   이메일 모음
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <div class="fonticon-wrap d-inline me-3">
+                                        <svg class="bi" width="1.5em" height="1.5em" fill="currentColor">
+                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash"></use>
+                                        </svg>
+                                    </div>
+                                    코멘트
+                                </a>
+                                <a href="#" class="list-group-item">
+                                    <div class="fonticon-wrap d-inline me-3">
+                                        <svg class="bi" width="1.5em" height="1.5em" fill="currentColor">
+                                            <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash"></use>
+                                        </svg>
+                                    </div>
+                                    휴가 관리
                                 </a>
                             </div>
                             <!-- sidebar menu  end-->
 
+
+
+
+
+
+
+
+
+
+							
+							
                             <!-- sidebar label start -->
+                            <!--
                             <label class="sidebar-label">Labels</label>
                             <div class="list-group list-group-labels">
                                 <a href="#" class="list-group-item d-flex justify-content-between align-items-center">
@@ -154,6 +224,11 @@
                                     <span class="bullet bullet-info bullet-sm"></span>
                                 </a>
                             </div>
+                            
+                            
+                              -->
+                            
+                            
                             <!-- sidebar label end -->
                             <div class="ps__rail-x" style="left: 0px; bottom: 0px;">
                                 <div class="ps__thumb-x" tabindex="0" style="left: 0px; width: 0px;"></div>
@@ -415,67 +490,104 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
                                 <!-- email user list start -->
                                 <div class="email-user-list list-group ps ps--active-y">
                                     <ul class="users-list-wrapper media-list">
                                     
                                     
                                     
-                                        
-                                        
-                                        
-                                        
-                                        <li class="media">
+                                    <c:forEach var="list" items="${list }" varStatus="var"> 
+                                        <li class="media mail-read">
                                             <div class="user-action">
                                                 <div class="checkbox-con me-3">
                                                     <div class="checkbox checkbox-shadow checkbox-sm">
-                                                        <input type="checkbox" id="checkboxsmall3" class="form-check-input">
-                                                        <label for="checkboxsmall3"></label>
+                                                        <input type="checkbox" id="checkboxsmall1" class="form-check-input">
+                                                        <label for="checkboxsmall1"></label>
                                                     </div>
                                                 </div>
-                                                <span class="favorite">
-
+                                                
+                                                
+                                                <span class="favorite text-warning">
                                                     <svg class="bi" width="1.5em" height="1.5em" fill="currentColor">
-                                                        <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
+                                                        <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#star-fill"></use>
                                                     </svg>
                                                 </span>
                                             </div>
+                                            
+                                            
                                             <div class="pr-50">
                                                 <div class="avatar">
-                                                    <img class="rounded-circle" src="assets/images/faces/7.jpg" alt="Generic placeholder image">
+                                                    <img src="/project5/resources/dist/assets/images/faces/1.jpg" alt="avtar img holder">
                                                 </div>
                                             </div>
+                                            
+                                            
+                                            
                                             <div class="media-body">
                                                 <div class="user-details">
                                                     <div class="mail-items">
-                                                        <span class="list-group-item-text text-truncate">How To Set
-                                                            Intentions That Energize You</span>
+                                                        <span class="list-group-item-text text-truncate">${list} ${var }</span>
                                                     </div>
                                                     <div class="mail-meta-item">
                                                         <span class="float-right">
-                                                            <span class="mail-date">2:15 AM</span>
+                                                            <span class="mail-date">4:14 AM</span>
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="mail-message">
-                                                    <p class="list-group-item-text mb-0 truncate">
-                                                        I will provide you more details after this Saturday. Hope
-                                                        that will be fine for you..
+                                                    <p class="list-group-item-text truncate mb-0">
+                                                        Hey John, bah kivu decrete epanorthotic unnotched
+                                                        Argyroneta nonius veratrine preimaginary
                                                     </p>
                                                     <div class="mail-meta-item">
-                                                        <span class="float-right d-flex align-items-center">
-                                                            <i class="bx bx-paperclip me-3"></i>
+                                                        <span class="float-right">
                                                             <span class="bullet bullet-success bullet-sm"></span>
                                                         </span>
                                                     </div>
                                                 </div>
                                             </div>
                                         </li>
-                                        
-                                        
-                                        
+                                        </c:forEach>
                                     </ul>
                                     <!-- email user list end -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                                     <!-- no result when nothing to show on list -->
                                     <div class="no-results">
@@ -492,6 +604,97 @@
                             </div>
                         </div>
                         <!--/ Email list Area -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
                         <!-- Detailed Email View -->
                         <div class="email-app-details">
@@ -929,4 +1132,7 @@
             </footer>
         </div>
 </body>
+<script src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+<script src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
+<script src="/project5/resources/dist/assets/js/main.js"></script>
 </html>

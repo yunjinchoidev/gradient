@@ -20,7 +20,7 @@
 	$(document).ready(function(){
 		
 		var msg = "${msg}";
-				
+					
 		if(msg!=""){
 			alert(msg);
 			if(msg=="등록되었습니다"){
@@ -39,9 +39,9 @@
 			$("[name=pageSize]").change(function(){
 				$("[name=curPage]").val(1);
 				$("#schform").submit();
-			});	
-					
-	});
+			});
+			
+		});
 	
 	function goDetail(riskkey){
 		location.href="${path}/riskdetail.do?riskkey="+riskkey;		
@@ -52,13 +52,17 @@
 		$("#schform").submit();
 	}
 	
+	function load(){
+		$("#schform").submit();
+		return false;
+	}
+			
 </script>
 </head>
 
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
-
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
@@ -96,7 +100,7 @@
 								</div>
 								
 								<div class="dataTable-search">
-									<input type="text" name="sch" class="dataTable-input" placeholder="Search..." type="text">			
+									<input type="text" id="schFrm" name="sch" class="dataTable-input" placeholder="Search..." type="text">
 								</div>
 							</div>
 						  </form>
@@ -165,7 +169,7 @@
 
 								</table>
 								
-								<button style="margin: auto;display:block;" 
+								<button style="margin: auto;display:block;" id="mainregbtn"
 								class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#regModal">등록</button>
 								
 							</div>
@@ -249,6 +253,7 @@
                     	</div>
                     <!-- 완료예정일 -->
                     	<div id="comdatediv" style="flex:1; margin-top:5px;">
+                    		<input type="hidden" name="id" value="${member.id}">
                     		<input type=date name="comdate">
                     	</div>
                     </div>

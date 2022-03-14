@@ -79,8 +79,9 @@ document.addEventListener('DOMContentLoaded', function() {
     	//$("[name=end]").val(arg.end.toISOString().split("T")[0])
     	$("[name=end]").val(arg.end.toISOString())
     	$("[name=allDay]").val(""+arg.allDay)
-    	/*
-        var title = prompt('일정등록:');
+        /*
+    	var title = prompt('일정등록:');
+    	
         if (title) {
           calendar.addEvent({
             title: title, // 타이틀
@@ -90,8 +91,11 @@ document.addEventListener('DOMContentLoaded', function() {
           })
         }
         */
+        
         calendar.unselect()
       },
+      
+   
       eventClick: function(arg) {
     	  console.log(arg.event)
 		  formData(arg.event);	      
@@ -191,14 +195,6 @@ document.addEventListener('DOMContentLoaded', function() {
 <div id='main'>
 
 
-
-
-
-
-
-
-
-
 <div id='calendar'></div>
 
 <div id='loading'>loading...</div>
@@ -294,7 +290,7 @@ document.addEventListener('DOMContentLoaded', function() {
 <div>
 	<br><br><br><br><br><br><br><br>
 </div>
-<%@ include file="../scheduleNotice/list.jsp"%>
+
 </div>
 
 

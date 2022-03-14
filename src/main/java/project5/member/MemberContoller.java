@@ -51,14 +51,20 @@ public class MemberContoller {
 			d.addAttribute("member", service.login(vo));
 			System.out.println("vo : "+vo);
 			System.out.println("로그인 성공하였습니다.");
-			return "redirect:/main.do";
+			return "forward:/main.do";
 		} else {
 			d.addAttribute("psc", "fail");
 			d.addAttribute("member", vo2);
 			System.out.println("vo : "+vo);
 			System.out.println("로그인 실패");
-			return "redirect:/login.do";
+			
+			return "/member/loginFail";
 		}
+		
+		
+		
+		
+		
 
 	}
 

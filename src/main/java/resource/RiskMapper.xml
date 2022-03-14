@@ -49,11 +49,9 @@
 	</select>
 
 	<!-- 리스크 등록, 프로젝트 조회 -->
-	<select id="selectprjlist" resultType="risk">
+	<select id="selectprjlist" resultType="risk" parameterType="string">
 		SELECT p.PROJECTKEY AS prjkey, p.NAME AS prjname
-		FROM MEMBER m , PROJECT p 
-		WHERE m.PROJECTKEY = p.PROJECTKEY
-		AND m.NAME = '홍길동'
+		FROM PROJECT p
 	</select>
 	
 	<!-- 리스크 리스트 조회 -->
@@ -73,24 +71,63 @@
 	<!-- 리스크 게시글 조회 -->
 	<select id="riskDetail" parameterType="int" resultType="risk">
 		SELECT r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
-		TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name 
+		TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name , m.id as id
 		, r.CONTENT AS CONTENT
 		FROM RISK r, MEMBER m , PROJECT p 
 		WHERE r.MEMBERKEY = m.MEMBERKEY 
 		AND r.PROJECTKEY = p.PROJECTKEY
 		AND RISKKEY = #{riskkey}
 	</select>
+	
+	<!-- 댓글 조회 -->
+		<select id="getCommList" resultType="rcomm" parameterType="int">
+			SELECT  rownum cnt,LEVEL,rc.RCOMMENTKEY rcommkey, rc.COMMCONTENTS commcontent ,rc.COMMDATE commdate , m.NAME name, m.id id
+					, rc.refno as refno
+			FROM risk r, RISKCOMM rc , MEMBER m 
+			WHERE rc.RISKKEY  = r.RISKKEY 
+			AND rc.MEMBERKEY  = m.MEMBERKEY 
+			AND r.RISKKEY  = #{riskkey}
+			START WITH refno=0
+			CONNECT BY PRIOR rc.RCOMMENTKEY  = rc.REFNO 
+			ORDER siblings BY rc.RCOMMENTKEY DESC
+		</select>
 		
 	<!-- 리스크 등록 -->
 	<insert id="insertRisk" parameterType="risk">
-		INSERT INTO risk VALUES (seq_risk.nextval,#{prjkey},1,
+		INSERT INTO risk VALUES (seq_risk.nextval,#{prjkey},(SELECT m.MEMBERKEY FROM MEMBER m WHERE id = #{id}),
 			#{content},#{progress},sysdate,#{importance},#{title},to_date(#{comdate},'YYYY-MM-DD') )
+	</insert>
+	
+	<!-- 댓글 등록 -->
+	<insert id="insertcomm" parameterType="insrcomm">
+		INSERT INTO RISKCOMM VALUES ((SELECT NVL(MAX(RCOMMENTKEY)+1,1) FROM RISKCOMM),
+		(SELECT MEMBERKEY FROM member WHERE id = #{id}),#{commcontents},sysdate,#{riskkey},0)
+	</insert>
+	
+	<!-- 답글 등록 -->
+	<insert id="insertrecomm" parameterType="insrcomm">
+		INSERT INTO RISKCOMM VALUES
+		 ((SELECT NVL(MAX(RCOMMENTKEY)+1,1) FROM riskcomm),(SELECT memberkey FROM member WHERE id = #{id}),
+		 #{recommcontents},sysdate,#{riskkey},#{refno})
 	</insert>
 	
 	<!-- 리스크 삭제 -->
 	<delete id="delRisk" parameterType="int">
 		DELETE FROM RISK
 		WHERE riskkey = #{riskkey}
+	</delete>
+	
+	<!-- 댓글 삭제 -->
+	<delete id="delcomm" parameterType="int">
+		DELETE FROM riskcomm 
+		WHERE rcommentkey = #{rcommkey}
+		OR refno = #{rcommkey}
+	</delete>
+	
+	<!--  답글 삭제 -->
+	<delete id="delrecomm" parameterType="int">
+		DELETE FROM riskcomm 
+		where RCOMMENTKEY = #{rrecommkey}
 	</delete>
 	
 	<!-- 리스크 수정 -->
@@ -103,7 +140,7 @@
 		TITLE = #{title},
 		COMDATE = #{comdate}
 		WHERE 
-		RISKKEY = '14'
+		RISKKEY = #{riskkey}
 	</update>
 	
 	

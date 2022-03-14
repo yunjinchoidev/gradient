@@ -36,8 +36,6 @@ public class A10_MailService {
 			// 3. 수신자 설정.
 			mmsg.setRecipient(RecipientType.TO, new InternetAddress(email.getReciever()));
 			
-			
-			
 			// 4. 내용 설정.
 			//    ex) 계정 비밀번호 입력 처리..
 			
@@ -91,9 +89,6 @@ public class A10_MailService {
 			String infomation="안녕하세요? \n5조 PMS에 가입하신 여러분을 환영합니다. \n\n\n 임시 아이디는 "+service.get(memberkey).getId() +"이고 "+
 			"\n임시 비밀번호는 "+service.get(memberkey).getPass() +"입니다. \n \n 즐거운 하루 되십시오.";
 			mmsg.setText(infomation);
-			
-			
-			
 			// 5. 발송 처리.
 			sender.send(mmsg);
 			System.out.println("이메일 발송되었습니다.");
@@ -108,4 +103,16 @@ public class A10_MailService {
 		
 		return msg;
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
