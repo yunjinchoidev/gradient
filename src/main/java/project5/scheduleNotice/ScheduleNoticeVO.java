@@ -1,16 +1,16 @@
-package project5.schedule;
+package project5.scheduleNotice;
 
-public class ScheduleVO {
+public class ScheduleNoticeVO {
 	private String name;
 	private String title;
 	private String contents;
 
-	public ScheduleVO() {
+	public ScheduleNoticeVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ScheduleVO(String name, String title, String contents) {
+	public ScheduleNoticeVO(String name, String title, String contents) {
 		super();
 		this.name = name;
 		this.title = title;

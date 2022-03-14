@@ -538,7 +538,7 @@
                                             <div class="media-body">
                                                 <div class="user-details">
                                                     <div class="mail-items">
-                                                        <span class="list-group-item-text text-truncate">${list} ${var }</span>
+                                                        <span class="list-group-item-text text-truncate">${list.title}</span>
                                                     </div>
                                                     <div class="mail-meta-item">
                                                         <span class="float-right">
@@ -548,8 +548,7 @@
                                                 </div>
                                                 <div class="mail-message">
                                                     <p class="list-group-item-text truncate mb-0">
-                                                        Hey John, bah kivu decrete epanorthotic unnotched
-                                                        Argyroneta nonius veratrine preimaginary
+                                                        ${list.content }
                                                     </p>
                                                     <div class="mail-meta-item">
                                                         <span class="float-right">

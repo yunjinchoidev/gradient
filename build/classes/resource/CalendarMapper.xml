@@ -9,12 +9,20 @@
 		<result property="start" column="start1" />
 		<result property="end" column="end1" />
 	</resultMap>
+	
+	
 	<select id="getCalendarList" resultMap="calResult">
-		select * from calendar
+		select * from calendars
 	</select>
 
-	<select id="getAllCalendar">
-		select * from calendar
+
+	<select id="getCalendarIndividaulList" resultMap="calResult" parameterType="int">
+		select * from calendars where memberkey = #{memberkey}
+	</select>
+
+
+	<select id="mywork" resultType="project5.fullCalendar.Calendar" parameterType="int">
+		select * from calendars where memberkey = #{memberkey}
 	</select>
 
 
@@ -22,16 +30,16 @@
 
 
 	<insert id="insertCalendar" parameterType="calendar">
-		INSERT INTO calendar
+		INSERT INTO calendars
 		values(cal_seq.nextval,
 		#{title},#{start},#{end},#{content},#{borderColor},#{backgroundColor},
-		#{textColor},#{allDay})
+		#{textColor},#{allDay}, 1, ${memberkey})
 	</insert>
 
 
 
 	<update id="updateCalendar" parameterType="calendar">
-		UPDATE calendar
+		UPDATE calendars
 		set title = #{title},
 		start1 = #{start},
 		end1 = #{end},
@@ -43,7 +51,7 @@
 		WHERE id = #{id}
 	</update>
 	<delete id="deleteCalendar" parameterType="int">
-		DELETE FROM calendar
+		DELETE FROM calendars
 		WHERE id = #{id}
 	</delete>
 </mapper>

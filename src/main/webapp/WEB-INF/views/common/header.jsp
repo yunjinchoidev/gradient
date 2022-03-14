@@ -180,10 +180,10 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/calendar.do">캘린더</a>
+								<li class="submenu-item "><a href="/project5/calendar.do?memberkey=${member.memberkey}">캘린더</a>
 								</li>
 								<li class="submenu-item "><a
-									href="/project5/scheduleList.do">일정관련 공지</a></li>
+									href="/project5/scheduleNotice.do">일정관련 공지</a></li>
 
 							</ul></li>
 
@@ -203,7 +203,7 @@
 
 
 
-						<li class="sidebar-item  "><a href="/project5/mywork.do"
+						<li class="sidebar-item  "><a href="/project5/mywork.do?memberkey=${member.memberkey }"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>내
 									작업 목록 / 작업물</span>
 						</a></li>
