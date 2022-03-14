@@ -29,7 +29,7 @@ public class minutesVO {
 	private Date updateDate;
 	private String updateDateS;
 	private String content;
-	private String shorthane;
+	private String shorthand;
 	
 	public minutesVO() {
 		super();
@@ -38,7 +38,7 @@ public class minutesVO {
 
 	public minutesVO(int minutesKey, int projectKey, int memberKey, String topic, String attendee, String partname,
 			Date conferenceDate, String conferenceDateS, Date writeDate, String writeDateS, Date updateDate,
-			String updateDateS, String content, String shorthane) {
+			String updateDateS, String content, String shorthand) {
 		super();
 		this.minutesKey = minutesKey;
 		this.projectKey = projectKey;
@@ -53,7 +53,7 @@ public class minutesVO {
 		this.updateDate = updateDate;
 		this.updateDateS = updateDateS;
 		this.content = content;
-		this.shorthane = shorthane;
+		this.shorthand = shorthand;
 	}
 
 	public int getMinutesKey() {
@@ -160,11 +160,11 @@ public class minutesVO {
 		this.content = content;
 	}
 
-	public String getShorthane() {
-		return shorthane;
+	public String getShorthand() {
+		return shorthand;
 	}
 
-	public void setShorthane(String shorthane) {
-		this.shorthane = shorthane;
+	public void setShorthand(String shorthand) {
+		this.shorthand = shorthand;
 	}
 }

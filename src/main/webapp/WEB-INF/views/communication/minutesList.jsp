@@ -11,8 +11,19 @@
  --%>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<meta charset="UTF-8">
+	<title>회의 | 리스트</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$("#writeBtn").click(function() {
+			location.href = "${path}/minutes.do?method=insertFrm";
+		});
+	});
+	function detail(minuteskey) {
+		location.href = "${path}/minutes.do?method=detail&minutesKey="+minuteskey;
+	}
+	</script>
 </head>
 
 <body>
@@ -82,7 +93,7 @@
 									</thead>
 									<tbody>
 										<c:forEach var="m" items="${mList}">
-											<tr>
+											<tr ondblclick="detail(${m.minutesKey})">
 												<td>${m.minutesKey}</td>
 												<td>${m.topic}</td>
 												<td><fmt:formatDate value="${m.conferenceDate}" /></td>
@@ -95,7 +106,7 @@
 									</tbody>
 								</table>
 							</div>
-							<input type="button" class="btn btn-primary" value="새 회의록"/>
+							<input type="button" id="writeBtn" class="btn btn-primary" value="새 회의록"/>
 
 							<div class="dataTable-bottom">
 								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
