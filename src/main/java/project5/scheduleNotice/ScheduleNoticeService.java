@@ -1,4 +1,4 @@
-package project5.schedule;
+package project5.scheduleNotice;
 
 import java.util.List;
 
@@ -6,16 +6,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ScheduleService {
+public class ScheduleNoticeService {
 
 	@Autowired
-	ScheduleDao dao;
+	ScheduleNoticeDao dao;
 
-	public List<ScheduleVO> getList() {
+	public List<ScheduleNoticeVO> getList() {
 		return dao.getList();
 	}
 
-	public void insert(ScheduleVO vo) {
+	public void insert(ScheduleNoticeVO vo) {
 		 dao.insert(vo);
 	}
 

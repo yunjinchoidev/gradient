@@ -5,18 +5,18 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import project5.schedule.ScheduleService;
+import project5.fullCalendar.A10_FullCalService;
 
 @Controller
 public class MyworkController {
 
 	@Autowired
-	ScheduleService service;
+	A10_FullCalService service;
 	
 	
 	@RequestMapping("/mywork.do")
-	public String myWork(Model d) {
-		d.addAttribute("list", service.getList());
+	public String myWork(Model d, int memberkey) {
+		d.addAttribute("list", service.mywork(memberkey));
 		return "/mywork/main";
 	}
 	

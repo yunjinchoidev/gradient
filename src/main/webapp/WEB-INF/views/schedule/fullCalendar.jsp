@@ -121,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	  // 서버에 있는 json 데이터 가져와서, fullcalenar 입력하기
     	  $.ajax({
     		  type:"post",
-    		  url:"${path}/calList.do",
+    		  url:"${path}/getCalendarIndividaulList.do?memberkey=${member.memberkey}",
     		  dataType:"json",
     		  success:function(data){
     			  console.log(data.calList)
@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		$('[data-toggle="tooltip"]').tooltip();
 		$("#regBtn").click(function(){
 			if(confirm("일정등록하시겠습니까?")){
-				$("#frm01").attr("action","${path}/insertCalendar.do");
+				$("#frm01").attr("action","${path}/insertCalendar.do?memberkey=${member.memberkey}");
 				$("#frm01").submit();
 			}		
 		});
@@ -270,7 +270,8 @@ document.addEventListener('DOMContentLoaded', function() {
 	      		<option value="false">시 간</option>
 	      	</select>
 	      </div>
-	     </div>	     
+	     </div>	    
+	     <input type="hidden" name="memberkey" value="${member.memberkey }" >
 	    </form> 
 	 	<script>
 	      		

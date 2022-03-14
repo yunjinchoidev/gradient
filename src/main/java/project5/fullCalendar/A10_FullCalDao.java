@@ -8,6 +8,11 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface A10_FullCalDao {
 	public List<Calendar> getCalendarList();
+	public List<Calendar> getCalendarIndividaulList(int memberkey);
+	public List<Calendar> mywork(int memberkey);
+
+	
+	
 	public void insertCalendar(Calendar ins);
 	public void updateCalendar(Calendar upt);
 	public void deleteCalendar(int id);	

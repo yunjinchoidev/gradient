@@ -1,4 +1,4 @@
-package project5.schedule;
+package project5.scheduleNotice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,9 +6,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class ScheduleController {
+public class ScheduleNoticeController {
 	@Autowired
-	ScheduleService service;
+	ScheduleNoticeService service;
 
 	@RequestMapping("/scheduleList.do")
 	public String schduleList(Model d) {

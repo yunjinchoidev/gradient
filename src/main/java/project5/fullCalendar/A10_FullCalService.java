@@ -14,6 +14,18 @@ public class A10_FullCalService {
 	public List<Calendar> getCalendarList(){
 		return dao.getCalendarList();
 	}
+	
+	public List<Calendar> getCalendarIndividaulList(int memberkey){
+		return dao.getCalendarIndividaulList(memberkey);
+	}
+
+	public List<Calendar> mywork(int memberkey){
+		return dao.mywork(memberkey);
+	}
+	
+	
+	
+	
 	public void insertCalendar(Calendar ins) {
 		dao.insertCalendar(ins);
 	}
