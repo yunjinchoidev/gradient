@@ -56,53 +56,46 @@
 								<div class="dataTable-search">
 									<input class="dataTable-input" placeholder="Search..."
 										type="text">
-										<a href="/project5/scheduleInsertForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
+										<a href="#" class="btn btn-danger" style="text-align: right">검색</a>
 								</div>
 								
 							</div>
 							<div class="dataTable-container">
 								<table class="table table-striped dataTable-table" id="table1">
+									<col width="5%">
+								   	<col width="20%">
+								   	<col width="10%">
+								   	<col width="10%">
+								   	<col width="10%">
+								   	<col width="20%">
+								   	<col width="10%">
 									<thead>
 										<tr>
-											<th data-sortable="" style="width: 12.0176%;"><a
-												href="#" class="dataTable-sorter">Name</a></th>
-											<th data-sortable="" style="width: 42.9989%;"><a
-												href="#" class="dataTable-sorter">Email</a></th>
-											<th data-sortable="" style="width: 18.0816%;"><a
-												href="#" class="dataTable-sorter">Phone</a></th>
-											<th data-sortable="" style="width: 16.3175%;"><a
-												href="#" class="dataTable-sorter">City</a></th>
-											<th data-sortable="" style="width: 10.8049%;"><a
-												href="#" class="dataTable-sorter">Status</a></th>
+											<th data-sortable="">No</th>
+											<th data-sortable="">회의안건</th>
+											<th data-sortable="">회의일시</th>
+											<th data-sortable="">작성일자</th>
+											<th data-sortable="">수정일자</th>
+											<th data-sortable="">부서</th>
+											<th data-sortable="">작성자</th>
 										</tr>
 									</thead>
-
-
-
-
 									<tbody>
-										<c:forEach var="list" items="${list}">
+										<c:forEach var="m" items="${mList}">
 											<tr>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td><span class="badge bg-success">Active</span></td>
+												<td>${m.minutesKey}</td>
+												<td>${m.topic}</td>
+												<td><fmt:formatDate value="${m.conferenceDate}" /></td>
+												<td><fmt:formatDate value="${m.writeDate}" /></td>
+												<td><fmt:formatDate value="${m.updateDate}" /></td>
+												<td>${m.partname}</td>
+												<td>${m.memberKey}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
-
-
-
-
 								</table>
-								
 							</div>
-
-
-
-
-
+							<input type="button" class="btn btn-primary" value="새 회의록"/>
 
 							<div class="dataTable-bottom">
 								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>

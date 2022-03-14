@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="project5.communication.minutesDao">
+	<select id="minutesList" resultType="minutes" parameterType="minutes">
+		SELECT *
+		FROM minutes
+		WHERE 1=1
+		<if test="topic!=null and topic!=''">
+			AND title like '%'||#{topic}||'%'
+		</if>
+	</select>
+
+	<select id="getMinutes" parameterType="int" resultType="minutes">
+		SELECT *
+		FROM minutes
+		WHERE minuteskey=#{minuteskey}
+	</select>
+
+	<insert id="insMinutes" parameterType="minutes">
+		INSERT INTO minutes VALUES(minutes_seq.nextval,2,1,#{topic},#{attendee},{partname},to_date(#{conferenceDateS},'YYYY-MM-DD'),sysdate,sysdate,#{content},#{shorthand})
+	</insert>
+
+	<update id="uptMinutes" parameterType="minutes">
+		UPDATE minutes
+			SET topic = #{topic},
+			attendee = #{attendee},
+			partname = #{partname},
+			conferenceDate = to_date(#{conferenceDateS},'YYYY-MM-DD'),
+			updateDate = sysdate,
+			content = #{content},
+			shorthand = #{shorthand}
+			WHERE minutesKey = #{minutesKey}
+	</update>
+
+	<delete id="delMinutes" parameterType="int">
+		DELETE FROM minutes
+		WHERE minutesKey=#{minutesKey}
+	</delete>
+</mapper>
