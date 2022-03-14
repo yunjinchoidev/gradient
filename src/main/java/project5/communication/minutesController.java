@@ -14,8 +14,16 @@ public class minutesController {
 	@RequestMapping(params="method=list")
 	public String minutesList(minutesVO sch, Model d) {
 		d.addAttribute("mList",service.minutesList(sch));
-		return "communication/minutes";
+		return "communication/minutesList";
 	}
+	
+	@RequestMapping(params="method=detail")
+	public String minutesDetail(int minutesKey, Model d) {
+		d.addAttribute("m",service.getMinutes(minutesKey));
+		return "";
+	}
+	
+	
 
 	@RequestMapping("/chat.do")
 	public String chat() {

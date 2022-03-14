@@ -194,7 +194,7 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/conference.do">회의</a>
+								<li class="submenu-item "><a href="/project5/minutes.do?method=list">회의</a>
 								</li>
 
 								<li class="submenu-item "><a href="/project5/chat.do">채팅</a>
