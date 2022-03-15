@@ -3,6 +3,7 @@ package project5.cost;
 public class CostList {
 	private int costkey;
 	private String prjname;
+	private int prjkey;
 	private String startdate;
 	private String lastdate;
 	private String company;
@@ -50,6 +51,13 @@ public class CostList {
 	public void setCostassign(String costassign) {
 		this.costassign = costassign;
 	}
+	public int getPrjkey() {
+		return prjkey;
+	}
+	public void setPrjkey(int prjkey) {
+		this.prjkey = prjkey;
+	}
+	
 	
 	
 }

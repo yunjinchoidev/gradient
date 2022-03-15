@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface CostDao {
 	// 게시글 목록
 	public List<CostList> getCostList();
+	// 프로젝트 목록
+	public List<CostList> getPrjList();
 }

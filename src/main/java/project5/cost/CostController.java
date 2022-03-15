@@ -12,11 +12,17 @@ public class CostController {
 	CostService service;
 	
 	@RequestMapping("/cost.do")
-	public String unifyIndex(Model d) {
+	public String getCostList(Model d) {
 		//게시글 목록
 		d.addAttribute("costlist",service.getCostList());
 		
 		return "cost/list";
+	}
+	@RequestMapping("/writecost.do")
+	public String insertCost(Model d) {
+		//프로젝트 목록
+		d.addAttribute("prjlist",service.getPrjList());
+		return "cost/writecost";
 	}
 
 	

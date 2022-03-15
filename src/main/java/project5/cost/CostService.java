@@ -14,4 +14,8 @@ public class CostService {
 	public List<CostList> getCostList(){
 		return dao.getCostList();
 	}
+	//프로젝트 목록
+	public List<CostList> getPrjList(){
+		return dao.getPrjList();
+	}
 }

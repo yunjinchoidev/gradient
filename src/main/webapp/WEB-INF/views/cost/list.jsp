@@ -11,11 +11,24 @@
  --%>
 <html>
 <head>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+td{
+text-align: center;
+}
 
 </style>
+
+<script>
+	$(document).ready(function(){
+		
+	});
+</script>
+
 </head>
 
 <body>
@@ -65,19 +78,19 @@
 								<table class="table table-striped dataTable-table" id="table1">
 									<thead>
 										<tr>
-											<th data-sortable="" style="width: 5%;"><a
+											<th data-sortable="" style="width: 5%;text-align:center;"><a
 												href="#" class="dataTable-sorter">NO</a></th>
-											<th data-sortable="" style="width: 33%;"><a
+											<th data-sortable="" style="width: 33%;text-align:center;"><a
 												href="#" class="dataTable-sorter">프로젝트명</a></th>
-											<th data-sortable="" style="width: 10%;"><a
+											<th data-sortable="" style="width: 10%;text-align:center;"><a
 												href="#" class="dataTable-sorter">시작일</a></th>
-											<th data-sortable="" style="width: 10%;"><a
+											<th data-sortable="" style="width: 10%;text-align:center;"><a
 												href="#" class="dataTable-sorter">종료일</a></th>
-											<th data-sortable="" style="width: 25%;"><a
+											<th data-sortable="" style="width: 25%;text-align:center;"><a
 												href="#" class="dataTable-sorter">회사</a></th>
-											<th data-sortable="" style="width: 7%;"><a
+											<th data-sortable="" style="width: 7%;text-align:center;"><a
 												href="#" class="dataTable-sorter">PM</a></th>
-											<th data-sortable="" style="width: 10%;"><a
+											<th data-sortable="" style="width: 10%;text-align:center;"><a
 												href="#" class="dataTable-sorter">예산배정</a></th>
 										</tr>
 									</thead>
@@ -87,9 +100,16 @@
 											<tr>
 												<td>${clist.costkey}</td>
 												<td>${clist.prjname}</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td><span class="badge bg-success">Active</span></td>
+												<td>${clist.startdate}</td>
+												<td>${clist.lastdate}</td>
+												<td>${clist.company}</td>
+												<td>${clist.pm}</td>
+												<c:if test="${clist.costassign eq '승인'}">
+													<td><span class="badge bg-success">${clist.costassign}</span></td>
+												</c:if>
+												<c:if test="${clist.costassign eq '미승인'}">
+													<td><span class="badge bg-danger">${clist.costassign}</span></td>
+												</c:if>
 											</tr>
 										</c:forEach>
 									</tbody>
