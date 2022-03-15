@@ -1,5 +1,17 @@
 package project5.cost;
 
-public class CostService {
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+@Service
+public class CostService {
+	@Autowired
+	private CostDao dao;
+	
+	//게시글 목록
+	public List<CostList> getCostList(){
+		return dao.getCostList();
+	}
 }

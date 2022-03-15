@@ -83,10 +83,10 @@
 									</thead>
 
 									<tbody>
-										<c:forEach var="list" items="${list}">
+										<c:forEach var="clist" items="${costlist}">
 											<tr>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
+												<td>${clist.costkey}</td>
+												<td>${clist.prjname}</td>
 												<td>Offenburg</td>
 												<td>Offenburg</td>
 												<td><span class="badge bg-success">Active</span></td>

@@ -23,5 +23,6 @@
 		<mapper resource="resource/RiskMapper.xml" />
 		<mapper resource="resource/NoticeAttachMapper.xml" />
 		<mapper resource="resource/CommunicationMapper.xml" />
+		<mapper resource="resource/CostMapper.xml" />
 	</mappers>
 </configuration>
