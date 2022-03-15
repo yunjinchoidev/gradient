@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class minutesController {
 	@Autowired
 	private minutesService service;
+	// http://localhost:8080/project5/main.do
 	// http://localhost:8080/project5/minutes.do?method=list
 	@RequestMapping(params="method=list")
 	public String minutesList(minutesVO sch, Model d) {
@@ -54,5 +55,4 @@ public class minutesController {
 		d.addAttribute("msg","삭제되었습니다.");
 		return "forward:/minutes.do?method=list";
 	}
-	
 }

@@ -100,7 +100,7 @@
 												<td><fmt:formatDate value="${m.writeDate}" /></td>
 												<td><fmt:formatDate value="${m.updateDate}" /></td>
 												<td>${m.partname}</td>
-												<td>${m.memberKey}</td>
+												<td>${m.name}</td>
 											</tr>
 										</c:forEach>
 									</tbody>

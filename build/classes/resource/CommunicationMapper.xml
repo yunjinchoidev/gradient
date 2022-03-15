@@ -4,22 +4,24 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.communication.minutesDao">
 	<select id="minutesList" resultType="minutes" parameterType="minutes">
-		SELECT *
-		FROM minutes
+		SELECT min.*, mem.name
+		FROM minutes min, Member mem
 		WHERE 1=1
 		<if test="topic!=null and topic!=''">
 			AND title like '%'||#{topic}||'%'
 		</if>
+		AND min.memberKey = mem.memberKey
 	</select>
 
 	<select id="getMinutes" parameterType="int" resultType="minutes">
-		SELECT *
-		FROM minutes
+		SELECT min.*, mem.name
+		FROM minutes min, Member mem
 		WHERE minuteskey=#{minuteskey}
+		AND min.memberKey = mem.memberKey
 	</select>
 
 	<insert id="insMinutes" parameterType="minutes">
-		INSERT INTO minutes VALUES(minutes_seq.nextval,2,1,#{topic},#{attendee},{partname},to_date(#{conferenceDateS},'YYYY-MM-DD'),sysdate,sysdate,#{content},#{shorthand})
+		INSERT INTO minutes VALUES(minutes_seq.nextval,2,1,#{topic},#{attendee},#{partname},to_date(#{conferenceDateS},'YYYY-MM-DD'),sysdate,sysdate,#{content},#{shorthand})
 	</insert>
 
 	<update id="uptMinutes" parameterType="minutes">

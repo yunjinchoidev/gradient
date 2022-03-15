@@ -79,12 +79,12 @@
 				</div>
 			</div>
 			<section class="section">
+				<form action="#" method="post">
 				<div>
 	                <div class="card">
 	                    <div class="card-header">
 	                        <h4 class="card-title" align="center">게시글 작성</h4>
-	                        <input type="hidden" name="minutesKey" value="minutesKey"/>
-	                        
+	                        <input type="hidden" name="minutesKey" value="${m.minutesKey}"/>
 	                    </div>
 	                    <table class="table mb-0 table-lg">
 	                        <tr>
@@ -124,14 +124,15 @@
                        	</table>
 	                </div>
 	            </div>
+	            </form>
 			</section>
 			<div class="dtl-button-box">
 				<div>
 					<input type="button" id="goList" class="btn btn-dark" value="목록으로"/>
 				</div>
 				<div>
-					<input type="button" class="btn btn-info" value="수정완료"/>
-					<input type="button" class="btn btn-success" value="작성완료"/>
+					<input type="button" id="uptBtn" class="btn btn-info" value="수정완료"/>
+					<input type="button" id="regBtn" class="btn btn-success" value="작성완료"/>
 				</div>
 			</div>
 			

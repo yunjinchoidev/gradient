@@ -38,12 +38,12 @@
 			
 			$("#delBtn").click(function(){
 				if(confirm("삭제하시겠습니까?")){
-					location.href="${path}/minutes.do?method=delete&eattokey="+${m.minutesKey};
+					location.href="${path}/minutes.do?method=delete&minutesKey="+${m.minutesKey};
 				}
 			});
 			$("#uptBtn").click(function(){
 				if(confirm("수정하시겠습니까?")){
-					location.href="${path}/minutes.do?method=updateFrm&eattokey="+${m.minutesKey};
+					location.href="${path}/minutes.do?method=updateFrm&minutesKey="+${m.minutesKey};
 				}
 			});
 	    });
@@ -78,9 +78,13 @@
 	                <div class="card">
 	                    <div class="card-header">
 	                        <h4 class="card-title" align="center">${m.topic}</h4>
-	                        <input type="hidden" name="minutesKey" value="minutesKey"/>
+	                        <input type="hidden" name="minutesKey" value="${m.minutesKey}"/>
 	                    </div>
 	                    <table class="table mb-0 table-lg">
+                    		<col width="20%">
+						   	<col width="30%">
+						   	<col width="20%">
+						   	<col width="30%">
 	                        <tr>
 	                            <th>참석자</th><td colspan="3" >${m.attendee}</td>
 	                        </tr>
@@ -89,7 +93,7 @@
 	                            <th>작성일자</th><td><fmt:formatDate value="${m.writeDate}"/></td>
 	                        </tr>
 	                        <tr>
-	                            <th>작성자</th><td>${m.memberKey}</td>
+	                            <th>작성자</th><td>${m.name}</td>
 	                            <th>부서명</th><td>${m.partname}</td>
 	                        </tr>
 	                        <tr>
