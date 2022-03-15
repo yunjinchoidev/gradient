@@ -16,6 +16,7 @@ import java.util.UUID;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
@@ -23,6 +24,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,6 +35,9 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.coobird.thumbnailator.Thumbnailator;
+import project5.notice.NoticeVO;
+import project5.noticeAttach.NoticeAttachService;
+import project5.noticeAttach.NoticeAttachVO;
 
 @Controller
 public class UploadController {
@@ -40,6 +45,11 @@ public class UploadController {
 	private static final Logger log = LoggerFactory.getLogger(UploadController.class);
 
 
+	@Autowired
+	NoticeAttachService service;
+	
+	
+	
 	@GetMapping("/uploadAjax.do")
 	public void uploadAjax() {
 
@@ -100,20 +110,24 @@ public class UploadController {
 			try {
 				File saveFile = new File(uploadPath, uploadFileName);
 				multipartFile.transferTo(saveFile);
-				attachDTO.setUuid(uuid.toString());
-				attachDTO.setUploadPath(uploadFolderPath);
+				attachDTO.setUuid(uuid.toString());///////////////////////////////////////////////////////
+				attachDTO.setUploadPath(uploadFolderPath);//////////////////////////////////////////////
 				// check image type file
 				if (checkImageType(saveFile)) {
-					attachDTO.setImage(true);
-					/*
-					 FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" +
+					attachDTO.setImage(true);////////////////////////////////////////////////////////////////////////
+					
+					 /*FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath, "s_" +
 					 uploadFileName));
 
 					 Thumbnailator.createThumbnail(multipartFile.getInputStream(), thumbnail, 100,
 					 100);
-					 thumbnail.close();
-					 */
+					 thumbnail.close();*/
+					 
 				}
+				
+				
+				
+				
 				// add to List
 				list.add(attachDTO);
 			} catch (Exception e) {
@@ -123,6 +137,24 @@ public class UploadController {
 		return new ResponseEntity<>(list, HttpStatus.OK);
 	}
 
+	
+	
+	
+	
+	
+
+	
+	@PostMapping("/aaaa.do")
+	@ResponseBody
+	public List<NoticeAttachVO> fileInfomationList(NoticeVO vo) {
+		List<NoticeAttachVO> list = service.findByBno(vo.getNoticekey());
+		System.out.println(list);
+		return service.findByBno(vo.getNoticekey());
+	}
+	
+	
+	
+	
 	
 	
 	

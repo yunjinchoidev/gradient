@@ -11,7 +11,7 @@
 		filename,
 		filetype, noticekey)
 		values (#{uuid}, #{uploadPath}, #{fileName},
-		#{fileType},1)
+		#{fileType},#{noticekey})
 	</insert>
 
 	<delete id="delete">
@@ -22,7 +22,7 @@
 
 	<select id="findByBno"
 		resultType="project5.noticeAttach.NoticeAttachVO">
-		select * from notice_Attach where noticekey = 1
+		select * from notice_Attach where noticekey = #{noticekey}
 	</select>
 
 	<delete id="deleteAll">

@@ -48,6 +48,83 @@
 			$("#frm01").submit();
 		});
 
+		
+		
+		
+
+			var noticekey =1;
+			  
+		    $.ajax({
+		      url: '/project5/aaaa.do',
+		      processData: false, 
+		      contentType: false,
+		      data: noticekey,
+		      type: 'POST',
+		      dataType:'json',
+		        success: function(result){
+		          console.log(result); 
+				  showUploadResult(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+		      },
+		      error: function(result){
+		          console.log("asdfads");
+		          console.log(result); 
+		    	  console.log("afsdfa")
+		      }
+		    }); //$.ajax
+	  
+		
+		
+		
+		
+		
+		
+		
+		
+		  function showUploadResult(uploadResultArr){
+			    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+			    var uploadUL = $("#uploadImg");
+			    var str ="";
+			    $(uploadResultArr).each(function(i, obj){
+					if(obj.fileType){
+						var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
+						str += "<img src='/project5/display.do?fileName="+fileCallPath+"' style='width:50px; height:50px;'>";
+					}else{
+						var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
+					    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+					      
+						str += "<li "
+						str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
+						str += "<span> "+ obj.fileName+"</span>";
+						str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+						str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+						str += "<img src='/project5/resources/img/attach.png'></a>";
+						str += "</div>";
+						str +"</li>";
+					}
+			    });
+			    uploadUL.append(str);
+			  }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	})
 
 	function goPage(no) {
@@ -133,8 +210,10 @@
 				<table class="table table-striped dataTable-table" id="table1">
 					<thead>
 						<tr>
-							<th data-sortable="" style="width: 12.0176%;"><a href="#"
+							<th data-sortable="" style="width: 6.0176%;"><a href="#"
 								class="dataTable-sorter">번호</a></th>
+								<th data-sortable="" style="width: 6%;"><a href="#"
+								class="dataTable-sorter">이미지</a></th>
 							<th data-sortable="" style="width: 42.9989%;"><a href="#"
 								class="dataTable-sorter">제목</a></th>
 							<th data-sortable="" style="width: 18.0816%;"><a href="#"
@@ -156,6 +235,10 @@
 							<tr
 								onclick="location.href='/project5/noticeGet.do?noticekey='+${list.noticekey}">
 								<td>${list.noticekey }${list.level}</td>
+								
+								
+								<td id="uploadImg"></td>
+								
 								<td style="text-align: left"><c:forEach varStatus="sts"
 										begin="1" end="${list.level}">
 											    				&nbsp;&nbsp;
@@ -163,13 +246,17 @@
 											<img width="25" height="15" src="${path}/a02_img/reply1.PNG" />
 											    				</c:if>
 											    				<%-- level 만큼 공백을 넣고, 마지막(sts.last)에 답글이미지 삽입  --%>
-									</c:forEach> ${list.title }</td>
+									</c:forEach> ${list.title }
+									
+									</td>
+									
+									
 
-
+								
 
 								<td>${list.writeDate }</td>
 								<td>${list.cnt }</td>
-								<td>${list.name }</td>
+								<td>${list.name } A</td>
 								<td><span class="badge bg-success">Active</span></td>
 							</tr>
 						</c:forEach>

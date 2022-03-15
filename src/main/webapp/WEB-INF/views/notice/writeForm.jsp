@@ -262,152 +262,147 @@
 <script>
 
 $(document).ready(function(e){
-
-
-  
-  var formObj = $("form");
-  
-  $("button[type='submit']").on("click", function(e){
-    
-   e.preventDefault();
-    
-    console.log("submit clicked");
-    
-    var str = "";
-	console.log("attachList 대기 ")    
-    $(".uploadResult ul li").each(function(i, obj){
-      var jobj = $(obj);
-      console.dir(jobj);
-      console.log("-------------------------");
-      console.log(jobj.data("filename"));
-      str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
-      str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
-      str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
-      str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
-      
-    });
-    
-    console.log("str"+str);
-	console.log("attachList 끝 ");   
-   formObj.append(str).submit();
-    console.log("전송");
-    
-  });
+		  var formObj = $("form");
+		  
+		  
+		  ////////////////////////////////////////////////////////////////////////// 파일 DB 에 저장하기 위한 처리.
+		  $("button[type='submit']").on("click", function(e){
+		   e.preventDefault();
+		    console.log("submit clicked");
+		    var str = "";
+			console.log("attachList 대기 ")    
+		    $(".uploadResult ul li").each(function(i, obj){
+		      var jobj = $(obj);
+		      console.dir(jobj);
+		      console.log("-------------------------");
+		      console.log(jobj.data("filename"));
+		      str += "<input type='hidden' name='attachList["+i+"].fileName' value='"+jobj.data("filename")+"'>";
+		      str += "<input type='hidden' name='attachList["+i+"].uuid' value='"+jobj.data("uuid")+"'>";
+		      str += "<input type='hidden' name='attachList["+i+"].uploadPath' value='"+jobj.data("path")+"'>";
+		      str += "<input type='hidden' name='attachList["+i+"].fileType' value='"+ jobj.data("type")+"'>";
+		    });
+		    console.log("str"+str);
+			console.log("attachList 끝 ");   
+			alert(str);
+		   formObj.append(str).submit();
+		    console.log("전송");
+		  });
 
   
-  var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-  var maxSize = 5242880; //5MB
+	  var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+	  var maxSize = 5242880; //5MB
   
-  function checkExtension(fileName, fileSize){
-    
-    if(fileSize >= maxSize){
-      alert("파일 사이즈 초과");
-      return false;
-    }
-    
-    if(regex.test(fileName)){
-      alert("해당 종류의 파일은 업로드할 수 없습니다.");
-      return false;
-    }
-    return true;
-  }
+	  function checkExtension(fileName, fileSize){
+	    if(fileSize >= maxSize){
+	      alert("파일 사이즈 초과");
+	      return false;
+	    }
+	    if(regex.test(fileName)){
+	      alert("해당 종류의 파일은 업로드할 수 없습니다.");
+	      return false;
+	    }
+	    return true;
+	  }
   
-  $("input[type='file']").change(function(e){
-
-    var formData = new FormData();
-    
-    var inputFile = $("input[name='uploadFile']");
-    
-    var files = inputFile[0].files;
-    
-    for(var i = 0; i < files.length; i++){
-
-      if(!checkExtension(files[i].name, files[i].size) ){
-        return false;
-      }
-      formData.append("uploadFile", files[i]);
-      
-    }
-    
-    $.ajax({
-      url: '/project5/uploadAjaxAction.do',
-      processData: false, 
-      contentType: false,data: 
-      formData,type: 'POST',
-      dataType:'json',
-        success: function(result){
-          console.log(result); 
-		  showUploadResult(result); 
-      },
-      error: function(result){
-          console.log("asdfads");
-          console.log(result); 
-    	  console.log("afsdfa")
-      }
-    }); //$.ajax
-    
-  });  
-  
-  function showUploadResult(uploadResultArr){
+	  
+	  
+	  // 파일 저장 처리
+	  $("input[type='file']").change(function(e){
+	    var formData = new FormData();
+	    var inputFile = $("input[name='uploadFile']");
+	    var files = inputFile[0].files;
+	    for(var i = 0; i < files.length; i++){
+	      if(!checkExtension(files[i].name, files[i].size) ){
+	        return false;
+	      }
+	      formData.append("uploadFile", files[i]);
+	    }
 	    
-    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
-    
-    var uploadUL = $(".uploadResult ul");
-    
-    var str ="";
-    
-    $(uploadResultArr).each(function(i, obj){
-		if(obj.image){
-			var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
-			str += "<li data-path='"+obj.uploadPath+"'";
-			str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
-			str +" ><div>";
-			str += "<span> "+ obj.fileName+"</span>";
-			str += "<button type='button' data-file=\'"+fileCallPath+"\' "
-			str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-			str += "<img src='/project5/display.do?fileName="+fileCallPath+"'>";
-			str += "</div>";
-			str +"</li>";
-		}else{
-			var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
-		    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-		      
-			str += "<li "
-			str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
-			str += "<span> "+ obj.fileName+"</span>";
-			str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
-			str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
-			str += "<img src='/project5/resources/img/attach.png'></a>";
-			str += "</div>";
-			str +"</li>";
-		}
+	    $.ajax({
+	      url: '/project5/uploadAjaxAction.do',
+	      processData: false, 
+	      contentType: false,data: 
+	      formData,type: 'POST',
+	      dataType:'json',
+	        success: function(result){
+	          console.log(result); 
+			  showUploadResult(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+	      },
+	      error: function(result){
+	          console.log("asdfads");
+	          console.log(result); 
+	    	  console.log("afsdfa")
+	      }
+	    }); //$.ajax
+	  });  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
 
-    });
-    
-    uploadUL.append(str);
-  }
+  
+  
+  
+  	// 이미지 html에 띄어주기
+	  function showUploadResult(uploadResultArr){
+	    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+	    var uploadUL = $(".uploadResult ul");
+	    var str ="";
+	    $(uploadResultArr).each(function(i, obj){
+			if(obj.image){
+				var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
+				str += "<li data-path='"+obj.uploadPath+"'";
+				str +=" data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"'"
+				str +" ><div>";
+				str += "<span> "+ obj.fileName+"</span>";
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' "
+				str += "data-type='image' class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "<img src='/project5/display.do?fileName="+fileCallPath+"'>";
+				str += "</div>";
+				str +"</li>";
+			}else{
+				var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
+			    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+			      
+				str += "<li "
+				str += "data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"' data-filename='"+obj.fileName+"' data-type='"+obj.image+"' ><div>";
+				str += "<span> "+ obj.fileName+"</span>";
+				str += "<button type='button' data-file=\'"+fileCallPath+"\' data-type='file' " 
+				str += "class='btn btn-warning btn-circle'><i class='fa fa-times'></i></button><br>";
+				str += "<img src='/project5/resources/img/attach.png'></a>";
+				str += "</div>";
+				str +"</li>";
+			}
+	    });
+	    uploadUL.append(str);
+	  }
 
-  $(".uploadResult").on("click", "button", function(e){
-	    
-    console.log("delete file");
-      
-    var targetFile = $(this).data("file");
-    var type = $(this).data("type");
-    
-    var targetLi = $(this).closest("li");
-    
-    $.ajax({
-      url: '/project5/deleteFile.do',
-      data: {fileName: targetFile, type:type},
-      dataType:'text',
-      type: 'POST',
-        success: function(result){
-           alert(result);
-           
-           targetLi.remove();
-         }
-    }); //$.ajax
-   });
+  
+  	
+  	
+  		// 이미지 삭제
+	  $(".uploadResult").on("click", "button", function(e){
+	    console.log("delete file");
+	    var targetFile = $(this).data("file");
+	    var type = $(this).data("type");
+	    var targetLi = $(this).closest("li");
+	    $.ajax({
+	      url: '/project5/deleteFile.do',
+	      data: {fileName: targetFile, type:type},
+	      dataType:'text',
+	      type: 'POST',
+	        success: function(result){
+	           alert(result);
+	           targetLi.remove();
+	         }
+	    }); //$.ajax
+	   });
 
 
   

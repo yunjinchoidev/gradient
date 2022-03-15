@@ -37,7 +37,23 @@
 </head>
 <script>
 	$(document).ready(function() {
+			
+		var pass =	$("input[name=pass]").val();
+		var passRE =	$("input[name=passRE]").val();
+		
+		
+		var data = {pass:pass, passRE, passRE};
 
+		
+		$("#notsame").hide();
+		$("#same").hide();
+		
+	
+		
+		
+		
+		
+		
 	});
 </script>
 
@@ -55,18 +71,19 @@
 						
 					<div class="form-group position-relative has-icon-left mb-4">
 						<input type="text" class="form-control form-control-xl"
-							placeholder="임시 아이디" name="id" value="${member.id }" >
+							placeholder="임시 아이디" name="id" value="${member.id }"  readonly="readonly">
 						<div class="form-control-icon">
 							<i class="bi bi-envelope"></i>
 						</div>
 					</div>
 					<div class="form-group position-relative has-icon-left mb-4">
 						<input type="password" class="form-control form-control-xl"
-							placeholder="임시 비밀번호" name="pass" value="${member.pass }">
+							placeholder="임시 비밀번호" name="pass" value="${member.pass }" readonly="readonly">
 						<div class="form-control-icon">
 							<i class="bi bi-envelope"></i>
 						</div>
 					</div>
+					
 					
 					
 					
@@ -75,7 +92,7 @@
 						<input type="hidden" value="${member.memberkey }" name="memberkey">
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"
-								placeholder="회원 번호 : ${member.memberkey }" readonly="readonly">
+								placeholder="회원 번호 : ${member.memberkey }" readonly="readonly" >
 							<div class="form-control-icon">
 								<i class="bi bi-envelope"></i>
 							</div>
@@ -97,13 +114,32 @@
 								<i class="bi bi-envelope"></i>
 							</div>
 						</div>
+						
+						
+		
+						
+						
+						
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="password" class="form-control form-control-xl"
-								placeholder="비밀번호 재확인">
+								placeholder="비밀번호 재확인" name="passRE">
+								
+									
 							<div class="form-control-icon">
 								<i class="bi bi-envelope"></i>
 							</div>
+							
+							
+							
 						</div>
+					<div id="notsame" style="color:red; margin-top: -20px; margin-bottom: 10px;"><span> 비밀번호가 서로 일치 하지 않습니다.</span></div>
+					<div id="same" style="color:red; margin-top: -20px; margin-bottom: 10px;"><span> 비밀번호가 일치합니다.</span></div>
+
+
+
+			
+
+
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"

@@ -95,7 +95,12 @@ public class NoticeService {
 	@Transactional
 	public void insert(NoticeVO vo) {
 		dao.insert(vo);
-
+		vo.setNoticekey(dao.current());
+		
+		System.out.println(vo);
+		System.out.println(vo.getNoticekey());
+		System.out.println(vo.getContent());
+		System.out.println(vo.getMemberkey());
 		
 		if(vo.getAttachList()==null || vo.getAttachList().size()<=0) {
 			return;

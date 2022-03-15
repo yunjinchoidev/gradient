@@ -130,6 +130,11 @@ public class MemberContoller {
 		return "member/list";
 	}
 	
+	@RequestMapping("/memberFindForm.do")
+	public String memberFindForm(Model d) {
+		return "member/memberFindForm";
+	}
+	
 	
 	
 	

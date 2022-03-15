@@ -52,11 +52,24 @@
 		noticekey=#{noticekey}
 	</select>
 
+
+
+
+
 	<insert id="insert">
 		insert into notice values
-		(seq_notice.nextval,
+		(seq_notice.nextval,0,
 		#{title}, #{content}, 0, sysdate, #{memberkey})
 	</insert>
+
+	<select id="current"  resultType="int">
+		SELECT seq_notice.currval FROM dual
+	</select>
+
+
+
+
+
 
 	<insert id="delete" parameterType="int">
 		delete from notice

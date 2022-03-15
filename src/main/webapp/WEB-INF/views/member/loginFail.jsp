@@ -52,6 +52,16 @@ $(documnet).ready(function(){
 						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" onclick="location.href='/project5/login.do'">로그인 화면으로</button>
 						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" onclick="location.href='/project5/memberRegisterForm.do'">회원가입</button>
 				</div>
+				<div class="text-center mt-5 text-lg fs-4">
+						<p class="text-gray-600">
+							계정이 없습니까? <a href="/project5/memberRegisterForm.do" class="font-bold">회원가입
+							</a>
+						</p>
+						<p>
+							<a class="font-bold" href="/project5/memberFindForm.do">비밀번호가
+								생각나지 않습니까?</a>
+						</p>
+					</div>
 			</div>
 		</div>
 

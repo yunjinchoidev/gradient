@@ -11,6 +11,6 @@ public interface NoticeDao {
 	public NoticeVO2 get(int noticekey);
 	public void delete(int noticekey);
 	public void update(NoticeVO vo);
-	
+	public int current();
 	public int totCnt();
 }
