@@ -51,7 +51,7 @@
 										<option value="10" selected="">10</option>
 										<option value="15">15</option>
 										<option value="20">20</option>
-										<option value="25">25</option></select><label>entries per page</label>
+										<option value="25">25</option></select><label>게시글 수</label>
 								</div>
 								<div class="dataTable-search">
 									<input class="dataTable-input" placeholder="Search..."
@@ -64,16 +64,15 @@
 								<table class="table table-striped dataTable-table" id="table1">
 									<thead>
 										<tr>
-											<th data-sortable="" style="width: 12.0176%;"><a
-												href="#" class="dataTable-sorter">Name</a></th>
-											<th data-sortable="" style="width: 42.9989%;"><a
-												href="#" class="dataTable-sorter">Email</a></th>
-											<th data-sortable="" style="width: 18.0816%;"><a
-												href="#" class="dataTable-sorter">Phone</a></th>
-											<th data-sortable="" style="width: 16.3175%;"><a
-												href="#" class="dataTable-sorter">City</a></th>
-											<th data-sortable="" style="width: 10.8049%;"><a
-												href="#" class="dataTable-sorter">Status</a></th>
+											<th data-sortable="" style="width: 20%;"><a
+												href="#" class="dataTable-sorter">품질평가</a></th>
+											<th data-sortable="" style="width: 40%;"><a
+												href="#" class="dataTable-sorter">프로젝트명</a></th>
+											<th data-sortable="" style="width: 20%;"><a
+												href="#" class="dataTable-sorter">작성일</a></th>
+											<th data-sortable="" style="width: 20%;"><a
+												href="#" class="dataTable-sorter">담당자</a></th>
+											
 										</tr>
 									</thead>
 
@@ -96,6 +95,8 @@
 
 
 								</table>
+								<button style="margin: auto;display:block;" id="mainregbtn"
+								class="btn btn-primary rounded-pill" data-bs-toggle="modal" data-bs-target="#regModal">등록</button>
 								
 							</div>
 
@@ -105,28 +106,85 @@
 
 
 							<div class="dataTable-bottom">
-								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-								<ul
-									class="pagination pagination-primary float-end dataTable-pagination">
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="1">‹</a></li>
-									<li class="page-item active"><a href="#" class="page-link"
-										data-page="1">1</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="2">2</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="3">3</a></li>
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="2">›</a></li>
+								<div class="dataTable-info">전체 품질: ${qualitySch.count}</div>
+								<ul class="pagination pagination-primary float-end dataTable-pagination">
+									<li class="page-item pager"><a class="page-link"
+										href="javascript:goPage(${qualitySch.startBlock!=1?qualitySch.startBlock-1:1})">‹</a></li>
+									<c:forEach var="cnt" begin="${qualitySch.startBlock}" end="${qualitySch.endBlock}">
+	  									<li class="page-item ${cnt==qualitySch.curPage?'active':''}"> <!-- 클릭한 현재 페이지 번호 -->
+	  									<a class="page-link" href="javascript:goPage(${cnt})">${cnt}</a></li>
+	 								</c:forEach>
+									<li class="page-item pager"><a class="page-link"
+										href="javascript:goPage(${qualitySch.endBlock!=qualitySch.pageCount?qualitySch.endBlock+1:qualitySch.endBlock})">›</a></li>
 								</ul>
+								
 							</div>
 						</div>
 					</div>
 				</div>
 
 			</section>
+			
+			
 		</div>
 
 	</div>
+	
+	<!-- 등록 Modal -->
+  	<div class="modal fade text-left" id="regModal" tabindex="-1" role="dialog"
+       	aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">품질 등록</h4>
+                <button type="button" class="close" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <form id="regForm" action="${path}/insertrisk.do" method="post">
+            	<!-- 모달 입력 요소 영역 -->
+                <div class="modal-body" style="margin:10px;">
+                	<!-- 프로젝트 select box -->
+                	<div id="prjselect">
+                    	<select class="form-select" style="text-align:center;" name="prjkey">
+                    		<c:forEach var="prlist" items="${prjlist}">
+                    			<option value="${prlist.prjkey}">${prlist.prjname}</option>
+                    		</c:forEach>
+                    	</select>
+                    </div>
+	
+	 <!-- 중요도, 제목 공통 영역 -->
+                    <div id="headerdiv" style="display:flex;margin-top: 10px;">
+                  
+                    <!-- 제목 -->
+                    	<div id="title" style="flex:4;">
+                    		<input class="form-control" type="text" name="title" placeholder="제목을 입력하세요">
+                    	</div>
+                    </div>
+                    
+                    <!-- 상세내용 -->
+                    <div id="regcontent" style="margin-top: 10px;">
+                    	<textarea name="content" placeholder="상세 내용" class="form-control" rows="5" cols="5"></textarea>
+                    </div>
+                    
+                 
+                <!-- 버튼 영역 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">닫기</span>
+                    </button>
+                    <button type="button" id="regBtn" class="btn btn-primary ml-1"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">등록</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 </body>
 </html>
