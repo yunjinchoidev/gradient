@@ -152,8 +152,7 @@
                     			<option value="${prlist.prjkey}">${prlist.prjname}</option>
                     		</c:forEach>
                     	</select>
-                    </div>
-	
+                    </div>	
 	 <!-- 중요도, 제목 공통 영역 -->
                     <div id="headerdiv" style="display:flex;margin-top: 10px;">
                   
