@@ -431,6 +431,7 @@ create TABLE fileInfo(
 );	
 COMMIT;
 
+
 CREATE TABLE notice_Attach(
 	uuid varchar2(100) NOT NULL PRIMARY KEY,
 	uploadPath varchar2(200) NOT NULL,
