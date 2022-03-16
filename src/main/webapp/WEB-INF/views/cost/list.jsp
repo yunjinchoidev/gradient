@@ -26,6 +26,9 @@ text-align: center;
 <script>
 	$(document).ready(function(){
 		
+		$("#regbtn").click(function(){
+			location.href="${path}/writecost.do";
+		})
 	});
 </script>
 

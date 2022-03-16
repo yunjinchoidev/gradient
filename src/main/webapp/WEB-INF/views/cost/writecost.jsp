@@ -38,10 +38,10 @@ height:30%;
 #sideinfodiv{
 position: absolute;
 border: solid red;
-top: 60%;
+top: 50%;
 left: 77%;
 width:20%;
-height:30%;
+height:40%;
 margin
 }
 
@@ -49,15 +49,70 @@ margin
 <script>
 	$(document).ready(function(){
 		
+		var cnt = 2;
+		var prjkey = "${prjkey}";
+		var prjcost = "${prjcost}";
+		
 		var currentPosition = parseInt($("#sideinfodiv").css("top"));
 		$(window).scroll(function() {
 			var position = $(window).scrollTop();
 			$("#sideinfodiv").stop().animate({"top":position+currentPosition+"px"},1000);
 			
 		});
+		
+		$("#addbtn").click(function(){
+			$('#maintable > tbody:last').append('<tr><td>'+cnt+'</td>'+
+					
+					'<td><select class="form-select" name="cskey">'+
+						<c:forEach var="cslist" items="${cslist}">
+						 '<option value="${cslist.cskey}">${cslist.cscontent}</option>'+
+						</c:forEach>
+						'</select></td>'+
+					'<td><input class="form-control" type="text" name="costcontent"></td>'+
+					'<td><input class="form-control" type="text" name="costnote"></td>'+
+					'<td><input class="form-control costex" type="number" id="costex" name="costex"></td></tr>');
+			cnt+=1;
+		});
+		
+		$("#delbtn").click(function(){
+			$('#maintable > tbody > tr:last').remove();
+			cnt-=1;
+		});
+		
+		var prjkeyS = $('[name=prjkey]').val();
+		
+		$("#prjsel").change(function(){
+			$("#prjselfrm").submit();
+		});
+		
+		$('#prjsel').val(prjkey).prop("selected", true);
+		
+		$("#calbtn").click(function(){
+			doSum();
+		});
 
 		
 	});
+	
+	function doSum(){
+		var exsum = 0;
+		var prsum = 0;
+		var prjcost = ${prjcost};
+		
+		$('.costex').each(function(){
+			if(!isNaN($(this).val())){
+				exsum += parseInt($(this).val());
+				prjcost = parseInt(prjcost);
+				prsum = parseInt(prjcost-exsum);
+			}
+				
+		});
+		
+		$("input[name=exsum]").val(exsum);
+		$("input[name=prsum]").val(prsum);
+	}
+
+
 </script>
 </head>
 
@@ -84,37 +139,60 @@ margin
 			
 			<section class="sectionMain">
 				<!-- 메인영역 -->
+				
 				<div class="card" id="maincard">
 					<div class="card-body">
 						<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-						 <form>
+						 
 							<div class="dataTable-top">
 							</div>
-						  </form>
+						 
 							<div class="dataTable-container">
-								<table class="table table-striped dataTable-table" id="table1">
+								<form>
+								<table class="table table-striped dataTable-table" id="maintable">
 									<thead>
 										<tr>
-											<th data-sortable="" style="width: 10%;text-align:center;"><a
+											<th style="width: 10%;text-align:center;"><a
 												href="#" class="dataTable-sorter">NO</a></th>
-											<th data-sortable="" style="width: 20%;text-align:center;"><a
+											<th style="width: 20%;text-align:center;"><a
 												href="#" class="dataTable-sorter">구분</a></th>
-											<th data-sortable="" style="width: 25%;text-align:center;"><a
+											<th style="width: 25%;text-align:center;"><a
 												href="#" class="dataTable-sorter">예산내역</a></th>
-											<th data-sortable="" style="width: 20%;text-align:center;"><a
+											<th style="width: 20%;text-align:center;"><a
 												href="#" class="dataTable-sorter">비고</a></th>
-											<th data-sortable="" style="width: 25%;text-align:center;"><a
+											<th style="width: 25%;text-align:center;"><a
 												href="#" class="dataTable-sorter">예산금액</a></th>
 										</tr>
 									</thead>
-
+									
+									
 									<tbody>
-										
+										<tr>
+											<td>1</td>
+											<td>
+												<select class="form-select" name="cskey">
+													<c:forEach var="cslist" items="${cslist}">
+						 								<option value="${cslist.cskey}">${cslist.cscontent}</option>
+													</c:forEach>
+												</select>
+											</td>
+											<td><input class="form-control" type="text" name="costcontent"></td>
+											<td><input class="form-control" type="text" name="costnote"></td>
+											<td><input class="form-control costex" type="number" id="costex" name="costex"></td>
+										</tr>
 									</tbody>
+									
 								</table>
+								</form>
 								
-								<button id="addbtn" class="btn btn-primary rounded-pill"
-									style="margin: auto;display:block;margin-top:100px;">예산항목추가</button>								
+								<!-- 예산항목추가, 예산항목삭제 버튼 -->
+								<div style="margin-top: 150px;">
+									<button type="button" id="delbtn" class="btn btn-primary rounded-pill"
+										style="margin-left:400px;">예산항목삭제</button>
+									<button type="button" id="addbtn" class="btn btn-primary rounded-pill"
+										style="margin-left:50px;">예산항목추가</button>
+								</div>
+																	
 							</div>
 							
 						</div>
@@ -130,27 +208,40 @@ margin
 	<div class="card" id="sideseldiv">
 		<div class="card-body">
 			<h4 style="text-align:center;">프로젝트 선택</h4>
-			<select style="text-align:center;" class="form-select">
-			<c:forEach var="plist" items="${prjlist}">
-				<option value="${plist.prjkey}">${plist.prjname}</option>
-			</c:forEach>
-		</select>
+			<form id="prjselfrm">
+			<select style="text-align:center;" id="prjsel" name="prjkeyS" class="form-select">
+				<option>--프로젝트를 선택해주세요--</option>
+				<c:forEach var="plist" items="${prjlist}">
+					<option value="${plist.prjkey}">${plist.prjname}</option>
+				</c:forEach>
+			</select>
+			</form>
 		</div>	
 	</div>
 	<!-- 예산, 지출, 버튼 div -->
 	<div class="card" id="sideinfodiv">
 		<div class="card-body">
-			<h5>예산&nbsp;&nbsp;&nbsp;&nbsp;원</h5>
-			<h5>지출&nbsp;&nbsp;&nbsp;&nbsp;원</h5>
+			<label class="col-form-label">예산</label>
+			<input class="form-control" type="text" value="${prjcost}" readonly="readonly" size="5"
+				style="background-color: white;">
+			<label class="col-form-label">지출</label>
+			<input class="form-control" type="text" name="exsum" readonly="readonly"
+				style="background-color: white;">
 			
 			<hr>
-			<h5>이익&nbsp;&nbsp;&nbsp;&nbsp;원</h5>
+			<label class="col-form-label">이익</label>
+			<input class="form-control" type="text" name="prsum" readonly="readonly"
+				style="background-color: white;">
 			
-			<div style="margin-top: 70px;">
+			<div style="margin-top: 30px;">
+				<button id="calbtn" class="btn btn-primary rounded-pill"
+					style="margin-right:10px;margin-left: 30px;">계산</button>
 				<button id="canclebtn" class="btn btn-primary rounded-pill"
-					style="margin-right:10px;margin-left: 100px;">취소</button>
-				<button id="regbtn" class="btn btn-primary rounded-pill">저장</button>
+					style="margin-right:10px;margin-left: 0px;">취소</button>
+				<button id="regbtn" class="btn btn-primary rounded-pill"
+					style="margin-right:10px;margin-left: 0px;">저장</button>
 			</div>
+		 
 		</div>	
 	</div>
 </body>

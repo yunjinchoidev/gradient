@@ -10,4 +10,8 @@ public interface CostDao {
 	public List<CostList> getCostList();
 	// 프로젝트 목록
 	public List<CostList> getPrjList();
+	// 예산 구분 목록
+	public List<CostList> getCostSort();
+	// 프로젝트 예산
+	public int getPrjCost(int prjkey);
 }

@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class CostController {
@@ -18,10 +19,21 @@ public class CostController {
 		
 		return "cost/list";
 	}
+	
 	@RequestMapping("/writecost.do")
-	public String insertCost(Model d) {
+	public String insertCost(String prjkeyS,Model d) {
 		//프로젝트 목록
 		d.addAttribute("prjlist",service.getPrjList());
+		//예산 구분 목록
+		d.addAttribute("cslist",service.getCostSort());
+		//프로젝트 예산
+		if(prjkeyS !=null) {
+			int prjkey = Integer.parseInt(prjkeyS);
+			System.out.println("프로젝트키:"+prjkey);
+			d.addAttribute("prjkey",prjkey);
+			d.addAttribute("prjcost",service.getPrjCost(prjkey));	
+		}
+		
 		return "cost/writecost";
 	}
 

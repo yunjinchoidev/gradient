@@ -9,6 +9,15 @@ public class CostList {
 	private String company;
 	private String pm;
 	private String costassign;
+	// 예산 구분
+	private int cskey;
+	private String cscontent;
+	// 예산 입력
+	private String costcontent;
+	private String costnote;
+	private int costex;
+	private int costno;
+	private int take;
 	public int getCostkey() {
 		return costkey;
 	}
@@ -57,6 +66,49 @@ public class CostList {
 	public void setPrjkey(int prjkey) {
 		this.prjkey = prjkey;
 	}
+	public int getCskey() {
+		return cskey;
+	}
+	public void setCskey(int cskey) {
+		this.cskey = cskey;
+	}
+	public String getCscontent() {
+		return cscontent;
+	}
+	public void setCscontent(String cscontent) {
+		this.cscontent = cscontent;
+	}
+	public String getCostcontent() {
+		return costcontent;
+	}
+	public void setCostcontent(String costcontent) {
+		this.costcontent = costcontent;
+	}
+	public String getCostnote() {
+		return costnote;
+	}
+	public void setCostnote(String costnote) {
+		this.costnote = costnote;
+	}
+	public int getCostex() {
+		return costex;
+	}
+	public void setCostex(int costex) {
+		this.costex = costex;
+	}
+	public int getCostno() {
+		return costno;
+	}
+	public void setCostno(int costno) {
+		this.costno = costno;
+	}
+	public int getTake() {
+		return take;
+	}
+	public void setTake(int take) {
+		this.take = take;
+	}
+	
 	
 	
 	

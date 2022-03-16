@@ -17,5 +17,15 @@
  		SELECT PROJECTKEY prjkey,NAME prjname  
 		FROM PROJECT
  	</select>
-	
+ 	<!-- 예산 구분 목록 -->
+ 	<select id="getCostSort" resultType="costList">
+ 		SELECT COSTSORTKEY cskey, CONTENT cscontent
+		FROM COSTSORT
+ 	</select>
+ 	<!-- 프로젝트 에산 금액 -->
+	<select id="getPrjCost" resultType="int" parameterType="int">
+		SELECT TAKE 
+		FROM PROJECT
+		WHERE PROJECTKEY = #{prjkey}
+	</select>
 </mapper>

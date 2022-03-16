@@ -18,4 +18,12 @@ public class CostService {
 	public List<CostList> getPrjList(){
 		return dao.getPrjList();
 	}
+	// 예산 구분 목록
+	public List<CostList> getCostSort(){
+		return dao.getCostSort();
+	}
+	// 프로젝트 예산
+	public int getPrjCost(int prjkey) {
+		return dao.getPrjCost(prjkey);
+	}
 }
