@@ -23,7 +23,8 @@
 	href="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
 <link rel="stylesheet"
 	href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
-<link rel="stylesheet" href="/project5/resources/dist/assets/css/app.css">
+<link rel="stylesheet"
+	href="/project5/resources/dist/assets/css/app.css">
 <link rel="stylesheet"
 	href="/project5/resources/dist/assets/vendors/simple-datatables/style.css">
 <link rel="shortcut icon"
@@ -37,79 +38,104 @@
 <!-- 팀관리 전체 조회  -->
 
 <body>
-    <div id="main">
-     <%@ include file="../common/header.jsp"%>
-    </div>
-    
-	<!-- 팀관리 목록 -->
-	<section class="section">
-		<div class="row" id="table-hover-row">
-			<div class="col-12">
-				<div class="card">
-					<div class="card-header">
-						<h4 class="card-title">팀 관리</h4>
-						<p>팀 프로젝트에 참여중인 사용자를 확인하실 수 있습니다.</p>
+	<%@ include file="../common/header.jsp"%>
+	<div id="main">
+		<!-- 팀관리 목록 -->
+		<div class="page-heading">
+			<div class="page-title">
+				<div class="row">
+					<div class="col-12 col-md-6 order-md-1 order-last">
+						<h3>인적 관리</h3>
+						<p class="text-subtitle text-muted">For user to check their
+							team members</p>
 					</div>
-					<div class="card-content">
-						<!-- 테이블 위의 상단탭 (정상/중지 탭) -->
-						<ul class="nav nav-tabs" id="myTab" role="tablist">
-							<li class="nav-item" role="presentation"><a
-								class="nav-link active" id="normal-tab" data-bs-toggle="tab"
-								href="#normal" role="tab" aria-controls="normal"
-								aria-selected="true">정상</a></li>
-							<li class="nav-item" role="presentation"><a class="nav-link"
-								id="stop-tab" data-bs-toggle="tab" href="#stop" role="tab"
-								aria-controls="stop" aria-selected="false">중지</a></li>
-						</ul>
-						<!--  검색 기능 추가 -->
-						<div class="search" style="text-align:right;">
-						<input type="text" name="keyword" value=""></input>
-						<input type="button" onclick="#" class="btn btn-outline-primary mr-2" value="검색"></input>
-						</div>
-						<!-- table hover -->
-						<div class="table-responsive">
-							<table class="table table-hover mb-0">
-								<thead>
-									<tr>
-										<th>이름</th>
-										<th>권한</th>
-										<th>부서명</th>
-										<th>프로젝트명</th>
-										<th>프로젝트 진행상황</th>
-									</tr>
-								</thead>
-									<tbody>
-									    <c:forEach var="team" items="${teamList}">
-										<td class="text-bold-500">${team.name}</td>
-										<td>${team.auth}</td>
-										<td class="text-bold-500">${team.dname}</td>
-										<td>${team.projectname}</td>
-										<td><span class="badge bg-success">${team.progress}</span></td>
-										<td><a href="#" class="btn btn-sm btn-outline-primary">관리</a></td>
-										<td><a href="#"><i
-												class="badge-circle badge-circle-light-secondary font-medium-1"
-												data-feather="mail"></i></a></td>
-										</c:forEach>
-								</tbody>
-							</table>
-						</div>
-						<!--  페이징 처리/ 프론트만 구현 -->
-						<nav aria-label="Page navigation example"
-							style="margin-top: 15px;">
-							<ul class="pagination pagination-primary  justify-content-center">
-								<li class="page-item disabled"><a class="page-link"
-									href="#" tabindex="-1" aria-disabled="true">Previous</a></li>
-								<li class="page-item active"><a class="page-link" href="#">1</a></li>
-								<li class="page-item"><a class="page-link" href="#">2</a></li>
-								<li class="page-item"><a class="page-link" href="#">3</a></li>
-								<li class="page-item"><a class="page-link" href="#">Next</a></li>
-							</ul>
+					<div class="col-12 col-md-6 order-md-2 order-first">
+						<nav aria-label="breadcrumb"
+							class="breadcrumb-header float-start float-lg-end">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+								<li class="breadcrumb-item active" aria-current="page">DataTable</li>
+							</ol>
 						</nav>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!-- Hoverable rows end -->
+			<section class="section">
+				<div class="card">
+				<ul class="nav nav-tabs" id="myTab" role="tablist">
+									<li class="nav-item" role="presentation"><a
+										class="nav-link active" id="normal-tab" data-bs-toggle="tab"
+										href="#normal" role="tab" aria-controls="normal"
+										aria-selected="true">정상</a></li>
+									<li class="nav-item" role="presentation"><a
+										class="nav-link" id="stop-tab" data-bs-toggle="tab"
+										href="#stop" role="tab" aria-controls="stop"
+										aria-selected="false">중지</a></li>
+								</ul>
+					<div class="card-body">
+						<div
+							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+							<div class="dataTable-top">
+								
+								<div class="dataTable-search">
+									<input class="dataTable-input" placeholder="Search..."
+										type="text"> <a href="/project5/scheduleInsertForm.do"
+										class="btn btn-danger" style="text-align: right">글쓰기</a>
+								</div>
+
+							</div>
+							<div class="dataTable-container">
+								<table class="table table-striped dataTable-table" id="table1">
+									<thead>
+										<tr>
+											<th data-sortable="" style="width: 12.0176%;"><a
+												href="#" class="dataTable-sorter">이름</a></th>
+											<th data-sortable="" style="width: 10.8049%;"><a
+												href="#" class="dataTable-sorter">권한</a></th>
+											<th data-sortable="" style="width: 18.0816%;"><a
+												href="#" class="dataTable-sorter">부서명</a></th>
+											<th data-sortable="" style="width: 16.3175%;"><a
+												href="#" class="dataTable-sorter">프로젝트명</a></th>
+												<th data-sortable="" style="width: 42.9989%;"><a
+												href="#" class="dataTable-sorter">프로젝트 진행상황</a></th>
+										</tr>
+									</thead>
+										<tbody>
+											<c:forEach var="team" items="${teamList}">
+												<td>${team.name}</td>
+												<td>${team.auth}</td>
+												<td>${team.dname}</td>
+												<td>${team.projectname}</td>
+												<td>${team.progress}</span></td>
+												<td><a href="#" class="btn btn-sm btn-outline-primary">관리</a></td>
+												<td><a href="#"><i
+														class="badge-circle badge-circle-light-secondary font-medium-1"
+														data-feather="mail"></i></a></td>
+											</c:forEach>
+										</tbody>
+									</table>
+								</div>
+								<!--  페이징 처리/ 프론트만 구현 -->
+										<div class="dataTable-bottom">
+								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
+								<ul
+									class="pagination pagination-primary float-end dataTable-pagination">
+									<li class="page-item pager"><a href="#" class="page-link"
+										data-page="1">‹</a></li>
+									<li class="page-item active"><a href="#" class="page-link"
+										data-page="1">1</a></li>
+									<li class="page-item"><a href="#" class="page-link"
+										data-page="2">2</a></li>
+									<li class="page-item"><a href="#" class="page-link"
+										data-page="3">3</a></li>
+									<li class="page-item pager"><a href="#" class="page-link"
+										data-page="2">›</a></li>
+								</ul>
+							</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
 </body>
 </html>

@@ -6,8 +6,8 @@ import java.util.List;
 
 public interface TeamDao {
 	public List<TeamVo> TeamList(TeamVo sch);
-	public void insertTeam(TeamVo ins);
-	public TeamVo getTeam(int no);
-	public void deleteTeam(int no);
-	public void updateTeam(TeamVo upt);
+//	public void insertTeam(TeamVo ins);
+//	public TeamVo getTeam(int no);
+//	public void deleteTeam(int no);
+//	public void updateTeam(TeamVo upt);
 }
