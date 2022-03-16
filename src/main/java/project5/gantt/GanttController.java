@@ -16,4 +16,9 @@ public class GanttController {
 		return "gantt/main";
 	}
 	
+	@RequestMapping("/ganttMain2.do")
+	public String ganttMain2(Model d) {
+		return "gantt/main2";
+	}
+	
 }

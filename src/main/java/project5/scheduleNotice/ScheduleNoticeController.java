@@ -13,7 +13,7 @@ public class ScheduleNoticeController {
 	
 	@RequestMapping("/scheduleNotice.do")
 	public String scheduleNotice(Model d) {
-		return "/schduleNotice/list";
+		return "/scheduleNotice/list";
 	}
 
 

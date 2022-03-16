@@ -27,5 +27,6 @@
 		<mapper resource="resource/CommunicationMapper.xml" />
 		<mapper resource="resource/CostMapper.xml" />
 		<mapper resource="resource/TeamMapper.xml"/>
+		<mapper resource="resource/QualityMapper.xml"/>
 	</mappers>
 </configuration>

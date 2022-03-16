@@ -160,7 +160,7 @@
 										관리 </a></li>
 								<li class="submenu-item "><a href="/project5/cost.do">예산
 										관리</a></li>
-								<li class="submenu-item "><a href="/project5/quality.do">품질
+								<li class="submenu-item "><a href="/project5/qualityList.do">품질
 										관리</a></li>
 								<li class="submenu-item "><a href="/project5/team.do">인적
 										관리</a></li>

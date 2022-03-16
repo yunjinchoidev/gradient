@@ -204,8 +204,6 @@
 
 
 
-
-
 			<div class="dataTable-container">
 				<table class="table table-striped dataTable-table" id="table1">
 					<thead>

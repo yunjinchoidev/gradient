@@ -16,6 +16,10 @@
 </head>
 
 <body>
+
+	<%@ include file="../common/header.jsp"%>
+	
+	<div id="main"> 
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
@@ -122,6 +126,7 @@
 				</div>
 
 			</section>
+		</div>
 		</div>
 
 </body>
