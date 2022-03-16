@@ -71,7 +71,6 @@
 							<table class="table table-hover mb-0">
 								<thead>
 									<tr>
-									    <th>No.</th>
 										<th>이름</th>
 										<th>권한</th>
 										<th>부서명</th>
@@ -81,8 +80,6 @@
 								</thead>
 									<tbody>
 									    <c:forEach var="team" items="${teamList}">
-									    <!-- 숫자 증가처리? -->
-									    <td></td>
 										<td class="text-bold-500">${team.name}</td>
 										<td>${team.auth}</td>
 										<td class="text-bold-500">${team.dname}</td>

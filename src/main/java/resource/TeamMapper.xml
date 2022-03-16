@@ -10,13 +10,4 @@
         WHERE m.projectkey = p.projectkey
         AND p.PROJECTKEY = d.PROJECTKEY;
 	</select>
-  <!-- 정보등록 -->
-    <insert id="insertTeam" parameterType="team">
-    
-    </insert>
-    
-    <delete>
-    </delete>
-
-
 </mapper>
