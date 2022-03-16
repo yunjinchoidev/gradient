@@ -8,5 +8,7 @@ public interface KanbanDao {
 	public KanbanVO individualProjectList();
 	public void insert(KanbanVO vo);
 	public void delete(int id);
+	public void update(KanbanVO vo);
+	public void update2(KanbanVO vo);
 	
 }

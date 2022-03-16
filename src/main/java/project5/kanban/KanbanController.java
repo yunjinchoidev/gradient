@@ -43,15 +43,33 @@ public class KanbanController {
 		return "pageJsonReport";
 	}
 
+	
+	
+	
+	
 	@RequestMapping("/kanbanDelete.do")
 	public String kanbanDelete(Model d, KanbanVO vo) {
 		service.delete(vo.getId());
-		return "/project5/kanbanMain.do";
-	}
-	
+		d.addAttribute("psc", "delete");
+		return "forward:/kanbanMain.do";
+	}	
 	@RequestMapping("/kanbanInsert.do")
 	public String kanbanInsert(Model d, KanbanVO vo) {
 		service.insert(vo);
+		d.addAttribute("psc", "add");
+		return "forward:/kanbanMain.do";
+	}
+
+	@RequestMapping("/kanbanUpdate.do")
+	public String kanbanUpdate(Model d, KanbanVO vo) {
+		service.update(vo);
+		d.addAttribute("psc", "update");
+		return "forward:/kanbanMain.do";
+	}
+	@RequestMapping("/kanbanUpdate2.do")
+	public String kanbanUpdate2(Model d, KanbanVO vo) {
+		service.update2(vo);
+		d.addAttribute("psc", "move");
 		return "forward:/kanbanMain.do";
 	}
 	

@@ -30,5 +30,14 @@ public class KanbanService {
 	public void delete(int id) {
 		dao.delete(id);
 	};
+	
+	public void update(KanbanVO vo) {
+		dao.update(vo);
+	}
+	public void update2(KanbanVO vo) {
+		dao.update(vo);
+	}
+	
+	
 
 }

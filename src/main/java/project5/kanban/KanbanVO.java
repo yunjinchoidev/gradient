@@ -3,16 +3,18 @@ package project5.kanban;
 import java.util.Date;
 
 public class KanbanVO {
-	
+
 	private int id;
+	private String status;
 	private String state;
-	private String label;
+	private String text;
 	private String tags;
-	private String contents;
+	private String content;
+	private String color;
 	private Date writedate;
 	private Date duedate;
 	private int projectkey;
-	private int memberkey;
+	private int resourceId;
 	private int deptno;
 
 	public KanbanVO() {
@@ -20,20 +22,24 @@ public class KanbanVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public KanbanVO(int id, String state, String label, String tags, String contents, Date writedate, Date duedate,
-			int projectkey, int memberkey, int deptno) {
+
+	public KanbanVO(int id, String status, String state, String text, String tags, String content, String color,
+			Date writedate, Date duedate, int projectkey, int resourceId, int deptno) {
 		super();
 		this.id = id;
+		this.status = status;
 		this.state = state;
-		this.label = label;
+		this.text = text;
 		this.tags = tags;
-		this.contents = contents;
+		this.content = content;
+		this.color = color;
 		this.writedate = writedate;
 		this.duedate = duedate;
 		this.projectkey = projectkey;
-		this.memberkey = memberkey;
+		this.resourceId = resourceId;
 		this.deptno = deptno;
 	}
+
 
 	public int getId() {
 		return id;
@@ -43,20 +49,34 @@ public class KanbanVO {
 		this.id = id;
 	}
 
+	public String getStatus() {
+		return status;
+	}
+
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	
+	
+	
+	
+
 	public String getState() {
 		return state;
 	}
+
 
 	public void setState(String state) {
 		this.state = state;
 	}
 
-	public String getLabel() {
-		return label;
+
+	public String getText() {
+		return text;
 	}
 
-	public void setLabel(String label) {
-		this.label = label;
+	public void setText(String text) {
+		this.text = text;
 	}
 
 	public String getTags() {
@@ -67,12 +87,20 @@ public class KanbanVO {
 		this.tags = tags;
 	}
 
-	public String getContents() {
-		return contents;
+	public String getContent() {
+		return content;
 	}
 
-	public void setContents(String contents) {
-		this.contents = contents;
+	public void setContent(String content) {
+		this.content = content;
+	}
+
+	public String getColor() {
+		return color;
+	}
+
+	public void setColor(String color) {
+		this.color = color;
 	}
 
 	public Date getWritedate() {
@@ -99,12 +127,12 @@ public class KanbanVO {
 		this.projectkey = projectkey;
 	}
 
-	public int getMemberkey() {
-		return memberkey;
+	public int getResourceId() {
+		return resourceId;
 	}
 
-	public void setMemberkey(int memberkey) {
-		this.memberkey = memberkey;
+	public void setResourceId(int resourceId) {
+		this.resourceId = resourceId;
 	}
 
 	public int getDeptno() {

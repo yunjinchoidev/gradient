@@ -154,7 +154,7 @@
 									href="/project5/projectHome.do">홈 </a></li>
 								<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반
 										보드 </a></li>
-								<li class="submenu-item "><a href="/project5/wbs.do">간트차트
+								<li class="submenu-item "><a href="/project5/ganttMain.do">간트차트
 								</a></li>
 								<li class="submenu-item "><a href="/project5/output.do">산출물
 										관리 </a></li>

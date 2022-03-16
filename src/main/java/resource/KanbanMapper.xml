@@ -5,8 +5,13 @@
 <mapper namespace="project5.kanban.KanbanDao">
 
 	<select id="list" resultType="project5.kanban.KanbanVO">
-		select * from kanban
+		select id, status, text, tags, content, color, writedate, duedate, projectkey, deptno, memberkey resourceId
+		 from kanban
 	</select>
+	
+	
+	
+	
 	<select id="individualMemberList"
 		resultType="project5.kanban.KanbanVO" parameterType="int">
 		select * from
@@ -23,15 +28,34 @@
 	<insert id="insert" parameterType="project5.kanban.KanbanVO">
 		insert into kanban
 		values
-		(seq_kanban.nextval, #{state}, #{label}, #{tags}, #{contents},
+		(seq_kanban.nextval, #{status}, #{text}, #{tags}, #{content},#{color},
 		sysdate, sysdate, 1, 1, 1)
 	</insert>
 
 	<delete id="delete" parameterType="int">
 		delete from
 		kanban
-		where id=${id}
+		where id=#{id}
 	</delete>
+	
+	
+	<update id="update" parameterType="project5.kanban.KanbanVO">
+		update kanban
+		set 
+		status=#{status},
+		text =#{text},
+		tags = #{tags}
+		where id=#{id}
+	</update>
+
+	<update id="update2" parameterType="project5.kanban.KanbanVO">
+		update kanban
+		set 
+		status=#{status}
+		where id=#{id}
+	</update>
+	
+	
 
 </mapper>
 

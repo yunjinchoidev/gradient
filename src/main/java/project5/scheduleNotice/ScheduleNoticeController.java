@@ -10,6 +10,11 @@ public class ScheduleNoticeController {
 	
 	@Autowired
 	ScheduleNoticeService service;
+	
+	@RequestMapping("/scheduleNotice.do")
+	public String scheduleNotice(Model d) {
+		return "/schduleNotice/list";
+	}
 
 
 	

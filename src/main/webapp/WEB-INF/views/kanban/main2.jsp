@@ -73,7 +73,7 @@
     	             { name: "tags", type: "string" },
     	             { name: "contents", type: "string" },
     	             { name: "hex", type: "string" },
-    	             { name: "resourceId", type: "number" }
+    	             { name: "memberkey", type: "number" }
     	    ];
 
     	   
@@ -147,55 +147,39 @@
     	    //$("#updateItem, #removeItem, #addItem").jqxButton();
     	    
     	   
-    	   // 칸반 수정
+    	   // 칸반 수정 실행
     	    $("#updateItem").click(function () {
     	    	alert("정말 수정하시겠습니까?");
     	       // $('#kanban').jqxKanban('updateItem', "1161", { status: "new", text: "Task", tags: "task", color: "#5dc3f0", resourceId: 3 });
     	        //$("#updateItem").jqxButton({ disabled: true });
-    	        
-    	        
+    	    	$("#frm01").attr("action","/project5/kanbanUpdate.do");
+				$("#frm01").submit();
     	    });
     	    //var newItemsCount = 0;
     	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    // 칸반 추가
+    	    // 칸반 추가 실행
 			//var go = {status: "new", text: "Task" +'하하', tags: "task" + newItemsCount+ '룰루', color: "#5dc3f0", resourceId: 10};
     	    $("#addItem").click(function(){
     	    	alert("정말 추가 하시겠습니까?" );
     	    	 //$('#kanban').jqxKanban('addItem', go);
     	    	 	//alert("추가 처리 완료했습니다." );
-    	    	 	
     	    	$("#frm01").attr("action","/project5/kanbanInsert.do");
 				$("#frm01").submit();
     	    })
     	    
     	    
     	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    // 칸반 삭제  // remove 뒤에 id 를 적으면 삭제가 된다.
+    	    // 칸반 삭제  실행
     	    $("#removeItem").click(function () {
     	    	alert("정말 삭제하시겠습니까? ");
-    	        $('#kanban').jqxKanban('removeItem', "1111");
+    	        //$('#kanban').jqxKanban('removeItem', "1111");
     	        //$("#removeItem").jqxButton({ disabled: true });
+    	    	$("#frm01").attr("action","/project5/kanbanDelete.do");
+				$("#frm01").submit();
     	    });
     	    
     	    
-    	    //모든 칸반 정보
+    	    //모든 칸반 정보 불러오기
     	    $("#getItems").click(function () {
     	        var items = $('#kanban').jqxKanban('getItems');
     	        alert(items);
@@ -211,30 +195,24 @@
     	    // 칸반 하나 클릭  // 칸반 하나 조회
     	    $('#kanban').on('itemAttrClicked', function (event) {
     	    	console.log("===================")
-    	    	
     	        var args = event.args;
     	        var itemId = args.itemId;
     	        var attribute = args.attribute; // template, colorStatus, content, keyword, text, avatar
-    	        alert("칸반 하나 클릭!!!")
     	        console.log(args);
     	        console.log(itemId);
     	        console.log(attribute);
     	        $("[name=id]").val(args.item.id);
-    	        $("[name=state]").val(args.item.status);
-    	        $("[name=label]").val(args.item.text);
-    	        $("[name=tags]").val(args.item.itemId);
-    	        $("[name=contents]").val(args.item.staus);
-    	        $("[name=hex]").val(args.item.staus);
-    	        $("[name=resourceId]").val(args.item.staus);
-    	        
-    	        
-    	        
+    	        $("[name=status]").val(args.item.status);
+    	        $("[name=text]").val(args.item.text);
+    	        $("[name=tags]").val(args.item.tags);
+    	        $("[name=content]").val(args.item.content);
+    	        $("[name=color]").val(args.item.color);
+    	        $("[name=resourceId]").val(args.item.resourceId);   
     	        $("#addItem").hide();
     	    	$("#removeItem").show();
     	    	$("#updateItem").show();
 				$(".modal").modal('show');
-
-    	    	});
+ 	    	    	});
     	    
     	    
     	    
@@ -258,8 +236,17 @@
     	        var oldColumn = args.oldColumn;
     	        var newColumn = args.newColumn;
     	        console.log(itemId);
-    	       alert("칸반을 움직였습니다.");
-    	       confirm("일정을 수정하시겠습니까?")
+    	       confirm("칸반을 움직여 일정을 수정하시겠습니까?")
+    	      
+    	       $("[name=id]").val(itemId);
+    	       $("[name=status]").val(newColumn.dataField);
+
+    	       console.log(itemId);
+    	       console.log(newColumn.dataField);
+    	       $("#frm01").attr("action","/project5/kanbanUpdate2.do");
+				$("#frm01").submit();
+    	       
+    	       
     	    });
     	    
     	    // 컬럼 클릭
@@ -272,11 +259,36 @@
     	    });
 
     	    
+    	    
+    	    // 메인창에서 추가하기 모달 띄우기 클릭
     	    $('#addForm').click(function () {
+    	    	$("#addItem").show();
     	    	$("#removeItem").hide();
     	    	$("#updateItem").hide();
-    	    	
     	    });
+    	    
+    	    
+    	    
+    	    var psc = "${psc}";
+    	    
+    	    if(psc=="add"){
+    	    	alert("성공적으로 추가 되었습니다.")
+    	    };
+    	    
+    	    if(psc=="update"){
+    	    	alert("성공적으로 수정 되었습니다.")
+    	    }
+    	    
+    	    if(psc=="move"){
+    	    	alert("성공적으로 이동 되었습니다.")
+    	    }
+    	    
+    	    if(psc=="delete"){
+    	    	alert("성공적으로 삭제되었습니다.")
+    	    }
+    	    
+    	    
+    	    
     	});    
     </script>
 
@@ -328,43 +340,49 @@
                                                             <div class="modal-body">
                                                                 <label>id: </label>
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="id" name="id"
+                                                                    <input type="text" name="id"
                                                                         class="form-control">
                                                                 </div>
                                                                 
-                                                                <label>state(위치): </label>
+                                                                
+                                                                <label>status: </label>
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="state" name="state"
-                                                                        class="form-control">
+                                                                        <select  class="form-control" name="status">
+                                                                        	<option value="new">new</option>
+                                                                        	<option value="done">done</option>
+                                                                        	<option value="work">work</option>
+                                                                        </select>
+                                                                        
+                                                                        
                                                                 </div>
                                                                 
-                                                                <label>label(내용): </label>
+                                                                <label>text(내용): </label>
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="label" name="label"
+                                                                    <input type="text"  name="text"
                                                                         class="form-control">
                                                                 </div>
                                                                 
                                                                   <label>tags: </label>
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="tags" name="tags"
+                                                                    <input type="text" name="tags" 
                                                                         class="form-control">
                                                                 </div>
 
                                                                   <label>contents: </label>
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="contents" name="contents"
+                                                                    <input type="text" name="content"
                                                                         class="form-control">
                                                                 </div>
 
-                                                                  <label>hex: </label>
+                                                                  <label>color: </label>
                                                                 <div class="form-group">
-                                                                    <input type="color" placeholder="hex" name="hex"
+                                                                    <input type="color" name="color"
                                                                         class="form-control">
                                                                 </div>
                                                                 
                                                                   <label>resourceId: </label>
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="resourceId" name="resourceId"
+                                                                    <input type="text" name="resourceId" value=${member.memberkey }
                                                                         class="form-control">
                                                                 </div>
                                                             </div>
