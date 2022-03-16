@@ -12,7 +12,24 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>쌍용 5조 PMBOK 메인 페이지</title>
+<title>쌍용 5조 PMBOK 대시보드</title>
+<style>
+iframe { 
+    zoom:500%;
+    }
+</style>
+
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <link rel="stylesheet" href="/project5/jqwidgets-ver13.2.0/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxsortable.js"></script>
+    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxkanban.js"></script>
+    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxdata.js"></script>
+    <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+    
+    
 <script>
 $(document).ready(function(){
 	var psc = "${psc}";
@@ -25,6 +42,58 @@ $(document).ready(function(){
 		alert("로그아웃 되었습니다.");
 	}
 })
+
+</script>
+
+
+
+
+
+    
+    <script type="text/javascript">
+    $(document).ready(function () {            
+    	// 칸반보드 전체 값 저장할 변수 선언
+	    var nice;
+	    // 칸반보드 전체 값 객체 배열로 가져오기
+   		 $.ajax({
+         		  type:"post",
+         		  url:"/project5/kanbanList.do",
+         		 async:false,
+         		  dataType:"json",
+         		  success:function(data){
+         			console.log("조회성공");
+         			console.log("결과물이 이것 " +data.list);
+         			for(idx in data.list){
+             			 console.log("idx: " + idx + "data.list[idx]: " + data.list[idx]);
+         			 };
+         			 nice = data.list;
+         		  },
+         		  error:function(err){
+         			  console.log("실패")
+         			  console.log(err)
+         			  failureCallback(err);
+         			  document.getElementById('script-warning').style.display = 'block';
+         		  }
+         	 	});
+    	
+    	
+    	
+   	    /*	   
+    	    var gogogo= [
+                { id: "1161", state: "new", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0", resourceId: 3 },
+                { id: "9037", state: "new", label: "new4", tags: "issue, login", hex: "#6bbd49", resourceId: 8}];
+    	  */  
+    	   
+    		 console.log("nice"+nice);
+     	   //  화면단에 뿌려주기
+     	    var source =
+     	     {
+     	         localData: nice,
+     	         dataType: "array",
+     	         dataFields: fields
+     	     };
+     	   
+    });
 
 </script>
 </head>
@@ -376,7 +445,7 @@ $(document).ready(function(){
 							<div class="card-content">
 								<img class="card-img-top img-fluid"
 									src="/project5/resources/image/calendar.png"
-									alt="Card image cap" style="height: 20rem">
+									alt="Card image cap" style="height: 40rem">
 								<div class="card-body">
 									<h4 class="card-title">캘린더</h4>
 									<p class="card-text">Jelly-o sesame snaps cheesecake
@@ -386,6 +455,8 @@ $(document).ready(function(){
 									<p class="card-text">Cupcake fruitcake macaroon donut
 										pastry gummies tiramisu chocolate bar muffin.</p>
 									<button class="btn btn-primary block">Update now</button>
+									<iframe src="/project5/calendar.do?memberkey=${member.memberkey }" style="width:100%; height: 100%; border : 3px solid black;">
+										</iframe>
 								</div>
 							</div>
 						</div>
@@ -409,6 +480,34 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					<div class="col-md-6 col-sm-12" style="border : 3px solid black; width:100%;">
+						<div class="card" style="border : 3px solid black; width : 100%">
+							<div class="card-content">
+								<div class="card-body">
+									<h1 class="card-title">칸반보드</h1>
+									<iframe src="/project5/kanbanMain2.do" style="width:100%; height: 80%; border : 3px solid black;">
+										</iframe>
+									
+									
+									<p class="card-text">Jelly-o sesame snaps cheesecake
+										topping. Cupcake fruitcake macaroon donut pastry gummies
+										tiramisu chocolate bar muffin. Dessert bonbon caramels brownie
+										chocolate bar chocolate tart dragée.</p>
+									<p class="card-text">Cupcake fruitcake macaroon donut
+										pastry gummies tiramisu chocolate bar muffin.</p>
+									<small class="text-muted">Last updated 3 mins ago</small>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					
 				</div>
 			</section>
 			<!-- Basic Card types section end -->

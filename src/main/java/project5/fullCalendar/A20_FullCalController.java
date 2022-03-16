@@ -25,6 +25,11 @@ public class A20_FullCalController {
 	public String calendar() {
 		return "schedule/fullCalendar";
 	}
+
+	@GetMapping("calendar2.do")
+	public String calendar2() {
+		return "schedule/fullCalendar2";
+	}
 	
 	
 	

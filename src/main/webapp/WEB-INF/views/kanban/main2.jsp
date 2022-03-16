@@ -21,7 +21,7 @@
 	    // 칸반보드 전체 값 객체 배열로 가져오기
    		 $.ajax({
          		  type:"post",
-         		  url:"${path}/kanbanList.do",
+         		  url:"/project5/kanbanList.do",
          		 async:false,
          		  dataType:"json",
          		  success:function(data){
@@ -33,7 +33,7 @@
          			 nice = data.list;
          		  },
          		  error:function(err){
-         			  alert("실패")
+         			  console.log("실패")
          			  console.log(err)
          			  failureCallback(err);
          			  document.getElementById('script-warning').style.display = 'block';
@@ -126,8 +126,8 @@
     	    
     	    // 칸반 컬럼 구성하기
     	    $('#kanban').jqxKanban({
-    	        width: 1000,
-    	        height: 700,
+    	        width: 1400, // 칸반 전체 가로
+    	        height: 700, // 칸반 전체 세로
     	        resources: resourcesAdapterFunc(),
     	        source: dataAdapter,
     	        columns: [

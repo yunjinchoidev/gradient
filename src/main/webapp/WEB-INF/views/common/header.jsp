@@ -48,14 +48,14 @@
 <script>
 	$(document).ready(function() {
 		var auth = "${member.auth}";
-		console.log("auth : "+auth);
+		console.log("auth : " + auth);
 		$("#check").click(function() {
 
 			if (auth != "PM") {
 				alert("권한이 없습니다.");
-				location.href="/project5/main.do"
+				location.href = "/project5/main.do"
 			} else {
-				
+
 				console.log("승인");
 			}
 		});
@@ -109,8 +109,7 @@
 
 						<c:if test="${not empty member.id}">
 							<li class="sidebar-item  "><a href="/project5/memberEdit.do"
-								class='sidebar-link'> <i class="bi bi-grid-fill"></i>
-									<span>${member.id }님</span>
+								class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>${member.id }님</span>
 							</a></li>
 
 
@@ -160,8 +159,8 @@
 										관리 </a></li>
 								<li class="submenu-item "><a href="/project5/cost.do">예산
 										관리</a></li>
-								<li class="submenu-item "><a href="/project5/qualityList.do">품질
-										관리</a></li>
+								<li class="submenu-item "><a
+									href="/project5/qualityList.do">품질 관리</a></li>
 								<li class="submenu-item "><a href="/project5/team.do">인적
 										관리</a></li>
 								<li class="submenu-item "><a href="/project5/risk.do">리스크</a>
@@ -172,20 +171,11 @@
 
 
 
+						<li class="sidebar-item  "><a href="/project5/calendar.do?memberkey=${member.memberkey}"
+							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
+									일정관리</span>
+						</a></li>
 
-
-						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>일정
-									관리</span>
-						</a>
-
-							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/calendar.do?memberkey=${member.memberkey}">캘린더</a>
-								</li>
-								<li class="submenu-item "><a
-									href="/project5/scheduleNotice.do">일정관련 공지</a></li>
-
-							</ul></li>
 
 
 
@@ -194,8 +184,8 @@
 						</a>
 
 							<ul class="submenu ">
-								<li class="submenu-item "><a href="/project5/minutes.do?method=list">회의</a>
-								</li>
+								<li class="submenu-item "><a
+									href="/project5/minutes.do?method=list">회의</a></li>
 
 								<li class="submenu-item "><a href="/project5/chat.do">채팅</a>
 								</li>
@@ -203,7 +193,8 @@
 
 
 
-						<li class="sidebar-item  "><a href="/project5/mywork.do?memberkey=${member.memberkey }"
+						<li class="sidebar-item  "><a
+							href="/project5/mywork.do?memberkey=${member.memberkey }"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>내
 									작업 목록 / 작업물</span>
 						</a></li>
@@ -220,10 +211,10 @@
 						</a>
 
 							<ul class="submenu " id="check">
-								<li class="submenu-item "><a href="/project5/projectTotalManage.do">프로젝트
-										총괄 </a></li>
-								<li class="submenu-item "><a href="/project5/projectList.do">프로젝트
-										시작 & 종료 </a></li>
+								<li class="submenu-item "><a
+									href="/project5/projectTotalManage.do">프로젝트 총괄 </a></li>
+								<li class="submenu-item "><a
+									href="/project5/projectList.do">프로젝트 시작 & 종료 </a></li>
 								<li class="submenu-item "><a href="/project5/mailFrm.do">이메일
 										발송 </a></li>
 								<li class="submenu-item "><a href="/project5/memberList.do">사용자
