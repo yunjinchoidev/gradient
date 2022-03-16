@@ -11,21 +11,34 @@
  --%>
 <html>
 <head>
+
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+td{
+text-align: center;
+}
+
+</style>
+
+<script>
+	$(document).ready(function(){
+		
+	});
+</script>
+
 </head>
 
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
-
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>예산 관리</h3>
-						<p class="text-subtitle text-muted">For user to check they
-							list</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -38,71 +51,73 @@
 					</div>
 				</div>
 			</div>
+			
 			<section class="section">
 				<div class="card">
-					<div class="card-header">Simple Datatable</div>
 					<div class="card-body">
-						<div
-							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+						<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+						 <form>
 							<div class="dataTable-top">
 								<div class="dataTable-dropdown">
-									<select class="dataTable-selector form-select"><option
-											value="5">5</option>
-										<option value="10" selected="">10</option>
-										<option value="15">15</option>
-										<option value="20">20</option>
-										<option value="25">25</option></select><label>entries per page</label>
-								</div>
-								<div class="dataTable-search">
-									<input class="dataTable-input" placeholder="Search..."
-										type="text">
-										<a href="/project5/scheduleInsertForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
+									<select class="dataTable-selector form-select">
+										<option>5</option>
+										<option>10</option>
+										<option>15</option>
+										<option>20</option>
+										<option>25</option>
+									</select>
+									<label>게시글 수</label>
 								</div>
 								
+								<div class="dataTable-search">
+									<input class="dataTable-input" placeholder="Search..." type="text">
+								</div>
 							</div>
+						  </form>
 							<div class="dataTable-container">
 								<table class="table table-striped dataTable-table" id="table1">
 									<thead>
 										<tr>
-											<th data-sortable="" style="width: 12.0176%;"><a
-												href="#" class="dataTable-sorter">Name</a></th>
-											<th data-sortable="" style="width: 42.9989%;"><a
-												href="#" class="dataTable-sorter">Email</a></th>
-											<th data-sortable="" style="width: 18.0816%;"><a
-												href="#" class="dataTable-sorter">Phone</a></th>
-											<th data-sortable="" style="width: 16.3175%;"><a
-												href="#" class="dataTable-sorter">City</a></th>
-											<th data-sortable="" style="width: 10.8049%;"><a
-												href="#" class="dataTable-sorter">Status</a></th>
+											<th data-sortable="" style="width: 5%;text-align:center;"><a
+												href="#" class="dataTable-sorter">NO</a></th>
+											<th data-sortable="" style="width: 33%;text-align:center;"><a
+												href="#" class="dataTable-sorter">프로젝트명</a></th>
+											<th data-sortable="" style="width: 10%;text-align:center;"><a
+												href="#" class="dataTable-sorter">시작일</a></th>
+											<th data-sortable="" style="width: 10%;text-align:center;"><a
+												href="#" class="dataTable-sorter">종료일</a></th>
+											<th data-sortable="" style="width: 25%;text-align:center;"><a
+												href="#" class="dataTable-sorter">회사</a></th>
+											<th data-sortable="" style="width: 7%;text-align:center;"><a
+												href="#" class="dataTable-sorter">PM</a></th>
+											<th data-sortable="" style="width: 10%;text-align:center;"><a
+												href="#" class="dataTable-sorter">예산배정</a></th>
 										</tr>
 									</thead>
 
-
-
-
 									<tbody>
-										<c:forEach var="list" items="${list}">
+										<c:forEach var="clist" items="${costlist}">
 											<tr>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td><span class="badge bg-success">Active</span></td>
+												<td>${clist.costkey}</td>
+												<td>${clist.prjname}</td>
+												<td>${clist.startdate}</td>
+												<td>${clist.lastdate}</td>
+												<td>${clist.company}</td>
+												<td>${clist.pm}</td>
+												<c:if test="${clist.costassign eq '승인'}">
+													<td><span class="badge bg-success">${clist.costassign}</span></td>
+												</c:if>
+												<c:if test="${clist.costassign eq '미승인'}">
+													<td><span class="badge bg-danger">${clist.costassign}</span></td>
+												</c:if>
 											</tr>
 										</c:forEach>
 									</tbody>
-
-
-
-
 								</table>
 								
+								<button id="regbtn" class="btn btn-primary rounded-pill"
+									style="margin: auto;display:block;">등록</button>								
 							</div>
-
-
-
-
-
 
 							<div class="dataTable-bottom">
 								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>

@@ -9,6 +9,7 @@
 		<typeAlias alias="minutes" type="project5.communication.minutesVO" />
 		<typeAlias alias="rcomm" type="project5.risk.Riskcomm" />
 		<typeAlias alias="insrcomm" type="project5.risk.InsRiskcomm" />
+		<typeAlias alias="costList" type="project5.cost.CostList" />
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/DeptMapper.xml" />
@@ -23,5 +24,6 @@
 		<mapper resource="resource/RiskMapper.xml" />
 		<mapper resource="resource/NoticeAttachMapper.xml" />
 		<mapper resource="resource/CommunicationMapper.xml" />
+		<mapper resource="resource/CostMapper.xml" />
 	</mappers>
 </configuration>
