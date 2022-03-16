@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="project5.kanban.KanbanDao">
+
+	<select id="list" resultType="project5.kanban.KanbanVO">
+		select * from kanban
+	</select>
+	<select id="individualMemberList"
+		resultType="project5.kanban.KanbanVO" parameterType="int">
+		select * from
+		kanban where memberkey = #{memberkey}
+	</select>
+
+	<select id="individualProjectList"
+		resultType="project5.kanban.KanbanVO" parameterType="int">
+		select * from
+		kanban where projectkey = #{projectkey}
+	</select>
+
+
+	<insert id="insert" parameterType="project5.kanban.KanbanVO">
+		insert into kanban
+		values
+		(seq_kanban.nextval, #{state}, #{label}, #{tags}, #{contents},
+		sysdate, sysdate, 1, 1, 1)
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		delete from
+		kanban
+		where id=${id}
+	</delete>
+
+</mapper>
+

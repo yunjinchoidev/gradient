@@ -16,6 +16,56 @@
     <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxdata.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {            
+    	// 칸반보드 전체 값 저장할 변수 선언
+	    var nice;
+	    // 칸반보드 전체 값 객체 배열로 가져오기
+   		 $.ajax({
+         		  type:"post",
+         		  url:"${path}/kanbanList.do",
+         		 async:false,
+         		  dataType:"json",
+         		  success:function(data){
+         			console.log("조회성공");
+         			console.log("결과물이 이것 " +data.list);
+         			for(idx in data.list){
+             			 console.log("idx: " + idx + "data.list[idx]: " + data.list[idx]);
+         			 };
+         			 nice = data.list;
+         		  },
+         		  error:function(err){
+         			  alert("실패")
+         			  console.log(err)
+         			  failureCallback(err);
+         			  document.getElementById('script-warning').style.display = 'block';
+         		  }
+         	 	});
+    	
+    	
+    	
+   	    /*	   
+    	    var gogogo= [
+                { id: "1161", state: "new", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0", resourceId: 3 },
+                { id: "9037", state: "new", label: "new4", tags: "issue, login", hex: "#6bbd49", resourceId: 8}];
+    	  */  
+    	   
+    		 console.log("nice"+nice);
+     	   //  화면단에 뿌려주기
+     	    var source =
+     	     {
+     	         localData: nice,
+     	         dataType: "array",
+     	         dataFields: fields
+     	     };
+     	   
+    	
+    	
+     	   
+     	   
+     	   
+     	   
+     	   
+    	////////////////////////////////////////////////////////////////////////////////////
+    	  // 칸반 보드 하나를 구성하는 변수들
     	   var fields = [
     	             { name: "id", type: "string" },
     	             { name: "state", type: "string" },
@@ -27,33 +77,11 @@
     	    ];
 
     	   
+    	  
     	   
     	   
     	   
-    	   
-    	   
-    	   
-    	   
-    	   
-    	   //  칸반 하나 하나
-    	    var source =
-    	     {
-    	         localData: [
-    	                  { id: "1161", state: "new", label: "Combine Orders", tags: "orders, combine", hex: "#5dc3f0", resourceId: 3 },
-    	                  { id: "1645", state: "work", label: "Change Billing Address", tags: "billing", hex: "#f19b60", resourceId: 1 },
-    	                  { id: "9213", state: "new", label: "One item added to the cart", tags: "cart", hex: "#5dc3f0", resourceId: 3 },
-    	                  { id: "6546", state: "done", label: "Edit Item Price", tags: "price, edit", hex: "#5dc3f0", resourceId: 4 },
-    	                  { id: "9034", state: "new", label: "new1", tags: "issue, login", hex: "#6bbd49", resourceId: 5},
-    	                  { id: "9034", state: "new", label: "new2", tags: "issue, login", hex: "#6bbd49", resourceId: 7},
-    	                  { id: "9036", state: "new", label: "new3", tags: "issue, login", hex: "#6bbd49", resourceId: 8},
-    	                  { id: "9037", state: "new", label: "new4", tags: "issue, login", hex: "#6bbd49", resourceId: 8}
-    	         ],
-    	         dataType: "array",
-    	         dataFields: fields
-    	     };
-    	    
-    	    
-    	    
+    	    //////////////////////////////////////////////////////////////////////////////////////////////////
     	    // 멤버 정보
     	    var dataAdapter = new $.jqx.dataAdapter(source);
     	    var resourcesAdapterFunc = function () {
@@ -82,54 +110,84 @@
     	        var resourcesDataAdapter = new $.jqx.dataAdapter(resourcesSource);
     	        return resourcesDataAdapter;
     	    }
-
     	    
     	    
     	    
     	    
     	    
     	    
-    	    // 칸반 컬럼
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    // 칸반 컬럼 구성하기
     	    $('#kanban').jqxKanban({
     	        width: 1000,
     	        height: 700,
     	        resources: resourcesAdapterFunc(),
     	        source: dataAdapter,
     	        columns: [
-    	            { text: "Backlog", dataField: "new", maxItems: 10 },
-    	            { text: "In Progress", dataField: "work", maxItems: 10 },
-    	            { text: "Done", dataField: "done", maxItems: 10, collapseDirection: "right" }
+    	            { text: "작업 전 ", dataField: "new", maxItems: 50 },
+    	            { text: "진행 중", dataField: "work", maxItems: 50, collapseDirection: "right"},
+    	            { text: "완료", dataField: "done", maxItems: 50, collapseDirection: "right" }
     	        ]
     	    });
 
-    	   // $("#updateItem, #removeItem, #addItem").jqxButton();
     	    
     	    
+    	    
+    	    
+    	    
+    	    
+    	    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    	    //$("#updateItem, #removeItem, #addItem").jqxButton();
     	    
     	   
-    	   // 수정 버튼을 눌렀을 때
+    	   // 칸반 수정
     	    $("#updateItem").click(function () {
     	    	alert("정말 수정하시겠습니까?");
-    	        $('#kanban').jqxKanban('updateItem', "1161", { status: "new", text: "Task", tags: "task", color: "#5dc3f0", resourceId: 3 });
-    	        $("#updateItem").jqxButton({ disabled: true });
+    	       // $('#kanban').jqxKanban('updateItem', "1161", { status: "new", text: "Task", tags: "task", color: "#5dc3f0", resourceId: 3 });
+    	        //$("#updateItem").jqxButton({ disabled: true });
+    	        
+    	        
     	    });
-    	    var newItemsCount = 0;
-    	    
-    	 
+    	    //var newItemsCount = 0;
     	    
     	    
-    	    // 추가 버튼을 눌렀을 때 
-			var go = {status: "new", text: "Task" + newItemsCount+'하하', tags: "task" + newItemsCount+ '룰루', color: "#5dc3f0", resourceId: 10};
+    	    
+    	    
+    	    
+    	    
+    	    // 칸반 추가
+			//var go = {status: "new", text: "Task" +'하하', tags: "task" + newItemsCount+ '룰루', color: "#5dc3f0", resourceId: 10};
     	    $("#addItem").click(function(){
-    	    	alert("추가할겁니다. 그렇다면 무엇을 추가할겁니까?" );
-    	    	 $('#kanban').jqxKanban('addItem', go);
-    	    	 	alert("추가 처리 완료했습니다." );
+    	    	alert("정말 추가 하시겠습니까?" );
+    	    	 //$('#kanban').jqxKanban('addItem', go);
+    	    	 	//alert("추가 처리 완료했습니다." );
+    	    	 	
+    	    	$("#frm01").attr("action","/project5/kanbanInsert.do");
+				$("#frm01").submit();
     	    })
     	    
     	    
     	    
-    	    // 삭제 작업 
-    	    // remove 뒤에 id 를 적으면 삭제가 된다.
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    // 칸반 삭제  // remove 뒤에 id 를 적으면 삭제가 된다.
     	    $("#removeItem").click(function () {
     	    	alert("정말 삭제하시겠습니까? ");
     	        $('#kanban').jqxKanban('removeItem', "1111");
@@ -137,20 +195,60 @@
     	    });
     	    
     	    
-    	    
+    	    //모든 칸반 정보
     	    $("#getItems").click(function () {
     	        var items = $('#kanban').jqxKanban('getItems');
+    	        alert(items);
     	        console.log(items);
     	    });
     	    
-    	    $('#jqxKanban').on('itemAttrClicked', function (event) {
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    // 칸반 하나 클릭  // 칸반 하나 조회
+    	    $('#kanban').on('itemAttrClicked', function (event) {
+    	    	console.log("===================")
+    	    	
     	        var args = event.args;
     	        var itemId = args.itemId;
     	        var attribute = args.attribute; // template, colorStatus, content, keyword, text, avatar
+    	        alert("칸반 하나 클릭!!!")
+    	        console.log(args);
     	        console.log(itemId);
-    	        alert("클릭");
-    	    });
+    	        console.log(attribute);
+    	        $("[name=id]").val(args.item.id);
+    	        $("[name=state]").val(args.item.status);
+    	        $("[name=label]").val(args.item.text);
+    	        $("[name=tags]").val(args.item.itemId);
+    	        $("[name=contents]").val(args.item.staus);
+    	        $("[name=hex]").val(args.item.staus);
+    	        $("[name=resourceId]").val(args.item.staus);
+    	        
+    	        
+    	        
+    	        $("#addItem").hide();
+    	    	$("#removeItem").show();
+    	    	$("#updateItem").show();
+				$(".modal").modal('show');
+
+    	    	});
     	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    
+    	    // 칸반 움직이기
     	    $('#kanban').on('itemMoved', function (event) {
     	        var args = event.args;
     	        var itemId = args.itemId;
@@ -161,57 +259,78 @@
     	        var newColumn = args.newColumn;
     	        console.log(itemId);
     	       alert("칸반을 움직였습니다.");
+    	       confirm("일정을 수정하시겠습니까?")
     	    });
     	    
-    	    $('#jqxKanban').on('columnAttrClicked', function (event) {
+    	    // 컬럼 클릭
+    	    $('#kanban').on('columnAttrClicked', function (event) {
     	        var args = event.args;
     	        var column = args.column;
     	        var cancelToggle = args.cancelToggle; // false by default. Set to true to cancel toggling dynamically.
     	        var attribute = args.attribute; // title, button
     	        alert("컬럼 클릭");
     	    });
+
     	    
+    	    $('#addForm').click(function () {
+    	    	$("#removeItem").hide();
+    	    	$("#updateItem").hide();
+    	    	
+    	    });
     	});    
-    
-    
     </script>
+
+
+
+
+
+
+
+
+
+    
     
     </head>
 <body>
 		<div id="main">
           <div id="kanban"></div> 
+           <div id="log"></div>  
           <br>
-		        <a href="#" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#inlineForm">칸반 추가 </a>
-		        <a href="#" class="btn btn-primary"  id="removeItem">칸반 삭제</a>
-		         <a href="#" class="btn btn-success" id="updateItem">칸반 수정</a>
+		        <a href="#" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#inlineForm" id="addForm">칸반 추가 창 </a>
 		         <a href="#" class="btn btn-danger" id="getItems">모든 칸반 정보 얻기</a>
         </div>
         
         
         
-           <!--login form Modal -->
+        
+        
+        
+        
+        
+        
+        
+         							  <!--login form Modal -->
                                             <div class="modal fade text-left" id="inlineForm" tabindex="-1"
                                                 role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                                                     role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title" id="myModalLabel33">칸반 보드 추가 </h4>
+                                                            <h4 class="modal-title" id="myModalLabel33">칸반 보드 </h4>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <i data-feather="x"></i>
                                                             </button>
                                                         </div>
-                                                        <form action="#">
+                                                        
+                                                  
+                                                        <form action="#" id="frm01">
                                                             <div class="modal-body">
                                                                 <label>id: </label>
                                                                 <div class="form-group">
-                                                                    <input type="text" placeholder="state" name="state"
+                                                                    <input type="text" placeholder="id" name="id"
                                                                         class="form-control">
                                                                 </div>
-                                                                
-                                                                
-                                                                
                                                                 
                                                                 <label>state(위치): </label>
                                                                 <div class="form-group">
@@ -219,24 +338,17 @@
                                                                         class="form-control">
                                                                 </div>
                                                                 
-                                                                
-                                                                
-                                                                
-                                                                
                                                                 <label>label(내용): </label>
                                                                 <div class="form-group">
                                                                     <input type="text" placeholder="label" name="label"
                                                                         class="form-control">
                                                                 </div>
                                                                 
-                                                                
-                                                                
                                                                   <label>tags: </label>
                                                                 <div class="form-group">
                                                                     <input type="text" placeholder="tags" name="tags"
                                                                         class="form-control">
                                                                 </div>
-
 
                                                                   <label>contents: </label>
                                                                 <div class="form-group">
@@ -250,30 +362,12 @@
                                                                         class="form-control">
                                                                 </div>
                                                                 
-                                                                
-                                                                
                                                                   <label>resourceId: </label>
                                                                 <div class="form-group">
                                                                     <input type="text" placeholder="resourceId" name="resourceId"
                                                                         class="form-control">
                                                                 </div>
-                                                                
-                                                                
-
-
-
-
-
-                                                                
-                                                                
                                                             </div>
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
-                                                            
                                                             
                                                             
                                                             <div class="modal-footer">
@@ -282,11 +376,32 @@
                                                                     <i class="bx bx-x d-block d-sm-none"></i>
                                                                     <span class="d-none d-sm-block">Close</span>
                                                                 </button>
-                                                                <button type="button" class="btn btn-primary ml-1"
+                                                                <button type="button" class="btn btn-primary ml-1 add"
                                                                     data-bs-dismiss="modal" id="addItem">
                                                                     <i class="bx bx-check d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">추가</span>
+                                                                    <span class="d-none d-sm-block"  >추가</span>
                                                                 </button>
+                                                                <button type="button" class="btn btn-danger ml-2 update"
+                                                                    data-bs-dismiss="modal" id="updateItem">
+                                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">수정</span>
+                                                                </button>
+                                                                <button type="button" class="btn btn-warning ml-2 delete"
+                                                                    data-bs-dismiss="modal" id="removeItem">
+                                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">삭제</span>
+                                                                </button>
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
                                                             </div>
                                                         </form>
                                                     </div>

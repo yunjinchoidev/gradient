@@ -21,7 +21,7 @@
    		http://www.springframework.org/schema/websocket
 		http://www.springframework.org/schema/websocket/spring-websocket.xsd">
 
-<mvc:annotation-driven />
+	<mvc:annotation-driven />
 	<context:annotation-config />
 
 
@@ -37,6 +37,31 @@
 	</context:component-scan>
 	<context:property-placeholder
 		location="classpath:/resource/config" />
+
+
+
+
+	<!-- 웹 소켓 통신을 위한 handler 선언 component로 선언한 이름과 url 패턴을 mapping server handler와 
+		clinet에서 js로 호출할 url 형식을 선언.. -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+	<mvc:default-servlet-handler />
+	<websocket:handlers>
+		<websocket:mapping handler="chatHandler"
+			path="/chat-ws.do" />
+	</websocket:handlers>
+
+
+
+
+
+
+
+
+
+
 	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"><!-- 자원의 
 			해제하는 처리의 메서드를 지정. -->
@@ -66,8 +91,8 @@
 		class="org.springframework.web.servlet.view.BeanNameViewResolver">
 		<property name="order" value="0" />
 	</bean>
-	
-	
+
+
 	<bean id="multipartResolver"
 		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
 		<property name="maxUploadSize">
@@ -81,9 +106,9 @@
 
 
 	<bean id="download" class="project5.z01_util.DownloadViewer" />
-	
-	
-	
+
+
+
 	<bean id="pageJsonReport"
 		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<property name="contentType" value="text/html; charset=utf-8"></property>
@@ -109,6 +134,22 @@
 			</props>
 		</property>
 	</bean>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </beans>
 

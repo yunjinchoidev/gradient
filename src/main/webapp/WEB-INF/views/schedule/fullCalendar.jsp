@@ -95,7 +95,9 @@ document.addEventListener('DOMContentLoaded', function() {
         calendar.unselect()
       },
       
-   
+   		
+      
+      // 조회
       eventClick: function(arg) {
     	  console.log(arg.event)
 		  formData(arg.event);	      
@@ -105,11 +107,19 @@ document.addEventListener('DOMContentLoaded', function() {
     	  $("#delBtn").show();
     	  $("#modalBtn").click(); 
       },
+      
+      
+      
+      //  수정
       eventDrop:function(info){
     	  formData(info.event);
 		  $("#frm01").attr("action","${path}/updateCalendar.do");
     	  $("#frm01").submit();
       },
+      
+      
+      
+      // 수정
       eventResize:function(info){
     	  formData(info.event);
 		  $("#frm01").attr("action","${path}/updateCalendar.do");
@@ -117,6 +127,11 @@ document.addEventListener('DOMContentLoaded', function() {
       },	      
       editable: true,
       dayMaxEvents: true, // allow "more" link when too many events
+      
+      
+      
+      
+      //리스트
       events: function(info, successCallback,failureCallback){
     	  // 서버에 있는 json 데이터 가져와서, fullcalenar 입력하기
     	  $.ajax({
@@ -151,6 +166,12 @@ document.addEventListener('DOMContentLoaded', function() {
     calendar.render();
     
   });
+  
+  
+  
+  
+  
+  
   function formData(event){
       $("[name=id]").val(event.id)
       $("[name=title]").val(event.title)
@@ -164,21 +185,40 @@ document.addEventListener('DOMContentLoaded', function() {
 	  $("[name=allDay]").val(""+event.allDay)	  
   }
 
+  
+  
+  
+  
+  
+  
 
 	$(document).ready(function(){
 		$('[data-toggle="tooltip"]').tooltip();
+		
+		
+		
+		// 등록 버튼
 		$("#regBtn").click(function(){
 			if(confirm("일정등록하시겠습니까?")){
 				$("#frm01").attr("action","${path}/insertCalendar.do?memberkey=${member.memberkey}");
 				$("#frm01").submit();
 			}		
 		});
+		
+		
+		
+		
+		// 수정 버튼
 		$("#uptBtn").click(function(){
 			if(confirm("일정수정하시겠습니까?")){
 				$("#frm01").attr("action","${path}/updateCalendar.do");
 				$("#frm01").submit();
 			}		
-		});		
+		});	
+		
+		
+		
+		// 삭제 버튼
 		$("#delBtn").click(function(){
 			if(confirm("일정삭제하시겠습니까?")){
 				$("#frm01").attr("action","${path}/deleteCalendar.do");
