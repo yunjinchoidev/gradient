@@ -39,12 +39,21 @@ public class GanttController {
 		return "gantt/main5";
 	}
 
+	
+	
+	
+	
 	@RequestMapping("/ganttList.do")
 	public String ganttList(Model d) {
 		d.addAttribute("list", service.list());
 		return "pageJsonReport";
 	}
 
+	
+	
+	
+	
+	
 	@RequestMapping("/individualMemberGanttList.do")
 	public String individualMemberList(Model d, MemberVO vo) {
 		d.addAttribute("individualMemberList", service.individualMemberList());

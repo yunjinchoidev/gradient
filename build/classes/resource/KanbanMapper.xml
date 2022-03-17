@@ -5,13 +5,15 @@
 <mapper namespace="project5.kanban.KanbanDao">
 
 	<select id="list" resultType="project5.kanban.KanbanVO">
-		select id, status, text, tags, content, color, writedate, duedate, projectkey, deptno, memberkey resourceId
-		 from kanban
+		select id, status, text, tags,
+		content, color, writedate, duedate, projectkey, deptno, memberkey
+		resourceId
+		from kanban
 	</select>
-	
-	
-	
-	
+
+
+
+
 	<select id="individualMemberList"
 		resultType="project5.kanban.KanbanVO" parameterType="int">
 		select * from
@@ -35,13 +37,14 @@
 	<delete id="delete" parameterType="int">
 		delete from
 		kanban
-		where id=#{id}
+		where
+		id=#{id}
 	</delete>
-	
-	
+
+
 	<update id="update" parameterType="project5.kanban.KanbanVO">
 		update kanban
-		set 
+		set
 		status=#{status},
 		text =#{text},
 		tags = #{tags}
@@ -50,12 +53,12 @@
 
 	<update id="update2" parameterType="project5.kanban.KanbanVO">
 		update kanban
-		set 
+		set
 		status=#{status}
 		where id=#{id}
 	</update>
-	
-	
+
+
 
 </mapper>
 

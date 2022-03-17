@@ -158,11 +158,8 @@
     	    //var newItemsCount = 0;
     	    
     	    // 칸반 추가 실행
-			//var go = {status: "new", text: "Task" +'하하', tags: "task" + newItemsCount+ '룰루', color: "#5dc3f0", resourceId: 10};
     	    $("#addItem").click(function(){
     	    	alert("정말 추가 하시겠습니까?" );
-    	    	 //$('#kanban').jqxKanban('addItem', go);
-    	    	 	//alert("추가 처리 완료했습니다." );
     	    	$("#frm01").attr("action","/project5/kanbanInsert.do");
 				$("#frm01").submit();
     	    })
@@ -237,10 +234,8 @@
     	        var newColumn = args.newColumn;
     	        console.log(itemId);
     	       confirm("칸반을 움직여 일정을 수정하시겠습니까?")
-    	      
     	       $("[name=id]").val(itemId);
     	       $("[name=status]").val(newColumn.dataField);
-
     	       console.log(itemId);
     	       console.log(newColumn.dataField);
     	       $("#frm01").attr("action","/project5/kanbanUpdate2.do");
