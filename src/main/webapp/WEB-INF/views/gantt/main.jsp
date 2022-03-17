@@ -9,7 +9,7 @@ http://106.10.16.155:7080/project5/chatting.do<%@ page language="java" contentTy
 
 	<%@ include file="../common/header.jsp"%>
 
-	<div id="main" style="width: 80%">
-			<%@ include file="main5.jsp"%>
+		<div id="main" style="width: 80%">
+			<%@ include file="main2.jsp"%>
 	</div>
 </body>

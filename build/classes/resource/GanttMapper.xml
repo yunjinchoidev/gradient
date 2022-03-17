@@ -5,8 +5,9 @@
 <mapper namespace="project5.gantt.GanttDao">
 
 	<select id="list" resultType="project5.gantt.GanttVO">
-		select *
-		from gantt
+		SELECT id, text, to_char(start_date, 'DD-MM-YYYY') start_date, duration,
+		projectkey, memberkey
+		FROM gantt
 	</select>
 
 
@@ -29,7 +30,7 @@
 
 	<insert id="insert" parameterType="project5.gantt.GanttVO">
 		insert into gantt
-		values
+		values 
 		(seq_gantt.nextval, #{text}, #{start_date}, #{duration}, 1, 1)
 	</insert>
 
