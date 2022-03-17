@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="project5.procurement.ProcurementDao">
+
+	<select id="list" resultType="project5.procurement.ProcurementVO">
+		select * from procurement
+	</select>
+
+	<select id="get" resultType="project5.procurement.ProcurementVO"
+		parameterType="int">
+		select * from procurement where procurementkey = #{procurementkey}
+	</select>
+
+
+	<insert id="insert" parameterType="project5.procurement.ProcurementVO">
+		insert into procurement values(seq_procurement.nextval, 1, #{memberkey}, #{procurementManagement}, sysdate, ${procurementEvaluation})
+	</insert>
+
+	<select id="update" parameterType="project5.procurement.ProcurementVO">
+		update procurement
+		set
+		procurementManagement =#{procurementManagement},
+		procurementEvaluation = #{procurementEvaluation}
+		where procurementkey = #{procurementkey}
+	</select>
+
+	<insert id="delete" parameterType="int">
+		delete from
+		procurement
+		where procurementkey = #{procurementkey}
+	</insert>
+
+
+
+</mapper>

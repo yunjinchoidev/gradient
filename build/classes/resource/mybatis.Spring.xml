@@ -30,5 +30,6 @@
 		<mapper resource="resource/CostMapper.xml" />
 		<mapper resource="resource/TeamMapper.xml"/>
 		<mapper resource="resource/QualityMapper.xml"/>
+		<mapper resource="resource/ProcurementMapper.xml"/>
 	</mappers>
 </configuration>
