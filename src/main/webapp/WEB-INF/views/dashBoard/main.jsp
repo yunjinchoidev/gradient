@@ -488,26 +488,15 @@ $(document).ready(function(){
 							<div class="card-content">
 								<div class="card-body">
 									<h1 class="card-title">칸반보드</h1>
-									<iframe src="/project5/kanbanMain2.do" style="width:100%; height: 80%; border : 3px solid black;">
+									<iframe src="/project5/kanbanMain2.do" style="width:100%; height: 80%;">
 										</iframe>
-									
-									
-									<p class="card-text">Jelly-o sesame snaps cheesecake
-										topping. Cupcake fruitcake macaroon donut pastry gummies
-										tiramisu chocolate bar muffin. Dessert bonbon caramels brownie
-										chocolate bar chocolate tart dragée.</p>
-									<p class="card-text">Cupcake fruitcake macaroon donut
-										pastry gummies tiramisu chocolate bar muffin.</p>
-									<small class="text-muted">Last updated 3 mins ago</small>
+									<p class="card-text"></p>
+									<p class="card-text"></p>
+									<small class="text-muted"></small>
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					
-					
-					
-					
 				</div>
 			</section>
 			<!-- Basic Card types section end -->
@@ -516,20 +505,6 @@ $(document).ready(function(){
 		
 		</div>
 
-		<footer>
-			<div class="footer clearfix mb-0 text-muted">
-				<div class="float-start">
-					<p>2021 © Mazer</p>
-				</div>
-				<div class="float-end">
-					<p>
-						Crafted with <span class="text-danger"><i
-							class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A.
-							Saugi</a>
-					</p>
-				</div>
-			</div>
-		</footer>
 	</div>
 
 

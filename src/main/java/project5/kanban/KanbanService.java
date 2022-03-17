@@ -15,8 +15,12 @@ public class KanbanService {
 		return dao.list();
 	}
 
-	public KanbanVO individualMemberList() {
-		return dao.individualMemberList();
+	public List<KanbanVO> listWork(){
+		return dao.listWork();
+	}
+	
+	public KanbanVO individualMemberList(int memberkey) {
+		return dao.individualMemberList(memberkey);
 	}
 
 	public KanbanVO individualProjectList() {

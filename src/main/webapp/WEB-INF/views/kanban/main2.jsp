@@ -113,17 +113,6 @@
     	    
     	    
     	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
     	    // 칸반 컬럼 구성하기
     	    $('#kanban').jqxKanban({
     	        width: 1400, // 칸반 전체 가로
@@ -139,10 +128,6 @@
 
     	    
     	    
-    	    
-    	    
-    	    
-    	    
     	    ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     	    //$("#updateItem, #removeItem, #addItem").jqxButton();
     	    
@@ -150,12 +135,9 @@
     	   // 칸반 수정 실행
     	    $("#updateItem").click(function () {
     	    	alert("정말 수정하시겠습니까?");
-    	       // $('#kanban').jqxKanban('updateItem', "1161", { status: "new", text: "Task", tags: "task", color: "#5dc3f0", resourceId: 3 });
-    	        //$("#updateItem").jqxButton({ disabled: true });
     	    	$("#frm01").attr("action","/project5/kanbanUpdate.do");
 				$("#frm01").submit();
     	    });
-    	    //var newItemsCount = 0;
     	    
     	    // 칸반 추가 실행
     	    $("#addItem").click(function(){
@@ -169,8 +151,6 @@
     	    // 칸반 삭제  실행
     	    $("#removeItem").click(function () {
     	    	alert("정말 삭제하시겠습니까? ");
-    	        //$('#kanban').jqxKanban('removeItem', "1111");
-    	        //$("#removeItem").jqxButton({ disabled: true });
     	    	$("#frm01").attr("action","/project5/kanbanDelete.do");
 				$("#frm01").submit();
     	    });
@@ -184,17 +164,12 @@
     	    });
     	    
     	    
-    	    
-    	    
-    	    
-    	    
-    	    
     	    // 칸반 하나 클릭  // 칸반 하나 조회
     	    $('#kanban').on('itemAttrClicked', function (event) {
     	    	console.log("===================")
     	        var args = event.args;
     	        var itemId = args.itemId;
-    	        var attribute = args.attribute; // template, colorStatus, content, keyword, text, avatar
+    	        var attribute = args.attribute; 
     	        console.log(args);
     	        console.log(itemId);
     	        console.log(attribute);
@@ -212,17 +187,6 @@
  	    	    	});
     	    
     	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
-    	    
     	    // 칸반 움직이기
     	    $('#kanban').on('itemMoved', function (event) {
     	        var args = event.args;
@@ -232,16 +196,20 @@
     	        var itemData = args.itemData;
     	        var oldColumn = args.oldColumn;
     	        var newColumn = args.newColumn;
+    	        console.log("----------------")
     	        console.log(itemId);
-    	       confirm("칸반을 움직여 일정을 수정하시겠습니까?")
+    	        console.log(args);
+    	        console.log(itemId);
+     	       console.log(newColumn.dataField);
+     	       console.log(itemData.text);
+    	       //confirm("칸반을 움직여 일정을 수정하시겠습니까?")
     	       $("[name=id]").val(itemId);
     	       $("[name=status]").val(newColumn.dataField);
-    	       console.log(itemId);
-    	       console.log(newColumn.dataField);
+    	       $("[name=text]").val(itemData.text);
+    	       $("[name=tags]").val(itemData.tags);
+    	    
     	       $("#frm01").attr("action","/project5/kanbanUpdate2.do");
 				$("#frm01").submit();
-    	       
-    	       
     	    });
     	    
     	    // 컬럼 클릭

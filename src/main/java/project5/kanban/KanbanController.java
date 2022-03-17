@@ -31,9 +31,10 @@ public class KanbanController {
 		return "pageJsonReport";
 	}
 
+	
 	@RequestMapping("/individualMemberList.do")
 	public String individualMemberList(Model d, MemberVO vo) {
-		d.addAttribute("individualMemberList", service.individualMemberList());	
+		d.addAttribute("individualMemberList", service.individualMemberList(vo.getMemberkey()));	
 		return "pageJsonReport";
 	}
 	

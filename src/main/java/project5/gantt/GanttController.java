@@ -3,6 +3,7 @@ package project5.gantt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import project5.gantt.GanttVO;
@@ -24,24 +25,6 @@ public class GanttController {
 		return "gantt/main2";
 	}
 
-	@RequestMapping("/ganttMain3.do")
-	public String ganttMain3(Model d) {
-		return "gantt/main3";
-	}
-	
-	@RequestMapping("/ganttMain4.do")
-	public String ganttMain4(Model d) {
-		return "gantt/main4";
-	}
-	
-	@RequestMapping("/ganttMain5.do")
-	public String ganttMain5(Model d) {
-		return "gantt/main5";
-	}
-
-	
-	
-	
 	
 	@RequestMapping("/ganttList.do")
 	public String ganttList(Model d) {
@@ -50,13 +33,9 @@ public class GanttController {
 	}
 
 	
-	
-	
-	
-	
 	@RequestMapping("/individualMemberGanttList.do")
 	public String individualMemberList(Model d, MemberVO vo) {
-		d.addAttribute("individualMemberList", service.individualMemberList());
+		d.addAttribute("individualMemberList", service.individualMemberList(vo.getMemberkey()));
 		return "pageJsonReport";
 	}
 
@@ -79,6 +58,10 @@ public class GanttController {
 		d.addAttribute("psc", "add");
 		return "forward:/ganttMain.do";
 	}
+	
+	
+	
+	
 
 	@RequestMapping("/ganttUpdate.do")
 	public String ganttUpdate(Model d, GanttVO vo) {

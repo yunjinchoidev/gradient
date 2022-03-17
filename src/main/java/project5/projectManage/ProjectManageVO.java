@@ -1,6 +1,6 @@
-package project5.project;
+package project5.projectManage;
 
-public class ProjectVO {
+public class ProjectManageVO {
 	private int projectkey;
 	private String name;
 	private String term;
@@ -11,12 +11,12 @@ public class ProjectVO {
 	private String contents;
 	private int clientkey;
 
-	public ProjectVO() {
+	public ProjectManageVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public ProjectVO(int projectkey, String name, String term, int take, String manager, String progress,
+	public ProjectManageVO(int projectkey, String name, String term, int take, String manager, String progress,
 			String importance, String contents, int clientkey) {
 		super();
 		this.projectkey = projectkey;

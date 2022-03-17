@@ -14,6 +14,12 @@
 
 
 
+	<select id="listWork"
+		resultType="project5.kanban.KanbanVO">
+		select * from
+		kanban where status='work'
+	</select>
+
 	<select id="individualMemberList"
 		resultType="project5.kanban.KanbanVO" parameterType="int">
 		select * from

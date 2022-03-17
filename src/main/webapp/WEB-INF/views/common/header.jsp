@@ -214,9 +214,7 @@
 
 							<ul class="submenu " id="check">
 								<li class="submenu-item "><a
-									href="/project5/projectTotalManage.do">프로젝트 총괄 </a></li>
-								<li class="submenu-item "><a
-									href="/project5/projectList.do">프로젝트 시작 & 종료 </a></li>
+									href="/project5/projectManageMain.do">프로젝트 관리 </a></li>
 								<li class="submenu-item "><a href="/project5/mailFrm.do">이메일
 										발송 </a></li>
 								<li class="submenu-item "><a href="/project5/memberList.do">사용자

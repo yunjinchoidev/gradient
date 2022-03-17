@@ -1,4 +1,4 @@
-package project5.project;
+package project5.projectManage;
 
 import java.util.List;
 
@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ProjectService {
+public class ProjectManageService {
 
 	@Autowired
-	ProjectDao dao;
+	ProjectManageDao dao;
 
-	public List<ProjectVO> list() {
+	public List<ProjectManageVO> list() {
 		return dao.list();
 	}
 

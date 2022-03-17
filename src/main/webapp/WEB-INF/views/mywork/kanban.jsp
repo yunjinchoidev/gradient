@@ -242,7 +242,7 @@
                                             <div class="media-body">
                                                 <div class="user-details">
                                                     <div class="mail-items">
-                                                        <span class="list-group-item-text text-truncate">${list.title}</span>
+                                                        <span class="list-group-item-text text-truncate">${list.text} ||||| 작업 상태 : ${list.status}</span>
                                                     </div>
                                                     <div class="mail-meta-item">
                                                         <span class="float-right">

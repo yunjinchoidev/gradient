@@ -20,7 +20,8 @@
 		<mapper resource="resource/CalendarMapper.xml" />
 		<mapper resource="resource/KanbanMapper.xml" />
 		<mapper resource="resource/GanttMapper.xml" />
-		<mapper resource="resource/ProjectMapper.xml" />
+		<mapper resource="resource/ProjectHomeMapper.xml" />
+		<mapper resource="resource/ProjectManageMapper.xml" />
 		<mapper resource="resource/NoticeMapper.xml" />
 		<mapper resource="resource/NoticeReplyMapper.xml" />
 		<mapper resource="resource/FileInfoMapper.xml" />

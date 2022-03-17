@@ -1,4 +1,4 @@
-package project5.project;
+package project5.projectManage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -6,24 +6,17 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-public class projectController {
+public class projectManageController {
 
 	@Autowired
-	ProjectService service;
+	ProjectManageService service;
 	
 	
-	@RequestMapping("/projectList.do")
-	public String projectHome(Model d) {
+	@RequestMapping("/projectManageMain.do")
+	public String projectManageMain(Model d) {
 		d.addAttribute("list", service.list());
-		return "/unify/list";
+		return "/projectManage/main";
 	}
-
-	
-	@RequestMapping("/projectTotalManage.do")
-	public String projectManage(Model d) {
-		return "/unify/manage";
-	}
-
 	
 	
 	

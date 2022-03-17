@@ -4,7 +4,8 @@ import java.util.List;
 
 public interface KanbanDao {
 	public List<KanbanVO> list();
-	public KanbanVO individualMemberList();
+	public List<KanbanVO> listWork();
+	public KanbanVO individualMemberList(int memberkey);
 	public KanbanVO individualProjectList();
 	public void insert(KanbanVO vo);
 	public void delete(int id);

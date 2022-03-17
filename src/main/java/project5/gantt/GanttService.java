@@ -14,9 +14,11 @@ public class GanttService {
 	public List<GanttVO> list() {
 		return dao.list();
 	}
-
-	public GanttVO individualMemberList() {
-		return dao.individualMemberList();
+	public List<GanttVO> currentGantt(){
+		return dao.currentGantt();
+	}
+	public GanttVO individualMemberList(int memberkey ) {
+		return dao.individualMemberList(memberkey);
 	}
 
 	public GanttVO individualProjectList() {
