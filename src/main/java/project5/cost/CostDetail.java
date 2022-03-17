@@ -1,19 +1,15 @@
 package project5.cost;
 
+import java.util.List;
+
 public class CostDetail {
-	private int no;
 	private String costcontent;
 	private String costnote;
 	private int costex;
 	private int cskey;
-	private int take;
-	private int prjkey;
-	public int getNo() {
-		return no;
-	}
-	public void setNo(int no) {
-		this.no = no;
-	}
+	private int no;
+	
+		
 	public String getCostcontent() {
 		return costcontent;
 	}
@@ -38,17 +34,15 @@ public class CostDetail {
 	public void setCskey(int cskey) {
 		this.cskey = cskey;
 	}
-	public int getTake() {
-		return take;
+	public int getNo() {
+		return no;
 	}
-	public void setTake(int take) {
-		this.take = take;
+	public void setNo(int no) {
+		this.no = no;
 	}
-	public int getPrjkey() {
-		return prjkey;
-	}
-	public void setPrjkey(int prjkey) {
-		this.prjkey = prjkey;
-	}
+	
+	
+	
+	
 	
 }

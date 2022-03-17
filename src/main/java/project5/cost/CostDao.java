@@ -14,4 +14,8 @@ public interface CostDao {
 	public List<CostList> getCostSort();
 	// 프로젝트 예산
 	public int getPrjCost(int prjkey);
+	// 프로젝트 예산 등록
+	public void insPrjCost(MultiRowCost ins);
+	// 프로젝트 리스트 등록
+	public void insCostList(CostList ins);
 }

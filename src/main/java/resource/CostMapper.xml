@@ -10,7 +10,7 @@
 		cl.NAME company , p.MANAGER pm, co.COSTASSIGN costassign
 		FROM PROJECT p , CLIENT cl , COST co
 		WHERE co.PROJECTKEY = p.PROJECTKEY 
-		AND co.CLIENTKEY = cl.CLIENTKEY
+		AND p.CLIENTKEY = cl.CLIENTKEY
  	</select>
  	<!-- 프로젝트 목록 -->
  	<select id="getPrjList" resultType="costList">
@@ -28,4 +28,32 @@
 		FROM PROJECT
 		WHERE PROJECTKEY = #{prjkey}
 	</select>
+	<!-- 프로젝트 예산 배정 -->
+	<insert id="insPrjCost" parameterType="java.util.List">
+			<foreach collection="list" item="item" separator=" " open="INSERT ALL" close="SELECT * FROM SYS.DUAL">
+				INTO COSTDETAIL(
+					 NO
+					,COSTCONTENT
+					,COSTNOTE
+					,COSTEX
+					,COSTSORTKEY
+				) VALUES(			
+					#{item.no},
+					#{item.costcontent},
+					#{item.costnote},
+					#{item.costex},
+					#{item.cskey}
+					)
+			</foreach>	
+	</insert>
+	<!-- 프로젝트 예산 리스트 등록 -->
+	<insert id="insCostList" parameterType="costList">
+		INSERT INTO COST VALUES(
+			(SELECT NVL(MAX(COSTKEY)+1,1) FROM COST),
+			#{prjkey},
+			'미승인',
+			#{prjkey}
+		)
+	</insert>
+	
 </mapper>

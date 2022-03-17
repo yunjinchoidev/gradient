@@ -18,6 +18,8 @@ public class CostList {
 	private int costex;
 	private int costno;
 	private int take;
+	private int costdtkey;
+	
 	public int getCostkey() {
 		return costkey;
 	}
@@ -107,6 +109,12 @@ public class CostList {
 	}
 	public void setTake(int take) {
 		this.take = take;
+	}
+	public int getCostdtkey() {
+		return costdtkey;
+	}
+	public void setCostdtkey(int costdtkey) {
+		this.costdtkey = costdtkey;
 	}
 	
 	

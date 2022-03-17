@@ -26,4 +26,12 @@ public class CostService {
 	public int getPrjCost(int prjkey) {
 		return dao.getPrjCost(prjkey);
 	}
+	// 프로젝트 예산 등록
+	public void insPrjCost(MultiRowCost ins) {
+		dao.insPrjCost(ins);
+	}
+	// 프로젝트 예산 리스트 등록
+	public void insCostList(CostList ins) {
+		dao.insCostList(ins);
+	}
 }

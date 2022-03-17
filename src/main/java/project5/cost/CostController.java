@@ -1,8 +1,11 @@
 package project5.cost;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -32,10 +35,23 @@ public class CostController {
 			System.out.println("프로젝트키:"+prjkey);
 			d.addAttribute("prjkey",prjkey);
 			d.addAttribute("prjcost",service.getPrjCost(prjkey));	
+		}else {
+			int prjkey = 1;
+			d.addAttribute("prjkey",prjkey);
+			d.addAttribute("prjcost",service.getPrjCost(prjkey));
 		}
 		
 		return "cost/writecost";
 	}
+	
+	@RequestMapping("/insertcost.do")
+	public String insPrjCost(MultiRowCost ins,CostList clins, Model d) {
+		service.insPrjCost(ins);
+		service.insCostList(clins);
+		d.addAttribute("msg","등록되었습니다");
+		return "forward:/writecost.do";
+	}
+	
 
 	
 	

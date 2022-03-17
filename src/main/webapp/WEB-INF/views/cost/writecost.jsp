@@ -50,8 +50,15 @@ margin
 	$(document).ready(function(){
 		
 		var cnt = 2;
+		var i = 1;
 		var prjkey = "${prjkey}";
 		var prjcost = "${prjcost}";
+		var msg = "${msg}";
+		
+		if(msg!=""){
+			alert(msg);
+			location.href="${path}/cost.do";
+		}
 		
 		var currentPosition = parseInt($("#sideinfodiv").css("top"));
 		$(window).scroll(function() {
@@ -63,15 +70,17 @@ margin
 		$("#addbtn").click(function(){
 			$('#maintable > tbody:last').append('<tr><td>'+cnt+'</td>'+
 					
-					'<td><select class="form-select" name="cskey">'+
+					'<td><select class="form-select" name="list['+i+'].cskey">'+
 						<c:forEach var="cslist" items="${cslist}">
 						 '<option value="${cslist.cskey}">${cslist.cscontent}</option>'+
 						</c:forEach>
 						'</select></td>'+
-					'<td><input class="form-control" type="text" name="costcontent"></td>'+
-					'<td><input class="form-control" type="text" name="costnote"></td>'+
-					'<td><input class="form-control costex" type="number" id="costex" name="costex"></td></tr>');
+					'<td><input class="form-control" type="text" name="list['+i+'].costcontent"></td>'+
+					'<td><input class="form-control" type="text" name="list['+i+'].costnote"></td>'+
+					'<td><input class="form-control costex" type="number" id="costex" name="list['+i+'].costex"></td>'+
+					'<td><input class="form-control" type="hidden" name="list['+i+'].no" value="${prjkey}"></td></tr>');
 			cnt+=1;
+			i+=1;
 		});
 		
 		$("#delbtn").click(function(){
@@ -89,6 +98,10 @@ margin
 		
 		$("#calbtn").click(function(){
 			doSum();
+		});
+		
+		$("#regbtn").click(function(){
+			$("#inscostform").submit();	
 		});
 
 		
@@ -148,11 +161,12 @@ margin
 							</div>
 						 
 							<div class="dataTable-container">
-								<form>
+								<form id="inscostform" action="${path}/insertcost.do" method="post">
+								<input type="hidden" name=prjkey value="${prjkey}">
 								<table class="table table-striped dataTable-table" id="maintable">
 									<thead>
 										<tr>
-											<th style="width: 10%;text-align:center;"><a
+											<th style="width: 5%;text-align:center;"><a
 												href="#" class="dataTable-sorter">NO</a></th>
 											<th style="width: 20%;text-align:center;"><a
 												href="#" class="dataTable-sorter">구분</a></th>
@@ -162,28 +176,34 @@ margin
 												href="#" class="dataTable-sorter">비고</a></th>
 											<th style="width: 25%;text-align:center;"><a
 												href="#" class="dataTable-sorter">예산금액</a></th>
+											<th style="width: 5%;text-align:center;"><a
+												href="#" class="dataTable-sorter">번호</a></th>
 										</tr>
 									</thead>
-									
 									
 									<tbody>
 										<tr>
 											<td>1</td>
 											<td>
-												<select class="form-select" name="cskey">
+												<select class="form-select" name="list[0].cskey">
 													<c:forEach var="cslist" items="${cslist}">
 						 								<option value="${cslist.cskey}">${cslist.cscontent}</option>
 													</c:forEach>
 												</select>
 											</td>
-											<td><input class="form-control" type="text" name="costcontent"></td>
-											<td><input class="form-control" type="text" name="costnote"></td>
-											<td><input class="form-control costex" type="number" id="costex" name="costex"></td>
+						
+											<td><input class="form-control" type="text" name="list[0].costcontent"></td>
+											<td><input class="form-control" type="text" name="list[0].costnote"></td>
+											<td><input class="form-control costex" type="number" id="costex" name="list[0].costex"></td>
+											<td><input class="form-control" type="hidden" name="list[0].no" value="${prjkey}"></td>
 										</tr>
-									</tbody>
-									
+									</tbody>									
 								</table>
 								</form>
+								
+								
+									
+						
 								
 								<!-- 예산항목추가, 예산항목삭제 버튼 -->
 								<div style="margin-top: 150px;">
