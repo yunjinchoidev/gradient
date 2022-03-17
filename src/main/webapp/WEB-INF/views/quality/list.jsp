@@ -95,10 +95,10 @@
 								</table>
 									</tbody>
 
-									
-										<a href="/project5/qualityInsertFrom.do" class="btn btn-danger"
-											id="write" style="text-align: right">글쓰기</a>
-									
+										<div style=text-align:center>
+										<a href="/project5/qualityInsertFrom.do" class="btn btn-primary"
+											id="write" style="text-align: right">등록</a>
+										</div>
 									
 							</div>
 
