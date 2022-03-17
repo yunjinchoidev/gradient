@@ -12,7 +12,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>회의록 | 작성</title>
+	<title>회의록 | 수정</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<style>
 		.dtl-button-box{display:flex;justify-content: space-between;}
@@ -31,18 +31,13 @@
 				location.href="${path}/minutes.do?method=list";
 			});
 			
-
-			$("#regBtn").click(function() {
-				if (confirm("등록하시겠습니까?")) {
-					if ($("[name=topic]").val() == ""
-							|| $("[name=content]").val() == "") {
-						alert("필수항목을 입력해주세요");
-						return;
-					}
-					$("form").attr("action", "${path}/minutes.do?method=insert");
+			$("#uptBtn").click(function() {
+				if (confirm("수정하시겠습니까?")) {
+					$("form").attr("action", "${path}/minutes.do?method=update");
 					$("form").submit();
 				}
 			});
+			
 	    });
 	</script>
 </head>
@@ -75,7 +70,8 @@
 				<div>
 	                <div class="card">
 	                    <div class="card-header">
-	                        <h4 class="card-title" align="center">게시글 작성</h4>
+	                        <h4 class="card-title" align="center">게시글 수정</h4>
+	                        <input type="hidden" name="minutesKey" value="${m.minutesKey}"/>
 	                    </div>
 	                    <table class="table mb-0 table-lg">
 	                        <tr>
@@ -122,7 +118,7 @@
 					<input type="button" id="goList" class="btn btn-dark" value="목록으로"/>
 				</div>
 				<div>
-					<input type="button" id="regBtn" class="btn btn-success" value="작성완료"/>
+					<input type="button" id="uptBtn" class="btn btn-info" value="수정완료"/>
 				</div>
 			</div>
 			

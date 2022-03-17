@@ -27,7 +27,7 @@ public class minutesController {
 	@RequestMapping(params="method=updateFrm")
 	public String uptMinutes(int minutesKey, Model d) {
 		d.addAttribute("m",service.getMinutes(minutesKey));
-		return "communication/minutesWrite";
+		return "communication/minutesUpdate";
 	}
 	
 	@RequestMapping(params="method=update")
