@@ -163,7 +163,7 @@
 	<div id="main">
 		<div id="mainform">
 			<input type="text" class="form-control"
-				value="${get.qualityManagement}" readonly="readonly"
+				value="${get.procurementManagement}" readonly="readonly"
 				onfocus="this.blur();"
 				style="background-color: white; text-align: center; font-size: 20px;">
 			<!-- 중요도, 리스크명, 작성일 -->
@@ -194,7 +194,7 @@
 				<!-- 리스크명 -->
 				<div style="flex: 3; margin-right: 15px;">
 					<input type="text" class="form-control"
-						value="${get.qualityManagement}" readonly="readonly"
+						value="${get.procurementManagement}" readonly="readonly"
 						onfocus="this.blur();"
 						style="background-color: white; text-align: center; font-size: 20px;">
 				</div>

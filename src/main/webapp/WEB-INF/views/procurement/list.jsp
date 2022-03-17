@@ -83,12 +83,12 @@
 										<c:forEach var="list" items="${list}">
 											<tr
 											
-											onclick="location.href='/project5/qualityGet.do?qualitykey='+${list.qualitykey}"
+											onclick="location.href='/project5/procurementGet.do?procurementkey='+${list.procurementkey}"
 												>
-												<td>${list.qualitykey }</td>
-												<td onclick="locaion.href='/project5/qualityGet.do?qualitykey='+${list.qualitykey}">${list.qualityManagement }</td>
+												<td>${list.procurementkey }</td>
+												<td onclick="locaion.href='/project5/procurementGet.do?procurementkey='+${list.procurementkey}">${list.procurementManagement }</td>
 												<td>${list.writedate }</td>
-												<td>${list.qualityEvaluation }</td>
+												<td>${list.procurementEvaluation }</td>
 												<td><span class="badge bg-success">Active</span></td>
 											</tr>
 										</c:forEach>
@@ -96,7 +96,7 @@
 									</tbody>
 
 										<div style=text-align:center>
-										<a href="/project5/qualityInsertFrom.do" class="btn btn-primary"
+										<a href="/project5/procurementInsertFrom.do" class="btn btn-primary"
 											id="write" style="text-align: right">등록</a>
 										</div>
 									
@@ -119,20 +119,20 @@
 
 
 							<div class="dataTable-bottom">
-								<div class="dataTable-info">전체 품질: ${qualitySch.count}</div>
+								<div class="dataTable-info">전체 품질: ${procurementSch.count}</div>
 								<ul
 									class="pagination pagination-primary float-end dataTable-pagination">
 									<li class="page-item pager"><a class="page-link"
-										href="javascript:goPage(${qualitySch.startBlock!=1?qualitySch.startBlock-1:1})">‹</a></li>
-									<c:forEach var="cnt" begin="${qualitySch.startBlock}"
-										end="${qualitySch.endBlock}">
-										<li class="page-item ${cnt==qualitySch.curPage?'active':''}">
+										href="javascript:goPage(${procurementSch.startBlock!=1?procurementSch.startBlock-1:1})">‹</a></li>
+									<c:forEach var="cnt" begin="${procurementSch.startBlock}"
+										end="${procurementSch.endBlock}">
+										<li class="page-item ${cnt==procurementSch.curPage?'active':''}">
 											<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
 											href="javascript:goPage(${cnt})">${cnt}</a>
 										</li>
 									</c:forEach>
 									<li class="page-item pager"><a class="page-link"
-										href="javascript:goPage(${qualitySch.endBlock!=qualitySch.pageCount?qualitySch.endBlock+1:qualitySch.endBlock})">›</a></li>
+										href="javascript:goPage(${procurementSch.endBlock!=procurementSch.pageCount?procurementSch.endBlock+1:procurementSch.endBlock})">›</a></li>
 								</ul>
 
 							</div>
