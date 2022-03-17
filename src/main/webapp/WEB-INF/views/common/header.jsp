@@ -161,6 +161,8 @@
 										관리</a></li>
 								<li class="submenu-item "><a
 									href="/project5/qualityList.do">품질 관리</a></li>
+									<li class="submenu-item "><a
+									href="/project5/qualityList.do">조달 관리</a></li>
 								<li class="submenu-item "><a href="/project5/team.do">인적
 										관리</a></li>
 								<li class="submenu-item "><a href="/project5/risk.do">리스크</a>
