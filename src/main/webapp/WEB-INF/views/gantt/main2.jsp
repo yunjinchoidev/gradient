@@ -14,18 +14,55 @@ html, body {
 	margin: 0px;
 }
 </style>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script>
 	$(document).ready(function() {
 		$(".gantt_add").click(function() {
-			alert("ddd");
+			alert("추가 창을 엽니다.r");
+			
 		})
 	})
 </script>
 </head>
 <body>
+	<h2 id="addBtn">추가</h2>
+	<h2 id="delBtn">삭제</h2>
 	<div id="gantt_here" style='width: 100%; height: 1000px;'></div>
 
 
+	<script>
+	$(document).click(function(){
+		
+		$("#addBtn").click(function(){
+			confirm("정말 추가하시겠습니까?")
+			var taskId2 = gantt.addTask({
+			id : 15,
+			text : "Task #77ggggggggggggggggggggggggggggg",
+			start_date : "02-09-2013",
+			duration : 28
+		}, "project_2", 1);
+		})
+		
+		$("#delBtn").click(function(){
+			confirm("정말 삭제하시겠습니까?")
+			// 삭제 D
+			gantt.deleteTask(3);
+		
+		});
+		
+		
+		
+		
+	})
+	
+	
+	
+	
+	
+	</script>
+
+	
 
 
 
@@ -90,8 +127,7 @@ html, body {
 			} ]
 		});
 
-		// 삭제 D
-		gantt.deleteTask(3);
+	
 
 		// 추가 // 모달창 띄우기 C
 		/*
@@ -102,6 +138,12 @@ html, body {
 			duration : 28
 		}, "project_2", 2);
 		 */
+		
+		 $(".gantt_save_btn_set").click(function(){
+				 console.log("정말 추가하시겠습니까?")
+				gantt.message("The task is updated");
+			 })
+
 		var taskId2 = gantt.addTask({
 			id : 10,
 			text : "Task #77",
@@ -120,7 +162,7 @@ html, body {
 		//조회 R
 		console.log("조회" + gantt.getTask(7));
 
-		// 싹다 불러오기 R
+		// 싹다 불러오기 R///////////////////////////////////////////////////////////////////
 		console.log("리스트 뽑아오기")
 		gantt.eachTask(function(task) {
 			console.log(task.text);

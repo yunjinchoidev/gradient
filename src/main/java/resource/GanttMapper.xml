@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="project5.gantt.GanttDao">
+
+	<select id="list" resultType="project5.gantt.GanttVO">
+		select *
+		from gantt
+	</select>
+
+
+
+
+	<select id="individualMemberGanttList"
+		resultType="project5.gantt.GanttVO" parameterType="int">
+		select * from
+		gantt
+		where memberkey = #{memberkey}
+	</select>
+
+	<select id="individualProjectGanttList"
+		resultType="project5.gantt.GanttVO" parameterType="int">
+		select * from
+		gantt
+		where projectkey = #{projectkey}
+	</select>
+
+
+	<insert id="insert" parameterType="project5.gantt.GanttVO">
+		insert into gantt
+		values
+		(seq_gantt.nextval, #{text}, #{start_date}, #{duration}, 1, 1)
+	</insert>
+
+	<delete id="delete" parameterType="int">
+		delete from
+		gantt
+		where id=#{id}
+	</delete>
+
+
+	<update id="update" parameterType="project5.gantt.GanttVO">
+		update gantt
+		set
+		text=#{text},
+		start_date =#{start_date},
+		duration = #{duration}
+		where id=#{id}
+	</update>
+
+	<update id="update2" parameterType="project5.gantt.GanttVO">
+		update gantt
+		set
+		text=#{text}
+		where id=#{id}
+	</update>
+
+
+
+</mapper>
+

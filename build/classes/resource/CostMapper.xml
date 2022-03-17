@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="project5.cost.CostDao">
+	<!-- 게시글 목록 -->
+ 	<select id="getCostList" resultType="costList">
+ 		SELECT co.COSTKEY costkey, p.NAME prjname, TO_CHAR(p.STARTDATE,'YYYY-MM-DD')STARTDATE  ,TO_CHAR(p.LASTDATE, 'YYYY-MM-DD') LASTDATE ,
+		cl.NAME company , p.MANAGER pm, co.COSTASSIGN costassign
+		FROM PROJECT p , CLIENT cl , COST co
+		WHERE co.PROJECTKEY = p.PROJECTKEY 
+		AND co.CLIENTKEY = cl.CLIENTKEY
+ 	</select>
+ 	<!-- 프로젝트 목록 -->
+ 	<select id="getPrjList" resultType="costList">
+ 		SELECT PROJECTKEY prjkey,NAME prjname  
+		FROM PROJECT
+ 	</select>
+ 	<!-- 예산 구분 목록 -->
+ 	<select id="getCostSort" resultType="costList">
+ 		SELECT COSTSORTKEY cskey, CONTENT cscontent
+		FROM COSTSORT
+ 	</select>
+ 	<!-- 프로젝트 에산 금액 -->
+	<select id="getPrjCost" resultType="int" parameterType="int">
+		SELECT TAKE 
+		FROM PROJECT
+		WHERE PROJECTKEY = #{prjkey}
+	</select>
+</mapper>

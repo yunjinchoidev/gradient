@@ -1,0 +1,6 @@
+{
+    "[data-task-id='13'] .b-gantt-task": {
+        "title": "Custom task bar content",
+        "content": "Using the <code>taskRenderer</code> you can output any HTML you want inside the task bar element"
+    }
+}

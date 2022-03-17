@@ -1,0 +1,12 @@
+/**
+ * App global styles
+ */
+ @import "@bryntum/gantt/gantt.stockholm.css";
+ @import "@bryntum/demo-resources/scss/example.scss";
+
+ app-root {
+     flex           : 1;
+     display        : flex;
+     flex-direction : column;
+     height         : 100vh;
+ }

@@ -1,0 +1,46 @@
+.b-gantt-task-tooltip {
+    table {
+        width : 100%;
+    }
+
+    td {
+        padding : 3px 10px;
+
+        &:first-child {
+            width : 150px;
+        }
+
+        &:last-child {
+            background-color : #f3f3f3;
+
+            .b-theme-classic & {
+                color : #262626;
+            }
+
+            .b-theme-classic-dark & {
+                color : #2b2b2f;
+            }
+
+            .b-theme-material & {
+                color : #757575;
+            }
+        }
+    }
+}
+
+.b-resource-avatar-tooltip {
+    div {
+        text-align : start;
+    }
+
+    .overflow {
+        text-align : center;
+        margin-top : .5em;
+    }
+
+    span {
+        width     : 4em;
+        font-size : .9em;
+        display   : inline-block;
+    }
+}

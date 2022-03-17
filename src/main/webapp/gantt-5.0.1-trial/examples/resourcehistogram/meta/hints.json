@@ -1,0 +1,10 @@
+{
+    ".b-resourcehistogram .b-timeline-subgrid": {
+        "maxWidth": "20em",
+        "align" : {
+            "align": "b-t"
+        },
+        "title": "Resource\u00a0allocation\u00a0histogram",
+        "content": "A partner Timeline widget which shows resource allocations for the Gantt's project."
+    }
+}

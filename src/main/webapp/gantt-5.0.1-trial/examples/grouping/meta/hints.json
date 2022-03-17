@@ -1,0 +1,14 @@
+{
+    ".b-generated-parent.b-gantt-task": {
+        "title": "Generated parent",
+        "content": "This parent was generated based on tasks priority value"
+    },
+    "[data-task-id=generated_Low_priority_] .b-generated-parent.b-gantt-task": {
+        "title": "Read only",
+        "content": "All generated parents are read-only"
+    },
+    "[data-task-id=\"331\"]" : {
+        "title": "Manually scheduled",
+        "content": "All tasks are flagged as being manually scheduled when grouping, to maintain correct dates"
+    }
+}

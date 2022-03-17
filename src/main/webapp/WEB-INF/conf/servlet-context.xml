@@ -43,18 +43,25 @@
 
 	<!-- 웹 소켓 통신을 위한 handler 선언 component로 선언한 이름과 url 패턴을 mapping server handler와 
 		clinet에서 js로 호출할 url 형식을 선언.. -->
-	<bean
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
-	<bean
-		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
-	<mvc:default-servlet-handler />
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
+	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+	<mvc:default-servlet-handler/>
 	<websocket:handlers>
-		<websocket:mapping handler="chatHandler"
-			path="/chat-ws.do" />
+		<websocket:mapping handler="chatHandler" path="/chat-ws.do"/>
 	</websocket:handlers>
 
 
-
+	
+	
+	<!-- 다국어 처리 -->
+	<bean id="messageSource" class="org.springframework.context.support.ResourceBundleMessageSource">
+		<property name="basenames">
+			<list>
+				<value>message.msg</value>
+			</list>
+		</property>
+	</bean>
+	
 
 
 

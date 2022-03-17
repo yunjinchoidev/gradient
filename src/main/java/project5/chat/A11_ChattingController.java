@@ -9,9 +9,10 @@ public class A11_ChattingController {
 	@GetMapping("/chatting.do")
 	public String chatting() {
 		return "/chat/a11_chatting";
-		
-		
-		
-		
 	}
+	
+	
+	
+	
+	
 }

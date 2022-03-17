@@ -1,0 +1,5 @@
+target/**
+!target/bryntum*.jar
+.settings/**
+.project
+.classpath

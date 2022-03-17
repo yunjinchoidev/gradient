@@ -1,0 +1,33 @@
+<bryntum-demo-header
+    link = "../../../../../#example-frameworks-angular-inline-data"
+></bryntum-demo-header>
+
+<div class = "demo-toolbar align-right">
+    <bryntum-button
+        text = 'Change data'
+        cls = 'b-raised b-blue'
+        (onAction) = "onChangeData()"
+    ></bryntum-button>
+</div>
+
+<bryntum-gantt
+    #gantt
+    [columnLines]       = "ganttConfig.columnLines"
+    [columns]           = "ganttConfig.columns"
+    [subGridConfigs]    = "ganttConfig.subGridConfigs"
+    [viewPreset]        = "ganttConfig.viewPreset"
+    [timeRangesFeature] = "ganttConfig.timeRangesFeature"
+></bryntum-gantt>
+<bryntum-project-model
+    #project
+    [calendar]     = "projectConfig.calendar!"
+    [startDate]    = "projectConfig.startDate!"
+    [hoursPerDay]  = "projectConfig.hoursPerDay!"
+    [daysPerMonth] = "projectConfig.daysPerMonth!"
+    [tasks]        = "tasks"
+    [timeRanges]   = "timeRanges"
+    [assignments]  = "assignments"
+    [resources]    = "resources"
+    [dependencies] = "dependencies"
+    [calendars]    = "calendars"
+></bryntum-project-model>
