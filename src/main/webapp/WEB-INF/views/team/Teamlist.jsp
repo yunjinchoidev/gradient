@@ -62,16 +62,9 @@
 			</div>
 			<section class="section">
 				<div class="card">
-				<ul class="nav nav-tabs" id="myTab" role="tablist">
-									<li class="nav-item" role="presentation"><a
-										class="nav-link active" id="normal-tab" data-bs-toggle="tab"
-										href="#normal" role="tab" aria-controls="normal"
-										aria-selected="true">정상</a></li>
-									<li class="nav-item" role="presentation"><a
-										class="nav-link" id="stop-tab" data-bs-toggle="tab"
-										href="#stop" role="tab" aria-controls="stop"
-										aria-selected="false">중지</a></li>
-								</ul>
+				<div style="margin-top: 30px; margin-left: 15px; align-content:right;float:left;">
+				<button class="btn btn-primary" id="backbtn">팀원추가</button>
+				</div>
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -80,7 +73,7 @@
 								<div class="dataTable-search">
 									<input class="dataTable-input" placeholder="Search..."
 										type="text"> <a href="/project5/scheduleInsertForm.do"
-										class="btn btn-danger" style="text-align: right">글쓰기</a>
+										class="btn btn-primary" style="text-align: right">검색</a>
 								</div>
 
 							</div>
