@@ -130,194 +130,104 @@ $(document).ready(function(){
 			
 			
 			<!-- Basic card section start -->
-			<section id="content-types">
-				<div class="row">
-					<div class="col-xl-4 col-md-6 col-sm-12">
-					
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<h4 class="card-title">프로젝트 1</h4>
-									<p class="card-text">프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1프로젝트1</p>
-								</div>
-								<img class="img-fluid w-100"
-									src="/project5/resources/image/project.png"
-									alt="Card image cap">
-							</div>
-							<div class="card-footer d-flex justify-content-between">
-								<span>Card Footer</span>
-								<button class="btn btn-light-primary">Read More</button>
-							</div>
-						</div>
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<h4 class="card-title">진행사항</h4>
-									<p class="card-text">###</p>
-								</div>
-								<img class="img-fluid w-100"
-									src="/project5/resources/image/progress.png"
-									alt="Card image cap">
-							</div>
-							<div class="card-footer d-flex justify-content-between">
-								<span>Card Footer</span>
-								<button class="btn btn-light-primary">Read More</button>
-							</div>
-						</div>
+			<section id="content-types" style="display: flex">
+				
 						
-						
-						
-						
-						
-						<div class="card collapse-icon accordion-icon-rotate">
-							<div class="card-header">
-								<h1 class="card-title pl-1">Accordion</h1>
-							</div>
-							<div class="card-content">
-								<div class="card-body">
-									<div class="accordion" id="cardAccordion">
-										<div class="card">
-											<div class="card-header" id="headingOne"
-												data-bs-toggle="collapse" data-bs-target="#collapseOne"
-												aria-expanded="false" aria-controls="collapseOne"
-												role="button">
-												<span class="collapsed collapse-title">Accordion Item
-													1</span>
-											</div>
-											<div id="collapseOne" class="collapse pt-1"
-												aria-labelledby="headingOne" data-parent="#cardAccordion">
-												<div class="card-body">Cheesecake muffin cupcake
-													dragée lemon drops tiramisu cake gummies chocolate cake.
-													Marshmallow tart croissant. Tart dessert tiramisu marzipan
-													lollipop lemon drops.</div>
-											</div>
-										</div>
-										<div class="card collapse-header">
-											<div class="card-header" id="headingTwo"
-												data-bs-toggle="collapse" data-bs-target="#collapseTwo"
-												aria-expanded="false" aria-controls="collapseTwo"
-												role="button">
-												<span class="collapsed collapse-title">Accordion Item
-													2</span>
-											</div>
-											<div id="collapseTwo" class="collapse pt-1"
-												aria-labelledby="headingTwo" data-parent="#cardAccordion">
-												<div class="card-body">Pastry pudding cookie toffee
-													bonbon jujubes jujubes powder topping. Jelly beans gummi
-													bears sweet roll bonbon muffin liquorice. Wafer lollipop
-													sesame snaps.</div>
-											</div>
-										</div>
-										<div class="card open">
-											<div class="card-header" id="headingThree"
-												data-bs-toggle="collapse" data-bs-target="#collapseThree"
-												aria-expanded="true" aria-controls="collapseThree"
-												role="button">
-												<span class="collapsed collapse-title">Accordion Item
-													3</span>
-											</div>
-											<div id="collapseThree" class="collapse show pt-1"
-												aria-labelledby="headingThree" data-parent="#cardAccordion">
-												<div class="card-body">Sweet pie candy jelly. Sesame
-													snaps biscuit sugar plum. Sweet roll topping fruitcake.
-													Caramels liquorice biscuit ice cream fruitcake cotton candy
-													tart.</div>
-											</div>
-										</div>
-										<div class="card">
-											<div class="card-header" id="headingFour"
-												data-bs-toggle="collapse" data-bs-target="#collapseFour"
-												aria-expanded="false" aria-controls="collapseFour"
-												role="button">
-												<span class="collapsed  collapse-title">Accordion
-													Item 4</span>
-											</div>
-											<div id="collapseFour" class="collapse pt-1"
-												aria-labelledby="headingFour" data-parent="#cardAccordion">
-												<div class="card-body">Sweet pie candy jelly. Sesame
-													snaps biscuit sugar plum. Sweet roll topping fruitcake.
-													Caramels liquorice biscuit ice cream fruitcake cotton candy
-													tart.</div>
-											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					
-					
-					
-					<div class="col-xl-4 col-md-6 col-sm-12">
-						<div class="card">
-							<div class="card-content">
-								<img
-									src="/project5/resources/image/project.png"
-									class="card-img-top img-fluid" alt="singleminded">
-								<div class="card-body">
-									<h5 class="card-title">Be Single Minded</h5>
-									<p class="card-text">Chocolate sesame snaps apple pie
-										danish cupcake sweet roll jujubes tiramisu.Gummies bonbon
-										apple pie fruitcake icing biscuit apple pie jelly-o sweet
-										roll.</p>
-								</div>
-							</div>
-							<ul class="list-group list-group-flush">
-								<li class="list-group-item">Cras justo odio</li>
-								<li class="list-group-item">Dapibus ac facilisis in</li>
-								<li class="list-group-item">Vestibulum at eros</li>
-							</ul>
-						</div>
-						
-						
-						
-						<div class="card">
+						<div class="card" style="">
 							<div class="card-content">
 								<img
 									src="/project5/resources/image/progress.png"
 									class="card-img-top img-fluid" alt="singleminded">
 								<div class="card-body">
-									<h5 class="card-title">Be Single Minded</h5>
-									<p class="card-text">Chocolate sesame snaps apple pie
-										danish cupcake sweet roll jujubes tiramisu.Gummies bonbon
-										apple pie fruitcake icing biscuit apple pie jelly-o sweet
-										roll.</p>
+									<h5 class="card-title">프로젝트</h5>
+									<p class="card-text">프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+										</p>
 								</div>
 							</div>
 							<ul class="list-group list-group-flush">
-								<li class="list-group-item">Cras justo odio</li>
-								<li class="list-group-item">Dapibus ac facilisis in</li>
-								<li class="list-group-item">Vestibulum at eros</li>
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+							</ul>
+						</div>	<div class="card">
+							<div class="card-content">
+								<img
+									src="/project5/resources/image/progress.png"
+									class="card-img-top img-fluid" alt="singleminded">
+								<div class="card-body">
+									<h5 class="card-title">프로젝트</h5>
+									<p class="card-text">프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+										</p>
+								</div>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+							</ul>
+						</div>	<div class="card">
+							<div class="card-content">
+								<img
+									src="/project5/resources/image/progress.png"
+									class="card-img-top img-fluid" alt="singleminded">
+								<div class="card-body">
+									<h5 class="card-title">프로젝트</h5>
+									<p class="card-text">프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+										</p>
+								</div>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+							</ul>
+						</div>	<div class="card">
+							<div class="card-content">
+								<img
+									src="/project5/resources/image/progress.png"
+									class="card-img-top img-fluid" alt="singleminded">
+								<div class="card-body">
+									<h5 class="card-title">프로젝트</h5>
+									<p class="card-text">프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+										</p>
+								</div>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+							</ul>
+						</div>	<div class="card">
+							<div class="card-content">
+								<img
+									src="/project5/resources/image/progress.png"
+									class="card-img-top img-fluid" alt="singleminded">
+								<div class="card-body">
+									<h5 class="card-title">프로젝트</h5>
+									<p class="card-text">프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+									프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트 프로젝트
+										</p>
+								</div>
+							</div>
+							<ul class="list-group list-group-flush">
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
 							</ul>
 						</div>
 						
 						
-						
-						
-						
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<h4 class="card-title mb-0">Video Card</h4>
-								</div>
-								<div
-									class="embed-responsive embed-responsive-item embed-responsive-16by9 w-100">
-									<iframe src="https://www.youtube.com/embed/2b9txcAt4e0"
-										style="width: 100%" height="300" allowfullscreen=""></iframe>
-								</div>
-								<div class="card-body">
-									<p class="card-text">Candy cupcake sugar plum oat cake
-										wafer marzipan jujubes. Jelly-o sesame snaps cheesecake
-										topping. Cupcake fruitcake macaroon donut pastry gummies
-										tiramisu chocolate bar muffin.</p>
-									<a href="#" class="card-link">Card link</a> <a href="#"
-										class="card-link">Another link</a>
-								</div>
-							</div>
-						</div>
-					</div>
 					
+					</section>
 					
 					
 					

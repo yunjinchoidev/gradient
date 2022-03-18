@@ -71,6 +71,7 @@
 	function conn(){
 		//  원격 접속시에는 고정 ip 할당 받아서 처리..
 		// wsocket = new WebSocket("ws:/106.10.23.227:7080/${path}/chat-ws.do");
+		// local에서 다른 브라우저로 실행시 처리할 내용..
 		wsocket = new WebSocket("ws:/localhost:7080/${path}/chat-ws.do");
 		// handler :afterConnectionEstablished(WebSocketSession session)와 연결
 		wsocket.onopen=function(evt){ 
@@ -87,8 +88,14 @@
 			// msg 내용 삭제 후, 처리
 			if(msg.substring(0,4)=="msg:"){
 				// 메시지 내용만 전달
+				// 메시지 내용 scrolling 처리..
 				var revMsg = msg.substring(4)
 				$("#chatMessageArea").append(revMsg+"<br>");
+				// 1. 전체 chatMessageArea의 입력된 최대 높이 구하기..
+				var mx = parseInt($("#chatMessageArea").height())
+				// 2. 포함하고 있는 div의 scrollTop을 통해 최하단의 내용으로 scrolling 하기..
+				//    chatArea
+				$("#chatArea").scrollTop(mx);
 			}
 		}
 		// handler의 afterConnectionClose와 연동
@@ -101,6 +108,8 @@
 		}
 		
 	}
+	
+	
 	
 </script>
 </head>

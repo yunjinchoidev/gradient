@@ -10,13 +10,16 @@ import org.springframework.web.socket.TextMessage;
 import org.springframework.web.socket.WebSocketSession;
 import org.springframework.web.socket.handler.TextWebSocketHandler;
 
+
+// 컨테이너에서 handler이름 chatHandler와  front단에서 ${path}/chat-ws.do
+// 연동할 수 있게 선언된다.
 @Component("chatHandler")
 public class A02_ChattingHandler extends TextWebSocketHandler{
 	// 접속한 계정을 저장하는 필드 선언.
 	private Map<String, WebSocketSession> users = new ConcurrentHashMap();
 
-	
-	// 1. 소켓 서버에 접속시 처리 메서드
+	// var wsocket = new WebSocket() js로 선언 후
+	// 1. 소켓 서버에 접속시 처리 메서드(onopen())
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		users.put(session.getId(), session);
@@ -24,6 +27,7 @@ public class A02_ChattingHandler extends TextWebSocketHandler{
 		
 	}
 	// 2. 소켓 서버에 메시지 전송시 처리 메서드
+	///   하나의 클라이언트가 메서지를 넘겨줄 때 : wsocket.send("msg:"+$("#id").val()+":메시지 전달");
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
 		// 1) 특정한 client를 통해 전달해온 메시지를 출력
@@ -32,6 +36,8 @@ public class A02_ChattingHandler extends TextWebSocketHandler{
 		for(WebSocketSession ws:users.values()) {
 			// 1. 각 접속한 클라이언트에게 메시지 전달
 			ws.sendMessage(message);
+			//     클라이언트에서 push방식으로 메시지를 받는 부분.
+			// 	wsocket.onmessage=function(evt){
 			// 2. 각 전달할 사용자 및 메시지 확인
 			log(ws.getId()+"에게 전달 메시지:"+message.getPayload());
 		}
