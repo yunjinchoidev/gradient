@@ -1,11 +1,27 @@
 -- 간트
-CREATE TABLE gantte(
-	ganttekey	NUMBER PRIMARY KEY,
-	contents	varchar2(4000),
-	finaldate	DATE,
+DROP TABLE gantt;
+CREATE TABLE gantt(
+	id	NUMBER PRIMARY KEY,
+	text	varchar2(4000),
+	start_date	DATE,
+	duration NUMBER,
 	projectkey NUMBER CONSTRAINT gantte_projectkey_fk REFERENCES project(projectkey) ON DELETE CASCADE,
 	memberkey NUMBER CONSTRAINT gantte_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE
 );
+DELETE FROM gantt;
+CREATE SEQUENCE seq_gantt;
+INSERT INTO gantt VALUES (seq_gantt.nextval, '간트', sysdate, 4, 1, 1);
+SELECT * FROM gantt;
+SELECT id, text, to_char(start_date, 'DD-MM-YYYY') start_date, duration, projectkey, memberkey
+FROM gantt;
+SELECT * FROM gantt WHERE TO_CHAR(SYSDATE, 'YYYY/MM/dd') <= TO_CHAR(start_date+duration, 'YYYY/MM/dd')
+AND TO_CHAR(SYSDATE, 'YYYY/MM/dd') >= TO_CHAR(start_date, 'YYYY/MM/dd');
+SELECT  FROM gantt; 
+
+
+
+
+
 
 
 
@@ -35,6 +51,12 @@ CREATE TABLE request(
 	projectkey NUMBER CONSTRAINT request_projectkey_fk REFERENCES project(projectkey) ON DELETE CASCADE	
 );
 
+
+
+
+
+
+
 -- 칸반 // 작업 단위
 DROP TABLE kanban CASCADE CONSTRAINTS;
 CREATE TABLE kanban(
@@ -51,19 +73,19 @@ CREATE TABLE kanban(
 	deptno NUMBER CONSTRAINT kanban_deptno_fk REFERENCES department (deptno) ON DELETE CASCADE
 );
 SELECT * FROM kanban;
-INSERT INTO kanban VALUES(seq_kanban.nextval,'new','작업 대기', '난이도상 어려움','내용입니다ㅋㅋ','red', sysdate,sysdate,1,1,1);
-INSERT INTO kanban VALUES(seq_kanban.nextval,'done','작업 중입니다.','tag1 tag2','내용입니다','red', sysdate,sysdate,1,1,1);
-INSERT INTO kanban VALUES(seq_kanban.nextval,'work','작업중입니다.','tag1 tag2','내용입니다','red', sysdate,sysdate,1,1,1);
+INSERT INTO kanban VALUES(seq_kanban.nextval,'new','작업 대기', '난이도상 어려움','내용입니다ㅋㅋ','red', sysdate,sysdate,1,2,1);
+INSERT INTO kanban VALUES(seq_kanban.nextval,'done','작업 중입니다.','tag1 tag2','내용입니다','red', sysdate,sysdate,1,2,1);
+INSERT INTO kanban VALUES(seq_kanban.nextval,'work','작업중입니다.','tag1 tag2','내용입니다','red', sysdate,sysdate,1,2,1);
 DELETE FROM kanban;
 UPDATE kanban SET label='gg', tags='gg' WHERE id=53;
 CREATE SEQUENCE seq_kanban;
 COMMIT;
+select * FROM kanban where status='work';
+SELECT * FROM kanban WHERE projectkey=1;
 
-	SELECT * FROM member;
+
+
 	
-	
-SELECT cal_seq.nextval FROM dual;
-SELECT * FROM calendar;
 --캘린더
 SELECT * FROM calendars;
 DROP TABLE calendar;
@@ -81,7 +103,7 @@ CREATE TABLE calendar(
 
 
 
-
+----------------------------- 프로젝트 캘린더
 CREATE TABLE calendars(
 	id NUMBER PRIMARY KEY,
 	title varchar2(100),
@@ -99,6 +121,8 @@ CREATE SEQUENCE CAL_SEQ START WITH 1 MINVALUE 1;
 INSERT INTO calendars VALUES (cal_seq.nextval, '일정등록시작', '2022-03-27', '2022-03-27', '내용', 'navy', 'yellow', 1,1,1);
 DROP TABLE calendars CASCADE CONSTRAINTS;
 SELECT * FROM calendars;
+SELECT cal_seq.nextval FROM dual;
+SELECT * FROM calendar;
 
 
 
@@ -114,7 +138,7 @@ SELECT * FROM calendars;
 
 
 
-
+--------------------------- 품질
 DROP TABLE quality;
 CREATE TABLE quality(
 	qualitykey	NUMBER PRIMARY KEY,
@@ -126,6 +150,12 @@ CREATE TABLE quality(
 );
 CREATE sequence seq_quality;
 INSERT INTO QUALITY VALUES (1, 1, 1, 'ㅁㄹ', sysdate, '11231');
+
+
+
+
+
+
 
 
 -- 리스크 관리
@@ -142,6 +172,8 @@ CREATE TABLE risk(
 
 
 
+
+-- 예산
 CREATE TABLE burget(
 	budgetkey NUMBER PRIMARY KEY,
 	projectkey NUMBER CONSTRAINT burget_projectkey_fk REFERENCES project(projectkey) ON DELETE CASCADE,
@@ -155,6 +187,8 @@ CREATE TABLE burget(
 );
 
 
+
+-- 채팅
 CREATE TABLE chating(
 	chatKey	NUMBER PRIMARY KEY,
 	memberkey NUMBER CONSTRAINT chating_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE,
@@ -165,6 +199,9 @@ CREATE TABLE chating(
 
 
 
+
+
+-- 미팅
 CREATE TABLE meeting(
 	meetingkey NUMBER PRIMARY KEY,
 	topic	varchar2(400),
@@ -177,7 +214,7 @@ CREATE TABLE meeting(
 
 
 
-
+-- 조달
 CREATE TABLE procurement(
 	procurementKey	NUMBER PRIMARY KEY,
 	procurementPlan	varchar2(400),
@@ -214,37 +251,31 @@ CREATE TABLE project(
 	startdate DATE,
 	lastdate DATE,
 );
-
-SELECT * FROM project;
-
-
-
-
 COMMIT;
+SELECT * FROM project;
 select * 
 from project p, client c
 where p.clientkey=c.clientkey;
 SELECT * FROM client;
-INSERT INTO project VALUES (1, 'IT프로젝트', sysdate, 1000000, '홍길동', '초기', '상', '전국 마스크 판매 사이트 구축', 1,sysdate, sysdate);
+INSERT INTO project VALUES (1, 'IT프로젝트', sysdate, 30000000, '홍길동', '초기', '상', '전국 마스크 판매 사이트 구축', 1,sysdate, sysdate);
 INSERT INTO project VALUES (2, '코로나 백신 예약 사이트', sysdate, 1000000, '홍길동', '초기', '상', '코로나 백신 예약 사이트 구축', 1,sysdate, sysdate);
-INSERT INTO project VALUES (3, '청년 적금 신청 사이트', sysdate, 1000000, '홍길동', '초기', '상', '청년 적금 신청 사이트 구축', 1, sysdate, sysdate);
+INSERT INTO project VALUES (3, '청년 적금 신청 사이트', sysdate, 5000000, '홍길동', '초기', '상', '청년 적금 신청 사이트 구축', 1, sysdate, sysdate);
 DROP TABLE project;
 CREATE SEQUENCE seq_project START WITH 1;
-
-
-
 SELECT m.name, m.auth, p.name projectname, p.progress, d.dname  
 FROM member m, project p, department d
 WHERE m.projectkey = p.projectkey
 AND p.PROJECTKEY = d.PROJECTKEY;
-
-SELECT * FROM MEMBER;
+SELECT * FROM MEMBER ORDER BY memberkey;
 SELECT * FROM project;
 SELECT * FROM DEPARTMENT d ;
 
 
 
 
+
+
+------------------ 회원 테이블
 DROP TABLE MEMBER CASCADE CONSTRAINTS;
 CREATE TABLE member(
 	memberkey NUMBER PRIMARY KEY,
@@ -256,26 +287,24 @@ CREATE TABLE member(
 	deptno NUMBER CONSTRAINT member_deptno_fk REFERENCES department(deptno) ON DELETE CASCADE,
 	email varchar2(200) DEFAULT 'test@testaaaaaaaa.com' NOT NULL
 );
-ALTER TABLE member ADD email VARCHAR(200) DEFAULT 'test@testaaaaaaaa.com' NOT NULL;
 
 
-
-
-
-
-
+SELECT * FROM MEMBER ORDER BY memberkey;
 DROP TABLE MEMBER CASCADE CONSTRAINTS;
 SELECT * FROM MEMBER ORDER BY MEMBERKEY; 
 INSERT INTO MEMBER VALUES;
 DROP SEQUENCE seq_member;
 CREATE SEQUENCE seq_member;
+SELECT seq_member.nextval FROM dual;
 INSERT INTO MEMBER VALUES (1, 'himan', '7777','홍길동', '개발자', 1, 1, 'cyj7157@naver.com');
 INSERT INTO MEMBER VALUES (2, 'admin', '7777','김철수', 'PM', 1, 1, 'cyj7157@naver.com');
-INSERT INTO MEMBER VALUES (seq_member.nextval, 'randomid'||to_char(seq_memberid.nextval), 'randompass'||to_char(seq_memberpass.nextval), NULL, NULL, NULL, NULL, 'cyj7157@naver.com');
+INSERT INTO MEMBER VALUES 
+(seq_member.nextval, 'randomid'||to_char(seq_memberid.nextval), 'randompass'||to_char(seq_memberpass.nextval), NULL, NULL, NULL, NULL, 'cyj7157@naver.com');
 
 COMMIT;	
 CREATE SEQUENCE seq_memberid START WITH 30000;
 DROP SEQUENCE seq_member;
+CREATE SEQUENCE seq_member;
 drop SEQUENCE seq_memberid;
 CREATE SEQUENCE seq_memberpass START WITH 999;
 drop SEQUENCE seq_memberpass;
@@ -318,7 +347,6 @@ CREATE TABLE client(
 );
 CREATE SEQUENCE seq_client;
 INSERT INTO client VALUES (seq_client.nextval,'새회사', '01012345678','서울','김철수');
-
 ----------------------------------------------------------------
 SELECT * FROM notice_Attach;
 SELECT n.noticekey, title,
@@ -354,6 +382,9 @@ COMMIT;
 
 
 
+
+
+
 --------------------------------------------------------
 create table notice_reply (
   rno number(10,0) PRIMARY KEY, 
@@ -366,15 +397,8 @@ create table notice_reply (
 create sequence seq_reply_notice;
 COMMIT;
 SELECT * FROM notice_reply;
-	insert into notice_reply (rno, noticekey, reply,
-		replyer)
-		values (seq_reply_notice.nextval, 3, 'a',
-		'cyj');
-select * from notice_reply where
-		rno =
-		2;
-
-
+insert into notice_reply (rno, noticekey, reply,replyer) values (seq_reply_notice.nextval, 3, 'a','cyj');
+select * from notice_reply WHERE rno =2;
 SELECT noticekey, title, content, VIEWs, writedate, m.NAME name
 FROM notice n, MEMBER m
 WHERE n.MEMBERKEY = m.MEMBERKEY;
@@ -385,7 +409,7 @@ WHERE n.MEMBERKEY = m.MEMBERKEY;
 
 
 
-
+-- 나의 작업
 CREATE TABLE mywork(
 	myworkkey	NUMBER PRIMARY KEY,
 	memberkey NUMBER CONSTRAINT mywork_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE,
@@ -397,6 +421,7 @@ CREATE TABLE mywork(
 
 
 
+-- 산출물
 CREATE TABLE output(
 	outputkey	NUMBER PRIMARY KEY,
 	title varchar2(400),
@@ -406,7 +431,7 @@ CREATE TABLE output(
 )
 
 
-
+-- 외래키 없이 파일 정보 저장
 create TABLE fileInfo(
 	fno NUMBER PRIMARY KEY,
 	pathInfo	varchar2(400),
@@ -432,6 +457,9 @@ create TABLE fileInfo(
 COMMIT;
 
 
+
+
+-- 공지 파일
 CREATE TABLE notice_Attach(
 	uuid varchar2(100) NOT NULL PRIMARY KEY,
 	uploadPath varchar2(200) NOT NULL,

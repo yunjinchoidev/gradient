@@ -47,7 +47,7 @@ public class MyworkController {
 		return "/mywork/gantt";
 	}
 	
-	@RequestMapping("/kanbanListWork.do")
+	 	@RequestMapping("/kanbanListWork.do")
 	public String kanbanListWork(Model d) {
 		d.addAttribute("list", service2.listWork());	
 		return "mywork/kanban";

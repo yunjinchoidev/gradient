@@ -67,7 +67,7 @@
                                             <use
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
                                         </svg>
-								</div> 일전 전체 조회
+								</div> 일정 전체 조회
 							</a> 
 							
 							
