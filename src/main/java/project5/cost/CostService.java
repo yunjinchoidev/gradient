@@ -34,4 +34,16 @@ public class CostService {
 	public void insCostList(CostList ins) {
 		dao.insCostList(ins);
 	}
+	// 프로젝트 정보
+	public CostDetailInfo prjDetailInfo(int prjkey) {
+		return dao.prjDetailInfo(prjkey);
+	}
+	// 프로젝트 지출 리스트
+	List<CostDetailInfo> costDetailList(int prjkey){
+		return dao.costDetailList(prjkey);
+	}
+	// 프로젝트 지출 금액
+	public int amountPay(int prjkey) {
+		return dao.amountPay(prjkey);
+	}
 }

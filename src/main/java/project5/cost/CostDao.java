@@ -18,4 +18,10 @@ public interface CostDao {
 	public void insPrjCost(MultiRowCost ins);
 	// 프로젝트 리스트 등록
 	public void insCostList(CostList ins);
+	// 프로젝트 정보
+	public CostDetailInfo prjDetailInfo(int prjkey);
+	// 프로젝트 지출 리스트
+	public List<CostDetailInfo> costDetailList(int prjkey);
+	// 프로젝트 지출 금액
+	public int amountPay(int prjkey);
 }

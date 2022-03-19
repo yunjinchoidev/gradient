@@ -52,6 +52,14 @@ public class CostController {
 		return "forward:/writecost.do";
 	}
 	
+	@RequestMapping("/detailcost.do")
+	public String detailCost(int prjkey,Model d) {
+		d.addAttribute("prjInfo",service.prjDetailInfo(prjkey));
+		d.addAttribute("cdlist",service.costDetailList(prjkey));
+		d.addAttribute("amountpay",service.amountPay(prjkey));
+		return "cost/Detail";
+	}
+	
 
 	
 	

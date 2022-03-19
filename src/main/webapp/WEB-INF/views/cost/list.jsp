@@ -29,7 +29,12 @@ text-align: center;
 		$("#regbtn").click(function(){
 			location.href="${path}/writecost.do";
 		})
+		
 	});
+	
+	function goDetail(prjkey){
+		location.href="${path}/detailcost.do?prjkey="+prjkey;
+	}
 </script>
 
 </head>
@@ -100,7 +105,7 @@ text-align: center;
 
 									<tbody>
 										<c:forEach var="clist" items="${costlist}">
-											<tr>
+											<tr onclick="goDetail(${clist.prjkey})">
 												<td>${clist.costkey}</td>
 												<td>${clist.prjname}</td>
 												<td>${clist.startdate}</td>
