@@ -29,7 +29,7 @@ public class projectManageController {
 
 	@RequestMapping("/projectManageGet.do")
 	public String projectManageGet(Model d, ProjectManageVO vo) {
-		d.addAttribute("project", service.get(vo.getProjectkey()));
+		d.addAttribute("get", service.get(vo.getProjectkey()));
 		return "/projectManage/get";
 	}
 	

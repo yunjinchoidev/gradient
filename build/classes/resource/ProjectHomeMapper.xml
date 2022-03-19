@@ -11,6 +11,7 @@
 				FROM projectHome ph, worksort ws
 				WHERE ph.workSortKey = ws.workSortKey
 				AND projectkey=#{projectkey}
+				order by projectHomekey
 	</select>
 
 

@@ -252,7 +252,8 @@
 
 								
 
-								<td>${list.writeDate }</td>
+								<td><fmt:formatDate value="${list.writeDate }"/></td>
+								
 								<td>${list.cnt }</td>
 								<td>${list.name } A</td>
 								<td><span class="badge bg-success">Active</span></td>

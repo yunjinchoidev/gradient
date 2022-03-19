@@ -114,15 +114,15 @@ $(document).ready(function(){
 									<thead>
 										<tr>
 											<th data-sortable="" style="width: 12.0176%;"><a
-												href="#" class="dataTable-sorter">Name</a></th>
+												href="#" class="dataTable-sorter">번호</a></th>
 											<th data-sortable="" style="width: 42.9989%;"><a
-												href="#" class="dataTable-sorter">Email</a></th>
+												href="#" class="dataTable-sorter">제목</a></th>
 											<th data-sortable="" style="width: 18.0816%;"><a
-												href="#" class="dataTable-sorter">Phone</a></th>
+												href="#" class="dataTable-sorter">작성날짜</a></th>
 											<th data-sortable="" style="width: 16.3175%;"><a
-												href="#" class="dataTable-sorter">City</a></th>
+												href="#" class="dataTable-sorter">작업구분</a></th>
 											<th data-sortable="" style="width: 10.8049%;"><a
-												href="#" class="dataTable-sorter">Status</a></th>
+												href="#" class="dataTable-sorter">중요도</a></th>
 										</tr>
 									</thead>
 
@@ -135,8 +135,27 @@ $(document).ready(function(){
 												<td>${list.projectHomekey }</td>
 												<td>[${project.name }][${list.workSortTitle}]  ${list.title }</td>
 												<td><fmt:formatDate value="${list.writedate }"/></td>
-												<td>${list.importance }</td>
-												<td><span class="badge bg-success">Active</span></td>
+												<td>${list.workSortTitle}</td>
+												
+												<td>
+												<c:if test="${list.importance==1 }">
+														<span class="badge bg-success">최하</span>
+												</c:if>
+												<c:if test="${list.importance==2 }">
+														<span class="badge bg-info">하</span>
+												</c:if>
+												<c:if test="${list.importance==3 }">
+														<span class="badge bg-secondary">중</span>
+												</c:if>
+												<c:if test="${list.importance==4 }">
+														<span class="badge bg-warning">상</span>
+												</c:if>
+												<c:if test="${list.importance==5 }">
+														<span class="badge bg-danger">최상</span>
+												</c:if>
+												
+												
+												</td>
 											</tr>
 											</c:forEach>
 									</tbody>

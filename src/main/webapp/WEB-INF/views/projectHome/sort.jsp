@@ -89,11 +89,11 @@ var selectedval=4;
 			href="/project5/qualityList.do?projectkey=${project.projectkey }"
 			class="btn btn-light">품질 관리</a> <a
 			href="/project5/procurementList.do?projectkey=${project.projectkey }"
-			class="btn btn-dark">조달 관리</a> <a
+			class="btn btn-warning">조달 관리</a> <a
 			href="/project5/team.do?projectkey=${project.projectkey }"
 			class="btn btn-danger">인적 관리</a> <a
 			href="/project5/risk.do?projectkey=${project.projectkey }"
-			class="btn btn-danger">리스크 관리</a>
+			class="btn btn-dark">리스크 관리</a>
 	</div>
 
 
