@@ -38,10 +38,18 @@ public class MemberContoller {
 	}
 
 	@GetMapping("/memberEdit.do")
-	public String memberEdit() {
+	public String memberEdit(Model d, MemberVO vo) {
+		System.out.println("회원 정보 수정 창으로 이동");
+		d.addAttribute("get", service.get(vo.getMemberkey()));
 		return "member/edit";
 	}
 
+	
+	
+	
+	
+	
+	
 	@PostMapping("/login.do")
 	public String login(Model d, @ModelAttribute("member") MemberVO vo) {
 		vo = service.login(vo);

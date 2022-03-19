@@ -19,7 +19,9 @@
 		</header>
 
 		<div class="page-heading">
-			<h3>프로젝트 총괄[For PM]</h3>
+			<h3>프로젝트 관리 </h3>
+			<h5><span style="color: red">"${member.name }${member.auth }"</span>님 어서오십시오.</h5>
+			<h5>오직 PM만을 위해 제공하는 정보가 여기 있습니다. </h5>
 		</div>
 		
 		
@@ -27,6 +29,9 @@
 			<section class="row">
 				<div class="col-12 col-lg-9">
 					<div class="row">
+						
+						
+						
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -37,13 +42,14 @@
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프로젝트 1</h6>
-											<h6 class="font-extrabold mb-0">프로젝트 제목</h6>
+											<h6 class="text-muted font-semibold">이메일 보내기</h6>
+											<h6 class="font-extrabold mb-0">이메일 보내기</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -54,13 +60,14 @@
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프로젝트 2</h6>
-											<h6 class="font-extrabold mb-0">프로젝트 제목</h6>
+											<h6 class="text-muted font-semibold">직원 조회</h6>
+											<h6 class="font-extrabold mb-0">직원 조회</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -71,13 +78,14 @@
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프로젝트 3</h6>
-											<h6 class="font-extrabold mb-0">프로젝트 제목</h6>
+											<h6 class="text-muted font-semibold">고객처 조회</h6>
+											<h6 class="font-extrabold mb-0">고객처 조회</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -88,13 +96,14 @@
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프로젝트 4</h6>
-											<h6 class="font-extrabold mb-0">프로젝트 제목</h6>
+											<h6 class="text-muted font-semibold">알림 메시지</h6>
+											<h6 class="font-extrabold mb-0">알림 메시지</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 					</div>
 					<div class="row">
 						<div class="col-12">
@@ -109,63 +118,7 @@
   										
   										
   										
-							<div class="card">
-								<div class="card-header">
-									<h4>작업 스케쥴</h4>
-								</div>
-								<div class="card-body">
-								
-  								<div id="chart_div"></div>
-     							 <!-- 막대 차트 -->
-								<script>
-								google.charts.load('current', {packages: ['corechart', 'bar']});
-								google.charts.setOnLoadCallback(drawBasic);
-
-								function drawBasic() {
-
-								      var data = new google.visualization.DataTable();
-								      data.addColumn('timeofday', 'Time of Day');
-								      data.addColumn('number', 'Motivation Level');
-
-								      data.addRows([
-								        [{v: [8, 0, 0], f: '8 am'}, 1],
-								        [{v: [9, 0, 0], f: '9 am'}, 2],
-								        [{v: [10, 0, 0], f:'10 am'}, 3],
-								        [{v: [11, 0, 0], f: '11 am'}, 4],
-								        [{v: [12, 0, 0], f: '12 pm'}, 5],
-								        [{v: [13, 0, 0], f: '1 pm'}, 6],
-								        [{v: [14, 0, 0], f: '2 pm'}, 7],
-								        [{v: [15, 0, 0], f: '3 pm'}, 8],
-								        [{v: [16, 0, 0], f: '4 pm'}, 9],
-								        [{v: [17, 0, 0], f: '5 pm'}, 10],
-								      ]);
-
-								      var options = {
-								        title: '작업 스케쥴',
-								        hAxis: {
-								          title: 'Time of Day',
-								          format: 'h:mm a',
-								          viewWindow: {
-								            min: [7, 30, 0],
-								            max: [17, 30, 0]
-								          }
-								        },
-								        vAxis: {
-								          title: 'Rating (scale of 1-10)'
-								        }
-								      };
-
-								      var chart = new google.visualization.ColumnChart(
-								        document.getElementById('chart_div'));
-
-								      chart.draw(data, options);
-								    }
-								</script>
-      
-									
-								</div>
-							</div>
-
+							
 
 
 
@@ -194,7 +147,7 @@
 												<input class="dataTable-input" placeholder="Search..."
 													type="text"> <a
 													href="/project5/scheduleInsertForm.do"
-													class="btn btn-danger" style="text-align: right">글쓰기</a>
+													class="btn btn-danger" style="text-align: right">새 프로젝트 만들기</a>
 											</div>
 
 										</div>
@@ -253,6 +206,62 @@
 
 
 
+<div class="card">
+								<div class="card-header">
+									<h4>작업 스케쥴</h4>
+								</div>
+								<div class="card-body">
+								
+  								<div id="chart_div"></div>
+     							 <!-- 막대 차트 -->
+								<script>
+								google.charts.load('current', {packages: ['corechart', 'bar']});
+								google.charts.setOnLoadCallback(drawBasic);
+
+								function drawBasic() {
+
+								      var data = new google.visualization.DataTable();
+								      data.addColumn('timeofday', 'Time of Day');
+								      data.addColumn('number', 'Motivation Level');
+
+								      data.addRows([
+								        [{v: [8, 0, 0], f: '8 am'}, 1],
+								        [{v: [9, 0, 0], f: '9 am'}, 2],
+								        [{v: [10, 0, 0], f:'10 am'}, 3],
+								        [{v: [11, 0, 0], f: '11 am'}, 4],
+								        [{v: [12, 0, 0], f: '12 pm'}, 5],
+								        [{v: [13, 0, 0], f: '1 pm'}, 6],
+								        [{v: [14, 0, 0], f: '2 pm'}, 7],
+								        [{v: [15, 0, 0], f: '3 pm'}, 8],
+								        [{v: [16, 0, 0], f: '4 pm'}, 9],
+								        [{v: [17, 0, 0], f: '5 pm'}, 10],
+								      ]);
+
+								      var options = {
+								        title: '작업 스케쥴',
+								        hAxis: {
+								          title: 'Time of Day',
+								          format: 'h:mm a',
+								          viewWindow: {
+								            min: [7, 30, 0],
+								            max: [17, 30, 0]
+								          }
+								        },
+								        vAxis: {
+								          title: 'Rating (scale of 1-10)'
+								        }
+								      };
+
+								      var chart = new google.visualization.ColumnChart(
+								        document.getElementById('chart_div'));
+
+								      chart.draw(data, options);
+								    }
+								</script>
+      
+									
+								</div>
+							</div>
 
 
 
@@ -458,8 +467,8 @@
 										alt="Face 1">
 								</div>
 								<div class="ms-3 name">
-									<h5 class="font-bold">Project Manager</h5>
-									<h6 class="text-muted mb-0">@PM</h6>
+									<h5 class="font-bold">${member.name } 님</h5>
+									<h6 class="text-muted mb-0">직책 : ${member.auth } <br>${member.email} </h6>
 								</div>
 							</div>
 						</div>

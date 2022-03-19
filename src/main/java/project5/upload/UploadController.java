@@ -14,6 +14,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.ibatis.annotations.Param;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +29,19 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestHeader;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.coobird.thumbnailator.Thumbnailator;
+import project5.fileInfo.FileInfoService;
+import project5.fileInfo.FileInfoVO;
+import project5.member.MemberVO;
 import project5.notice.NoticeVO;
 import project5.noticeAttach.NoticeAttachService;
 import project5.noticeAttach.NoticeAttachVO;
@@ -47,6 +54,9 @@ public class UploadController {
 
 	@Autowired
 	NoticeAttachService service;
+	
+	@Autowired
+	FileInfoService service2;
 	
 	
 	
@@ -124,10 +134,6 @@ public class UploadController {
 					 thumbnail.close();*/
 					 
 				}
-				
-				
-				
-				
 				// add to List
 				list.add(attachDTO);
 			} catch (Exception e) {
@@ -144,13 +150,37 @@ public class UploadController {
 	
 
 	
-	@PostMapping("/aaaa.do")
+	@PostMapping("/noticeAttachFileInfo.do")
 	@ResponseBody
-	public List<NoticeAttachVO> fileInfomationList(NoticeVO vo) {
+	public List<NoticeAttachVO> fileInfomationList(@ModelAttribute NoticeVO vo) {
+		System.out.println("noticekey:"+vo.getNoticekey());
 		List<NoticeAttachVO> list = service.findByBno(vo.getNoticekey());
 		System.out.println(list);
 		return service.findByBno(vo.getNoticekey());
 	}
+
+	@PostMapping("/aaaa.do")
+	@ResponseBody
+	public List<FileInfoVO> aaaa(MemberVO vo) {
+		System.out.println("memberkey:"+vo.getMemberkey());
+		 List<FileInfoVO> list = service2.findbyfno(vo.getMemberkey());
+		System.out.println(list);
+		return service2.findbyfno(2);
+	}
+
+	
+	
+	
+	@RequestMapping("/memberFaceFileInfo.do")
+	public String memberFaceFileInfo(@Param("memberkey") int memberkey, Model d) {
+		System.out.println("memberkey" + memberkey);
+		//FileInfoVO list = service2.findbyfno(vo.getMemberkey());
+		//System.out.println("list" +list);
+		d.addAttribute("result", service2.findbyfno(memberkey));
+		return "pageJsonReport";
+	}
+	
+	
 	
 	
 	
@@ -165,6 +195,24 @@ public class UploadController {
 	public ResponseEntity<byte[]> getFile(String fileName) {
 		log.info("fileName: " + fileName);
 		File file = new File("c:\\upload\\" + fileName);
+		log.info("file: " + file);
+		ResponseEntity<byte[]> result = null;
+		try {
+			HttpHeaders header = new HttpHeaders();
+			header.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	@GetMapping("/display2.do")
+	@ResponseBody
+	public ResponseEntity<byte[]> getFile2(String fileName) {
+		log.info("fileName: " + fileName);
+		File file = new File("c:\\a01_javaexp\\z01_upload\\" + fileName);
 		log.info("file: " + file);
 		ResponseEntity<byte[]> result = null;
 		try {

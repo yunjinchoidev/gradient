@@ -55,7 +55,7 @@
 			var noticekey =1;
 			  
 		    $.ajax({
-		      url: '/project5/aaaa.do',
+		      url: '/project5/noticeAttachFileInfo.do',
 		      processData: false, 
 		      contentType: false,
 		      data: noticekey,

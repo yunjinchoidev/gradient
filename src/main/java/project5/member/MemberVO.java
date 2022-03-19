@@ -1,6 +1,9 @@
 package project5.member;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public class MemberVO {
 	private int memberkey;
@@ -12,6 +15,18 @@ public class MemberVO {
 	private int deptno;
 	private String email;
 
+	private MultipartFile[] uploadFile;
+
+	private ArrayList<String> fnames;
+	private int fno;
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -19,6 +34,23 @@ public class MemberVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
+	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
+			String email, MultipartFile[] uploadFile, ArrayList<String> fnames) {
+		super();
+		this.memberkey = memberkey;
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.auth = auth;
+		this.projectkey = projectkey;
+		this.deptno = deptno;
+		this.email = email;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+	}
+
 
 	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
 			String email) {
@@ -102,5 +134,39 @@ public class MemberVO {
 		this.email = email;
 	}
 
+	public MultipartFile[] getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile[] uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+	public ArrayList<String> getFnames() {
+		return fnames;
+	}
+
+	public void setFnames(ArrayList<String> fnames) {
+		this.fnames = fnames;
+	}
+
+
+	public int getFno() {
+		return fno;
+	}
+
+
+	public void setFno(int fno) {
+		this.fno = fno;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

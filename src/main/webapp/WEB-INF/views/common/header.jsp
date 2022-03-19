@@ -108,7 +108,7 @@
 						</c:if>
 
 						<c:if test="${not empty member.id}">
-							<li class="sidebar-item  "><a href="/project5/memberEdit.do"
+							<li class="sidebar-item  "><a href="/project5/memberEdit.do?memberkey=${member.memberkey }"
 								class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>${member.id }님</span>
 							</a></li>
 
@@ -138,6 +138,10 @@
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									공개된 모든 프로젝트</span>
 						</a></li>
+						<li class="sidebar-item  "><a href="/project5/myProject.do?memberkey=${member.memberkey }"
+							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
+									나의 프로젝트</span>
+						</a></li>
 
 
 
@@ -145,10 +149,11 @@
 
 						<li class="sidebar-item  has-sub"><a
 							href="/project5/projectHome.do" class='sidebar-link'> <i
-								class="bi bi-stack"></i> <span>내 프로젝트</span>
+								class="bi bi-stack"></i> <span>프로젝트</span>
 						</a>
 
 							<ul class="submenu ">
+							
 								<li class="submenu-item "><a
 									href="/project5/projectHome.do">홈 </a></li>
 								<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반
@@ -206,6 +211,9 @@
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									공지사항</span>
 						</a></li>
+
+
+
 
 						<li class="sidebar-item  has-sub"><a href="#"
 							class='sidebar-link'> <i class="bi bi-stack"></i> <span>

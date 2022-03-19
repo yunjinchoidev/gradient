@@ -8,8 +8,24 @@
 		select * from fileInfo
 	</select>
 
-	<insert id="insert">
+	<select id="findbyfno" resultType="project5.fileInfo.FileInfoVO">
+		select * from fileInfo
+		where fno=#{fno}
+	</select>
+
+	<insert id="insert" parameterType="project5.fileInfo.FileInfoVO">
 		insert into fileInfo values
-		(seq_fileInfo.nextval, #{pathInfo}, #{fname}, sysdate, sysdate, #{etc});
+		(seq_fileInfo.nextval, #{pathinfo}, #{fname}, sysdate, sysdate, #{etc})
+	</insert>
+
+	<insert id="update" parameterType="project5.fileInfo.FileInfoVO">
+		update fileInfo 
+		set
+		pathinfo = #{pathinfo},
+		regdte=sysdate,
+		fname=#{fname},
+		uptdte=sysdate,
+		etc=#{etc}
+		where fno=#{fno}
 	</insert>
 </mapper>

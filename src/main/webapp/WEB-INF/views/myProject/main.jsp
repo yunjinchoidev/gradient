@@ -19,7 +19,7 @@
 <script
 	src="/project5/resources/dist/assets/vendors/chartjs/Chart.min.js"></script>
 <meta charset="UTF-8">
-<title>쌍용 5조 PMBOK 메인 페이지</title>
+<title>나의 프로젝트</title>
 <script>
 	$(document).ready(function() {
 		var psc = "${psc}";
@@ -92,7 +92,7 @@ to {
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>공개된 모든 프로젝트</h3>
+						<h3>나의 모든 프로젝트</h3>
 						<p class="text-subtitle text-muted">대시보드입니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
@@ -123,8 +123,8 @@ to {
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>공개된 모든 프로젝트</h3>
-						<p class="text-subtitle text-muted">공개된 모든 프로젝트가 여기 있습니다.</p>
+						<h3>나의 프로젝트</h3>
+						<p class="text-subtitle text-muted">내가 참여중인 프로젝트가 여기 있습니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -157,7 +157,7 @@ to {
 								<p class="card-text">${list.contents }</p>
 							</div>
 						</div>
-						<ul class="list-group list-group-flush">
+						<ul class="list-group list-groue-flush">
 							<li class="list-group-item">프로젝트</li>
 							<li class="list-group-item">프로젝트</li>
 							<li class="list-group-item">프로젝트</li>

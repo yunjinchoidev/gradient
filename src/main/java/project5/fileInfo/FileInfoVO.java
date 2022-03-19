@@ -3,13 +3,12 @@ package project5.fileInfo;
 import java.util.Date;
 
 public class FileInfoVO {
+
 	private int fno;
-	private String pathInfo;
+	private String pathinfo;
 	private String fname;
-	private Date regDate;
-	private String regDateS;
-	private Date upDate;
-	private String upDateS;
+	private Date regdte;
+	private Date uptdte;
 	private String etc;
 
 	public FileInfoVO() {
@@ -17,26 +16,42 @@ public class FileInfoVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public FileInfoVO(int fno, String pathInfo, String fname, Date regDate, String regDateS, Date upDate, String upDateS,
-			String etc) {
+	public FileInfoVO(String pathinfo, String fname, String etc) {
 		super();
-		this.fno = fno;
-		this.pathInfo = pathInfo;
+		this.pathinfo = pathinfo;
 		this.fname = fname;
-		this.regDate = regDate;
-		this.regDateS = regDateS;
-		this.upDate = upDate;
-		this.upDateS = upDateS;
 		this.etc = etc;
 	}
 
-	public FileInfoVO(int fno, String pathInfo, String fname, String regDateS, String upDateS, String etc) {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public FileInfoVO(int fno, String pathinfo, String fname, String etc) {
 		super();
 		this.fno = fno;
-		this.pathInfo = pathInfo;
+		this.pathinfo = pathinfo;
 		this.fname = fname;
-		this.regDateS = regDateS;
-		this.upDateS = upDateS;
+		this.etc = etc;
+	}
+
+	public FileInfoVO(int fno, String pathinfo, String fname, Date regdte, Date uptdte, String etc) {
+		super();
+		this.fno = fno;
+		this.pathinfo = pathinfo;
+		this.fname = fname;
+		this.regdte = regdte;
+		this.uptdte = uptdte;
 		this.etc = etc;
 	}
 
@@ -48,12 +63,12 @@ public class FileInfoVO {
 		this.fno = fno;
 	}
 
-	public String getPathInfo() {
-		return pathInfo;
+	public String getPathinfo() {
+		return pathinfo;
 	}
 
-	public void setPathInfo(String pathInfo) {
-		this.pathInfo = pathInfo;
+	public void setPathinfo(String pathinfo) {
+		this.pathinfo = pathinfo;
 	}
 
 	public String getFname() {
@@ -64,36 +79,20 @@ public class FileInfoVO {
 		this.fname = fname;
 	}
 
-	public Date getRegDate() {
-		return regDate;
+	public Date getRegdte() {
+		return regdte;
 	}
 
-	public void setRegDate(Date regDate) {
-		this.regDate = regDate;
+	public void setRegdte(Date regdte) {
+		this.regdte = regdte;
 	}
 
-	public String getRegDateS() {
-		return regDateS;
+	public Date getUptdte() {
+		return uptdte;
 	}
 
-	public void setRegDateS(String regDateS) {
-		this.regDateS = regDateS;
-	}
-
-	public Date getUpDate() {
-		return upDate;
-	}
-
-	public void setUpDate(Date upDate) {
-		this.upDate = upDate;
-	}
-
-	public String getUpDateS() {
-		return upDateS;
-	}
-
-	public void setUpDateS(String upDateS) {
-		this.upDateS = upDateS;
+	public void setUptdte(Date uptdte) {
+		this.uptdte = uptdte;
 	}
 
 	public String getEtc() {
@@ -103,5 +102,7 @@ public class FileInfoVO {
 	public void setEtc(String etc) {
 		this.etc = etc;
 	}
+	
+	
 
 }

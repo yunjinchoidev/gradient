@@ -98,7 +98,8 @@ $(document).ready(function(){
 </script>
 </head>
 
-<body>
+<body >
+
 
 	<%@ include file="../common/header.jsp"%>
 
@@ -440,51 +441,76 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					<!-- 
 					<div class="col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
-								<img class="card-img-top img-fluid"
-									src="/project5/resources/image/calendar.png"
-									alt="Card image cap" style="height: 40rem">
 								<div class="card-body">
 									<h4 class="card-title">캘린더</h4>
-									<p class="card-text">Jelly-o sesame snaps cheesecake
-										topping. Cupcake fruitcake macaroon donut pastry gummies
-										tiramisu chocolate bar muffin. Dessert bonbon caramels brownie
-										chocolate bar chocolate tart dragée.</p>
-									<p class="card-text">Cupcake fruitcake macaroon donut
-										pastry gummies tiramisu chocolate bar muffin.</p>
-									<button class="btn btn-primary block">Update now</button>
-									<iframe src="/project5/calendar.do?memberkey=${member.memberkey }" style="width:100%; height: 100%; border : 3px solid black;">
+									<iframe src="/project5/calendar.do?memberkey=${member.memberkey }" style="width:100%; height: 100%; zoom:700%;">
 										</iframe>
 								</div>
 							</div>
 						</div>
 					</div>
+					
+					
+					
 					<div class="col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
-									<h4 class="card-title">간트차트</h4>
-									<p class="card-text">Jelly-o sesame snaps cheesecake
-										topping. Cupcake fruitcake macaroon donut pastry gummies
-										tiramisu chocolate bar muffin. Dessert bonbon caramels brownie
-										chocolate bar chocolate tart dragée.</p>
-									<p class="card-text">Cupcake fruitcake macaroon donut
-										pastry gummies tiramisu chocolate bar muffin.</p>
-									<small class="text-muted">Last updated 3 mins ago</small>
+									<h4 class="card-title">칸반</h4>
+									<iframe src="/project5/kanbanMain2.do?memberkey=${member.memberkey }" style="width:100%; height: 100%; zoom:700%;">
+										</iframe>
 								</div>
-								<img class="card-img-bottom img-fluid"
-									src="/project5/resources/image/gantte.png"
-									alt="Card image cap" style="height: 20rem; object-fit: cover;">
+							</div>
+						</div>
+					</div>
+					-->
+					
+					
+					
+					<div class="col-md-6 col-sm-12" style="width:100%;">
+						<div class="card" style="width : 100%">
+							<div class="card-content">
+								<div class="card-body">
+									<h1 class="card-title">간트차트</h1>
+								<iframe src="/project5/calendar.do?memberkey=${member.memberkey }" style="width:100%; height: 100%; zoom:700%;">
+										</iframe>
+									<p class="card-text"></p>
+									<p class="card-text"></p>
+									<small class="text-muted"></small>
+								</div>
 							</div>
 						</div>
 					</div>
 					
 					
 					
-					<div class="col-md-6 col-sm-12" style="border : 3px solid black; width:100%;">
-						<div class="card" style="border : 3px solid black; width : 100%">
+					
+					<div class="col-md-6 col-sm-12" style="width:100%;">
+						<div class="card" style="width : 100%">
+							<div class="card-content">
+								<div class="card-body">
+									<h1 class="card-title">간트차트</h1>
+									<iframe src="/project5/ganttMain.do" style="width:100%; height: 80%;" >
+										</iframe>
+									<p class="card-text"></p>
+									<p class="card-text"></p>
+									<small class="text-muted"></small>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					<div class="col-md-6 col-sm-12" style="width:100%;">
+						<div class="card" style="width : 100%">
 							<div class="card-content">
 								<div class="card-body">
 									<h1 class="card-title">칸반보드</h1>
@@ -497,6 +523,12 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
+					
+					
 				</div>
 			</section>
 			<!-- Basic Card types section end -->
