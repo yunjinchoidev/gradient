@@ -11,6 +11,7 @@
 		<typeAlias alias="insrcomm" type="project5.risk.InsRiskcomm" />
 		<typeAlias alias="costList" type="project5.cost.CostList" />
 		<typeAlias alias="costDetail" type="project5.cost.CostDetail" />
+		<typeAlias alias="costDetailInfo" type="project5.cost.CostDetailInfo" />
 		<typeAlias alias="team" type="project5.team.TeamVo"/>
 	</typeAliases>
 	<mappers>
