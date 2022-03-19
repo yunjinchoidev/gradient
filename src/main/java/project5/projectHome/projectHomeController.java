@@ -23,27 +23,38 @@ public class projectHomeController {
 	
 	@RequestMapping("/projectHome.do")
 	public String projectHome(Model d, ProjectVO vo) {
-		d.addAttribute("list", service.getList()); //
-		d.addAttribute("pjList", service2.list()); // 프로젝트 리스트 조회를 위한
+		// 프로젝트 홈에서 사용하는 공지 내용들 
+		d.addAttribute("list", service.getList(vo.getProjectkey())); //
+		
+		// 프로젝트 명단 // 공통
+		d.addAttribute("pjList", service2.list()); 
+		d.addAttribute("project", service2.get(vo.getProjectkey())); 
 		return "/projectHome/home";
 	}
 
 	
 	
 	@RequestMapping("/projectHomeWriteForm.do")
-	public String projectHomeWriteForm() {
+	public String projectHomeWriteForm(Model d) {
+		System.out.println(service2.list().size());
+		d.addAttribute("pjList", service2.list()); 
+		d.addAttribute("workSort", service.getWorkSortList());
 		return "projectHome/writeForm";
 	}
 
+	
 	@RequestMapping("/projectHomeWrite.do")
 	public String projectHomeWrite(Model d, ProjectHomeVO vo) {
-		
 		service.insert(vo);
 		d.addAttribute("psc", "write");
-		System.out.println("공지사항 작성 완료");
+		System.out.println("프로젝트 홈 공지 작성 완료");
 		return "forward:/projectHome.do";
 	}
 
+	
+	
+	
+	
 	
 	@RequestMapping("/projectHomeUpdateForm.do")
 	public String projectHomeUpdateFrom(Model d, ProjectHomeVO vo) {

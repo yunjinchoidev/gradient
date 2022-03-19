@@ -13,7 +13,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <head>
 <meta charset="UTF-8">
-<title>쌍용 5조 PMBOK 메인 페이지</title>
+<title>GRADIENT</title>
 <script type="text/javascript">
 	$(document).ready(function() {
 		var psc = "${psc}";
@@ -40,9 +40,9 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>쌍용 5조 PMPBOK</h3>
-						<p class="text-subtitle text-muted">최윤진, 마혜민, 문재영, 신지호, 윤혜정,
-							장훈주</p>
+						<h3>GRADIENT에 방문하신 여러분을 환영합니다</h3>
+						<p class="text-subtitle text-muted">
+						여러분을 더 유능하게 만들어 줄 것을 약속합니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -58,7 +58,8 @@
 								<h5 class="card-title">안녕하세요?</h5>
 							</div>
 							<div class="card-body">
-								프로젝트 기간 <br> 2022년 3월 4일 ~ 4월 12일 <br> <br> <a
+							    조원 : 최윤진, 마혜민, 문재영, 신지호, 윤혜정, 장훈주<br>
+								프로젝트 기간 : 2022년 3월 4일 ~ 4월 12일 <br> <br> <a
 									href="https://github.com/yunjinchoidev/project5"
 									target="_blank">깃허브 링크입니다.<br> <br>
 								</a>

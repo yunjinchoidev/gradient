@@ -5,4 +5,44 @@
 
 <mapper namespace="project5.projectHome.ProjectHomeDao">
 
+	<select id="getList"
+		resultType="project5.projectHome.ProjectHomeVO" parameterType="int">
+						SELECT ph.*, ws.title workSortTitle
+				FROM projectHome ph, worksort ws
+				WHERE ph.workSortKey = ws.workSortKey
+				AND projectkey=#{projectkey}
+	</select>
+
+
+	<select id="get" resultType="project5.projectHome.ProjectHomeVO"
+		parameterType="int">
+		select * from projectHome where projectkey=#{projectkey}
+	</select>
+
+	<insert id="insert">
+		insert into projectHome values
+		(seq_projectHome.nextval,#{title},#{contents},#{memberkey},#{projectkey},#{workSortkey},#{importance},sysdate)
+	</insert>
+
+	<insert id="delete" parameterType="int">
+		delete from projectHome
+		where
+		projectHomekey=#{projectHomekey}
+	</insert>
+
+	<update id="update" parameterType="project5.projectHome.ProjectHomeVO">
+		update projectHome
+		set
+		title=#{title},
+		contents=#{contents},
+		importance=#{importance}
+		where projectHomekey=#{projectHomekey}
+	</update>
+	
+	<select id="getWorkSortList" resultType="project5.workSort.WorkSortVO">
+		select * from worksort	
+	</select>
+
+
+
 </mapper>

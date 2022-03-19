@@ -55,8 +55,8 @@ $(document).ready(function(){
                                     
                                                 
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>프로젝트 홈</h3>
-						<h4 style="color:red">${project.name }</h4>
+					<span style="font-size: 40px; font-weight: bolder; color:red;">[${project.name }] </span>
+					<span style="font-size: 40px; font-weight: bolder; color:black;">홈</span>
 						<p class="text-subtitle text-muted">공지를 확인하십시오.
 							</p>
 					</div>
@@ -101,6 +101,7 @@ $(document).ready(function(){
 									<input class="dataTable-input" placeholder="Search..."
 										type="text">
 										<a href="/project5/projectHomeWriteForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
+										<a href="/project5/voteWriteForm.do" class="btn btn-info" style="text-align: right">투표만들기</a>
 								</div>
 							</div>
 							
@@ -129,14 +130,17 @@ $(document).ready(function(){
 
 
 									<tbody>
+									<c:forEach var="list" items="${list }">
 											<tr>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
+												<td>${list.projectHomekey }</td>
+												<td>[${project.name }][${list.workSortTitle}]  ${list.title }</td>
+												<td><fmt:formatDate value="${list.writedate }"/></td>
+												<td>${list.importance }</td>
 												<td><span class="badge bg-success">Active</span></td>
 											</tr>
+											</c:forEach>
 									</tbody>
+									
 
 
 

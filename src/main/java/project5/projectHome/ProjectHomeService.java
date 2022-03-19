@@ -5,13 +5,15 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import project5.workSort.WorkSortVO;
+
 @Service
 public class ProjectHomeService {
 	@Autowired
 	ProjectHomeDao dao;
 
-	public List<ProjectHomeVO> getList() {
-		return dao.getList();
+	public List<ProjectHomeVO> getList(int projectkey) {
+		return dao.getList(projectkey);
 	}
 
 	public void insert(ProjectHomeVO vo) {
@@ -28,5 +30,9 @@ public class ProjectHomeService {
 
 	public void update(ProjectHomeVO vo) {
 		dao.update(vo);
+	}
+	
+	public List<WorkSortVO> getWorkSortList(){
+		return dao.getWorkSortList();
 	}
 }

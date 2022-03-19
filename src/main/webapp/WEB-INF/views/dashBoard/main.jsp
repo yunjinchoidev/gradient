@@ -109,6 +109,10 @@ $(document).ready(function(){
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
+
+					<%@include file="../projectHome/sort.jsp" %>
+
+					
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>대시보드</h3>
 						<p class="text-subtitle text-muted">대시보드입니다.</p>

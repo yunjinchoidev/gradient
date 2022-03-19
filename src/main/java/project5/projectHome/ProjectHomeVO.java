@@ -12,6 +12,11 @@ public class ProjectHomeVO {
 	private String importance;
 	private Date writedate;
 	private String writedateS;
+	
+	private String workSortTitle;
+	
+	
+	
 
 	public ProjectHomeVO() {
 		super();
@@ -30,6 +35,25 @@ public class ProjectHomeVO {
 		this.importance = importance;
 		this.writedate = writedate;
 		this.writedateS = writedateS;
+	}
+
+	
+	
+	
+	
+	public ProjectHomeVO(int projectHomekey, String title, String contents, int memberkey, int projectkey,
+			int workSortkey, String importance, Date writedate, String writedateS, String workSortTitle) {
+		super();
+		this.projectHomekey = projectHomekey;
+		this.title = title;
+		this.contents = contents;
+		this.memberkey = memberkey;
+		this.projectkey = projectkey;
+		this.workSortkey = workSortkey;
+		this.importance = importance;
+		this.writedate = writedate;
+		this.writedateS = writedateS;
+		this.workSortTitle = workSortTitle;
 	}
 
 	public int getProjectHomekey() {
@@ -103,5 +127,16 @@ public class ProjectHomeVO {
 	public void setWritedateS(String writedateS) {
 		this.writedateS = writedateS;
 	}
+
+	public String getWorkSortTitle() {
+		return workSortTitle;
+	}
+
+	public void setWorkSortTitle(String workSortTitle) {
+		this.workSortTitle = workSortTitle;
+	}
+	
+	
+	
 
 }

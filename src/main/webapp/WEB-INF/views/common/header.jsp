@@ -68,6 +68,12 @@
 				history.back(-2);
 			}
 		})
+		$("#mywork").click(function(){
+			if(memberName==""){
+				alert("미 로그인시 접근 불가합니다.")
+				history.back(-2);
+			}
+		})
 
 	
 	
@@ -215,7 +221,7 @@
 
 
 
-						<li class="sidebar-item  "><a
+						<li class="sidebar-item  " id="mywork"><a
 							href="/project5/mywork.do?memberkey=${member.memberkey }"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>내
 									작업 목록 / 작업물</span>
