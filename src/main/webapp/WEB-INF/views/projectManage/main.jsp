@@ -7,6 +7,23 @@
 <title>Insert title here</title>
 	   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+
+
+
+
+
+<script>
+$(document).ready(function(){
+	$("#progress").click(function(){
+		alert("afdsaf");
+		$(".modal").modal('show')
+		
+	})
+})
+
+</script>
+
+
 <body>
 
 	<%@ include file="../common/header.jsp"%>
@@ -157,25 +174,66 @@
 												<thead>
 													<tr>
 														<th data-sortable="" style="width: 12.0176%;"><a
-															href="#" class="dataTable-sorter">Name</a></th>
+															href="#" class="dataTable-sorter">프로젝트 번호</a></th>
 														<th data-sortable="" style="width: 42.9989%;"><a
-															href="#" class="dataTable-sorter">Email</a></th>
+															href="#" class="dataTable-sorter">프로젝트 명</a></th>
 														<th data-sortable="" style="width: 18.0816%;"><a
-															href="#" class="dataTable-sorter">Phone</a></th>
+															href="#" class="dataTable-sorter">수주액</a></th>
 														<th data-sortable="" style="width: 16.3175%;"><a
-															href="#" class="dataTable-sorter">City</a></th>
+															href="#" class="dataTable-sorter">중요도</a></th>
 														<th data-sortable="" style="width: 10.8049%;"><a
-															href="#" class="dataTable-sorter">Status</a></th>
+															href="#" class="dataTable-sorter">상태</a></th>
 													</tr>
 												</thead>
 												<tbody>
 													<c:forEach var="list" items="${list}">
-														<tr>
+														<tr >
 															<td>${list.projectkey}</td>
-															<td>${list.name }</td>
-															<td>${list.progress }</td>
-															<td>${list.importance }</td>
-															<td><span class="badge bg-success">Active</span></td>
+															<td style="cursor: pointer;" onclick="location.href='/project5/projectManageGet.do?projectkey=${list.projectkey}'">${list.name }</td>
+															<td>
+															<fmt:formatNumber>${list.take }</fmt:formatNumber>
+															</td>
+															<td>
+															
+																<c:if test="${list.importance eq '하'}">
+															<span class="badge bg-primary">하</span>
+															</c:if>
+															<c:if test="${list.importance eq '중'}">
+															<span class="badge bg-secondary">중</span>
+															</c:if>
+															<c:if test="${list.importance eq '상'}">
+															<span class="badge bg-danger">상</span>
+															</c:if>
+															
+															</td>
+															
+															
+															
+															
+															
+															<td id="progress" style="cursor: pointer;">
+															
+															<c:if test="${list.progress eq '대기'}">
+															<span class="badge bg-primary">대기</span>
+															</c:if>
+															<c:if test="${list.progress eq '초기'}">
+															<span class="badge bg-secondary">초기</span>
+															</c:if>
+															<c:if test="${list.progress eq '중기'}">
+															<span class="badge bg-success">중기</span>
+															</c:if>
+															<c:if test="${list.progress eq '말기'}">
+															<span class="badge bg-danger">말기</span>
+															</c:if>
+															<c:if test="${list.progress eq '종료'}">
+															<span class="badge bg-dark">종료</span>
+															</c:if>
+															
+															
+															
+															</td>
+															
+															
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -635,6 +693,98 @@
 		</div>
 
 	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--login form Modal -->
+                                            <div class="modal fade text-left" id="inlineForm" tabindex="-1"
+                                                role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                    role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel33">칸반 보드 </h4>
+                                                            <button type="button" class="close" data-bs-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <i data-feather="x"></i>
+                                                            </button>
+                                                        </div>
+                                                        <form action="/project5/progressUpdate" id="frm01">
+                                                            <div class="modal-body">
+                                                                <label>progress: </label>
+                                                                <div class="form-group">
+                                                                        <select  class="form-control" name="status">
+                                                                        	<option value="new">new</option>
+                                                                        	<option value="done">done</option>
+                                                                        	<option value="work">work</option>
+                                                                        </select>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-light-secondary"
+                                                                    data-bs-dismiss="modal">
+                                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">Close</span>
+                                                                </button>
+                                                                <button type="button" class="btn btn-primary ml-1 add"
+                                                                    data-bs-dismiss="modal" id="addItem">
+                                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block"  >변경</span>
+                                                                </button>
+                                                                <button type="button" class="btn btn-danger ml-2 update"
+                                                                    data-bs-dismiss="modal" id="updateItem">
+                                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">수정</span>
+                                                                </button>
+                                                                <button type="button" class="btn btn-warning ml-2 delete"
+                                                                    data-bs-dismiss="modal" id="removeItem">
+                                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">삭제</span>
+                                                                </button>
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                                
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

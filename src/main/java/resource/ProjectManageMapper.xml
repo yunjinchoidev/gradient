@@ -5,6 +5,24 @@
 
 <mapper namespace="project5.projectManage.ProjectManageDao">
 	<select id="list" resultType="project5.projectManage.ProjectManageVO">
-		select * from project
+		select * from project order by projectkey
 	</select>
+	
+	<update id="progressUpdate" parameterType="project5.projectManage.ProjectManageVO">
+		update project
+		set
+		progress = #{progress}
+		where 
+		projectkey= #{projectkey}
+	</update>
+	
+	<select id="get" resultType="project5.projectManage.ProjectManageVO" parameterType="int">
+		select * from project where projectkey=#{projectkey} order by projectkey
+	</select>
+	
+	
+	
+	
+	
+	
 </mapper>

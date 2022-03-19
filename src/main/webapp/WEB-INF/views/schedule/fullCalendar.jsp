@@ -236,11 +236,24 @@ document.addEventListener('DOMContentLoaded', function() {
 <body>
 
 	<%@ include file="../common/header.jsp"%>
+
 	<div id="main">
+		<div class="page-heading">
+			<div class="page-title">
+			<%@ include file="../projectHome/sort.jsp"%>
+				<div class="row">
+					
+					<hr>
+					<div id='calendar' style="margin-top: 30px;"></div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 
 
-<div id='calendar'></div>
+
+
 
 
 

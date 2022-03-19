@@ -14,6 +14,27 @@
 <meta charset="UTF-8">
 <title>프로젝트 홈</title>
 </head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	$("#pjList").change(function(){
+		var selectedval = $(this).val();
+		console.log(selectedval);
+		location.href="/project5/projectHome.do?projectkey="+selectedval;
+	})
+})
+
+</script>
+<style>
+#moveBtn a{
+	width: 135px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
+
 
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -25,9 +46,18 @@
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
+				
+						<%@ include file="sort.jsp" %>
+                                                
+                                    
+                                    
+                                    
+                                    
+                                                
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>프로젝트 홈</h3>
-						<p class="text-subtitle text-muted">공지사항을 확인하십시오.
+						<h4 style="color:red">${project.name }</h4>
+						<p class="text-subtitle text-muted">공지를 확인하십시오.
 							</p>
 					</div>
 				
@@ -42,18 +72,12 @@
 					</div>
 						
 				</div>
-				<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
-										<a href="/project5/projectHome.do" class="btn btn-dark">홈</a>
-										 <a href="#" class="btn btn-danger">칸반보드</a>
-                                        <a href="#" class="btn btn-primary">간트차트</a>
-                                        <a href="#" class="btn btn-secondary">일정관리</a>
-                                        <a href="#" class="btn btn-info">회의록</a>
-                                        <a href="#" class="btn btn-warning">채팅</a>
-                                        <a href="#" class="btn btn-danger">예산 관리</a>
-                                        <a href="#" class="btn btn-success">품질 관리</a>
-                                        <a href="#" class="btn btn-light">리스크 관리</a>
-                                        <a href="#" class="btn btn-dark">조달 관리</a>
-                                    </div>
+				
+			
+                                    
+                                    
+                                    
+                                    
 			</div>
 			<section class="section">
 				<div class="card">
@@ -105,7 +129,6 @@
 
 
 									<tbody>
-										<c:forEach var="list" items="${list}">
 											<tr>
 												<td>Offenburg</td>
 												<td>Offenburg</td>
@@ -113,7 +136,6 @@
 												<td>Offenburg</td>
 												<td><span class="badge bg-success">Active</span></td>
 											</tr>
-										</c:forEach>
 									</tbody>
 
 

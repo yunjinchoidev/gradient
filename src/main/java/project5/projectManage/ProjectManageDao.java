@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ProjectManageDao {
 	public List<ProjectManageVO> list();
-	
+	public void progressUpdate(ProjectManageVO vo);
+	public ProjectManageVO get(int projectkey);
+
 }

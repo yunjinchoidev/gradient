@@ -81,6 +81,18 @@ to {
 </style>
 </head>
 
+
+<script>
+document.ready(function(){
+	var memberkey = ${member.memberkey};
+	
+	if(memberkey==""){
+		alert("미 로그인시 접근 불가합니다.")
+	}
+})
+
+</script>
+
 <body>
 
 	<%@ include file="../common/header.jsp"%>
@@ -148,12 +160,12 @@ to {
 			<section id="content-types"
 				style="display: flex; flex-direction: row; flex-wrap: wrap;">
 				<c:forEach var="list" items="${list }">
-					<div class="card" style="margin-right: 40px; width: 470px;">
+					<div class="card" style="margin-right: 40px; width: 470px; cursor: pointer;" onclick="location.href='/project5/projectHome.do?projectkey=${list.projectkey}'" >
 						<div class="card-content">
 							<img src="/project5/resources/image/project.png"
 								class="card-img-top img-fluid" alt="singleminded">
 							<div class="card-body">
-								<h5 class="card-title">${list.name }</h5>
+								<h5 class="card-title" onclick="location.href='/project5/projectHome.do?projectkey=${list.projectkey}'">${list.name }</h5>
 								<p class="card-text">${list.contents }</p>
 							</div>
 						</div>

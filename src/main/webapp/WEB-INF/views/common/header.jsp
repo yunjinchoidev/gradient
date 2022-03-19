@@ -50,16 +50,36 @@
 		var auth = "${member.auth}";
 		console.log("auth : " + auth);
 		$("#check").click(function() {
-
-			if (auth != "PM") {
+			if (auth != "pm") {
 				alert("권한이 없습니다.");
-				location.href = "/project5/main.do"
+				location.href = "/project5/main.do";
 			} else {
-
 				console.log("승인");
+				window.location= "www.naver.com";
 			}
 		});
+	
+	
+		var memberName = "${member.name}";
+		console.log("memberName : " + memberName);
+		$("#myProject").click(function(){
+			if(memberName==""){
+				alert("미 로그인시 접근 불가합니다.")
+				history.back(-2);
+			}
+		})
+
+	
+	
+	
 	})
+	
+	
+	
+	
+	
+	
+	
 </script>
 
 
@@ -138,7 +158,7 @@
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									공개된 모든 프로젝트</span>
 						</a></li>
-						<li class="sidebar-item  "><a href="/project5/myProject.do?memberkey=${member.memberkey }"
+						<li class="sidebar-item "  id="myProject"><a href="/project5/myProject.do?memberkey=${member.memberkey }"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									나의 프로젝트</span>
 						</a></li>
@@ -148,14 +168,12 @@
 
 
 						<li class="sidebar-item  has-sub"><a
-							href="/project5/projectHome.do" class='sidebar-link'> <i
+							href="/project5/projectHome.do" class='sidebar-link'  > <i
 								class="bi bi-stack"></i> <span>프로젝트</span>
 						</a>
-
 							<ul class="submenu ">
-							
 								<li class="submenu-item "><a
-									href="/project5/projectHome.do">홈 </a></li>
+									href="/project5/projectHome.do?projectkey=1">홈 </a></li>
 								<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반
 										보드 </a></li>
 								<li class="submenu-item "><a href="/project5/ganttMain.do">간트차트
@@ -170,9 +188,7 @@
 									href="/project5/procurementList.do">조달 관리</a></li>
 								<li class="submenu-item "><a href="/project5/team.do">인적
 										관리</a></li>
-								<li class="submenu-item "><a href="/project5/risk.do">리스크</a>
-								</li>
-								<li class="submenu-item "><a href="/project5/support.do">조달</a>
+								<li class="submenu-item "><a href="/project5/risk.do">리스크 관리</a>
 								</li>
 							</ul></li>
 
@@ -193,7 +209,6 @@
 							<ul class="submenu ">
 								<li class="submenu-item "><a
 									href="/project5/minutes.do?method=list">회의</a></li>
-
 								<li class="submenu-item "><a href="/project5/chat.do">채팅</a>
 								</li>
 							</ul></li>

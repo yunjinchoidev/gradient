@@ -66,7 +66,9 @@ $(document).ready(function(){
 				<div id="auth-left" style="width: 900px;">
 					<h1 class="auth-title">로그인</h1>
 					<p class="auth-subtitle mb-5">
-						아이디와 비밀번호를 정확히 입력하시오
+						아이디와 비밀번호를 정확히 입력하시오<br>
+						pm : admin/7777
+						일반 : qq/qq
 					</p>
 
 					<form action="/project5/login.do" method="post">

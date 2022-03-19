@@ -5,13 +5,17 @@
 
 <mapper namespace="project5.project.ProjectDao">
 	<select id="list" resultType="project5.project.ProjectVO">
-		select * from project
+		select * from project order by projectkey
 	</select>
+
 
 	<select id="get" resultType="project5.project.ProjectVO"
 		parameterType="int">
 		select * from project where projectkey = #{projectkey}
 	</select>
+
+
+
 
 	<select id="get2" resultType="project5.project.ProjectVO" parameterType="java.util.List">
 		select * from project where projectkey
