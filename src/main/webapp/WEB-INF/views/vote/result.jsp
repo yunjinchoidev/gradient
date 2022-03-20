@@ -47,7 +47,7 @@ $(document).ready(function(){
 			<div class="page-title">
 				<div class="row">
 				
-						<%@ include file="sort.jsp" %>
+						<%@ include file="../projectHome/sort.jsp" %>
                                                 
                                     
                                     

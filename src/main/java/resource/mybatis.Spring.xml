@@ -36,5 +36,8 @@
 		<mapper resource="resource/ProcurementMapper.xml"/>
 		<mapper resource="resource/Member_Project_Mapper.xml"/>
 		<mapper resource="resource/ProjectMapper.xml"/>
+		<mapper resource="resource/OutputMapper.xml"/>
+		<mapper resource="resource/WorkSortMapper.xml"/>
+		<mapper resource="resource/DepartmentMapper.xml"/>
 	</mappers>
 </configuration>

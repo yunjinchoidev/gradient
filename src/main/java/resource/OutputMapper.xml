@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="project5.output.OutputDao">
+
+	<select id="list" resultType="project5.output.OutputVO">
+		select o.*, m.name mname, w.title
+		worksortTitle, p.name pname, d.dname
+		FROM output o, member m, workSort
+		w, project p, DEPARTMENT d
+		where o.memberkey = m.memberkey
+		and
+		o.worksortkey = w.worksortkey
+		and o.projectkey = p.projectkey
+		and
+		o.deptno = d.deptno
+	</select>
+
+	<select id="get" parameterType="int" resultType="project5.output.OutputVO">
+		select o.*, m.name mname, w.title
+		worksortTitle, p.name pname, d.dname
+		FROM output o, member m, workSort
+		w, project p, DEPARTMENT d
+		where o.memberkey = m.memberkey
+		and
+		o.worksortkey = w.worksortkey
+		and o.projectkey = p.projectkey
+		and
+		o.deptno = d.deptno
+		and
+		outputkey=#{outputkey}
+	</select>
+
+	<insert id="insert" parameterType="project5.output.OutputVO">
+		insert into
+		output
+		values
+		(seq_output.nextval,
+		#{title},#{contents},#{version},#{status},sysdate,
+		#{workSortKey},#{projectkey},
+		#{memberkey},#{deptno})
+	</insert>
+
+	<update id="update">
+		update output
+		set
+		title =#{title},
+		contents=#{contents},
+		version=#{version},
+		status=#{status},
+		writedate =
+		sysdate
+		workSortKey=#{workSortKey},
+		projectkey=#{projectkey},
+		deptno=#{deptno}
+		where
+		outputkey = #{outputkey}
+	</update>
+
+	<delete id="delete">
+		delete from output
+		where outputkey = #{outputkey}
+	</delete>
+
+
+
+
+</mapper>
+

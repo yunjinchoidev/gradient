@@ -20,6 +20,11 @@ public class NoticeVO2 {
 	private String writeDateS;
 	private int memberkey;
 	private String name;
+	
+	
+	
+	
+	
 	public NoticeVO2() {
 		super();
 		// TODO Auto-generated constructor stub

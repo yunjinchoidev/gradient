@@ -63,7 +63,7 @@
 								<div class="dataTable-search">
 									<input class="dataTable-input" placeholder="Search..."
 										type="text">
-										<a href="/project5/scheduleInsertForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
+										<a href="/project5/outputWriteForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
 								</div>
 								
 							</div>
@@ -72,15 +72,15 @@
 									<thead>
 										<tr>
 											<th data-sortable="" style="width: 12.0176%;"><a
-												href="#" class="dataTable-sorter">Name</a></th>
+												href="#" class="dataTable-sorter">번호</a></th>
 											<th data-sortable="" style="width: 42.9989%;"><a
-												href="#" class="dataTable-sorter">Email</a></th>
+												href="#" class="dataTable-sorter">작업구분/제목/버전</a></th>
 											<th data-sortable="" style="width: 18.0816%;"><a
-												href="#" class="dataTable-sorter">Phone</a></th>
+												href="#" class="dataTable-sorter">부서</a></th>
 											<th data-sortable="" style="width: 16.3175%;"><a
-												href="#" class="dataTable-sorter">City</a></th>
+												href="#" class="dataTable-sorter">작성자</a></th>
 											<th data-sortable="" style="width: 10.8049%;"><a
-												href="#" class="dataTable-sorter">Status</a></th>
+												href="#" class="dataTable-sorter">상태</a></th>
 										</tr>
 									</thead>
 
@@ -90,11 +90,16 @@
 									<tbody>
 										<c:forEach var="list" items="${list}">
 											<tr>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td><span class="badge bg-success">Active</span></td>
+												<td>${list.outputkey }</td>
+												
+												<td onclick="location.href='${path}/outputGet.do?outputkey=${list.outputkey}'" style="cursor: pointer;">
+												[ ${list.worksortTitle} ]${list.title } < 버전 ${list.version }> [${list.pname}]</td>
+												
+												<td>${list.dname }
+													<fmt:formatDate value="${list.writedate }"/>
+												</td>
+												<td>${list.mname }</td>
+												<td><span class="badge bg-success">${list.status }</span></td>
 											</tr>
 										</c:forEach>
 									</tbody>
