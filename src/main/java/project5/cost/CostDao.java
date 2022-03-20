@@ -32,4 +32,9 @@ public interface CostDao {
 	public int amountPay(int prjkey);
 	// 총 게시글
 	public int totCnt(CostSch sch);
+	// 프로젝트 예산 승인
+	public void costConfirm(int prjkey);
+	// 프로젝트 예산 삭제
+	public void delCost(int prjkey);
+	public void delCostDetail(int prjkey);
 }

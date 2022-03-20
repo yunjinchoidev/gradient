@@ -105,4 +105,14 @@ public class CostService {
 	public int amountPay(int prjkey) {
 		return dao.amountPay(prjkey);
 	}
+	// 프로젝트 예산 승인
+	public void costConfirm(int prjkey) {
+		dao.costConfirm(prjkey);
+	}
+	// 프로젝트 예산 삭제
+	public void delCost(int prjkey) {
+		dao.delCost(prjkey);
+		dao.delCostDetail(prjkey);
+	}
+	
 }

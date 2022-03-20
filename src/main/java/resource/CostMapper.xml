@@ -66,7 +66,7 @@
 	<!-- 프로젝트 정보 출력 -->
 	<select id="prjDetailInfo" parameterType="int" resultType="costDetailInfo">
 		SELECT p.NAME, p.MANAGER , cl.NAME company  , TO_CHAR(STARTDATE,'YYYY-MM-DD') AS startdateS,
-		TO_CHAR(LASTDATE,'YYYY-MM-DD') AS LASTDATES,p.TAKE TAKE , c.COSTASSIGN costassign 
+		TO_CHAR(LASTDATE,'YYYY-MM-DD') AS LASTDATES,p.TAKE TAKE , c.COSTASSIGN costassign , p.PROJECTKEY AS prjkey
 		FROM PROJECT p ,CLIENT cl, COST c 
 		WHERE p.CLIENTKEY = cl.CLIENTKEY 
 		AND p.PROJECTKEY = c.PROJECTKEY 
@@ -115,5 +115,21 @@
 			#{prjkey}
 		)
 	</insert>
+	<!-- 승인 처리 -->
+	<update id="costConfirm" parameterType="int">
+		UPDATE cost  SET
+		COSTASSIGN = '승인'
+		WHERE PROJECTKEY = #{prjkey}
+	</update>
+	<!-- 예산 삭제 처리 -->
+	<delete id="delCost" parameterType="int">
+		DELETE FROM cost
+		WHERE PROJECTKEY = #{prjkey}
+	</delete>
+	
+	<delete id="delCostDetail" parameterType="int">
+		DELETE FROM COSTDETAIL
+		WHERE NO = #{prjkey}
+	</delete>
 	
 </mapper>

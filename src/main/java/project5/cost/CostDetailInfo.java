@@ -12,6 +12,7 @@ public class CostDetailInfo {
 	private String costnote;
 	private int costex;
 	private String costassign; 
+	private int prjkey;
 	public String getName() {
 		return name;
 	}
@@ -77,6 +78,12 @@ public class CostDetailInfo {
 	}
 	public void setCostassign(String costassign) {
 		this.costassign = costassign;
+	}
+	public int getPrjkey() {
+		return prjkey;
+	}
+	public void setPrjkey(int prjkey) {
+		this.prjkey = prjkey;
 	}
 	
 	

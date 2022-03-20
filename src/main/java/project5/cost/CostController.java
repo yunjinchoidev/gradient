@@ -64,6 +64,20 @@ public class CostController {
 		return "cost/Detail";
 	}
 	
+	@RequestMapping("/uptcostassign.do")
+	public String costConfirm(int prjkey, Model d) {
+		service.costConfirm(prjkey);
+		d.addAttribute("msg","승인되었습니다");
+		return "cost/Detail";
+	}
+	
+	@RequestMapping("/delCost.do")
+	public String delCost(int prjkey, Model d) {
+		service.delCost(prjkey);
+		d.addAttribute("msg","삭제되었습니다");
+		return "cost/Detail";
+	}
+	
 
 	
 	

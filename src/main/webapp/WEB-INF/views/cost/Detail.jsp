@@ -49,6 +49,13 @@ height:40%;
 </style>
 <script>
 	$(document).ready(function(){
+		var msg = "${msg}";
+		if(msg != ""){
+			alert(msg);
+			location.href = "${path}/cost.do";
+		}
+		
+		
 		var take = "${prjInfo.take}";
 		var amountpay = "${amountpay}";
 		var sum = take - amountpay;
@@ -56,6 +63,22 @@ height:40%;
 		var sumS = numberWithCommas(sum);
 		var amountpayEle = document.getElementById('amountpay');
 		amountpayEle.innerHTML = sumS;
+		
+		$("#backbtn").click(function(){
+			location.href = "${path}/cost.do"
+		});
+		
+		$("#confirmbtn").click(function(){
+			if(confirm("승인하시겠습니까?")){
+				location.href = "${path}/uptcostassign.do?prjkey="+$("[name=prjkey]").val();
+			}
+		});
+		
+		$("#delbtn").click(function(){
+			if(confirm("삭제하시겠습니까?")){
+				location.href = "${path}/delCost.do?prjkey="+$("[name=prjkey]").val();
+			}
+		});
 		
 		
 	});
@@ -85,6 +108,7 @@ height:40%;
 				<div id="prjInfo">
 				<!-- 프로젝트명, PM -->
 					<div style="display: flex;">
+						<input type="hidden" name="prjkey" value="${prjInfo.prjkey}">
 				 		<input class="form-control" type="text" value="${prjInfo.name}" readonly="readonly"
 				 			style="flex: 3; background-color:white;margin-right: 100px;text-align:center;">
 				 		<input class="form-control" type="text" value="${prjInfo.manager}" readonly="readonly"
@@ -170,13 +194,13 @@ height:40%;
 			<h5 id="amountpay"></h5>
 			
 			<div style="margin-top: 30px;">
-				<button id="calbtn" class="btn btn-primary rounded-pill"
+				<button id="confirmbtn" class="btn btn-primary rounded-pill"
 					style="margin-right:10px;margin-left: 30px;">승인</button>
-				<button id="canclebtn" class="btn btn-primary rounded-pill"
+				<button id="delbtn" class="btn btn-primary rounded-pill"
 					style="margin-right:10px;margin-left: 0px;">삭제</button>
 				<button id="regbtn" class="btn btn-primary rounded-pill"
 					style="margin-right:10px;margin-left: 0px;">수정</button>
-				<button id="regbtn" class="btn btn-primary rounded-pill"
+				<button id="backbtn" class="btn btn-primary rounded-pill"
 					style="margin-right:10px;margin-left: 0px;">목록</button>
 			</div>
 		 
