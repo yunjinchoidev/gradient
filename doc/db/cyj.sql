@@ -252,6 +252,7 @@ CREATE TABLE project(
 	lastdate DATE,
 );
 COMMIT;
+SELECT * FROM MEMBER;
 SELECT * FROM project;
 select * 
 from project p, client c
@@ -259,7 +260,11 @@ where p.clientkey=c.clientkey;
 SELECT * FROM client;
 INSERT INTO project VALUES (1, 'IT프로젝트', sysdate, 30000000, '홍길동', '초기', '상', '전국 마스크 판매 사이트 구축', 1,sysdate, sysdate);
 INSERT INTO project VALUES (2, '코로나 백신 예약 사이트', sysdate, 1000000, '홍길동', '초기', '상', '코로나 백신 예약 사이트 구축', 1,sysdate, sysdate);
-INSERT INTO project VALUES (3, '청년 적금 신청 사이트', sysdate, 5000000, '홍길동', '초기', '상', '청년 적금 신청 사이트 구축', 1, sysdate, sysdate);
+INSERT INTO project VALUES (3, '청년 적금 신청 사이트', sysdate, 5000000, '홍길동', '초기', '중', '청년 적금 신청 사이트 구축', 1, sysdate, sysdate);
+INSERT INTO project VALUES (4, '관공서 구축 프로젝트', sysdate, 5000000, '홍길동', '초기', '중', '청년 적금 신청 사이트 구축', 1, sysdate, sysdate);
+INSERT INTO project VALUES (5, '마트 재고 관리 프로젝트', sysdate, 5000000, '홍길동', '초기', '하', '청년 적금 신청 사이트 구축', 1, sysdate, sysdate);
+INSERT INTO project VALUES (6, '쇼핑몰 프로젝트', sysdate, 5000000, '홍길동', '초기', '상', '청년 적금 신청 사이트 구축', 1, sysdate, sysdate);
+INSERT INTO project VALUES (7, '정육 도매 구축 프로젝트', sysdate, 5000000, '홍길동', '초기', '상', '청년 적금 신청 사이트 구축', 1, sysdate, sysdate);
 DROP TABLE project;
 CREATE SEQUENCE seq_project START WITH 1;
 SELECT m.name, m.auth, p.name projectname, p.progress, d.dname  
@@ -320,18 +325,15 @@ COMMIT;
 DROP TABLE department CASCADE CONSTRAINTS;
 CREATE TABLE department(
 	deptno NUMBER PRIMARY KEY,
-	projectkey NUMBER,
 	dname varchar2(400),
-	dcnt NUMBER,
-	CONSTRAINT fk_projectkey FOREIGN KEY(projectkey)
-         REFERENCES project(projectkey) ON DELETE CASCADE
+	dcnt NUMBER
 );
 DELETE FROM DEPARTMENT;
-INSERT INTO department values(1, 1, '기획', 5);
-INSERT INTO department values(2, 1, 'pm', 5);
-INSERT INTO department values(3, 1, 'front', 5);
-INSERT INTO department values(4, 1, 'backend', 5);
-INSERT INTO department values(5, 1, 'custom', 5);
+INSERT INTO department values(1,'기획', 5);
+INSERT INTO department values(2,'pm', 5);
+INSERT INTO department values(3, 'front', 5);
+INSERT INTO department values(4, 'backend', 5);
+INSERT INTO department values(5, 'custom', 5);
 SELECT * FROM DEPARTMENT ORDER BY deptno;
 COMMIT;
 
@@ -412,7 +414,7 @@ WHERE n.MEMBERKEY = m.MEMBERKEY;
 -- 나의 작업
 CREATE TABLE mywork(
 	myworkkey	NUMBER PRIMARY KEY,
-	memberkey NUMBER CONSTRAINT mywork_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE,
+	memberkey NUMBER COㅈNSTRAINT mywork_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE,
 	title	varchar2(400),
 	contents	varchar2(4000),
 	thedate	DATE,
@@ -422,13 +424,39 @@ CREATE TABLE mywork(
 
 
 -- 산출물
+DROP TABLE OUTPUT;
 CREATE TABLE output(
 	outputkey	NUMBER PRIMARY KEY,
 	title varchar2(400),
+	contents varchar2(4000),
 	version	NUMBER,
+	status	varchar2(400),
+	writedate DATE,
+	workSortKey	NUMBER CONSTRAINT output_workSortKey_fk REFERENCES workSort(workSortKey) ON DELETE CASCADE ,
 	projectkey	NUMBER CONSTRAINT output_projectkey_fk REFERENCES project(projectkey) ON DELETE CASCADE ,
+	memberkey	NUMBER CONSTRAINT output_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE ,
 	deptno NUMBER CONSTRAINT output_deptno_fk REFERENCES department(deptno) ON DELETE CASCADE
-)
+);
+drop SEQUENCE seq_output;
+CREATE SEQUENCE seq_output START WITH 10005;
+SELECT seq_output.nextval FROM dual;
+INSERT INTO OUTPUT VALUES (seq_output.nextval, '요구사항정의저 제출합니다', '요구사항정의서 제출합니다.',
+1.2,'진행중',sysdate,1,1,2,1
+);
+
+SELECT * FROM fileInfo order BY fno;
+SELECT * FROM OUTPUT;
+SELECT * FROM board3;
+
+SELECT o.*
+FROM OUTPUT o, MEMBER m;
+
+select o.*, m.name mname, w.title worksortTitle, p.name pname, d.dname
+FROM OUTPUT o, member m, workSort w, project p, DEPARTMENT d
+		where o.memberkey = m.memberkey
+		and o.worksortkey = w.worksortkey
+		and o.projectkey = p.projectkey
+		and o.deptno = d.deptno;
 
 
 -- 외래키 없이 파일 정보 저장
@@ -436,28 +464,39 @@ create TABLE fileInfo(
 	fno NUMBER PRIMARY KEY,
 	pathInfo	varchar2(400),
 	fname		varchar2(400),
-	regdate	DATE,
-	update	DATE,
+	regdte	DATE,
+	uptdte	DATE,
 	etc	varchar2(400)
-)
+);
 
+DROP TABLE fileInfo;
 DELETE fileInfo;
 SELECT * FROM fileInfo;
+INSERT INTO fileinfo values(seq_fileInfo.nextval,'1','1',sysdate,sysdate,'1');
 DROP SEQUENCE seq_fileInfo;
 CREATE SEQUENCE seq_fileInfo;
-	
+SELECT seq_fileInfo.nextval FROM dual;	
+		insert into fileInfo values
+		(4, '1', '1', sysdate, sysdate, '1');
+SELECT * FROM MEMBER ORDER BY memberkey;
+SELECT * FROM fileinfo WHERE fno=2;
+SELECT * FROM NOTICE_ATTACH;
+DROP TABLE fileInfo;
 create TABLE fileInfo(
-	fno NUMBER PRIMARY KEY,
-	pathInfo	varchar2(400),
-	fname		varchar2(400),
+	fno NUMBER,
+	pathInfo varchar2(400),
+	fname	varchar2(400),
 	regdate	DATE,
-	update	DATE,
+	uptdate	DATE,
 	etc	varchar2(400)
 );	
 COMMIT;
-
-
-
+DROP sequence  seq_member;
+CREATE sequence  seq_member;
+SELECT * FROM fileInfo ORDER BY fno;
+INSERT into fileInfo VALUES (seq_member.nextval,'1','1',sysdate,sysdate,'1');
+SELECT * FROM MEMBER order  BY memberkey;
+UPDATE 
 
 -- 공지 파일
 CREATE TABLE notice_Attach(
@@ -473,6 +512,82 @@ INSERT into notice_attach VALUES ('1','1','1','1',1);
 
 
 
+DROP TABLE member_project;
+CREATE TABLE member_project(
+	member_project_key NUMBER,
+	memberkey NUMBER CONSTRAINT member_project_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE,
+	projectkey NUMBER CONSTRAINT member_project_project_fk REFERENCES project(projectkey) ON DELETE CASCADE
+)
+
+SELECT * FROM MEMBER;
+SELECT * FROM project;
+UPDATE project SET name='청소 대행 서비스 구축' WHERE projectkey=1;
+UPDATE project SET progress='중기' WHERE projectkey=1;
+UPDATE project SET progress='대기' WHERE projectkey=2;
+UPDATE project SET progress='초기' WHERE projectkey=3;
+UPDATE project SET progress='말기' WHERE projectkey=4;
+UPDATE project SET progress='종료' WHERE projectkey=5;
+UPDATE project SET importance='하' WHERE projectkey=2;
+UPDATE project SET importance='중' WHERE projectkey=3;
+UPDATE project SET importance='하' WHERE projectkey=4;
+INSERT INTO member_project VALUES (1,2,4);
+		select DISTINCT projectkey from member_project where memberkey=2 order by memberkey;
+SELECT * FROM project WHERE projectkey IN (1,2,3);
+SELECT * FROM project WHERE projectkey IN (
+		select DISTINCT projectkey 
+		from member_project 
+		where memberkey=2 
+		order by memberkey
+);
+SELECT * FROM fileInfo ORDER BY fno;
+SELECT * FROM notice ORDER BY noticekey;
+SELECT * FROM NOTICE_ATTACH;
+DELETE FROM NOTICE_ATTACH WHERE noticekey = 0;
+
+
+SELECT * FROM project ORDER BY PROJECTKEY;
+select * from project  where projectkey=1 order by projectkey;
+
+
+DROP TABLE projectHome;
+CREATE TABLE projectHome(
+	projectHomekey NUMBER PRIMARY KEY,
+	title varchar2(400),
+	contents varchar2(400),
+	memberkey NUMBER CONSTRAINT projectHome_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE,
+	projectkey NUMBER CONSTRAINT projectHome_project_fk REFERENCES project(projectkey) ON DELETE CASCADE,
+	workSortKey NUMBER CONSTRAINT projectHome_workSort_fk REFERENCES workSort(workSortKey) ON DELETE CASCADE,
+	importance varchar2(400),
+	writedate DATE
+);
+CREATE SEQUENCE seq_projectHome;
+	select * from project ORDER BY projectkey;
+
+SELECT ph.*, ws.title workSortTitle
+FROM projectHome ph, worksort ws
+WHERE ph.workSortKey = ws.workSortKey
+AND projectkey=1;
+SELECT seq_projectHome.nextval FROM dual;
+INSERT INTO projectHome values(seq_projectHome.nextval, '이것 부탁합니다', '이것 부탁합니다', 2, 1, 1, 3,sysdate);
+SELECT * FROM project;
+
+CREATE TABLE workSort(
+	workSortKey NUMBER PRIMARY KEY,
+	title varchar2(400)
+);
+SELECT title FROM workSort;
+SELECT name FROM project;
+INSERT INTO workSort VALUES (1, '간트차트');
+INSERT INTO workSort VALUES (2, '칸반보드');
+INSERT INTO workSort VALUES (3, '일정관리');
+INSERT INTO workSort VALUES (4, '산출물관리');
+INSERT INTO workSort VALUES (5, '회의록');
+INSERT INTO workSort VALUES (6, '채팅');
+INSERT INTO workSort VALUES (7, '예산관리');
+INSERT INTO workSort VALUES (8, '품질관리');
+INSERT INTO workSort VALUES (9, '조달관리');
+INSERT INTO workSort VALUES (10, '인적관리');
+INSERT INTO workSort VALUES (11, '리스크관리');
 
 
 
@@ -484,17 +599,31 @@ INSERT into notice_attach VALUES ('1','1','1','1',1);
 
 
 
+---------------------------
+SELECT * FROM vote;
 
-
-
-
-
-
-
-
-
-
-
+DROP TABLE vote;
+CREATE TABLE vote(
+	votekey NUMBER PRIMARY KEY,
+	title varchar2(400),
+	contents varchar2(4000),
+	writedate DATE,
+	enddate DATE,
+	voteoption varchar2(400),
+	item1 varchar2(400),
+	item2 varchar2(400),
+	item3 varchar2(400),
+	item4 varchar2(400),
+	item5 varchar2(400),
+	voteItem1 NUMBER default 0,
+	voteItem2 NUMBER default 0,
+	voteItem3 NUMBER default 0,
+	voteItem4 NUMBER default 0,
+	voteItem5 NUMBER default 0,
+	memberkey NUMBER CONSTRAINT vote_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE,
+	projectkey NUMBER CONSTRAINT vote_project_fk REFERENCES project(projectkey) ON DELETE CASCADE
+);
+CREATE SEQUENCE seq_vote;
 
 
 

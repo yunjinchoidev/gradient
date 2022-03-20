@@ -147,6 +147,27 @@
 									</div>
 
 
+										
+											<c:forEach var="fname" items="${get.fnames }">
+											<div class="input-group mb-3 fileCls">
+												<div class="input-group-prepend">
+													<span class="input-group-text" 
+														onclick="downFile('${fname}')">첨부 파일(다운로드)</span>
+												</div>
+												
+												<div class="custom-file">
+													<input type="file" name="report" 
+														class="custom-file-input" id="file01"/>
+														
+													<label class="custom-file-label" for="file01">${fname}</label>
+												</div>		
+											</div> 	 
+											</c:forEach>
+
+
+
+
+
 
 
 
@@ -164,7 +185,7 @@
 										<button type="submit" class="btn btn-primary me-1 mb-1">수정하기</button>
 										<button type="reset" class="btn btn-light-secondary me-1 mb-1">삭제하기</button>
 										<button type="button" class="btn btn-danger me-1 mb-1"
-											onclick="location.href='/${path}}/output.do?projectkey=1'">뒤로가기</button>
+											onclick="location.href='${path}/output.do?projectkey=1'">뒤로가기</button>
 									</div>
 								</form>
 

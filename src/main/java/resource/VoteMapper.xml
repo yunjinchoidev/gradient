@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="project5.vote.VoteDao">
+
+	<select id="list" resultType="project5.vote.VoteVO">
+		select *
+		from vote
+	</select>
+
+	<select id="get" resultType="project5.vote.VoteVO"
+		parameterType="int">
+		select *
+		from vote
+		where votekey = #{votekey}
+	</select>
+
+	<insert id="insert" parameterType="project5.vote.VoteVO">
+		insert into vote
+		values
+		(seq_vote.nextval, #{title}, #{contents},
+		sysdate, to_date(#{enddateS},
+		'YYYY-MM-DD'),
+		#{voteoption},#{item1},#{item2},#{item3},#{item4},#{item5},0,0,0,0,0,#{memberkey},#{projectkey})
+	</insert>
+
+
+	<update id="voting" parameterType="project5.vote.VoteVO">
+		update vote
+		set
+		voteItem1=#{voteItem1},
+		voteItem2 =#{voteItem2},
+		voteItem3 =#{voteItem3},
+		voteItem4 =#{voteItem4},
+		voteItem5 =#{voteItem5}
+		where
+		votekey=#{votekey}
+
+	</update>
+
+
+
+
+
+</mapper>

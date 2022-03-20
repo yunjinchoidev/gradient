@@ -14,20 +14,28 @@
 <meta charset="UTF-8">
 <title>프로젝트 홈</title>
 </head>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script>
-$(document).ready(function(){
-	$("#pjList").change(function(){
-		var selectedval = $(this).val();
-		console.log(selectedval);
-		location.href="/project5/projectHome.do?projectkey="+selectedval;
-	})
-})
+	$(document.ready(function() {
+						$("#pjList").change(
+										function() {
+											var selectedval = $(this).val();
+											console.log(selectedval);
+											location.href = "/project5/projectHome.do?projectkey="
+													+ selectedval;
+										})
 
+
+		var psc = "${psc}"
+		if(psc=="voteSuccess"){
+			alert("성공적으로 투표하였습니다.")
+		}
+	
+	})
 </script>
 <style>
-#moveBtn a{
+#moveBtn a {
 	width: 135px;
 	margin-right: 10px;
 	font-size: 20px;
@@ -38,29 +46,28 @@ $(document).ready(function(){
 
 <body>
 	<%@ include file="../common/header.jsp"%>
-	
-	
-	
+
+
+
 	<div id="main">
-	
+
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
-				
-						<%@ include file="sort.jsp" %>
-                                                
-                                    
-                                    
-                                    
-                                    
-                                                
+
+					<%@ include file="sort.jsp"%>
+
+
+
+
+
+
 					<div class="col-12 col-md-6 order-md-1 order-last">
-					<span style="font-size: 40px; font-weight: bolder; color:red;">[${project.name }] </span>
-					<span style="font-size: 40px; font-weight: bolder; color:black;">홈</span>
-						<p class="text-subtitle text-muted">공지를 확인하십시오.
-							</p>
+						<span style="font-size: 40px; font-weight: bolder; color: red;">[${project.name }]
+						</span> <span style="font-size: 40px; font-weight: bolder; color: black;">홈</span>
+						<p class="text-subtitle text-muted">공지를 확인하십시오.</p>
 					</div>
-				
+
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
@@ -70,14 +77,14 @@ $(document).ready(function(){
 							</ol>
 						</nav>
 					</div>
-						
+
 				</div>
-				
-			
-                                    
-                                    
-                                    
-                                    
+
+
+
+
+
+
 			</div>
 			<section class="section">
 				<div class="card">
@@ -85,12 +92,12 @@ $(document).ready(function(){
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-							
-							
-							
+
+
+
 							<div class="dataTable-top">
-								<div class="dataTable-dropdown" style="width:30%;">
-									<select class="dataTable-selector form-select" ><option
+								<div class="dataTable-dropdown" style="width: 30%;">
+									<select class="dataTable-selector form-select"><option
 											value="5">5</option>
 										<option value="10" selected="">10</option>
 										<option value="15">15</option>
@@ -99,18 +106,22 @@ $(document).ready(function(){
 								</div>
 								<div class="dataTable-search">
 									<input class="dataTable-input" placeholder="Search..."
-										type="text">
-										<a href="/project5/projectHomeWriteForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
-										<a href="/project5/voteWriteForm.do" class="btn btn-info" style="text-align: right">투표만들기</a>
-										<a href="/project5/voteWriteForm.do" class="btn btn-secondary" style="text-align: right">진행중인 투표</a>
-										<a href="/project5/voteWriteForm.do" class="btn btn-warning" style="text-align: right">투표  결과</a>
+										type="text"> <a
+										href="/project5/projectHomeWriteForm.do"
+										class="btn btn-danger" style="text-align: right">글쓰기</a> <a
+										href="/project5/voteWriteForm.do" class="btn btn-info"
+										style="text-align: right">투표만들기</a> <a
+										href="/project5/voteWriteForm.do" class="btn btn-secondary"
+										style="text-align: right">진행중인 투표</a> <a
+										href="/project5/voteWriteForm.do" class="btn btn-warning"
+										style="text-align: right">투표 결과</a>
 								</div>
 							</div>
-							
-							
-							
-							
-							
+
+
+
+
+
 							<div class="dataTable-container">
 								<table class="table table-striped dataTable-table" id="table1">
 									<thead>
@@ -132,42 +143,53 @@ $(document).ready(function(){
 
 
 									<tbody>
-									<c:forEach var="list" items="${list }">
+
+										<c:forEach var="list" items="${voteList }">
+											<tr>
+												<td>${list.votekey }</td>
+												<td style="color: red; cursor:pointer" onclick="location.href='/project5/voteGet.do?votekey=${list.votekey}'" >[[투표]][${project.name }]
+													${list.title }</td>
+												<td><fmt:formatDate value="${list.writedate }" /></td>
+												<td><fmt:formatDate value="${list.enddate }" /></td>
+												<td>${list.voteoption}</td>
+											</tr>
+										</c:forEach>
+
+
+										<c:forEach var="list" items="${list }">
 											<tr>
 												<td>${list.projectHomekey }</td>
-												<td>[${project.name }][${list.workSortTitle}]  ${list.title }</td>
-												<td><fmt:formatDate value="${list.writedate }"/></td>
+												<td>[${project.name }][${list.workSortTitle}]
+													${list.title }</td>
+												<td><fmt:formatDate value="${list.writedate }" /></td>
 												<td>${list.workSortTitle}</td>
-												
-												<td>
-												<c:if test="${list.importance==1 }">
+
+												<td><c:if test="${list.importance==1 }">
 														<span class="badge bg-success">최하</span>
-												</c:if>
-												<c:if test="${list.importance==2 }">
+													</c:if> <c:if test="${list.importance==2 }">
 														<span class="badge bg-info">하</span>
-												</c:if>
-												<c:if test="${list.importance==3 }">
+													</c:if> <c:if test="${list.importance==3 }">
 														<span class="badge bg-secondary">중</span>
-												</c:if>
-												<c:if test="${list.importance==4 }">
+													</c:if> <c:if test="${list.importance==4 }">
 														<span class="badge bg-warning">상</span>
-												</c:if>
-												<c:if test="${list.importance==5 }">
+													</c:if> <c:if test="${list.importance==5 }">
 														<span class="badge bg-danger">최상</span>
-												</c:if>
-												
-												
-												</td>
+													</c:if></td>
 											</tr>
-											</c:forEach>
+										</c:forEach>
+
+
+
+
+
 									</tbody>
-									
+
 
 
 
 
 								</table>
-								
+
 							</div>
 
 

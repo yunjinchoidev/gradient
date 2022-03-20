@@ -570,7 +570,10 @@ $(document).ready(function(){
 							</div>
 							<div class="px-4">
 								<button
-									class='btn btn-block btn-xl btn-light-primary font-bold mt-3'>채팅 시작
+									class='btn btn-block btn-xl btn-light-primary font-bold mt-3'
+									onclick="window.open('/project5/chatTEST.do', 'PopupWin', 'width=1000,height=1200');"
+									
+									>채팅 시작
 									</button>
 							</div>
 						</div>

@@ -6,6 +6,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<script>
+$(document).ready(function(){
+
+	
+	
+})
+
+</script>
+
+
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
@@ -165,7 +176,7 @@
 										<div class="col-md-6 col-12" style="width: 100%">
 											<div class="form-group">
 												<label for="email-id-column">파일 업로드</label> <input
-													class="form-control form-control-lg" id="uploadFile"
+													class="form-control form-control-lg" id="uploadFile" name="uploadFile"
 													type="file" multiple="multiple"> <br>
 											</div>
 										</div>
@@ -212,9 +223,9 @@
 
 									<div class="col-12 d-flex justify-content-end">
 										<button type="button" class="btn btn-danger me-1 mb-1"
-											onclick="location.href='/project/output.do'">뒤로가기</button>
+											onclick="location.href='/project5/output.do'">뒤로가기</button>
 
-										<button type="submit" class="btn btn-primary me-1 mb-1">등록</button>
+										<button type="submit" class="btn btn-primary me-1 mb-1" >등록</button>
 										<button type="reset" class="btn btn-light-secondary me-1 mb-1">초기화</button>
 									</div>
 

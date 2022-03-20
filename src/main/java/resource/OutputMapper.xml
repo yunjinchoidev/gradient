@@ -15,6 +15,7 @@
 		and o.projectkey = p.projectkey
 		and
 		o.deptno = d.deptno
+		order by outputkey
 	</select>
 
 	<select id="get" parameterType="int" resultType="project5.output.OutputVO">

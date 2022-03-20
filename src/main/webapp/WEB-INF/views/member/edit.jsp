@@ -62,134 +62,124 @@ $(document).ready(function() {
 	
 	
 	
-	// 파일 용량  체크 
-	  var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-	  var maxSize = 5242880; //5MB
-  
-	  function checkExtension(fileName, fileSize){
-	    if(fileSize >= maxSize){
-	      alert("파일 사이즈 초과");
-	      return false;
-	    }
-	    if(regex.test(fileName)){
-	      alert("해당 종류의 파일은 업로드할 수 없습니다.");
-	      return false;
-	    }
-	    return true;
-	  }
-	  
-	  				
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
-	  
+				// 파일 용량  체크 
+				  var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+				  var maxSize = 5242880; //5MB
+			  
+				  function checkExtension(fileName, fileSize){
+				    if(fileSize >= maxSize){
+				      alert("파일 사이즈 초과");
+				      return false;
+				    }
+				    if(regex.test(fileName)){
+				      alert("해당 종류의 파일은 업로드할 수 없습니다.");
+				      return false;
+				    }
+				    return true;
+				  }
 	  
 	  
 		
-		  
-		  //////////// 내 버전 파일 결과
-	  var memberkey=2;				  
-		  function showUploadResult2(uploadResultArr){
-			    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
-			    var uploadUL = $("#myface");
-			    var str ="";
-			    $(uploadResultArr).each(function(i, obj){
-			    		console.log(obj);
-			    		console.log(obj.pathinfo);
-			    		console.log(obj.fname);
-			    		console.log(obj);
-						var fileCallPath =  encodeURIComponent(obj.fname);
-						console.log(fileCallPath);
-						str = "<img src='/project5/display2.do?fileName="+fileCallPath+"'>";
-						console.log(str)
-						$("#not").hide()
-					})
-			    uploadUL.append(str);
-			  }
-		
-		
-		  
-		  
-		  
-		  
-		//책 버전 파일 업로드
-		var memberkeyValue ="${member.memberkey}";
-		  console.log(memberkey);
-		 var data = { memberkey : memberkeyValue};
-		 // 업로드 파일 결과 가져오기
-	    $.ajax({
-	      url: '/project5/aaaa.do',
-	      data: data,
-	      type: 'POST',
-	      dataType:'json',
-	        success: function(result){
-	          console.log(result); 
-	          console.log("파일 불러오기 완료")
-			  showUploadResult2(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
-	      },
-	      error: function(result){
-	    	  console.log(memberkey)
-	          console.log("회원 이미지 정보 불러오기 실패");
-	          console.log(result); 
-	      }
-	    }); //$.ajax
-								  
-									    
-									    
-									    
-									    
-	// 책 버전, 에이젝스 파일 업로드
-	// 파일 업로드 처리
-	$("input[type='file']").change(function(e){
-				var formData = new FormData();
-				var inputFile = $("input[name='uploadFile']");
-				var files = inputFile[0].files;
-				for(var i = 0; i < files.length; i++){
-				if(!checkExtension(files[i].name, files[i].size) ){
-					return false;
-			}
-				formData.append("uploadFile", files[i]);
-			}
-		// 로컬 폴더에 파일 저장 처리
-		$.ajax({
-		url: '/project5/uploadAjaxAction.do',
-		processData: false, 
-		contentType: false,data: 
-		formData,type: 'POST',
-		dataType:'json',
-		success: function(result){
-			  console.log(result); 
-			  showUploadResult(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
-		},
-		error: function(result){
-			  console.log("파일 업로드 실패했습니다.");
-			  console.log(result); 
-		}
-		}); //$.ajax
-	});  
-	  
-	  
+	
 
-
-			// 책 버전		
-			// 이미지 뷰단에 띄어주기
+		  		var memberkey;
+				// ajax를 통한 파일 정보 불러오기 
+				// 페이지 접속시 자동으로 실행
+				var memberkeyValue ="${member.memberkey}";
+				  console.log(memberkey);
+				 var data = { memberkey : memberkeyValue};
+				 // 업로드 파일 결과 가져오기
+			    $.ajax({
+			      url: '/project5/aaaa.do',
+			      data: data,
+			      type: 'POST',
+			      dataType:'json',
+			        success: function(result){
+			          console.log(result); 
+			          console.log("파일 불러오기 완료")
+					  showUploadResult2(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+			      },
+			      error: function(result){
+			    	  console.log(memberkey)
+			          console.log("회원 이미지 정보 불러오기 실패");
+			          console.log(result); 
+			      }
+			    }); //$.ajax
+			    
+				// 이미지 클라리언트 딴에 띄우는 합수
+				// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
+			  function showUploadResult2(uploadResultArr){
+				    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+				    var uploadUL = $("#myface");
+				    var str ="";
+				    $(uploadResultArr).each(function(i, obj){
+				    		console.log("obj"+obj);
+							var fileCallPath =  encodeURIComponent(obj.fname);
+							console.log(fileCallPath);
+							str = "<img src='/project5/display2.do?fileName="+fileCallPath+"' id='mymy'>";
+							console.log("str"+str)
+							$("#not").hide()
+							$("#mymy").show()
+						})
+				    uploadUL.append(str);
+				  }
+			///////////////////////////////////////////////////////////////
+			    
+			    
+									    
+									    
+			    
+			 // 화면단에서 업로드한 것을 바로 확인   
+			// 에이젝스를 통한 파일 업로드
+			// 파일 업로드 처리
+			$("input[type='file']").change(function(e){
+						var formData = new FormData();
+						var inputFile = $("input[name='uploadFile']");
+						var files = inputFile[0].files;
+						for(var i = 0; i < files.length; i++){
+						if(!checkExtension(files[i].name, files[i].size) ){
+							return false;
+					}
+						formData.append("uploadFile", files[i]);
+					}
+						
+				// 화면단에서 바로 볼수 있게 하기 위해서 사용 + 파일저장
+				$.ajax({
+				url: '/project5/uploadAjaxAction.do',
+				processData: false, 
+				contentType: false,
+				data:formData,
+				type: 'POST',
+				dataType:'json',
+				success: function(result){
+					  console.log(result); 
+					  showUploadResult(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+				},
+				error: function(result){
+					  console.log("파일 업로드 실패했습니다.");
+					  console.log(result); 
+				}
+				}); //$.ajax
+			});  
+	  
+	  
+			
+			
+			// 이미지 뷰단에 띄어주기 함수  // 파일 업로드 시 파일 정보 띄우기
 				function showUploadResult(uploadResultArr){
 				  if(!uploadResultArr || uploadResultArr.length == 0){ return; }
 				  var uploadUL = $("#myface");
 				  var str ="";
+				  $("#now").hide();
 				  $(uploadResultArr).each(function(i, obj){
 						if(obj.image){
 							var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
-							str = "<img src='/project5/display.do?fileName="+fileCallPath+"'>";
+							str = "<img src='/project5/display.do?fileName="+fileCallPath+"' id='now'>";
 							console.log(fileCallPath)
 							console.log(str)
-							$("#not").hide()
-							
+							$("#not").hide();
+							$("#mymy").hide();
+							$("#now").show();
 						}else{
 							var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
 						    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
@@ -202,6 +192,9 @@ $(document).ready(function() {
 
 
 						
+			
+			
+			
 			
 			//////////////////////////////////////////////////////////////////////////////////////
 			//아이디 중복검사

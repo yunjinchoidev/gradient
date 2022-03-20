@@ -43,13 +43,14 @@ public class MemberService {
 	public String edit(MemberVO vo) {
 		dao.edit(vo);
 		String msg = "등록성공";
+		dao2.update(new FileInfoVO(uploadPath, "1", "게시물 제목:" + vo.getMemberkey()));
+		System.out.println("여기까지는 된다.");
 		
 		// 업로드 파일이 없을 때를 피하기 위해
 		if (vo.getUploadFile() != null && vo.getUploadFile().length > 0) {
 			try {
 				for (MultipartFile mf : vo.getUploadFile()) {
 					String fname = mf.getOriginalFilename();
-					
 					// 파일 이름이 없는 경우를 피하기 위해
 					if (fname != null && !fname.equals("")) {
 						System.out.println("경로명:" + uploadPath);
@@ -59,10 +60,7 @@ public class MemberService {
 						// 첨부파일 정보 DB에 등록..
 						System.out.println("로컬 폴더에 파일 저장 완료");
 						System.out.println(new FileInfoVO(uploadPath, fname, "회원 번호:" + vo.getMemberkey()));
-						
 						dao2.update(new FileInfoVO(vo.getFno(),uploadPath, fname, "회원 번호:" + vo.getMemberkey()));
-						
-						
 						System.out.println("데이터베이스에 저장 완료");
 					}
 				}
@@ -80,6 +78,8 @@ public class MemberService {
 				msg = "기타예외:" + e.getMessage();
 			}
 		}
+		
+		System.out.println("체크");
 		return msg;
 	}
 	
