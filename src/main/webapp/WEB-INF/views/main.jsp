@@ -42,7 +42,7 @@
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>GRADIENT에 방문하신 여러분을 환영합니다</h3>
 						<p class="text-subtitle text-muted">
-						여러분을 더 유능하게 만들어 줄 것을 약속합니다.</p>
+						여러분을 더 유능하게 만들어 줄 당신의 친구가 바로 여기있습니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"

@@ -7,12 +7,16 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import project5.projectManage.ProjectManageDao;
+
 @Service
 public class ProjectService {
 
 	@Autowired
 	ProjectDao dao;
 
+	
+	
 	public List<ProjectVO> list() {
 		return dao.list();
 	}
@@ -25,5 +29,7 @@ public class ProjectService {
 		return dao.get2(list);
 	}
 
+	
+	
 
 }

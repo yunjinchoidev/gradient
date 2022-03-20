@@ -23,15 +23,20 @@ public class projectManageController {
 	@RequestMapping("/progressUpdate.do")
 	public String progressUpdate(Model d, ProjectManageVO vo) {
 		service.progressUpdate(vo);
-		return "/projectManage/main";
+		System.out.println("변경합니다.");
+		return "forward:/projectManageMain.do";
 	}
 	
 
 	@RequestMapping("/projectManageGet.do")
 	public String projectManageGet(Model d, ProjectManageVO vo) {
-		d.addAttribute("get", service.get(vo.getProjectkey()));
+		d.addAttribute("get", service.get(vo.getProjectkey())); //프로젝트 키를 통해 프로젝트 정보 조회
 		return "/projectManage/get";
 	}
+	
+	
+	
+	
 	
 	
 	

@@ -159,15 +159,27 @@ public class UploadController {
 		return service.findByBno(vo.getNoticekey());
 	}
 
+	
+	
+	
+	
 	@PostMapping("/aaaa.do")
 	@ResponseBody
-	public List<FileInfoVO> aaaa(MemberVO vo) {
-		System.out.println("memberkey:"+vo.getMemberkey());
-		 List<FileInfoVO> list = service2.findbyfno(vo.getMemberkey());
+	public List<FileInfoVO> aaaa(String memberkey) {
+		int memberkeyN = Integer.parseInt(memberkey);
+		System.out.println("/aaaa.do 진입");
+		System.out.println("memberkey:"+memberkeyN);
+		 List<FileInfoVO> list = service2.findbyfno(memberkeyN);
 		System.out.println(list);
-		return service2.findbyfno(2);
+		return service2.findbyfno(memberkeyN);
 	}
 
+	
+	
+	
+	
+	
+	
 	
 	
 	

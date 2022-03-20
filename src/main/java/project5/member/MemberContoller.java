@@ -143,6 +143,16 @@ public class MemberContoller {
 		return "member/memberFindForm";
 	}
 	
+		// 아이디 중복 검사
+		@RequestMapping("/memberIdChk.do")
+		@ResponseBody
+		public void memberIdChk(String memberkey) throws Exception{
+			System.out.println(memberkey);
+			System.out.println("진입");
+		} 
+	
+	
+	
 	
 	
 	

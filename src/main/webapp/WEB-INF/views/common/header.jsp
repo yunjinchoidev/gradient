@@ -55,37 +55,26 @@
 				location.href = "/project5/main.do";
 			} else {
 				console.log("승인");
-				window.location= "www.naver.com";
+				window.location = "www.naver.com";
 			}
 		});
-	
-	
+
 		var memberName = "${member.name}";
 		console.log("memberName : " + memberName);
-		$("#myProject").click(function(){
-			if(memberName==""){
+		$("#myProject").click(function() {
+			if (memberName == "") {
 				alert("미 로그인시 접근 불가합니다.")
 				history.back(-2);
 			}
 		})
-		$("#mywork").click(function(){
-			if(memberName==""){
+		$("#mywork").click(function() {
+			if (memberName == "") {
 				alert("미 로그인시 접근 불가합니다.")
 				history.back(-2);
 			}
 		})
 
-	
-	
-	
 	})
-	
-	
-	
-	
-	
-	
-	
 </script>
 
 
@@ -134,7 +123,8 @@
 						</c:if>
 
 						<c:if test="${not empty member.id}">
-							<li class="sidebar-item  "><a href="/project5/memberEdit.do?memberkey=${member.memberkey }"
+							<li class="sidebar-item  "><a
+								href="/project5/memberEdit.do?memberkey=${member.memberkey }"
 								class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>${member.id }님</span>
 							</a></li>
 
@@ -164,7 +154,8 @@
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									공개된 모든 프로젝트</span>
 						</a></li>
-						<li class="sidebar-item "  id="myProject"><a href="/project5/myProject.do?memberkey=${member.memberkey }"
+						<li class="sidebar-item " id="myProject"><a
+							href="/project5/myProject.do?memberkey=${member.memberkey }"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									나의 프로젝트</span>
 						</a></li>
@@ -174,7 +165,7 @@
 
 
 						<li class="sidebar-item  has-sub"><a
-							href="/project5/projectHome.do" class='sidebar-link'  > <i
+							href="/project5/projectHome.do" class='sidebar-link'> <i
 								class="bi bi-stack"></i> <span>프로젝트</span>
 						</a>
 							<ul class="submenu ">
@@ -190,17 +181,18 @@
 										관리</a></li>
 								<li class="submenu-item "><a
 									href="/project5/qualityList.do">품질 관리</a></li>
-									<li class="submenu-item "><a
+								<li class="submenu-item "><a
 									href="/project5/procurementList.do">조달 관리</a></li>
 								<li class="submenu-item "><a href="/project5/team.do">인적
 										관리</a></li>
-								<li class="submenu-item "><a href="/project5/risk.do">리스크 관리</a>
-								</li>
+								<li class="submenu-item "><a href="/project5/risk.do">리스크
+										관리</a></li>
 							</ul></li>
 
 
 
-						<li class="sidebar-item  "><a href="/project5/calendar.do?memberkey=${member.memberkey}"
+						<li class="sidebar-item  "><a
+							href="/project5/calendar.do?memberkey=${member.memberkey}"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									일정관리</span>
 						</a></li>
@@ -250,6 +242,17 @@
 										리스트 </a></li>
 							</ul></li>
 
+						<li class="sidebar-item  has-sub"><a href="/project5/customerChat.do"
+							class='sidebar-link'> <i class="bi bi-stack"></i> <span>
+									고객 관리</span>
+						</a>
+
+							<ul class="submenu " id="check">
+								<li class="submenu-item "><a
+									href="/project5/customerChat.do">채팅 상담 </a></li>
+								<li class="submenu-item "><a href="/project5/chatBot.do">챗봇 </a></li>
+								<li class="submenu-item "><a href="/project5/chatTEST.do">테스트 </a></li>
+							</ul></li>
 
 
 					</ul>

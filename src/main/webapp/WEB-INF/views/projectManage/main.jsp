@@ -16,8 +16,8 @@
 $(document).ready(function(){
 	
 	$("#progress").click(function(){
-		alert("afdsaf");
-		$(".modal").modal('show')
+		alert("프로젝트 진행 상태를 바꾸시겠습니까?");
+		$(".modal").modal('show');
 		
 	})
 	
@@ -215,7 +215,8 @@ $(document).ready(function(){
 															
 															
 															
-															<td id="progress" style="cursor: pointer;">
+															<td id="progress" style="cursor: pointer;" data-toggle="modal" data-target= "#inlineForm">
+
 															
 															<c:if test="${list.progress eq '대기'}">
 															<span class="badge bg-primary">대기</span>
@@ -719,20 +720,23 @@ $(document).ready(function(){
                                                     role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title" id="myModalLabel33">칸반 보드 </h4>
+                                                            <h4 class="modal-title" id="myModalLabel33">프로젝트 상태 변경 </h4>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <i data-feather="x"></i>
                                                             </button>
                                                         </div>
-                                                        <form action="/project5/progressUpdate" id="frm01">
+                                                        <form action="/project5/progressUpdate.do?" id="frm01">
+                                                        <input type="hidden" name="projectkey" value="2">
                                                             <div class="modal-body">
                                                                 <label>progress: </label>
                                                                 <div class="form-group">
-                                                                        <select  class="form-control" name="status">
-                                                                        	<option value="new">new</option>
-                                                                        	<option value="done">done</option>
-                                                                        	<option value="work">work</option>
+                                                                        <select  class="form-control" name="progress">
+                                                                        	<option value="대기">대기</option>
+                                                                        	<option value="초기">초기</option>
+                                                                        	<option value="중기">중기</option>
+                                                                        	<option value="말기">말기</option>
+                                                                        	<option value="종료">종료</option>
                                                                         </select>
                                                                 </div>
                                                             </div>
@@ -742,34 +746,14 @@ $(document).ready(function(){
                                                                 <button type="button" class="btn btn-light-secondary"
                                                                     data-bs-dismiss="modal">
                                                                     <i class="bx bx-x d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">Close</span>
+                                                                    <span class="d-none d-sm-block">닫기</span>
                                                                 </button>
-                                                                <button type="button" class="btn btn-primary ml-1 add"
-                                                                    data-bs-dismiss="modal" id="addItem">
-                                                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block"  >변경</span>
-                                                                </button>
-                                                                <button type="button" class="btn btn-danger ml-2 update"
-                                                                    data-bs-dismiss="modal" id="updateItem">
+                                                                <button type="submit" class="btn btn-danger ml-2 update"
+                                                                    data-bs-dismiss="modal" id="updateItem" onclick="alert('변경합니다')">
                                                                     <i class="bx bx-check d-block d-sm-none"></i>
                                                                     <span class="d-none d-sm-block">수정</span>
                                                                 </button>
-                                                                <button type="button" class="btn btn-warning ml-2 delete"
-                                                                    data-bs-dismiss="modal" id="removeItem">
-                                                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">삭제</span>
-                                                                </button>
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
+                                                                <input type="submit" value="수정">
                                                             </div>
                                                         </form>
                                                     </div>

@@ -17,7 +17,7 @@
 	</update>
 	
 	<select id="get" resultType="project5.projectManage.ProjectManageVO" parameterType="int">
-		select * from project where projectkey=#{projectkey} order by projectkey
+		select * from project where projectkey=#{projectkey}
 	</select>
 	
 	
