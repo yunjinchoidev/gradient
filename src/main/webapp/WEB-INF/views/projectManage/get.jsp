@@ -46,7 +46,7 @@
 					<div class="card">
 
 						<div class="card-header">
-							<h4 class="card-title">공지사항</h4>
+							<h4 class="card-title">${get.name }</h4>
 						</div>
 
 
@@ -56,25 +56,42 @@
 								<div class="row">
 									<div class="col-md-6 col-12">
 										<div class="form-group">
-											<label for="first-name-column">공지 제목</label> <input
+											<label for="first-name-column">프로젝트 명</label> <input
 												type="text" id="first-name-column" class="form-control"
-												placeholder="title" name="title" value="${notice.title }"
+												placeholder="title" name="title" value="${get.projectkey } : ${get.name }"
 												readonly="readonly">
 										</div>
 									</div>
+
 									<div class="col-md-6 col-12">
 										<div class="form-group">
-											<label for="first-name-column">조회수</label> <input type="text"
+											<label for="first-name-column"  style="color:red">상황</label> 
+											<select id="first-name-column" class="form-control"
+												 name="title">
+												  <option value="대기">대기</option>
+												  <option value="초기">초기</option>
+												  <option value="중기">중기</option>
+												  <option value="말기">말기</option>
+												  <option value="종료">종료</option>
+											</select>			
+										</div>
+									</div>
+									
+									
+									
+									<div class="col-md-6 col-12">
+										<div class="form-group">
+											<label for="first-name-column">수주일</label> <input type="text"
 												id="first-name-column" class="form-control"
-												placeholder="title" name="title" value="${notice.cnt }"
+												placeholder="title" name="title" value='<fmt:formatDate value="${get.term }"/>'
 												readonly="readonly">
 										</div>
 									</div>
 									<div class="col-md-6 col-12">
 										<div class="form-group">
-											<label for="first-name-column">작성자</label> <input type="text"
+											<label for="first-name-column">매니저</label> <input type="text"
 												id="first-name-column" class="form-control"
-												placeholder="title" name="title" value="${notice.name }"
+												placeholder="title" name="title" value="${get.manager }"
 												readonly="readonly">
 										</div>
 									</div>
@@ -82,10 +99,10 @@
 
 									<div class="col-md-6 col-12">
 										<div class="form-group">
-											<label for="last-name-column">작성일</label> <input
-												id="last-name-column" class="form-control"
-												readonly="readonly" placeholder="writeDate" name="writeDate"
-												value='<fmt:formatDate type="both" value="${notice.writeDate}" />' />
+											<label for="last-name-column">중요도</label> <input
+												id="last-name-column" class="form-control" type="text"
+												readonly="readonly" placeholder="importance" name="importance"
+												value="${get.importance}" />
 										</div>
 									</div>
 
@@ -95,40 +112,46 @@
 
 									<div class="col-md-6 col-12">
 										<div class="form-group">
-											<label for="city-column">City</label> <input type="text"
-												id="city-column" class="form-control" placeholder="City"
-												name="city-column">
+											<label for="city-column">수주사</label> <input type="text"
+												id="city-column" class="form-control" placeholder="clientkey"
+												name="city-column" value="${get.clientkey }" readonly="readonly">
 										</div>
 									</div>
 									<div class="col-md-6 col-12">
 										<div class="form-group">
-											<label for="country-floating">Country</label> <input
+											<label for="country-floating">시작일</label> <input
 												type="text" id="country-floating" class="form-control"
-												name="country-floating" placeholder="Country">
+												name="country-floating" placeholder="시작일" 
+												value='<fmt:formatDate value="${get.term }"/>' 
+												readonly="readonly">
 										</div>
 									</div>
+									
 									<div class="col-md-6 col-12">
 										<div class="form-group">
-											<label for="company-column">Company</label> <input
+											<label for="company-column">마감일</label> <input
 												type="text" id="company-column" class="form-control"
-												name="company-column" placeholder="Company">
+												name="company-column" placeholder="마감일" 
+												value='<fmt:formatDate value="${get.term }"/>' 
+												readonly="readonly">
 										</div>
 									</div>
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="email-id-column">Email</label> <input
-												type="email" id="email-id-column" class="form-control"
-												name="email-id-column" placeholder="Email">
-										</div>
+									
 									</div>
-									<div class="col-md-6 col-12">
+									
+									
+									
+									
+									
+									<div class="rows">
+									<div class="col-md-6 col-12" style="width: 100%">
 										<div class="form-group">
 											<label for="email-id-column">Contents</label>
 											<textarea class="form-control" name="content"
-												placeholder="content" rows="4" readonly="readonly">${notice.content }</textarea>
+												placeholder="content" rows="4" readonly="readonly">${get.contents }</textarea>
 										</div>
 									</div>
-
+									</div>
 
 									<div class="row">
 										<div class="col-lg-12">

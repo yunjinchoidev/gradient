@@ -263,8 +263,6 @@
 
 $(document).ready(function(e){
 		  var formObj = $("form");
-		  
-		  
 		  ////////////////////////////////////////////////////////////////////////// 파일 DB 에 저장하기 위한 처리.
 		  $("button[type='submit']").on("click", function(e){
 		   e.preventDefault();
@@ -289,6 +287,11 @@ $(document).ready(function(e){
 		  });
 
   
+		  
+		  
+		  
+		  
+		  
 	  var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
 	  var maxSize = 5242880; //5MB
   

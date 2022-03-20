@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import project5.gantt.GanttVO;
 import project5.member.MemberVO;
+import project5.project.ProjectService;
 
 @Controller
 public class GanttController {
@@ -15,8 +16,13 @@ public class GanttController {
 	@Autowired
 	GanttService service;
 
+	
+	@Autowired
+	ProjectService service2;
+	
 	@RequestMapping("/ganttMain.do")
 	public String ganttMain(Model d) {
+		d.addAttribute("pjList", service2.list());
 		return "gantt/main";
 	}
 

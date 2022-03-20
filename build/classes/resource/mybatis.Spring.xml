@@ -12,6 +12,8 @@
 		<typeAlias alias="insrcomm" type="project5.risk.InsRiskcomm" />
 		<typeAlias alias="costList" type="project5.cost.CostList" />
 		<typeAlias alias="costDetail" type="project5.cost.CostDetail" />
+		<typeAlias alias="costDetailInfo" type="project5.cost.CostDetailInfo" />
+		<typeAlias alias="costSch" type="project5.cost.CostSch" />
 		<typeAlias alias="team" type="project5.team.TeamVo"/>
 	</typeAliases>
 	<mappers>
@@ -33,5 +35,10 @@
 		<mapper resource="resource/TeamMapper.xml"/>
 		<mapper resource="resource/QualityMapper.xml"/>
 		<mapper resource="resource/ProcurementMapper.xml"/>
+		<mapper resource="resource/Member_Project_Mapper.xml"/>
+		<mapper resource="resource/ProjectMapper.xml"/>
+		<mapper resource="resource/OutputMapper.xml"/>
+		<mapper resource="resource/WorkSortMapper.xml"/>
+		<mapper resource="resource/DepartmentMapper.xml"/>
 	</mappers>
 </configuration>

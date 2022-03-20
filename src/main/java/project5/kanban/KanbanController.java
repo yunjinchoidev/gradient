@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import project5.member.MemberVO;
+import project5.project.ProjectService;
+import project5.project.ProjectVO;
 
 @Controller
 public class KanbanController {
@@ -16,14 +18,23 @@ public class KanbanController {
 	@Autowired
 	KanbanService service;
 	
+	@Autowired
+	ProjectService service2;
+	
 	@RequestMapping("/kanbanMain.do")
 	public String kanbanMain(Model d) {
+		d.addAttribute("pjList", service2.list());
 		return "/kanban/main";
 	}
+	
 	@RequestMapping("/kanbanMain2.do")
 	public String kanbanMain2(Model d) {
 		return "/kanban/main2";
 	}
+	
+	
+	
+	
 	
 	@RequestMapping("/kanbanList.do")
 	public String kanbanList(Model d) {
@@ -31,6 +42,10 @@ public class KanbanController {
 		return "pageJsonReport";
 	}
 
+	
+	
+	
+	
 	
 	@RequestMapping("/individualMemberList.do")
 	public String individualMemberList(Model d, MemberVO vo) {

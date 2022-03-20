@@ -7,6 +7,27 @@
 <title>Insert title here</title>
 	   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
+
+
+
+
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	$("#progress").click(function(){
+		alert("프로젝트 진행 상태를 바꾸시겠습니까?");
+		$(".modal").modal('show');
+		
+	})
+	
+	
+	
+})
+
+</script>
+
+
 <body>
 
 	<%@ include file="../common/header.jsp"%>
@@ -19,7 +40,9 @@
 		</header>
 
 		<div class="page-heading">
-			<h3>프로젝트 총괄[For PM]</h3>
+			<h3>프로젝트 관리 </h3>
+			<h5><span style="color: red">"${member.name }${member.auth }"</span>님 어서오십시오.</h5>
+			<h5>오직 PM만을 위해 제공하는 정보가 여기 있습니다. </h5>
 		</div>
 		
 		
@@ -27,6 +50,9 @@
 			<section class="row">
 				<div class="col-12 col-lg-9">
 					<div class="row">
+						
+						
+						
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -37,13 +63,14 @@
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프로젝트 1</h6>
-											<h6 class="font-extrabold mb-0">프로젝트 제목</h6>
+											<h6 class="text-muted font-semibold">이메일 보내기</h6>
+											<h6 class="font-extrabold mb-0">이메일 보내기</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -54,13 +81,14 @@
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프로젝트 2</h6>
-											<h6 class="font-extrabold mb-0">프로젝트 제목</h6>
+											<h6 class="text-muted font-semibold">직원 조회</h6>
+											<h6 class="font-extrabold mb-0">직원 조회</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -71,13 +99,14 @@
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프로젝트 3</h6>
-											<h6 class="font-extrabold mb-0">프로젝트 제목</h6>
+											<h6 class="text-muted font-semibold">고객처 조회</h6>
+											<h6 class="font-extrabold mb-0">고객처 조회</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -88,13 +117,14 @@
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프로젝트 4</h6>
-											<h6 class="font-extrabold mb-0">프로젝트 제목</h6>
+											<h6 class="text-muted font-semibold">알림 메시지</h6>
+											<h6 class="font-extrabold mb-0">알림 메시지</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+						
 					</div>
 					<div class="row">
 						<div class="col-12">
@@ -109,7 +139,137 @@
   										
   										
   										
+							
+
+
+
+
+
+
+
+
+
 							<div class="card">
+								<div class="card-header"><h4>프로젝트 시작과 종료</h4></div>
+								<div class="card-body">
+									<div
+										class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+										<div class="dataTable-top">
+											<div class="dataTable-dropdown">
+												<select class="dataTable-selector form-select"><option
+														value="5">5</option>
+													<option value="10" selected="">10</option>
+													<option value="15">15</option>
+													<option value="20">20</option>
+													<option value="25">25</option></select><label>entries per
+													page</label>
+											</div>
+											<div class="dataTable-search">
+												<input class="dataTable-input" placeholder="Search..."
+													type="text"> <a
+													href="/project5/scheduleInsertForm.do"
+													class="btn btn-danger" style="text-align: right">새 프로젝트 만들기</a>
+											</div>
+
+										</div>
+										<div class="dataTable-container">
+											<table class="table table-striped dataTable-table"
+												id="table1">
+												<thead>
+													<tr>
+														<th data-sortable="" style="width: 12.0176%;"><a
+															href="#" class="dataTable-sorter">프로젝트 번호</a></th>
+														<th data-sortable="" style="width: 42.9989%;"><a
+															href="#" class="dataTable-sorter">프로젝트 명</a></th>
+														<th data-sortable="" style="width: 18.0816%;"><a
+															href="#" class="dataTable-sorter">수주액</a></th>
+														<th data-sortable="" style="width: 16.3175%;"><a
+															href="#" class="dataTable-sorter">중요도</a></th>
+														<th data-sortable="" style="width: 10.8049%;"><a
+															href="#" class="dataTable-sorter">상태</a></th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="list" items="${list}">
+														<tr >
+															<td>${list.projectkey}</td>
+															<td style="cursor: pointer;" onclick="location.href='/project5/projectManageGet.do?projectkey=${list.projectkey}'">${list.name }</td>
+															<td>
+															<fmt:formatNumber>${list.take }</fmt:formatNumber>
+															</td>
+															<td>
+															
+																<c:if test="${list.importance eq '하'}">
+															<span class="badge bg-primary">하</span>
+															</c:if>
+															<c:if test="${list.importance eq '중'}">
+															<span class="badge bg-secondary">중</span>
+															</c:if>
+															<c:if test="${list.importance eq '상'}">
+															<span class="badge bg-danger">상</span>
+															</c:if>
+															
+															</td>
+															
+															
+															
+															
+															
+															<td id="progress" style="cursor: pointer;" data-toggle="modal" data-target= "#inlineForm">
+
+															
+															<c:if test="${list.progress eq '대기'}">
+															<span class="badge bg-primary">대기</span>
+															</c:if>
+															<c:if test="${list.progress eq '초기'}">
+															<span class="badge bg-secondary">초기</span>
+															</c:if>
+															<c:if test="${list.progress eq '중기'}">
+															<span class="badge bg-success">중기</span>
+															</c:if>
+															<c:if test="${list.progress eq '말기'}">
+															<span class="badge bg-danger">말기</span>
+															</c:if>
+															<c:if test="${list.progress eq '종료'}">
+															<span class="badge bg-dark">종료</span>
+															</c:if>
+															
+															
+															
+															</td>
+															
+															
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+										</div>
+										<div class="dataTable-bottom">
+											<div class="dataTable-info">Showing 1 to 10 of 26
+												entries</div>
+											<ul
+												class="pagination pagination-primary float-end dataTable-pagination">
+												<li class="page-item pager"><a href="#"
+													class="page-link" data-page="1">‹</a></li>
+												<li class="page-item active"><a href="#"
+													class="page-link" data-page="1">1</a></li>
+												<li class="page-item"><a href="#" class="page-link"
+													data-page="2">2</a></li>
+												<li class="page-item"><a href="#" class="page-link"
+													data-page="3">3</a></li>
+												<li class="page-item pager"><a href="#"
+													class="page-link" data-page="2">›</a></li>
+											</ul>
+										</div>
+									</div>
+								</div>
+							</div>
+
+
+
+
+
+<div class="card">
 								<div class="card-header">
 									<h4>작업 스케쥴</h4>
 								</div>
@@ -165,94 +325,6 @@
 									
 								</div>
 							</div>
-
-
-
-
-
-
-
-
-
-
-							<div class="card">
-								<div class="card-header"><h4>프로젝트 시작과 종료</h4></div>
-								<div class="card-body">
-									<div
-										class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-										<div class="dataTable-top">
-											<div class="dataTable-dropdown">
-												<select class="dataTable-selector form-select"><option
-														value="5">5</option>
-													<option value="10" selected="">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-													<option value="25">25</option></select><label>entries per
-													page</label>
-											</div>
-											<div class="dataTable-search">
-												<input class="dataTable-input" placeholder="Search..."
-													type="text"> <a
-													href="/project5/scheduleInsertForm.do"
-													class="btn btn-danger" style="text-align: right">글쓰기</a>
-											</div>
-
-										</div>
-										<div class="dataTable-container">
-											<table class="table table-striped dataTable-table"
-												id="table1">
-												<thead>
-													<tr>
-														<th data-sortable="" style="width: 12.0176%;"><a
-															href="#" class="dataTable-sorter">Name</a></th>
-														<th data-sortable="" style="width: 42.9989%;"><a
-															href="#" class="dataTable-sorter">Email</a></th>
-														<th data-sortable="" style="width: 18.0816%;"><a
-															href="#" class="dataTable-sorter">Phone</a></th>
-														<th data-sortable="" style="width: 16.3175%;"><a
-															href="#" class="dataTable-sorter">City</a></th>
-														<th data-sortable="" style="width: 10.8049%;"><a
-															href="#" class="dataTable-sorter">Status</a></th>
-													</tr>
-												</thead>
-												<tbody>
-													<c:forEach var="list" items="${list}">
-														<tr>
-															<td>${list.projectkey}</td>
-															<td>${list.name }</td>
-															<td>${list.progress }</td>
-															<td>${list.importance }</td>
-															<td><span class="badge bg-success">Active</span></td>
-														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
-										</div>
-										<div class="dataTable-bottom">
-											<div class="dataTable-info">Showing 1 to 10 of 26
-												entries</div>
-											<ul
-												class="pagination pagination-primary float-end dataTable-pagination">
-												<li class="page-item pager"><a href="#"
-													class="page-link" data-page="1">‹</a></li>
-												<li class="page-item active"><a href="#"
-													class="page-link" data-page="1">1</a></li>
-												<li class="page-item"><a href="#" class="page-link"
-													data-page="2">2</a></li>
-												<li class="page-item"><a href="#" class="page-link"
-													data-page="3">3</a></li>
-												<li class="page-item pager"><a href="#"
-													class="page-link" data-page="2">›</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-
-
 
 
 
@@ -458,8 +530,8 @@
 										alt="Face 1">
 								</div>
 								<div class="ms-3 name">
-									<h5 class="font-bold">Project Manager</h5>
-									<h6 class="text-muted mb-0">@PM</h6>
+									<h5 class="font-bold">${member.name } 님</h5>
+									<h6 class="text-muted mb-0">직책 : ${member.auth } <br>${member.email} </h6>
 								</div>
 							</div>
 						</div>
@@ -626,6 +698,81 @@
 		</div>
 
 	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <!--login form Modal -->
+                                            <div class="modal fade text-left" id="inlineForm" tabindex="-1"
+                                                role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+                                                    role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h4 class="modal-title" id="myModalLabel33">프로젝트 상태 변경 </h4>
+                                                            <button type="button" class="close" data-bs-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <i data-feather="x"></i>
+                                                            </button>
+                                                        </div>
+                                                        <form action="/project5/progressUpdate.do?" id="frm01">
+                                                        <input type="hidden" name="projectkey" value="2">
+                                                            <div class="modal-body">
+                                                                <label>progress: </label>
+                                                                <div class="form-group">
+                                                                        <select  class="form-control" name="progress">
+                                                                        	<option value="대기">대기</option>
+                                                                        	<option value="초기">초기</option>
+                                                                        	<option value="중기">중기</option>
+                                                                        	<option value="말기">말기</option>
+                                                                        	<option value="종료">종료</option>
+                                                                        </select>
+                                                                </div>
+                                                            </div>
+                                                            
+                                                            
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-light-secondary"
+                                                                    data-bs-dismiss="modal">
+                                                                    <i class="bx bx-x d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">닫기</span>
+                                                                </button>
+                                                                <button type="submit" class="btn btn-danger ml-2 update"
+                                                                    data-bs-dismiss="modal" id="updateItem" onclick="alert('변경합니다')">
+                                                                    <i class="bx bx-check d-block d-sm-none"></i>
+                                                                    <span class="d-none d-sm-block">수정</span>
+                                                                </button>
+                                                                <input type="submit" value="수정">
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </body>
 

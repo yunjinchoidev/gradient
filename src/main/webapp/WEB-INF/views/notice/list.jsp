@@ -55,7 +55,7 @@
 			var noticekey =1;
 			  
 		    $.ajax({
-		      url: '/project5/aaaa.do',
+		      url: '/project5/noticeAttachFileInfo.do',
 		      processData: false, 
 		      contentType: false,
 		      data: noticekey,
@@ -252,7 +252,8 @@
 
 								
 
-								<td>${list.writeDate }</td>
+								<td><fmt:formatDate value="${list.writeDate }"/></td>
+								
 								<td>${list.cnt }</td>
 								<td>${list.name } A</td>
 								<td><span class="badge bg-success">Active</span></td>

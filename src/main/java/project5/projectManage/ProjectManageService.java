@@ -14,6 +14,11 @@ public class ProjectManageService {
 	public List<ProjectManageVO> list() {
 		return dao.list();
 	}
-
-
+	public void progressUpdate(ProjectManageVO vo) {
+		dao.progressUpdate(vo);
+	}
+	
+	public ProjectManageVO get(int projectkey) {
+		return dao.get(projectkey);
+	}
 }

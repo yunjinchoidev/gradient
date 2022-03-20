@@ -22,6 +22,11 @@ public class NoticeVO {
 	
 	
 	
+	
+	
+	
+	
+	
 	public NoticeVO() {
 		super();
 		// TODO Auto-generated constructor stub

@@ -12,7 +12,6 @@ public class NoticeAttachVO {
 	private String uploadPath;
 	private String fileName;
 	private boolean fileType;
-
 	private int noticekey;
 
 	

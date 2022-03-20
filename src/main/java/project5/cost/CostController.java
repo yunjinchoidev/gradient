@@ -16,9 +16,13 @@ public class CostController {
 	CostService service;
 	
 	@RequestMapping("/cost.do")
-	public String getCostList(Model d) {
+	public String getCostList(CostSch sch, Model d,
+							@RequestParam(name="sch",required=false) String schS) {
 		//게시글 목록
-		d.addAttribute("costlist",service.getCostList());
+		d.addAttribute("costlist",service.getCostList(sch));
+		if(schS!=null && schS!="") {
+			d.addAttribute("costlist",service.schCostList(sch));
+		}	
 		
 		return "cost/list";
 	}
@@ -50,6 +54,28 @@ public class CostController {
 		service.insCostList(clins);
 		d.addAttribute("msg","등록되었습니다");
 		return "forward:/writecost.do";
+	}
+	
+	@RequestMapping("/detailcost.do")
+	public String detailCost(int prjkey,Model d) {
+		d.addAttribute("prjInfo",service.prjDetailInfo(prjkey));
+		d.addAttribute("cdlist",service.costDetailList(prjkey));
+		d.addAttribute("amountpay",service.amountPay(prjkey));
+		return "cost/Detail";
+	}
+	
+	@RequestMapping("/uptcostassign.do")
+	public String costConfirm(int prjkey, Model d) {
+		service.costConfirm(prjkey);
+		d.addAttribute("msg","승인되었습니다");
+		return "cost/Detail";
+	}
+	
+	@RequestMapping("/delCost.do")
+	public String delCost(int prjkey, Model d) {
+		service.delCost(prjkey);
+		d.addAttribute("msg","삭제되었습니다");
+		return "cost/Detail";
 	}
 	
 

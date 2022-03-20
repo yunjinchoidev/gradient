@@ -4,18 +4,53 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="project5.cost.CostDao">
-	<!-- 게시글 목록 -->
- 	<select id="getCostList" resultType="costList">
- 		SELECT co.COSTKEY costkey, p.NAME prjname, TO_CHAR(p.STARTDATE,'YYYY-MM-DD')STARTDATE  ,TO_CHAR(p.LASTDATE, 'YYYY-MM-DD') LASTDATE ,
-		cl.NAME company , p.MANAGER pm, co.COSTASSIGN costassign
-		FROM PROJECT p , CLIENT cl , COST co
+	<!-- 총 게시물 조회 -->
+	<select id="totCnt" resultType="int" parameterType="costSch">
+		SELECT COUNT(*)
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY co.COSTKEY  desc ) AS cnt, co.COSTKEY costkey, p.NAME prjname, TO_CHAR(p.STARTDATE,'YYYY-MM-DD')STARTDATE  ,TO_CHAR(p.LASTDATE, 'YYYY-MM-DD') LASTDATE ,
+		cl.NAME company , p.MANAGER pm, co.COSTASSIGN costassign , p.PROJECTKEY prjkey
+		FROM PROJECT p , CLIENT cl , COST co 
 		WHERE co.PROJECTKEY = p.PROJECTKEY 
 		AND p.CLIENTKEY = cl.CLIENTKEY
+		order by cnt asc )
+		where 1=1
+		<if test = "sch!=null and sch!=''">
+		AND prjname LIKE '%'||#{sch}||'%'
+		</if>
+	</select>
+	<!-- 게시글 검색 -->
+	<select id="schCostList" parameterType="costSch" resultType="costList">
+	SELECT*
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY co.COSTKEY  desc ) AS cnt, co.COSTKEY costkey, p.NAME prjname, TO_CHAR(p.STARTDATE,'YYYY-MM-DD')STARTDATE  ,TO_CHAR(p.LASTDATE, 'YYYY-MM-DD') LASTDATE ,
+		cl.NAME company , p.MANAGER pm, co.COSTASSIGN costassign , p.PROJECTKEY prjkey
+		FROM PROJECT p , CLIENT cl , COST co 
+		WHERE co.PROJECTKEY = p.PROJECTKEY 
+		AND p.CLIENTKEY = cl.CLIENTKEY
+		order by cnt asc )
+	where cnt BETWEEN #{start} AND #{end}*999
+	AND prjname LIKE '%'||#{sch}||'%'
+	order by cnt
+	</select>
+	<!-- 게시글 목록 -->
+ 	<select id="getCostList" resultType="costList" parameterType="costSch">
+ 		SELECT*
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY co.COSTKEY  desc ) AS cnt, co.COSTKEY costkey, p.NAME prjname, TO_CHAR(p.STARTDATE,'YYYY-MM-DD')STARTDATE  ,TO_CHAR(p.LASTDATE, 'YYYY-MM-DD') LASTDATE ,
+			cl.NAME company , p.MANAGER pm, co.COSTASSIGN costassign , p.PROJECTKEY prjkey
+			FROM PROJECT p , CLIENT cl , COST co 
+			WHERE co.PROJECTKEY = p.PROJECTKEY 
+			AND p.CLIENTKEY = cl.CLIENTKEY
+			order by cnt asc )
+		where cnt BETWEEN #{start} AND #{end}
+		order by cnt
  	</select>
  	<!-- 프로젝트 목록 -->
  	<select id="getPrjList" resultType="costList">
  		SELECT PROJECTKEY prjkey,NAME prjname  
 		FROM PROJECT
+		ORDER BY prjkey ASC
  	</select>
  	<!-- 예산 구분 목록 -->
  	<select id="getCostSort" resultType="costList">
@@ -27,6 +62,31 @@
 		SELECT TAKE 
 		FROM PROJECT
 		WHERE PROJECTKEY = #{prjkey}
+	</select>
+	<!-- 프로젝트 정보 출력 -->
+	<select id="prjDetailInfo" parameterType="int" resultType="costDetailInfo">
+		SELECT p.NAME, p.MANAGER , cl.NAME company  , TO_CHAR(STARTDATE,'YYYY-MM-DD') AS startdateS,
+		TO_CHAR(LASTDATE,'YYYY-MM-DD') AS LASTDATES,p.TAKE TAKE , c.COSTASSIGN costassign , p.PROJECTKEY AS prjkey
+		FROM PROJECT p ,CLIENT cl, COST c 
+		WHERE p.CLIENTKEY = cl.CLIENTKEY 
+		AND p.PROJECTKEY = c.PROJECTKEY 
+		AND p.PROJECTKEY = #{prjkey}
+	</select>
+	<!-- 프로젝트 지출 리스트 -->
+	<select id="costDetailList" parameterType="int" resultType="costDetailInfo">
+		SELECT cs.CONTENT csname , cd.COSTCONTENT content , cd.COSTNOTE costnote ,
+				cd.COSTEX costex 
+		FROM COSTDETAIL cd, PROJECT p , COSTSORT cs
+		WHERE cd.NO = p.PROJECTKEY 
+		AND cd.COSTSORTKEY = cs.COSTSORTKEY 
+		AND p.PROJECTKEY = #{prjkey}
+	</select>
+	<!-- 프로젝트 지출 급액 -->
+	<select id="amountPay" resultType="int" parameterType="int">
+		SELECT sum(COSTEX) as amountpay
+		FROM COSTDETAIL
+		GROUP BY NO
+		HAVING NO = #{prjkey}
 	</select>
 	<!-- 프로젝트 예산 배정 -->
 	<insert id="insPrjCost" parameterType="java.util.List">
@@ -55,5 +115,21 @@
 			#{prjkey}
 		)
 	</insert>
+	<!-- 승인 처리 -->
+	<update id="costConfirm" parameterType="int">
+		UPDATE cost  SET
+		COSTASSIGN = '승인'
+		WHERE PROJECTKEY = #{prjkey}
+	</update>
+	<!-- 예산 삭제 처리 -->
+	<delete id="delCost" parameterType="int">
+		DELETE FROM cost
+		WHERE PROJECTKEY = #{prjkey}
+	</delete>
+	
+	<delete id="delCostDetail" parameterType="int">
+		DELETE FROM COSTDETAIL
+		WHERE NO = #{prjkey}
+	</delete>
 	
 </mapper>

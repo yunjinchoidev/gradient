@@ -14,6 +14,27 @@
 <meta charset="UTF-8">
 <title>프로젝트 홈</title>
 </head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
+<script>
+$(document).ready(function(){
+	$("#pjList").change(function(){
+		var selectedval = $(this).val();
+		console.log(selectedval);
+		location.href="/project5/projectHome.do?projectkey="+selectedval;
+	})
+})
+
+</script>
+<style>
+#moveBtn a{
+	width: 135px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
+
 
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -25,9 +46,18 @@
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
+				
+						<%@ include file="sort.jsp" %>
+                                                
+                                    
+                                    
+                                    
+                                    
+                                                
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>프로젝트 홈</h3>
-						<p class="text-subtitle text-muted">공지사항을 확인하십시오.
+					<span style="font-size: 40px; font-weight: bolder; color:red;">[${project.name }] </span>
+					<span style="font-size: 40px; font-weight: bolder; color:black;">홈</span>
+						<p class="text-subtitle text-muted">공지를 확인하십시오.
 							</p>
 					</div>
 				
@@ -42,18 +72,12 @@
 					</div>
 						
 				</div>
-				<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
-										<a href="/project5/projectHome.do" class="btn btn-dark">홈</a>
-										 <a href="#" class="btn btn-danger">칸반보드</a>
-                                        <a href="#" class="btn btn-primary">간트차트</a>
-                                        <a href="#" class="btn btn-secondary">일정관리</a>
-                                        <a href="#" class="btn btn-info">회의록</a>
-                                        <a href="#" class="btn btn-warning">채팅</a>
-                                        <a href="#" class="btn btn-danger">예산 관리</a>
-                                        <a href="#" class="btn btn-success">품질 관리</a>
-                                        <a href="#" class="btn btn-light">리스크 관리</a>
-                                        <a href="#" class="btn btn-dark">조달 관리</a>
-                                    </div>
+				
+			
+                                    
+                                    
+                                    
+                                    
 			</div>
 			<section class="section">
 				<div class="card">
@@ -77,6 +101,9 @@
 									<input class="dataTable-input" placeholder="Search..."
 										type="text">
 										<a href="/project5/projectHomeWriteForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
+										<a href="/project5/voteWriteForm.do" class="btn btn-info" style="text-align: right">투표만들기</a>
+										<a href="/project5/voteWriteForm.do" class="btn btn-secondary" style="text-align: right">진행중인 투표</a>
+										<a href="/project5/voteWriteForm.do" class="btn btn-warning" style="text-align: right">투표  결과</a>
 								</div>
 							</div>
 							
@@ -89,15 +116,15 @@
 									<thead>
 										<tr>
 											<th data-sortable="" style="width: 12.0176%;"><a
-												href="#" class="dataTable-sorter">Name</a></th>
+												href="#" class="dataTable-sorter">번호</a></th>
 											<th data-sortable="" style="width: 42.9989%;"><a
-												href="#" class="dataTable-sorter">Email</a></th>
+												href="#" class="dataTable-sorter">제목</a></th>
 											<th data-sortable="" style="width: 18.0816%;"><a
-												href="#" class="dataTable-sorter">Phone</a></th>
+												href="#" class="dataTable-sorter">작성날짜</a></th>
 											<th data-sortable="" style="width: 16.3175%;"><a
-												href="#" class="dataTable-sorter">City</a></th>
+												href="#" class="dataTable-sorter">작업구분</a></th>
 											<th data-sortable="" style="width: 10.8049%;"><a
-												href="#" class="dataTable-sorter">Status</a></th>
+												href="#" class="dataTable-sorter">중요도</a></th>
 										</tr>
 									</thead>
 
@@ -105,16 +132,36 @@
 
 
 									<tbody>
-										<c:forEach var="list" items="${list}">
+									<c:forEach var="list" items="${list }">
 											<tr>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td>Offenburg</td>
-												<td><span class="badge bg-success">Active</span></td>
+												<td>${list.projectHomekey }</td>
+												<td>[${project.name }][${list.workSortTitle}]  ${list.title }</td>
+												<td><fmt:formatDate value="${list.writedate }"/></td>
+												<td>${list.workSortTitle}</td>
+												
+												<td>
+												<c:if test="${list.importance==1 }">
+														<span class="badge bg-success">최하</span>
+												</c:if>
+												<c:if test="${list.importance==2 }">
+														<span class="badge bg-info">하</span>
+												</c:if>
+												<c:if test="${list.importance==3 }">
+														<span class="badge bg-secondary">중</span>
+												</c:if>
+												<c:if test="${list.importance==4 }">
+														<span class="badge bg-warning">상</span>
+												</c:if>
+												<c:if test="${list.importance==5 }">
+														<span class="badge bg-danger">최상</span>
+												</c:if>
+												
+												
+												</td>
 											</tr>
-										</c:forEach>
+											</c:forEach>
 									</tbody>
+									
 
 
 

@@ -109,8 +109,20 @@ public class NoticeService {
 			attach.setNoticekey(vo.getNoticekey());
 			dao2.insert(attach);
 		});
-
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	public NoticeVO2 get(int noticekey) {
 		return dao.get(noticekey);

@@ -9,7 +9,16 @@
 
 	<%@ include file="../common/header.jsp"%>
 
-		<div id="main" style="width: 80%">
-			<%@ include file="main2.jsp"%>
+	<div id="main">
+		<div class="page-heading">
+			<div class="page-title">
+				<div class="row">
+					<%@ include file="../projectHome/sort.jsp"%>
+					<%@ include file="main2.jsp"%>
+				</div>
+			</div>
+		</div>
 	</div>
+	
+	
 </body>

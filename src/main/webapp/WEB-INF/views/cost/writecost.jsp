@@ -22,7 +22,6 @@ text-align: center;
 }
 
 #maincard{
-border: solid red;
 width:70%;
 }
 
@@ -30,14 +29,12 @@ width:70%;
 position:absolute;
 top: 15%;
 left: 77%;
-border: solid red;
 width:20%;
 height:30%;
 }
 
 #sideinfodiv{
 position: absolute;
-border: solid red;
 top: 50%;
 left: 77%;
 width:20%;
@@ -86,6 +83,11 @@ margin
 		$("#delbtn").click(function(){
 			$('#maintable > tbody > tr:last').remove();
 			cnt-=1;
+			i-=1;
+		});
+		
+		$("#canclebtn").click(function(){
+			location.href="${path}/cost.do";
 		});
 		
 		var prjkeyS = $('[name=prjkey]').val();
@@ -115,8 +117,16 @@ margin
 		$('.costex').each(function(){
 			if(!isNaN($(this).val())){
 				exsum += parseInt($(this).val());
+				var exsumS = numberWithCommas(exsum);
+				var exsumEle = document.getElementById('exsum');
+				exsumEle.innerHTML = exsumS;
+				
 				prjcost = parseInt(prjcost);
 				prsum = parseInt(prjcost-exsum);
+				var prsumS = numberWithCommas(prsum);
+				var prsumEle = document.getElementById('prsum');
+				prsumEle.innerHTML = prsumS;
+				
 			}
 				
 		});
@@ -124,8 +134,11 @@ margin
 		$("input[name=exsum]").val(exsum);
 		$("input[name=prsum]").val(prsum);
 	}
-
-
+	
+	function numberWithCommas(x) {
+	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	}
+	
 </script>
 </head>
 
@@ -177,7 +190,7 @@ margin
 											<th style="width: 25%;text-align:center;"><a
 												href="#" class="dataTable-sorter">예산금액</a></th>
 											<th style="width: 5%;text-align:center;"><a
-												href="#" class="dataTable-sorter">번호</a></th>
+												href="#" class="dataTable-sorter"></a></th>
 										</tr>
 									</thead>
 									
@@ -242,20 +255,16 @@ margin
 	<div class="card" id="sideinfodiv">
 		<div class="card-body">
 			<label class="col-form-label">예산</label>
-			<input class="form-control" type="text" value="${prjcost}" readonly="readonly" size="5"
-				style="background-color: white;">
+			<h5><fmt:formatNumber  value="${prjcost}" pattern="#,###"/></h5>
 			<label class="col-form-label">지출</label>
-			<input class="form-control" type="text" name="exsum" readonly="readonly"
-				style="background-color: white;">
-			
+			<h5 id="exsum"></h5>
 			<hr>
 			<label class="col-form-label">이익</label>
-			<input class="form-control" type="text" name="prsum" readonly="readonly"
-				style="background-color: white;">
+			<h5 id="prsum"></h5>
 			
 			<div style="margin-top: 30px;">
 				<button id="calbtn" class="btn btn-primary rounded-pill"
-					style="margin-right:10px;margin-left: 30px;">계산</button>
+					style="margin-right:10px;margin-left: 70px;">계산</button>
 				<button id="canclebtn" class="btn btn-primary rounded-pill"
 					style="margin-right:10px;margin-left: 0px;">취소</button>
 				<button id="regbtn" class="btn btn-primary rounded-pill"

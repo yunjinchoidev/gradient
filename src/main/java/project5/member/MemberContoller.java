@@ -38,10 +38,18 @@ public class MemberContoller {
 	}
 
 	@GetMapping("/memberEdit.do")
-	public String memberEdit() {
+	public String memberEdit(Model d, MemberVO vo) {
+		System.out.println("회원 정보 수정 창으로 이동");
+		d.addAttribute("get", service.get(vo.getMemberkey()));
 		return "member/edit";
 	}
 
+	
+	
+	
+	
+	
+	
 	@PostMapping("/login.do")
 	public String login(Model d, @ModelAttribute("member") MemberVO vo) {
 		vo = service.login(vo);
@@ -134,6 +142,16 @@ public class MemberContoller {
 	public String memberFindForm(Model d) {
 		return "member/memberFindForm";
 	}
+	
+		// 아이디 중복 검사
+		@RequestMapping("/memberIdChk.do")
+		@ResponseBody
+		public void memberIdChk(String memberkey) throws Exception{
+			System.out.println(memberkey);
+			System.out.println("진입");
+		} 
+	
+	
 	
 	
 	

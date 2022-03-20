@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import oracle.net.aso.d;
 import project5.member.MemberVO;
+import project5.project.ProjectService;
 
 
 @Controller
@@ -18,11 +19,15 @@ public class A20_FullCalController {
 	private A10_FullCalService service;
 	
 	
+	@Autowired
+	ProjectService service2;
+	
 	
 	
 	// http://localhost:7080/springweb/calendar.do
 	@GetMapping("calendar.do")
-	public String calendar() {
+	public String calendar(Model d) {
+		d.addAttribute("pjList", service2.list());
 		return "schedule/fullCalendar";
 	}
 
