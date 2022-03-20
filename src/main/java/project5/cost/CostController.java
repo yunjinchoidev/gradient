@@ -16,9 +16,13 @@ public class CostController {
 	CostService service;
 	
 	@RequestMapping("/cost.do")
-	public String getCostList(Model d) {
+	public String getCostList(CostSch sch, Model d,
+							@RequestParam(name="sch",required=false) String schS) {
 		//게시글 목록
-		d.addAttribute("costlist",service.getCostList());
+		d.addAttribute("costlist",service.getCostList(sch));
+		if(schS!=null && schS!="") {
+			d.addAttribute("costlist",service.schCostList(sch));
+		}	
 		
 		return "cost/list";
 	}
