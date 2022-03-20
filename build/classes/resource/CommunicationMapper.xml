@@ -28,7 +28,7 @@
 		SELECT min.*, mem.name
 		FROM minutes min, Member mem
 		WHERE minuteskey=#{minuteskey}
-		AND min.memberKey = mem.memberKeys
+		AND min.memberKey = mem.memberKey
 	</select>
 
 	<insert id="insMinutes" parameterType="minutes">

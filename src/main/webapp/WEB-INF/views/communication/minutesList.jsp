@@ -129,8 +129,8 @@
 											class="page-link" data-page="1">‹</a>
 										</li>
 										<c:forEach var="cnt" begin="${minutesSch.startBlock}" end="${minutesSch.endBlock}">
-											<li class="page-item active" ${cnt==minutesSch.curPage?'active':''}>
-												<a href="javascript:goPage(${cnt})" class="page-link" data-page="1">${cnt}</a>
+											<li class="page-item ${cnt==minutesSch.curPage?'active':''}" >
+												<a href="javascript:goPage(${cnt})" class="page-link">${cnt}</a>
 											</li>
 										</c:forEach>
 										<li class="page-item pager">
