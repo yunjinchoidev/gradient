@@ -7,6 +7,7 @@
 		<typeAlias alias="risk" type="project5.risk.RiskVO" />
 		<typeAlias alias="riskSch" type="project5.risk.RiskSch" />
 		<typeAlias alias="minutes" type="project5.communication.minutesVO" />
+		<typeAlias alias="minutesSch" type="project5.communication.minutesSch" />
 		<typeAlias alias="rcomm" type="project5.risk.Riskcomm" />
 		<typeAlias alias="insrcomm" type="project5.risk.InsRiskcomm" />
 		<typeAlias alias="costList" type="project5.cost.CostList" />

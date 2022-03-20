@@ -13,7 +13,7 @@ public class minutesController {
 	// http://localhost:8080/project5/main.do
 	// http://localhost:8080/project5/minutes.do?method=list
 	@RequestMapping(params="method=list")
-	public String minutesList(minutesVO sch, Model d) {
+	public String minutesList(minutesSch sch, Model d) {
 		d.addAttribute("mList",service.minutesList(sch));
 		return "communication/minutesList";
 	}

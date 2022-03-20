@@ -6,9 +6,15 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface minutesDao {
-	public List<minutesVO> minutesList(minutesVO sch);
+	public int totCnt(minutesSch sch);
+	
+	public List<minutesVO> minutesList(minutesSch sch);
+	
 	public minutesVO getMinutes(int minutesKey);
+	
 	public void insMinutes(minutesVO ins);
 	public void uptMinutes(minutesVO upt);
 	public void delMinutes(int minutesKey);
+	
+	public void uptReadCnt(int no);
 }

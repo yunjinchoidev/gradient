@@ -3,21 +3,32 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.communication.minutesDao">
-	<select id="minutesList" resultType="minutes" parameterType="minutes">
-		SELECT min.*, mem.name
-		FROM minutes min, Member mem
-		WHERE 1=1
-		<if test="topic!=null and topic!=''">
-			AND title like '%'||#{topic}||'%'
-		</if>
-		AND min.memberKey = mem.memberKey
+	<select id="totCnt" parameterType="minutesSch" resultType="int">
+		select count(*)
+			from minutes
+			where 1=1
+			<if test="topic!=null and topic!=''"> 
+			and topic like '%'||#{topic}||'%'
+			</if>
+	</select>
+	<select id="minutesList" parameterType="minutesSch" resultType="minutes" >
+		SELECT *
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY min.minutesKey  desc ) AS cnt, min.*, mem.name
+			FROM minutes min, member mem
+			WHERE 1=1
+			<if test="topic!=null and topic!=''">
+				AND topic like '%'||#{topic}||'%'
+			</if>
+			AND min.memberKey = mem.memberKey)
+		WHERE cnt BETWEEN #{start} AND #{end}
 	</select>
 
 	<select id="getMinutes" parameterType="int" resultType="minutes">
 		SELECT min.*, mem.name
 		FROM minutes min, Member mem
 		WHERE minuteskey=#{minuteskey}
-		AND min.memberKey = mem.memberKey
+		AND min.memberKey = mem.memberKeys
 	</select>
 
 	<insert id="insMinutes" parameterType="minutes">
