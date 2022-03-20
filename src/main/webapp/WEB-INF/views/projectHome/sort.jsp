@@ -42,9 +42,9 @@ var selectedval=4;
 </script>
 <style>
 #moveBtn a {
-	width: 110px;
+	width: 100px;
 	margin-right: 10px;
-	font-size: 15px;
+	font-size: 13px;
 	font-weight: bold;
 }
 </style>
@@ -70,6 +70,8 @@ var selectedval=4;
 
 
 	<div class="buttons" id="moveBtn" style="padding: 20px;">
+		<a href="/project5/dashBoard.do?projectkey=1"
+			class="btn btn-secondary">대시보드</a> 
 		<a href="/project5/projectHome.do?projectkey=1"
 			class="btn btn-dark">홈</a> <a
 			href="/project5/kanbanMain.do?projectkey=${project.projectkey }"
@@ -95,7 +97,7 @@ var selectedval=4;
 			href="/project5/risk.do?projectkey=${project.projectkey }"
 			class="btn btn-dark">리스크 관리</a>
 	</div>
-
+	<hr>
 
 
 

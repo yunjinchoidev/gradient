@@ -14,6 +14,20 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(document).ready(function(){
+	var mname = "${member.name}";
+	$("#WriteFormBtn").click(function(){
+		if(mname==""){
+			alert("권한이 없습니다.")
+		}	
+	})
+	
+})
+
+
+</script>
 
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -63,7 +77,7 @@
 								<div class="dataTable-search">
 									<input class="dataTable-input" placeholder="Search..."
 										type="text">
-										<a href="/project5/outputWriteForm.do" class="btn btn-danger" style="text-align: right">글쓰기</a>
+										<a href="/project5/outputWriteForm.do" class="btn btn-danger" style="text-align: right" id="WriteFormBtn">글쓰기</a>
 								</div>
 								
 							</div>

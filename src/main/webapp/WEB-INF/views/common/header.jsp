@@ -139,17 +139,6 @@
 
 
 
-
-
-
-
-
-
-
-						<li class="sidebar-item  "><a href="/project5/dashBoard.do"
-							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>대시보드</span>
-						</a></li>
-
 						<li class="sidebar-item  "><a href="/project5/allProject.do"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									공개된 모든 프로젝트</span>
@@ -169,6 +158,8 @@
 								class="bi bi-stack"></i> <span>프로젝트</span>
 						</a>
 							<ul class="submenu ">
+							<li class="submenu-item "><a
+									href="/project5/dashBoard.do?projectkey=1">대시보드 </a>
 								<li class="submenu-item "><a
 									href="/project5/projectHome.do?projectkey=1">홈 </a></li>
 								<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반

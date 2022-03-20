@@ -50,6 +50,7 @@ public class OutputController {
 	@RequestMapping("/outputWrite.do")
 	public String outputWriteForm(Model d, OutputVO vo) {
 		service.insert(vo);
+		System.out.println("산출물 게시판에 등록완료");
 		return "forward:/output.do";
 		
 		

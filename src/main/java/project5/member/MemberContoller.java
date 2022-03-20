@@ -119,16 +119,24 @@ public class MemberContoller {
 		return "/member/memberRegisterResult";
 	}
 
+	
+	
+	// 회원 정보 수정
 	@RequestMapping("/memberEdit.do")
 	public String memberEdit(MemberVO vo, Model d, @ModelAttribute("member") MemberVO member) {
 		System.out.println("회원 정보 수정 진입");
 		service.edit(vo);
-		MemberVO vo2 = new MemberVO(1);
+		MemberVO vo2 = new MemberVO(1); // 로그아웃
 		d.addAttribute("member", vo2);
 		System.out.println("회원 정보 수정 완료");
 		d.addAttribute("psc", "success");
 		return "member/EditSuccess";
 		}
+	
+	
+	
+	
+	
 	
 	
 	
