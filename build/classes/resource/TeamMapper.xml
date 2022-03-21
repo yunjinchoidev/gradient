@@ -5,10 +5,9 @@
 <mapper namespace="project5.team.TeamDao">
 <!-- 팀관리 리스트 -->
 	<select id="TeamList" resultType="team" parameterType="team">
-		SELECT m.name, m.auth, p.name projectname, p.progress, d.dname  
-        FROM member m, project p, department d
-        WHERE m.projectkey = p.projectkey
-        AND p.PROJECTKEY = d.PROJECTKEY       
+      select projectkey 
+      from member_project 
+      where memberkey=#{memberkey}  
 	</select>
 
 	
