@@ -92,6 +92,13 @@ public class CostController {
 		return "WEB-INF\\views\\cost\\uptcost.jsp";
 	}
 	
+	@RequestMapping("/uptcost.do")
+	public String uptPrjCost(MultiRowCost upt, Model d) {
+		d.addAttribute("msg","수정되었습니다");
+		service.uptPrjCost(upt);
+		return "forward:/uptcostfrm.do";
+	}
+	
 
 	
 	

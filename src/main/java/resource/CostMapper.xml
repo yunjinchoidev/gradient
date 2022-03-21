@@ -75,7 +75,7 @@
 	<!-- 프로젝트 지출 리스트 -->
 	<select id="costDetailList" parameterType="int" resultType="costDetailInfo">
 		SELECT cs.CONTENT csname , cd.COSTCONTENT content , cd.COSTNOTE costnote ,
-				cd.COSTEX costex 
+				cd.COSTEX costex, cd.coindex
 		FROM COSTDETAIL cd, PROJECT p , COSTSORT cs
 		WHERE cd.NO = p.PROJECTKEY 
 		AND cd.COSTSORTKEY = cs.COSTSORTKEY 
@@ -97,12 +97,14 @@
 					,COSTNOTE
 					,COSTEX
 					,COSTSORTKEY
+					,COINDEX
 				) VALUES(			
 					#{item.no},
 					#{item.costcontent},
 					#{item.costnote},
 					#{item.costex},
-					#{item.cskey}
+					#{item.cskey},
+					#{item.coindex}
 					)
 			</foreach>	
 	</insert>
@@ -120,6 +122,28 @@
 		UPDATE cost  SET
 		COSTASSIGN = '승인'
 		WHERE PROJECTKEY = #{prjkey}
+	</update>
+	<!-- 프로젝트 예산 수정 -->
+	<update id="uptPrjCost" parameterType="java.util.List">
+			BEGIN
+			<foreach collection="list" item="item" separator=" ">
+				MERGE INTO COSTDETAIL CO
+				USING DUAL
+					ON(
+					CO.COINDEX = #{item.coindex} AND
+					CO."NO" = #{prjkey}
+					)
+				WHEN MATCHED THEN 
+					UPDATE SET 
+					COSTCONTENT = #{item.costcontent},
+					COSTNOTE = #{item.costnote},
+					COSTEX = #{item.costex},
+					COSTSORTKEY = #{item.cskey}
+				WHEN NOT MATCHED THEN
+					INSERT (NO, COSTCONTENT, COSTNOTE, COSTEX, COSTSORTKEY, COINDEX)
+					VALUES (#{prjkey},#{item.costcontent},#{item.costnote},#{item.costex},#{item.cskey},#{item.coindex});
+			</foreach>
+			END;
 	</update>
 	<!-- 예산 삭제 처리 -->
 	<delete id="delCost" parameterType="int">

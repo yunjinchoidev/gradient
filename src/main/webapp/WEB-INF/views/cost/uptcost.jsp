@@ -46,8 +46,8 @@ margin
 <script>
 	$(document).ready(function(){
 		
-		var cnt = 2;
-		var i = 1;
+		var trcnt = $('#maintable >tbody tr').length;
+		var i = parseInt($("#numi").val())+trcnt;
 		var prjkey = "${prjkey}";
 		var prjcost = "${prjcost}";
 		var msg = "${msg}";
@@ -65,25 +65,24 @@ margin
 		});
 		
 		$("#addbtn").click(function(){
-			$('#maintable > tbody:last').append('<tr><td>'+cnt+'</td>'+
+			var index = i-1;
+			$('#maintable > tbody:last').append('<tr><td>'+i+'</td>'+
 					
-					'<td><select class="form-select" name="list['+i+'].cskey">'+
+					'<td><select class="form-select" name="list['+index+'].cskey">'+
 						<c:forEach var="cslist" items="${cslist}">
 						 '<option value="${cslist.cskey}">${cslist.cscontent}</option>'+
 						</c:forEach>
 						'</select></td>'+
-					'<td><input class="form-control" type="text" name="list['+i+'].costcontent"></td>'+
-					'<td><input class="form-control" type="text" name="list['+i+'].costnote"></td>'+
-					'<td><input class="form-control costex" type="text" id="costex'+i+'" name="list['+i+'].costex" onkeyup="inputNumberFormat(this)"></td>'+
-					'<td><input class="form-control" type="hidden" name="list['+i+'].no" value="${prjkey}"></td>'+
-					'<td><input class="form-control" type="hidden" name="list['+i+'].coindex" value="'+cnt+'"></td></tr>');
-			cnt+=1;
+					'<td><input class="form-control" type="text" name="list['+index+'].costcontent"></td>'+
+					'<td><input class="form-control" type="text" name="list['+index+'].costnote"></td>'+
+					'<td><input class="form-control costex" type="text" id="costex'+index+'" name="list['+index+'].costex" onkeyup="inputNumberFormat(this)"></td>'+
+					'<td><input class="form-control" type="text" name="list['+index+'].coindex" value="'+i+'"></td></tr>');
+					
 			i+=1;
 		});
 		
 		$("#delbtn").click(function(){
 			$('#maintable > tbody > tr:last').remove();
-			cnt-=1;
 			i-=1;
 		});
 		
@@ -93,11 +92,6 @@ margin
 		
 		var prjkeyS = $('[name=prjkey]').val();
 		
-		// 프로젝트 변경 시
-		$("#prjsel").change(function(){
-			$("#prjselfrm").submit();
-		});
-		
 		// 프로젝트 셀렉트
 		$('#prjsel').val(prjkey).prop("selected", true);
 		
@@ -106,16 +100,43 @@ margin
 			doSum();
 		});
 		
+		$("#prjsel").prop('disabled',true);
+		
 		$("#regbtn").click(function(){
 			// 콤마 제거 후 submit
 			var numItems = $('.costex').length
+			$("#prjsel").prop('disabled',false);
 			
 			for(var i=0; i<numItems; i++){
 				var temp = $('#costex'+i+'').val();
 				$('#costex'+i+'').val(temp.replace(/,/g,""));
 			}
 		
-			$("#inscostform").submit();	
+			$("#uptcostform").submit();	
+		});
+		
+		$("button[id^='indexdelbtn']").click(function(){
+			 var str = ""
+		     var checkBtn = $(this)
+			
+		     var tr = checkBtn.parent().parent();
+    		 var td = tr.children();
+             
+    		 var index = td.eq(1).find('input').val();
+ 			 alert(index);
+
+
+    		
+
+
+			
+			/*
+			if(confirm('삭제하시겠습니까?')){
+				$.ajax({
+					
+				});
+			}
+			*/
 		});
 
 		
@@ -202,12 +223,12 @@ margin
 							</div>
 						 
 							<div class="dataTable-container">
-								<form id="inscostform" action="${path}/insertcost.do" method="post">
+								<form id="uptcostform" action="${path}/uptcost.do" method="get">
 								<input type="hidden" name=prjkey value="${prjkey}">
 								<table class="table table-striped dataTable-table" id="maintable">
 									<thead>
 										<tr>
-											<th style="width: 5%;text-align:center;"><a
+											<th style="width: 2.5%;text-align:center;"><a
 												href="#" class="dataTable-sorter">NO</a></th>
 											<th style="width: 20%;text-align:center;"><a
 												href="#" class="dataTable-sorter">구분</a></th>
@@ -217,31 +238,37 @@ margin
 												href="#" class="dataTable-sorter">비고</a></th>
 											<th style="width: 25%;text-align:center;"><a
 												href="#" class="dataTable-sorter">예산금액</a></th>
-											<th style="width: 2.5%;text-align:center;"><a
-												href="#" class="dataTable-sorter"></a></th>
-											<th style="width: 2.5%;text-align:center;"><a
-												href="#" class="dataTable-sorter"></a></th>
+											<th style="width: 2.5%;text-align:center;">삭제</th>
+											<th style="width: 5%;text-align:center;"></th>
 										</tr>
 									</thead>
 									
 									<tbody>
-										<tr>
-											<td>1</td>
-											<td>
-												<select class="form-select" name="list[0].cskey">
-													<c:forEach var="cslist" items="${cslist}">
-						 								<option value="${cslist.cskey}">${cslist.cscontent}</option>
-													</c:forEach>
-												</select>
-											</td>
-						
-											<td><input class="form-control" type="text" name="list[0].costcontent"></td>
-											<td><input class="form-control" type="text" name="list[0].costnote"></td>
-											<td><input class="form-control costex" type="text" id="costex0" name="list[0].costex"
-													onkeyup="inputNumberFormat(this)"></td>
-											<td><input class="form-control" type="hidden" name="list[0].no" value="${prjkey}"></td>
-											<td><input class="form-control" type="hidden" name="list[0].coindex" value="1"></td>
-										</tr>
+										<c:forEach var="cdlist" items="${cdlist}" varStatus="status">
+											<c:set var="i" value="${i+1}"/>
+											<input type="hidden" id="numi" value="<c:out value="${i}"/>">
+												<tr>
+													<td>${i}</td>
+													<td>
+														<select class="form-select" name="list[${status.index}].cskey">
+															<c:forEach var="cslist" items="${cslist}">
+								 								<option value="${cslist.cskey}">${cslist.cscontent}</option>
+															</c:forEach>
+														</select>
+													</td>
+								
+													<td><input class="form-control" type="text" name="list[${status.index}].costcontent"
+															value="${cdlist.content}"></td>
+													<td><input class="form-control" type="text" name="list[${status.index}].costnote"
+															value="${cdlist.costnote}"></td>
+													
+													<td><input class="form-control costex" type="text" id="costex${status.index}" name="list[${status.index}].costex"
+															onkeyup="inputNumberFormat(this)" 
+															value="<fmt:formatNumber value="${cdlist.costex}" pattern="#,###"/>"></td>
+													<td><button type="button" id="indexdelbtn" class="btn btn-danger rounded-pill">-</button></td>
+													<td><input class="form-control" type="text" name="list[${status.index}].coindex" value="${cdlist.coindex}"></td>
+												</tr>
+										</c:forEach>
 									</tbody>									
 								</table>
 								</form>
