@@ -10,7 +10,8 @@ public interface A10_FullCalDao {
 	public List<Calendar> getCalendarList();
 	public List<Calendar> getCalendarIndividaulList(int memberkey);
 	public List<Calendar> mywork(int memberkey);
-
+	public Calendar get(int id);
+	
 	
 	
 	public void insertCalendar(Calendar ins);

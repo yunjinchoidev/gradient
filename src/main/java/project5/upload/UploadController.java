@@ -39,6 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 
 import net.coobird.thumbnailator.Thumbnailator;
+import oracle.net.aso.d;
 import project5.fileInfo.FileInfoService;
 import project5.fileInfo.FileInfoVO;
 import project5.member.MemberVO;
@@ -164,14 +165,14 @@ public class UploadController {
 	
 	
 	@PostMapping("/aaaa.do")
-	@ResponseBody
-	public List<FileInfoVO> aaaa(String memberkey) {
+	public String aaaa(String memberkey, Model d) {
 		int memberkeyN = Integer.parseInt(memberkey);
 		System.out.println("/aaaa.do 진입");
 		System.out.println("memberkey:"+memberkeyN);
 		 List<FileInfoVO> list = service2.findbyfno(memberkeyN);
-		System.out.println(list);
-		return service2.findbyfno(memberkeyN);
+		System.out.println("list" + list);
+		d.addAttribute("get", service2.findbyfno(memberkeyN));
+		return "pageJsonReport";
 	}
 
 	

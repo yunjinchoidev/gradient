@@ -66,6 +66,11 @@
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
+				
+
+					<%@ include file="../projectHome/sort.jsp"%>
+				
+				
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>리스크 관리</h3>
 					</div>

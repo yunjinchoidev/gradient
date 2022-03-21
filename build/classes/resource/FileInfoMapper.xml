@@ -37,6 +37,7 @@
 	</select>	
 	
 	
+	
 	<insert id="insertCalendarFile" parameterType="project5.fileInfo.FileInfoVO">
 		insert into fileInfo values
 		(cal_seq.currval, #{pathinfo}, #{fname}, sysdate, sysdate, #{etc})

@@ -25,6 +25,10 @@
 		select * from calendars where memberkey = #{memberkey}
 	</select>
 
+	<select id="get" resultType="project5.fullCalendar.Calendar" parameterType="int">
+		select * from calendars where id = #{id}
+	</select>
+
 
 
 

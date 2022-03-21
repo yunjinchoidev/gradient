@@ -53,7 +53,11 @@
     </div>
     <section class="section content-area-wrapper" style="height: 2000px;">
     
-			<%@ include file="leftSide.jsp"%>    
+    
+    
+    <%@ include file="leftSide.jsp"%>    
+        
+        
         
         
         <div class="content-right">
@@ -76,8 +80,6 @@
                                             <input type="checkbox" id="checkboxsmall" class="form-check-input">
                                             <label for="checkboxsmall"></label>
                                         </div>
-                                        
-                                        
                                         <!-- delete unread dropdown -->
                                         <ul class="list-inline m-0 d-flex">
                                             <li class="list-inline-item mail-delete">
@@ -89,7 +91,6 @@
                                                     </span>
                                                 </button>
                                             </li>
-                                            
                                             <li class="list-inline-item mail-unread">
                                                 <button type="button" class="btn btn-icon action-icon">
                                                     <span class="fonticon-wrap d-inline">
@@ -100,7 +101,6 @@
                                                     </span>
                                                 </button>
                                             </li>
-                                            
                                             <li class="list-inline-item">
                                                 <div class="dropdown">
                                                     <button type="button" class="dropdown-toggle btn btn-icon action-icon" id="folder" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -119,8 +119,6 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            
-                                            
                                             <li class="list-inline-item">
                                                 <div class="dropdown">
                                                     <button type="button" class="btn btn-icon dropdown-toggle action-icon" id="tag" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -155,12 +153,7 @@
                                                     </div>
                                                 </div>
                                             </li>
-                                            
-                                            
                                         </ul>
-                                        
-                                        
-                                        
                                     </div>
                                     <!-- action left end here -->
 
@@ -253,7 +246,7 @@
                                             <div class="media-body">
                                                 <div class="user-details">
                                                     <div class="mail-items">
-                                                        <span class="list-group-item-text text-truncate">${list.title}</span>
+                                                        <span class="list-group-item-text text-truncate">${list.start_date}</span>
                                                     </div>
                                                     <div class="mail-meta-item">
                                                         <span class="float-right">
@@ -263,7 +256,7 @@
                                                 </div>
                                                 <div class="mail-message">
                                                     <p class="list-group-item-text truncate mb-0">
-                                                        ${list.content }
+                                                        ${list.text }
                                                     </p>
                                                     <div class="mail-meta-item">
                                                         <span class="float-right">

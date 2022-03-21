@@ -159,9 +159,6 @@ public class MemberContoller {
 			System.out.println("진입");
 		} 
 		
-		@RequestMapping("/plan.do")
-		public String plan(Model d) {
-			return "WEB-INF\\views\\member\\plan.jsp";
-		}
+	
 
 }

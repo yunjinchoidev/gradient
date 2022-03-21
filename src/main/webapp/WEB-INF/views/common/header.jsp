@@ -40,7 +40,13 @@
 	type="image/x-icon">
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+	<script
+		src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script
+		src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="/project5/resources/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
+	<script src="/project5/resources/dist/assets/js/main.js"></script>
 
 
 </head>
@@ -198,7 +204,7 @@
 							</ul></li>
 
 						<li class="sidebar-item  " id="mywork"><a
-							href="/project5/mywork.do?memberkey=${member.memberkey }"
+							href="/project5/myworkCalendar.do?memberkey=${member.memberkey }"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>내
 									작업 목록 / 작업물</span>
 						</a></li>
@@ -221,7 +227,7 @@
 								<a href="/project5/customerChat.do" class='sidebar-link'> 
 								<i class="bi bi-stack"></i> <span>고객 관리</span></a>
 							<ul class="submenu " id="check">
-								<li class="submenu-item "><a href="#" onclick="window.open('/project5/customerChat.do','팝업창','width=1000, height=1000 top=100, left=200');">채팅 상담</a></li>
+								<li class="submenu-item "><a href="/project5/customerChat.do">채팅 상담</a></li>
 								<li class="submenu-item "><a href="#" onclick="window.open('/project5/chatBot.do','팝업창','width=1000, height=1000, left=400');">챗봇 </a></li>
 								<li class="submenu-item "><a href="/project5/plan.do">플랜 </a></li>
 							</ul>
@@ -243,13 +249,7 @@
 		</div>
 	</div>
 
-	<script
-		src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script
-		src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="/project5/resources/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
-	<script src="/project5/resources/dist/assets/js/main.js"></script>
+
 
 </body>
 

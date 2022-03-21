@@ -34,6 +34,21 @@ public class A10_FullCalService {
 	}
 	
 	
+	public Calendar get(int id) {
+		return dao.get(id);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -43,7 +58,7 @@ public class A10_FullCalService {
 	public String insertCalendar(Calendar ins) {
 		dao.insertCalendar(ins);
 		String msg = "등록성공";
-		dao2.update(new FileInfoVO(uploadPath, "1", "일정 제목" + ins.getTitle()));
+		//dao2.update(new FileInfoVO(uploadPath, "1", "일정 제목" + ins.getTitle()));
 		System.out.println("여기까지는 된다.");
 		
 		// 업로드 파일이 없을 때를 피하기 위해

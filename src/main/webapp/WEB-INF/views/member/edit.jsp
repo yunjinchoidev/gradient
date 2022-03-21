@@ -96,8 +96,12 @@ $(document).ready(function() {
 			      dataType:'json',
 			        success: function(result){
 			          console.log(result); 
+			          console.log(result.get); 
+			          console.log(result.get[0]); 
+			          console.log(result.get[0].fname); 
 			          console.log("파일 불러오기 완료")
-					  showUploadResult2(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+					  showUploadResult2(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+					  console.log(result.fname)
 			      },
 			      error: function(result){
 			    	  console.log(memberkey)

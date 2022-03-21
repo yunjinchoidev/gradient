@@ -374,16 +374,6 @@
                                                                     <span class="d-none d-sm-block">삭제</span>
                                                                 </button>
                                                                 
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
-                                                                
                                                             </div>
                                                         </form>
                                                     </div>

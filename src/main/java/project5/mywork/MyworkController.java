@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import project5.fullCalendar.A10_FullCalService;
+import project5.fullCalendar.Calendar;
 import project5.gantt.GanttController;
 import project5.gantt.GanttService;
 import project5.kanban.KanbanController;
@@ -24,52 +25,43 @@ public class MyworkController {
 	GanttService service3;
 	
 	
-	@RequestMapping("/mywork.do")
+	@RequestMapping("/myworkCalendar.do")
 	public String myWork(Model d, int memberkey) {
 		d.addAttribute("list", service.mywork(memberkey));
-		return "WEB-INF\\views\\mywork\\main.jsp";
+		return "WEB-INF\\views\\mywork\\calendarList.jsp";
 	}
-
-	@RequestMapping("/send.do")
-	public String send(Model d) {
-		return "WEB-INF\\views\\mywork\\send.jsp";
-		
-	}
-
 
 	@RequestMapping("/myworkKanban.do")
 	public String myworkKanaban(Model d, int memberkey) {
 		d.addAttribute("list", service2.individualMemberList(memberkey));
-		return "WEB-INF\\views\\mywork\\myworkKanban.jsp";
+		return "WEB-INF\\views\\mywork\\kanbanList.jsp";
 	}
-	@RequestMapping("/myworkGantt.do")
-	public String myworkGantt(Model d, int memberkey) {
+	@RequestMapping("/myworkCalendar7days.do")
+	public String myworkCalendar7days(Model d, int memberkey) {
 		d.addAttribute("list", service3.individualMemberList(memberkey));
-		return "WEB-INF\\views\\mywork\\myworkGantt.jsp";
+		return "WEB-INF\\views\\mywork\\calendar7days.jsp";
 	}
+	@RequestMapping("/myworkCalendar3days.do")
+	public String myworkCalendar3days(Model d, int memberkey) {
+		d.addAttribute("list", service3.individualMemberList(memberkey));
+		return "WEB-INF\\views\\mywork\\calendar3days.jsp";
+	}
+	@RequestMapping("/myworkCalendar1days.do")
+	public String myworkCalendar1days(Model d, int memberkey) {
+		d.addAttribute("list", service3.individualMemberList(memberkey));
+		return "WEB-INF\\views\\mywork\\calendar1days.jsp";
+	}
+
 	
-	 	@RequestMapping("/kanbanListWork.do")
-	public String kanbanListWork(Model d) {
-		d.addAttribute("list", service2.listWork());	
-		return "WEB-INF\\views\\mywork\\kanbanListWork.jsp";
+	
+	
+	
+	
+	@RequestMapping("/myWorkCalendarGet.do")
+	public String myWorkModal(Model d, Calendar vo) {
+		d.addAttribute("get", service.get(vo.getId()));
+		return "WEB-INF\\views\\mywork\\calendarGet.jsp";
 	}
-
-	@RequestMapping("/mywork7Days.do")
-	public String mywork7Days(Model d) {
-		d.addAttribute("list", service3.currentGantt());	
-		return "WEB-INF\\views\\mywork\\myworkCurrentGantt.jsp";
-	}
-	@RequestMapping("/mywork3Days.do")
-	public String mywork3Days(Model d) {
-		d.addAttribute("list", service3.currentGantt());	
-		return "WEB-INF\\views\\mywork\\myworkCurrentGantt.jsp";
-	}
-	@RequestMapping("/mywork1Days.do")
-	public String mywork1Days(Model d) {
-		d.addAttribute("list", service3.currentGantt());	
-		return "WEB-INF\\views\\mywork\\myworkCurrentGantt.jsp";
-	}
-
 	
 	
 	

@@ -35,7 +35,7 @@ $(document).ready(function(){
 	        success: function(result){
 	          console.log(result); 
 	          console.log("파일 불러오기 완료")
-			  showUploadResult2(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+			  showUploadResult2(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
 	      },
 	      error: function(result){
 	    	  console.log(memberkey)

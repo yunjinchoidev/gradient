@@ -162,6 +162,7 @@ document.ready(function(){
 	<div id="main">
 
 		<div class="page-heading">
+		
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
@@ -174,6 +175,7 @@ document.ready(function(){
 					</div>
 				</div>
 			</div>
+			
 			<section class="section">
 				<div class="row">
 					<div class="col-12">
@@ -190,7 +192,14 @@ document.ready(function(){
 					</div>
 				</div>
 			</section>
+			
 		</div>
+
+
+
+
+
+
 
 		<div class="page-heading">
 			<div class="page-title">
@@ -211,6 +220,7 @@ document.ready(function(){
 				</div>
 
 			</div>
+
 
 
 

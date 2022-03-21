@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import project5.member.MemberVO;
+import project5.project.ProjectService;
 
 @Controller
 public class RiskController {
@@ -17,11 +18,15 @@ public class RiskController {
 	@Autowired
 	private RiskService service;
 	
+	@Autowired
+	ProjectService service2;
+	
 	//리스크 메인
 	
 	@RequestMapping("/risk.do")
 	public String riskFrm(RiskSch sch, Model d,
 						  @RequestParam(name="sch",required=false) String schS) {
+		d.addAttribute("pjList", service2.list());
 		//리스크 게시판 목록
 		d.addAttribute("risklist",service.riskboardlist(sch));
 		if(schS!=null && schS!="") {
