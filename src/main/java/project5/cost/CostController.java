@@ -24,7 +24,7 @@ public class CostController {
 			d.addAttribute("costlist",service.schCostList(sch));
 		}	
 		
-		return "cost/list";
+		return "WEB-INF\\views\\cost\\list.jsp";
 	}
 	
 	@RequestMapping("/writecost.do")
@@ -45,7 +45,7 @@ public class CostController {
 			d.addAttribute("prjcost",service.getPrjCost(prjkey));
 		}
 		
-		return "cost/writecost";
+		return "WEB-INF\\views\\cost\\writecost.jsp";
 	}
 	
 	@RequestMapping("/insertcost.do")
@@ -61,21 +61,35 @@ public class CostController {
 		d.addAttribute("prjInfo",service.prjDetailInfo(prjkey));
 		d.addAttribute("cdlist",service.costDetailList(prjkey));
 		d.addAttribute("amountpay",service.amountPay(prjkey));
-		return "cost/Detail";
+		return "WEB-INF\\views\\cost\\Detail.jsp";
 	}
 	
 	@RequestMapping("/uptcostassign.do")
 	public String costConfirm(int prjkey, Model d) {
 		service.costConfirm(prjkey);
 		d.addAttribute("msg","승인되었습니다");
-		return "cost/Detail";
+		return "WEB-INF\\views\\cost\\Detail.jsp";
 	}
 	
 	@RequestMapping("/delCost.do")
 	public String delCost(int prjkey, Model d) {
 		service.delCost(prjkey);
 		d.addAttribute("msg","삭제되었습니다");
-		return "cost/Detail";
+		return "WEB-INF\\views\\cost\\Detail.jsp";
+	}
+	
+	@RequestMapping("/uptcostfrm.do")
+	public String uptCostFrm(int prjkey, Model d) {
+		//프로젝트 목록
+		d.addAttribute("prjlist",service.getPrjList());
+		//예산 구분 목록
+		d.addAttribute("cslist",service.getCostSort());
+		// 프로젝트 예산 정보
+		d.addAttribute("cdlist",service.costDetailList(prjkey));
+		// 프로젝트 예산 금액
+		d.addAttribute("prjkey",prjkey);
+		d.addAttribute("prjcost",service.getPrjCost(prjkey));
+		return "WEB-INF\\views\\cost\\uptcost.jsp";
 	}
 	
 

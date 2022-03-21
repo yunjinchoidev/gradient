@@ -31,7 +31,7 @@ public class RiskController {
 		//리스크 등록 - 프로젝트 목록
 		d.addAttribute("prjlist",service.selectprjlist());
 
-		return "risk/list";
+		return "WEB-INF\\views\\risk\\list.jsp";
 	}
 
 	//리스크 상세화면
@@ -44,7 +44,7 @@ public class RiskController {
 		d.addAttribute("commlist",service.getCommList(riskkey));
 		//리스크 키
 		d.addAttribute("riskkey",riskkey);
-		return "risk/detail";
+		return "WEB-INF\\views\\risk\\detail.jsp";
 	}
 	
 	//리스크 등록
@@ -52,7 +52,7 @@ public class RiskController {
 	public String riskinsert(RiskVO ins, Model d) {
 		d.addAttribute("msg","등록되었습니다");
 		service.insertRisk(ins);
-		return "risk/list";
+		return "WEB-INF\\views\\risk\\list.jsp";
 	}
 	
 	//리스크 삭제
@@ -60,7 +60,7 @@ public class RiskController {
 	public String riskdel(int riskkey, Model d) {
 		d.addAttribute("msg","삭제되었습니다");
 		service.delRisk(riskkey);
-		return "risk/detail";
+		return "WEB-INF\\views\\risk\\detail.jsp";
 	}
 	
 	//리스크 수정화면
@@ -69,7 +69,7 @@ public class RiskController {
 		d.addAttribute("rdlist",service.riskDetail(riskkey));
 		//리스크 등록 - 프로젝트 목록
 		d.addAttribute("prjlist",service.selectprjlist());
-		return "risk/uptdetail";
+		return "WEB-INF\\views\\risk\\uptdetail.jsp";
 	}
 
 	//리스크 수정
@@ -77,7 +77,7 @@ public class RiskController {
 	public String riskupt(RiskVO upt, int riskkey, Model d) {
 		d.addAttribute("msg","수정되었습니다");
 		service.uptRisk(upt);
-		return "risk/uptdetail";
+		return "WEB-INF\\views\\risk\\uptdetail.jsp";
 	}
 	
 	// 댓글 등록
@@ -85,7 +85,7 @@ public class RiskController {
 	public String insertComm(InsRiskcomm ins, Model d) {
 		d.addAttribute("commmsg","댓글이 작성되었습니다");
 		service.insertcomm(ins);
-		return "risk/detail";
+		return "WEB-INF\\views\\risk\\detail.jsp";
 	}
 	
 	// 답글 등록
@@ -93,7 +93,7 @@ public class RiskController {
 	public String insertreComm(InsRiskcomm ins, Model d) {
 		d.addAttribute("commmsg","답글이 작성되었습니다");
 		service.insertrecomm(ins);
-		return "risk/detail";
+		return "WEB-INF\\views\\risk\\detail.jsp";
 	}
 	
 	// 댓글 삭제
@@ -101,7 +101,7 @@ public class RiskController {
 	public String delcomm(int rcommkey, Model d) {
 		d.addAttribute("commmsg","댓글이 삭제되었습니다");
 		service.delcomm(rcommkey);
-		return "risk/detail";
+		return "WEB-INF\\views\\risk\\detail.jsp";
 	}
 	
 	//답글 삭제
@@ -109,6 +109,6 @@ public class RiskController {
 	public String delrecomm(int rrecommkey, Model d) {
 		d.addAttribute("commmsg","답글이 삭제되었습니다");
 		service.delrecomm(rrecommkey);
-		return "risk/detail";
+		return "WEB-INF\\views\\risk\\detail.jsp";
 	}
 }
