@@ -37,4 +37,6 @@ public interface CostDao {
 	// 프로젝트 예산 삭제
 	public void delCost(int prjkey);
 	public void delCostDetail(int prjkey);
+	// 프로젝트 예산 수정
+	public void uptPrjCost(MultiRowCost upt);
 }

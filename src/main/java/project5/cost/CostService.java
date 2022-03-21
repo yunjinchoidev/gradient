@@ -114,5 +114,9 @@ public class CostService {
 		dao.delCost(prjkey);
 		dao.delCostDetail(prjkey);
 	}
+	// 프로젝트 예산 수정
+	public void uptPrjCost(MultiRowCost upt) {
+		dao.uptPrjCost(upt);
+	}
 	
 }

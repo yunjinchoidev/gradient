@@ -13,6 +13,7 @@ public class CostDetailInfo {
 	private int costex;
 	private String costassign; 
 	private int prjkey;
+	private int coindex;
 	public String getName() {
 		return name;
 	}
@@ -85,6 +86,13 @@ public class CostDetailInfo {
 	public void setPrjkey(int prjkey) {
 		this.prjkey = prjkey;
 	}
+	public int getCoindex() {
+		return coindex;
+	}
+	public void setCoindex(int coindex) {
+		this.coindex = coindex;
+	}
+	
 	
 	
 	

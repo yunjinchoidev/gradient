@@ -8,6 +8,7 @@ public class CostDetail {
 	private int costex;
 	private int cskey;
 	private int no;
+	private int coindex;
 	
 		
 	public String getCostcontent() {
@@ -40,6 +41,15 @@ public class CostDetail {
 	public void setNo(int no) {
 		this.no = no;
 	}
+	public int getCoindex() {
+		return coindex;
+	}
+	public void setCoindex(int coindex) {
+		this.coindex = coindex;
+	}
+	
+	
+	
 	
 	
 	

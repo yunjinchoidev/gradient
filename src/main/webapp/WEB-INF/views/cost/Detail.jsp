@@ -80,6 +80,12 @@ height:40%;
 			}
 		});
 		
+		$("#uptbtn").click(function(){
+			if(confirm("수정하시겠습니까?")){
+				location.href = "${path}/uptcostfrm.do?prjkey="+$("[name=prjkey]").val();
+			}
+		});
+		
 		
 	});
 	
@@ -198,7 +204,7 @@ height:40%;
 					style="margin-right:10px;margin-left: 30px;">승인</button>
 				<button id="delbtn" class="btn btn-primary rounded-pill"
 					style="margin-right:10px;margin-left: 0px;">삭제</button>
-				<button id="regbtn" class="btn btn-primary rounded-pill"
+				<button id="uptbtn" class="btn btn-primary rounded-pill"
 					style="margin-right:10px;margin-left: 0px;">수정</button>
 				<button id="backbtn" class="btn btn-primary rounded-pill"
 					style="margin-right:10px;margin-left: 0px;">목록</button>
