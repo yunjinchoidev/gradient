@@ -86,7 +86,7 @@ $(document).ready(function() {
 				// ajax를 통한 파일 정보 불러오기 
 				// 페이지 접속시 자동으로 실행
 				var memberkeyValue ="${member.memberkey}";
-				  console.log(memberkey);
+				  console.log("memberkey"+memberkey);
 				 var data = { memberkey : memberkeyValue};
 				 // 업로드 파일 결과 가져오기
 			    $.ajax({
@@ -164,22 +164,21 @@ $(document).ready(function() {
 	  
 	  
 			
-			
-			// 이미지 뷰단에 띄어주기 함수  // 파일 업로드 시 파일 정보 띄우기
+			// 파일 업로드 시 파일 정보 띄우기
+			// 이미지 뷰단에 띄어주기 함수  
 				function showUploadResult(uploadResultArr){
 				  if(!uploadResultArr || uploadResultArr.length == 0){ return; }
 				  var uploadUL = $("#myface");
 				  var str ="";
-				  $("#now").hide();
+					$("#not").hide();
 				  $(uploadResultArr).each(function(i, obj){
 						if(obj.image){
 							var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
-							str = "<img src='/project5/display.do?fileName="+fileCallPath+"' id='now'>";
-							console.log(fileCallPath)
-							console.log(str)
 							$("#not").hide();
 							$("#mymy").hide();
-							$("#now").show();
+							str = "<img src='/project5/display.do?fileName="+fileCallPath+"'>";
+							console.log(fileCallPath)
+							console.log(str)
 						}else{
 							var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
 						    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
@@ -239,8 +238,12 @@ $(document).ready(function() {
 						<div class="form-group position-relative has-icon-left mb-4">
 							<div class="avatar avatar-xl me-3" id="myface"
 								style="border: 1px solid black">
+
 								<img src="/project5/resources/image/user.png" alt="" srcset=""
 									style="" id="not">
+
+
+
 							</div>
 							
 							<input type="file" name="uploadFile" multiple>

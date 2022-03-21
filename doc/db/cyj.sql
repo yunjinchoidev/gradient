@@ -235,7 +235,7 @@ CREATE TABLE procurement(
 
 
 
-
+-----------------------------------------------------------------
 -- 프로젝트
 DROP TABLE project CASCADE CONSTRAINTS;
 CREATE TABLE project(
@@ -274,9 +274,8 @@ AND p.PROJECTKEY = d.PROJECTKEY;
 SELECT * FROM MEMBER ORDER BY memberkey;
 SELECT * FROM project;
 SELECT * FROM DEPARTMENT d ;
-
-
-
+CREATE SEQUENCE seq_project;
+SELECT * FROM fileinfo ORDER BY fno;
 
 
 
@@ -549,6 +548,8 @@ SELECT * FROM project ORDER BY PROJECTKEY;
 select * from project  where projectkey=1 order by projectkey;
 
 
+
+--------------------------------------------------
 DROP TABLE projectHome;
 CREATE TABLE projectHome(
 	projectHomekey NUMBER PRIMARY KEY,

@@ -15,11 +15,52 @@
 <script>
 $(document).ready(function(){
 	
-	$("#progress").click(function(){
-		alert("프로젝트 진행 상태를 바꾸시겠습니까?");
-		$(".modal").modal('show');
-		
-	})
+	
+	//$("#progress").click(function(){
+	//	alert("프로젝트 진행 상태를 바꾸시겠습니까?");
+	//})
+	
+		var memberkey;
+		// ajax를 통한 파일 정보 불러오기 
+		// 페이지 접속시 자동으로 실행
+		var memberkeyValue ="${member.memberkey}";
+		  console.log(memberkey);
+		 var data = { memberkey : memberkeyValue};
+		 // 업로드 파일 결과 가져오기
+	    $.ajax({
+	      url: '/project5/aaaa.do',
+	      data: data,
+	      type: 'POST',
+	      dataType:'json',
+	        success: function(result){
+	          console.log(result); 
+	          console.log("파일 불러오기 완료")
+			  showUploadResult2(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+	      },
+	      error: function(result){
+	    	  console.log(memberkey)
+	          console.log("회원 이미지 정보 불러오기 실패");
+	          console.log(result); 
+	      }
+	    }); //$.ajax
+	    
+		// 이미지 클라리언트 딴에 띄우는 합수
+		// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
+	  function showUploadResult2(uploadResultArr){
+		    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+		    var uploadUL = $("#myface");
+		    var str ="";
+		    $(uploadResultArr).each(function(i, obj){
+		    		console.log("obj"+obj);
+					var fileCallPath =  encodeURIComponent(obj.fname);
+					console.log(fileCallPath);
+					str += "<img src='/project5/display2.do?fileName="+fileCallPath+"'>";
+					console.log("str : "+str)
+				})
+		    uploadUL.append(str);
+		  }
+	///////////////////////////////////////////////////////////////
+	
 	
 	
 	
@@ -39,7 +80,7 @@ $(document).ready(function(){
 			</a>
 		</header>
 
-		<div class="page-heading">
+		<div class="page-heading" id="ok">
 			<h3>프로젝트 관리 </h3>
 			<h5><span style="color: red">"${member.name }${member.auth }"</span>님 어서오십시오.</h5>
 			<h5>오직 PM만을 위해 제공하는 정보가 여기 있습니다. </h5>
@@ -167,7 +208,7 @@ $(document).ready(function(){
 											<div class="dataTable-search">
 												<input class="dataTable-input" placeholder="Search..."
 													type="text"> <a
-													href="/project5/scheduleInsertForm.do"
+													href="/project5/projectManageInsertForm.do"
 													class="btn btn-danger" style="text-align: right">새 프로젝트 만들기</a>
 											</div>
 
@@ -215,7 +256,7 @@ $(document).ready(function(){
 															
 															
 															
-															<td id="progress" style="cursor: pointer;" data-toggle="modal" data-target= "#inlineForm">
+															<td id="progress" style="cursor: pointer;" data-bs-toggle="modal"  data-bs-target="#inlineForm">
 
 															
 															<c:if test="${list.progress eq '대기'}">
@@ -525,9 +566,7 @@ $(document).ready(function(){
 					<div class="card">
 						<div class="card-body py-4 px-5">
 							<div class="d-flex align-items-center">
-								<div class="avatar avatar-xl">
-									<img src="/project5/resources/dist/assets/images/faces/1.jpg"
-										alt="Face 1">
+								<div class="avatar avatar-xl" id="myface">
 								</div>
 								<div class="ms-3 name">
 									<h5 class="font-bold">${member.name } 님</h5>
@@ -717,53 +756,64 @@ $(document).ready(function(){
 
 
   <!--login form Modal -->
-                                            <div class="modal fade text-left" id="inlineForm" tabindex="-1"
-                                                role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                                    role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="myModalLabel33">프로젝트 상태 변경 </h4>
-                                                            <button type="button" class="close" data-bs-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <i data-feather="x"></i>
-                                                            </button>
-                                                        </div>
-                                                        <form action="/project5/progressUpdate.do?" id="frm01">
-                                                        <input type="hidden" name="projectkey" value="2">
-                                                            <div class="modal-body">
-                                                                <label>progress: </label>
-                                                                <div class="form-group">
-                                                                        <select  class="form-control" name="progress">
-                                                                        	<option value="대기">대기</option>
-                                                                        	<option value="초기">초기</option>
-                                                                        	<option value="중기">중기</option>
-                                                                        	<option value="말기">말기</option>
-                                                                        	<option value="종료">종료</option>
-                                                                        </select>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-light-secondary"
-                                                                    data-bs-dismiss="modal">
-                                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">닫기</span>
-                                                                </button>
-                                                                <button type="submit" class="btn btn-danger ml-2 update"
-                                                                    data-bs-dismiss="modal" id="updateItem" onclick="alert('변경합니다')">
-                                                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">수정</span>
-                                                                </button>
-                                                                <input type="submit" value="수정">
-                                                            </div>
-                                                        </form>
-                                                    </div>
-                                                </div>
-                                            </div>
+
+	<form action="/project5/projectProgressUpdate.do" id="frm01">
+		<div class="modal fade text-left" id="inlineForm" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+			<div
+				class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+				role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel33">프로젝트 상태 변경</h4>
+						<button type="button" class="close" data-bs-dismiss="modal"
+							aria-label="Close">
+							<i data-feather="x"></i>
+						</button>
+					</div>
+
+					<div class="modal-body">
+						<label>project : </label>
+						<div class="form-group">
+							<select class="form-control" name="projectkey">
+								<c:forEach var="list" items="${list }" varStatus="idx">
+									<option value="${idx.index+1 }">${idx.index+1}:
+										${list.name}</option>
+								</c:forEach>
+							</select>
+						</div>
 
 
+						<label>progress: </label>
+						<div class="form-group">
+							<select class="form-control" name="progress">
+								<option value="대기">대기</option>
+								<option value="초기">초기</option>
+								<option value="중기">중기</option>
+								<option value="말기">말기</option>
+								<option value="종료">종료</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-light-secondary"
+							data-bs-dismiss="modal">
+							<i class="bx bx-x d-block d-sm-none"></i> <span
+								class="d-none d-sm-block">닫기</span>
+						</button>
+						<button type="submit" class="btn btn-danger ml-2">
+							<i class="bx bx-check d-block d-sm-none"></i> <span
+								class="d-none d-sm-block">수정</span>
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+	</form>
 
 
 

@@ -24,7 +24,6 @@
 		<mapper resource="resource/KanbanMapper.xml" />
 		<mapper resource="resource/GanttMapper.xml" />
 		<mapper resource="resource/ProjectHomeMapper.xml" />
-		<mapper resource="resource/ProjectManageMapper.xml" />
 		<mapper resource="resource/NoticeMapper.xml" />
 		<mapper resource="resource/NoticeReplyMapper.xml" />
 		<mapper resource="resource/FileInfoMapper.xml" />
@@ -40,5 +39,6 @@
 		<mapper resource="resource/OutputMapper.xml"/>
 		<mapper resource="resource/WorkSortMapper.xml"/>
 		<mapper resource="resource/DepartmentMapper.xml"/>
+		<mapper resource="resource/VoteMapper.xml"/>
 	</mappers>
 </configuration>

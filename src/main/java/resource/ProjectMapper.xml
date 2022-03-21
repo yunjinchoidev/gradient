@@ -5,7 +5,8 @@
 
 <mapper namespace="project5.project.ProjectDao">
 	<select id="list" resultType="project5.project.ProjectVO">
-		select * from project order by projectkey
+		select * from project order by
+		projectkey
 	</select>
 
 
@@ -14,18 +15,65 @@
 		select * from project where projectkey = #{projectkey}
 	</select>
 
-
-
-
-	<select id="get2" resultType="project5.project.ProjectVO" parameterType="java.util.List">
+	<select id="get2" resultType="project5.project.ProjectVO"
+		parameterType="java.util.List">
 		select * from project where projectkey
 		in
-		<foreach collection="list" item="projectkey" open="(" close=")"
-			separator=",">
+		<foreach collection="list" item="projectkey" open="("
+			close=")" separator=",">
 			#{projectkey}
 		</foreach>
-
 	</select>
+
+
+	<insert id="insert" parameterType="project5.project.ProjectVO">
+		insert into project values
+		(seq_project.nextval,
+		#{name},sysdate,#{take},#{manager},#{progress},#{importance},#{contents},#{clientkey},sysdate,sysdate)
+	</insert>
+
+	<update id="update" parameterType="project5.project.ProjectVO">
+		update project
+		set
+		name =
+		#{name},
+		take = #{take},
+		manager = #{manager},
+		progress = #{progress},
+		importance = #{importance},
+		contents = #{contents},
+		clientkey =
+		#{clientkey},
+		startdate = sysdate,
+		lastdate = sysdate
+		where projectkey =
+		#{projectkey}
+	</update>
+
+
+	<update id="progressUpdate"
+		parameterType="project5.project.ProjectVO">
+		update project
+		set
+		progress = #{progress}
+		where projectkey
+		= #{projectkey}
+	</update>
+
+	<delete id="delete" parameterType="int">
+		delete from
+		project
+		where
+		projectkey = #{projectkey}
+	</delete>
+
+
+
+
+
+
+
+
 
 
 </mapper>

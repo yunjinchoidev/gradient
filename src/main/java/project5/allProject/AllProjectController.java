@@ -5,13 +5,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import project5.projectManage.ProjectManageService;
+import project5.project.ProjectService;
 
 @Controller
 public class AllProjectController {
 	
 	@Autowired
-	ProjectManageService service;
+	ProjectService service;
 	
 	@RequestMapping("/allProject.do")
 	public String list(Model d) {

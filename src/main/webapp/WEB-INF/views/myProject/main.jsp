@@ -31,6 +31,67 @@
 		if (psc == "logout") {
 			alert("로그아웃 되었습니다.");
 		}
+		
+		
+		
+		var projectkey = 2;
+		var data = {projectkey : projectkey};
+		$.ajax({
+	      url: '/project5/projectImg.do',
+	      data: data,
+	      type: 'POST',
+	      dataType:'json',
+	        success: function(result){
+	          console.log(result); 
+	          console.log("파일 불러오기 완료")
+			  showUploadResult2(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+	      },
+	      error: function(result){
+	    	  //console.log(memberkey)
+	          console.log("회원 이미지 정보 불러오기 실패");
+	          console.log(result); 
+	      }
+	    }); //$.ajax
+
+
+	    
+	    
+	    
+		// 이미지 클라리언트 딴에 띄우는 합수
+		// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
+	  function showUploadResult2(uploadResultArr){
+		    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+		    var uploadUL = $("#mymy");
+		    var str ="";
+		    $(uploadResultArr).each(function(i, obj){
+		    		console.log("obj"+obj);
+					var fileCallPath =  encodeURIComponent(obj.fname);
+					console.log(fileCallPath);
+					str += "<img src='/project5/display2.do?fileName="+fileCallPath+"'      class='card-img-top img-fluid' alt='singleminded'>";
+					console.log("str : "+str)
+					$("#mymy").show()
+					$("#no").hide()
+				})
+		    uploadUL.append(str);
+		  }
+	///////////////////////////////////////////////////////////////
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	})
 </script>
 
@@ -161,9 +222,12 @@ document.ready(function(){
 				style="display: flex; flex-direction: row; flex-wrap: wrap;">
 				<c:forEach var="list" items="${list }">
 					<div class="card" style="margin-right: 40px; width: 470px; cursor: pointer;" onclick="location.href='/project5/projectHome.do?projectkey=${list.projectkey}'" >
-						<div class="card-content">
+						<div class="card-content" id="mymy">
+							
 							<img src="/project5/resources/image/project.png"
-								class="card-img-top img-fluid" alt="singleminded">
+								class="card-img-top img-fluid" alt="singleminded" id="no">
+								
+								
 							<div class="card-body">
 								<h5 class="card-title" onclick="location.href='/project5/projectHome.do?projectkey=${list.projectkey}'">${list.name }</h5>
 								<p class="card-text">${list.contents }</p>

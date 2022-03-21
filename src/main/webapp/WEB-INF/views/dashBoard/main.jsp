@@ -242,7 +242,7 @@ $(document).ready(function(){
 												<input class="dataTable-input" placeholder="Search..."
 													type="text"> <a
 													href="/project5/scheduleInsertForm.do"
-													class="btn btn-danger" style="text-align: right">새 프로젝트 만들기</a>
+													class="btn btn-danger" style="text-align: right">[${member.name }]님 만을 위한 메모장</a>
 											</div>
 
 										</div>

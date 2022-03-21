@@ -180,16 +180,11 @@
 										관리</a></li>
 							</ul></li>
 
-
-
 						<li class="sidebar-item  "><a
 							href="/project5/calendar.do?memberkey=${member.memberkey}"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									일정관리</span>
 						</a></li>
-
-
-
 
 						<li class="sidebar-item  has-sub"><a href="#"
 							class='sidebar-link'> <i class="bi bi-stack"></i> <span>의사소통</span>
@@ -202,8 +197,6 @@
 								</li>
 							</ul></li>
 
-
-
 						<li class="sidebar-item  " id="mywork"><a
 							href="/project5/mywork.do?memberkey=${member.memberkey }"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>내
@@ -212,54 +205,30 @@
 
 
 						<li class="sidebar-item  "><a href="/project5/notice.do"
-							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
-									공지사항</span>
-						</a></li>
+							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>공지사항</span> </a>
+						</li>
 
-
-
-
-						<li class="sidebar-item  has-sub"><a href="#"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>
-									관리자 페이지 [PM]</span>
-						</a>
-
+						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i class="bi bi-stack"></i> <span>
+									관리자 페이지 [PM]</span></a>
 							<ul class="submenu " id="check">
-								<li class="submenu-item "><a
-									href="/project5/projectManageMain.do">프로젝트 관리 </a></li>
-								<li class="submenu-item "><a href="/project5/mailFrm.do">이메일
-										발송 </a></li>
-								<li class="submenu-item "><a href="/project5/memberList.do">사용자
-										리스트 </a></li>
-							</ul></li>
+								<li class="submenu-item "><a href="/project5/projectManageMain.do">프로젝트 관리 </a></li>
+								<li class="submenu-item "><a href="/project5/mailFrm.do">이메일 발송 </a></li>
+								<li class="submenu-item "><a href="/project5/memberList.do">사용자 리스트 </a></li>
+							</ul>
+						</li>
 
-						<li class="sidebar-item  has-sub"><a href="/project5/customerChat.do"
-							class='sidebar-link'> <i class="bi bi-stack"></i> <span>
-									고객 관리</span>
-						</a>
-
+						<li class="sidebar-item  has-sub">
+								<a href="/project5/customerChat.do" class='sidebar-link'> 
+								<i class="bi bi-stack"></i> <span>고객 관리</span></a>
 							<ul class="submenu " id="check">
-								<li class="submenu-item "><a
-									href="/project5/customerChat.do">채팅 상담 </a></li>
+								<li class="submenu-item "><a href="/project5/customerChat.do">채팅 상담 </a></li>
 								<li class="submenu-item "><a href="/project5/chatBot.do">챗봇 </a></li>
 								<li class="submenu-item "><a href="/project5/chatTEST.do">테스트 </a></li>
-							</ul></li>
-
-
+								<li class="submenu-item "><a href="/project5/plan.do">플랜 </a></li>
+							</ul>
+						</li>
 					</ul>
-
-
 				</div>
-
-
-
-
-
-
-
-
-
-
 
 				<button class="sidebar-toggler btn x">
 					<i data-feather="x"></i>

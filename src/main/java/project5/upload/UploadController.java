@@ -175,6 +175,18 @@ public class UploadController {
 	}
 
 	
+	@PostMapping("/projectImg.do")
+	@ResponseBody
+	public List<FileInfoVO> projectImg(String projectkey) {
+		int projectkeyN = Integer.parseInt(projectkey);
+		System.out.println("/aaaa.do 진입");
+		System.out.println("memberkey:"+projectkeyN);
+		List<FileInfoVO> list = service2.findbyfno(projectkeyN);
+		System.out.println(list);
+		return service2.findbyfno(projectkeyN);
+	}
+
+	
 	
 	
 	

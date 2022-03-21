@@ -24,17 +24,14 @@
 		insert into fileInfo values
 		(seq_output.currval, #{pathinfo}, #{fname}, sysdate, sysdate, #{etc})
 	</insert>
-	
-	
-	<!--  회원정보 수정할 때-->
-	<insert id="update1" parameterType="project5.fileInfo.FileInfoVO">
-		update fileInfo
-		set
-		pathinfo = #{pathinfo},
-		fname = #{fname},
-		etc = #{etc}
-		where fno = #{fno}
+
+	<!--  프로젝트 저장할 때-->
+	<insert id="insert3" parameterType="project5.fileInfo.FileInfoVO">
+		insert into fileInfo values
+		(seq_project.currval, #{pathinfo}, #{fname}, sysdate, sysdate, #{etc})
 	</insert>
+	
+	
 	
 	
 	<select id="getFileInfoNames" parameterType="int" resultType="string">
@@ -51,6 +48,7 @@
 		etc=#{etc}
 		where fno=#{fno}
 	</insert>
+	
 	
 	
 	

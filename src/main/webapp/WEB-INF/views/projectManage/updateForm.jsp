@@ -9,11 +9,9 @@
 
 
 <script>
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 
-					})
+	})
 </script>
 
 
@@ -27,124 +25,115 @@
 			<div class="row match-height">
 				<div class="col-12">
 					<div class="card">
-
 						<div class="card-header">
-							<h4 class="card-title">${get.name } [상세 정보]</h4>
+							<h4 class="card-title">${get.name }</h4>
 						</div>
 
+						<form action="/project5/projectManageUpdate.do" enctype="multipart/form-data" method="post">
+							<div class="card-content">
+								<div class="card-body">
+									<div class="row">
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<input type="hidden" id="first-name-column"
+													class="form-control" name="projectkey"
+													value="${get.projectkey }"> <label
+													for="first-name-column">프로젝트 명</label> <input type="text"
+													id="first-name-column" class="form-control"
+													placeholder="title" name="name"
+													value=" ${projectkey }${get.name }">
+											</div>
+										</div>
+
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="first-name-column" style="color: red">상황</label>
+												<input type="text" id="first-name-column" name="progress"
+													class="form-control" value="${get.progress}">
+											</div>
+										</div>
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="first-name-column">수주액</label> <input
+													type="text" id="first-name-column" class="form-control"
+													name="take" value='${get.take }'>
+											</div>
+										</div>
+
+
+
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="first-name-column">수주일</label> <input
+													type="text" id="first-name-column" class="form-control"
+													placeholder="title" name="termS"
+													value='<fmt:formatDate value="${get.term }"/>'>
+											</div>
+										</div>
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="first-name-column">매니저</label> <input
+													type="text" id="first-name-column" class="form-control"
+													placeholder="title" name="manager" value="${get.manager }">
+											</div>
+										</div>
+
+
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="last-name-column">중요도</label> <input
+													id="last-name-column" class="form-control" type="text"
+													placeholder="importance" name="importance"
+													value="${get.importance}" />
+											</div>
+										</div>
 
 
 
 
 
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="city-column">수주사</label> <input type="text"
+													id="city-column" class="form-control"
+													placeholder="clientkey" name="clientkey"
+													value="${get.clientkey }">
+											</div>
+										</div>
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="country-floating">시작일</label> <input type="date"
+													id="country-floating" class="form-control"
+													name="country-floating" placeholder="시작일" name="startdateS"
+													value='<fmt:formatDate value="${get.startdate }"/>'>
+											</div>
+										</div>
 
-						<div class="card-content">
-							<div class="card-body">
-								<div class="row">
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="first-name-column">프로젝트 명</label> <input
-												type="text" id="first-name-column" class="form-control"
-												placeholder="title" name="title"
-												value="${get.projectkey } : ${get.name }"
-												readonly="readonly">
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="company-column">마감일</label> <input type="date"
+													id="company-column" class="form-control"
+													name="company-column" placeholder="마감일" name="lastdateS"
+													value='<fmt:formatDate value="${get.lastdate }"/>'>
+											</div>
+										</div>
+
+									</div>
+
+
+
+
+
+									<div class="rows">
+										<div class="col-md-6 col-12" style="width: 100%">
+											<div class="form-group">
+												<label for="email-id-column">Contents</label>
+												<textarea class="form-control" name="contents"
+													placeholder="content" rows="4">${get.contents }</textarea>
+											</div>
 										</div>
 									</div>
 
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="first-name-column" style="color: red">상황</label>
-											<input type="text" id="first-name-column"
-												class="form-control" value="${get.progress}"
-												readonly="readonly">
-										</div>
-									</div>
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="first-name-column">수주액</label> <input
-												type="text" id="first-name-column" class="form-control"
-												value='<fmt:formatNumber>${get.take }</fmt:formatNumber>'
-												readonly="readonly">
-										</div>
-									</div>
-
-
-
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="first-name-column">수주일</label> <input type="text"
-												id="first-name-column" class="form-control"
-												placeholder="title" name="title"
-												value='<fmt:formatDate value="${get.term }"/>'
-												readonly="readonly">
-										</div>
-									</div>
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="first-name-column">매니저</label> <input type="text"
-												id="first-name-column" class="form-control"
-												placeholder="title" name="title" value="${get.manager }"
-												readonly="readonly">
-										</div>
-									</div>
-
-
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="last-name-column">중요도</label> <input
-												id="last-name-column" class="form-control" type="text"
-												readonly="readonly" placeholder="importance"
-												name="importance" value="${get.importance}" />
-										</div>
-									</div>
-
-
-
-
-
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="city-column">수주사</label> <input type="text"
-												id="city-column" class="form-control"
-												placeholder="clientkey" name="city-column"
-												value="${get.clientkey }" readonly="readonly">
-										</div>
-									</div>
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="country-floating">시작일</label> <input type="text"
-												id="country-floating" class="form-control"
-												name="country-floating" placeholder="시작일"
-												value='<fmt:formatDate value="${get.term }"/>'
-												readonly="readonly">
-										</div>
-									</div>
-
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="company-column">마감일</label> <input type="text"
-												id="company-column" class="form-control"
-												name="company-column" placeholder="마감일"
-												value='<fmt:formatDate value="${get.term }"/>'
-												readonly="readonly">
-										</div>
-									</div>
-
-								</div>
-
-
-
-
-
-								<div class="rows">
-									<div class="col-md-6 col-12" style="width: 100%">
-										<div class="form-group">
-											<label for="email-id-column">Contents</label>
-											<textarea class="form-control" name="content"
-												placeholder="content" rows="4" readonly="readonly">${get.contents }</textarea>
-										</div>
-									</div>
-								</div>
 
 
 
@@ -156,33 +145,32 @@
 
 
 
+									<br>
+									<div class="row">
+										<div class="col-lg-12">
+											<div class="panel panel-default">
 
-								<br>
-								<div class="row">
-									<div class="col-lg-12">
-										<div class="panel panel-default">
-											
-											<div class="panel-heading">File Attach</div>
-											<!-- /.panel-heading -->
-											<div class="panel-body">
-												<div class="form-group uploadDiv">
-													<input type="file" name='uploadFile' multiple readonly="readonly">
-													
+												<div class="panel-heading">File Attach</div>
+												<!-- /.panel-heading -->
+												<div class="panel-body">
+													<div class="form-group uploadDiv">
+														<input type="file" name='uploadFile' multiple>
+
+													</div>
+													<div class='uploadResult'>
+														<ul>
+
+														</ul>
+													</div>
 												</div>
-												<div class='uploadResult'>
-													<ul>
+												<!--  end panel-body -->
 
-													</ul>
-												</div>
 											</div>
 											<!--  end panel-body -->
-
 										</div>
-										<!--  end panel-body -->
+										<!-- end panel -->
 									</div>
-									<!-- end panel -->
-								</div>
-								<!-- /.row -->
+									<!-- /.row -->
 
 
 
@@ -199,57 +187,58 @@
 
 
 
-										<br>
-								<div class="form-group col-12">
-									<div class="form-check">
-										<div class="checkbox">
-											<input type="checkbox" id="checkbox5"
-												class="form-check-input" checked=""> <label
-												for="checkbox5">Remember Me</label>
+									<br>
+									<div class="form-group col-12">
+										<div class="form-check">
+											<div class="checkbox">
+												<input type="checkbox" id="checkbox5"
+													class="form-check-input" checked=""> <label
+													for="checkbox5">Remember Me</label>
+											</div>
 										</div>
 									</div>
-								</div>
 
 
 
-								<div class="col-12 d-flex justify-content-end">
-									<button type="button" class="btn btn-danger btn-icon icon-left"
-										style="height: 90%;"
-										onclick="location.href='/project5/projectManageMain.do'">
-										<i class="fas fa-plane"></i> 목록으로
-									</button>
-									<button type="button" class="btn btn-primary me-1 mb-1"
-										id="update"
-										onclick="location.href='/project5/projectManageUpdateForm.do?projectkey=${get.projectkey}'">수정창으로</button>
-									<button type="button" class="btn btn-light-secondary me-1 mb-1"
-										id="del" onclick="location.href='/project5/projectManageDel.do?projectkey=${get.projectkey}'">삭제</button>
+									<div class="col-12 d-flex justify-content-end">
+										<button type="button"
+											class="btn btn-danger btn-icon icon-left"
+											style="height: 90%;"
+											onclick="location.href='/project5/projectManageMain.do'">
+											<i class="fas fa-plane"></i> 목록으로
+										</button>
+										<button type="submit" class="btn btn-primary me-1 mb-1"
+											id="update">수정하기</button>
+									</div>
 								</div>
 							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+
+
+
+
+		<div class="row">
+			<div class="col">
+				<div class="card">
+					<div class="card-header">
+						<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>댓글
+							달기</button>
+					</div>
+					<div class="card-body">
+						<div class="form-floating">
+							<textarea class="form-control" placeholder="Leave a comment here"
+								id="floatingTextarea"></textarea>
+							<label for="floatingTextarea">Comments</label>
 						</div>
 					</div>
 				</div>
 			</div>
-
-
-
-
-		</section>
-					<div class="row">
-                        <div class="col">
-                            <div class="card">
-                                <div class="card-header">
-                                    <button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>댓글 달기</button>
-                                </div>
-                                <div class="card-body">
-                                    <div class="form-floating">
-                                        <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"></textarea>
-                                        <label for="floatingTextarea">Comments</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-			</div>                    
+		</div>
+	</div>
 
 
 
@@ -337,19 +326,20 @@
 <script type="text/javascript" src="/project5/ref/js/reply.js"></script>
 
 <script>
-	$(document).ready(function() {
+	$(document)
+			.ready(
+					function() {
 						var noticekeyValue = '<c:out value="${notice.noticekey}"/>';
 						var replyUL = $(".chat");
 
-						
 						showList(1);
 
-						
-						
-						
 						function showList(page) {
 							console.log("show list " + page);
-							replyService.getList({noticekey : noticekeyValue,
+							replyService
+									.getList(
+											{
+												noticekey : noticekeyValue,
 												page : 1
 											},
 											function(list) {
@@ -441,16 +431,6 @@
 							replyPageFooter.html(str);
 						}
 
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
 						replyPageFooter.on("click", "li a", function(e) {
 							e.preventDefault();
 							console.log("page click");
@@ -532,10 +512,14 @@
 						});
 
 						//댓글 조회 클릭 이벤트 처리 
-						$(".chat").on("click","li",
+						$(".chat")
+								.on(
+										"click",
+										"li",
 										function(e) {
 											var rno = $(this).data("rno");
-											replyService.get(
+											replyService
+													.get(
 															rno,
 															function(reply) {
 

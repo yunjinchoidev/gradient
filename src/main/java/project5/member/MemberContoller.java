@@ -161,6 +161,12 @@ public class MemberContoller {
 	
 	
 	
+		
+		@RequestMapping("/plan.do")
+		public String plan(Model d) {
+			return "/member/plan";
+		}
+		
 	
 	
 	
