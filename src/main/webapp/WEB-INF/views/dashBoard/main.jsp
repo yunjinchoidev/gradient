@@ -224,7 +224,10 @@ $(document).ready(function(){
 
 
 							<div class="card">
-								<div class="card-header"><h4>프로젝트 시작과 종료</h4></div>
+								<div class="card-header">
+								<h4>[<span style="color:red">${member.name } </span>]님 만을 위한 메모장</h4></div>
+								
+								
 								<div class="card-body">
 									<div
 										class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -241,8 +244,7 @@ $(document).ready(function(){
 											<div class="dataTable-search">
 												<input class="dataTable-input" placeholder="Search..."
 													type="text"> <a
-													href="/project5/scheduleInsertForm.do"
-													class="btn btn-danger" style="text-align: right">[${member.name }]님 만을 위한 메모장</a>
+													class="btn btn-danger" style="text-align: right" data-bs-toggle="modal"  data-bs-target="#inlineForm" >메모 쓰기</a>
 											</div>
 
 										</div>
@@ -252,67 +254,33 @@ $(document).ready(function(){
 												<thead>
 													<tr>
 														<th data-sortable="" style="width: 12.0176%;"><a
-															href="#" class="dataTable-sorter">프로젝트 번호</a></th>
-														<th data-sortable="" style="width: 42.9989%;"><a
-															href="#" class="dataTable-sorter">프로젝트 명</a></th>
-														<th data-sortable="" style="width: 18.0816%;"><a
-															href="#" class="dataTable-sorter">수주액</a></th>
+															href="#" class="dataTable-sorter">메모 번호</a></th>
+														<th data-sortable="" style="width: 18.9989%;"><a
+															href="#" class="dataTable-sorter">메모 명</a></th>
+														<th data-sortable="" style="width: 42.0816%;"><a
+															href="#" class="dataTable-sorter">메모내용</a></th>
 														<th data-sortable="" style="width: 16.3175%;"><a
-															href="#" class="dataTable-sorter">중요도</a></th>
+															href="#" class="dataTable-sorter">작성일</a></th>
 														<th data-sortable="" style="width: 10.8049%;"><a
-															href="#" class="dataTable-sorter">상태</a></th>
+															href="#" class="dataTable-sorter">중요도</a></th>
 													</tr>
 												</thead>
 												<tbody>
-													<c:forEach var="list" items="${list}">
+													<c:forEach var="list" items="${memoList}">
 														<tr >
-															<td>${list.projectkey}</td>
-															<td style="cursor: pointer;" onclick="location.href='/project5/projectManageGet.do?projectkey=${list.projectkey}'">${list.name }</td>
-															<td>
-															<fmt:formatNumber>${list.take }</fmt:formatNumber>
+															<td>${list.memokey}</td>
+															<td id="progress" style="cursor: pointer;" data-toggle="modal" data-target= "#inlineForm2">${list.title }</td>
+															<td>${list.contents }</td>
+															<td><fmt:formatDate value="${list.writedate }" /></td>
+															<td><c:if test="${list.importance eq '하'}">
+																	<span class="badge bg-primary">하</span>
+																</c:if> <c:if test="${list.importance eq '중'}">
+																	<span class="badge bg-secondary">중</span>
+																</c:if> <c:if test="${list.importance eq '상'}">
+																	<span class="badge bg-danger">상</span>
+																</c:if>
 															</td>
-															<td>
-															
-																<c:if test="${list.importance eq '하'}">
-															<span class="badge bg-primary">하</span>
-															</c:if>
-															<c:if test="${list.importance eq '중'}">
-															<span class="badge bg-secondary">중</span>
-															</c:if>
-															<c:if test="${list.importance eq '상'}">
-															<span class="badge bg-danger">상</span>
-															</c:if>
-															
-															</td>
-															
-															
-															
-															
-															
-															<td id="progress" style="cursor: pointer;" data-toggle="modal" data-target= "#inlineForm">
 
-															
-															<c:if test="${list.progress eq '대기'}">
-															<span class="badge bg-primary">대기</span>
-															</c:if>
-															<c:if test="${list.progress eq '초기'}">
-															<span class="badge bg-secondary">초기</span>
-															</c:if>
-															<c:if test="${list.progress eq '중기'}">
-															<span class="badge bg-success">중기</span>
-															</c:if>
-															<c:if test="${list.progress eq '말기'}">
-															<span class="badge bg-danger">말기</span>
-															</c:if>
-															<c:if test="${list.progress eq '종료'}">
-															<span class="badge bg-dark">종료</span>
-															</c:if>
-															
-															
-															
-															</td>
-															
-															
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -800,74 +768,64 @@ $(document).ready(function(){
 
 
 
-  <!--login form Modal -->
+ 											 <!--login form Modal -->
                                             <div class="modal fade text-left" id="inlineForm" tabindex="-1"
                                                 role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
                                                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
                                                     role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h4 class="modal-title" id="myModalLabel33">프로젝트 상태 변경 </h4>
+                                                            <h4 class="modal-title" id="myModalLabel33">메모 쓰기 </h4>
                                                             <button type="button" class="close" data-bs-dismiss="modal"
                                                                 aria-label="Close">
                                                                 <i data-feather="x"></i>
                                                             </button>
                                                         </div>
-                                                        <form action="/project5/progressUpdate.do?" id="frm01">
-                                                        <input type="hidden" name="projectkey" value="2">
-                                                            <div class="modal-body">
-                                                                <label>progress: </label>
-                                                                <div class="form-group">
-                                                                        <select  class="form-control" name="progress">
-                                                                        	<option value="대기">대기</option>
-                                                                        	<option value="초기">초기</option>
-                                                                        	<option value="중기">중기</option>
-                                                                        	<option value="말기">말기</option>
-                                                                        	<option value="종료">종료</option>
-                                                                        </select>
-                                                                </div>
-                                                            </div>
-                                                            
-                                                            
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-light-secondary"
-                                                                    data-bs-dismiss="modal">
-                                                                    <i class="bx bx-x d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">닫기</span>
-                                                                </button>
-                                                                <button type="submit" class="btn btn-danger ml-2 update"
-                                                                    data-bs-dismiss="modal" id="updateItem" onclick="alert('변경합니다')">
-                                                                    <i class="bx bx-check d-block d-sm-none"></i>
-                                                                    <span class="d-none d-sm-block">수정</span>
-                                                                </button>
-                                                                <input type="submit" value="수정">
-                                                            </div>
-                                                        </form>
+                                                        <form action="/project5/memoInsert.do" id="frm01" method="post">
+	                                                        <input type="hidden" name="memberkey" value="${member.memberkey }">
+	                                                        <input type="hidden" name="projectkey" value="1">
+	                                                            <div class="modal-body">
+	                                                            
+	                                                                <label>중요도: </label>
+	                                                                <div class="form-group">
+	                                                                        <select  class="form-control" name="importance">
+	                                                                        	<option value="상">상</option>
+	                                                                        	<option value="중">중</option>
+	                                                                        	<option value="하">하</option>
+	                                                                        </select>
+	                                                                </div>
+	                                                                
+	                                                                 <label>제목: </label>
+	                                                                <div class="form-group">
+	                                                                    <input type="text"  name="title"
+	                                                                        class="form-control">
+	                                                                </div>
+	                                                                
+	                                                                 <label>내용: </label>
+	                                                                <div class="form-group">
+	                                                                    <input type="text"  name="contents"
+	                                                                        class="form-control">
+	                                                                </div>
+	                                                                
+	                                                            </div>
+
+																<div class="modal-footer">
+																	<button type="button" class="btn btn-light-secondary"
+																		data-bs-dismiss="modal">
+																		<i class="bx bx-x d-block d-sm-none"></i> <span
+																			class="d-none d-sm-block">닫기</span>
+																	</button>
+																	<button type="submit" class="btn btn-danger ml-2">
+																		<i class="bx bx-check d-block d-sm-none"></i> <span
+																			class="d-none d-sm-block">작성완료</span>
+																	</button>
+																</div>
+															</form>
                                                     </div>
                                                 </div>
                                             </div>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
-
-
-
-
-
-
-    
 
 </html>

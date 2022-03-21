@@ -32,11 +32,17 @@
 	</insert>
 	
 	
-	
-	
 	<select id="getFileInfoNames" parameterType="int" resultType="string">
 		select fname from fileInfo where fno = #{fno}
 	</select>	
+	
+	
+	<insert id="insertCalendarFile" parameterType="project5.fileInfo.FileInfoVO">
+		insert into fileInfo values
+		(cal_seq.currval, #{pathinfo}, #{fname}, sysdate, sysdate, #{etc})
+	</insert>
+	
+	
 	
 	
 

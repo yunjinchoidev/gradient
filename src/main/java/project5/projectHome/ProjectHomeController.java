@@ -13,7 +13,7 @@ import project5.project.ProjectVO;
 import project5.vote.VoteService;
 
 @Controller
-public class projectHomeController {
+public class ProjectHomeController {
 
 	@Autowired
 	ProjectHomeService service;

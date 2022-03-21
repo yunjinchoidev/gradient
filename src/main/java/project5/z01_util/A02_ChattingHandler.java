@@ -12,7 +12,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 
 
 // 컨테이너에서 handler이름 chatHandler와  front단에서 ${path}/chat-ws.do
-// 연동할 수 있게 선언된다.
+// 연동할 수 있게 선언된다.  chatHandler
 @Component("chatHandler")
 public class A02_ChattingHandler extends TextWebSocketHandler{
 	// 접속한 계정을 저장하는 필드 선언.

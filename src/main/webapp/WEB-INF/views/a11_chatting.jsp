@@ -69,10 +69,11 @@
 		--%>	
 	});
 	function conn(){
-		//  원격 접속시에는 고정 ip 할당 받아서 처리..106.10.16.155
+		//  원격 접속시에는 고정 ip 할당 받아서 처리..
 		// wsocket = new WebSocket("ws:/106.10.23.227:7080/${path}/chat-ws.do");
 		// local에서 다른 브라우저로 실행시 처리할 내용..
-		wsocket = new WebSocket("ws:/localhost:7080/${path}/chat-ws.do");
+		wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
+		
 		// handler :afterConnectionEstablished(WebSocketSession session)와 연결
 		wsocket.onopen=function(evt){ 
 			console.log(evt);

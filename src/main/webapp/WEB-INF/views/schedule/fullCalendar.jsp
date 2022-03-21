@@ -252,15 +252,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-
-
-
-
-
-
-
-
-
 <div id='loading'>loading...</div>
 <div id='script-warning'>
     <code>서버</code> must be running.
@@ -270,6 +261,13 @@ document.addEventListener('DOMContentLoaded', function() {
  --%>
 <button id="modalBtn" data-toggle="modal" 
 	data-target="#exampleModalCenter" style="display:none"></button>
+
+
+
+
+
+
+
 
 <div class="modal fade" id="exampleModalCenter" 
 	tabindex="-1" role="dialog" 
@@ -283,7 +281,7 @@ document.addEventListener('DOMContentLoaded', function() {
         </button>
       </div>
       <div class="modal-body">
-		<form id="frm01" class="form"  method="post">
+		<form id="frm01" class="form"  method="post" enctype="multipart/form-data" >
 		 <input type="hidden" name="id" value="0"/>
 	     <div class="row">
 	      <div class="col">
@@ -334,8 +332,35 @@ document.addEventListener('DOMContentLoaded', function() {
 	      		<option value="false">시 간</option>
 	      	</select>
 	      </div>
-	     </div>	    
-	     <input type="hidden" name="memberkey" value="${member.memberkey }" >
+	     </div>
+
+						<div class="row">
+							<div class="col-lg-12">
+								<div class="panel panel-default">
+								<br>
+									<div class="panel-heading">File Attach</div>
+									<!-- /.panel-heading -->
+									<div class="panel-body">
+										<div class="form-group uploadDiv">
+											<input type="file" name='uploadFile' multiple>
+										</div>
+										<div class='uploadResult'>
+											<ul>
+											</ul>
+										</div>
+									</div>
+									<!--  end panel-body -->
+								</div>
+								<!--  end panel-body -->
+							</div>
+							<!-- end panel -->
+						</div>
+						<!-- /.row -->
+
+
+
+
+						<input type="hidden" name="memberkey" value="${member.memberkey }" >
 	    </form> 
 	 	<script>
 	      		

@@ -1,5 +1,9 @@
 package project5.fullCalendar;
 
+import java.util.ArrayList;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class Calendar {
 	private int id;
 	private String title;
@@ -13,6 +17,14 @@ public class Calendar {
 	private int projectkey;
 	private int memberkey;
 
+	private MultipartFile[] uploadFile;
+
+	private ArrayList<String> fnames;
+	private int fno;
+	
+	
+	
+	
 	public Calendar() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -32,6 +44,32 @@ public class Calendar {
 		this.allDay = allDay;
 		this.projectkey = projectkey;
 		this.memberkey = memberkey;
+	}
+	
+	
+	
+	
+	
+	
+
+	public Calendar(int id, String title, String start, String end, String content, String borderColor,
+			String backgroundColor, String textColor, boolean allDay, int projectkey, int memberkey,
+			MultipartFile[] uploadFile, ArrayList<String> fnames, int fno) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.start = start;
+		this.end = end;
+		this.content = content;
+		this.borderColor = borderColor;
+		this.backgroundColor = backgroundColor;
+		this.textColor = textColor;
+		this.allDay = allDay;
+		this.projectkey = projectkey;
+		this.memberkey = memberkey;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+		this.fno = fno;
 	}
 
 	public int getId() {
@@ -121,5 +159,35 @@ public class Calendar {
 	public void setMemberkey(int memberkey) {
 		this.memberkey = memberkey;
 	}
+
+	public MultipartFile[] getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile[] uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+
+	public ArrayList<String> getFnames() {
+		return fnames;
+	}
+
+	public void setFnames(ArrayList<String> fnames) {
+		this.fnames = fnames;
+	}
+
+	public int getFno() {
+		return fno;
+	}
+
+	public void setFno(int fno) {
+		this.fno = fno;
+	}
+	
+	
+	
+	
+	
+	
 
 }
