@@ -28,12 +28,12 @@ public class A20_FullCalController {
 	@GetMapping("calendar.do")
 	public String calendar(Model d) {
 		d.addAttribute("pjList", service2.list());
-		return "schedule/fullCalendar";
+		return "WEB-INF\\views\\schedule\\fullCalendar.jsp";
 	}
 
 	@GetMapping("calendar2.do")
 	public String calendar2() {
-		return "schedule/fullCalendar2";
+		return "WEB-INF\\views\\schedule\\fullCalendar2.jsp";
 	}
 	
 	

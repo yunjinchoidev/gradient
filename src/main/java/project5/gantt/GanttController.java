@@ -23,12 +23,12 @@ public class GanttController {
 	@RequestMapping("/ganttMain.do")
 	public String ganttMain(Model d) {
 		d.addAttribute("pjList", service2.list());
-		return "gantt/main";
+		return "WEB-INF\\views\\gantt\\main.jsp";
 	}
 
 	@RequestMapping("/ganttMain2.do")
 	public String ganttMain2(Model d) {
-		return "gantt/main2";
+		return "WEB-INF\\views\\gantt\\main2.jsp";
 	}
 
 	

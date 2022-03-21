@@ -30,35 +30,21 @@ public class A10_MailController {
 	// http://localhost:7080/springweb/mailFrm.do
 	@GetMapping("/mailFrm.do")
 	public String mailForm() {
-		return "mail/a10_mailForm";
+		return "WEB-INF\\views\\mail\\a10_mailForm.jsp";
 	}
 
 	@RequestMapping("/mailFrm2.do")
 	public String mailForm2(Model d, MemberVO vo) {
 		System.out.println(vo.getMemberkey());
 		d.addAttribute("member", service2.get(vo.getMemberkey()));
-		
-		return "mail/mailForm2";
+		return "WEB-INF\\views\\mail\\mailForm2.jsp";
 	}
-
-
-	
-	
-	
-	
-	
-	
 	
 	@PostMapping("/mailsend.do")
 	public String mailsend(Mail mail, Model d) {
 		System.out.println(mail.getReciever());
 		d.addAttribute("msg", service.sendMail(mail));
-		return "mail/a10_mailForm";
+		return "WEB-INF\\views\\mail\\a10_mailForm.jsp";
 	}
-
-	
-	
-	
-	
 	
 }

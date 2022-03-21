@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class MainController {
 	@RequestMapping("/main.do")
 	public String Main() {
-		return "main";
+		return "WEB-INF\\views\\main.jsp";
 	}
 }

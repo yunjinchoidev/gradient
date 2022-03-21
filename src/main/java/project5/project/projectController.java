@@ -32,27 +32,27 @@ public class projectController {
 	@RequestMapping("/projectManageMain.do")
 	public String projectManageMain(Model d) {
 		d.addAttribute("list", service.list());
-		return "/projectManage/main";
+		return "WEB-INF\\views\\projectManage\\main.jsp";
 	}
 
 	// 프로젝트 관리를 위한 프로젝트 리스트 
 	@RequestMapping("/projectManageGet.do")
 	public String projectManageGet(Model d, int projectkey) {
 		d.addAttribute("get", service.get(projectkey));
-		return "/projectManage/get";
+		return "WEB-INF\\views\\projectManage\\get.jsp";
 	}
 	
 	// 프로젝트 관리를 위한 프로젝트 인서트폼 
 	@RequestMapping("/projectManageInsertForm.do")
 	public String projectManageInsertForm(Model d) {
-		return "/projectManage/writeForm";
+		return "WEB-INF\\views\\projectManage\\writeForm.jsp";
 	}
 
 	// 프로젝트 관리를 위한 프로젝트 업데이트폼 
 	@RequestMapping("/projectManageUpdateForm.do")
 	public String projectManageUpdateForm(Model d, int projectkey) {
 		d.addAttribute("get", service.get(projectkey));
-		return "/projectManage/updateForm";
+		return "WEB-INF\\views\\projectManage\\updateForm.jsp";
 	}
 	
 	
@@ -82,7 +82,7 @@ public class projectController {
 	@RequestMapping("/projectManageDelete.do")
 	public String projectManageDelete(Model d, int projectkey) {
 		service.delete(projectkey);
-		return "/projectManage/get";
+		return "WEB-INF\\views\\projectManage\\get.jsp";
 	}
 	
 	

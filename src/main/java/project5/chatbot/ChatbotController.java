@@ -13,7 +13,7 @@ public class ChatbotController {
 	public String chatBot(Model d) {
 		return "WEB-INF\\views\\chatBot\\main.jsp";
 	}
-	
+
 	
 	
 }

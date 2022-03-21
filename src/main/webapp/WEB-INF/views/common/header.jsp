@@ -221,9 +221,8 @@
 								<a href="/project5/customerChat.do" class='sidebar-link'> 
 								<i class="bi bi-stack"></i> <span>고객 관리</span></a>
 							<ul class="submenu " id="check">
-								<li class="submenu-item "><a href="/project5/customerChat.do">채팅 상담 </a></li>
-								<li class="submenu-item "><a href="/project5/chatBot.do">챗봇 </a></li>
-								<li class="submenu-item "><a href="/project5/chatTEST.do">테스트 </a></li>
+								<li class="submenu-item "><a href="#" onclick="window.open('/project5/customerChat.do','팝업창','width=1000, height=1000 top=100, left=200');">채팅 상담</a></li>
+								<li class="submenu-item "><a href="#" onclick="window.open('/project5/chatBot.do','팝업창','width=1000, height=1000, left=400');">챗봇 </a></li>
 								<li class="submenu-item "><a href="/project5/plan.do">플랜 </a></li>
 							</ul>
 						</li>

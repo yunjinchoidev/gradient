@@ -27,46 +27,47 @@ public class MyworkController {
 	@RequestMapping("/mywork.do")
 	public String myWork(Model d, int memberkey) {
 		d.addAttribute("list", service.mywork(memberkey));
-		return "/mywork/main";
+		return "WEB-INF\\views\\mywork\\main.jsp";
 	}
 
 	@RequestMapping("/send.do")
 	public String send(Model d) {
-		return "/mywork/send";
+		return "WEB-INF\\views\\mywork\\send.jsp";
+		
 	}
 
 
 	@RequestMapping("/myworkKanban.do")
 	public String myworkKanaban(Model d, int memberkey) {
 		d.addAttribute("list", service2.individualMemberList(memberkey));
-		return "/mywork/myworkKanban";
+		return "WEB-INF\\views\\mywork\\myworkKanban.jsp";
 	}
 	@RequestMapping("/myworkGantt.do")
 	public String myworkGantt(Model d, int memberkey) {
 		d.addAttribute("list", service3.individualMemberList(memberkey));
-		return "/mywork/myworkGantt";
+		return "WEB-INF\\views\\mywork\\myworkGantt.jsp";
 	}
 	
 	 	@RequestMapping("/kanbanListWork.do")
 	public String kanbanListWork(Model d) {
 		d.addAttribute("list", service2.listWork());	
-		return "mywork/kanbanListWork";
+		return "WEB-INF\\views\\mywork\\kanbanListWork.jsp";
 	}
 
 	@RequestMapping("/mywork7Days.do")
 	public String mywork7Days(Model d) {
 		d.addAttribute("list", service3.currentGantt());	
-		return "mywork/myworkCurrentGantt";
+		return "WEB-INF\\views\\mywork\\myworkCurrentGantt.jsp";
 	}
 	@RequestMapping("/mywork3Days.do")
 	public String mywork3Days(Model d) {
 		d.addAttribute("list", service3.currentGantt());	
-		return "mywork/myworkCurrentGantt";
+		return "WEB-INF\\views\\mywork\\myworkCurrentGantt.jsp";
 	}
 	@RequestMapping("/mywork1Days.do")
 	public String mywork1Days(Model d) {
 		d.addAttribute("list", service3.currentGantt());	
-		return "mywork/myworkCurrentGantt";
+		return "WEB-INF\\views\\mywork\\myworkCurrentGantt.jsp";
 	}
 
 	

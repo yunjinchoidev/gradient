@@ -24,12 +24,12 @@ public class KanbanController {
 	@RequestMapping("/kanbanMain.do")
 	public String kanbanMain(Model d) {
 		d.addAttribute("pjList", service2.list());
-		return "/kanban/main";
+		return "WEB-INF\\views\\kanban\\main.jsp";
 	}
 	
 	@RequestMapping("/kanbanMain2.do")
 	public String kanbanMain2(Model d) {
-		return "/kanban/main2";
+		return "WEB-INF\\views\\kanban\\main2.jsp";
 	}
 	
 	

@@ -9,14 +9,8 @@ public class CustomerChatController {
 	
 	@RequestMapping("/customerChat.do")
 	public String chatting() {
-		return "/customerChat/a11_chatting";
+		return "WEB-INF\\views\\customerChat\\customerChat.jsp";
 	}
-
-	@RequestMapping("/chatTEST.do")
-	public String chatTEST() {
-		return "/customerChat/chatTEST";
-	}
-	
 	
 	
 	

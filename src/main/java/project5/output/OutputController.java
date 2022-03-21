@@ -30,13 +30,13 @@ public class OutputController {
 	public String output(Model d) {
 		d.addAttribute("list", service.list());
 		d.addAttribute("pjList", service2.list());
-		return "output/list";
+		return "WEB-INF\\views\\output\\list.jsp";
 	}
 
 	@RequestMapping("/outputGet.do")
 	public String outputGet(Model d, int outputkey) {
 		d.addAttribute("get", service.get(outputkey));
-		return "output/get";
+		return "WEB-INF\\views\\output\\get.jsp";
 	}
 
 	@RequestMapping("/outputWriteForm.do")
@@ -44,7 +44,7 @@ public class OutputController {
 		d.addAttribute("pjList", service2.list());
 		d.addAttribute("workSort", service3.list());
 		d.addAttribute("dlist", service4.list());
-		return "output/writeForm";
+		return "WEB-INF\\views\\output\\writeForm.jsp";
 	}
 
 	@RequestMapping("/outputWrite.do")

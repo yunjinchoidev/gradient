@@ -25,20 +25,8 @@ public class DashBoardController {
 		d.addAttribute("pjList", service.list());
 		d.addAttribute("project", service.get(projectkey));
 		d.addAttribute("memoList",service2.list());
-		return "dashBoard/main";
+		return "WEB-INF\\views\\dashBoard\\main.jsp";
 	}
-	
-	@RequestMapping("/memoList.do")
-	public String memoList(Model d) {
-		d.addAttribute("pjList", service.list());
-		d.addAttribute("project", service.get(1));
-		d.addAttribute("memoList",service2.list());
-		return "dashBoard/main2";
-	}
-
-
-	
-	
 	
 	
 }

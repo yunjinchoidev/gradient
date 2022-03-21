@@ -32,7 +32,7 @@ public class ProjectHomeController {
 		// 프로젝트 명단 // 공통
 		d.addAttribute("pjList", service2.list()); 
 		d.addAttribute("project", service2.get(vo.getProjectkey())); 
-		return "/projectHome/home";
+		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
 
 	
@@ -42,7 +42,7 @@ public class ProjectHomeController {
 		System.out.println(service2.list().size());
 		d.addAttribute("pjList", service2.list()); 
 		d.addAttribute("workSort", service.getWorkSortList());
-		return "projectHome/writeForm";
+		return "WEB-INF\\views\\projectHome\\writeForm.jsp";
 	}
 
 	
@@ -56,13 +56,10 @@ public class ProjectHomeController {
 
 	
 	
-	
-	
-	
 	@RequestMapping("/projectHomeUpdateForm.do")
 	public String projectHomeUpdateFrom(Model d, ProjectHomeVO vo) {
 		d.addAttribute("projectHome", service.get(vo.getProjectHomekey()));
-		return "projectHome/update";
+		return "WEB-INF\\views\\projectHome\\update.jsp";
 	}
 
 	@RequestMapping("/projectHomeUpdate.do")
@@ -77,7 +74,7 @@ public class ProjectHomeController {
 	@RequestMapping("/projectHomeGet.do")
 	public String projectHomeGet(Model d, int projectHomekey) {
 		d.addAttribute("projectHome", service.get(projectHomekey));
-		return "projectHome/get";
+		return "WEB-INF\\views\\projectHome\\get.jsp";
 	}
 	
 	

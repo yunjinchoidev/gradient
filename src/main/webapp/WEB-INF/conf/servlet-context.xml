@@ -38,10 +38,18 @@
 		 (A01_StartController)      (A01_StartService)
 		 
 	 -->
+
+
+
+
+
+
+
 	<context:component-scan base-package="project5">
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
 		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
 	</context:component-scan>	
 	<!-- 컨테이너에 공통 DB 설정 정보 가져오기  -->
 	<context:property-placeholder location="classpath:/resource/config"/>

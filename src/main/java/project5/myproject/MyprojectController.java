@@ -35,7 +35,7 @@ public class MyprojectController {
 		}
 		d.addAttribute("list", service3.get2(projectkeyList));
 		
-		return "/myProject/main";
+		return "WEB-INF\\views\\myProject\\main.jsp";
 	}
 	
 	

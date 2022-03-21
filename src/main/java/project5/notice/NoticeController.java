@@ -32,13 +32,13 @@ public class NoticeController {
 		d.addAttribute("list", service.getList(sch));
 		System.out.println(service.getList(sch).size());
 		System.out.println("공지사항 리스트 조회 완료");
-		return "notice/list";
+		return "WEB-INF\\views\\notice\\list.jsp";
 	}
 
 	
 	@RequestMapping("/noticeWriteForm.do")
 	public String noticeWriteFrom() {
-		return "notice/writeForm";
+		return "WEB-INF\\views\\update\\writeForm.jsp";
 	}
 
 	@RequestMapping("/noticeWrite.do")
@@ -60,7 +60,7 @@ public class NoticeController {
 	@RequestMapping("/noticeUpdateForm.do")
 	public String noticeUpdateFrom(Model d, NoticeVO vo) {
 		d.addAttribute("notice", service.get(vo.getNoticekey()));
-		return "notice/update";
+		return "WEB-INF\\views\\notice\\update.jsp";
 	}
 
 	@RequestMapping("/noticeUpdate.do")
@@ -75,7 +75,7 @@ public class NoticeController {
 	@RequestMapping("/noticeGet.do")
 	public String noticeGet(Model d, int noticekey) {
 		d.addAttribute("notice", service.get(noticekey));
-		return "notice/get";
+		return "WEB-INF\\views\\notice\\get.jsp";
 	}
 	
 	@RequestMapping("/noticeDelete.do")

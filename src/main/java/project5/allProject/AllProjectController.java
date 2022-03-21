@@ -16,7 +16,7 @@ public class AllProjectController {
 	@RequestMapping("/allProject.do")
 	public String list(Model d) {
 		d.addAttribute("list", service.list());
-		return "/allProject/main";
+		return "WEB-INF\\views\\allProject\\main.jsp";
 	}
 	
 }

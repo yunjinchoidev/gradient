@@ -34,14 +34,14 @@ public class MemberContoller {
 
 	@GetMapping("/login.do")
 	public String login() {
-		return "member/login";
+		return "WEB-INF\\views\\member\\login.jsp";
 	}
 
 	@GetMapping("/memberEdit.do")
 	public String memberEdit(Model d, MemberVO vo) {
 		System.out.println("회원 정보 수정 창으로 이동");
 		d.addAttribute("get", service.get(vo.getMemberkey()));
-		return "member/edit";
+		return "WEB-INF\\views\\member\\edit.jsp";
 	}
 
 	
@@ -65,7 +65,7 @@ public class MemberContoller {
 			d.addAttribute("member", vo2);
 			System.out.println("vo : "+vo);
 			System.out.println("로그인 실패");
-			return "/member/loginFail";
+			return "WEB-INF\\views\\member\\loginFail.jsp";
 		}
 		
 		
@@ -88,7 +88,7 @@ public class MemberContoller {
 
 	@RequestMapping(value = "/memberDeleteForm.do")
 	public String memberDeleteForm() {
-		return "member/deleteForm";
+		return "WEB-INF\\views\\member\\deleteForm.jsp";
 	}
 
 	@RequestMapping(value = "/memberDelete.do")
@@ -96,13 +96,13 @@ public class MemberContoller {
 		service.delete(memberkey);
 		MemberVO vo = new MemberVO(1);
 		d.addAttribute("member", vo);
-		return "member/deleteResult";
+		return "WEB-INF\\views\\member\\deleteResult.jsp";
 	}
 
 	@RequestMapping("/memberRegisterForm.do")
 	public String registerForm(Model d) {
 		d.addAttribute("reginum", service.reginum());
-		return "member/registerForm";
+		return "WEB-INF\\views\\member\\registerForm.jsp";
 	}
 
 	@RequestMapping("/memberRegister.do")
@@ -111,12 +111,12 @@ public class MemberContoller {
 		System.out.println(mail.toString());
 		d.addAttribute("psc", service2.sendidpassMail(vo.getMemberkey(), mail.getReciever()));
 		System.out.println("임시 아이디 비밀번호 발급 성공");
-		return "member/memberRegisterResult";
+		return "WEB-INF\\views\\member\\memberRegisterResult.jsp";
 	}
 
 	@RequestMapping("/memberRegisterResult.do")
 	public String memberRegisterResult() {
-		return "/member/memberRegisterResult";
+		return "WEB-INF\\views\\member\\memberRegisterResult.jsp";
 	}
 
 	
@@ -130,7 +130,7 @@ public class MemberContoller {
 		d.addAttribute("member", vo2);
 		System.out.println("회원 정보 수정 완료");
 		d.addAttribute("psc", "success");
-		return "member/EditSuccess";
+		return "WEB-INF\\views\\member\\EditSuccess.jsp";
 		}
 	
 	
@@ -143,12 +143,12 @@ public class MemberContoller {
 	@RequestMapping("/memberList.do")
 	public String memberList(Model d) {
 		d.addAttribute("list", service.list());
-		return "member/list";
+		return "WEB-INF\\views\\member\\list.jsp";
 	}
 	
 	@RequestMapping("/memberFindForm.do")
 	public String memberFindForm(Model d) {
-		return "member/memberFindForm";
+		return "WEB-INF\\views\\member\\memberFindForm.jsp";
 	}
 	
 		// 아이디 중복 검사
@@ -158,17 +158,10 @@ public class MemberContoller {
 			System.out.println(memberkey);
 			System.out.println("진입");
 		} 
-	
-	
-	
 		
 		@RequestMapping("/plan.do")
 		public String plan(Model d) {
-			return "/member/plan";
+			return "WEB-INF\\views\\member\\plan.jsp";
 		}
-		
-	
-	
-	
 
 }

@@ -21,13 +21,13 @@ public class VoteController {
 	@RequestMapping("/voteList.do")
 	public String voteList(Model d) {
 		d.addAttribute("list", service.list());
-		return "vote/list";
+		return "WEB-INF\\views\\vote\\list.jsp";
 	}
 
 	@RequestMapping("/voteWriteForm.do")
 	public String voteWriteForm(Model d) {
 		d.addAttribute("pjList", service2.list());
-		return "vote/writeForm";
+		return "WEB-INF\\views\\vote\\writeForm.jsp";
 	}
 
 	@RequestMapping("/voteWrite.do")
@@ -39,13 +39,13 @@ public class VoteController {
 	@RequestMapping("/voteGet.do")
 	public String voteGet(Model d, VoteVO vo) {
 		d.addAttribute("get", service.get(vo.getVotekey()));
-		return "/vote/get";
+		return "WEB-INF\\views\\vote\\get.jsp";
 	}
 
 	@RequestMapping("/voteResult.do")
 	public String voteResult(Model d, VoteVO vo) {
 		d.addAttribute("get", service.get(vo.getVotekey()));
-		return "/vote/Result";
+		return "WEB-INF\\views\\vote\\Result.jsp";
 	}
 
 	@RequestMapping("/voting.do")
