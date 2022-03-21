@@ -74,7 +74,7 @@ margin
 						'</select></td>'+
 					'<td><input class="form-control" type="text" name="list['+i+'].costcontent"></td>'+
 					'<td><input class="form-control" type="text" name="list['+i+'].costnote"></td>'+
-					'<td><input class="form-control costex" type="number" id="costex" name="list['+i+'].costex"></td>'+
+					'<td><input class="form-control costex" type="text" id="costex'+i+'" name="list['+i+'].costex" onkeyup="inputNumberFormat(this)"></td>'+
 					'<td><input class="form-control" type="hidden" name="list['+i+'].no" value="${prjkey}"></td></tr>');
 			cnt+=1;
 			i+=1;
@@ -92,31 +92,47 @@ margin
 		
 		var prjkeyS = $('[name=prjkey]').val();
 		
+		// 프로젝트 변경 시
 		$("#prjsel").change(function(){
 			$("#prjselfrm").submit();
 		});
 		
+		// 프로젝트 셀렉트
 		$('#prjsel').val(prjkey).prop("selected", true);
 		
+		// 계산 버튼
 		$("#calbtn").click(function(){
 			doSum();
 		});
 		
 		$("#regbtn").click(function(){
+			// 콤마 제거 후 submit
+			var numItems = $('.costex').length
+			
+			for(var i=0; i<numItems; i++){
+				var temp = $('#costex'+i+'').val();
+				$('#costex'+i+'').val(temp.replace(/,/g,""));
+			}
+		
 			$("#inscostform").submit();	
 		});
 
 		
 	});
 	
+	// 지출 금액 합산
 	function doSum(){
 		var exsum = 0;
 		var prsum = 0;
 		var prjcost = ${prjcost};
 		
 		$('.costex').each(function(){
-			if(!isNaN($(this).val())){
-				exsum += parseInt($(this).val());
+				var exstr = $(this).val();
+				// 지출 금액 콤마 제거
+				exstr = exstr.replace(/,/g, "");
+				var exnum = parseInt(exstr);
+				exsum += exnum;
+				
 				var exsumS = numberWithCommas(exsum);
 				var exsumEle = document.getElementById('exsum');
 				exsumEle.innerHTML = exsumS;
@@ -125,10 +141,7 @@ margin
 				prsum = parseInt(prjcost-exsum);
 				var prsumS = numberWithCommas(prsum);
 				var prsumEle = document.getElementById('prsum');
-				prsumEle.innerHTML = prsumS;
-				
-			}
-				
+				prsumEle.innerHTML = prsumS;	
 		});
 		
 		$("input[name=exsum]").val(exsum);
@@ -138,6 +151,20 @@ margin
 	function numberWithCommas(x) {
 	    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 	}
+	// 콤마 삽입
+	 function inputNumberFormat(obj) {
+	     obj.value = comma(uncomma(obj.value));
+	 }
+
+	 function comma(str) {
+	     str = String(str);
+	     return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, '$1,');
+	 }
+
+	 function uncomma(str) {
+	     str = String(str);
+	     return str.replace(/[^\d]+/g, '');
+	 }
 	
 </script>
 </head>
@@ -207,7 +234,8 @@ margin
 						
 											<td><input class="form-control" type="text" name="list[0].costcontent"></td>
 											<td><input class="form-control" type="text" name="list[0].costnote"></td>
-											<td><input class="form-control costex" type="number" id="costex" name="list[0].costex"></td>
+											<td><input class="form-control costex" type="text" id="costex0" name="list[0].costex"
+													onkeyup="inputNumberFormat(this)"></td>
 											<td><input class="form-control" type="hidden" name="list[0].no" value="${prjkey}"></td>
 										</tr>
 									</tbody>									
