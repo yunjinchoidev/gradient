@@ -6,6 +6,29 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
+<link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
+<link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
+<style>
+	.input-group-text{width:100%;font-weight:bolder;}
+	.input-group-prepend{width:20%;}
+	#chatArea{
+		width:80%;height:200px;overflow-y:auto;text-align:left;
+		border:1px solid green;
+	}
+</style>
+<script src="${path}/a00_com/jquery.min.js"></script>
+<script src="${path}/a00_com/popper.min.js"></script>
+<script src="${path}/a00_com/bootstrap.min.js"></script>
+<script src="${path}/a00_com/jquery-ui.js"></script>
+
+
+
+
+
+
+
 <style>
 *{ margin: 0; padding: 0; }
  

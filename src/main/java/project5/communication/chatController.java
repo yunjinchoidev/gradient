@@ -9,4 +9,10 @@ public class chatController {
 	public String chat() {
 		return "WEB-INF\\views\\communication\\chat.jsp";
 	}
+
+	@RequestMapping("/chat3.do")
+	public String chat3() {
+		return "WEB-INF\\views\\communication\\main.jsp";
+	}
+	
 }
