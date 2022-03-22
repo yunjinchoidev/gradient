@@ -1,7 +1,7 @@
 package project5.workSort;
 
 public class WorkSortVO {
-	private int workSortKey;
+	private int worksortkey;
 	private String title;
 
 	public WorkSortVO() {
@@ -9,18 +9,18 @@ public class WorkSortVO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public WorkSortVO(int workSortKey, String title) {
+	public WorkSortVO(int worksortkey, String title) {
 		super();
-		this.workSortKey = workSortKey;
+		this.worksortkey = worksortkey;
 		this.title = title;
 	}
 
-	public int getWorkSortKey() {
-		return workSortKey;
+	public int getWorksortkey() {
+		return worksortkey;
 	}
 
-	public void setWorkSortKey(int workSortKey) {
-		this.workSortKey = workSortKey;
+	public void setWorksortkey(int worksortkey) {
+		this.worksortkey = worksortkey;
 	}
 
 	public String getTitle() {

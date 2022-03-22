@@ -159,7 +159,7 @@
 																		</a>
 										<ul class="submenu ">
 										<li class="submenu-item "><a
-												href="/project5/dashBoard.do?projectkey=1">대시보드 </a>
+												href="/project5/dashBoard.do?projectkey=1&memberkey=${member.memberkey }">대시보드 </a>
 											<li class="submenu-item "><a
 												href="/project5/projectHome.do?projectkey=1">홈 </a></li>
 											<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반

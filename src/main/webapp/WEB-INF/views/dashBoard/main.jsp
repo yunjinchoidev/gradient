@@ -115,6 +115,7 @@ $(document).ready(function(){
 		<div class="page-heading">
 			<h3>   <span style="color:red;">
 			[${project.name }] 
+			
 			</span>
 			대시보드
 			</h3>
@@ -142,7 +143,7 @@ $(document).ready(function(){
 										</div>
 										<div class="col-md-8">
 											<h6 class="text-muted font-semibold">나의 작업물 수</h6>
-											<h6 class="font-extrabold mb-0">$$$$$$$ 건</h6>
+											<h6 class="font-extrabold mb-0">${outputCnt } 건</h6>
 										</div>
 									</div>
 								</div>
@@ -159,8 +160,8 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">7일 이내 임무</h6>
-											<h6 class="font-extrabold mb-0">$$$$$$ 건</h6>
+											<h6 class="text-muted font-semibold">오늘 해야할 일 </h6>
+											<h6 class="font-extrabold mb-0">${calendarCountBelongTodayCnt} 건</h6>
 										</div>
 									</div>
 								</div>
@@ -177,14 +178,101 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">수주사 조회</h6>
-											<h6 class="font-extrabold mb-0">$$$$$$</h6>
+											<h6 class="text-muted font-semibold">프로젝트 종료일</h6>
+											<h6 class="font-extrabold mb-0" id="go">
+											<fmt:formatDate value="${project.lastdate }"/>
+											</h6>
+											<script>
+											$(document).ready(function(){
+												var i=0;
+												
+												
+												setInterval(function() {
+													i++;
+														if(i%2==0){
+															  $("#go").css("color","red");
+														}else{
+															 $("#go").css("color","black");
+														}
+												}, 1000);
+
+											})
+											</script>
+											
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
 						
+						<div class="col-6 col-lg-3 col-md-6">
+							<div class="card">
+								<div class="card-body px-3 py-4-5">
+									<div class="row">
+										<div class="col-md-4">
+											<div class="stats-icon red">
+												<i class="iconly-boldBookmark"></i>
+											</div>
+										</div>
+										<div class="col-md-8">
+											<h6 class="text-muted font-semibold">가장 긴급한 일</h6>
+											<h6 class="font-extrabold mb-0">${EmergencyCalendarTask.title}</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-lg-3 col-md-6">
+							<div class="card">
+								<div class="card-body px-3 py-4-5">
+									<div class="row">
+										<div class="col-md-4">
+											<div class="stats-icon red">
+												<i class="iconly-boldBookmark"></i>
+											</div>
+										</div>
+										<div class="col-md-8">
+											<h6 class="text-muted font-semibold">알림 메시지</h6>
+											<h6 class="font-extrabold mb-0">알림 메시지</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-lg-3 col-md-6">
+							<div class="card">
+								<div class="card-body px-3 py-4-5">
+									<div class="row">
+										<div class="col-md-4">
+											<div class="stats-icon red">
+												<i class="iconly-boldBookmark"></i>
+											</div>
+										</div>
+										<div class="col-md-8">
+											<h6 class="text-muted font-semibold">알림 메시지</h6>
+											<h6 class="font-extrabold mb-0">알림 메시지</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-6 col-lg-3 col-md-6">
+							<div class="card">
+								<div class="card-body px-3 py-4-5">
+									<div class="row">
+										<div class="col-md-4">
+											<div class="stats-icon red">
+												<i class="iconly-boldBookmark"></i>
+											</div>
+										</div>
+										<div class="col-md-8">
+											<h6 class="text-muted font-semibold">알림 메시지</h6>
+											<h6 class="font-extrabold mb-0">알림 메시지</h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -204,6 +292,23 @@ $(document).ready(function(){
 						</div>
 						
 					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					<div class="row">
 						<div class="col-12">
 						
@@ -327,15 +432,38 @@ $(document).ready(function(){
 
 
 
-<div class="card">
+				<div class="card">
 								<div class="card-header">
-									<h4>작업 스케쥴</h4>
+									<h4>산출물 분포 상황</h4>
 								</div>
 								<div class="card-body">
 								
   								<div id="chart_div"></div>
      							 <!-- 막대 차트 -->
 								<script>
+								
+									$(document).ready(function(){
+										
+									
+												  $.ajax({
+												      url: '/project5/outputSortCnt.do',
+												      type: 'POST',
+												      async:false, 
+												      dataType:'json',
+												        success: function(result){
+												          console.log(result.outputSortCnt);
+												          console.log(" riskDashBoardData 완료")
+												      },
+												      error: function(result){
+												          console.log("riskDashBoardData 실패");
+												          console.log(result); 
+												      }
+												    }); //$.ajax					
+								
+								
+								
+								
+								
 								google.charts.load('current', {packages: ['corechart', 'bar']});
 								google.charts.setOnLoadCallback(drawBasic);
 
@@ -378,6 +506,7 @@ $(document).ready(function(){
 
 								      chart.draw(data, options);
 								    }
+									})
 								</script>
       
 									
@@ -438,51 +567,114 @@ $(document).ready(function(){
 									
 								</div>
 							</div>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-
-
-
-
-
-
-
 
 						</div>
 					</div>
+					
+					
+					
+					
 					<div class="row">
 						<div class="col-12 col-xl-4">
+						
+						
+						
+						
 							<div class="card">
 								<div class="card-header">
-									<h4>Profile Visit</h4>
+									<h4>중요도 별 리스크 상황</h4>
 								</div>
-								
 								
 								<div class="card-body">
-									<div class="row">
-									</div>
-									<div class="row">
-									</div>
+								  		<div id="risk"></div>
 								</div>
 							</div>
-
-
-
-
-
 						</div>
+
+
+
+								<script>
+								$(document).ready(function(){
+									
+								google.charts.load('current', {packages: ['corechart', 'bar']});
+								google.charts.setOnLoadCallback(drawBasic);
+								
+													
+													var importance = []
+													var count = []
+													
+													
+												    $.ajax({
+												      url: '/project5/riskDashBoardData.do',
+												      type: 'POST',
+												      async:false, 
+												      dataType:'json',
+												        success: function(result){
+												          console.log(result.get);
+												          console.log(result.get[0]);
+												          console.log(result.get[0].importance);
+												          console.log(result.get[0].count);
+												          importance[0] = result.get[0].importance
+												          importance[1] = result.get[1].importance
+												          importance[2] = result.get[2].importance
+												          count[0] = result.get[0].count
+												          count[1] = result.get[1].count
+												          count[2] = result.get[2].count
+												          console.log(" riskDashBoardData 완료")
+												      },
+												      error: function(result){
+												    	  console.log(memberkey)
+												          console.log("riskDashBoardData 실패");
+												          console.log(result); 
+												      }
+												    }); //$.ajax					
+													
+												    console.log("riskdata ::::::::::::::::::: "+count[2])
+													
+								
+															function drawBasic() {
+															  var data = google.visualization.arrayToDataTable(
+																	  [
+																	         ['Element', '수', { role: 'style' }],
+																	         ['낮음', count[0], '#b87333'],            // RGB value
+																	         ['보통', count[1], 'silver'],            // English color name
+																	         ['중요', count[2], 'color: gold'],
+															     	 ]
+															  
+															  );
+														      var options = {
+														        title: '',
+														        hAxis: {
+														          title: '중요도'
+														        },
+														        vAxis: {
+														          title: '개수'
+														        }
+														      };
+								
+												      var chart = new google.visualization.ColumnChart(
+												        document.getElementById('risk'));
+												      	chart.draw(data, options);
+												    }
+								
+								
+								})
+								</script>
+
+
+
+
+
+
+
+
+
+
+
 						<div class="col-12 col-xl-8">
 							<div class="card">
 								<div class="card-header">
-									<h4>Latest Comments</h4>
+									<h4>최근 게시물</h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">

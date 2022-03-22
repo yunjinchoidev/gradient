@@ -10,8 +10,53 @@
 		resultType="project5.dashBoard.RiskDashBoardVO">
 		SELECT IMPORTANCE, count(*) count
 		FROM risk
-		GROUP BY IMPORTANCE
+		GROUP BY
+		IMPORTANCE
 	</select>
+
+
+	<select id="calendarCountBelongTodayCnt" resultType="int">
+		SELECT
+		count(*) FROM calendars WHERE TO_CHAR(SYSDATE,
+		'YYYY/MM/dd') <![CDATA[<=]]>
+		to_char(TO_DATE(SUBSTR(end1,0, 10),
+		'YYYY-MM-DD'),'YYYY/MM/DD')
+		AND
+		TO_CHAR(SYSDATE, 'YYYY/MM/dd') <![CDATA[>=]]>
+		to_char(TO_DATE(SUBSTR(start1,0,
+		10), 'YYYY-MM-DD'),'YYYY/MM/DD')
+	</select>
+
+	<select id="EmergencyCalendarTask"
+		resultType="project5.fullCalendar.Calendar">
+		SELECT * FROM (SELECT a.* FROM CALENDARS a ORDER BY end1)
+		WHERE
+		TO_CHAR(SYSDATE, 'YYYY/MM/dd') <![CDATA[<=]]>
+		to_char(TO_DATE(SUBSTR(end1,0,
+		10), 'YYYY-MM-DD'),'YYYY/MM/DD')
+		AND
+		TO_CHAR(SYSDATE, 'YYYY/MM/dd') <![CDATA[>=]]>
+		to_char(TO_DATE(SUBSTR(start1,0,
+		10), 'YYYY-MM-DD'),'YYYY/MM/DD') AND
+		rownum=1
+	</select>
+
+	<select id="outputCnt" parameterType="project5.output.OutputVO"
+		resultType="int">
+		SELECT count(*) FROM OUTPUT WHERE memberkey=#{memberkey}
+		and projectkey=#{projectkey}
+	</select>
+
+	<select id="outputSortCnt" resultType="OutputDashBoardVO">
+		SELECT worksortkey, count(worksortkey) FROM OUTPUT
+		GROUP BY worksortkey
+		ORDER BY WORKSORTKEY
+	</select>
+
+
+
+
+
 
 
 
