@@ -12,7 +12,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Insert title here</title>
+	<title>회의록 | 조회</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<style>
 		.dtl-button-box{display:flex;justify-content: space-between;}
@@ -110,10 +110,23 @@
 				<div>
 					<input type="button" id="goList" class="btn btn-dark" value="목록으로"/>
 				</div>
+				<% 
+				String loginUser = request.getParameter("memberKey");
+				String writeUser = request.getParameter("memberKey");
+				
+				Member m = Member();
+				
+				
+				
+				if (member.memberkey == m.memberkey) {
+					
+				%>
+				
 				<div>
 					<input type="button" id="uptBtn" class="btn btn-info" value="수정"/>
 					<input type="button" id="delBtn" class="btn btn-danger" value="삭제"/>
 				</div>
+				<% } %>
 			</div>
 			
 			

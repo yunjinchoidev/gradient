@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 *{ margin: 0; padding: 0; }
  
@@ -22,87 +23,87 @@
  
 .chat_wrap .input-div { position: fixed; bottom: 0; width: 100%; background-color: #FFF; text-align: center; border-top: 1px solid #F18C7E; }
 .chat_wrap .input-div > textarea { width: 100%; height: 80px; border: none; padding: 10px; }
+.chat_wrap .input-div > textarea:focus {outline:none; background: ivory;}
  
 .format { display: none; }
 
 
 </style>
 <script>
-const Chat = (function(){
-    const myName = "blue";
- 
-    // init 함수
-    function init() {
-        // enter 키 이벤트
-        $(document).on('keydown', 'div.input-div textarea', function(e){
-            if(e.keyCode == 13 && !e.shiftKey) {
-                e.preventDefault();
-                const message = $(this).val();
- 
-                // 메시지 전송
-                sendMessage(message);
-                // 입력창 clear
-                clearTextarea();
-            }
-        });
-    }
- 
-    // 메세지 태그 생성
-    function createMessageTag(LR_className, senderName, message) {
-        // 형식 가져오기
-        let chatLi = $('div.chat.format ul li').clone();
- 
-        // 값 채우기
-        chatLi.addClass(LR_className);
-        chatLi.find('.sender span').text(senderName);
-        chatLi.find('.message span').text(message);
- 
-        return chatLi;
-    }
- 
-    // 메세지 태그 append
-    function appendMessageTag(LR_className, senderName, message) {
-        const chatLi = createMessageTag(LR_className, senderName, message);
- 
-        $('div.chat:not(.format) ul').append(chatLi);
- 
-        // 스크롤바 아래 고정
-        $('div.chat').scrollTop($('div.chat').prop('scrollHeight'));
-    }
- 
-    // 메세지 전송
-    function sendMessage(message) {
-        // 서버에 전송하는 코드로 후에 대체
-        const data = {
-            "senderName"    : "blue",
-            "message"        : message
-        };
- 
-        // 통신하는 기능이 없으므로 여기서 receive
-        resive(data);
-    }
- 
-    // 메세지 입력박스 내용 지우기
-    function clearTextarea() {
-        $('div.input-div textarea').val('');
-    }
- 
-    // 메세지 수신
-    function resive(data) {
-        const LR = (data.senderName != myName)? "left" : "right";
-        appendMessageTag("right", data.senderName, data.message);
-    }
- 
-    return {
-        'init': init
-    };
-})();
- 
-$(function(){
-    Chat.init();
+var wsocket;
+$(document).ready(function(){
+	// 1. 웹 소켓 클라이언트를 통해 웹 서버 연결하기.
+	
+	$("#enterBtn").click(function(){
+		conn();
+	});
+	$("#id").keyup(function(){
+		if(event.keyCode==13){
+			conn();
+		}
+	})
+	$("#msg").keyup(function(){
+		if(event.keyCode==13) sendMsg();
+	});
+	$("#sendBtn").click(function(){
+		sendMsg();
+	});
+	// 접속 종료를 처리했을 시
+	$("#exitBtn").click(function(){
+		wsocket.send("msg:"+$("#id").val()+":접속 종료 했습니다!");
+		wsocket.close();
+	});
+	// 메시지는 보내는 기능 메서드
+	function sendMsg(){
+		var id = $("#id").val();
+		var msg = $("#msg").val();
+		// message를 보내는 처리..서버의 handler의  handleTextMessage()와 연동
+		wsocket.send("msg:"+id+":"+msg);
+		$("#msg").val(""); $("#msg").focus();
+	}
+	
+	<%-- 
+	
+	--%>	
 });
+function conn(){
+	//  원격 접속시에는 고정 ip 할당 받아서 처리..
+	// wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
+	// local에서 다른 브라우저로 실행시 처리할 내용..
+	wsocket = new WebSocket("ws:/@localhost:7080/${path}/chat-ws.do");
+	// handler :afterConnectionEstablished(WebSocketSession session)와 연결
+	wsocket.onopen=function(evt){ 
+		console.log(evt);
+		wsocket.send("msg:"+$("#id").val()+":연결 접속했습니다!");
+	}
+	// handler의  handleTextMessage()
+	// 연결되어 있으면 메시지를 push형식으로 서버에서 받을 수 있다.
+	// ex) wsocket.send("msg:"+$("#id").val()+":연결 접속했습니다!");
+	// push 방식으로 서버에서 전달되어 온 데이터를 받게 처리..
+	wsocket.onmessage=function(evt){
+		// 받은 데이터
+		var msg = evt.data;
+		// msg 내용 삭제 후, 처리
+		if(msg.substring(0,4)=="msg:"){
+			// 메시지 내용만 전달
+			// 메시지 내용 scrolling 처리..
+			var revMsg = msg.substring(4)
+			$("#chatMessageArea").append(revMsg+"<br>");
+			// 1. 전체 chatMessageArea의 입력된 최대 높이 구하기..
+			var mx = parseInt($("#chatMessageArea").height())
+			// 2. 포함하고 있는 div의 scrollTop을 통해 최하단의 내용으로 scrolling 하기..
+			//    chatArea
+			$("#chatArea").scrollTop(mx);
+		}
+	}
+	// handler의 afterConnectionClose와 연동
+	wsocket.onclose=function(){
 
-
+		alert($("#id").val()+'접속 종료합니다.')
+		$("#chatMessageArea").text("");
+	}
+	
+}
 </script>
 
 
@@ -111,36 +112,26 @@ $(function(){
 
 	<%@ include file="../common/header.jsp"%>
 
-
-
-<div class="chat_wrap" style="margin-left: 300px;">
-    <div class="header">
-        CHAT
-    </div>
-    <div class="chat">
-        <ul>
-            <!-- 동적 생성 -->
-        </ul>
-    </div>
-    <div class="input-div">
-        <textarea placeholder="Press Enter for send message."></textarea>
-    </div>
- 
-    <!-- format -->
- 
-    <div class="chat format">
-        <ul>
-            <li>
-                <div class="sender">
-                    <span></span>
-                </div>
-                <div class="message">
-                    <span></span>
-                </div>
-            </li>
-        </ul>
-    </div>
-</div>
+	<div class="chat_wrap" style="margin-left: 300px;">
+	    <div class="header">
+	        CHAT
+	    </div>
+	    <div class="chat">
+	    	<input type="text" id="id" name="id" value="${member.id}"/>
+	        <div id="chatArea" class="input-group-append">
+				<div id="chatMessageArea"></div>
+			</div>
+	    </div>
+	    <div>
+	    	<input type="button" class="btn btn-info" value="채팅입장" id="enterBtn"/>	
+			<input type="button" class="btn btn-success" value="나가기" id="exitBtn"/>	
+	    </div>
+	    <div class="input-div">
+	        <textarea id="msg" placeholder="Press Enter for send message."></textarea>
+	        <input type="button" class="btn btn-info" value="전송" id="sendBtn"/>	
+	    </div>
+	    
+	</div>
 
 
 </body>

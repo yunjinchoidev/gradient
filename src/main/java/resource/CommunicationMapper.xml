@@ -32,7 +32,7 @@
 	</select>
 
 	<insert id="insMinutes" parameterType="minutes">
-		INSERT INTO minutes VALUES(minutes_seq.nextval,2,1,#{topic},#{attendee},#{partname},to_date(#{conferenceDateS},'YYYY-MM-DD'),sysdate,sysdate,#{content},#{shorthand})
+		INSERT INTO minutes VALUES(minutes_seq.nextval,2,(SELECT memberKey FROM member WHERE id = #{id}),#{topic},#{attendee},#{partname},to_date(#{conferenceDateS},'YYYY-MM-DD'),sysdate,sysdate,#{content},#{shorthand})
 	</insert>
 
 	<update id="uptMinutes" parameterType="minutes">

@@ -31,7 +31,16 @@ public class minutesVO {
 	private String content;
 	private String shorthand;
 	private String name;
+	private String id;
 	
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
 	public minutesVO() {
 		super();
 		// TODO Auto-generated constructor stub

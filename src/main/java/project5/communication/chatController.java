@@ -7,6 +7,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class chatController {
 	@RequestMapping("/chat.do")
 	public String chat() {
-		return "communication/chat";
+		return "WEB-INF\\views\\communication\\chat.jsp";
 	}
 }

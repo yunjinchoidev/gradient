@@ -15,19 +15,19 @@ public class minutesController {
 	@RequestMapping(params="method=list")
 	public String minutesList(minutesSch sch, Model d) {
 		d.addAttribute("mList",service.minutesList(sch));
-		return "communication/minutesList";
+		return "WEB-INF\\views\\communication\\minutesList.jsp";
 	}
 	
 	@RequestMapping(params="method=detail")
 	public String minutesDetail(int minutesKey, Model d) {
 		d.addAttribute("m",service.getMinutes(minutesKey));
-		return "communication/minutesDetail";
+		return "WEB-INF\\views\\communication\\minutesDetail.jsp";
 	}
 	
 	@RequestMapping(params="method=updateFrm")
 	public String uptMinutes(int minutesKey, Model d) {
 		d.addAttribute("m",service.getMinutes(minutesKey));
-		return "communication/minutesUpdate";
+		return "WEB-INF\\views\\communication\\minutesUpdate.jsp";
 	}
 	
 	@RequestMapping(params="method=update")
@@ -40,13 +40,13 @@ public class minutesController {
 	// http://localhost:8080/project5/minutes.do?method=insertFrm
 	@RequestMapping(params="method=insertFrm")
 	public String insMinutesFrm() {
-		return "communication/minutesWrite";
+		return "WEB-INF\\views\\communication\\minutesWrite.jsp";
 	}
 	
 	@RequestMapping(params="method=insert")
 	public String insMinutes(minutesVO ins, Model d) {
 		d.addAttribute("msg",service.insMinutes(ins));
-		return "communication/minutesWrite";
+		return "WEB-INF\\views\\communication\\minutesWrite.jsp";
 	}
 	
 	@RequestMapping(params="method=delete")

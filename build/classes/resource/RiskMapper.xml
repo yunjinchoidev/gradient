@@ -107,7 +107,7 @@
 	<!-- 답글 등록 -->
 	<insert id="insertrecomm" parameterType="insrcomm">
 		INSERT INTO RISKCOMM VALUES
-		 ((SELECT NVL(MAX(RCOMMENTKEY)+1,1) FROM riskcomm),(SELECT memberkey FROM member WHERE id = #{id}),
+		 ((SELECT NVL(MAX(RCOMMENTKEY)+1,1) FROM riskcomm),(SELECT memberkey FROM member WHERE id = #{Id}),
 		 #{recommcontents},sysdate,#{riskkey},#{refno})
 	</insert>
 	

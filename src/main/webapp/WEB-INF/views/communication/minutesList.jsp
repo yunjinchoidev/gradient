@@ -61,12 +61,12 @@
 			</div>
 			<section class="section">
 				<form id="frm01" action="${path}/minutes.do?method=list"  method="post">
+					<input type="hidden" name="id" value="${member.id}">
 					<div class="card">
 						<div class="card-header">Simple Datatable</div>
 						<div class="card-body">
 							<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 								<div class="dataTable-top">
-									
 									<input type="hidden" name="curPage" value="1"/>
 									<div class="dataTable-dropdown">
 										<select class="dataTable-selector form-select" name="pageSize">

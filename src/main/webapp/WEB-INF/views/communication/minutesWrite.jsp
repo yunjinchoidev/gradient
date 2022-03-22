@@ -76,6 +76,7 @@
 	                <div class="card">
 	                    <div class="card-header">
 	                        <h4 class="card-title" align="center">게시글 작성</h4>
+	                        <input type="hidden" name="id" value="${member.id}">
 	                    </div>
 	                    <table class="table mb-0 table-lg">
 	                        <tr>
