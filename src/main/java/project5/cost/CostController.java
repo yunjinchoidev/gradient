@@ -99,6 +99,13 @@ public class CostController {
 		return "forward:/uptcostfrm.do";
 	}
 	
+	@RequestMapping("/delcostdetail.do")
+	public String delCostList(CostDetailInfo del, Model d) {
+		service.delCostList(del);
+		d.addAttribute("msg","삭제되었습니다");
+		return "forward:/uptcostfrm.do";
+	}
+	
 
 	
 	

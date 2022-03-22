@@ -118,5 +118,9 @@ public class CostService {
 	public void uptPrjCost(MultiRowCost upt) {
 		dao.uptPrjCost(upt);
 	}
+	// 프로젝트 예산 수정시 삭제 처리
+	public void delCostList(CostDetailInfo del) {
+		dao.delCostList(del);
+	}
 	
 }
