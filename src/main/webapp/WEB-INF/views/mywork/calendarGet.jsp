@@ -84,6 +84,64 @@
 
 
 
+			<script>
+			$(document).ready(function() {
+				// ajax를 통한 파일 정보 불러오기 
+				// 페이지 접속시 자동으로 실행
+				var id ="${get.id}";
+				console.log(id);
+				console.log("id"+id);
+				 var data = { id : id};
+				 // 업로드 파일 결과 가져오기
+			    $.ajax({
+			      url: '/project5/calImg.do',
+			      data: data,
+			      type: 'POST',
+			      dataType:'json',
+			        success: function(result){
+			          console.log(result); 
+			          console.log(result.get); 
+			          console.log(result.get[0]); 
+			          console.log(result.get[0].fname); 
+			          console.log("파일 불러오기 완료")
+					  showUploadResult2(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+					  console.log(result.fname)
+			      },
+			      error: function(result){
+			    	  console.log(memberkey)
+			          console.log("회원 이미지 정보 불러오기 실패");
+			          console.log(result); 
+			      }
+			    }); //$.ajax
+			    
+				// 이미지 클라리언트 딴에 띄우는 합수
+				// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
+			  function showUploadResult2(uploadResultArr){
+				    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+				    var uploadUL = $("#myface");
+				    var str ="";
+				    $(uploadResultArr).each(function(i, obj){
+				    		console.log("obj"+obj);
+							var fileCallPath =  encodeURIComponent(obj.fname);
+							console.log(fileCallPath);
+							str = "<img src='/project5/display2.do?fileName="+fileCallPath+"' id='mymy' style='width:300px; height: 300px;'>";
+							console.log("str"+str)
+							$("#not").hide()
+							$("#mymy").show()
+						})
+				    uploadUL.append(str);
+				  }
+			///////////////////////////////////////////////////////////////
+			
+				function downFile(fname){
+					if(confirm("다운로드할 파일:"+fname)){
+						location.href="${path}/download.do?fname="+fname;
+					}
+				}
+			
+			
+		});
+		</script>
 
 
 
@@ -94,18 +152,22 @@
 
 
 
-
-
-
-
-						<div class="form-group mt-2">
-							<div class="custom-file">
+						<div class="form-group mt-2" style="width:300px; height: 300px;">
+							<div class="custom-file" style="width:300px; height: 300px;">
 								<label class="custom-file-label" for="emailAttach">Attach
 									File</label><br> <input type="file" class="custom-file-input"
 									id="emailAttach" name="uploadFile">
-
+										
+										<div id="myface" style="width:300px; height: 300px;">
+										
+										</div>
+										
+										
 							</div>
 						</div>
+
+
+
 
 						<br>
 					</div>
@@ -117,10 +179,10 @@
 				<div class="card-footer d-flex justify-content-end pt-0">
 					<button type="reset"
 						class="btn btn-light-secondary cancel-btn mr-1">
-						<i class="bx bx-x me-3"></i> <span>Cancel</span>
+						<span>닫기</span>
 					</button>
 					<button type="submit" class="btn-send btn btn-primary">
-						<i class="bx bx-send me-3"></i> <span>Send</span>
+						<span>Send</span>
 					</button>
 				</div>
 			</form>

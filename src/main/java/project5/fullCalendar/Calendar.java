@@ -8,7 +8,9 @@ public class Calendar {
 	private int id;
 	private String title;
 	private String start;
+	private String start1;
 	private String end;
+	private String end1;
 	private String content;
 	private String borderColor;
 	private String backgroundColor;
@@ -60,6 +62,41 @@ public class Calendar {
 		this.title = title;
 		this.start = start;
 		this.end = end;
+		this.content = content;
+		this.borderColor = borderColor;
+		this.backgroundColor = backgroundColor;
+		this.textColor = textColor;
+		this.allDay = allDay;
+		this.projectkey = projectkey;
+		this.memberkey = memberkey;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+		this.fno = fno;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Calendar(int id, String title, String start, String start1, String end, String end1, String content,
+			String borderColor, String backgroundColor, String textColor, boolean allDay, int projectkey, int memberkey,
+			MultipartFile[] uploadFile, ArrayList<String> fnames, int fno) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.start = start;
+		this.start1 = start1;
+		this.end = end;
+		this.end1 = end1;
 		this.content = content;
 		this.borderColor = borderColor;
 		this.backgroundColor = backgroundColor;
@@ -183,6 +220,23 @@ public class Calendar {
 	public void setFno(int fno) {
 		this.fno = fno;
 	}
+
+	public String getStart1() {
+		return start1;
+	}
+
+	public void setStart1(String start1) {
+		this.start1 = start1;
+	}
+
+	public String getEnd1() {
+		return end1;
+	}
+
+	public void setEnd1(String end1) {
+		this.end1 = end1;
+	}
+	
 	
 	
 	

@@ -17,11 +17,17 @@ public class GanttService {
 	public List<GanttVO> currentGantt(){
 		return dao.currentGantt();
 	}
-	public GanttVO individualMemberList(int memberkey ) {
+	
+	
+	public List<GanttVO> currentGanttbymkey(int memberkey){
+		return dao.currentGanttbymkey(memberkey);
+	}
+	
+	public List<GanttVO> individualMemberList(int memberkey ) {
 		return dao.individualMemberList(memberkey);
 	}
 
-	public GanttVO individualProjectList() {
+	public List<GanttVO> individualProjectList() {
 		return dao.individualProjectList();
 	}
 	

@@ -40,13 +40,7 @@
 	type="image/x-icon">
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
-	<script
-		src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-	<script
-		src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
-	<script
-		src="/project5/resources/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
-	<script src="/project5/resources/dist/assets/js/main.js"></script>
+
 
 
 </head>
@@ -160,31 +154,40 @@
 
 
 						<li class="sidebar-item  has-sub"><a
-							href="/project5/projectHome.do" class='sidebar-link'> <i
-								class="bi bi-stack"></i> <span>프로젝트</span>
-						</a>
-							<ul class="submenu ">
-							<li class="submenu-item "><a
-									href="/project5/dashBoard.do?projectkey=1">대시보드 </a>
-								<li class="submenu-item "><a
-									href="/project5/projectHome.do?projectkey=1">홈 </a></li>
-								<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반
-										보드 </a></li>
-								<li class="submenu-item "><a href="/project5/ganttMain.do">간트차트
-								</a></li>
-								<li class="submenu-item "><a href="/project5/output.do">산출물
-										관리 </a></li>
-								<li class="submenu-item "><a href="/project5/cost.do">예산
-										관리</a></li>
-								<li class="submenu-item "><a
-									href="/project5/qualityList.do">품질 관리</a></li>
-								<li class="submenu-item "><a
-									href="/project5/procurementList.do">조달 관리</a></li>
-								<li class="submenu-item "><a href="/project5/team.do">인적
-										관리</a></li>
-								<li class="submenu-item "><a href="/project5/risk.do">리스크
-										관리</a></li>
-							</ul></li>
+																			href="#" class='sidebar-link'> <i
+																				class="bi bi-stack"></i> <span>프로젝트</span>
+																		</a>
+										<ul class="submenu ">
+										<li class="submenu-item "><a
+												href="/project5/dashBoard.do?projectkey=1">대시보드 </a>
+											<li class="submenu-item "><a
+												href="/project5/projectHome.do?projectkey=1">홈 </a></li>
+											<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반
+													보드 </a></li>
+											<li class="submenu-item "><a href="/project5/ganttMain.do">간트차트
+											</a></li>
+											<li class="submenu-item "><a href="/project5/output.do">산출물
+													관리 </a></li>
+											<li class="submenu-item "><a href="/project5/cost.do">예산
+													관리</a></li>
+											<li class="submenu-item "><a
+												href="/project5/qualityList.do">품질 관리</a></li>
+											<li class="submenu-item "><a
+												href="/project5/procurementList.do">조달 관리</a></li>
+											<li class="submenu-item "><a href="/project5/team.do">인적
+													관리</a></li>
+											<li class="submenu-item "><a href="/project5/risk.do">리스크
+													관리</a></li>
+										</ul>
+										
+							</li>
+							
+							
+							
+							
+							
+							
+							
 
 						<li class="sidebar-item  "><a
 							href="/project5/calendar.do?memberkey=${member.memberkey}"
@@ -232,8 +235,28 @@
 								<li class="submenu-item "><a href="/project5/plan.do">플랜 </a></li>
 							</ul>
 						</li>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+						
 					</ul>
+					
+					
+				
+					
+					
+					
+					
 				</div>
+				
+				
+				
 
 				<button class="sidebar-toggler btn x">
 					<i data-feather="x"></i>
@@ -248,7 +271,13 @@
 			</header>
 		</div>
 	</div>
-
+	<script
+		src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+	<script
+		src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="/project5/resources/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
+	<script src="/project5/resources/dist/assets/js/main.js"></script>
 
 
 </body>

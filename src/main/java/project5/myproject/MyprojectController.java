@@ -34,8 +34,18 @@ public class MyprojectController {
 			System.out.println(service3.get2(projectkeyList).get(i).getName());
 		}
 		d.addAttribute("list", service3.get2(projectkeyList));
-		
 		return "WEB-INF\\views\\myProject\\main.jsp";
+	}
+
+	@RequestMapping("/myProject2.do")
+	public String myProject2(Model d, MemberVO vo) {
+		List<Integer> projectkeyList = service2.getProjectkey(vo.getMemberkey());
+		System.out.println(service3.get2(projectkeyList));
+		for(int i=0; i<service3.get2(projectkeyList).size(); i++) {
+			System.out.println(service3.get2(projectkeyList).get(i).getName());
+		}
+		d.addAttribute("list", service3.get2(projectkeyList));
+		return "WEB-INF\\views\\myProject\\main2.jsp";
 	}
 	
 	

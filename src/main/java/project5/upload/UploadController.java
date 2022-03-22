@@ -46,6 +46,8 @@ import project5.member.MemberVO;
 import project5.notice.NoticeVO;
 import project5.noticeAttach.NoticeAttachService;
 import project5.noticeAttach.NoticeAttachVO;
+import project5.project.ProjectService;
+import project5.project.ProjectVO;
 
 @Controller
 public class UploadController {
@@ -58,6 +60,10 @@ public class UploadController {
 	
 	@Autowired
 	FileInfoService service2;
+	
+	@Autowired
+	ProjectService service3;
+	
 	
 	
 	
@@ -93,6 +99,10 @@ public class UploadController {
 		return false;
 	}
 
+	
+	
+	
+	
 	@PostMapping(value = "/uploadAjaxAction.do", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	@ResponseBody
 	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
@@ -174,24 +184,45 @@ public class UploadController {
 		d.addAttribute("get", service2.findbyfno(memberkeyN));
 		return "pageJsonReport";
 	}
-
+	
+	@PostMapping("/calImg.do")
+	public String calImg(String id, Model d) {
+		int idN = Integer.parseInt(id);
+		System.out.println("/aaaa.do 진입");
+		System.out.println("memberkey:"+idN);
+		List<FileInfoVO> list = service2.findbyfno(idN);
+		System.out.println("list" + list);
+		d.addAttribute("get", service2.findbyfno(idN));
+		return "pageJsonReport";
+	}
+	
 	
 	@PostMapping("/projectImg.do")
-	@ResponseBody
-	public List<FileInfoVO> projectImg(String projectkey) {
+	public String projectImg(String projectkey, Model d) {
 		int projectkeyN = Integer.parseInt(projectkey);
-		System.out.println("/aaaa.do 진입");
+		System.out.println("/projectkey.do 진입");
 		System.out.println("memberkey:"+projectkeyN);
 		List<FileInfoVO> list = service2.findbyfno(projectkeyN);
-		System.out.println(list);
-		return service2.findbyfno(projectkeyN);
+		System.out.println("list" + list);
+		d.addAttribute("get", service2.findbyfno(projectkeyN));
+		return "pageJsonReport";
 	}
 
 	
+	@PostMapping("/projectData.do")
+	public String projectdata(String projectkey, Model d) {
+		int projectkeyN = Integer.parseInt(projectkey);
+		System.out.println("/projectkey.do 진입");
+		System.out.println("memberkey:"+projectkeyN);
+		ProjectVO vo = service3.get(projectkeyN);
+		System.out.println("pname" + vo.getName());
+		d.addAttribute("vo", service3.get(projectkeyN));
+		return "pageJsonReport";
+	}
+
 	
-	
-	
-	
+
+
 	
 	
 	

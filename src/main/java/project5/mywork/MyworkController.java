@@ -36,6 +36,15 @@ public class MyworkController {
 		d.addAttribute("list", service2.individualMemberList(memberkey));
 		return "WEB-INF\\views\\mywork\\kanbanList.jsp";
 	}
+
+	@RequestMapping("/myworkGantt.do")
+	public String myworkGantt(Model d, int memberkey) {
+		d.addAttribute("list", service3.currentGanttbymkey(memberkey));
+		return "WEB-INF\\views\\mywork\\ganttList.jsp";
+	}
+	
+	
+	
 	@RequestMapping("/myworkCalendar7days.do")
 	public String myworkCalendar7days(Model d, int memberkey) {
 		d.addAttribute("list", service3.individualMemberList(memberkey));
@@ -61,6 +70,16 @@ public class MyworkController {
 	public String myWorkModal(Model d, Calendar vo) {
 		d.addAttribute("get", service.get(vo.getId()));
 		return "WEB-INF\\views\\mywork\\calendarGet.jsp";
+	}
+	@RequestMapping("/myWorkKanbanGet.do")
+	public String myWorkKanbanGet(Model d, Calendar vo) {
+		d.addAttribute("get", service.get(vo.getId()));
+		return "WEB-INF\\views\\mywork\\kanbanGet.jsp";
+	}
+	@RequestMapping("/myWorkganttGet.do")
+	public String myWorkganttGet(Model d, Calendar vo) {
+		d.addAttribute("get", service.get(vo.getId()));
+		return "WEB-INF\\views\\mywork\\ganttGet.jsp";
 	}
 	
 	

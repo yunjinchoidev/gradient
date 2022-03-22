@@ -39,6 +39,20 @@
 
 <script type="text/javascript">
 document.addEventListener('DOMContentLoaded', function() {
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
     var calendarEl = document.getElementById('calendar');
 
     var calendar = new FullCalendar.Calendar(calendarEl, {
@@ -92,6 +106,13 @@ document.addEventListener('DOMContentLoaded', function() {
       
    		
       
+      
+      
+      
+      
+      
+      
+      
       // 조회
       eventClick: function(arg) {
     	  console.log(arg.event)
@@ -102,6 +123,15 @@ document.addEventListener('DOMContentLoaded', function() {
     	  $("#delBtn").show();
     	  $("#modalBtn").click(); 
       },
+
+
+      
+      
+      
+      
+      
+      
+      
       
       
       

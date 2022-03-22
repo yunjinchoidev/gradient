@@ -232,6 +232,7 @@
                                                         <use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#star-fill"></use>
                                                     </svg>
                                                 </span>
+                                                
                                             </div>
                                             
                                             
@@ -246,17 +247,18 @@
                                             <div class="media-body">
                                                 <div class="user-details">
                                                     <div class="mail-items">
-                                                        <span class="list-group-item-text text-truncate">${list.start_date}</span>
+                                                        <span class="list-group-item-text text-truncate">${list.text }</span>
                                                     </div>
                                                     <div class="mail-meta-item">
                                                         <span class="float-right">
-                                                            <span class="mail-date">4:14 AM</span>
+                                                            <span class="mail-date">${member.name }</span>
                                                         </span>
                                                     </div>
                                                 </div>
                                                 <div class="mail-message">
                                                     <p class="list-group-item-text truncate mb-0">
-                                                        ${list.text }
+                                                    <fmt:formatDate value=""/>${list.start_date}
+                                                        까지 진행해야 합니다.
                                                     </p>
                                                     <div class="mail-meta-item">
                                                         <span class="float-right">

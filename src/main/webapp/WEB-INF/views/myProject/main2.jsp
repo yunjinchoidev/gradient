@@ -33,50 +33,7 @@
 		}
 		
 		
-		
-		var projectkey = 2;
-		var data = {projectkey : projectkey};
-		$.ajax({
-	      url: '/project5/projectImg.do',
-	      data: data,
-	      type: 'POST',
-	      dataType:'json',
-	        success: function(result){
-	          console.log(result); 
-	          console.log("파일 불러오기 완료")
-			  showUploadResult2(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
-	      },
-	      error: function(result){
-	    	  //console.log(memberkey)
-	          console.log("회원 이미지 정보 불러오기 실패");
-	          console.log(result); 
-	      }
-	    }); //$.ajax
-
-
-	    
-	    
-	    
-		// 이미지 클라리언트 딴에 띄우는 합수
-		// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
-	  function showUploadResult2(uploadResultArr){
-		    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
-		    var uploadUL = $("#mymy");
-		    var str ="";
-		    $(uploadResultArr).each(function(i, obj){
-		    		console.log("obj"+obj);
-					var fileCallPath =  encodeURIComponent(obj.fname);
-					console.log(fileCallPath);
-					str += "<img src='/project5/display2.do?fileName="+fileCallPath+"'      class='card-img-top img-fluid' alt='singleminded'>";
-					console.log("str : "+str)
-					$("#mymy").show()
-					$("#no").hide()
-				})
-		    uploadUL.append(str);
-		  }
-	///////////////////////////////////////////////////////////////
-		
-		
+	
 		
 		
 		
@@ -228,64 +185,122 @@ document.ready(function(){
 
 
 
+
 			<script>
+			
+			
+			
+			
 			$(document).ready(function() {
 				
 				<c:forEach var="list" items="${list}">
-					console.log(${list.projectkey});
-				
-				
-				// ajax를 통한 파일 정보 불러오기 
-				// 페이지 접속시 자동으로 실행
-				var projectkey = "${list.projectkey}";
-				console.log(projectkey);
-				console.log("projectkey"+projectkey);
-				 var data = { projectkey : projectkey};
-				 // 업로드 파일 결과 가져오기
+									console.log(${list.projectkey});
+								// ajax를 통한 파일 정보 불러오기 
+								// 페이지 접속시 자동으로 실행
+								var projectkey = "${list.projectkey}";
+								console.log("projectkey"+projectkey);
+								 var data = { projectkey : projectkey};
+								 // 업로드 파일 결과 가져오기
+				 
+				 
+							    $.ajax({
+							      url: '/project5/projectData.do',
+							      data: data,
+							      type: 'POST',
+							      dataType:'json',
+							        success: function(result){
+							          console.log("프로젝트 데이터 불러오기완료")
+									 // showProjectCard(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+							      },
+							      error: function(result){
+							          console.log("불러오기 실패");
+							          console.log(result); 
+							      }
+							    }); //$.ajax
+							    
+							    
 							    $.ajax({
 							      url: '/project5/projectImg.do',
 							      data: data,
 							      type: 'POST',
 							      dataType:'json',
 							        success: function(result){
-							          console.log(result); 
-							          console.log(result.get); 
-							          console.log(result.get[0]); 
-							          console.log(result.get[0].fname); 
-							          console.log("파일 불러오기 완료")
+							          console.log("프로젝트 이미지 파일 불러오기 완료")
 									  showUploadResult2(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
-									  console.log(result.fname)
 							      },
 							      error: function(result){
-							          console.log("회원 이미지 정보 불러오기 실패");
+							          console.log("불러오기 실패");
 							          console.log(result); 
 							      }
 							    }); //$.ajax
-							    
-			    
-			    
-			    
 			    </c:forEach>
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-			    
-				// 이미지 클라리언트 딴에 띄우는 합수
-				// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
-			  function showUploadResult2(uploadResultArr){
+							    
+							    
+			
+							    
+							    
+							    
+				
+						/*	    
+			  function showProjectCard(uploadResultArr){
 				    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
-				    var uploadUL = $("#prjImg");
+				    var uploadUL = $("#content-types");
 				    var str ="";
 				    $(uploadResultArr).each(function(i, obj){
 				    		console.log("obj"+obj);
 							var fileCallPath =  encodeURIComponent(obj.fname);
 							console.log(fileCallPath);
+							str = "
+								<div class="card" style="margin-right: 40px; width: 470px; cursor: pointer;" onclick="location.href='/project5/dashBoard.do?projectkey=${obj.projectkey}'" >
+							<div class="card-content" id="prjImg">
+								<div class="card-body">
+									<h5 class="card-title" onclick="location.href='/project5/dashBoard.do?projectkey=${obj.projectkey}'">${obj.name }</h5>
+									<p class="card-text">${obj.contents }</p>
+								</div>
+							</div>
+							<ul class="list-group list-groue-flush">
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item">프로젝트</li>
+								<li class="list-group-item" onClick="window.open('http://www.naver.com','네이버','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;"
+									>진행사항확인</li>
+							</ul>
+						</div>
+							"
 							
-							str = "<img src='/project5/display2.do?fileName="+fileCallPath+"' class='card-img-top img-fluid' alt='singleminded'  >";
+							console.log("str"+str)
+						})
+				    uploadUL.append(str);
+				  }
+						*/
+			///////////////////////////////////////////////////////////////
+			
+			
+			
+			
+			
+			
+				// 이미지 클라리언트 딴에 띄우는 합수
+				// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
+			  function showUploadResult2(uploadResultArr){
+				    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+				    var uploadUL = $("#content-types");
+				    var str ="";
+				    $(uploadResultArr).each(function(i, obj){
+				    		console.log("obj"+obj);
+							var fileCallPath =  encodeURIComponent(obj.fname);
+							console.log(fileCallPath);
+							str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;'>"
+							str += "<div class='card-content' id='prjImg'>"
+							str += "<img src='/project5/display2.do?fileName="+fileCallPath+"' class='card-img-top img-fluid' alt='singleminded'  >"
+							str +="<div class='card-body'>"
+							str +="<h5 class='card-title'>ok</h5>"
+							str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;'>"
+							str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;'>"
+							str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;'>"
+							str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;'>"
+							str += "dd</div>"	
+							
 							
 							
 							console.log("str"+str)
@@ -293,6 +308,15 @@ document.ready(function(){
 				    uploadUL.append(str);
 				  }
 			///////////////////////////////////////////////////////////////
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 				function downFile(fname){
 					if(confirm("다운로드할 파일:"+fname)){
@@ -309,33 +333,36 @@ document.ready(function(){
 
 
 
-			<!-- Basic card section start -->
+			<!-- Basic card section start 
 			<section id="content-types"
 				style="display: flex; flex-direction: row; flex-wrap: wrap;">
-				<c:forEach var="list" items="${list }">
-					<div class="card" style="margin-right: 40px; width: 470px; cursor: pointer;" onclick="location.href='/project5/dashBoard.do?projectkey=${list.projectkey}'" >
-						<div class="card-content" id="prjImg">
-							
-								
-							<div class="card-body">
-								<h5 class="card-title" onclick="location.href='/project5/dashBoard.do?projectkey=${list.projectkey}'">${list.name }</h5>
-								<p class="card-text">${list.contents }</p>
-							</div>
-						</div>
-						<ul class="list-group list-groue-flush">
-							<li class="list-group-item">프로젝트</li>
-							<li class="list-group-item">프로젝트</li>
-							<li class="list-group-item">프로젝트</li>
-							<li class="list-group-item" onClick="window.open('http://www.naver.com','네이버','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;"
-								>진행사항확인</li>
-						</ul>
-						  <div id="chart_div"></div>
-					</div>
-					
-					
-					
-					
-					
+			</section>
+				-->
+
+			
+			<div  id="content-types" >
+			
+			
+			</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 					<script>
 						google.charts.load('current', {packages: ['corechart', 'bar']});
 						google.charts.setOnLoadCallback(drawBasic);
@@ -364,10 +391,6 @@ document.ready(function(){
 						    }
 						</script>
 					
-				</c:forEach>
-			</section>
-			
-			
 			
 			
 			

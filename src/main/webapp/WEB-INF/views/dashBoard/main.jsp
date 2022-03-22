@@ -37,7 +37,7 @@ $(document).ready(function(){
         success: function(result){
           console.log(result); 
           console.log("파일 불러오기 완료")
-		  showUploadResult2(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+		  showUploadResult2(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
       },
       error: function(result){
     	  console.log(memberkey)
@@ -113,7 +113,11 @@ $(document).ready(function(){
 		</header>
 
 		<div class="page-heading">
-			<h3>[${project.name }] 대시보드</h3>
+			<h3>   <span style="color:red;">
+			[${project.name }] 
+			</span>
+			대시보드
+			</h3>
 			<h5>
 				<span style="color: red">"${member.name }${member.auth }"</span>님
 				어서오십시오.
@@ -137,8 +141,8 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">이메일 확인</h6>
-											<h6 class="font-extrabold mb-0">이메일이 <br>도착했습니다.</h6>
+											<h6 class="text-muted font-semibold">나의 작업물 수</h6>
+											<h6 class="font-extrabold mb-0">$$$$$$$ 건</h6>
 										</div>
 									</div>
 								</div>
@@ -155,8 +159,8 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">중요 공지 확인</h6>
-											<h6 class="font-extrabold mb-0">공지 확인 하세요</h6>
+											<h6 class="text-muted font-semibold">7일 이내 임무</h6>
+											<h6 class="font-extrabold mb-0">$$$$$$ 건</h6>
 										</div>
 									</div>
 								</div>
@@ -173,8 +177,8 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">고객처 조회</h6>
-											<h6 class="font-extrabold mb-0">고객처 조회</h6>
+											<h6 class="text-muted font-semibold">수주사 조회</h6>
+											<h6 class="font-extrabold mb-0">$$$$$$</h6>
 										</div>
 									</div>
 								</div>
@@ -223,6 +227,9 @@ $(document).ready(function(){
 
 
 
+
+
+			<!--  메모장 -->
 							<div class="card">
 								<div class="card-header">
 								<h4>[<span style="color:red">${member.name } </span>]님 만을 위한 메모장</h4></div>
@@ -247,6 +254,9 @@ $(document).ready(function(){
 													class="btn btn-danger" style="text-align: right" data-bs-toggle="modal"  data-bs-target="#inlineForm" >메모 쓰기</a>
 											</div>
 
+
+
+
 										</div>
 										<div class="dataTable-container">
 											<table class="table table-striped dataTable-table"
@@ -265,6 +275,7 @@ $(document).ready(function(){
 															href="#" class="dataTable-sorter">중요도</a></th>
 													</tr>
 												</thead>
+												
 												<tbody>
 													<c:forEach var="list" items="${memoList}">
 														<tr >
@@ -306,6 +317,11 @@ $(document).ready(function(){
 									</div>
 								</div>
 							</div>
+
+
+
+
+
 
 
 
@@ -448,60 +464,12 @@ $(document).ready(function(){
 								<div class="card-header">
 									<h4>Profile Visit</h4>
 								</div>
+								
+								
 								<div class="card-body">
 									<div class="row">
-										<div class="col-6">
-											<div class="d-flex align-items-center">
-												<svg class="bi text-primary" width="32" height="32"
-													fill="blue" style="width: 10px">
-                                                        <use
-														xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-												<h5 class="mb-0 ms-3">Europe</h5>
-											</div>
-										</div>
-										<div class="col-6">
-											<h5 class="mb-0">862</h5>
-										</div>
-										<div class="col-12">
-											<div id="chart-europe"></div>
-										</div>
 									</div>
 									<div class="row">
-										<div class="col-6">
-											<div class="d-flex align-items-center">
-												<svg class="bi text-success" width="32" height="32"
-													fill="blue" style="width: 10px">
-                                                        <use
-														xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-												<h5 class="mb-0 ms-3">America</h5>
-											</div>
-										</div>
-										<div class="col-6">
-											<h5 class="mb-0">375</h5>
-										</div>
-										<div class="col-12">
-											<div id="chart-america"></div>
-										</div>
-									</div>
-									<div class="row">
-										<div class="col-6">
-											<div class="d-flex align-items-center">
-												<svg class="bi text-danger" width="32" height="32"
-													fill="blue" style="width: 10px">
-                                                        <use
-														xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-												<h5 class="mb-0 ms-3">Indonesia</h5>
-											</div>
-										</div>
-										<div class="col-6">
-											<h5 class="mb-0">1025</h5>
-										</div>
-										<div class="col-12">
-											<div id="chart-indonesia"></div>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -580,6 +548,10 @@ $(document).ready(function(){
 									<img src="/project5/resources/dist/assets/images/faces/1.jpg"
 										alt="Face 1">
 										-->
+										
+										
+										
+										
 								</div>
 								<div class="ms-3 name">
 									<h5 class="font-bold">[${member.name }] 님</h5>

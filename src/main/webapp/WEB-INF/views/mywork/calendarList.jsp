@@ -269,21 +269,23 @@
 															<div class="user-details">
 																
 																<div class="mail-items">
-																	<span class="list-group-item-text text-truncate">${list.title}</span>
+																	<span class="list-group-item-text text-truncate">[${list.id}]${list.title}</span>
 																</div>
 																
 																<div class="mail-meta-item">
-																	<span class="float-right"> <span
-																		class="mail-date">4:14 AM</span>
+																	<span class="float-right"> 
+																		<span class="mail-date">${list.start1 }</span>
 																	</span>
 																</div>
+																
 															</div>
+															
 															<div class="mail-message">
 																<p class="list-group-item-text truncate mb-0">
 																	${list.content }</p>
 																<div class="mail-meta-item">
 																	<span class="float-right"> <span
-																		class="bullet bullet-success bullet-sm"></span>
+																		class="bullet bullet-success bullet-sm">${list.end1 }</span>
 																	</span>
 																</div>
 															</div>

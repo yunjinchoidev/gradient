@@ -110,6 +110,9 @@ $(document).ready(function() {
 			      }
 			    }); //$.ajax
 			    
+			    
+			    
+			    
 				// 이미지 클라리언트 딴에 띄우는 합수
 				// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
 			  function showUploadResult2(uploadResultArr){
@@ -157,7 +160,7 @@ $(document).ready(function() {
 				dataType:'json',
 				success: function(result){
 					  console.log(result); 
-					  showUploadResult(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+					  showUploadResult(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
 				},
 				error: function(result){
 					  console.log("파일 업로드 실패했습니다.");

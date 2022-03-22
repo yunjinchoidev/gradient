@@ -40,5 +40,6 @@
 		<mapper resource="resource/DepartmentMapper.xml"/>
 		<mapper resource="resource/VoteMapper.xml"/>
 		<mapper resource="resource/MemoMapper.xml"/>
+		<mapper resource="resource/DashBoardMapper.xml"/>
 	</mappers>
 </configuration>

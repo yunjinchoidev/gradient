@@ -12,9 +12,16 @@
 	</select>
 
 
+
+
 	<select id="currentGantt" resultType="project5.gantt.GanttVO">
 		SELECT * FROM gantt WHERE TO_CHAR(SYSDATE, 'YYYY/MM/dd')  <![CDATA[<=]]> TO_CHAR(start_date+duration, 'YYYY/MM/dd')
 		AND TO_CHAR(SYSDATE, 'YYYY/MM/dd')  <![CDATA[>=]]> TO_CHAR(start_date, 'YYYY/MM/dd')
+	</select>
+
+	<select id="currentGanttbymkey" resultType="project5.gantt.GanttVO" parameterType="int">
+		SELECT * FROM gantt WHERE TO_CHAR(SYSDATE, 'YYYY/MM/dd')  <![CDATA[<=]]> TO_CHAR(start_date+duration, 'YYYY/MM/dd')
+		AND TO_CHAR(SYSDATE, 'YYYY/MM/dd')  <![CDATA[>=]]> TO_CHAR(start_date, 'YYYY/MM/dd') and memberkey=#{memberkey}
 	</select>
 
 
@@ -28,6 +35,9 @@
 		where memberkey = #{memberkey}
 	</select>
 
+
+
+
 	<select id="individualProjectGanttList"
 		resultType="project5.gantt.GanttVO" parameterType="int">
 		select * from
@@ -36,17 +46,23 @@
 	</select>
 
 
+
+
+
 	<insert id="insert" parameterType="project5.gantt.GanttVO">
 		insert into gantt
 		values 
 		(seq_gantt.nextval, #{text}, #{start_date}, #{duration}, 1, 1)
 	</insert>
 
+
+
 	<delete id="delete" parameterType="int">
 		delete from
 		gantt
 		where id=#{id}
 	</delete>
+
 
 
 	<update id="update" parameterType="project5.gantt.GanttVO">

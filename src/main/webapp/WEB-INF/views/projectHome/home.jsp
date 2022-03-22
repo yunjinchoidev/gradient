@@ -17,7 +17,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 <script>
-	$(document.ready(function() {
+	$(document).ready(function() {
 						$("#pjList").change(
 										function() {
 											var selectedval = $(this).val();

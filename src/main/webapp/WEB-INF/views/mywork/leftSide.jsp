@@ -58,7 +58,7 @@
 
 
 
-							<a href="/project5/mywork.do?memberkey=${member.memberkey }" class="list-group-item"
+							<a href="/project5/myworkCalendar.do?memberkey=${member.memberkey }" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -73,7 +73,7 @@
 							
 							
 							
-							<a href="/project5/kanbanListWork.do?memberkey=${member.memberkey }" class="list-group-item"
+							<a href="/project5/myworkKanban.do?memberkey=${member.memberkey }" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -88,7 +88,7 @@
 							
 							
 							
-							<a href="/project5/myworkCurrentGantt.do?memberkey=${member.memberkey }" class="list-group-item"
+							<a href="/project5/myworkGantt.do?memberkey=${member.memberkey }" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -104,7 +104,7 @@
 							
 							
 							
-							<a href="#" class="list-group-item"
+							<a href="/project5/myworkCalendar7days.do?memberkey=${member.memberkey }" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -114,7 +114,10 @@
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
                                         </svg>
 								</div> 7일전
-							</a> <a href="#" class="list-group-item"
+							</a> 
+							
+							
+							<a href="/project5/myworkCalendar3days.do?memberkey=${member.memberkey }" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -124,7 +127,11 @@
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
                                         </svg>
 								</div> <strong>3일전</strong>
-							</a> <a href="#" class="list-group-item"
+							</a>
+							
+							
+							
+							 <a href="/project5/myworkCalendar1days.do?memberkey=${member.memberkey }" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -134,7 +141,11 @@
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
                                         </svg>
 								</div> 1일전
-							</a> <a href="#" class="list-group-item"
+							</a> 
+							
+							
+							
+							<a href="#" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -144,7 +155,11 @@
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
                                         </svg>
 								</div> 중요
-							</a> <a href="#" class="list-group-item"
+							</a> 
+							
+							
+							
+							<a href="#" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -154,7 +169,11 @@
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#archive"></use>
                                         </svg>
 								</div> 시급
-							</a> <a href="#" class="list-group-item"
+							</a> 
+							
+							
+							
+							<a href="#" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -164,7 +183,11 @@
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#pencil"></use>
                                         </svg>
 								</div> 완료
-							</a> <a href="#" class="list-group-item"
+							</a> 
+							
+							
+							
+							<a href="#" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -174,7 +197,12 @@
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
                                         </svg>
 								</div> 파일함
-							</a> <a href="#" class="list-group-item"
+							</a>
+							
+							
+							
+							
+							 <a href="#" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 									<svg class="bi" width="1.5em" height="1.5em"
@@ -184,7 +212,10 @@
                                         </svg>
 								</div> 이미지 모아 보기 <span
 								class="badge badge-light-danger badge-pill badge-round float-right mt-50">3</span>
-							</a> <a href="#" class="list-group-item"
+							</a> 
+							
+							
+							<a href="#" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 									<svg class="bi" width="1.5em" height="1.5em"
@@ -193,7 +224,11 @@
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash"></use>
                                         </svg>
 								</div> 이메일 모음
-							</a> <a href="#" class="list-group-item"
+							</a>
+							
+							
+							
+							 <a href="#" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 									<svg class="bi" width="1.5em" height="1.5em"
@@ -202,7 +237,11 @@
 											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash"></use>
                                         </svg>
 								</div> 코멘트
-							</a> <a href="#" class="list-group-item"
+							</a> 
+							
+							
+							
+							<a href="#" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 									<svg class="bi" width="1.5em" height="1.5em"
