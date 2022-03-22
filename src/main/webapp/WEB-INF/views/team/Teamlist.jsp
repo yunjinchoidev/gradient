@@ -35,22 +35,11 @@
 
 
 <script>
-$(document).ready(function(){
+    $(document).ready(function(){
 	
-	var msg = "${msg}";
-				
-	if(msg!=""){
-		alert(msg);
-		if(msg=="팀원배정이 완료되었습니다"){
-			location.href="${path}/team.do";
-		}
-	}
-	$("#regBtn").click(function(){
-		if(confirm("팀원을 배정하시겠습니까?')){
-			$('#regForm').submit();
-		}
+	$("#regbtn").click(function(){
+		location.href="${path}/RegTeam.do";
 	});
-
 </script>
 </head>
 
@@ -95,38 +84,40 @@ $(document).ready(function(){
 								<table class="table table-striped dataTable-table" id="table1">
 									<thead>
 										<tr>
-											<th data-sortable="" style="width: 20%;"><a href="#"
-												class="dataTable-sorter">이름</a></th>
-											<th data-sortable="" style="width: 20%;"><a href="#"
-												class="dataTable-sorter">부서명</a></th>
-											<th data-sortable="" style="width: 20%;"><a href="#"
-												class="dataTable-sorter">권한</a></th>
-											<th data-sortable="" style="width: 20%;"><a href="#"
+											<th data-sortable="" style="width: 10%;"><a href="#"
+												class="dataTable-sorter">No.</a></th>
+											<th data-sortable="" style="width: 30%;"><a href="#"
 												class="dataTable-sorter">프로젝트명</a></th>
 											<th data-sortable="" style="width: 20%;"><a href="#"
-												class="dataTable-sorter">진행사항</a></th>
+												class="dataTable-sorter">담당자</a></th>
+											<th data-sortable="" style="width: 20%;"><a href="#"
+												class="dataTable-sorter">프로젝트 진행현황</a></th>
 										</tr>
 									</thead>
 
 									<tbody>
 
-										<c:forEach var="teamlist" items="${teamlist}">
-											<tr onclick="TeamDetail(${teamlist.teamkey})">
-												<td>${teamlist.name}</td>
-												<td>${teamlist.dname}</td>
-												<td>${teamlist.auth}</td>
-												<td>${teamlist.projectname}</td>
-												<td>${teamlist.progress}</td>
+										<c:forEach var="tlist" items="${teamlist}">
+											<tr onclick="TeamDetail(${tlist.prjkey})">
+												<td>${tlist.teamkey}</td>
+												<td>${tlist.projectname}</td>
+												<td>${tlist.auth}</td>
+												<c:if test="${tlist.progress eq '진행전'}">
+													<td><span class="badge bg-primary">${tlist.progress}</span></td>
+												</c:if>
+												<c:if test="${tlist.progress eq '진행중'}">
+													<td><span class="badge bg-warning">${tlist.progress}</span></td>
+												</c:if>
+												<c:if test="${tlist.progress eq '진행완료'}">
+													<td><span class="badge bg-success">${tlist.progress}</span></td>
+												</c:if>
 											</tr>
 										</c:forEach>
-
 									</tbody>
-
 								</table>
 
-								<button style="margin: auto; display: block;" id="teamregbtn"
-									class="btn btn-primary rounded-pill" data-bs-toggle="modal"
-									data-bs-target="regModal">팀원배정</button>
+								<button id="regbtn" class="btn btn-primary rounded-pill"
+									style="margin: auto; display: block;">팀원배정</button>
 
 							</div>
 
@@ -138,101 +129,23 @@ $(document).ready(function(){
 		</div>
 
 	</div>
-	<!-- 팀원배정 Modal -->
-	<div class="modal fade text-left" id="regModal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-			role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel33">팀원 배정</h4>
-					<button type="button" class="close" data-bs-dismiss="modal"
-						aria-label="Close">
-						<i data-feather="x"></i>
-					</button>
-				</div>
-				<form id="regForm" action="${path}/insertTeam.do" method="post">
-					<!-- 모달 입력 요소 영역 -->
-					<div class="modal-body" style="margin: 10px;">
-						<!-- 프로젝트 select box -->
-						<div id="prjselect">
-							<select class="form-select" style="text-align: center;"
-								name="prjkey">
-								<c:forEach var="prlist" items="${prjlist}">
-									<option value="${prlist.prjkey}">${prlist.prjname}</option>
-								</c:forEach>
-							</select>
-						</div>
-													<!-- 팀원 이름 -->
-							<div id="name" style="flex: 4;">
-								<input class="form-control" type="text" name="name">
-							</div>
-
-						<!-- 중요도, 제목 공통 영역 -->
-						<div id="headerdiv" style="display: flex; margin-top: 10px;">
-							<!-- 부서명 -->
-							<div id="dname" style="flex: 1; margin-right: 5px;">
-								<select class="form-select" name="dname">
-									<option value="기획">기획</option>
-									<option value="회계">회계</option>
-									<option value="인사">인사</option>
-									<option value="마케팅">마케팅</option>
-									<option value="front">front</option>
-									<option value="backend">backend</option>
-									<option value="custom">custom</option>
-								</select>
-							</div>
-							<!-- 권한 -->
-							<div id="auth" style="flex: 1; margin-right: 5px;">
-								<select class="form-select" name="auth">
-									<option value="pm">pm</option>
-									<option value="CEO">CEO</option>
-									<option value="staff">staff</option>
-								</select>
-							</div>
-							
-						</div>
-						<!-- 진행사항, 완료 예정일 영역 -->
-						<div id="footerdiv" style="display: flex; margin-top: 10px;">
-							<!-- 진행사항 -->
-							<div id="importselectdiv" style="flex: 3; margin-right: 150px;">
-								<select class="form-select" name="progress">
-									<option value="진행중">진행중</option>
-									<option value="대기">대기</option>
-									<option value="완료">완료</option>
-								</select>
-							</div>
-						</div>
-
-					</div>
-					<!-- 버튼 영역 -->
-					<div class="modal-footer">
-						<button type="button" class="btn btn-light-secondary"
-							data-bs-dismiss="modal">
-							<i class="bx bx-x d-block d-sm-none"></i> <span
-								class="d-none d-sm-block">닫기</span>
-						</button>
-						<button type="button" id="regBtn" class="btn btn-primary ml-1"
-							data-bs-dismiss="modal">
-							<i class="bx bx-check d-block d-sm-none"></i> <span
-								class="d-none d-sm-block">배정완료</span>
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
 	<!--  페이징 처리/ 프론트만 구현 -->
-	<nav aria-label="Page navigation example" style="margin-top: 15px;">
-		<ul class="pagination pagination-primary  justify-content-center">
-			<li class="page-item disabled"><a class="page-link" href="#"
-				tabindex="-1" aria-disabled="true">Previous</a></li>
-			<li class="page-item active"><a class="page-link" href="#">1</a></li>
-			<li class="page-item"><a class="page-link" href="#">2</a></li>
-			<li class="page-item"><a class="page-link" href="#">3</a></li>
-			<li class="page-item"><a class="page-link" href="#">Next</a></li>
-		</ul>
-	</nav>
+	<div class="dataTable-bottom">
+		<div class="dataTable-info">전체 팀: ${TeamSch.count}</div>
+		<nav aria-label="Page navigation example" style="margin-top: 15px;">
+			<ul	class="pagination pagination-primary float-end dataTable-pagination">
+				<li class="page-item pager"><a class="page-link"
+					href="javascript:goPage(${TeamSch.startBlock!=1?costSch.startBlock-1:1})">‹</a></li>
+				<c:forEach var="cnt" begin="${TeamSch.startBlock}"
+					end="${TeamSch.endBlock}">
+					<li class="page-item ${cnt==TeamSch.curPage?'active':''}">
+						<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
+						href="javascript:goPage(${cnt})">${cnt}</a>
+					</li>
+				</c:forEach>
+				<li class="page-item pager"><a class="page-link"
+					href="javascript:goPage(${TeamSch.endBlock!=TeamSch.pageCount?TeamSch.endBlock+1:TeamSch.endBlock})">›</a></li>
+			</ul>
+	</div>
 </body>
 </html>

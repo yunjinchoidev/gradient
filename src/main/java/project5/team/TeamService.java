@@ -11,23 +11,30 @@ public class TeamService {
 	@Autowired
 	private TeamDao dao;
 	
-	public List<TeamVo> TeamList(TeamVo sch){
+	public List<TeamSch> TeamList(TeamSch sch){
+		sch.setCount(dao.totCnt(sch));
+		if(sch.getPageSize()==0) {
+			sch.setPageSize(5);
+		}
+		double totPage1 = sch.getCount()/(double)sch.getPageSize();
+		totPage1 = Math.ceil(totPage1);
+		int totPage = (int)(totPage1);
+		sch.setPageCount(totPage);
+		
+		if(sch.getCurPage()==0) {
+			sch.setCurPage(1);
+		}
+		sch.setStart((sch.getCurPage()-1)*sch.getPageSize()+1);
+		sch.setEnd(sch.getCurPage()*sch.getPageSize());
+		sch.setBlockSize(5);
+		
+		int curBlockGrpNo = (int)Math.ceil(sch.getCurPage()/(double)sch.getBlockSize());
+		sch.setStartBlock(curBlockGrpNo>sch.getPageCount()?sch.getPageCount():endBlockGrpNo);
+		
 		return dao.TeamList(sch);
 	}
-//	public String insertTeam(TeamVo ins) {
-//		dao.insertTeam(ins);
-//		String msg = "등록 성공";
-//		return msg;
-//	}
-//	public TeamVo getTeam(int no) {
-//		dao.getTeam(no);
-//		TeamVo t = dao.getTeam(no);
-//		return t;
-//	}
-//	public void deleteTeam(int no) {
-//		dao.deleteTeam(no);
-//	}
-//	public void updateTeam(TeamVo upt) {
-//		dao.updateTeam(upt);
-//	}
+	public List<TeamList> getPrjList(){
+		
+	}
+
 }

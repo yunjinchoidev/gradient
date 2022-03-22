@@ -44,32 +44,33 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>팀원 관리</h3>
+						<h3>팀원 추가</h3>
+					</div>
+					<div class="col-12 col-md-6 order-md-2 order-first">
+						<nav aria-label="breadcrumb"
+							class="breadcrumb-header float-start float-lg-end">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+								<li class="breadcrumb-item active" aria-current="page">DataTable</li>
+							</ol>
+						</nav>
 					</div>
 				</div>
 			</div>
 			<section class="sectionMain">
-				<!-- 프로젝트 정보 -->
-				<div id="prjInfo">
-					<!-- 프로젝트명, PM -->
-					<div style="display: flex;">
-						<input type="hidden" name="prjkey" value="${prjInfo.prjkey}">
-						<input class="form-control" type="text" value="${prjInfo.name}"
-							readonly="readonly"
-							style="flex: 3; background-color: white; margin-right: 100px; text-align: center;">
-						<input class="form-control" type="text" value="${prjInfo.manager}"
-							readonly="readonly"
-							style="flex: 1; background-color: white; text-align: center;">
-					</div>
+				<!-- 메인영역 -->
 
-					<div class="card" id="maincard">
-						<div class="card-body">
-							<div
-								class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+				<div class="card" id="maincard">
+					<div class="card-body">
+						<div
+							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 
-								<div class="dataTable-top"></div>
+							<div class="dataTable-top"></div>
 
-								<div class="dataTable-container">
+							<div class="dataTable-container">
+								<form id="inscostform" action="${path}/insertteam.do"
+									method="post">
+									<input type="hidden" name=prjkey value="${prjkey}">
 									<table class="table table-striped dataTable-table"
 										id="maintable">
 										<thead>
@@ -86,19 +87,32 @@
 										</thead>
 
 										<tbody>
-											<c:forEach var="tdlist" items="${tdlist}">
-												<c:set var="i" value="${i+1}" />
-												<tr>
-													<td>${i}</td>
-													<td>${tdlist.name}</td>
-													<td>${tdlist.dname}</td>
-													<td>${tdlist.email}</td>
-												</tr>
-											</c:forEach>
+											<tr>
+												<td>1</td>
+												<td><input class="form-control" type="text"
+													name="list[0].name"></td>
+												<td><input class="form-control" type="text"
+													name="list[0].dname"></td>
+													<td><select class="form-select" name="list[0].teamkey">
+														<c:forEach var="telist" items="${telist}">
+															<option value="${telist.teamkey}">${telist.dname}</option>
+														</c:forEach>
+												</select></td>
+												<td><input class="form-control" type="text"
+													name="list[0].email"></td>
+											</tr>
 										</tbody>
+									</table>
+								</form>
+								
+									<div style="margin-top: 150px;">
+									<button type="button" id="addbtn" class="btn btn-primary rounded-pill"
+										style="margin-left:50px;">팀원추가</button>
+									<button type="button" id="delbtn" class="btn btn-primary rounded-pill"
+										style="margin-left:400px;">팀원삭제</button>
 								</div>
-								<!-- 인적관리 리스트 화면으로 돌아가는 버튼 -->
-								<button id="backbtn" class="btn btn-primary rounded-pill"
-									style="margin-right: 10px; margin-left: 0px;">목록</button>
+
+							</div>
+						</div>
 </body>
 </html>
