@@ -110,6 +110,9 @@
 										style="margin-left:50px;">팀원추가</button>
 									<button type="button" id="delbtn" class="btn btn-primary rounded-pill"
 										style="margin-left:400px;">팀원삭제</button>
+									<button type="button"  class="btn btn-success rounded-pill"
+										style="margin-left:400px;"onclick="location.href='/project5/teamlist.do'">뒤로가기</button>
+
 								</div>
 
 							</div>

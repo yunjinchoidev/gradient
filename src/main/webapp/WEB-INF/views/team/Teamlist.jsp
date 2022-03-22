@@ -117,7 +117,7 @@
 								</table>
 
 								<button id="regbtn" class="btn btn-primary rounded-pill"
-									style="margin: auto; display: block;">팀원배정</button>
+									style="margin: auto; display: block;" onclick="location.href='/project5/regTeam.do'">팀원배정</button>
 
 							</div>
 
