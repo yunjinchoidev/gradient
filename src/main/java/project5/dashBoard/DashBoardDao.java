@@ -16,7 +16,8 @@ public interface DashBoardDao {
 	public int calendarCountBelongTodayCnt(); // 오늘이 껴있는 것들
 	public Calendar EmergencyCalendarTask(); // 가장 긴급한 일
 	public int outputCnt(OutputVO vo);
-	public int outputSortCnt();
+	public List<OutputDashBoardVO> outputSortCnt();
+	public List<OutputDashBoardVO> outputSortCntByMemberkey(int memberkey);
 	
 	
 	

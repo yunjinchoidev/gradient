@@ -47,8 +47,17 @@
 		and projectkey=#{projectkey}
 	</select>
 
-	<select id="outputSortCnt" resultType="OutputDashBoardVO">
-		SELECT worksortkey, count(worksortkey) FROM OUTPUT
+	<select id="outputSortCnt" resultType="project5.dashBoard.OutputDashBoardVO">
+		SELECT worksortkey, count(worksortkey) count 
+		FROM OUTPUT
+		GROUP BY worksortkey
+		ORDER BY WORKSORTKEY
+	</select>
+
+	<select id="outputSortCntByMemberkey" resultType="project5.dashBoard.OutputDashBoardVO" parameterType="int">
+		SELECT worksortkey, count(worksortkey) count 
+		FROM OUTPUT
+		WHERE memberkey=4
 		GROUP BY worksortkey
 		ORDER BY WORKSORTKEY
 	</select>

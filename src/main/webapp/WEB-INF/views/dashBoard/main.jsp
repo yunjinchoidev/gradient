@@ -444,68 +444,89 @@ $(document).ready(function(){
 								
 									$(document).ready(function(){
 										
+										
+									// 산출물	
+									var count = [] 
+									var myCount = [] 
 									
+									var memberkey = "${member.memberkey}"
+									var data = {memberkey : memberkey};
+									
+												    
+												  $.ajax({
+												      url: '/project5/outputSortCnt2.do',
+												      type: 'POST',
+												      async:false,
+												      data : data,
+												      dataType:'json',
+												        success: function(result){
+												          console.log(result);
+												          console.log(result.outputSortCntByMemberkey);
+												          for(var i=0; i<10; i++){
+												        	  myCount[i] = result.outputSortCntByMemberkey[i].count
+												          }
+												          console.log(" outputSortCnt2 완료")
+												      },
+												      error: function(result){
+												          console.log("outputSortCnt2 실패");
+												          console.log(result); 
+												      }
+												    }); //$.ajax			
+												    
+												    
+												    
 												  $.ajax({
 												      url: '/project5/outputSortCnt.do',
 												      type: 'POST',
-												      async:false, 
+												      async:false,
 												      dataType:'json',
 												        success: function(result){
+												          console.log(result);
 												          console.log(result.outputSortCnt);
-												          console.log(" riskDashBoardData 완료")
+												          for(var i=0; i<10; i++){
+												        	  count[i] = result.outputSortCnt[i].count
+												          }
+												          console.log(" outputSortCnt 완료")
 												      },
 												      error: function(result){
-												          console.log("riskDashBoardData 실패");
+												          console.log("outputSortCnt 실패");
 												          console.log(result); 
 												      }
 												    }); //$.ajax					
 								
+												    console.log("count : :::::=====" +count)
+												    console.log("myCount : ::::=====" +myCount)
+								
+								
+												 google.charts.load('current', {'packages':['corechart']});
+										    	  google.charts.setOnLoadCallback(drawChart);
+									
+											      function drawChart() {
+											        var data = google.visualization.arrayToDataTable([
+											          ['Director (Year)',  'Rotten Tomatoes', 'IMDB'],
+											          ['간트차트', 8.4,         7.9],
+											          ['일정관리', 8.4,         7.9],
+											          ['', 8.4,         7.9],
+											          ['', 8.4,         7.9],
+											          ['', 8.4,         7.9],
+											          ['', 8.4,         7.9],
+											          ['', 8.4,         7.9],
+											        ]);
+											
+											        var options = {
+											          title: 'The decline of \'The 39 Steps\'',
+											          vAxis: {title: 'Accumulated Rating'},
+											          isStacked: true
+											        };
+											
+											        var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
+											
+											        chart.draw(data, options);
+											      }
 								
 								
 								
 								
-								google.charts.load('current', {packages: ['corechart', 'bar']});
-								google.charts.setOnLoadCallback(drawBasic);
-
-								function drawBasic() {
-
-								      var data = new google.visualization.DataTable();
-								      data.addColumn('timeofday', 'Time of Day');
-								      data.addColumn('number', 'Motivation Level');
-
-								      data.addRows([
-								        [{v: [8, 0, 0], f: '8 am'}, 1],
-								        [{v: [9, 0, 0], f: '9 am'}, 2],
-								        [{v: [10, 0, 0], f:'10 am'}, 3],
-								        [{v: [11, 0, 0], f: '11 am'}, 4],
-								        [{v: [12, 0, 0], f: '12 pm'}, 5],
-								        [{v: [13, 0, 0], f: '1 pm'}, 6],
-								        [{v: [14, 0, 0], f: '2 pm'}, 7],
-								        [{v: [15, 0, 0], f: '3 pm'}, 8],
-								        [{v: [16, 0, 0], f: '4 pm'}, 9],
-								        [{v: [17, 0, 0], f: '5 pm'}, 10],
-								      ]);
-
-								      var options = {
-								        title: '작업 스케쥴',
-								        hAxis: {
-								          title: 'Time of Day',
-								          format: 'h:mm a',
-								          viewWindow: {
-								            min: [7, 30, 0],
-								            max: [17, 30, 0]
-								          }
-								        },
-								        vAxis: {
-								          title: 'Rating (scale of 1-10)'
-								        }
-								      };
-
-								      var chart = new google.visualization.ColumnChart(
-								        document.getElementById('chart_div'));
-
-								      chart.draw(data, options);
-								    }
 									})
 								</script>
       

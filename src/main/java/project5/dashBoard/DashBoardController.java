@@ -10,6 +10,7 @@ import project5.member.MemberVO;
 import project5.memo.MemoService;
 import project5.output.OutputVO;
 import project5.project.ProjectService;
+import project5.workSort.WorkSortService;
 
 @Controller
 public class DashBoardController {
@@ -24,6 +25,9 @@ public class DashBoardController {
 	
 	@Autowired
 	DashBoardService service3;
+	
+	@Autowired
+	WorkSortService service4;
 	
 	
 	@RequestMapping("/dashBoard.do")
@@ -47,12 +51,23 @@ public class DashBoardController {
 
 	
 	
-	@PostMapping("/outputSortCnt.do")
+	@RequestMapping("/outputSortCnt.do")
 	public String outputSortCnt(Model d) {
 		System.out.println("outputSortCnt.do 진입");
 		d.addAttribute("outputSortCnt", service3.outputSortCnt());
+		d.addAttribute("worksort", service4.list());
 		return "pageJsonReport";
 	}
+
+	@RequestMapping("/outputSortCnt2.do")
+	public String outputSortCnt2(Model d, String memberkey) {
+		int memberkeyN = Integer.parseInt(memberkey);
+		System.out.println("outputSortCnt.do 진입");
+		System.out.println("memberkey" + memberkeyN);
+		d.addAttribute("outputSortCntByMemberkey", service3.outputSortCntByMemberkey(memberkeyN));
+		return "pageJsonReport";
+	}
+	
 
 	
 	

@@ -32,7 +32,11 @@ public class DashBoardService {
 		return dao.outputCnt(vo);
 	}
 	
-	public int outputSortCnt() {
+	public List<OutputDashBoardVO> outputSortCnt() {
+		return dao.outputSortCnt();
+	}
+	
+	public List<OutputDashBoardVO> outputSortCntByMemberkey(int memberkey) {
 		return dao.outputSortCnt();
 	}
 	
