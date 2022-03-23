@@ -25,6 +25,7 @@ public class CustoChatService {
 
 	public void createMessage(CustoChatMessageVO vo) {
 		dao.createMessage(vo);
+		System.out.println("서비스단도 성공");
 	}
 	
 

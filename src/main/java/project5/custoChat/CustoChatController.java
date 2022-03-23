@@ -48,8 +48,14 @@ public class CustoChatController {
 	
 	@RequestMapping("/createMessage.do")
 	public String createMessage(Model d,CustoChatMessageVO vo) {
+		System.out.println("createMessage 진입");
+		System.out.println(vo.getRoomkey());
+		System.out.println(vo.getMemberkey());
+		System.out.println(vo.getMessage());
 		service.createMessage(vo);
-		return "success";
+		System.out.println("마지막 전!");
+		d.addAttribute("psc", "success");
+		return "pageJsonReport";
 	}
 	
 	
@@ -60,6 +66,10 @@ public class CustoChatController {
 		service.createChat(vo);
 		return "success";
 	}
+	
+	
+	
+	
 	
 	
 	@RequestMapping("/chatRoomList.do")

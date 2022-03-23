@@ -45,9 +45,9 @@
 	$(document).ready(function(){
 		
 		playAlert = setInterval(function() {
-			console.log("ggg")
+			//console.log("10초마다 반복")
 			theSrc(myFaceData.fname)
-		}, 1000);
+		}, 10000);
 		
 		var theSrc =  function showImg2(fname){
 		    var uploadUL = $(".myFace");
@@ -114,22 +114,62 @@
 
 						
 						
+						
+						//////////////////////////////////////////////////////////////////////////////
 						// 메시지 보내기
 						$("#msg").keyup(function() {
 							if (event.keyCode == 13) {
+								var message = $("#msg").val();
+								console.log("message : "+ message);
+								var memberkey = "${member.memberkey}"
+								var data = {message : message,
+													memberkey : memberkey,
+													roomkey : 1
+									};
+								$.ajax({
+									url:'/project5/createMessage.do',
+									method:'POST',
+									data : data,
+									dataType:'json',
+									success:function(result){
+										console.log("대화 DB에 넣기 완료")
+									},
+									error:function(result){
+										console.log("대화 DB에 넣기 실패")
+									}
+								})
 								sendMsg();
 							}
-							
+						});
+						
+						
+						
+						
+						
+						
+						
+						// 전송 버튼을 눌렀을 때
+						$("#sendBtn").click(function() {
 							var message = $("#msg").val();
-							var data = {message : message};
+							console.log("message ::::::::::::::::::::: "+ message);
+							sendMsg();
+							var memberkey = parseInt("${member.memberkey}");
+							var data = {message : message,
+												memberkey : memberkey,
+												roomkey : 1
+								};
 							$.ajax({
-								url:'/project5/createMessage.do'
+								url:'/project5/createMessage.do',
+								method:'POST',
+								data : data,
+								success:function(result){
+									console.log("대화 DB에 넣기 완료")
+								},
+								error:function(result){
+									console.log("대화 DB에 넣기 실패")
+								}
 							})
 							
-							
-						});
-						$("#sendBtn").click(function() {
-							sendMsg();
 						});
 
 							// 접속 종료를 처리했을 시
@@ -154,12 +194,11 @@
 							str += "<div class='text-muted small text-nowrap mt-2'>2:33 am</div>"
 							str += "</div>"
 							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
-							str += "<div class='font-weight-bold mb-1'>"
-									+ $("#id").val() + "</div>"
+							str += "<div class='font-weight-bold mb-1'>"	+ $("#id").val() + "</div>"
 							str += msg
 							str += "</div>"
 							str += "</div>"
-							console.log("메시지 보내기 :::::::::::::::" + str);
+							//console.log("메시지 보내기 :::::::::::::::" + str);
 							wsocket.send("msg:" + str);
 							$("#msg").val("");
 							$("#msg").focus();
@@ -181,8 +220,7 @@
 			str += "<div class='text-muted small text-nowrap mt-2'>2:33 am</div>"
 			str += "</div>"
 			str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
-			str += "<div class='font-weight-bold mb-1'>" + $("#id").val()
-					+ "</div>"
+			str += "<div class='font-weight-bold mb-1'>" + $("#id").val()+ "</div>"
 			str += "상담을 시작합니다."
 			str += "</div>"
 			str += "</div>"
@@ -197,7 +235,7 @@
 			str2 += "</div>"
 			str2 += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
 			str2 += "<div class='font-weight-bold mb-1'>상담원 A</div>"
-			str2 += "안녕하세요?" + $("#id").val() + ", 무엇을 도와드릴까요?"
+			str2 += "안녕하세요?" + $("#id").val() + "무엇을 도와드릴까요?"
 			str2 += "</div>"
 			str2 += "</div>"
 
@@ -286,30 +324,17 @@ body{margin-top:20px;}
 </head>
 
 <body>
-
 <%@ include file="../common/header.jsp"%>
-
-
-
 	<div id="main">
-
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
-
 					<%@ include file="../projectHome/sort.jsp"%>
-
-
-
-
-
-
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<span style="font-size: 40px; font-weight: bolder; color: red;">고객 상담
 						</span> <span style="font-size: 40px; font-weight: bolder; color: black;">홈</span>
 						<p class="text-subtitle text-muted">고객 상담을 확인하십시오.</p>
 					</div>
-
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
@@ -319,43 +344,29 @@ body{margin-top:20px;}
 							</ol>
 						</nav>
 					</div>
-
 				</div>
-
-
 			</div>
-			
-			
-			
 			<section class="section">
 				<div class="card">
 					<div class="card-header"></div>
 					<div class="card-body">
 						<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-
 							<div class="dataTable-top">
 								<div class="dataTable-search">
 								</div>
 							</div>
 							<div class="dataTable-container">
-							
-											
-
 							<main class="content" style=" margin-top: 40px;">
 							    <div class="container p-0">
-							
 									<h1 class="h3 mb-3">고객상담</h1>
-									
 									<input class="dataTable-input" placeholder="${member.name }님" value="${member.name }님" type="text"  id="id"> 
 										<a class="btn btn-danger"  id="enterBtn" style="color:white">상담 시작</a> 
 										<a class="btn btn-info" id="exitBtn"  style="color:white">종료</a> 
+										<a class="btn btn-warning" id="newChatBtn"  style="color:white">새 상담사 연결</a> 
 										<br>
-									
-							
 									<div class="card" style="height: 1000px; border: 1px solid black; margin-top: 30px;">
 										<div class="row g-0">
 											<div class="col-12 col-lg-5 col-xl-3 border-right">
-							
 												<div class="px-4 d-none d-md-block">
 													<div class="d-flex align-items-center">
 														<div class="flex-grow-1">

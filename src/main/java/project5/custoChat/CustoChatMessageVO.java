@@ -8,22 +8,22 @@ public class CustoChatMessageVO {
 	private Date writedate;
 	private String writedateS;
 	private int memberkey;
-	private int roomKey;
-	
+	private int roomkey;
+
 	public CustoChatMessageVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public CustoChatMessageVO(int messagekey, String message, Date writedate, String writedateS, int memberkey,
-			int roomKey) {
+			int roomkey) {
 		super();
 		this.messagekey = messagekey;
 		this.message = message;
 		this.writedate = writedate;
 		this.writedateS = writedateS;
 		this.memberkey = memberkey;
-		this.roomKey = roomKey;
+		this.roomkey = roomkey;
 	}
 
 	public int getMessagekey() {
@@ -66,12 +66,12 @@ public class CustoChatMessageVO {
 		this.memberkey = memberkey;
 	}
 
-	public int getRoomKey() {
-		return roomKey;
+	public int getRoomkey() {
+		return roomkey;
 	}
 
-	public void setRoomKey(int roomKey) {
-		this.roomKey = roomKey;
+	public void setRoomkey(int roomkey) {
+		this.roomkey = roomkey;
 	}
 
 }
