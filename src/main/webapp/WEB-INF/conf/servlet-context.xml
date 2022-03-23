@@ -173,11 +173,6 @@
 	<!-- 
 	advice 선언
 	 -->	
-	 
-	 <bean id="gogo"
-		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="1" />
-	</bean>
 	
 	
 	<bean

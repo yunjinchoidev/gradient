@@ -18,7 +18,10 @@ public interface DashBoardDao {
 	public int outputCnt(OutputVO vo);
 	public List<OutputDashBoardVO> outputSortCnt();
 	public List<OutputDashBoardVO> outputSortCntByMemberkey(int memberkey);
-	
+	public int teamCntByProject(int projectkey);
+	public int teamCntByProject1(int projectkey);
+	public int teamCntByProject2(int projectkey);
+	public int teamCntByProject3(int projectkey);
 	
 	
 }

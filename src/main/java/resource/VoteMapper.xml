@@ -36,7 +36,6 @@
 		voteItem5 =#{voteItem5}
 		where
 		votekey=#{votekey}
-
 	</update>
 
 

@@ -47,19 +47,48 @@
 		and projectkey=#{projectkey}
 	</select>
 
-	<select id="outputSortCnt" resultType="project5.dashBoard.OutputDashBoardVO">
-		SELECT worksortkey, count(worksortkey) count 
+	<select id="outputSortCnt"
+		resultType="project5.dashBoard.OutputDashBoardVO">
+		SELECT worksortkey, count(worksortkey) count
 		FROM OUTPUT
 		GROUP BY worksortkey
 		ORDER BY WORKSORTKEY
 	</select>
 
-	<select id="outputSortCntByMemberkey" resultType="project5.dashBoard.OutputDashBoardVO" parameterType="int">
-		SELECT worksortkey, count(worksortkey) count 
+
+
+
+
+
+	<select id="outputSortCntByMemberkey"
+		resultType="project5.dashBoard.OutputDashBoardVO" parameterType="int">
+		SELECT worksortkey, count(worksortkey) count
 		FROM OUTPUT
-		WHERE memberkey=4
+		WHERE memberkey=#{memberkey}
 		GROUP BY worksortkey
-		ORDER BY WORKSORTKEY
+		ORDER BY
+		WORKSORTKEY
+	</select>
+
+
+	<select id="teamCntByProject" parameterType="int"
+		resultType="int">
+		SELECT count(*) count FROM team WHERE projectkey=#{projectkey}
+	</select>
+
+	<select id="teamCntByProject1" parameterType="int"
+		resultType="int">
+	SELECT count(*) count FROM team WHERE projectkey=#{projectkey}  and teamname like '기획%'
+	</select>
+
+	<select id="teamCntByProject2" parameterType="int"
+		resultType="int">
+	SELECT count(*) count FROM team WHERE projectkey=#{projectkey}  and teamname like '개발%'
+	</select>
+
+	<select id="teamCntByProject3" parameterType="int"
+		resultType="int">
+		SELECT count(*) count FROM team WHERE projectkey=#{projectkey}  and teamname like '고객%'
 	</select>
 
 

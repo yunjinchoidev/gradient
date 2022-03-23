@@ -15,6 +15,14 @@
 <script>
 $(document).ready(function(){
 	
+	var ch = "${member.memberkey}";
+	if (ch==""){
+		alert("미 로그인 시 접근 불가합니다.")
+		location.href="/project5/main.do"
+	}
+	
+	
+	
 	$("#progress").click(function(){
 		alert("프로젝트 진행 상태를 바꾸시겠습니까?");
 		$(".modal").modal('show');
@@ -232,8 +240,24 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">알림 메시지</h6>
-											<h6 class="font-extrabold mb-0">알림 메시지</h6>
+											<h6 class="text-muted font-semibold">현 프로젝트 단계</h6>
+											<h6 class="font-extrabold mb-0" id="progress">${project.progress}</h6>
+											<script>
+											$(document).ready(function(){
+												var i=0;
+												
+												
+												setInterval(function() {
+													i++;
+														if(i%2==0){
+															  $("#progress").css("color","blue");
+														}else{
+															 $("#progress").css("color","black");
+														}
+												}, 500);
+
+											})
+											</script>
 										</div>
 									</div>
 								</div>
@@ -249,8 +273,8 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">알림 메시지</h6>
-											<h6 class="font-extrabold mb-0">알림 메시지</h6>
+											<h6 class="text-muted font-semibold">프리미엄시 개방</h6>
+											<h6 class="font-extrabold mb-0">프리미엄시 개방</h6>
 										</div>
 									</div>
 								</div>
@@ -266,8 +290,8 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">알림 메시지</h6>
-											<h6 class="font-extrabold mb-0">알림 메시지</h6>
+											<h6 class="text-muted font-semibold">프리미엄시 개방</h6>
+											<h6 class="font-extrabold mb-0">프리미엄시 개방</h6>
 										</div>
 									</div>
 								</div>
@@ -283,8 +307,8 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">알림 메시지</h6>
-											<h6 class="font-extrabold mb-0">알림 메시지</h6>
+											<h6 class="text-muted font-semibold">프리미엄시 개방</h6>
+											<h6 class="font-extrabold mb-0">프리미엄시 개방</h6>
 										</div>
 									</div>
 								</div>
@@ -437,55 +461,39 @@ $(document).ready(function(){
 									<h4>산출물 분포 상황</h4>
 								</div>
 								<div class="card-body">
-								
   								<div id="chart_div"></div>
      							 <!-- 막대 차트 -->
 								<script>
-								
 									$(document).ready(function(){
 										
 										
 									// 산출물	
-									var count = [] 
-									var myCount = [] 
+									var outputSortCnt = [] 
+									var worksortList = [] 
+									var outputSortCntByMemberkey = [] 
 									
 									var memberkey = "${member.memberkey}"
 									var data = {memberkey : memberkey};
 									
-												    
 												  $.ajax({
-												      url: '/project5/outputSortCnt2.do',
+												      url: '/project5/outputSortCnt.do',
 												      type: 'POST',
 												      async:false,
 												      data : data,
 												      dataType:'json',
 												        success: function(result){
 												          console.log(result);
-												          console.log(result.outputSortCntByMemberkey);
-												          for(var i=0; i<10; i++){
-												        	  myCount[i] = result.outputSortCntByMemberkey[i].count
-												          }
-												          console.log(" outputSortCnt2 완료")
-												      },
-												      error: function(result){
-												          console.log("outputSortCnt2 실패");
-												          console.log(result); 
-												      }
-												    }); //$.ajax			
-												    
-												    
-												    
-												  $.ajax({
-												      url: '/project5/outputSortCnt.do',
-												      type: 'POST',
-												      async:false,
-												      dataType:'json',
-												        success: function(result){
-												          console.log(result);
 												          console.log(result.outputSortCnt);
+												          console.log(result.outputSortCntByMemberkey);
+												          console.log(result.worksortList);
+												          console.log("일단 성공")
+												          
 												          for(var i=0; i<10; i++){
-												        	  count[i] = result.outputSortCnt[i].count
+												        	  outputSortCnt[i] = result.outputSortCnt[i].count
+												        	  outputSortCntByMemberkey[i] = result.outputSortCntByMemberkey[i].count
+												        	  worksortList[i] = result.worksortList[i].title
 												          }
+												          
 												          console.log(" outputSortCnt 완료")
 												      },
 												      error: function(result){
@@ -494,8 +502,9 @@ $(document).ready(function(){
 												      }
 												    }); //$.ajax					
 								
-												    console.log("count : :::::=====" +count)
-												    console.log("myCount : ::::=====" +myCount)
+												    console.log("outputSortCnt : :::::=====" +outputSortCnt)
+												    console.log("workSortList : ::::=====" +worksortList)
+												    console.log("outputSortCntByMemberkey : ::::=====" +outputSortCntByMemberkey)
 								
 								
 												 google.charts.load('current', {'packages':['corechart']});
@@ -504,29 +513,27 @@ $(document).ready(function(){
 											      function drawChart() {
 											        var data = google.visualization.arrayToDataTable([
 											          ['Director (Year)',  'Rotten Tomatoes', 'IMDB'],
-											          ['간트차트', 8.4,         7.9],
-											          ['일정관리', 8.4,         7.9],
-											          ['', 8.4,         7.9],
-											          ['', 8.4,         7.9],
-											          ['', 8.4,         7.9],
-											          ['', 8.4,         7.9],
-											          ['', 8.4,         7.9],
+											          [worksortList[0],outputSortCnt[0],         outputSortCntByMemberkey[0]],
+											          [worksortList[1],outputSortCnt[1],         outputSortCntByMemberkey[1]],
+											          [worksortList[2],outputSortCnt[2],         outputSortCntByMemberkey[2]],
+											          [worksortList[3],outputSortCnt[3],         outputSortCntByMemberkey[3]],
+											          [worksortList[4],outputSortCnt[4],         outputSortCntByMemberkey[4]],
+											          [worksortList[5],outputSortCnt[5],         outputSortCntByMemberkey[5]],
+											          [worksortList[6],outputSortCnt[6],         outputSortCntByMemberkey[6]],
+											          [worksortList[7],outputSortCnt[7],         outputSortCntByMemberkey[7]],
+											          [worksortList[8],outputSortCnt[8],         outputSortCntByMemberkey[8]],
+											          [worksortList[9],outputSortCnt[9],         outputSortCntByMemberkey[9]],
+											          [worksortList[10],outputSortCnt[10],         outputSortCntByMemberkey[10]]
 											        ]);
-											
 											        var options = {
-											          title: 'The decline of \'The 39 Steps\'',
-											          vAxis: {title: 'Accumulated Rating'},
+											          title: '전체 산출물, 개인 산출물',
+											          vAxis: {title: '작업 분류'},
 											          isStacked: true
 											        };
-											
 											        var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div'));
 											
 											        chart.draw(data, options);
 											      }
-								
-								
-								
-								
 									})
 								</script>
       
@@ -540,55 +547,83 @@ $(document).ready(function(){
 
 						<div class="card">
 								<div class="card-header">
-									<h4>작업량 분석</h4>
+									<h4>리스크 분석</h4>
 								</div>
 								
 								<div class="card-body">
-									 <!--  커밋 차트 -->
-								
-									    <script type="text/javascript">
-									      google.charts.load("current", {packages:["calendar"]});
-									      google.charts.setOnLoadCallback(drawChart);
-									
-									   function drawChart() {
-									       var dataTable = new google.visualization.DataTable();
-									       dataTable.addColumn({ type: 'date', id: 'Date' });
-									       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
-									       dataTable.addRows([
-									          [ new Date(2012, 3, 13), 37032 ],
-									          [ new Date(2012, 3, 14), 38024 ],
-									          [ new Date(2012, 3, 15), 38024 ],
-									          [ new Date(2012, 3, 16), 38108 ],
-									          [ new Date(2012, 3, 17), 38229 ],
-									          // Many rows omitted for brevity.
-									          [ new Date(2013, 9, 4), 38177 ],
-									          [ new Date(2013, 9, 5), 38705 ],
-									          [ new Date(2013, 9, 12), 38210 ],
-									          [ new Date(2013, 9, 13), 38029 ],
-									          [ new Date(2013, 9, 19), 38823 ],
-									          [ new Date(2013, 9, 23), 38345 ],
-									          [ new Date(2013, 9, 24), 38436 ],
-									          [ new Date(2013, 9, 30), 38447 ]
-									        ]);
-									
-									       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
-									
-									       var options = {
-									         title: "Red Sox Attendance",
-									         height: 350,
-									       };
-									
-									       chart.draw(dataTable, options);
-									   }
-									    </script>
-  								<div id="calendar_basic" style="width: 1000px; height: 100%; margin-left: 40px;"></div>
-  								
-     						
-      
+
+												<script>
+												$(document).ready(function(){
+													
+												google.charts.load('current', {packages: ['corechart', 'bar']});
+												google.charts.setOnLoadCallback(drawBasic);
+												
+																	
+																	var importance = []
+																	var count = []
+																	
+																	
+																    $.ajax({
+																      url: '/project5/riskDashBoardData.do',
+																      type: 'POST',
+																      async:false, 
+																      dataType:'json',
+																        success: function(result){
+																          console.log(result.get);
+																          console.log(result.get[0]);
+																          console.log(result.get[0].importance);
+																          console.log(result.get[0].count);
+																          importance[0] = result.get[0].importance
+																          importance[1] = result.get[1].importance
+																          importance[2] = result.get[2].importance
+																          count[0] = result.get[0].count
+																          count[1] = result.get[1].count
+																          count[2] = result.get[2].count
+																          console.log(" riskDashBoardData 완료")
+																      },
+																      error: function(result){
+																    	  console.log(memberkey)
+																          console.log("riskDashBoardData 실패");
+																          console.log(result); 
+																      }
+																    }); //$.ajax					
+																	
+																    console.log("riskdata ::::::::::::::::::: "+count[2])
+																	
+												
+																			function drawBasic() {
+																			  var data = google.visualization.arrayToDataTable(
+																					  [
+																					         ['Element', '수', { role: 'style' }],
+																					         ['낮음', count[0], '#b87333'],            // RGB value
+																					         ['보통', count[1], 'silver'],            // English color name
+																					         ['중요', count[2], 'color: gold'],
+																			     	 ]
+																			  
+																			  );
+																		      var options = {
+																		        title: '',
+																		        hAxis: {
+																		          title: '중요도'
+																		        },
+																		        vAxis: {
+																		          title: '개수'
+																		        }
+																		      };
+												
+																      var chart = new google.visualization.ColumnChart(
+																        document.getElementById('risk'));
+																      	chart.draw(data, options);
+																    }
+												
+												
+												})
+												</script>
+												
+											<div id="risk"  style="width: 1000px; height: 100%; margin-left: 40px;"></div>
 									
 								</div>
 							</div>
-
 						</div>
 					</div>
 					
@@ -598,89 +633,19 @@ $(document).ready(function(){
 					<div class="row">
 						<div class="col-12 col-xl-4">
 						
-						
-						
-						
 							<div class="card">
 								<div class="card-header">
 									<h4>중요도 별 리스크 상황</h4>
 								</div>
 								
 								<div class="card-body">
-								  		<div id="risk"></div>
+								  
 								</div>
 							</div>
 						</div>
 
 
 
-								<script>
-								$(document).ready(function(){
-									
-								google.charts.load('current', {packages: ['corechart', 'bar']});
-								google.charts.setOnLoadCallback(drawBasic);
-								
-													
-													var importance = []
-													var count = []
-													
-													
-												    $.ajax({
-												      url: '/project5/riskDashBoardData.do',
-												      type: 'POST',
-												      async:false, 
-												      dataType:'json',
-												        success: function(result){
-												          console.log(result.get);
-												          console.log(result.get[0]);
-												          console.log(result.get[0].importance);
-												          console.log(result.get[0].count);
-												          importance[0] = result.get[0].importance
-												          importance[1] = result.get[1].importance
-												          importance[2] = result.get[2].importance
-												          count[0] = result.get[0].count
-												          count[1] = result.get[1].count
-												          count[2] = result.get[2].count
-												          console.log(" riskDashBoardData 완료")
-												      },
-												      error: function(result){
-												    	  console.log(memberkey)
-												          console.log("riskDashBoardData 실패");
-												          console.log(result); 
-												      }
-												    }); //$.ajax					
-													
-												    console.log("riskdata ::::::::::::::::::: "+count[2])
-													
-								
-															function drawBasic() {
-															  var data = google.visualization.arrayToDataTable(
-																	  [
-																	         ['Element', '수', { role: 'style' }],
-																	         ['낮음', count[0], '#b87333'],            // RGB value
-																	         ['보통', count[1], 'silver'],            // English color name
-																	         ['중요', count[2], 'color: gold'],
-															     	 ]
-															  
-															  );
-														      var options = {
-														        title: '',
-														        hAxis: {
-														          title: '중요도'
-														        },
-														        vAxis: {
-														          title: '개수'
-														        }
-														      };
-								
-												      var chart = new google.visualization.ColumnChart(
-												        document.getElementById('risk'));
-												      	chart.draw(data, options);
-												    }
-								
-								
-								})
-								</script>
 
 
 
@@ -815,36 +780,69 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
+					
+					
 					<div class="card">
 						<div class="card-header">
-							<h4>예산 분석</h4>
+							<h4>프로젝트 조직 분석</h4>
 						</div>
 						<div class="card-body">
-						 <script type="text/javascript">
-   							   google.charts.load('current', {'packages':['corechart']});
-						      google.charts.setOnLoadCallback(drawChart);
 						
-						      function drawChart() {
-						        var data = google.visualization.arrayToDataTable([
-						          ['Director (Year)',  'Rotten Tomatoes', 'IMDB'],
-						          ['Alfred Hitchcock (1935)', 8.4,         7.9],
-						          ['Ralph Thomas (1959)',     6.9,         6.5],
-						          ['Don Sharp (1978)',        6.5,         6.4],
-						          ['James Hawes (2008)',      4.4,         6.2]
-						        ]);
+								 <script type="text/javascript">
+									
+									var projectkey;
+									var projectkeyRe = "${project.projectkey}";
+									
+									var dataRe = {projectkey : projectkeyRe}
+									
+									var cntList = []
+								 	$.ajax({
+										url : '/project5/teamCnt.do',
+										type : 'POST',
+										data : dataRe,
+										async:false, 
+										dataType:'json',
+										success : function(result){
+											console.log("프로젝트 조직 분석 데이터 불러오기 성공")
+											cntList[0] = result.teamCntByProject1
+											cntList[1] = result.teamCntByProject2
+											cntList[2] = result.teamCntByProject2
+										},
+										error : function(result){
+											alert("실패")
+										}
+								 	})
+								 console.log("cntList::::::::::::::::::::::::::::::"+cntList)
+								 
+											google.charts.load('current', {'packages':['corechart']});
+										      google.charts.setOnLoadCallback(drawChart);
+										
+																		
+										      function drawChart() {
+										
+										          var data1 = google.visualization.arrayToDataTable([
+										            ['Task', 'Hours per Day'],
+										            ['기획팀',     cntList[0]],
+										            ['개발팀',     cntList[1]],
+										            ['고객전담팀',     cntList[2]],
+										          ]);
+										
+										          var options = {
+										            title: '조직 분포'
+										          };
+										
+										          var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+										
+										          chart.draw(data1, options);
+										        }
+							    </script>
 						
-						        var options = {
-						          title: 'The decline of \'The 39 Steps\'',
-						          vAxis: {title: 'Accumulated Rating'},
-						          isStacked: true
-						        };
 						
-						        var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div2'));
-						
-						        chart.draw(data, options);
-						      }
-						    </script>
-						<div id="chart_div2"></div>
+						<div id="piechart1" style="width: 100%; height: 100%;"></div>
 						</div>
 					</div>
 					
@@ -905,30 +903,30 @@ $(document).ready(function(){
 						</div>
 						<div class="card-body">
 						
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        var options = {
-          title: '분류'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        chart.draw(data, options);
-      }
-    </script>
+						    <script type="text/javascript">
+						      google.charts.load('current', {'packages':['corechart']});
+						      google.charts.setOnLoadCallback(drawChart);
+						
+						      function drawChart() {
+						
+						        var data = google.visualization.arrayToDataTable([
+						          ['Task', 'Hours per Day'],
+						          ['Work',     11],
+						          ['Eat',      2],
+						          ['Commute',  2],
+						          ['Watch TV', 2],
+						          ['Sleep',    7]
+						        ]);
+						
+						        var options = {
+						          title: '분류'
+						        };
+						
+						        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+						
+						        chart.draw(data, options);
+						      }
+						    </script>
     
 							<div id="piechart"></div>
 						</div>

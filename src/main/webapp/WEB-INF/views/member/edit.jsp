@@ -349,14 +349,14 @@ $(document).ready(function() {
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"
-								placeholder="이름" name="name">
+								placeholder="이름" name="name" value="${member.name }">
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>
 						</div>
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="email" class="form-control form-control-xl"
-								placeholder="이메일" name="email">
+								placeholder="이메일" name="email" value="${member.email }">
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>

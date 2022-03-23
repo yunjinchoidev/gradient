@@ -210,16 +210,7 @@ public class UploadController {
 	}
 
 	
-	@PostMapping("/projectData.do")
-	public String projectdata(String projectkey, Model d) {
-		int projectkeyN = Integer.parseInt(projectkey);
-		System.out.println("/projectkey.do 진입");
-		System.out.println("memberkey:"+projectkeyN);
-		ProjectVO vo = service3.get(projectkeyN);
-		System.out.println("pname" + vo.getName());
-		d.addAttribute("vo", service3.get(projectkeyN));
-		return "pageJsonReport";
-	}
+
 
 	
 

@@ -1,5 +1,6 @@
 package project5.vote;
 
+import org.aspectj.internal.lang.annotation.ajcDeclareEoW;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,6 +19,7 @@ public class VoteController {
 	@Autowired
 	ProjectService service2;
 
+	// 투표 리스트
 	@RequestMapping("/voteList.do")
 	public String voteList(Model d) {
 		d.addAttribute("list", service.list());
@@ -45,20 +47,27 @@ public class VoteController {
 	@RequestMapping("/voteResult.do")
 	public String voteResult(Model d, VoteVO vo) {
 		d.addAttribute("get", service.get(vo.getVotekey()));
-		return "WEB-INF\\views\\vote\\Result.jsp";
+		return "WEB-INF\\views\\vote\\result.jsp";
 	}
+	
+	
 
+	
+	// 투표를 하는 행위
 	@RequestMapping("/voting.do")
 	@ResponseBody
-	public String voting(Model d, String voteItem1) {
-		System.out.println(voteItem1);
-		//System.out.println(vo.getVoteItem2());
-		//service.voting(vo);
+	public String voting(Model d, VoteVO vo) {
+		System.out.println("voteItem1 : "+vo.getVoteItem1());
+		System.out.println("voteItem2 : "+vo.getVoteItem2());
+		System.out.println("voteItem3 : "+vo.getVoteItem3());
+		System.out.println("voteItem4 : "+vo.getVoteItem4());
+		System.out.println("voteItem5 : "+vo.getVoteItem5());
+		service.voting(vo);
 		d.addAttribute("psc", "voteSuccess");
-		
 		return "success";
 		//return "forward:/projectHome.do?projectkey=1";
 	}
+	
 	
 	
 	

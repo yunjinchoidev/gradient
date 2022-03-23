@@ -28,7 +28,10 @@
 	href="/project5/resources/dist/assets/css/pages/auth.css">
 	<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 	
+	
+	
 </head>
+
 
 <script>
 
@@ -93,7 +96,10 @@ $(document).ready(function(){
 								Keep me logged in </label>
 						</div>
 						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" id="loginbtn">로그인</button>
+
+
 					</form>
+					
 					<div class="text-center mt-5 text-lg fs-4">
 						<p class="text-gray-600">
 							계정이 없습니까? <a href="/project5/memberRegisterForm.do" class="font-bold">회원가입
@@ -116,5 +122,8 @@ $(document).ready(function(){
 	</div>
 	
 </body>
+
+
+
 
 </html>
