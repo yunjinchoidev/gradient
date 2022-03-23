@@ -52,23 +52,33 @@ public class DashBoardController {
 	
 	
 	@RequestMapping("/outputSortCnt.do")
-	public String outputSortCnt(Model d) {
+	public String outputSortCnt(Model d,  String memberkey) {
+		int memberkeyN = Integer.parseInt(memberkey);
 		System.out.println("outputSortCnt.do 진입");
 		d.addAttribute("outputSortCnt", service3.outputSortCnt());
-		d.addAttribute("worksort", service4.list());
+		d.addAttribute("worksortList", service4.list());
+		d.addAttribute("outputSortCntByMemberkey", service3.outputSortCntByMemberkey(memberkeyN));
 		return "pageJsonReport";
 	}
 
-	@RequestMapping("/outputSortCnt2.do")
-	public String outputSortCnt2(Model d, String memberkey) {
-		int memberkeyN = Integer.parseInt(memberkey);
-		System.out.println("outputSortCnt.do 진입");
-		System.out.println("memberkey" + memberkeyN);
-		d.addAttribute("outputSortCntByMemberkey", service3.outputSortCntByMemberkey(memberkeyN));
+	
+	@RequestMapping("/teamCnt.do")
+	public String teamCnt(Model d,  String projectkey) {
+		int projectkeyN = Integer.parseInt(projectkey);
+		System.out.println("teamCnt.do 진입");
+		System.out.println("????");
+		d.addAttribute("teamCntByProject", service3.teamCntByProject(projectkeyN));
+		d.addAttribute("teamCntByProject1", service3.teamCntByProject1(projectkeyN));
+		d.addAttribute("teamCntByProject2", service3.teamCntByProject2(projectkeyN));
+		d.addAttribute("teamCntByProject3", service3.teamCntByProject3(projectkeyN));
+		System.out.println(service3.teamCntByProject3(1));
 		return "pageJsonReport";
 	}
 	
 
+	
+	
+	
 	
 	
 	

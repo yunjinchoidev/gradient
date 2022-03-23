@@ -115,6 +115,12 @@
 </head>
 
 <body>
+
+
+
+
+
+
 <div class="jumbotron text-center">
   <h2>채팅처리</h2>
 </div>
@@ -142,7 +148,9 @@
 		<input id="msg" class="form-control" placeholder="보낼 메시지 입력하세요" />
 		<input type="button" class="btn btn-info" value="전송" id="sendBtn"/>		
 	</div>
-	
 </div>
+
+
+
 </body>
 </html>

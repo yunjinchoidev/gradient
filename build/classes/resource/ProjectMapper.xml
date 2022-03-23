@@ -23,6 +23,8 @@
 			close=")" separator=",">
 			#{projectkey}
 		</foreach>
+		ORDER BY projectkey
+		
 	</select>
 
 

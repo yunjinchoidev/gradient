@@ -143,74 +143,98 @@ to {
 
 
 
+		<script>
+			$(document).ready(function() {
+				
+				<c:forEach var="list" items="${list}">
+								var projectkey = "${list.projectkey}";
+								console.log("projectkey"+projectkey);
+								 var data = { projectkey : projectkey};
+								
+								 // 프로젝트 데이터 가져오기
+								 $.ajax({
+							      url: '/project5/projectData.do',
+							      data: data,
+							      type: 'POST',
+							      dataType:'json',
+							        success: function(result){
+							        console.log("=================")
+							          console.log("프로젝트 데이터 불러오기완료")
+							          console.log("프로젝트 이미지 파일 데이터 불러오기완료")
+							          	console.log(result)
+										console.log(result.projectInfo.name)
+										console.log(result.fileInfo)
+										console.log(result.fileInfo[0].fname)
+									  showProjectCard(result.projectInfo, result.fileInfo[0].fname);             // 함수 호출
+									  console.log("=================")
+									  
+							      },
+							      error: function(result){
+							          console.log("불러오기 실패");
+							          console.log(result);
+							      }
+							    }); //$.ajax
+							    
+							    
+							    $.ajax({
+							      url: '/project5/projectImg.do',
+							      data: data,
+							      type: 'POST',
+							      dataType:'json',
+							        success: function(result){
+							          console.log("프로젝트 이미지 파일 불러오기 완료")
+									  //showUploadResult2(result.get[0]);// 함수 호출 
+							      },
+							      error: function(result){
+							          console.log("불러오기 실패");
+							          console.log(result); 
+							      }
+							    }); //$.ajax
+			    </c:forEach>
+							    
+							    
+							    
+				
+			  function showProjectCard(obj, fname){
+				    var uploadUL = $("#content-types");
+				    var str ="";
+				    		console.log("obj"+obj);
+							var fileCallPath =  encodeURIComponent(fname);
+							console.log(fileCallPath);
+								str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;' >"
+									str += "<div class='card-content' id='prjImg'>"
+										str += "<img src='/project5/display2.do?fileName="+fileCallPath+"' class='card-img-top img-fluid' alt='singleminded' style='width:100%; height:400px' >";
+										str += "<div class='card-body'>"
+												str += "<h5 class='card-title' onclick='location.href='/project5/dashBoard.do?projectkey="  + obj.projectkey +  " ''>"+obj.name+"</h5>"
+												str += "<p class='card-text'>"+obj.contents+"</p>"
+											str += "</div></div>"
+											str += "<ul class='list-group list-groue-flush'>"
+												str += "<li class='list-group-item'> 타이틀 : ["+obj.projectkey+"]"+obj.name+"</li>"
+												str += "<li class='list-group-item'> 수주액 : "+obj.take+"</li>"
+												str += "<li class='list-group-item'> 설명 : "+obj.contents+"</li>"
+												str += "<li class='list-group-item'> 진행 정도 : "+obj.progress+"</li>"
+										str += "</ul>"
+								str += "</div>"
+							console.log("str"+str)
+				    uploadUL.append(str);
+				  }
+						
+				// 파일 다운로드		
+				function downFile(fname){
+					if(confirm("다운로드할 파일:"+fname)){
+						location.href="${path}/download.do?fname="+fname;
+					}
+				}
+			
+			
+		});
+		</script>
 
-			<!-- Basic card section start -->
-			<section id="content-types"
-				style="display: flex; flex-direction: row; flex-wrap: wrap;">
-				<c:forEach var="list" items="${list }">
-					<div class="card" style="margin-right: 40px; width: 470px;">
-						<div class="card-content">
-							<img src="/project5/resources/image/project.png"
-								class="card-img-top img-fluid" alt="singleminded">
-							<div class="card-body">
-								<h5 class="card-title">${list.name }</h5>
-								<p class="card-text">${list.contents }</p>
-							</div>
-						</div>
-						<ul class="list-group list-group-flush">
-							<li class="list-group-item">프로젝트</li>
-							<li class="list-group-item">프로젝트</li>
-							<li class="list-group-item">프로젝트</li>
-							<li class="list-group-item" onClick="window.open('http://www.naver.com','네이버','width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes');return false;"
-								>진행사항확인</li>
-						</ul>
-						  <div id="chart_div"></div>
-					</div>
-					
-					<script>
-						google.charts.load('current', {packages: ['corechart', 'bar']});
-						google.charts.setOnLoadCallback(drawBasic);
-						function drawBasic() {
-						      var data = google.visualization.arrayToDataTable([
-						        ['City', 'Project',],
-						        ['Progress', 50]
-						      ]);
-			
-						      var options = {
-						        title: '프로젝트',
-						        chartArea: {width: '50%'},
-						        hAxis: {
-						          title: '진행률 구분',
-						          minValue: 0,
-						          maxValue:100
-						        },
-						        vAxis: {
-						          title: 'Progress'
-						        }
-						      };
-			
-						      var chart = new google.visualization.BarChart(document.getElementById('chart_div'));
-			
-						      chart.draw(data, options);
-						    }
-						</script>
-					
-				</c:forEach>
+
+
+			<section id="content-types" style="display: flex; flex-direction: row; flex-wrap: wrap;">
 			</section>
 			
-			
-			
-			
-			
-			
-
-
-
-
-
-
-
-
 
 		</div>
 	</div>

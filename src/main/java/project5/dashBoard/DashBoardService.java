@@ -37,8 +37,24 @@ public class DashBoardService {
 	}
 	
 	public List<OutputDashBoardVO> outputSortCntByMemberkey(int memberkey) {
-		return dao.outputSortCnt();
+		return dao.outputSortCntByMemberkey(memberkey);
 	}
+	
+	
+	public int teamCntByProject(int projectkey){
+		return dao.teamCntByProject(projectkey);
+	}
+
+	public int teamCntByProject1(int projectkey) {
+		return dao.teamCntByProject1(projectkey);
+	}
+	public int teamCntByProject2(int projectkey) {
+		return dao.teamCntByProject2(projectkey);
+	}
+	public int teamCntByProject3(int projectkey) {
+		return dao.teamCntByProject3(projectkey);
+	}
+	
 	
 	
 }

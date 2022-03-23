@@ -73,7 +73,27 @@
 				history.back(-2);
 			}
 		})
+		$("#dashboard").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				history.back(-2);
+			}
+		})
+		$("#mywork").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				history.back(-2);
+			}
+		})
 
+		
+		
+		
+		
+		
+		
+		
+		
 	})
 </script>
 
@@ -159,7 +179,7 @@
 																		</a>
 										<ul class="submenu ">
 										<li class="submenu-item "><a
-												href="/project5/dashBoard.do?projectkey=1&memberkey=${member.memberkey }">대시보드 </a>
+												href="/project5/dashBoard.do?projectkey=1&memberkey=${member.memberkey }" id="dashboard">대시보드 </a>
 											<li class="submenu-item "><a
 												href="/project5/projectHome.do?projectkey=1">홈 </a></li>
 											<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반
@@ -231,7 +251,7 @@
 								<i class="bi bi-stack"></i> <span>고객 관리</span></a>
 							<ul class="submenu " id="check">
 								<li class="submenu-item "><a href="/project5/customerChat.do">채팅 상담</a></li>
-								<li class="submenu-item "><a href="#" onclick="window.open('/project5/chatBot.do','팝업창','width=1000, height=1000, left=400');">챗봇 </a></li>
+								<li class="submenu-item "><a href="/project5/chatBot.do">챗봇</a></li>
 								<li class="submenu-item "><a href="/project5/plan.do">플랜 </a></li>
 							</ul>
 						</li>
