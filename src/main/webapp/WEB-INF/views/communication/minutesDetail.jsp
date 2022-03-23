@@ -19,9 +19,9 @@
 	</style>
 	<script>
 		$(document).ready(function(){
-			var sessName = "${member.name}";
-			var writerName = "${m.name}";
-			if(sessName!=writerName){
+			var sessKey = "${member.memberkey}";
+			var writerKey = "${m.memberKey}";
+			if(sessKey!=writerKey){
 				$("#delBtn").hide();
 				$("#uptBtn").hide();
 			}
