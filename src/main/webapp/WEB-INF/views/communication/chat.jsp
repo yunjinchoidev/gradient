@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<fmt:requestEncoding value="utf-8"/>    
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>채팅</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
@@ -17,49 +21,31 @@
 		width:80%;height:200px;overflow-y:auto;text-align:left;
 		border:1px solid green;
 	}
+	*{ margin: 0; padding: 0; }
+	.chat_wrap .header { font-size: 14px; padding: 15px 0; background: #25396f; color: white; text-align: center;  }
+
+	.chat_wrap .input-div { position: fixed; display: flex; bottom: 0; width: 100%; height: 130px; background-color: #FFF; text-align: center; border-top: 1px solid #25396f; }
+	.chat_wrap .input-div > textarea { width: 100%; height: 100%; border: none; resize: none; padding: 10px; }
+	.chat_wrap .input-div > textarea:focus {outline:none; background: ivory;}
+	 
+	.format { display: none; }
+	
+	.chatArea{
+	    width: 100%;
+	    height: 600px;
+	    overflow-y: auto;
+	    text-align: left;}
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
 <script src="${path}/a00_com/bootstrap.min.js"></script>
 <script src="${path}/a00_com/jquery-ui.js"></script>
 
-
-
-
-
-
-
-<style>
-*{ margin: 0; padding: 0; }
- 
-.chat_wrap .header { font-size: 14px; padding: 15px 0; background: #F18C7E; color: white; text-align: center;  }
- 
-.chat_wrap .chat { padding-bottom: 80px; }
-.chat_wrap .chat ul { width: 100%; list-style: none; }
-.chat_wrap .chat ul li { width: 100%; }
-.chat_wrap .chat ul li.left { text-align: left; }
-.chat_wrap .chat ul li.right { text-align: right; }
- 
-.chat_wrap .chat ul li > div { font-size: 13px;  }
-.chat_wrap .chat ul li > div.sender { margin: 10px 20px 0 20px; font-weight: bold; }
-.chat_wrap .chat ul li > div.message { display: inline-block; word-break:break-all; margin: 5px 20px; max-width: 75%; border: 1px solid #888; padding: 10px; border-radius: 5px; background-color: #FCFCFC; color: #555; text-align: left; }
- 
-.chat_wrap .input-div { position: fixed; bottom: 0; width: 100%; background-color: #FFF; text-align: center; border-top: 1px solid #F18C7E; }
-.chat_wrap .input-div > textarea { width: 100%; height: 80px; border: none; padding: 10px; }
-.chat_wrap .input-div > textarea:focus {outline:none; background: ivory;}
- 
-.format { display: none; }
-
-
-</style>
 <script>
 var wsocket;
+conn();
 $(document).ready(function(){
 	// 1. 웹 소켓 클라이언트를 통해 웹 서버 연결하기.
-	
-	$("#enterBtn").click(function(){
-		conn();
-	});
 	$("#id").keyup(function(){
 		if(event.keyCode==13){
 			conn();
@@ -73,15 +59,17 @@ $(document).ready(function(){
 	});
 	// 접속 종료를 처리했을 시
 	$("#exitBtn").click(function(){
-		wsocket.send("msg:"+$("#id").val()+":접속 종료 했습니다!");
+		wsocket.send("msg:퇴장메시지 : "+$("#name").val()+"("+$("#auth").val()+")님이 접속 종료 했습니다!");
 		wsocket.close();
 	});
 	// 메시지는 보내는 기능 메서드
 	function sendMsg(){
 		var id = $("#id").val();
+		var name = $("#name").val();
+		var auth = $("#auth").val();
 		var msg = $("#msg").val();
 		// message를 보내는 처리..서버의 handler의  handleTextMessage()와 연동
-		wsocket.send("msg:"+id+":"+msg);
+		wsocket.send("msg:"+name+"("+auth+"):"+msg);
 		$("#msg").val(""); $("#msg").focus();
 	}
 	
@@ -91,13 +79,13 @@ $(document).ready(function(){
 });
 function conn(){
 	//  원격 접속시에는 고정 ip 할당 받아서 처리..
-	// wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
 	// local에서 다른 브라우저로 실행시 처리할 내용..
+	// wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
 	wsocket = new WebSocket("ws:/@localhost:7080/${path}/chat-ws.do");
 	// handler :afterConnectionEstablished(WebSocketSession session)와 연결
 	wsocket.onopen=function(evt){ 
 		console.log(evt);
-		wsocket.send("msg:"+$("#id").val()+":연결 접속했습니다!");
+		wsocket.send("msg:입장메시지 : "+$("#name").val()+"("+$("#auth").val()+")님이 연결 접속했습니다!");
 	}
 	// handler의  handleTextMessage()
 	// 연결되어 있으면 메시지를 push형식으로 서버에서 받을 수 있다.
@@ -116,14 +104,14 @@ function conn(){
 			var mx = parseInt($("#chatMessageArea").height())
 			// 2. 포함하고 있는 div의 scrollTop을 통해 최하단의 내용으로 scrolling 하기..
 			//    chatArea
-			$("#chatArea").scrollTop(mx);
+			$(".chatArea").scrollTop(mx);
 		}
 	}
 	// handler의 afterConnectionClose와 연동
 	wsocket.onclose=function(){
-
 		alert($("#id").val()+'접속 종료합니다.')
 		$("#chatMessageArea").text("");
+		window.close();
 	}
 	
 }
@@ -132,28 +120,23 @@ function conn(){
 
 </head>
 <body>
-
-	<%@ include file="../common/header.jsp"%>
-
-	<div class="chat_wrap" style="margin-left: 300px;">
+	<div class="chat_wrap">
 	    <div class="header">
 	        CHAT
+	        <input type="button" style="align:rignt;" class="btn btn-danger" value="나가기" id="exitBtn"/>
 	    </div>
 	    <div class="chat">
-	    	<input type="text" id="id" name="id" value="${member.id}"/>
-	        <div id="chatArea" class="input-group-append">
+	    	<input type="hidden" id="id" name="id" value="${member.id}"/>
+	    	<input type="hidden" id="name" name="name" value="${member.name}"/>
+	    	<input type="hidden" id="auth" name="auth" value="${member.auth}"/>
+	        <div class="chatArea">
 				<div id="chatMessageArea"></div>
 			</div>
 	    </div>
-	    <div>
-	    	<input type="button" class="btn btn-info" value="채팅입장" id="enterBtn"/>	
-			<input type="button" class="btn btn-success" value="나가기" id="exitBtn"/>	
-	    </div>
 	    <div class="input-div">
-	        <textarea id="msg" placeholder="Press Enter for send message."></textarea>
-	        <input type="button" class="btn btn-info" value="전송" id="sendBtn"/>	
+	        <textarea id="msg" placeholder="메시지를 입력해주세요."></textarea>
+	        <input type="button" class="btn btn-primary" style="background: #25396f;border:none; width:100px;" value="전송" id="sendBtn"/>	
 	    </div>
-	    
 	</div>
 
 
