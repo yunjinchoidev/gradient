@@ -25,10 +25,14 @@
 <script>
 var wsocket;
 $(document).ready(function(){
-	// 1. 웹 소켓 클라이언트를 통해 웹 서버 연결하기.
-	
 	$("#enterBtn").click(function(){
-		window.open("${path}/chatroom.do", "채팅", "width=600, height=800");
+		var hasSession="${member.id}";
+		if(hasSession!=""){
+			window.open("${path}/chatroom.do", "채팅", "width=600, height=800");
+		}else{
+			alert("로그인 후 이용가능합니다.");
+		}
+		
 	});
 });
 

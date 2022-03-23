@@ -19,6 +19,13 @@
 	</style>
 	<script>
 		$(document).ready(function(){
+			var sessName = "${member.name}";
+			var writerName = "${m.name}";
+			if(sessName!=writerName){
+				$("#delBtn").hide();
+				$("#uptBtn").hide();
+			}
+			
 		    var msg = "${msg}";
 			if(msg!=""){
 				if(msg=="수정되었습니다."){
@@ -110,27 +117,11 @@
 				<div>
 					<input type="button" id="goList" class="btn btn-dark" value="목록으로"/>
 				</div>
-				<% 
-				String loginUser = request.getParameter("memberKey");
-				String writeUser = request.getParameter("memberKey");
-				
-				Member m = Member();
-				
-				
-				
-				if (member.memberkey == m.memberkey) {
-					
-				%>
-				
 				<div>
 					<input type="button" id="uptBtn" class="btn btn-info" value="수정"/>
 					<input type="button" id="delBtn" class="btn btn-danger" value="삭제"/>
 				</div>
-				<% } %>
 			</div>
-			
-			
-			
 		</div>
 
 	</div>
