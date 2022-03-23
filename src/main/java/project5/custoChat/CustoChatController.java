@@ -29,6 +29,7 @@ public class CustoChatController {
 	@RequestMapping("/roomJoin.do")
 	public String roomJoin(Model d, CustoChatRoomJoinVO vo) {
 		service.roomJoin(vo);
+		d.addAttribute("psc", "success");
 		return "pageJsonReport";
 	}
 	
@@ -36,7 +37,8 @@ public class CustoChatController {
 	@RequestMapping("/DeleteMessagebyMessagekey.do")
 	public String DeleteMessagebyMessagekey(Model d, int messagekey) {
 		service.DeleteMessagebyMessagekey(messagekey);
-		return "success";
+		d.addAttribute("psc", "success");
+		return "pageJsonReport";
 	}
 	
 	@RequestMapping("/MessageListbyRoomkey.do")
@@ -58,25 +60,19 @@ public class CustoChatController {
 		return "pageJsonReport";
 	}
 	
-	
-	
-	
 	@RequestMapping("/createChat.do")
 	public String  createChat(Model d, CustoChatRoomVO vo) {
 		service.createChat(vo);
-		return "success";
+		d.addAttribute("psc", "success");
+		return "pageJsonReport";
 	}
-	
-	
-	
-	
-	
 	
 	@RequestMapping("/chatRoomList.do")
 	public String  chatRoomList(Model d) {
 		d.addAttribute("chatRoomList", service.chatRoomList());
 		return "pageJsonReport";
 	}
+	
 	@RequestMapping("/getChatRoom.do")
 	public String  getChatRoom(Model d, int roomkey) {
 		d.addAttribute("getChatRoom", service.getChatRoom(roomkey));

@@ -15,6 +15,57 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+body{margin-top:20px;}
+
+.chat-online {
+    color: #34ce57
+}
+
+.chat-offline {
+    color: #e4606d
+}
+
+.chat-messages {
+    display: flex;
+    flex-direction: column;
+    max-height: 800px;
+    overflow-y: scroll
+}
+
+.chat-message-left,
+.chat-message-right {
+    display: flex;
+    flex-shrink: 0
+}
+
+.chat-message-left {
+    margin-right: auto
+}
+
+.chat-message-right {
+    flex-direction: row-reverse;
+    margin-left: auto
+}
+.py-3 {
+    padding-top: 1rem!important;
+    padding-bottom: 1rem!important;
+}
+.px-4 {
+    padding-right: 1.5rem!important;
+    padding-left: 1.5rem!important;
+}
+.flex-grow-0 {
+    flex-grow: 0!important;
+}
+.border-top {
+    border-top: 1px solid #dee2e6!important;
+}
+</style>
+
+
+
+
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.4.0/sockjs.js"></script>
@@ -41,63 +92,131 @@
 	var theSrc;
 	var myFaceData;
 	var theSrc;
-	
+	var today=new Date(); 
 	$(document).ready(function(){
 		
-		playAlert = setInterval(function() {
-			//console.log("10초마다 반복")
-			theSrc(myFaceData.fname)
-		}, 10000);
-		
-		var theSrc =  function showImg2(fname){
-		    var uploadUL = $(".myFace");
-		    var fileCallPath =  encodeURIComponent(fname);
-		    var theSrc = '/project5/display2.do?fileName='+fileCallPath
-		    $(".myFace").attr("src",theSrc)
-		  }
-		
-		
-		
-		var memberkey = parseInt("${member.memberkey}");
-		var data = {memberkey : memberkey}
-					
-		
-					$.ajax({
-						url : '/project5/myfaceData.do',
-						method : 'POST',
-						async:false,
-						data : data,
-						dataType:'json',
-						success:function(result){
-							console.log(result)
-							console.log(result.myfaceData)
-							console.log(result.myfaceData[0].fname)
-							console.log("myfaceData 불러오기 성공")
-							//showImg(result.myfaceData[0].fname)
-							myFaceData = result.myfaceData[0];
+						playAlert = setInterval(function() {
+							//console.log("10초마다 반복")
 							theSrc(myFaceData.fname)
-						},
-						error:function(result){
-							console.log("myfaceData 불러오기 실패")
-						}
-					})
+						}, 1000);
+
+						console.log(today.toLocaleString());
 		
-						console.log("====================")
-						console.log("내 얼굴 이미지 " +myFaceData)
 		
-					  function showImg(fname){
-					    var uploadUL = $(".myFace");
-					    var fileCallPath =  encodeURIComponent(fname);
-					    var theSrc = '/project5/display2.do?fileName='+fileCallPath
-					    $(".myFace").attr("src",theSrc)
-					  }
+							var theSrc =  function showImg2(fname){
+							    var uploadUL = $(".myFace");
+							    var fileCallPath =  encodeURIComponent(fname);
+							    var theSrc = '/project5/display2.do?fileName='+fileCallPath
+							    $(".myFace").attr("src",theSrc)
+							  }
+		
+		
+		
+		
 					
+								var memberkey = parseInt("${member.memberkey}");
+								var data = {memberkey : memberkey}
+								$.ajax({
+									url : '/project5/myfaceData.do',
+									method : 'POST',
+									async:false,
+									data : data,
+									dataType:'json',
+									success:function(result){
+										console.log(result)
+										console.log(result.myfaceData)
+										console.log(result.myfaceData[0].fname)
+										console.log("myfaceData 불러오기 성공")
+										//showImg(result.myfaceData[0].fname)
+										myFaceData = result.myfaceData[0];
+										theSrc(myFaceData.fname)
+									},
+									error:function(result){
+										console.log("myfaceData 불러오기 실패")
+									}
+								})
 					
-				
+									console.log("====================")
+									console.log("내 얼굴 이미지 " +myFaceData)
 					
-					theSrc(myFaceData.fname)
+								  function showImg(fname){
+								    var uploadUL = $(".myFace");
+								    var fileCallPath =  encodeURIComponent(fname);
+								    var theSrc = '/project5/display2.do?fileName='+fileCallPath
+								    $(".myFace").attr("src",theSrc)
+								  }
+								theSrc(myFaceData.fname)
 
 		
+					
+								
+								
+								
+								
+								
+								
+								
+					
+					// 새 상담 만들기
+					$("#newConsult").click(function(){
+						alert("새 상담을 시작합니다.")
+						var consultChatList = $("#consultChatList");
+						var str="";
+						str +="<a href='#' class='list-group-item list-group-item-action border-0 consult' >"
+						str +="<div class='badge bg-success float-right consult'></div>"
+						str +="<div class='d-flex align-items-start consult'>"
+						str +="<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1 consult' alt='Vanessa Tucker' width='40' height='40'>"
+						str +="<div class='flex-grow-1 ml-3 consult'>상담사 A "
+						str +="<div class='small'><span class='fas fa-circle chat-online consult'></span> </div>"
+						str +="</div></div></a>"
+						consultChatList.append(str);
+						
+						$.ajax({
+							url : '/project5/createChat.do',
+							success : function(result){
+								alert("새 상담이 정상적으로 만들어졌습니다.")
+								sendMsgEnd();
+							}
+						})
+						
+					})
+					
+					
+					
+					// 채팅 로드
+					$(".consult").click(function(){
+						alert("채팅을 로드합니다.")
+						$("#chatMessageArea").text("");
+					})
+					
+					
+					$("#eraseBtn").click(function(){
+						alert("내용을 모두 지웁니다.")
+						$("#chatMessageArea").text("");
+					})
+					
+						
+						
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 
 						//////////////////////////////////////////////////////////////////////////////
 
@@ -172,14 +291,23 @@
 							
 						});
 
+						
+						
+						
 							// 접속 종료를 처리했을 시
 							$("#exitBtn").click(
 								function() {
 									wsocket.send("msg:" + $("#id").val()
 											+ ":접속 종료 했습니다!");
+									sendMsgEnd();
 									wsocket.close();
 								});
 
+							
+							
+							
+							
+							
 						////////////////////////////////////////////////////////////////////////
 						// 메시지는 보내는 기능 메서드
 						function sendMsg() {
@@ -191,7 +319,7 @@
 							str += "<div class='chat-message-right pb-4'>"
 							str += "<div>"
 							str += "<img src='https://bootdey.com/img/Content/avatar/avatar1.png' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40'>"
-							str += "<div class='text-muted small text-nowrap mt-2'>2:33 am</div>"
+							str += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
 							str += "</div>"
 							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
 							str += "<div class='font-weight-bold mb-1'>"	+ $("#id").val() + "</div>"
@@ -203,6 +331,35 @@
 							$("#msg").val("");
 							$("#msg").focus();
 						}
+						
+						
+						// 상담 종료
+						function sendMsgEnd() {
+							var str = "";
+							str += "<div class='chat-message-left pb-4'>"
+							str += "<div>"
+							str += "<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40'>"
+							str += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
+							str += "</div>"
+							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
+							str += "<div class='font-weight-bold mb-1'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>상담을 종료합니다"
+							str += "<br>================"
+							str += "<br>================"
+							str += "<br>================"
+							str += "<br>================"
+							str += "</div>"
+							str += "</div>"
+							//console.log("메시지 보내기 :::::::::::::::" + str);
+							wsocket.send("msg:" + str);
+							$("#msg").val("");
+							$("#msg").focus();
+						}
+						
+						
+						
+						
+						
+						
 					});
 
 	
@@ -217,7 +374,7 @@
 			str += "<div class='chat-message-right pb-4'>"
 			str += "<div>"
 			str += "<img src='#' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40'>"
-			str += "<div class='text-muted small text-nowrap mt-2'>2:33 am</div>"
+			str += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
 			str += "</div>"
 			str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
 			str += "<div class='font-weight-bold mb-1'>" + $("#id").val()+ "</div>"
@@ -231,11 +388,11 @@
 			str2 += "<div class='chat-message-left pb-4'>"
 			str2 += "<div>"
 			str2 += "<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1' alt='Chris Wood' width='40' height='40'>"
-			str2 += "<div class='text-muted small text-nowrap mt-2'>2:33 am</div>"
+			str2 += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
 			str2 += "</div>"
 			str2 += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
 			str2 += "<div class='font-weight-bold mb-1'>상담원 A</div>"
-			str2 += "안녕하세요?" + $("#id").val() + "무엇을 도와드릴까요?"
+			str2 += "<br>안녕하세요?<br><br>" + $("#id").val() + "<br> 무엇을 도와드릴까요?"
 			str2 += "</div>"
 			str2 += "</div>"
 
@@ -264,6 +421,11 @@
 			}
 		}
 
+		
+		
+		
+		
+		
 		// handler의 afterConnectionClose와 연동
 		wsocket.onclose = function() {
 			alert($("#id").val() + '접속 종료합니다.')
@@ -274,53 +436,7 @@
 
 	}
 </script>
-<style>
-body{margin-top:20px;}
 
-.chat-online {
-    color: #34ce57
-}
-
-.chat-offline {
-    color: #e4606d
-}
-
-.chat-messages {
-    display: flex;
-    flex-direction: column;
-    max-height: 800px;
-    overflow-y: scroll
-}
-
-.chat-message-left,
-.chat-message-right {
-    display: flex;
-    flex-shrink: 0
-}
-
-.chat-message-left {
-    margin-right: auto
-}
-
-.chat-message-right {
-    flex-direction: row-reverse;
-    margin-left: auto
-}
-.py-3 {
-    padding-top: 1rem!important;
-    padding-bottom: 1rem!important;
-}
-.px-4 {
-    padding-right: 1.5rem!important;
-    padding-left: 1.5rem!important;
-}
-.flex-grow-0 {
-    flex-grow: 0!important;
-}
-.border-top {
-    border-top: 1px solid #dee2e6!important;
-}
-</style>
 </head>
 
 <body>
@@ -362,9 +478,11 @@ body{margin-top:20px;}
 									<input class="dataTable-input" placeholder="${member.name }님" value="${member.name }님" type="text"  id="id"> 
 										<a class="btn btn-danger"  id="enterBtn" style="color:white">상담 시작</a> 
 										<a class="btn btn-info" id="exitBtn"  style="color:white">종료</a> 
-										<a class="btn btn-warning" id="newChatBtn"  style="color:white">새 상담사 연결</a> 
+										<a class="btn btn-warning" id="newConsult"  style="color:white">새 상담</a> 
+										<a class="btn btn-secondary" id="eraseBtn"  style="color:white">내용 지우기</a> 
 										<br>
 									<div class="card" style="height: 1000px; border: 1px solid black; margin-top: 30px;">
+									
 										<div class="row g-0">
 											<div class="col-12 col-lg-5 col-xl-3 border-right">
 												<div class="px-4 d-none d-md-block">
@@ -374,18 +492,32 @@ body{margin-top:20px;}
 														</div>
 													</div>
 												</div>
+										
 							
-												<a href="#" class="list-group-item list-group-item-action border-0">
-													<div class="badge bg-success float-right">$$$$</div>
-													<div class="d-flex align-items-start">
-														<img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
-														<div class="flex-grow-1 ml-3">
-															홍길동
-															<div class="small"><span class="fas fa-circle chat-online"></span> 온라인</div>
+							
+												<div id="consultChatList" class="consult">
+														
+													<a href="#" class="list-group-item list-group-item-action border-0">
+														<div class="badge bg-success float-right"></div>
+														<div class="d-flex align-items-start">
+															<img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
+															<div class="flex-grow-1 ml-3">
+																상담사 A 
+																<div class="small"><span class="fas fa-circle chat-online"></span> </div>
+															</div>
 														</div>
-													</div>
-												</a>
+													</a>
 												
+												</div>
+							
+							
+							
+							
+							
+							
+							
+							
+							
 							
 												<hr class="d-block d-lg-none mt-1 mb-0">
 											</div>
@@ -414,44 +546,15 @@ body{margin-top:20px;}
 							
 							
 							
-							
-												<div class="position-relative">
-													<!--  조심 -->
+												<div class="position-relative" id="chatBody">
 													<div class="chat-messages p-4" id="chatMessageArea" style="height: 1000px;">
-													
-													
-														<!--  오른쪽 말풍선 -->
-														<div class="chat-message-right pb-4">
-															<div>
-																<img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle mr-1 myFace" alt="Chris Wood" width="40" height="40">
-																<div class="text-muted small text-nowrap mt-2">2:33 am</div>
-															</div>
-															<div class="flex-shrink-1 bg-light rounded py-2 px-3 mr-3">
-																<div class="font-weight-bold mb-1">You</div>
-																Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-															</div>
-														</div>
-										
-														<!--  상담원 말풍선 -->
-														<div class="chat-message-left pb-4">
-															<div>
-																<img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1 consultantFace" alt="Sharon Lessman" width="40" height="40">
-																<div class="text-muted small text-nowrap mt-2">2:34 am</div>
-															</div>
-															<div class="flex-shrink-1 bg-light rounded py-2 px-3 ml-3">
-																<div class="font-weight-bold mb-1">Sharon Lessman</div>
-																Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
-															</div>
-														</div>
-														
-														
-														
-														
-														
-														
-														
 													</div>
 												</div>
+												
+												
+												
+												
+												
 												<div class="flex-grow-0 py-3 px-4 border-top">
 													<div class="input-group">
 														<input type="text" class="form-control" placeholder="Type your message" id="msg" >

@@ -4,9 +4,20 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.custoChat.CustoChatDao">
 
+
+
 	<insert id="createChat" parameterType="project5.custoChat.CustoChatRoomVO">
-		INSERT INTO custochatroom VALUES (seq_CustoChatRoom.nextval, #{name})
+		INSERT INTO custochatroom VALUES (seq_CustoChatRoom.nextval, '새상담'||seq_CustoChatRoom.nextval)
 	</insert>
+	
+	<select id="createChatName" parameterType="int" resultType="project5.custoChat.CustoChatRoomVO" >
+		select * from custochatroom where roomkey = #{roomkey}
+	</select>
+
+
+
+
+
 
 	<select id="chatRoomList" resultType="project5.custoChat.CustoChatRoomVO">
 		SELECT * FROM custochatroom
