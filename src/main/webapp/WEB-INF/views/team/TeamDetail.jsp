@@ -48,6 +48,7 @@
 					</div>
 				</div>
 			</div>
+			</div>
 			<section class="sectionMain">
 				<!-- 프로젝트 정보 -->
 				<div id="prjInfo">
@@ -60,6 +61,7 @@
 						<input class="form-control" type="text" value="${prjInfo.manager}"
 							readonly="readonly"
 							style="flex: 1; background-color: white; text-align: center;">
+					</div>
 					</div>
 
 					<div class="card" id="maincard">
@@ -96,9 +98,16 @@
 												</tr>
 											</c:forEach>
 										</tbody>
+										</table>
 								</div>
+								</div>
+								</div>
+								
 								<!-- 인적관리 리스트 화면으로 돌아가는 버튼 -->
 								<button id="backbtn" class="btn btn-primary rounded-pill"
-									style="margin-right: 10px; margin-left: 0px;">목록</button>
+									style="margin-right: 10px; margin-left: 0px;" onclick="location.href='/project5/teamlist.do'">목록</button>
+						</div>
+						</section>	
+						</div>		
 </body>
 </html>

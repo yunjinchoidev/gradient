@@ -60,6 +60,7 @@
 			<section class="sectionMain">
 				<!-- 메인영역 -->
 
+	<form action="/project5/teamInsert"> 
 				<div class="card" id="maincard">
 					<div class="card-body">
 						<div
@@ -90,14 +91,24 @@
 											<tr>
 												<td>1</td>
 												<td><input class="form-control" type="text"
-													name="list[0].name"></td>
-												<td><input class="form-control" type="text"
-													name="list[0].dname"></td>
+													name="list[0].name" value="memberkey">
+													
+													</td>
+													<td>
+														<input class="form-control" type="text"
+														name="list[0].dname">
+													</td>
+													
+													
+													
 													<td><select class="form-select" name="list[0].teamkey">
 														<c:forEach var="telist" items="${telist}">
 															<option value="${telist.teamkey}">${telist.dname}</option>
 														</c:forEach>
 												</select></td>
+												
+												
+												
 												<td><input class="form-control" type="text"
 													name="list[0].email"></td>
 											</tr>
@@ -106,13 +117,13 @@
 								</form>
 								
 									<div style="margin-top: 150px;">
-									<button type="button" id="addbtn" class="btn btn-primary rounded-pill"
+									<button type="submit" id="addbtn" class="btn btn-primary rounded-pill"
 										style="margin-left:50px;">팀원추가</button>
 									<button type="button" id="delbtn" class="btn btn-primary rounded-pill"
 										style="margin-left:400px;">팀원삭제</button>
 									<button type="button"  class="btn btn-success rounded-pill"
 										style="margin-left:400px;"onclick="location.href='/project5/teamlist.do'">뒤로가기</button>
-
+				</form>
 								</div>
 
 							</div>

@@ -156,4 +156,11 @@
 		WHERE NO = #{prjkey}
 	</delete>
 	
+	<!-- 예산 수정화면 디테일 삭제 -->
+	<delete id="delCostList" parameterType="costDetailInfo">
+		DELETE FROM COSTDETAIL
+		WHERE NO = #{prjkey}
+		AND COINDEX = #{coindex}
+	</delete>
+	
 </mapper>

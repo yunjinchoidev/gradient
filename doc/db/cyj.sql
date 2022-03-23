@@ -100,6 +100,31 @@ CREATE TABLE calendar(
 	textcolor varchar2(20),
 	allday NUMBER(1.0)
 );
+SELECT * FROM CALENDARS c;
+DELETE calendars WHERE id=20020;
+SELECT sUBSTR(end1,0,10), 'YYYYMMDD'  fROM CALENDARs;
+SELECT TO_CHAR(SYSDATE, 'YYYY/MM/dd'),to_char(TO_DATE(SUBSTR(end1,0, 10), 'YYYY-MM-DD'),'YYYY-MM-DD') FROM CALENDARs;
+SELECT  FROM CALENDARs;
+SELECT TO_CHAR(, 'YYYY-MM-DD') result1 
+  FROM dual;
+
+SELECT TO_date(SUBSTR(end1, 0, 10), 'YYYY/MM/dd')
+FROM CALENDARS;
+
+// 오늘이 껴있는 일 개수
+SELECT count(*) FROM calendars WHERE TO_CHAR(SYSDATE, 'YYYY/MM/dd') <= to_char(TO_DATE(SUBSTR(end1,0, 10), 'YYYY-MM-DD'),'YYYY/MM/DD')
+AND TO_CHAR(SYSDATE, 'YYYY/MM/dd') >= to_char(TO_DATE(SUBSTR(start1,0, 10), 'YYYY-MM-DD'),'YYYY/MM/DD');
+
+// 가장 긴급한 일
+SELECT * FROM (SELECT a.* FROM CALENDARS a ORDER BY end1)
+WHERE TO_CHAR(SYSDATE, 'YYYY/MM/dd') <= to_char(TO_DATE(SUBSTR(end1,0, 10), 'YYYY-MM-DD'),'YYYY/MM/DD')
+AND TO_CHAR(SYSDATE, 'YYYY/MM/dd') >= to_char(TO_DATE(SUBSTR(start1,0, 10), 'YYYY-MM-DD'),'YYYY/MM/DD') AND rownum=1;
+
+
+
+
+
+
 
 
 
@@ -157,7 +182,7 @@ INSERT INTO QUALITY VALUES (1, 1, 1, 'ㅁㄹ', sysdate, '11231');
 
 
 
-
+SELECT * FROM project;
 -- 리스크 관리
 CREATE TABLE risk(
 	riskkey	NUMBER PRIMARY KEY,
@@ -170,7 +195,9 @@ CREATE TABLE risk(
 );
 
 
-
+	SELECT IMPORTANCE, count(*) count
+		FROM risk
+		GROUP BY IMPORTANCE;
 
 
 -- 예산
@@ -318,6 +345,7 @@ CREATE SEQUENCE seq_memberregi START WITH 3;
 SELECT seq_memberregi.currval FROM dual;
 SELECT seq_memberregi.nextval FROM dual;
 COMMIT;
+SELECT * FROM MEMBER;
 
 
 -- 부서
@@ -457,6 +485,70 @@ FROM OUTPUT o, member m, workSort w, project p, DEPARTMENT d
 		and o.projectkey = p.projectkey
 		and o.deptno = d.deptno;
 
+SELECT WORKSORTKEY, count(WORKSORTKEY) FROM OUTPUT
+GROUP BY worksortkey
+ORDER BY WORKSORTKEY;
+SELECT * FROM worksort;
+INSERT INTO OUTPUT values (seq_output.nextval, '1', '1', 1, 1,sysdate, 11,1,2,1);
+SELECT * FROM OUTPUT;	
+	
+
+
+	SELECT worksortkey, count(worksortkey) count FROM OUTPUT
+	WHERE memberkey=4
+	GROUP BY worksortkey
+	ORDER BY WORKSORTKEY;
+	COMMIT;	
+
+DROP TABLE team;
+CREATE TABLE team(
+	teamkey NUMBER PRIMARY KEY,
+	teamname varchar2(400),
+	projectkey	NUMBER CONSTRAINT team_projectkey_fk REFERENCES project(projectkey) ON DELETE CASCADE
+);
+CREATE SEQUENCE seq_team;
+drop SEQUENCE seq_team;
+INSERT INTO team VALUES (seq_team.nextval, '기획 1팀', 1);
+INSERT INTO team VALUES (seq_team.nextval, '기획 2팀', 1);
+INSERT INTO team VALUES (seq_team.nextval, '기획 3팀', 1);
+INSERT INTO team VALUES (seq_team.nextval, '개발 1팀', 1);
+INSERT INTO team VALUES (seq_team.nextval, '개발 2팀', 1);
+INSERT INTO team VALUES (seq_team.nextval, '개발 3팀', 1);
+INSERT INTO team VALUES (seq_team.nextval, '고객 1팀', 1);
+INSERT INTO team VALUES (seq_team.nextval, '고객 2팀', 1);
+INSERT INTO team VALUES (seq_team.nextval, '고객 3팀', 1);
+INSERT INTO team VALUES (seq_team.nextval, '기획 1팀', 1);
+
+SELECT * FROM team;
+DROP TABLE team_member;
+CREATE TABLE team_member(
+	team_member_key NUMBER PRIMARY KEY,
+	teamkey	NUMBER CONSTRAINT team_member_teamkey_fk REFERENCES team(teamkey) ON DELETE CASCADE,
+	memberkey	NUMBER CONSTRAINT team_member_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE
+);
+CREATE SEQUENCE seq_team_member;
+drop SEQUENCE seq_team_member;
+INSERT INTO team_member VALUES (seq_team_member.nextval, 3, 14);
+SELECT * FROM team_member;
+
+
+
+1 - 다 - 다 
+pj  team memberf
+
+CREATE TABLE team_member
+
+
+
+
+
+SELECT * FROM OUTPUT;
+SELECT * FROM MEMBER ORDER BY memberkey;
+
+
+
+
+	
 
 -- 외래키 없이 파일 정보 저장
 create TABLE fileInfo(
@@ -627,5 +719,21 @@ CREATE TABLE vote(
 CREATE SEQUENCE seq_vote;
 
 
+CREATE TABLE memo(
+	memokey NUMBER PRIMARY KEY,
+	title varchar2(400),
+	contents varchar2(4000),
+	writedate DATE,
+	importance varchar2(400),
+	memberkey NUMBER CONSTRAINT memo_memberkey_fk REFERENCES member(memberkey) ON DELETE CASCADE
+);
+DROP TABLE memo;
+CREATE SEQUENCE seq_memo;
+SELECT * FROM memo where memberkey=1;
+DELETE FROM memo;
+insert into memo values (seq_memo.nextval, '메모 하나', '3월 25일 : 3차 발표',sysdate,'하',4);
 
-
+CREATE SEQUENCE cal_seq START WITH 20000;
+SELECT cal_seq.currval FROM dual;
+SELECT * FROM calendars;
+SELECT * FROM fileInfo;

@@ -50,10 +50,31 @@
 	<div id="main">
 		<div class="page-heading">
 			<div class="page-title">
+			
+					<%@ include file="../projectHome/sort.jsp"%>
+			
+			
+			
+			
+			
+			
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>인적 관리</h3>
+						<h3>팀 관리</h3>
+							
+												 <a
+									href="/project5/kanbanMain.do?projectkey=${project.projectkey }"
+									class="btn btn-danger">팀 배치</a> <a
+									href="/project5/ganttMain.do?projectkey=${project.projectkey }"
+									class="btn btn-primary">회원 배치</a>  <a
+									href="/project5/output.do?projectkey=${project.projectkey }"
+									class="btn btn-info">휴가 관리</a>
+									 <a href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
+									class="btn btn-warning">근태 관리</a> 
+									
+						
 					</div>
+				
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
@@ -66,6 +87,8 @@
 				</div>
 			</div>
 
+	<br>
+	
 			<section class="section">
 				<div class="card">
 					<div class="card-body">

@@ -54,7 +54,12 @@ margin
 		
 		if(msg!=""){
 			alert(msg);
-			location.href="${path}/cost.do";
+			if(msg=="삭제되었습니다"){
+				location.href = "${path}/uptcostfrm.do?prjkey="+prjkey;
+				// location.href = document.referrer;
+			}else{
+				location.href="${path}/cost.do";
+			}
 		}
 		
 		var currentPosition = parseInt($("#sideinfodiv").css("top"));
@@ -76,7 +81,7 @@ margin
 					'<td><input class="form-control" type="text" name="list['+index+'].costcontent"></td>'+
 					'<td><input class="form-control" type="text" name="list['+index+'].costnote"></td>'+
 					'<td><input class="form-control costex" type="text" id="costex'+index+'" name="list['+index+'].costex" onkeyup="inputNumberFormat(this)"></td>'+
-					'<td><input class="form-control" type="text" name="list['+index+'].coindex" value="'+i+'"></td></tr>');
+					'<td><input class="form-control" type="hidden" name="list['+index+'].coindex" value="'+i+'"></td></tr>');
 					
 			i+=1;
 		});
@@ -114,31 +119,6 @@ margin
 		
 			$("#uptcostform").submit();	
 		});
-		
-		$("button[id^='indexdelbtn']").click(function(){
-			 var str = ""
-		     var checkBtn = $(this)
-			
-		     var tr = checkBtn.parent().parent();
-    		 var td = tr.children();
-             
-    		 var index = td.eq(1).find('input').val();
- 			 alert(index);
-
-
-    		
-
-
-			
-			/*
-			if(confirm('삭제하시겠습니까?')){
-				$.ajax({
-					
-				});
-			}
-			*/
-		});
-
 		
 	});
 	
@@ -186,6 +166,10 @@ margin
 	 function uncomma(str) {
 	     str = String(str);
 	     return str.replace(/[^\d]+/g, '');
+	 }
+	 // 삭제 버튼
+	 function deleteCall(coindex,prjkey){
+		 location.href = "${path}/delcostdetail.do?coindex="+coindex+"&prjkey="+prjkey;
 	 }
 	
 </script>
@@ -239,7 +223,8 @@ margin
 											<th style="width: 25%;text-align:center;"><a
 												href="#" class="dataTable-sorter">예산금액</a></th>
 											<th style="width: 2.5%;text-align:center;">삭제</th>
-											<th style="width: 5%;text-align:center;"></th>
+											<th style="width: 2.5%;text-align:center;"></th>
+											<th style="width: 2.5%;text-align:center;"></th>
 										</tr>
 									</thead>
 									
@@ -265,8 +250,8 @@ margin
 													<td><input class="form-control costex" type="text" id="costex${status.index}" name="list[${status.index}].costex"
 															onkeyup="inputNumberFormat(this)" 
 															value="<fmt:formatNumber value="${cdlist.costex}" pattern="#,###"/>"></td>
-													<td><button type="button" id="indexdelbtn" class="btn btn-danger rounded-pill">-</button></td>
-													<td><input class="form-control" type="text" name="list[${status.index}].coindex" value="${cdlist.coindex}"></td>
+													<td><button type="button" id="indexdelbtn" class="btn btn-danger rounded-pill" onclick="deleteCall(${cdlist.coindex},${prjkey})">-</button></td>
+													<td><input class="form-control" type="hidden" name="list[${status.index}].coindex" value="${cdlist.coindex}"></td>
 												</tr>
 										</c:forEach>
 									</tbody>									
