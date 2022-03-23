@@ -15,18 +15,16 @@
 <link rel="stylesheet" href="${path}/a00_com/bootstrap.min.css" >
 <link rel="stylesheet" href="${path}/a00_com/jquery-ui.css" >
 <style>
-	.input-group-text{width:100%;font-weight:bolder;}
-	.input-group-prepend{width:20%;}
 	#chatArea{
 		width:80%;height:200px;overflow-y:auto;text-align:left;
 		border:1px solid green;
 	}
 	*{ margin: 0; padding: 0; }
-	.chat_wrap .header { font-size: 14px; padding: 15px 0; background: #25396f; color: white; text-align: center;  }
+	.chat_wrap .header { display: flex; justify-content: space-between; font-size: 14px; padding: 20px 30px; background: #25396f; color: white; align-items: center;}
 
-	.chat_wrap .input-div { position: fixed; display: flex; bottom: 0; width: 100%; height: 130px; background-color: #FFF; text-align: center; border-top: 1px solid #25396f; }
+	.chat_wrap .input-div { position: fixed; display: flex; bottom: 0; width: 100%; height: 120px; background-color: #FFF; text-align: center; border-top: 1px solid #25396f; }
 	.chat_wrap .input-div > textarea { width: 100%; height: 100%; border: none; resize: none; padding: 10px; }
-	.chat_wrap .input-div > textarea:focus {outline:none; background: ivory;}
+	.chat_wrap .input-div > textarea:focus {outline:none; background: #E6E6FA;}
 	 
 	.format { display: none; }
 	
@@ -122,7 +120,7 @@ function conn(){
 <body>
 	<div class="chat_wrap">
 	    <div class="header">
-	        CHAT
+	        실시간 채팅 서비스
 	        <input type="button" style="align:rignt;" class="btn btn-danger" value="나가기" id="exitBtn"/>
 	    </div>
 	    <div class="chat">
