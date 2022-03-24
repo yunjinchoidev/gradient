@@ -273,9 +273,8 @@ margin
 	<div class="card" id="sideseldiv">
 		<div class="card-body">
 			<h4 style="text-align:center;">프로젝트 선택</h4>
-			<form id="prjselfrm">
+			<form id="prjselfrm" method="post">
 			<select style="text-align:center;" id="prjsel" name="prjkeyS" class="form-select">
-				<option>--프로젝트를 선택해주세요--</option>
 				<c:forEach var="plist" items="${prjlist}">
 					<option value="${plist.prjkey}">${plist.prjname}</option>
 				</c:forEach>
