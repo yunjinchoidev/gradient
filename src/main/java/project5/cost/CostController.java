@@ -80,8 +80,8 @@ public class CostController {
 	
 	@RequestMapping("/uptcostfrm.do")
 	public String uptCostFrm(int prjkey, Model d) {
-		//프로젝트 목록
-		d.addAttribute("prjlist",service.getPrjList());
+		//프로젝트 정보
+		d.addAttribute("prjInfo",service.prjDetailInfo(prjkey));
 		//예산 구분 목록
 		d.addAttribute("cslist",service.getCostSort());
 		// 프로젝트 예산 정보

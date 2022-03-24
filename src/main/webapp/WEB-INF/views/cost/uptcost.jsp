@@ -284,15 +284,12 @@ margin
 	<!-- 프로젝트 셀렉트 박스 div -->
 	<div class="card" id="sideseldiv">
 		<div class="card-body">
-			<h4 style="text-align:center;">프로젝트 선택</h4>
-			<form id="prjselfrm">
-			<select style="text-align:center;" id="prjsel" name="prjkeyS" class="form-select">
-				<option>--프로젝트를 선택해주세요--</option>
-				<c:forEach var="plist" items="${prjlist}">
-					<option value="${plist.prjkey}">${plist.prjname}</option>
-				</c:forEach>
-			</select>
-			</form>
+			<h4 style="text-align:center;">프로젝트명</h4>
+			<input class="form-control" type="text" value="${prjInfo.name}" readonly="readonly"
+				 style="flex: 3; background-color:white;text-align:center;font-weight: bold;">
+			<h4 style="text-align:center;margin-top: 50px;">프로젝트 기간</h4>
+			<input class="form-control" type="text" value="${prjInfo.startdateS} ~ ${prjInfo.lastdateS}" readonly="readonly"
+				 style="flex: 3; background-color:white;text-align:center;font-weight: bold;">
 		</div>	
 	</div>
 	<!-- 예산, 지출, 버튼 div -->
