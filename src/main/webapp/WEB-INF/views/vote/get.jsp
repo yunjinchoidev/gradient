@@ -253,9 +253,9 @@
 										<button type="button" class="btn btn-danger me-1 mb-1"
 											onclick="location.href='/project5/voteResult.do?votekey=${get.votekey}'">투표 결과</button>
 										<button type="button" class="btn btn-info me-1 mb-1"
-											onclick="location.href='/project5/projectHome.do?projectkey=1'">뒤로가기</button>
+											onclick="location.href='/project5/projectHome.do?projectkey=${get.projectkey}'">뒤로가기</button>
 											<button type="button"
-												class="btn btn-light-secondary me-1 mb-1">투표  삭제</button>
+												class="btn btn-light-secondary me-1 mb-1" onclick="location.href='/project5/voteDelete.do?votekey=${get.votekey}&projectkey=${get.projectkey}'">투표  삭제</button>
 											<button type="button"
 												class="btn btn-light-black me-1 mb-1">투표  수정</button>
 									</div>

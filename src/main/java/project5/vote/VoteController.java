@@ -55,7 +55,6 @@ public class VoteController {
 	
 	// 투표를 하는 행위
 	@RequestMapping("/voting.do")
-	@ResponseBody
 	public String voting(Model d, VoteVO vo) {
 		System.out.println("voteItem1 : "+vo.getVoteItem1());
 		System.out.println("voteItem2 : "+vo.getVoteItem2());
@@ -64,10 +63,16 @@ public class VoteController {
 		System.out.println("voteItem5 : "+vo.getVoteItem5());
 		service.voting(vo);
 		d.addAttribute("psc", "voteSuccess");
-		return "success";
+		return "pageJsonReport";
 		//return "forward:/projectHome.do?projectkey=1";
 	}
 	
+	
+	@RequestMapping("/voteDelete.do")
+	public String voteDelete(Model d, VoteVO vo) {
+		service.voteDelete(vo.getVotekey());
+		return "forward:/projectHome.do";
+	}
 	
 	
 	

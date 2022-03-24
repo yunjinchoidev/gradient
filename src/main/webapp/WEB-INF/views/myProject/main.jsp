@@ -148,7 +148,7 @@ $(document).ready(function(){
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>나의 프로젝트</h3>
-						<p class="text-subtitle text-muted">내가 참여중인 프로젝트가 여기 있습니다.</p>
+						<p class="text-subtitle text-muted" onclick="location.href='/project5/dashBoard.do?projectkey=1'">내가 참여중인 프로젝트가 여기 있습니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -224,29 +224,30 @@ $(document).ready(function(){
 							    
 				
 			  function showProjectCard(obj, fname){
+				  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+				  console.log(obj.projectkey)
 				    var uploadUL = $("#content-types");
 				    var str ="";
 				    		console.log("obj"+obj);
 							var fileCallPath =  encodeURIComponent(fname);
 							console.log(fileCallPath);
-								str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;' >"
+								str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;' onclick='location.href='/project5/dashBoard.do?projectkey=1''>"
 									str += "<div class='card-content' id='prjImg'>"
 										str += "<div class='card-body'>"
-											str += "<h5 class='card-title' onclick='location.href='/project5/dashBoard.do?projectkey="  + obj.projectkey +  " ''>"+obj.name+"</h5>"
+											str += "<h5 class='card-title' >"+obj.name+"</h5>"
 											str += "<p class='card-text'>"+obj.contents+"</p>"
-										str += "</div><hr>"
-									
-									str += "<img src='/project5/display2.do?fileName="+fileCallPath+"' class='card-img-top img-fluid' alt='singleminded' style='width:100%; height:400px' >";
-									
+											str += "</div><hr>"
+											str += "<img src='/project5/display2.do?fileName="+fileCallPath+"' class='card-img-top img-fluid' alt='singleminded' style='width:100%; height:400px' >";
 											str += "<ul class='list-group list-groue-flush'>"
 											str += "<li class='list-group-item'> 타이틀 : ["+obj.projectkey+"]"+obj.name+"</li>"
 											str += "<li class='list-group-item'> 수주액 : "+obj.take+"</li>"
 											str += "<li class='list-group-item'> 설명 : "+obj.contents+"</li>"
 											str += "<li class='list-group-item'> 진행 정도 : "+obj.progress+"</li>"
 									str += "</div>"
-								str += "</div>"
-							console.log("str"+str)
-				    uploadUL.append(str);
+									str += "</div>"
+									console.log("str : "+str)
+						    		uploadUL.append(str);
+									console.log("uploadUL : "+uploadUL)
 				  }
 			
 			

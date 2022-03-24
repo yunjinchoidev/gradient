@@ -11,9 +11,13 @@
 	<insert id="insert" parameterType="project5.memo.MemoVO">
 		insert into memo values
 		(seq_memo.nextval, #{title}, #{contents},sysdate,#{importance},	#{memberkey})
-		
-	
 	</insert>
+	
+	<delete id="delteMemo" parameterType="int">
+		delete 
+		from memo
+		where memokey=#{memokey}
+	</delete>
 
 
 

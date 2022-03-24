@@ -18,5 +18,9 @@ public class MemoService {
 	public void insert(MemoVO vo) {
 		dao.insert(vo);
 	}
+	
+	public void delteMemo(int memokey) {
+		dao.delteMemo(memokey);
+	}
 
 }

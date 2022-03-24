@@ -37,6 +37,12 @@
 		where
 		votekey=#{votekey}
 	</update>
+	
+	<delete id="voteDelete" parameterType="int">
+		delete 
+		from vote
+		where votekey = #{votekey}	
+	</delete>
 
 
 

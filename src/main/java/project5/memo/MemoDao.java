@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 public interface MemoDao {
 	public List<MemoVO> list();
 	public void insert(MemoVO vo);
+	public void delteMemo(int memokey);
+	
 }

@@ -19,14 +19,11 @@
     <link rel="stylesheet" href="/project5/resources/dist/assets/css/app.css">
     <link rel="shortcut icon" href="/project5/resources/dist/assets/images/favicon.svg" type="image/x-icon">
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
-  <script src="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
-    <script src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
-    <script src="/project5/resources/dist/assets/js/main.js"></script>
+
 <script>
 var wsocket;
 
 $(document).ready(function(){
-	conn();
 	
 	
 	
@@ -110,11 +107,6 @@ function sendMsgInit(){
 		
 		
 		
-		
-		
-		
-		
-		
 	$("#msg").val(""); 
 	$("#msg").focus();
 }
@@ -176,19 +168,6 @@ function conn(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 </script>
 
 
@@ -206,22 +185,28 @@ function conn(){
 
 <script>
 	$(document).ready(function() {
+		$("#layer").hide();
+		
 		$("#chatBot").click(function() {
 			toggle_layer();
 		})
 		
-		$("#layer").hide();
-		
 		function toggle_layer() {
 			if($("#layer").css("display") == "none"){
 				$("#layer").show();
+				conn();
 			}else{
 				$("#layer").hide();
+				wsocket.send("msg:"+$("#id").val()+":접속 종료 했습니다!");
+				wsocket.close();
 			}
 		}
 		
 	})
 </script>
+
+
+
 <style>
 #chatBot {
 	position: fixed;
@@ -240,13 +225,6 @@ function conn(){
 
 </style>
 </head>
-
-
-
-
-
-
-
 
 
 <body>
@@ -270,25 +248,10 @@ function conn(){
                                     </div>
                                 </div>
                                 
-                                
-                                
-                                
                                 <div class="card-body pt-4 bg-grey"  id="chatArea">
-                                	
                                     <div class="chat-content" id="chatMessageArea">
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
-                                        
                                     </div>
                                 </div>
-                                
-                                
-                                
-                                
                                 
                                 
                                 <div class="card-footer">
@@ -301,13 +264,8 @@ function conn(){
                                     </div>
                                 </div>
                             </div>
-
 		
-		
-		
-		
-		
-		
+    					<script src="/project5/resources/dist/assets/js/bootstrap.bundle.min.js"></script>
 		
 		
 </body>

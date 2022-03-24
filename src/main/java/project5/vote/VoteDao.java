@@ -15,4 +15,6 @@ public interface VoteDao {
 	
 	public void voting(VoteVO vo);
 
+	
+	public void voteDelete(int votekey);
 }

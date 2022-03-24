@@ -144,87 +144,90 @@ to {
 
 
 		<script>
-			$(document).ready(function() {
+							$(document).ready(function() {
 				
-				<c:forEach var="list" items="${list}">
-								var projectkey = "${list.projectkey}";
-								console.log("projectkey"+projectkey);
-								 var data = { projectkey : projectkey};
-								
-								 // 프로젝트 데이터 가져오기
-								 $.ajax({
-							      url: '/project5/projectData.do',
-							      data: data,
-							      type: 'POST',
-							      dataType:'json',
-							        success: function(result){
-							        console.log("=================")
-							          console.log("프로젝트 데이터 불러오기완료")
-							          console.log("프로젝트 이미지 파일 데이터 불러오기완료")
-							          	console.log(result)
-										console.log(result.projectInfo.name)
-										console.log(result.fileInfo)
-										console.log(result.fileInfo[0].fname)
-									  showProjectCard(result.projectInfo, result.fileInfo[0].fname);             // 함수 호출
-									  console.log("=================")
-									  
-							      },
-							      error: function(result){
-							          console.log("불러오기 실패");
-							          console.log(result);
-							      }
-							    }); //$.ajax
-							    
-							    
-							    $.ajax({
-							      url: '/project5/projectImg.do',
-							      data: data,
-							      type: 'POST',
-							      dataType:'json',
-							        success: function(result){
-							          console.log("프로젝트 이미지 파일 불러오기 완료")
-									  //showUploadResult2(result.get[0]);// 함수 호출 
-							      },
-							      error: function(result){
-							          console.log("불러오기 실패");
-							          console.log(result); 
-							      }
-							    }); //$.ajax
-			    </c:forEach>
+										<c:forEach var="list" items="${list}">
+														var projectkey = "${list.projectkey}";
+														console.log("projectkey"+projectkey);
+														 var data = { projectkey : projectkey};
+														
+														 // 프로젝트 데이터 가져오기
+														 $.ajax({
+													        url: '/project5/projectData.do',
+													        data: data,
+													         type: 'POST',
+													         dataType:'json',
+													         success: function(result){
+													         console.log("=================")
+													         console.log("프로젝트 데이터 불러오기완료")
+													         console.log("프로젝트 이미지 파일 데이터 불러오기완료")
+													         console.log(result)
+															 console.log(result.projectInfo.name)
+															 console.log(result.fileInfo)
+															 console.log(result.fileInfo[0].fname)
+															 showProjectCard(result.projectInfo, result.fileInfo[0].fname);// 함수 호출
+															 console.log("=================")
+													      },
+													      error: function(result){
+													          console.log("불러오기 실패");
+													          console.log(result);
+													      }
+													    }); //$.ajax
+													    
+													    /*
+													    $.ajax({
+													      url: '/project5/projectImg.do',
+													      data: data,
+													      type: 'POST',
+													      dataType:'json',
+													        success: function(result){
+													          console.log("프로젝트 이미지 파일 불러오기 완료")
+															  //showUploadResult2(result.get[0]);// 함수 호출 
+													      },
+													      error: function(result){
+													          console.log("불러오기 실패");
+													          console.log(result); 
+													      }
+													    }); //$.ajax
+													    */
+									    </c:forEach>
 							    
 							    
 							    
 				
-			  function showProjectCard(obj, fname){
-				    var uploadUL = $("#content-types");
-				    var str ="";
-				    		console.log("obj"+obj);
-							var fileCallPath =  encodeURIComponent(fname);
-							console.log(fileCallPath);
-								str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;' >"
-									str += "<div class='card-content' id='prjImg'>"
+								  function showProjectCard(obj, fname){
+									    var uploadUL = $("#content-types");
+									    var str ="";
+				    					console.log("obj"+obj);
+										var fileCallPath =  encodeURIComponent(fname);
+										console.log(fileCallPath);
+										str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;' onclick='location.href='/project5/dashBoard.do?projectkey="+  obj.projectkey+" >"
+										str += "<div class='card-content' id='prjImg'>"
 										str += "<img src='/project5/display2.do?fileName="+fileCallPath+"' class='card-img-top img-fluid' alt='singleminded' style='width:100%; height:400px' >";
 										str += "<div class='card-body'>"
-												str += "<h5 class='card-title' onclick='location.href='/project5/dashBoard.do?projectkey="  + obj.projectkey +  " ''>"+obj.name+"</h5>"
-												str += "<p class='card-text'>"+obj.contents+"</p>"
-											str += "</div></div>"
-											str += "<ul class='list-group list-groue-flush'>"
-												str += "<li class='list-group-item'> 타이틀 : ["+obj.projectkey+"]"+obj.name+"</li>"
-												str += "<li class='list-group-item'> 수주액 : "+obj.take+"</li>"
-												str += "<li class='list-group-item'> 설명 : "+obj.contents+"</li>"
-												str += "<li class='list-group-item'> 진행 정도 : "+obj.progress+"</li>"
+										str += "<h5 class='card-title' onclick='location.href='/project5/dashBoard.do?projectkey="  + obj.projectkey +  " ' '>"+obj.name+"</h5>"
+										str += "<p class='card-text'>"+obj.contents+"</p>"
+										str += "</div></div>"
+										str += "<ul class='list-group list-groue-flush'>"
+										str += "<li class='list-group-item'> 타이틀 : ["+obj.projectkey+"]"+obj.name+"</li>"
+										str += "<li class='list-group-item'> 수주액 : "+obj.take+"</li>"
+										str += "<li class='list-group-item'> 설명 : "+obj.contents+"</li>"
+										str += "<li class='list-group-item'> 진행 정도 : "+obj.progress+"</li>"
 										str += "</ul>"
-								str += "</div>"
-							console.log("str"+str)
-				    uploadUL.append(str);
-				  }
+										str += "</div>"
+										console.log("str"+str)
+				    					uploadUL.append(str);
+				  					}
 						
-				// 파일 다운로드		
-				function downFile(fname){
-					if(confirm("다운로드할 파일:"+fname)){
-						location.href="${path}/download.do?fname="+fname;
-					}
-				}
+								  
+								  
+								  
+										// 파일 다운로드		
+										function downFile(fname){
+											if(confirm("다운로드할 파일:"+fname)){
+												location.href="${path}/download.do?fname="+fname;
+											}
+										}
 			
 			
 		});

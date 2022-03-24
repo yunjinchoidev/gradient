@@ -80,9 +80,6 @@ $(document).ready(function(){
 	
 	
 	
-	
-	
-	
 })
 
 </script>
@@ -410,23 +407,53 @@ $(document).ready(function(){
 													<c:forEach var="list" items="${memoList}">
 														<tr >
 															<td>${list.memokey}</td>
-															<td id="progress" style="cursor: pointer;" data-toggle="modal" data-target= "#inlineForm2">${list.title }</td>
+															<td style="cursor: pointer;"  id="delBtn"  onclick="location.href='location.href='/project5/memoDelete.do?memokey=${list.memokey}'"  >${list.title } <span class="badge bg-danger">삭제</span></td>
 															<td>${list.contents }</td>
 															<td><fmt:formatDate value="${list.writedate }" /></td>
-															<td><c:if test="${list.importance eq '하'}">
-																	<span class="badge bg-primary">하</span>
+															<td style="cursor: pointer;">
+															<c:if test="${list.importance eq '하'}">
+																	<span class="badge bg-primary importance22">하</span>
 																</c:if> <c:if test="${list.importance eq '중'}">
-																	<span class="badge bg-secondary">중</span>
+																	<span class="badge bg-secondary importance22" >중</span>
 																</c:if> <c:if test="${list.importance eq '상'}">
-																	<span class="badge bg-danger">상</span>
+																	<span class="badge bg-danger importance22">상</span>
 																</c:if>
 															</td>
-
 														</tr>
 													</c:forEach>
+													
+													
+													
+													
 												</tbody>
 											</table>
 										</div>
+										
+										<script>
+										$(document).ready(function(){
+											$("#delBtn").click(function(){
+												confirm("정말 삭제 하시겠습니까?")
+											})
+											 var a=0;
+											
+											 setInterval(function() {
+												 a++;
+													if(a%2==0){
+														$(".importance22").css("display","none");
+													}else{
+														$(".importance22").css("display","");
+													}
+													console.log("a"+a)
+											}, 1000);
+											
+										})
+										
+										
+										</script>
+										
+										
+										
+										
 										<div class="dataTable-bottom">
 											<div class="dataTable-info">Showing 1 to 10 of 26
 												entries</div>
@@ -632,15 +659,15 @@ $(document).ready(function(){
 					
 					
 					<div class="row">
-						<div class="col-12 col-xl-4">
+						<div class="col-12 col-xl-8">
 						
 							<div class="card">
 								<div class="card-header">
-									<h4>중요도 별 리스크 상황</h4>
+									<h4></h4>
 								</div>
 								
 								<div class="card-body">
-								  
+								  	<div id="piechart1" style="width: 100%; height: 100%;"></div>
 								</div>
 							</div>
 						</div>
@@ -658,13 +685,16 @@ $(document).ready(function(){
 
 
 
-						<div class="col-12 col-xl-8">
+						<div class="col-12 col-xl-4">
 							<div class="card">
 								<div class="card-header">
-									<h4>최근 게시물</h4>
+									<h4></h4>
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
+									
+									
+									
 										<table class="table table-hover table-lg">
 											<thead>
 												<tr>
@@ -672,6 +702,8 @@ $(document).ready(function(){
 													<th>Comment</th>
 												</tr>
 											</thead>
+											
+											
 											<tbody>
 												<tr>
 													<td class="col-3">
@@ -680,11 +712,11 @@ $(document).ready(function(){
 																<img
 																	src="/project5/resources/dist/assets/images/faces/5.jpg">
 															</div>
-															<p class="font-bold ms-3 mb-0">Si Cantik</p>
+															<p class="font-bold ms-3 mb-0">냉무</p>
 														</div>
 													</td>
 													<td class="col-auto">
-														<p class=" mb-0">Congratulations on your graduation!</p>
+														<p class=" mb-0">냉무</p>
 													</td>
 												</tr>
 												<tr>
@@ -694,16 +726,21 @@ $(document).ready(function(){
 																<img
 																	src="/project5/resources/dist/assets/images/faces/2.jpg">
 															</div>
-															<p class="font-bold ms-3 mb-0">Si Ganteng</p>
+															<p class="font-bold ms-3 mb-0">냉무</p>
 														</div>
 													</td>
 													<td class="col-auto">
-														<p class=" mb-0">Wow amazing design! Can you make
-															another tutorial for this design?</p>
+														<p class=" mb-0">냉무
+															</p>
 													</td>
 												</tr>
 											</tbody>
+											
 										</table>
+										
+										
+										
+										
 									</div>
 								</div>
 							</div>
@@ -792,8 +829,10 @@ $(document).ready(function(){
 							<h4>프로젝트 조직 분석</h4>
 						</div>
 						<div class="card-body">
-						
-								 <script type="text/javascript">
+					
+						</div>
+					</div>
+					<script type="text/javascript">
 									
 									var projectkey;
 									var projectkeyRe = "${project.projectkey}";
@@ -824,29 +863,19 @@ $(document).ready(function(){
 										
 																		
 										      function drawChart() {
-										
 										          var data1 = google.visualization.arrayToDataTable([
 										            ['Task', 'Hours per Day'],
 										            ['기획팀',     cntList[0]],
 										            ['개발팀',     cntList[1]],
 										            ['고객전담팀',     cntList[2]],
 										          ]);
-										
 										          var options = {
 										            title: '조직 분포'
 										          };
-										
 										          var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
-										
 										          chart.draw(data1, options);
 										        }
 							    </script>
-						
-						
-						<div id="piechart1" style="width: 100%; height: 100%;"></div>
-						</div>
-					</div>
-					
 					
 					
 					
@@ -864,11 +893,15 @@ $(document).ready(function(){
 					
 					<div class="card">
 						<div class="card-header">
-							<h4>프로젝트 별 작업속도 분석</h4>
+							<h4></h4>
 						</div>
 						<div class="card-body">
+							 <!-- 
 							 <div id="curve_chart"></div>
-							   <script type="text/javascript">
+							  -->
+						</div>
+					</div>
+					<script type="text/javascript">
 								      google.charts.load('current', {'packages':['corechart']});
 								      google.charts.setOnLoadCallback(drawChart);
 								
@@ -887,20 +920,37 @@ $(document).ready(function(){
 								          legend: { position: 'bottom' }
 								        };
 								
-								        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+								       // var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 								
-								        chart.draw(data, options);
+								        //chart.draw(data, options);
 								      }
 								    </script>
-						</div>
-					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					
 					
 					
 					
 					<div class="card">
 						<div class="card-header">
-							<h4>현재 진행중인 프로젝트</h4>
+							<h4></h4>
 						</div>
 						<div class="card-body">
 						
@@ -923,13 +973,14 @@ $(document).ready(function(){
 						          title: '분류'
 						        };
 						
-						        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
+						        //var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 						
-						        chart.draw(data, options);
+						        //chart.draw(data, options);
 						      }
 						    </script>
-    
+    						<!-- 
 							<div id="piechart"></div>
+							 -->
 						</div>
 					</div>
 				</div>
@@ -975,7 +1026,7 @@ $(document).ready(function(){
 	                                                                        <select  class="form-control" name="importance">
 	                                                                        	<option value="상">상</option>
 	                                                                        	<option value="중">중</option>
-	                                                                        	<option value="하">하</option>
+	                                                    						<option value="하">하</option>
 	                                                                        </select>
 	                                                                </div>
 	                                                                
@@ -990,7 +1041,6 @@ $(document).ready(function(){
 	                                                                    <input type="text"  name="contents"
 	                                                                        class="form-control">
 	                                                                </div>
-	                                                                
 	                                                            </div>
 
 																<div class="modal-footer">
@@ -1008,6 +1058,7 @@ $(document).ready(function(){
                                                     </div>
                                                 </div>
                                             </div>
+                                            
 
 
 </body>

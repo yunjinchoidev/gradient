@@ -16,15 +16,12 @@ public class MemoController {
 		service.insert(vo);
 		return "forward:/dashBoard.do";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	@RequestMapping("/memoDelete.do")
+	public String memoDelete(Model d, int memokey) {
+		service.delteMemo(memokey);
+		return "forward:/dashBoard.do?projectkey=1";
+	}
 	
 	
 }

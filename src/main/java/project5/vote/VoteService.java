@@ -26,4 +26,9 @@ public class VoteService {
 	public void voting(VoteVO vo) {
 		dao.voting(vo);
 	}
+	
+	public void voteDelete(int votekey) {
+		dao.voteDelete(votekey);
+	}
+	
 }
