@@ -32,7 +32,35 @@
 	    width: 100%;
 	    height: 600px;
 	    overflow-y: auto;
-	    text-align: left;}
+	    text-align: left;
+	 }
+	 .infoBox{
+	 	text-align: center; 
+	 	color: white;
+	 	background:gray;
+	 	border-radius: 5px;
+	 	padding: 1px;
+	 }
+	 .chatBox{
+	 	margin: -15px 0px;
+	 }
+	 
+	 .nameBox{
+	 	margin: 10px;
+	 }
+	 .msgBox{
+	 	color:#555;
+	    background: white;
+	    border: 1px solid #25396f;
+	    border-radius: 0 20px 20px 20px;
+	    margin: 0 10px;
+    	padding: 20px;
+	 }
+	 .timeBox{
+	 	font-size:12px;
+	 	text-align: right;
+    	margin: 0px 30px;
+	 }
 </style>
 <script src="${path}/a00_com/jquery.min.js"></script>
 <script src="${path}/a00_com/popper.min.js"></script>
@@ -42,6 +70,24 @@
 <script>
 var wsocket;
 conn();
+var currentTime = function(){
+    var date = new Date();
+    var hh = date.getHours();
+    var mm = date.getMinutes();
+    var ss = date.getSeconds();
+    var apm = hh >12 ? "오후":"오전";
+    if(hh<10){
+        hh = "0"+hh;
+    }
+    if(mm<10){
+        mm = "0"+mm;
+    }
+    if(ss<10){
+        ss = "0"+ss;
+    }
+    var ct = apm + " "+hh+":"+mm+":"+ss;
+    return ct;
+}
 $(document).ready(function(){
 	// 1. 웹 소켓 클라이언트를 통해 웹 서버 연결하기.
 	$("#id").keyup(function(){
@@ -53,11 +99,13 @@ $(document).ready(function(){
 		if(event.keyCode==13) sendMsg();
 	});
 	$("#sendBtn").click(function(){
-		sendMsg();
+		if($("#msg").val()!=""){
+			sendMsg();
+		}
 	});
 	// 접속 종료를 처리했을 시
 	$("#exitBtn").click(function(){
-		wsocket.send("msg:퇴장메시지 : "+$("#name").val()+"("+$("#auth").val()+")님이 접속 종료 했습니다!");
+		wsocket.send("msg:<div class='infoBox'>[퇴장메시지] "+$("#name").val()+"("+$("#auth").val()+")님이 채팅방을 나갔습니다.</div>");
 		wsocket.close();
 	});
 	// 메시지는 보내는 기능 메서드
@@ -67,7 +115,7 @@ $(document).ready(function(){
 		var auth = $("#auth").val();
 		var msg = $("#msg").val();
 		// message를 보내는 처리..서버의 handler의  handleTextMessage()와 연동
-		wsocket.send("msg:"+name+"("+auth+"):"+msg);
+		wsocket.send("msg:<div class='chatBox'><div class='nameBox'>"+name+"("+auth+")</div><div class='msgBox'>"+msg+"</div><div class='timeBox'>"+currentTime()+"</div></div>");
 		$("#msg").val(""); $("#msg").focus();
 	}
 	
@@ -83,7 +131,7 @@ function conn(){
 	// handler :afterConnectionEstablished(WebSocketSession session)와 연결
 	wsocket.onopen=function(evt){ 
 		console.log(evt);
-		wsocket.send("msg:입장메시지 : "+$("#name").val()+"("+$("#auth").val()+")님이 연결 접속했습니다!");
+		wsocket.send("msg:<div class='infoBox'>[입장메시지] "+$("#name").val()+"("+$("#auth").val()+")님이 채팅방에 입장했습니다.</div>");
 	}
 	// handler의  handleTextMessage()
 	// 연결되어 있으면 메시지를 push형식으로 서버에서 받을 수 있다.
