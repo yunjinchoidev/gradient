@@ -9,8 +9,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+
+import project5.fileInfo.FileInfoService;
 import project5.mail.A10_MailService;
 import project5.mail.Mail;
+import project5.project.ProjectVO;
 
 @Controller
 @SessionAttributes("member")
@@ -20,6 +23,13 @@ public class MemberContoller {
 
 	@Autowired
 	A10_MailService service2;
+	
+	@Autowired
+	FileInfoService service3;
+	
+	
+	
+	
 
 	@ModelAttribute("member")
 	public MemberVO getUserVO() {
@@ -156,6 +166,22 @@ public class MemberContoller {
 		public String header(Model d) {
 			return "WEB-INF\\views\\common\\header.jsp";
 		}
+		
+		
+		
+		
+		@PostMapping("/myfaceData.do")
+		public String projectdata(int memberkey, Model d) {
+			//int memberkeyN = Integer.parseInt(memberkey);
+			System.out.println("/myfaceData.do 진입");
+			System.out.println("memberkey:"+memberkey);
+			d.addAttribute("myfaceData", service3.findbyfno(memberkey));
+			return "pageJsonReport";
+		}
+		
+		
+		
+		
 	
 
 }

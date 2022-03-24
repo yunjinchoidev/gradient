@@ -48,9 +48,12 @@
  	</select>
  	<!-- 프로젝트 목록 -->
  	<select id="getPrjList" resultType="costList">
- 		SELECT PROJECTKEY prjkey,NAME prjname  
+ 		SELECT PROJECTKEY prjkey , name prjname 
 		FROM PROJECT
-		ORDER BY prjkey ASC
+		WHERE NOT PROJECTKEY in (SELECT c.PROJECTKEY
+		FROM cost c, PROJECT p 
+		WHERE c.PROJECTKEY = p.PROJECTKEY)
+		ORDER BY prjkey asc
  	</select>
  	<!-- 예산 구분 목록 -->
  	<select id="getCostSort" resultType="costList">

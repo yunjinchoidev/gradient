@@ -41,5 +41,7 @@
 		<mapper resource="resource/VoteMapper.xml"/>
 		<mapper resource="resource/MemoMapper.xml"/>
 		<mapper resource="resource/DashBoardMapper.xml"/>
+		<mapper resource="resource/CustoChatMapper.xml"/>
+		<mapper resource="resource/ChatBotMapper.xml"/>
 	</mappers>
 </configuration>

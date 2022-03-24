@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="project5.chatBot.ChatBotDao">
+
+
+	<select id="list" resultType="project5.chatBot.ChatBotVO">
+		select * from chatBot
+	</select>
+	<select id="getbyInputData" parameterType="String"
+		resultType="project5.chatBot.ChatBotVO">
+		select * from chatBot where inputdata =#{inputdata}
+	</select>
+	
+</mapper>
