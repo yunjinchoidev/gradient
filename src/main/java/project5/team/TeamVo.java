@@ -1,40 +1,28 @@
 package project5.team;
 
 public class TeamVo {
-	private int teamkey;
-	private String prjname;
-	private int prjkey;
+	private String name;
 	private String auth;
-	private String progress;
+	private String email;
+	private String dname;
+	private int deptno;
 	public TeamVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TeamVo(int teamkey, String prjname, int prjkey, String auth, String progress) {
+	public TeamVo(String name, String auth, String email, String dname, int deptno) {
 		super();
-		this.teamkey = teamkey;
-		this.prjname = prjname;
-		this.prjkey = prjkey;
+		this.name = name;
 		this.auth = auth;
-		this.progress = progress;
+		this.email = email;
+		this.dname = dname;
+		this.deptno = deptno;
 	}
-	public int getTeamkey() {
-		return teamkey;
+	public String getName() {
+		return name;
 	}
-	public void setTeamkey(int teamkey) {
-		this.teamkey = teamkey;
-	}
-	public String getPrjname() {
-		return prjname;
-	}
-	public void setPrjname(String prjname) {
-		this.prjname = prjname;
-	}
-	public int getPrjkey() {
-		return prjkey;
-	}
-	public void setPrjkey(int prjkey) {
-		this.prjkey = prjkey;
+	public void setName(String name) {
+		this.name = name;
 	}
 	public String getAuth() {
 		return auth;
@@ -42,10 +30,22 @@ public class TeamVo {
 	public void setAuth(String auth) {
 		this.auth = auth;
 	}
-	public String getProgress() {
-		return progress;
+	public String getEmail() {
+		return email;
 	}
-	public void setProgress(String progress) {
-		this.progress = progress;
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	public String getDname() {
+		return dname;
+	}
+	public void setDname(String dname) {
+		this.dname = dname;
+	}
+	public int getDeptno() {
+		return deptno;
+	}
+	public void setDeptno(int deptno) {
+		this.deptno = deptno;
 	}
 }

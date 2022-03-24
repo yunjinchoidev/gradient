@@ -11,30 +11,21 @@ public class TeamController {
 	@Autowired
 	TeamService service;
 	
-	@RequestMapping("/addmen.do")
-	public String addmen(Model d) {
-		return "\\WEB-INF\\views\\team\\Addmem.jsp";
-	}
-	@RequestMapping("/allteam.do")
-	public String Allteam(Model d) {
-		return "\\WEB-INF\\views\\team\\Allteam.jsp";
-	}
-	@RequestMapping("/regTeam.do")
-	public String RegTeam(Model d) {
-		return "\\WEB-INF\\views\\team\\RegTeam.jsp";
-	}
-	@RequestMapping("/teamAllocation.do")
-	public String TeamAllocation(Model d) {
-		return "\\WEB-INF\\views\\team\\TeamAllocation.jsp";
-	}
-	@RequestMapping("/teamDetail.do")
-	public String TeamDetail(Model d) {
-		return "\\WEB-INF\\views\\team\\TeamDetail.jsp";
-	}
 	@RequestMapping("/teamlist.do")
 	public String Teamlist(Model d) {
+		d.addAttribute("teamlist", service.teamList());
 		return "\\WEB-INF\\views\\team\\Teamlist.jsp";
 	}
-	
-
+	@RequestMapping("/addmem.do")
+	public String addmem(Model d) {
+		return "\\WEB-INF\\views\\team\\Addmem.jsp";
+	}
+	@RequestMapping(params="method=update")
+	public String uptTeam() {
+		return "\\WEB-INF\\views\\team\\Teamlist.jsp";
+	}
+	@RequestMapping("/allocation.do")
+	public String allocation(Model d) {
+		return "\\WEB-INF\\views\\team\\Allocation.jsp";
+	}
 }

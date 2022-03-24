@@ -11,6 +11,12 @@
  --%>
 <html>
 <head>
+<style>
+.bg-light-secondary {
+	width: 110px;
+	height: 30px;
+}
+</style>
 <meta charset="UTF-8">
 <title>팀 관리</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -50,31 +56,30 @@
 	<div id="main">
 		<div class="page-heading">
 			<div class="page-title">
-			
-					<%@ include file="../projectHome/sort.jsp"%>
-			
-			
-			
-			
-			
-			
+
+				<%@ include file="../projectHome/sort.jsp"%>
+
+
+
+
+
+
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>팀 관리</h3>
-							
-												 <a
-									href="/project5/kanbanMain.do?projectkey=${project.projectkey }"
-									class="btn btn-danger">팀 배치</a> <a
-									href="/project5/ganttMain.do?projectkey=${project.projectkey }"
-									class="btn btn-primary">회원 배치</a>  <a
-									href="/project5/output.do?projectkey=${project.projectkey }"
-									class="btn btn-info">휴가 관리</a>
-									 <a href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
-									class="btn btn-warning">근태 관리</a> 
-									
-						
+
+						<a href="/project5/addmem.do" class="badge bg-light-secondary">팀
+							할당</a> <a
+							href="/project5/Allocation.do"
+							class="badge bg-light-secondary">프로젝트 할당</a> <a
+							href="/project5/output.do?projectkey=${project.projectkey }"
+							class="badge bg-light-secondary">휴가 관리</a> <a
+							href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
+							class="badge bg-light-secondary">근태 관리</a>
+
+
 					</div>
-				
+
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
 							class="breadcrumb-header float-start float-lg-end">
@@ -87,8 +92,8 @@
 				</div>
 			</div>
 
-	<br>
-	
+			<br>
+
 			<section class="section">
 				<div class="card">
 					<div class="card-body">
@@ -108,13 +113,15 @@
 									<thead>
 										<tr>
 											<th data-sortable="" style="width: 10%;"><a href="#"
-												class="dataTable-sorter">No.</a></th>
-											<th data-sortable="" style="width: 30%;"><a href="#"
-												class="dataTable-sorter">프로젝트명</a></th>
+												class="dataTable-sorter">이름</a></th>
+											<th data-sortable="" style="width: 10%;"><a href="#"
+												class="dataTable-sorter">직급</a></th>
+											<th data-sortable="" style="width: 35%;"><a href="#"
+												class="dataTable-sorter">이메일</a></th>
 											<th data-sortable="" style="width: 20%;"><a href="#"
-												class="dataTable-sorter">담당자</a></th>
+												class="dataTable-sorter">담당프로젝트</a></th>
 											<th data-sortable="" style="width: 20%;"><a href="#"
-												class="dataTable-sorter">프로젝트 진행현황</a></th>
+												class="dataTable-sorter">담당업무</a></th>
 										</tr>
 									</thead>
 
@@ -139,9 +146,6 @@
 									</tbody>
 								</table>
 
-								<button id="regbtn" class="btn btn-primary rounded-pill"
-									style="margin: auto; display: block;" onclick="location.href='/project5/regTeam.do'">팀원배정</button>
-
 							</div>
 
 						</div>
@@ -156,7 +160,8 @@
 	<div class="dataTable-bottom">
 		<div class="dataTable-info">전체 팀: ${TeamSch.count}</div>
 		<nav aria-label="Page navigation example" style="margin-top: 15px;">
-			<ul	class="pagination pagination-primary float-end dataTable-pagination">
+			<ul
+				class="pagination pagination-primary float-end dataTable-pagination">
 				<li class="page-item pager"><a class="page-link"
 					href="javascript:goPage(${TeamSch.startBlock!=1?costSch.startBlock-1:1})">‹</a></li>
 				<c:forEach var="cnt" begin="${TeamSch.startBlock}"

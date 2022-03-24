@@ -10,6 +10,33 @@
   팀원 추가 프론트 화면
  --%>
 <html>
+<head>
+<meta charset="UTF-8">
+<title>팀원 배치</title>
+</head>
+<script>
+	var selectedval = 4;
+	$(document)
+			.ready(
+					function() {
+
+						$("#pjList")
+								.change(
+										function() {
+											selectedval = $(this).val();
+											console.log(selectedval);
+											location.href = "/project5/projectHome.do?projectkey="
+													+ selectedval;
+
+											console.log(selectedval)
+
+											$(
+													"#pjList option:eq(selectedval-1)")
+													.prop('selected', true)
+										})
+
+					})
+</script>
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
@@ -23,38 +50,35 @@
 							<div class="form-group">
 								<label for="feedback1" class="sr-only">이름</label> <input
 									type="text" id="feedback1" class="form-control"
-									placeholder="Name" name="name">
+									placeholder="Name" name="name" value="${member.name}">
 							</div>
 							<div class="form-group">
 								<label for="feedback2" class="sr-only">이메일</label> <input
 									type="email" id="feedback2" class="form-control"
-									placeholder="Email" name="email">
+									placeholder="Email" name="email" value="${member.email}">
 							</div>
 							<div class="form-group">
-								<label for="feedback4" class="sr-only">프로젝트명</label> <select
-									name="projectname" class="form-control">
-									<option value="project1">프로젝트명1</option>
-									<option value="project2">프로젝트명2</option>
-									<option value="project3">프로젝트명3</option>
+								<label for="feedback4" class="form-select">프로젝트명</label> <select
+									name="prjlist" class="form-control">
+									<c:forEach var="prjlist" items="${prjlist}">
+										<option selected value="${idx.index+1}">${idx.index+1}:${prjlist.name}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<div class="form-group">
-								<label for="feedback4" class="sr-only">권한</label> <select
-									name="reason" class="form-control">
-									<option value="staff">실무진</option>
-									<option value="project2">PM</option>
-									<option value="project3">CEO</option>
+								<label for="feedback4" class="sr-only">직급</label> <select
+									name="auth" class="form-control">
+									<c:forEach var="auth" items="${auth}">
+										<option selected value="${idx.index+1}">${idx.index+1}:${auth.auth}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<div class="form-group">
 								<label for="feedback4" class="sr-only">부서</label> <select
-									name="projectname" class="form-control">
-									<option value="develop">개발부</option>
-									<option value="planning">기획부</option>
-									<option value="sales">영업부</option>
-									<option value="pr">인사부</option>
-									<option value="marketing">마케팅부</option>
-									<option value="accounting">회계부</option>
+									name="dname" class="form-control">
+									<c:forEach var="dname" items="${dname}">
+										<option selected value="${idx.index+1}">${idx.index+1}:{$dname.dname}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<div class="form-group form-label-group">
@@ -64,8 +88,8 @@
 							</div>
 						</div>
 						<div class="form-actions d-flex justify-content-end">
-							<button type="submit" class="btn btn-primary me-1">등록</button>
-							<button type="reset" class="btn btn-light-primary">취소</button>
+							<button type="submit" class="btn btn-primary me-1">추가</button>
+							<button type="reset" class="btn btn-light-primary" >취소</button>
 						</div>
 					</form>
 				</div>
