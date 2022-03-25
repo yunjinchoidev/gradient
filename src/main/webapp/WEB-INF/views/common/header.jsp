@@ -48,49 +48,142 @@
 <script>
 	$(document).ready(function() {
 		var auth = "${member.auth}";
-		console.log("auth : " + auth);
-		
 		var memberName = "${member.name}";
 		var memberkey = "${member.memberkey}";
 		console.log("memberName : " + memberName);
-		
-		$("#projectMange").click(function() {
-			if (memberName == "") {
-				alert("권한이 없습니다.");
-			} else {
-				location.href="/project5/projectManageMain.do"
-			}
-		});
+		console.log("auth : " + auth);
+		console.log("memberkey : " + memberkey);
 
-	
+		
+		/*나의 프로젝트 접근 권한 처리*/
 		$("#myProject").click(function() {
 			if (memberName == "") {
 				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
 			}else{
 				location.href="/project5/myProject.do?memberkey="+memberkey
 			}
 		})
 		
 		
+		/*대시보드 접근 권한 처리*/
+		$("#dashBoard").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/dashBoard.do?projectkey=1&memberkey="+${member.memberkey};
+			}
+		})
+		
+							
+		$("#kanbanss").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/kanbanMain.do?projectkey=1"
+			}
+		})
+		
+		
+		
+		$("#projectHome").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href=" /project5/projectHome.do?projectkey=1"
+			}
+		})
+		
+		
+		$("#gantt").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/ganttMain.do?projectkey=1"
+			}
+		})
+		
+		
+		$("#output").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/output.do?projectkey=1"
+			}
+		})
+		
+		
+					
+		
+		$("#cost").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/cost.do?projectkey=1"
+			}
+		})
+		$("#quality").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/qualityList.do?projectkey=1"
+			}
+		})
+		$("#procu").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/procurementList.do?projectkey=1"
+			}
+		})
+		$("#team").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/teamlist.do?projectkey=1"
+			}
+		})
+		$("#risk").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.")
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/risk.do?projectkey=1"
+			}
+		})
+		
 		
 		$("#mywork").click(function() {
 			if (memberName == "") {
-				alert("미 로그인시 접근 불가합니다.")
+				alert("미 로그인시 접근 불가합니다.");
+				location.href="/project5/main.do"
 			}else{
-				location.href="/project5/myworkCalendar.do"
+				location.href="/project5/myworkCalendar.do?memberkey="+${member.memberkey }
 			}
 		})
-		$("#dashboard").click(function() {
-			if (memberName == "") {
-				alert("미 로그인시 접근 불가합니다.")
-				history.back(-2);
-			}else{
-				location.href="/project5/dashBoard.do?projectkey=1"
-			}
-		})
+		
+		
+	
+	
+		
 
 		
-		
+							$("#projectMange").click(function() {
+								if (memberName == "") {
+									alert("권한이 없습니다.");
+								} else {
+									location.href="/project5/projectManageMain.do"
+								}
+							});
 		
 		
 		
@@ -180,42 +273,62 @@
 																				class="bi bi-stack"></i> <span>프로젝트</span>
 																		</a>
 										<ul class="submenu ">
-										<li class="submenu-item "><a
-												href="/project5/dashBoard.do?projectkey=1&memberkey=${member.memberkey }" id="dashboard">대시보드 </a>
-											<li class="submenu-item "><a
-												href="/project5/projectHome.do?projectkey=1">홈 </a></li>
-											<li class="submenu-item "><a href="/project5/kanbanMain.do">칸반
-													보드 </a></li>
-											<li class="submenu-item "><a href="/project5/ganttMain.do">간트차트
-											</a></li>
-											<li class="submenu-item "><a href="/project5/output.do">산출물
-													관리 </a></li>
-											<li class="submenu-item "><a href="/project5/cost.do">예산
-													관리</a></li>
-											<li class="submenu-item "><a
-												href="/project5/qualityList.do">품질 관리</a></li>
-											<li class="submenu-item "><a
-												href="/project5/procurementList.do">조달 관리</a></li>
-											<li class="submenu-item "><a href="/project5/teamlist.do">팀
-													관리</a></li>
-											<li class="submenu-item "><a href="/project5/risk.do">리스크
-													관리</a></li>
-										</ul>
 										
+											<li class="submenu-item ">
+												<a href="#" id="dashBoard">대시보드 </a>
+											</li>
+											
+											<li class="submenu-item "><a
+												href="#" id="projectHome">프로젝트 홈 </a>
+											</li>
+											
+											<li class="submenu-item ">
+												<a href="#" id="kanbanss">칸반보드 </a>
+											</li>
+													
+											<li class="submenu-item ">
+												<a href="#" id="gantt">간트차트</a>
+											</li>
+											
+											<li class="submenu-item ">
+												<a href="#" id="output">산출물 관리 </a>
+											</li>
+											
+											<li class="submenu-item ">
+												<a href="#" id="cost">예산 관리</a>
+											</li>
+											
+											<li class="submenu-item ">
+												<a href="#" id="quality">품질 관리</a>
+											</li>
+											
+											<li class="submenu-item ">
+												<a href="#" id="procu">조달 관리</a>
+											</li>
+											
+											<li class="submenu-item ">
+												<a href="#" id="team">팀 관리</a>
+											</li>
+											
+											<li class="submenu-item ">
+												<a href="#" id="risk">리스크 관리</a>
+											</li>
+										</ul>
 							</li>
 							
-							
-							
-							
-							
-							
-							
+
+
+
+
 
 						<li class="sidebar-item  "><a
 							href="/project5/calendar.do?memberkey=${member.memberkey}"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
 									일정관리</span>
 						</a></li>
+
+
+
 
 						<li class="sidebar-item  has-sub"><a href="#"
 							class='sidebar-link'> <i class="bi bi-stack"></i> <span>의사소통</span>
@@ -228,8 +341,11 @@
 								</li>
 							</ul></li>
 
+
+
+
 						<li class="sidebar-item  " id="mywork"><a
-							href="/project5/myworkCalendar.do?memberkey=${member.memberkey }"
+							href="#"
 							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>내
 									작업 목록 / 작업물</span>
 						</a></li>
@@ -253,16 +369,9 @@
 								<i class="bi bi-stack"></i> <span>고객 관리</span></a>
 							<ul class="submenu">
 								<li class="submenu-item "><a href="/project5/customerChat.do">채팅 상담</a></li>
-								<li class="submenu-item "><a href="/project5/plan.do">플랜 </a></li>
+								<li class="submenu-item "><a href="/project5/pricing.do">플랜 </a></li>
 							</ul>
 						</li>
-						
-						
-						
-						
-						
-						
-						
 						
 						
 						

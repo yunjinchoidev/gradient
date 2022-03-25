@@ -10,6 +10,6 @@ public class pricingContoller {
 	
 	@RequestMapping("/pricing.do")
 	public String plan(Model d) {
-		return "WEB-INF\\views\\member\\pricing.jsp";
+		return "WEB-INF\\views\\pricing\\pricing.jsp";
 	}
 }

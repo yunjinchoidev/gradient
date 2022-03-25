@@ -19,17 +19,17 @@ public class QualityController {
 	@RequestMapping("/qualityList.do")
 	public String qualityList(Model d) {
 		d.addAttribute("list", service.list());
-		return "quality/list";
+		return "WEB-INF\\views\\quality\\list.jsp";
 	}
 	
 	@RequestMapping("/qualityInsertFrom.do")
 	public String qualityInsertFrom() {
-		return "quality/insertForm";
+		return "WEB-INF\\views\\quality\\insertForm.jsp";
 	}
 	
 	@RequestMapping("/qualityUpdateFrom.do")
 	public String qualityUpdateFrom() {
-		return "quality/updateForm";
+		return "WEB-INF\\views\\quality\\updateForm.jsp";
 	}
 	
 	@RequestMapping("/qualityInsert.do")
@@ -54,7 +54,7 @@ public class QualityController {
 	@RequestMapping("/qualityGet.do")
 	public String qualityGet(Model d, int qualitykey){
 		d.addAttribute("get", service.get(qualitykey));
-		return "/quality/get";
+		return "WEB-INF\\views\\quality\\get.jsp";
 	}
 	
 	
@@ -62,7 +62,7 @@ public class QualityController {
 	
 	
 	
-	
+
 	
 	
 	

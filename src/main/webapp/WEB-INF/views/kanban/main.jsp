@@ -30,13 +30,15 @@
 	<div id="main">
 		<div class="page-heading">
 			<div class="page-title">
+				
 				<div class="row">
-					<%@ include file="../projectHome/sort.jsp"%>
+				<%@ include file="../projectHome/sort.jsp"%>
 					<%@ include file="main2.jsp"%>
 				</div>
 			</div>
 		</div>
-
+		
+		
 	</div>
 
 

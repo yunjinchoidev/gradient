@@ -16,21 +16,25 @@
 
 
 	<insert id="insert" parameterType="project5.quality.QualityVO">
-		insert into quality values(seq_quality.nextval, 1, #{memberkey}, #{qualityManagement}, sysdate, ${qualityEvaluation})
+		insert into quality
+		values(seq_quality.nextval, 1, #{memberkey}, sysdate, #{title},
+		#{contents})
 	</insert>
 
 	<select id="update" parameterType="project5.quality.QualityVO">
 		update quality
 		set
-		qualityManagement =#{qualityManagement},
-		qualityEvaluation = #{qualityEvaluation}
+		title
+		=#{title},
+		contents = #{contents}
 		where qualitykey = #{qualitykey}
 	</select>
 
 	<insert id="delete" parameterType="int">
 		delete from
 		quality
-		where qualitykey = #{qualitykey}
+		where
+		qualitykey = #{qualitykey}
 	</insert>
 
 

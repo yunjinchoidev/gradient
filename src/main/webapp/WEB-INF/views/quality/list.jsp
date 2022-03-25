@@ -16,14 +16,20 @@
 </head>
 
 <body>
+
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
+
+					<%@ include file="../projectHome/sort.jsp" %>
+
+
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>품질 관리</h3>
+						<h3>품질 건의</h3>
 						<p class="text-subtitle text-muted">For user to check they
 							list</p>
 					</div>
@@ -40,7 +46,11 @@
 			</div>
 			<section class="section">
 				<div class="card">
-					<div class="card-header">Simple Datatable</div>
+					<div class="card-header">
+					<a href="/project5/qualityList.do" class="btn btn-warning">품질 건의</a>
+					<a href="#" class="btn btn-danger">품질 평가</a>
+					<a href="#" class="btn btn-success">인증서 발급</a>
+					</div>
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -82,13 +92,12 @@
 									<tbody>
 										<c:forEach var="list" items="${list}">
 											<tr
-											
 											onclick="location.href='/project5/qualityGet.do?qualitykey='+${list.qualitykey}"
 												>
 												<td>${list.qualitykey }</td>
-												<td onclick="locaion.href='/project5/qualityGet.do?qualitykey='+${list.qualitykey}">${list.qualityManagement }</td>
+												<td onclick="locaion.href='/project5/qualityGet.do?qualitykey='+${list.qualitykey}">${list.title }</td>
 												<td>${list.writedate }</td>
-												<td>${list.qualityEvaluation }</td>
+												<td>${member.name}</td>
 												<td><span class="badge bg-success">Active</span></td>
 											</tr>
 										</c:forEach>
