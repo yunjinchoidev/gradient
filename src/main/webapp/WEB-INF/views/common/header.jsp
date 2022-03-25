@@ -72,7 +72,7 @@
 				alert("미 로그인시 접근 불가합니다.")
 				location.href="/project5/main.do"
 			}else{
-				location.href="/project5/dashBoard.do?projectkey=1&memberkey="+${member.memberkey};
+				location.href="/project5/dashBoard.do?projectkey=1&memberkey="+memberkey
 			}
 		})
 		
@@ -167,7 +167,7 @@
 				alert("미 로그인시 접근 불가합니다.");
 				location.href="/project5/main.do"
 			}else{
-				location.href="/project5/myworkCalendar.do?memberkey="+${member.memberkey }
+				location.href="/project5/myworkCalendar.do?memberkey="+memberkey
 			}
 		})
 		
