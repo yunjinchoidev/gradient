@@ -23,7 +23,7 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>품질 관리</h3>
+						<h3>조달 관리</h3>
 						<p class="text-subtitle text-muted">For user to check they
 							list</p>
 					</div>
@@ -40,7 +40,14 @@
 			</div>
 			<section class="section">
 				<div class="card">
-					<div class="card-header">Simple Datatable</div>
+				
+					<div class="card-header">
+					<a href="#" class="btn btn-dark">조달 요구서</a>
+				<a href="#" class="btn btn-info">계약서</a>
+				<a href="#" class="btn btn-danger">조달 상황</a>
+				<a href="#" class="btn btn-success">입찰</a>
+					
+					</div>
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">

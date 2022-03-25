@@ -19,23 +19,23 @@ public class ProcurementController {
 	@RequestMapping("/procurementList.do")
 	public String procurementList(Model d) {
 		d.addAttribute("list", service.list());
-		return "procurement/list";
+		return "WEB-INF\\views\\procurement\\list.jsp";
 	}
 	
 	@RequestMapping("/procurementInsertFrom.do")
 	public String procurementInsertFrom() {
-		return "procurement/insertForm";
+		return "WEB-INF\\views\\procurement\\insertForm.jsp";
 	}
 	
 	@RequestMapping("/procurementUpdateFrom.do")
 	public String procurementUpdateFrom() {
-		return "procurement/updateForm";
+		return "WEB-INF\\views\\procurement\\updateForm.jsp";
 	}
 	
 	@RequestMapping("/procurementInsert.do")
 	public String procurementInsert(ProcurementVO vo){
 		service.insert(vo);
-		return "fprocurement/procurementList.do";
+		return "WEB-INF\\views\\procurement\\procurementList.jsp";
 	}
 	
 	
@@ -54,7 +54,7 @@ public class ProcurementController {
 	@RequestMapping("/procurementGet.do")
 	public String procurementGet(Model d, int procurementkey){
 		d.addAttribute("get", service.get(procurementkey));
-		return "/procurement/get";
+		return "WEB-INF\\views\\procurement\\get.jsp";
 	}
 	
 	
