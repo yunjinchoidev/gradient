@@ -94,6 +94,7 @@ $(document).ready(function() {
 			      type: 'POST',
 			      dataType:'json',
 			        success: function(result){
+			        console.log(result)
 			          console.log(result.myfaceData[0]); 
 			          console.log("파일 불러오기 완료")
 					  showUploadResult2(result.myfaceData[0]);// 이곳에서 함수 호출 

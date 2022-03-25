@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import project5.cost.CostDetail;
 import project5.fullCalendar.Calendar;
 import project5.output.OutputVO;
 
@@ -55,6 +56,9 @@ public class DashBoardService {
 		return dao.teamCntByProject3(projectkey);
 	}
 	
+	public List<CostDetail> costDetailGet(int no) {
+		return dao.costDetailGet(no);
+	}
 	
 	
 }

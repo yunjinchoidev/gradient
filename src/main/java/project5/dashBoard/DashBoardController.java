@@ -1,11 +1,16 @@
 package project5.dashBoard;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.google.gson.JsonArray;
+
+import project5.cost.CostDetail;
 import project5.member.MemberVO;
 import project5.memo.MemoService;
 import project5.output.OutputVO;
@@ -30,6 +35,7 @@ public class DashBoardController {
 	WorkSortService service4;
 	
 	
+	
 	@RequestMapping("/dashBoard.do")
 	public String dashBoard(Model d, int projectkey,MemberVO vo, OutputVO vo2) {
 		d.addAttribute("pjList", service.list());
@@ -46,6 +52,7 @@ public class DashBoardController {
 	public String riskDashBoardData(Model d) {
 		System.out.println("riskDashBoardData.do 진입");
 		d.addAttribute("get", service3.riskDashBoard());
+		d.addAttribute("costDetailGet", service3.costDetailGet(1));
 		return "pageJsonReport";
 	}
 
@@ -72,6 +79,16 @@ public class DashBoardController {
 		d.addAttribute("teamCntByProject2", service3.teamCntByProject2(projectkeyN));
 		d.addAttribute("teamCntByProject3", service3.teamCntByProject3(projectkeyN));
 		System.out.println(service3.teamCntByProject3(1));
+		return "pageJsonReport";
+	}
+	
+	
+	@RequestMapping("/dashCostDetailGet.do")
+	public String dashCostDetailGet(Model d, int no) {
+		System.out.println("dashCostDetailGet 진입!");
+		List<CostDetail> detailGet = service3.costDetailGet(no);
+		d.addAttribute("get", detailGet);
+		System.out.println("확인:"+  service3.costDetailGet(no).get(no).getCostcontent());
 		return "pageJsonReport";
 	}
 	

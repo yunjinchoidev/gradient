@@ -52,6 +52,8 @@
 <!-- 팀관리 전체 조회  -->
 
 <body>
+
+	<%@ include file="../chatBot/chatBot.jsp" %>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 		<div class="page-heading">

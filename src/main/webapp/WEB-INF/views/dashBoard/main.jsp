@@ -5,13 +5,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
 
 
 
 
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(document).ready(function(){
 	
@@ -88,7 +89,7 @@ $(document).ready(function(){
 
 <body>
 
-<%@ include file="../chatBot/chatBot.jsp"%>
+	<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 
 	<div id="main">
@@ -120,11 +121,8 @@ $(document).ready(function(){
 		</header>
 
 		<div class="page-heading">
-			<h3>   <span style="color:red;">
-			[${project.name }] 
-			
-			</span>
-			대시보드
+			<h3>
+				<span style="color: red;"> [${project.name }] </span> 대시보드
 			</h3>
 			<h5>
 				<span style="color: red">"${member.name }${member.auth }"</span>님
@@ -135,10 +133,10 @@ $(document).ready(function(){
 
 
 		<div class="page-content">
+		
 			<section class="row">
-				<div class="col-12 col-lg-9">
+				<div class="col-12 col-lg-8">
 					<div class="row">
-						
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -150,13 +148,13 @@ $(document).ready(function(){
 										</div>
 										<div class="col-md-8">
 											<h6 class="text-muted font-semibold">나의 작업물 수</h6>
-											<h6 class="font-extrabold mb-0">${outputCnt } 건</h6>
+											<h6 class="font-extrabold mb-0">${outputCnt }건</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -167,14 +165,15 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">오늘 해야할 일 </h6>
-											<h6 class="font-extrabold mb-0">${calendarCountBelongTodayCnt} 건</h6>
+											<h6 class="text-muted font-semibold">오늘 해야할 일</h6>
+											<h6 class="font-extrabold mb-0">${calendarCountBelongTodayCnt}
+												건</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -187,7 +186,7 @@ $(document).ready(function(){
 										<div class="col-md-8">
 											<h6 class="text-muted font-semibold">프로젝트 종료일</h6>
 											<h6 class="font-extrabold mb-0" id="go">
-											<fmt:formatDate value="${project.lastdate }"/>
+												<fmt:formatDate value="${project.lastdate }" />
 											</h6>
 											<script>
 											$(document).ready(function(){
@@ -205,13 +204,13 @@ $(document).ready(function(){
 
 											})
 											</script>
-											
+
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						
+
 						<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -313,27 +312,23 @@ $(document).ready(function(){
 								</div>
 							</div>
 						</div>
-						
+
 					</div>
-					
-					
-					
-					
-					
-					
+
+
+
+
+
+
 					<div class="row">
 						<div class="col-12">
-						
-					
-
-
-
-			<!--  메모장 -->
+							<!--  메모장 -->
 							<div class="card">
 								<div class="card-header">
-								<h4>[<span style="color:red">${member.name } </span>]님 만을 위한 메모장</h4></div>
-								
-								
+									<h4>
+										[<span style="color: red">${member.name } </span>]님 만을 위한 메모장
+									</h4>
+								</div>
 								<div class="card-body">
 									<div
 										class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -349,14 +344,13 @@ $(document).ready(function(){
 											</div>
 											<div class="dataTable-search">
 												<input class="dataTable-input" placeholder="Search..."
-													type="text"> <a
-													class="btn btn-danger" style="text-align: right" data-bs-toggle="modal"  data-bs-target="#inlineForm" >메모 쓰기</a>
+													type="text"> <a class="btn btn-danger"
+													style="text-align: right" data-bs-toggle="modal"
+													data-bs-target="#inlineForm">메모 쓰기</a>
 											</div>
-
-
-
-
 										</div>
+
+
 										<div class="dataTable-container">
 											<table class="table table-striped dataTable-table"
 												id="table1">
@@ -374,33 +368,31 @@ $(document).ready(function(){
 															href="#" class="dataTable-sorter">중요도</a></th>
 													</tr>
 												</thead>
-												
+
 												<tbody>
 													<c:forEach var="list" items="${memoList}">
-														<tr >
+														<tr>
 															<td>${list.memokey}</td>
-															<td style="cursor: pointer;"  id="delBtn"  onclick="location.href='location.href='/project5/memoDelete.do?memokey=${list.memokey}'"  >${list.title } <span class="badge bg-danger">삭제</span></td>
+															<td style="cursor: pointer;" id="delBtn"
+																onclick="location.href='location.href='/project5/memoDelete.do?memokey=${list.memokey}'">${list.title }
+																<span class="badge bg-danger">삭제</span>
+															</td>
 															<td>${list.contents }</td>
 															<td><fmt:formatDate value="${list.writedate }" /></td>
-															<td style="cursor: pointer;">
-															<c:if test="${list.importance eq '하'}">
+															<td style="cursor: pointer;"><c:if
+																	test="${list.importance eq '하'}">
 																	<span class="badge bg-primary importance22">하</span>
 																</c:if> <c:if test="${list.importance eq '중'}">
-																	<span class="badge bg-secondary importance22" >중</span>
+																	<span class="badge bg-secondary importance22">중</span>
 																</c:if> <c:if test="${list.importance eq '상'}">
 																	<span class="badge bg-danger importance22">상</span>
-																</c:if>
-															</td>
+																</c:if></td>
 														</tr>
 													</c:forEach>
-													
-													
-													
-													
 												</tbody>
 											</table>
 										</div>
-										
+
 										<script>
 										$(document).ready(function(){
 											$("#delBtn").click(function(){
@@ -421,10 +413,10 @@ $(document).ready(function(){
 										
 										
 										</script>
-										
-										
-										
-										
+
+
+
+
 										<div class="dataTable-bottom">
 											<div class="dataTable-info">Showing 1 to 10 of 26
 												entries</div>
@@ -455,65 +447,50 @@ $(document).ready(function(){
 
 
 
-				<div class="card">
+							<div class="card">
 								<div class="card-header">
 									<h4>산출물 분포 상황</h4>
 								</div>
 								<div class="card-body">
-  								<div id="chart_div"></div>
-     							 <!-- 막대 차트 -->
-								<script>
+									<div id="chart_div" style="height: 400px;"></div>
+								</div>
+							</div>
+
+							<!-- 막대 차트 -->
+							<script>
 									$(document).ready(function(){
-										
-										
 									// 산출물	
-									var outputSortCnt = [] 
-									var worksortList = [] 
-									var outputSortCntByMemberkey = [] 
-									
-									var memberkey = "${member.memberkey}"
-									var data = {memberkey : memberkey};
-												  $.ajax({
+											var outputSortCnt = [] 
+											var outputSortCntByMemberkey = [] 
+											var worksortList = [] 
+											var memberkey = "${member.memberkey}"
+											var data = {memberkey : memberkey};
+											
+											$.ajax({
 												      url: '/project5/outputSortCnt.do',
 												      type: 'POST',
 												      async:false,
 												      data : data,
 												      dataType:'json',
 												        success: function(result){
-												          //console.log("result :::::::::::::::::::::::::"+result[0]);
-												          //console.log("result :::::::::::::::::::::::::"+result.outputSortCnt[0].count);
-												          //console.log("result :::::::::::::::::::::::::"+result.outputSortCntByMemberkey[1].count);
-												          //console.log("result :::::::::::::::::::::::::"+result.worksortList[0]);
-												          //console.log("result.outputSortCnt[0].count :::::::::::::::::"+result.outputSortCnt[1].count);
-												          //console.log("result.outputSortCntByMemberkey[0].count ::::::::::::::::"+result.outputSortCntByMemberkey[0].count);
-												         outputSortCntByMemberkey[0] = result.outputSortCntByMemberkey[0].count;
-												         outputSortCntByMemberkey[1] = result.outputSortCntByMemberkey[1].count;
-												         outputSortCntByMemberkey[2] = result.outputSortCntByMemberkey[2].count;
-												         outputSortCntByMemberkey[3] = result.outputSortCntByMemberkey[3].count;
-												         outputSortCntByMemberkey[4] = result.outputSortCntByMemberkey[4].count;
-												         outputSortCntByMemberkey[5] = result.outputSortCntByMemberkey[5].count;
-												         outputSortCntByMemberkey[6] = result.outputSortCntByMemberkey[6].count;
-												         outputSortCntByMemberkey[7] = result.outputSortCntByMemberkey[7].count;
-												         outputSortCntByMemberkey[8] = result.outputSortCntByMemberkey[8].count;
-												          //outputSortCnt[0] = result.outputSortCnt[0].count;
-												          console.log("일단 성공")
-												          console.log(outputSortCntByMemberkey[0])
-												          
-												         for(var i=0; i<10; i++){
-												        	  
+												         
+												        	for(var i=0; i<11; i++){
 												        	  if(result.outputSortCnt[i] ==null){
 												        		  outputSortCnt[i] = 0
 												        	  }else{
 												        		  outputSortCnt[i] = result.outputSortCnt[i].count;
 												        	  }
-												        	  
+												         }
+												          
+												          for(var i=0; i<11; i++){
 												        	  if(outputSortCntByMemberkey[i] == null){
 												        		  outputSortCntByMemberkey[i] = 0
 												        	  }else{
 														        	 outputSortCntByMemberkey[i] =result.outputSortCntByMemberkey[i].count;
 												        	  }
-												        	  
-												        	  
+												          }
+												          
+												          for(var i=0; i<11; i++){
 												        	  worksortList[i] = result.worksortList[i].title;
 												          }
 												          console.log(" outputSortCnt 완료")
@@ -522,13 +499,15 @@ $(document).ready(function(){
 												          console.log("outputSortCnt 실패");
 												          console.log(result); 
 												      }
-												    }); //$.ajax					
-								
+												    }); //$.ajax			
+												    
+												    
 												    console.log("outputSortCnt : :::::=====" +outputSortCnt)
 												    console.log("workSortList : ::::=====" +worksortList)
 												    console.log("outputSortCntByMemberkey : ::::=====" +outputSortCntByMemberkey)
-								
-												 google.charts.load('current', {'packages':['corechart']});
+												 
+												    
+												  google.charts.load('current', {'packages':['corechart']});
 										    	  google.charts.setOnLoadCallback(drawChart);
 									
 											      function drawChart() {
@@ -555,28 +534,29 @@ $(document).ready(function(){
 											
 											        chart.draw(data, options);
 											      }
+											     
 									})
 								</script>
-      
-									
+
+
+
+
+
+
+							<div class="card">
+								<div class="card-header">
+									<h4>리스크 분석</h4>
+								</div>
+								<div class="card-body">
+									<div id="chart_div2"
+										style="width: 900px; height: 500px; margin: 0 auto;"></div>
 								</div>
 							</div>
 
 
 
-
-
-						<div class="card">
-								<div class="card-header">
-									<h4>리스크 분석</h4>
-								</div>
-								
-								<div class="card-body">
-
-												<script>
+							<script>
 												$(document).ready(function(){
-												google.charts.load('current', {packages: ['corechart', 'bar']});
-												google.charts.setOnLoadCallback(drawBasic);
 												
 																	var importance = []
 																	var count = []
@@ -586,7 +566,8 @@ $(document).ready(function(){
 																      async:false, 
 																      dataType:'json',
 																        success: function(result){
-																        	 console.log(" riskDashBoardData 일단 성공")
+																          console.log(" riskDashBoardData 일단 성공")
+																          console.log(result);
 																          console.log(result.get);
 																          console.log(result.get[0]);
 																          console.log(result.get[0].importance);
@@ -605,63 +586,59 @@ $(document).ready(function(){
 																          console.log(result); 
 																      }
 																    }); //$.ajax					
-																	
-																    console.log("riskdata ::::::::::::::::::: "+count[2])
-																	
-												
-																			function drawBasic() {
-																			  var data = google.visualization.arrayToDataTable(
-																					  [
-																					         ['Element', '수', { role: 'style' }],
-																					         ['낮음', count[0], '#b87333'],            // RGB value
-																					         ['보통', count[1], 'silver'],            // English color name
-																					         ['중요', count[2], 'color: gold'],
-																			     	 ]
-																			  
-																			  );
-																		      var options = {
-																		        title: '',
-																		        hAxis: {
-																		          title: '중요도'
-																		        },
-																		        vAxis: {
-																		          title: '개수'
-																		        }
-																		      };
-												
-																      var chart = new google.visualization.ColumnChart(
-																        document.getElementById('risk'));
-																      	chart.draw(data, options);
-																    }
-												
-												
-												})
+																    console.log("count2222 ::::::::::::::::::: "+count)
+																    
+																    
+															google.charts.load('current', {packages: ['corechart', 'bar']});
+															google.charts.setOnLoadCallback(drawBasic);
+															
+															function drawBasic() {
+															      var data = google.visualization.arrayToDataTable([
+															        ['리스크 구분', '개수', { role: 'style' }],
+															        [importance[0], count[0], '#b87333'],
+															        [importance[1], count[1],'silver'],
+															        [importance[2], count[2],'gold']
+															      ]);
+															
+															      var options = {
+															        title: '리스크 분석',
+															        chartArea: {width: '50%'},
+															        hAxis: {
+															          title: 'Total Population',
+															          minValue: 0
+															        },
+															        vAxis: {
+															          title: 'City'
+															        }
+															      };
+															
+															      var chart = new google.visualization.BarChart(document.getElementById('chart_div2'));
+															
+															      chart.draw(data, options);
+															    }
+																											})
 												</script>
-												
-											<div id="risk"  style="width: 1000px; height: 100%; margin-left: 40px;"></div>
-									
-								</div>
-							</div>
 						</div>
 					</div>
-					
-					
-					
-					
-					<div class="row">
-						<div class="col-12 col-xl-8">
-							<div class="card">
-								<div class="card-header">
-									<h4>프로젝트 조직 분석</h4>
-								</div>
-								<div class="card-body">
-								  	<div id="piechart1" style="width: 100%; height: 100%;"></div>
-								</div>
-							</div>
-						</div>
 
-	<script type="text/javascript">
-									
+
+
+
+
+
+					<div class="card">
+						<div class="card-header">
+							<h4>프로젝트 조직 분석</h4>
+						</div>
+						<div class="card-body">
+							<div id="piechart1" style="width: 100%; height: 400px;"></div>
+						</div>
+					</div>
+
+
+
+
+					<script type="text/javascript">
 									var projectkey;
 									var projectkeyRe = "${project.projectkey}";
 									
@@ -703,7 +680,6 @@ $(document).ready(function(){
 										          chart.draw(data1, options);
 										        }
 							    </script>
-					
 
 
 
@@ -727,9 +703,15 @@ $(document).ready(function(){
 
 
 
-
-
-
+					<div class="row">
+						<div class="col-12 col-xl-8">
+							<div class="card">
+								<div class="card-header">
+									<h4></h4>
+								</div>
+								<div class="card-body"></div>
+							</div>
+						</div>
 
 						<div class="col-12 col-xl-4">
 							<div class="card">
@@ -738,7 +720,6 @@ $(document).ready(function(){
 								</div>
 								<div class="card-body">
 									<div class="table-responsive">
-									
 										<table class="table table-hover table-lg">
 											<thead>
 												<tr>
@@ -746,14 +727,12 @@ $(document).ready(function(){
 													<th></th>
 												</tr>
 											</thead>
-											
-											
 											<tbody>
 												<tr>
 													<td class="col-3">
 														<div class="d-flex align-items-center">
 															<div class="avatar avatar-md">
-															<!-- 
+																<!-- 
 																<img
 																	src="/project5/resources/dist/assets/images/faces/5.jpg"> -->
 															</div>
@@ -768,7 +747,7 @@ $(document).ready(function(){
 													<td class="col-3">
 														<div class="d-flex align-items-center">
 															<div class="avatar avatar-md">
-															<!-- 
+																<!-- 
 																<img
 																	src="/project5/resources/dist/assets/images/faces/2.jpg"> -->
 															</div>
@@ -776,57 +755,56 @@ $(document).ready(function(){
 														</div>
 													</td>
 													<td class="col-auto">
-														<p class=" mb-0">
-															</p>
+														<p class=" mb-0"></p>
 													</td>
 												</tr>
 											</tbody>
-											
 										</table>
-										
-										
-										
-										
 									</div>
 								</div>
 							</div>
 						</div>
 					</div>
+
+
+
 				</div>
-				
-				
-				
-				
-				
-				
-				
-				<div class="col-12 col-lg-3">
+
+
+
+
+
+
+
+				<div class="col-12 col-lg-4">
 					<div class="card">
 						<div class="card-body py-4 px-5">
 							<div class="d-flex align-items-center">
-								<div class="avatar avatar-xl"  id="myface">
-									
+								<div class="avatar avatar-xl" id="myface">
 									<!--  로그인 한 회원의 이미지 정보 img  
 									<img src="/project5/resources/dist/assets/images/faces/1.jpg"
 										alt="Face 1">
 										-->
-										
-										
-										
-										
 								</div>
 								<div class="ms-3 name">
 									<h5 class="font-bold">[${member.name }] 님</h5>
-									<h6 class="text-muted mb-0">직책 : ${member.auth } <br>${member.email} </h6>
+									<h6 class="text-muted mb-0">
+										직책 : ${member.auth } <br>${member.email}
+									</h6>
 								</div>
 							</div>
 						</div>
 					</div>
+
+
+
+
+
 					<div class="card">
 						<div class="card-header">
-							<h4></h4>
+							<h4>최근 프로젝트 참여자</h4>
 						</div>
-						
+
 						<!-- 
 						<div class="card-content pb-4">
 							<div class="recent-message d-flex px-4 py-3">
@@ -865,47 +843,98 @@ $(document).ready(function(){
 							</div>
 						</div>
 						 -->
-						
-						
-						
+
 					</div>
-					
-					
-					
-					
-					
-					
+
+
+
+
+
+
+
+
+
 					<div class="card">
 						<div class="card-header">
-							<h4></h4>
+							<h4>예산 지출 상황</h4>
 						</div>
 						<div class="card-body">
-					
+						 <div id="chart_div3" style="width: 100%; height: 700px;"></div>
 						</div>
 					</div>
-				
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+						<script type="text/javascript">
+								
+							  var no = parseInt("${project.projectkey}");
+							  var data = {no : no};
+							  console.log("no " +no);
+							  console.log("data"+data);
+							  
+							  $.ajax({
+								  url : '/project5/dashCostDetailGet.do',
+								  method : 'POST',
+								  data : data,
+								  dataType:'json',
+								  success:function(result){
+									  console.log("-------------------------------------")
+									  console.log(result)
+									  console.log(result.get)
+									  console.log(result.get[0])
+									  mydata = [
+										  ['Year', '예산', '지출'],
+										  ['개발자',  parseInt("${project.take}"),      result.get[0].costex ],
+								          ['식비',  parseInt("${project.take}"),      result.get[1].costex ],
+								          ['사무용품',  parseInt("${project.take}"),       result.get[2].costex ],
+								          ['기타',  parseInt("${project.take}"),      result.get[3].costex ]
+									  ];
+									  
+								  },
+								  error:function(result){
+									  console.log("예산 데이터 받아오기 실패")
+								  }
+							  })
+							  
+						
+						      google.charts.load('current', {'packages':['corechart']});
+						      google.charts.setOnLoadCallback(drawChart);
+						
+						      
+						      
+						      var mydata;
+						         
+						       
+						        
+						      function drawChart() {
+						        var data = google.visualization.arrayToDataTable(mydata);
+						        var options = {
+						          title: '예산 지출 현황',
+						          hAxis: {title: 'Year',  titleTextStyle: {color: '#333'}},
+						          vAxis: {minValue: 0}
+						        };
+						        var chart = new google.visualization.AreaChart(document.getElementById('chart_div3'));
+						        chart.draw(data, options);
+						      }
+						    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+					<!--  휴가자 근무 가능자 -->
 					<div class="card">
 						<div class="card-header">
-							<h4></h4>
+							<h4>프로젝트 근무 가능자 / 휴가 인원 </h4>
 						</div>
 						<div class="card-body">
-							 <!-- 
-							 <div id="curve_chart"></div>
-							  -->
+							 <div id="curve_chart" style="height: 500px;"></div>
 						</div>
 					</div>
 					<script type="text/javascript">
@@ -927,41 +956,41 @@ $(document).ready(function(){
 								          legend: { position: 'bottom' }
 								        };
 								
-								       // var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+								      	 var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 								
-								        //chart.draw(data, options);
+								        chart.draw(data, options);
 								      }
 								    </script>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 					<div class="card">
 						<div class="card-header">
 							<h4></h4>
 						</div>
 						<div class="card-body">
-						
-						    <script type="text/javascript">
+
+							<script type="text/javascript">
 						      google.charts.load('current', {'packages':['corechart']});
 						      google.charts.setOnLoadCallback(drawChart);
 						
@@ -985,7 +1014,7 @@ $(document).ready(function(){
 						        //chart.draw(data, options);
 						      }
 						    </script>
-    						<!-- 
+							<!-- 
 							<div id="piechart"></div>
 							 -->
 						</div>
@@ -1010,62 +1039,61 @@ $(document).ready(function(){
 
 
 
- 											 <!--login form Modal -->
-                                            <div class="modal fade text-left" id="inlineForm" tabindex="-1"
-                                                role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-                                                    role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header">
-                                                            <h4 class="modal-title" id="myModalLabel33">메모 쓰기 </h4>
-                                                            <button type="button" class="close" data-bs-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <i data-feather="x"></i>
-                                                            </button>
-                                                        </div>
-                                                        <form action="/project5/memoInsert.do" id="frm01" method="post">
-	                                                        <input type="hidden" name="memberkey" value="${member.memberkey }">
-	                                                        <input type="hidden" name="projectkey" value="1">
-	                                                            <div class="modal-body">
-	                                                            
-	                                                                <label>중요도: </label>
-	                                                                <div class="form-group">
-	                                                                        <select  class="form-control" name="importance">
-	                                                                        	<option value="상">상</option>
-	                                                                        	<option value="중">중</option>
-	                                                    						<option value="하">하</option>
-	                                                                        </select>
-	                                                                </div>
-	                                                                
-	                                                                 <label>제목: </label>
-	                                                                <div class="form-group">
-	                                                                    <input type="text"  name="title"
-	                                                                        class="form-control">
-	                                                                </div>
-	                                                                
-	                                                                 <label>내용: </label>
-	                                                                <div class="form-group">
-	                                                                    <input type="text"  name="contents"
-	                                                                        class="form-control">
-	                                                                </div>
-	                                                            </div>
+	<!--login form Modal -->
+	<div class="modal fade text-left" id="inlineForm" tabindex="-1"
+		role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+		<div
+			class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+			role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title" id="myModalLabel33">메모 쓰기</h4>
+					<button type="button" class="close" data-bs-dismiss="modal"
+						aria-label="Close">
+						<i data-feather="x"></i>
+					</button>
+				</div>
+				<form action="/project5/memoInsert.do" id="frm01" method="post">
+					<input type="hidden" name="memberkey" value="${member.memberkey }">
+					<input type="hidden" name="projectkey" value="1">
+					<div class="modal-body">
 
-																<div class="modal-footer">
-																	<button type="button" class="btn btn-light-secondary"
-																		data-bs-dismiss="modal">
-																		<i class="bx bx-x d-block d-sm-none"></i> <span
-																			class="d-none d-sm-block">닫기</span>
-																	</button>
-																	<button type="submit" class="btn btn-danger ml-2">
-																		<i class="bx bx-check d-block d-sm-none"></i> <span
-																			class="d-none d-sm-block">작성완료</span>
-																	</button>
-																</div>
-															</form>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            
+						<label>중요도: </label>
+						<div class="form-group">
+							<select class="form-control" name="importance">
+								<option value="상">상</option>
+								<option value="중">중</option>
+								<option value="하">하</option>
+							</select>
+						</div>
+
+						<label>제목: </label>
+						<div class="form-group">
+							<input type="text" name="title" class="form-control">
+						</div>
+
+						<label>내용: </label>
+						<div class="form-group">
+							<input type="text" name="contents" class="form-control">
+						</div>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-light-secondary"
+							data-bs-dismiss="modal">
+							<i class="bx bx-x d-block d-sm-none"></i> <span
+								class="d-none d-sm-block">닫기</span>
+						</button>
+						<button type="submit" class="btn btn-danger ml-2">
+							<i class="bx bx-check d-block d-sm-none"></i> <span
+								class="d-none d-sm-block">작성완료</span>
+						</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 
 
 </body>

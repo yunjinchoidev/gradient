@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import project5.cost.CostDetail;
 import project5.fullCalendar.Calendar;
 import project5.output.OutputVO;
 
@@ -22,6 +23,5 @@ public interface DashBoardDao {
 	public int teamCntByProject1(int projectkey);
 	public int teamCntByProject2(int projectkey);
 	public int teamCntByProject3(int projectkey);
-	
-	
+	public List<CostDetail> costDetailGet(int no);
 }

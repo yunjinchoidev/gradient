@@ -73,16 +73,15 @@
 							
 							
 							
+							
 							<a href="/project5/myworkKanban.do?memberkey=${member.memberkey }" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
-
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-                                        </svg>
-								</div> 진행중인 칸반
+									<svg class="bi" width="1.5em" height="1.5em" fill="currentColor" >
+											<use xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
+                                    </svg>
+								</div> 
+								진행중인 칸반
 							</a> 
 							
 							

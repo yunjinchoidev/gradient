@@ -52,6 +52,8 @@
 <!-- 팀관리 전체 조회  -->
 
 <body>
+	<%@ include file="../chatBot/chatBot.jsp" %>
+
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 		<div class="page-heading">
@@ -73,9 +75,9 @@
 							<a
 							href="/project5/Allocation.do"
 							class="badge bg-secondary">프로젝트 할당</a> <a
-							href="/project5/output.do?projectkey=${project.projectkey }"
+							href="/project5/vacationMain.do?projectkey=${project.projectkey }"
 							class="badge bg-secondary">휴가 관리</a> <a
-							href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
+							href="/project5/attendanceMain.do?method=list&projectkey=${project.projectkey }"
 							class="badge bg-secondary">근태 관리</a>
 					</div>
 

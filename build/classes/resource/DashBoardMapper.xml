@@ -92,6 +92,9 @@
 	</select>
 
 
+	<select id="costDetailGet" parameterType="int" resultType="project5.cost.CostDetail">
+		select * from costdetail where no=#{no}
+	</select>
 
 
 

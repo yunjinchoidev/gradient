@@ -93,9 +93,12 @@ var selectedval=4;
 			href="/project5/procurementList.do?projectkey=${project.projectkey }"
 			class="btn btn-warning">조달 관리</a> <a
 			href="/project5/teamlist.do?projectkey=${project.projectkey }"
-			class="btn btn-danger">인적 관리</a> <a
-			href="/project5/risk.do?projectkey=${project.projectkey }"
-			class="btn btn-dark">리스크 관리</a>
+			class="btn btn-danger">인적 관리</a>
+			 <a href="/project5/risk.do?projectkey=${project.projectkey }" class="btn btn-dark">리스크 관리</a>
+			 <a href="/project5/contractMain.do?projectkey=${project.projectkey }" class="btn btn-danger">조달(임시)</a>
+			 <a href="/project5/attendanceMain.do?projectkey=${project.projectkey }" class="btn btn-primary">인력(임시)</a>
+			
+			
 	</div>
 	<hr>
 
