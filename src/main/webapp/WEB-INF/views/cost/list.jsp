@@ -60,15 +60,7 @@ text-align: center;
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>예산 관리</h3>
 					</div>
-					<div class="col-12 col-md-6 order-md-2 order-first">
-						<nav aria-label="breadcrumb"
-							class="breadcrumb-header float-start float-lg-end">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page">DataTable</li>
-							</ol>
-						</nav>
-					</div>
+					
 				</div>
 			</div>
 			
@@ -99,20 +91,13 @@ text-align: center;
 								<table class="table table-striped dataTable-table" id="table1">
 									<thead>
 										<tr>
-											<th data-sortable="" style="width: 5%;text-align:center;"><a
-												href="#" class="dataTable-sorter">NO</a></th>
-											<th data-sortable="" style="width: 33%;text-align:center;"><a
-												href="#" class="dataTable-sorter">프로젝트명</a></th>
-											<th data-sortable="" style="width: 10%;text-align:center;"><a
-												href="#" class="dataTable-sorter">시작일</a></th>
-											<th data-sortable="" style="width: 10%;text-align:center;"><a
-												href="#" class="dataTable-sorter">종료일</a></th>
-											<th data-sortable="" style="width: 25%;text-align:center;"><a
-												href="#" class="dataTable-sorter">회사</a></th>
-											<th data-sortable="" style="width: 7%;text-align:center;"><a
-												href="#" class="dataTable-sorter">PM</a></th>
-											<th data-sortable="" style="width: 10%;text-align:center;"><a
-												href="#" class="dataTable-sorter">예산배정</a></th>
+											<th style="width: 5%;text-align:center;">NO</th>
+											<th style="width: 33%;text-align:center;">프로젝트명</th>
+											<th style="width: 10%;text-align:center;">시작일</th>
+											<th style="width: 10%;text-align:center;">종료일</th>
+											<th style="width: 25%;text-align:center;">회사</th>
+											<th style="width: 7%;text-align:center;">PM</th>
+											<th style="width: 10%;text-align:center;">예산배정</th>
 										</tr>
 									</thead>
 

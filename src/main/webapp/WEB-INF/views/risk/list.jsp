@@ -74,15 +74,7 @@
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>리스크 관리</h3>
 					</div>
-					<div class="col-12 col-md-6 order-md-2 order-first">
-						<nav aria-label="breadcrumb"
-							class="breadcrumb-header float-start float-lg-end">
-							<ol class="breadcrumb">
-								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-								<li class="breadcrumb-item active" aria-current="page">DataTable</li>
-							</ol>
-						</nav>
-					</div>
+					
 				</div>
 			</div>
 			
@@ -113,20 +105,13 @@
 								<table class="table table-striped dataTable-table" id="table1">
 									<thead>
 										<tr>
-											<th data-sortable="" style="width: 20%;"><a
-												href="#" class="dataTable-sorter">리스크</a></th>
-											<th data-sortable="" style="width: 30%;"><a
-												href="#" class="dataTable-sorter">프로젝트</a></th>
-											<th data-sortable="" style="width: 10%;"><a
-												href="#" class="dataTable-sorter">작성일</a></th>
-											<th data-sortable="" style="width: 10%;"><a
-												href="#" class="dataTable-sorter">완료예정일</a></th>
-											<th data-sortable="" style="width: 10%;"><a
-												href="#" class="dataTable-sorter">중요도</a></th>
-											<th data-sortable="" style="width: 10%;"><a
-												href="#" class="dataTable-sorter">진행사항</a></th>
-											<th data-sortable="" style="width: 10%;"><a
-												href="#" class="dataTable-sorter">담당자</a></th>
+											<th style="width: 20%;">리스크</th>
+											<th style="width: 30%;">프로젝트</th>
+											<th style="width: 10%;">작성일</th>
+											<th style="width: 10%;">완료예정일</th>
+											<th style="width: 10%;">중요도</th>
+											<th style="width: 10%;">진행사항</th>
+											<th style="width: 10%;">담당자</th>
 										</tr>
 									</thead>
 
