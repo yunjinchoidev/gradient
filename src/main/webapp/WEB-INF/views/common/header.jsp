@@ -49,40 +49,43 @@
 	$(document).ready(function() {
 		var auth = "${member.auth}";
 		console.log("auth : " + auth);
-		$("#check").click(function() {
-			if (auth != "pm") {
+		
+		var memberName = "${member.name}";
+		var memberkey = "${member.memberkey}";
+		console.log("memberName : " + memberName);
+		
+		$("#projectMange").click(function() {
+			if (memberName == "") {
 				alert("권한이 없습니다.");
-				location.href = "/project5/main.do";
 			} else {
-				console.log("승인");
-				window.location = "www.naver.com";
+				location.href="/project5/projectManageMain.do"
 			}
 		});
 
-		var memberName = "${member.name}";
-		console.log("memberName : " + memberName);
+	
 		$("#myProject").click(function() {
 			if (memberName == "") {
 				alert("미 로그인시 접근 불가합니다.")
-				history.back(-2);
+			}else{
+				location.href="/project5/myProject.do?memberkey="+memberkey
 			}
 		})
+		
+		
+		
 		$("#mywork").click(function() {
 			if (memberName == "") {
 				alert("미 로그인시 접근 불가합니다.")
-				history.back(-2);
+			}else{
+				location.href="/project5/myworkCalendar.do"
 			}
 		})
 		$("#dashboard").click(function() {
 			if (memberName == "") {
 				alert("미 로그인시 접근 불가합니다.")
 				history.back(-2);
-			}
-		})
-		$("#mywork").click(function() {
-			if (memberName == "") {
-				alert("미 로그인시 접근 불가합니다.")
-				history.back(-2);
+			}else{
+				location.href="/project5/dashBoard.do?projectkey=1"
 			}
 		})
 
@@ -164,8 +167,7 @@
 									공개된 모든 프로젝트</span>
 						</a></li>
 						<li class="sidebar-item " id="myProject"><a
-							href="/project5/myProject.do?memberkey=${member.memberkey }"
-							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>
+							href="#"  id="myProjectA" class='sidebar-link' > <i class="bi bi-grid-fill"></i> <span>
 									나의 프로젝트</span>
 						</a></li>
 
@@ -239,8 +241,8 @@
 
 						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i class="bi bi-stack"></i> <span>
 									관리자 페이지 [PM]</span></a>
-							<ul class="submenu " id="check">
-								<li class="submenu-item "><a href="/project5/projectManageMain.do">프로젝트 관리 </a></li>
+							<ul class="submenu ">
+								<li class="submenu-item " id="projectMange"><a href="#">프로젝트 관리 </a></li>
 								<li class="submenu-item "><a href="/project5/mailFrm.do">이메일 발송 </a></li>
 								<li class="submenu-item "><a href="/project5/memberList.do">사용자 리스트 </a></li>
 							</ul>
@@ -249,9 +251,8 @@
 						<li class="sidebar-item  has-sub">
 								<a href="/project5/customerChat.do" class='sidebar-link'> 
 								<i class="bi bi-stack"></i> <span>고객 관리</span></a>
-							<ul class="submenu " id="check">
+							<ul class="submenu">
 								<li class="submenu-item "><a href="/project5/customerChat.do">채팅 상담</a></li>
-								<li class="submenu-item "><a href="/project5/chatBot.do">챗봇</a></li>
 								<li class="submenu-item "><a href="/project5/plan.do">플랜 </a></li>
 							</ul>
 						</li>

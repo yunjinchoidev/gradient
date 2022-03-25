@@ -5,15 +5,22 @@
 <mapper namespace="project5.vote.VoteDao">
 
 	<select id="list" resultType="project5.vote.VoteVO">
-		select *
-		from vote
+		SELECT v.*, p.name pname, m.NAME
+		mname
+		FROM vote v, project p, MEMBER m
+		WHERE v.PROJECTKEY = p.PROJECTKEY
+		AND v.MEMBERKEY =m.MEMBERKEY
 	</select>
 
 	<select id="get" resultType="project5.vote.VoteVO"
 		parameterType="int">
-		select *
-		from vote
-		where votekey = #{votekey}
+		SELECT v.*, p.name pname, m.NAME mname
+		FROM vote v,
+		project p, MEMBER m
+		WHERE v.PROJECTKEY = p.PROJECTKEY
+		AND v.MEMBERKEY
+		=m.MEMBERKEY
+		AND votekey = #{votekey}
 	</select>
 
 	<insert id="insert" parameterType="project5.vote.VoteVO">
@@ -31,17 +38,18 @@
 		set
 		voteItem1=#{voteItem1},
 		voteItem2 =#{voteItem2},
-		voteItem3 =#{voteItem3},
+		voteItem3=#{voteItem3},
 		voteItem4 =#{voteItem4},
 		voteItem5 =#{voteItem5}
 		where
 		votekey=#{votekey}
 	</update>
-	
+
 	<delete id="voteDelete" parameterType="int">
-		delete 
+		delete
 		from vote
-		where votekey = #{votekey}	
+		where
+		votekey = #{votekey}
 	</delete>
 
 

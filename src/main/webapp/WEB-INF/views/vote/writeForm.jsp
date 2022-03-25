@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 		<section id="multiple-column-form">
@@ -27,7 +28,7 @@
 											<div class="form-group">
 												<label for="first-name-column">투표 주제</label> <input
 													type="text" id="first-name-column" class="form-control"
-													placeholder="프로젝트 명" name="title" >
+													placeholder="투표 주제를 입력해주세요" name="title" >
 											</div>
 										</div>
 										<div class="col-md-6 col-12">
@@ -133,11 +134,7 @@
 
 
 									<div class="col-12 d-flex justify-content-end">
-										<button type="button"
-											class="btn btn-danger btn-icon icon-left">
-											<i class="fas fa-plane"></i> 뒤로가기
-										</button>
-										<a href="/project5/projectHome.do" class="btn btn-info">뒤로가기</a>
+										<button type="button" class="btn btn-info me-1 mb-1" onclick="location.href='/project5/projectHome.do'">뒤로가기</button>
 										<button type="submit" class="btn btn-primary me-1 mb-1">등록</button>
 										<button type="reset" class="btn btn-light-secondary me-1 mb-1">초기화</button>
 									</div>

@@ -17,12 +17,8 @@
 </head>
 <script>
 	$(document).ready(function() {
+		
 		var psc = "${psc}";
-
-		console.log("psc : " + psc);
-		var name = "${member.name}"
-		console.log("member.name : " + name);
-
 		if (psc == "write") {
 			alert("공지사항 작성이 완료되었습니다.");
 		}
@@ -33,27 +29,30 @@
 			alert("공지사항 수정이 완료되었습니다.");
 		}
 
+
+		console.log("psc : " + psc);
+		var name = "${member.name}"
+		console.log("member.name : " + name);
+		
 		$("#write").click(function() {
 			if (name == "") {
 				alert("접근 권한이 없습니다.")
-				location.href = "/project5/notice.do";
 			} else {
 				location.href = "/project5/noticeWriteForm.do";
 			}
 		})
+		
+		
 		var pageSize = "${noticeSch.pageSize}"
 		$("[name=pageSize]").val(pageSize);
+		
 		$("[name=pageSize]").change(function() {
 			$("[name=curPage]").val(1);
 			$("#frm01").submit();
 		});
-
-		
-		
 		
 
-			var noticekey =1;
-			  
+			 /*
 		    $.ajax({
 		      url: '/project5/noticeAttachFileInfo.do',
 		      processData: false, 
@@ -66,18 +65,11 @@
 				  showUploadResult(result);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
 		      },
 		      error: function(result){
-		          console.log("asdfads");
 		          console.log(result); 
-		    	  console.log("afsdfa")
+		    	  console.log("실패")
 		      }
 		    }); //$.ajax
-	  
-		
-		
-		
-		
-		
-		
+	  		*/
 		
 		
 		  function showUploadResult(uploadResultArr){
@@ -105,26 +97,6 @@
 			    uploadUL.append(str);
 			  }
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	})
 
 	function goPage(no) {
@@ -132,7 +104,12 @@
 		$("#frm01").submit();
 	}
 </script>
+
+
+
+
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 
@@ -158,7 +135,7 @@
 
 
 
-			<form id="frm01" class="form" action="/project5/notice.do"
+	
 				method="post">
 				<input type="hidden" name="curPage" value="1" />
 				<section class="section">
@@ -167,25 +144,24 @@
 						<div class="card-body">
 							<div
 								class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+							<form id="frm01" class="form" action="/project5/notice.do">
 								<div class="dataTable-top">
 									<div class="dataTable-dropdown">
 										<span class="input-group-text">총 ${noticeSch.count}건</span> <span
 											class="input-group-text">페이지 크기</span> <select
 											class="dataTable-selector form-select" name="pageSize"><option
 												value="5">5</option>
-											<option value="10" selected="">10</option>
+											<option value="10" selected>10</option>
 											<option value="15">15</option>
 											<option value="20">20</option>
 											<option value="25">25</option></select><label>entries per page</label>
 									</div>
 									<div class="dataTable-search">
-
-										<a href="/project5/noticeWriteForm.do" class="btn btn-danger"
-											id="write" style="text-align: right">글쓰기</a>
+										<a href="#" class="btn btn-danger" id="write"
+											style="text-align: right">글쓰기</a>
 									</div>
-
 								</div>
-			</form>
+							</form>
 
 
 
@@ -204,7 +180,7 @@
 
 
 
-			<div class="dataTable-container">
+							<div class="dataTable-container">
 				<table class="table table-striped dataTable-table" id="table1">
 					<thead>
 						<tr>
@@ -221,7 +197,7 @@
 							<th data-sortable="" style="width: 8%;"><a href="#"
 								class="dataTable-sorter">작성자</a></th>
 							<th data-sortable="" style="width: 10.8049%;"><a href="#"
-								class="dataTable-sorter">Status</a></th>
+								class="dataTable-sorter">조회수</a></th>
 						</tr>
 					</thead>
 
@@ -248,15 +224,12 @@
 									
 									</td>
 									
-									
-
-								
 
 								<td><fmt:formatDate value="${list.writeDate }"/></td>
 								
 								<td>${list.cnt }</td>
-								<td>${list.name } A</td>
-								<td><span class="badge bg-success">Active</span></td>
+								<td>${list.name }</td>
+								<td><span class="badge bg-success">${list.views }</span></td>
 							</tr>
 						</c:forEach>
 					</tbody>

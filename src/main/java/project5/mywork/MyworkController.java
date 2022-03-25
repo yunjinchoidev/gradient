@@ -9,8 +9,10 @@ import project5.fullCalendar.A10_FullCalService;
 import project5.fullCalendar.Calendar;
 import project5.gantt.GanttController;
 import project5.gantt.GanttService;
+import project5.gantt.GanttVO;
 import project5.kanban.KanbanController;
 import project5.kanban.KanbanService;
+import project5.kanban.KanbanVO;
 
 @Controller
 public class MyworkController {
@@ -43,8 +45,6 @@ public class MyworkController {
 		return "WEB-INF\\views\\mywork\\ganttList.jsp";
 	}
 	
-	
-	
 	@RequestMapping("/myworkCalendar7days.do")
 	public String myworkCalendar7days(Model d, int memberkey) {
 		d.addAttribute("list", service3.individualMemberList(memberkey));
@@ -60,11 +60,6 @@ public class MyworkController {
 		d.addAttribute("list", service3.individualMemberList(memberkey));
 		return "WEB-INF\\views\\mywork\\calendar1days.jsp";
 	}
-
-	
-	
-	
-	
 	
 	@RequestMapping("/myWorkCalendarGet.do")
 	public String myWorkModal(Model d, Calendar vo) {
@@ -72,21 +67,13 @@ public class MyworkController {
 		return "WEB-INF\\views\\mywork\\calendarGet.jsp";
 	}
 	@RequestMapping("/myWorkKanbanGet.do")
-	public String myWorkKanbanGet(Model d, Calendar vo) {
-		d.addAttribute("get", service.get(vo.getId()));
+	public String myWorkKanbanGet(Model d, KanbanVO vo) {
 		return "WEB-INF\\views\\mywork\\kanbanGet.jsp";
 	}
 	@RequestMapping("/myWorkganttGet.do")
-	public String myWorkganttGet(Model d, Calendar vo) {
-		d.addAttribute("get", service.get(vo.getId()));
+	public String myWorkganttGet(Model d, GanttVO vo) {
 		return "WEB-INF\\views\\mywork\\ganttGet.jsp";
 	}
-	
-	
-	
-	
-	
-	
 	
 	
 	

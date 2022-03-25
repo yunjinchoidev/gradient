@@ -38,7 +38,7 @@ public class NoticeController {
 	
 	@RequestMapping("/noticeWriteForm.do")
 	public String noticeWriteFrom() {
-		return "WEB-INF\\views\\update\\writeForm.jsp";
+		return "WEB-INF\\views\\notice\\writeForm.jsp";
 	}
 
 	@RequestMapping("/noticeWrite.do")

@@ -6,12 +6,16 @@
 
 
 
-	<insert id="createChat" parameterType="project5.custoChat.CustoChatRoomVO">
-		INSERT INTO custochatroom VALUES (seq_CustoChatRoom.nextval, '새상담'||seq_CustoChatRoom.nextval)
+	<insert id="createChat"
+		parameterType="project5.custoChat.CustoChatRoomVO">
+		INSERT INTO custochatroom VALUES
+		(seq_CustoChatRoom.nextval, '새상담'||seq_CustoChatRoom.nextval)
 	</insert>
-	
-	<select id="createChatName" parameterType="int" resultType="project5.custoChat.CustoChatRoomVO" >
-		select * from custochatroom where roomkey = #{roomkey}
+
+	<select id="createChatName" parameterType="int"
+		resultType="project5.custoChat.CustoChatRoomVO">
+		select * from
+		custochatroom where roomkey = #{roomkey}
 	</select>
 
 
@@ -19,58 +23,67 @@
 
 
 
-	<select id="chatRoomList" resultType="project5.custoChat.CustoChatRoomVO">
+	<select id="chatRoomList"
+		resultType="project5.custoChat.CustoChatRoomVO">
 		SELECT * FROM custochatroom
 	</select>
 
-	<select id="getChatRoom" parameterType="int" resultType="project5.custoChat.CustoChatRoomVO">
+	<select id="getChatRoom" parameterType="int"
+		resultType="project5.custoChat.CustoChatRoomVO">
 		SELECT * FROM custochatroom where roomkey=${roomkey}
 	</select>
-	
-	
-	<!--  메시지!  -->
-	<insert id="createMessage" parameterType="project5.custoChat.CustoChatMessageVO">
-		INSERT INTO custoChatMessage VALUES (seq_custoChatMessage.nextval, #{message}, sysdate, #{memberkey}, #{roomkey})
+
+
+	<!-- 메시지! -->
+	<insert id="createMessage"
+		parameterType="project5.custoChat.CustoChatMessageVO">
+		INSERT INTO custoChatMessage VALUES
+		(seq_custoChatMessage.nextval, #{message}, sysdate, #{memberkey},
+		#{roomkey})
 	</insert>
 
-	<!--  메시지!  -->
-	<select id="MessageListbyRoomkey" parameterType="int" resultType="project5.custoChat.CustoChatMessageVO">
-		SELECT * FROM custoChatMessage WHERE roomkey=#{roomkey} ORDER BY messagekey
+	<!-- 메시지! -->
+	<select id="MessageListbyRoomkey" parameterType="int"
+		resultType="project5.custoChat.CustoChatMessageVO">
+		SELECT * FROM custoChatMessage WHERE roomkey=#{roomkey}
+		ORDER BY messagekey
 	</select>
-	
 
-	
-	<!--  메시지 삭제 -->
-	<delete id="DeleteMessagebyMessagekey" parameterType="int" >
-		delete 
+
+
+	<!-- 메시지 삭제 -->
+	<delete id="DeleteMessagebyMessagekey" parameterType="int">
+		delete
 		from custoChatMessage
 		where messagekey = #{messagekey}
 	</delete>
-	
-	
-	<!--방 입장-->
-	<insert id="roomJoin" parameterType="project5.custoChat.CustoChatRoomJoinVO">
-		INSERT INTO custoChatRoomJoin VALUES (seq_custoChatRoomJoin.nextval, #{memberkey}, #{roomkey})
+
+
+	<!--방 입장 -->
+	<insert id="roomJoin"
+		parameterType="project5.custoChat.CustoChatRoomJoinVO">
+		INSERT INTO custoChatRoomJoin VALUES
+		(seq_custoChatRoomJoin.nextval, #{memberkey}, #{roomkey})
 	</insert>
 
 
 
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

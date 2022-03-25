@@ -17,9 +17,9 @@
 </script>
 
 
-<!-- 이부분이 안찍히네요>> 저기  -->
 </head>
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 
 	<div id="main">

@@ -16,11 +16,6 @@ public class ChatBotController {
 		return "WEB-INF\\views\\chatBot\\chatBot.jsp";
 	}
 	
-	@RequestMapping("/chatBotTest.do")
-	public String chatBotTest(Model d) {
-		return "WEB-INF\\views\\chatBot\\chatBotTest.jsp";
-	}
-
 	
 	@RequestMapping("/getbyInputData.do")
 	public String chatAutoAnswer(Model d, String inputdata) {

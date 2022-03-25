@@ -77,6 +77,7 @@
 
 
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 		<section id="multiple-column-form">
@@ -257,7 +258,7 @@
 											<button type="button"
 												class="btn btn-light-secondary me-1 mb-1" onclick="location.href='/project5/voteDelete.do?votekey=${get.votekey}&projectkey=${get.projectkey}'">투표  삭제</button>
 											<button type="button"
-												class="btn btn-light-black me-1 mb-1">투표  수정</button>
+												class="btn btn-light-warning me-1 mb-1">투표  수정</button>
 									</div>
 								</form>
 							</div>

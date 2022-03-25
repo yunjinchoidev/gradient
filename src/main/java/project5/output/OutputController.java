@@ -52,10 +52,13 @@ public class OutputController {
 		service.insert(vo);
 		System.out.println("산출물 게시판에 등록완료");
 		return "forward:/output.do";
-		
-		
-		
-		
+	}
+	
+	
+	@RequestMapping("/outputDelete.do")
+	public String outputDelete(Model d, OutputVO vo) {
+		service.delete(vo.getOutputkey());
+		return "forward:/output.do";
 	}
 	
 	

@@ -101,12 +101,8 @@ public class UploadController {
 
 	
 	
-	
-	
-	@PostMapping(value = "/uploadAjaxAction.do", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseBody
-	public ResponseEntity<List<AttachFileDTO>> uploadAjaxPost(MultipartFile[] uploadFile) {
-
+	@PostMapping("/uploadAjaxAction.do")
+	public String uploadAjaxPost(MultipartFile[] uploadFile, Model d) {
 		List<AttachFileDTO> list = new ArrayList<>();
 		String uploadFolder = "C:\\upload";
 
@@ -118,7 +114,6 @@ public class UploadController {
 			uploadPath.mkdirs();
 		}
 		// make yyyy/MM/dd folder
-
 		for (MultipartFile multipartFile : uploadFile) {
 			AttachFileDTO attachDTO = new AttachFileDTO();
 			String uploadFileName = multipartFile.getOriginalFilename();
@@ -151,7 +146,14 @@ public class UploadController {
 				e.printStackTrace();
 			}
 		} // end for
-		return new ResponseEntity<>(list, HttpStatus.OK);
+		
+		//return new ResponseEntity<>(list, HttpStatus.OK);
+		
+		System.out.println(list.size());
+		System.out.println(list.get(0));
+		System.out.println(list.get(0).getFileName());
+		d.addAttribute("list", list);
+		return "pageJsonReport";
 	}
 
 	
@@ -268,7 +270,6 @@ public class UploadController {
 			header.add("Content-Type", Files.probeContentType(file.toPath()));
 			result = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), header, HttpStatus.OK);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		return result;

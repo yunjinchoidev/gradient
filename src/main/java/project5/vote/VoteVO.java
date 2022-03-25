@@ -23,6 +23,8 @@ public class VoteVO {
 	private int voteItem5;
 	private int memberkey;
 	private int projectkey;
+	private String pname;
+	private String mname;
 
 	public VoteVO() {
 		super();
@@ -74,6 +76,35 @@ public class VoteVO {
 		this.voteItem5 = voteItem5;
 		this.memberkey = memberkey;
 		this.projectkey = projectkey;
+	}
+
+	public VoteVO(int votekey, String title, String contents, Date writedate, String writedateS, Date enddate,
+			String enddateS, String voteoption, String item1, String item2, String item3, String item4, String item5,
+			int voteItem1, int voteItem2, int voteItem3, int voteItem4, int voteItem5, int memberkey, int projectkey,
+			String pname, String mname) {
+		super();
+		this.votekey = votekey;
+		this.title = title;
+		this.contents = contents;
+		this.writedate = writedate;
+		this.writedateS = writedateS;
+		this.enddate = enddate;
+		this.enddateS = enddateS;
+		this.voteoption = voteoption;
+		this.item1 = item1;
+		this.item2 = item2;
+		this.item3 = item3;
+		this.item4 = item4;
+		this.item5 = item5;
+		this.voteItem1 = voteItem1;
+		this.voteItem2 = voteItem2;
+		this.voteItem3 = voteItem3;
+		this.voteItem4 = voteItem4;
+		this.voteItem5 = voteItem5;
+		this.memberkey = memberkey;
+		this.projectkey = projectkey;
+		this.pname = pname;
+		this.mname = mname;
 	}
 
 	public int getVotekey() {
@@ -234,6 +265,22 @@ public class VoteVO {
 
 	public void setVoteItem5(int voteItem5) {
 		this.voteItem5 = voteItem5;
+	}
+
+	public String getPname() {
+		return pname;
+	}
+
+	public void setPname(String pname) {
+		this.pname = pname;
+	}
+
+	public String getMname() {
+		return mname;
+	}
+
+	public void setMname(String mname) {
+		this.mname = mname;
 	}
 
 }

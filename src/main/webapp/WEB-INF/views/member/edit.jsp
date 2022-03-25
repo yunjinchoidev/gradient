@@ -83,25 +83,20 @@ $(document).ready(function() {
 	
 
 		  		var memberkey;
+		  		console.log("memberkey"+memberkey);
 				// ajax를 통한 파일 정보 불러오기 
 				// 페이지 접속시 자동으로 실행
-				var memberkeyValue ="${member.memberkey}";
-				  console.log("memberkey"+memberkey);
-				 var data = { memberkey : memberkeyValue};
-				 // 업로드 파일 결과 가져오기
+				var memberkeyValue =parseInt("${member.memberkey}");
+				var data = { memberkey : memberkeyValue};
 			    $.ajax({
-			      url: '/project5/aaaa.do',
+			      url: '/project5/myfaceData.do',
 			      data: data,
 			      type: 'POST',
 			      dataType:'json',
 			        success: function(result){
-			          console.log(result); 
-			          console.log(result.get); 
-			          console.log(result.get[0]); 
-			          console.log(result.get[0].fname); 
+			          console.log(result.myfaceData[0]); 
 			          console.log("파일 불러오기 완료")
-					  showUploadResult2(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
-					  console.log(result.fname)
+					  showUploadResult2(result.myfaceData[0]);// 이곳에서 함수 호출 
 			      },
 			      error: function(result){
 			    	  console.log(memberkey)
@@ -115,22 +110,14 @@ $(document).ready(function() {
 			    
 				// 이미지 클라리언트 딴에 띄우는 합수
 				// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
-			  function showUploadResult2(uploadResultArr){
-				    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
-				    var uploadUL = $("#myface");
-				    var str ="";
-				    $(uploadResultArr).each(function(i, obj){
+			  function showUploadResult2(obj){
 				    		console.log("obj"+obj);
 							var fileCallPath =  encodeURIComponent(obj.fname);
 							console.log(fileCallPath);
-							str = "<img src='/project5/display2.do?fileName="+fileCallPath+"' id='mymy'>";
+							var go="/project5/display2.do?fileName="+fileCallPath;
+							$("#not").attr("src",go)
 							console.log("str"+str)
-							$("#not").hide()
-							$("#mymy").show()
-						})
-				    uploadUL.append(str);
 				  }
-			///////////////////////////////////////////////////////////////
 			    
 			    
 									    
@@ -146,9 +133,9 @@ $(document).ready(function() {
 						for(var i = 0; i < files.length; i++){
 						if(!checkExtension(files[i].name, files[i].size) ){
 							return false;
-					}
+						}
 						formData.append("uploadFile", files[i]);
-					}
+						}
 						
 				// 화면단에서 바로 볼수 있게 하기 위해서 사용 + 파일저장
 				$.ajax({
@@ -159,41 +146,39 @@ $(document).ready(function() {
 				type: 'POST',
 				dataType:'json',
 				success: function(result){
-					  console.log(result); 
-					  showUploadResult(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+					  console.log("result"+result.list); 
+					  console.log("result"+result.list[0]); 
+					  showUploadResult(result.list[0]);//함수 호출
 				},
 				error: function(result){
 					  console.log("파일 업로드 실패했습니다.");
 					  console.log(result); 
 				}
 				}); //$.ajax
+				
 			});  
 	  
+			 
 	  
 			
+			 
+			 
+			 
+			 
 			// 파일 업로드 시 파일 정보 띄우기
 			// 이미지 뷰단에 띄어주기 함수  
-				function showUploadResult(uploadResultArr){
-				  if(!uploadResultArr || uploadResultArr.length == 0){ return; }
-				  var uploadUL = $("#myface");
-				  var str ="";
-					$("#not").hide();
-				  $(uploadResultArr).each(function(i, obj){
+				function showUploadResult(obj){
 						if(obj.image){
 							var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
-							$("#not").hide();
-							$("#mymy").hide();
-							str = "<img src='/project5/display.do?fileName="+fileCallPath+"'>";
+							var go = "/project5/display.do?fileName="+fileCallPath;
+							$("#not").attr("src",go)
 							console.log(fileCallPath)
-							console.log(str)
 						}else{
 							var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
 						    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-							str += "<img src='/project5/resources/img/attach.png'>";
-							$("#not").hide()
+							str2 = "<img src='/project5/resources/img/attach.png'>";
 						}
-				  });
-				  uploadUL.append(str);
+									  
 				}
 
 
@@ -229,7 +214,7 @@ $(document).ready(function() {
 
 
 <body>
-
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="auth" style="margin-left: 350px;">
 		<div class="row h-100" style="width: 900px;">
@@ -255,6 +240,8 @@ $(document).ready(function() {
 							
 							<input type="file" name="uploadFile" multiple>
 						</div>
+
+
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"

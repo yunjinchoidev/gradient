@@ -19,6 +19,7 @@
 </head>
 
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
     <div id="auth">
 
         <div class="row h-100">

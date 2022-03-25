@@ -100,8 +100,6 @@
 			      dataType:'json',
 			        success: function(result){
 			          console.log(result); 
-			          console.log(result.get); 
-			          console.log(result.get[0]); 
 			          console.log(result.get[0].fname); 
 			          console.log("파일 불러오기 완료")
 					  showUploadResult2(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
@@ -109,7 +107,7 @@
 			      },
 			      error: function(result){
 			    	  console.log(memberkey)
-			          console.log("회원 이미지 정보 불러오기 실패");
+			          console.log(" 불러오기 실패");
 			          console.log(result); 
 			      }
 			    }); //$.ajax
@@ -145,24 +143,13 @@
 
 
 
-
-
-
-
-
-
-
 						<div class="form-group mt-2" style="width:300px; height: 300px;">
 							<div class="custom-file" style="width:300px; height: 300px;">
 								<label class="custom-file-label" for="emailAttach">Attach
 									File</label><br> <input type="file" class="custom-file-input"
 									id="emailAttach" name="uploadFile">
-										
 										<div id="myface" style="width:300px; height: 300px;">
-										
 										</div>
-										
-										
 							</div>
 						</div>
 

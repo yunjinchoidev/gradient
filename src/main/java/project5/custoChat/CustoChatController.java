@@ -21,6 +21,11 @@ public class CustoChatController {
 		d.addAttribute("chatRoomList", service.chatRoomList());
 		return "WEB-INF\\views\\customerChat\\main.jsp";
 	}
+	@RequestMapping("/customerChat2.do")
+	public String chatting2(Model d) {
+		d.addAttribute("chatRoomList", service.chatRoomList());
+		return "WEB-INF\\views\\customerChat\\main2.jsp";
+	}
 	
 	
 	

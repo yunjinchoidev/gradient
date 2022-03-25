@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import oracle.net.aso.d;
 import project5.project.ProjectService;
+import project5.project.ProjectVO;
 
 @Controller
 public class VoteController {
@@ -35,7 +36,7 @@ public class VoteController {
 	@RequestMapping("/voteWrite.do")
 	public String voteWrite(Model d, VoteVO vo) {
 		service.insert(vo);
-		return "forward:/projectHome.do?projectkey=1";
+		return "forward:/projectHome.do";
 	}
 
 	@RequestMapping("/voteGet.do")
@@ -69,8 +70,9 @@ public class VoteController {
 	
 	
 	@RequestMapping("/voteDelete.do")
-	public String voteDelete(Model d, VoteVO vo) {
+	public String voteDelete(Model d, VoteVO vo,ProjectVO vo2) {
 		service.voteDelete(vo.getVotekey());
+		d.addAttribute("projectkey", 1);
 		return "forward:/projectHome.do";
 	}
 	

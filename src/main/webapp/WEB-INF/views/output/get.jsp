@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 		<section id="multiple-column-form">
@@ -60,9 +61,6 @@
 												<label for="first-name-column">부서 구분</label> <input
 													type="text" value="${get.dname }" id="first-name-column"
 													class="form-control" name="dname" readonly="readonly">
-
-
-
 											</div>
 										</div>
 
@@ -81,13 +79,6 @@
 										</div>
 
 
-
-
-
-
-
-
-
 										<div class="col-md-6 col-12">
 											<div class="form-group">
 												<label for="city-column">작성일 ${list.writedate}</label> <input
@@ -95,8 +86,6 @@
 													placeholder="writedateS" name="writeDateS"
 													value='<fmt:formatDate value="${get.writedate }" />'
 													readonly="readonly">
-
-
 											</div>
 										</div>
 
@@ -127,12 +116,6 @@
 
 
 
-
-
-
-
-
-
 									</div>
 									<div class="row">
 										<div class="col-md-6 col-12" style="width: 100%">
@@ -153,17 +136,18 @@
 												<div class="input-group-prepend">
 													<span class="input-group-text" 
 														onclick="downFile('${fname}')">첨부 파일(다운로드)</span>
+														<span onclick="downFile('${fname}')" > ${fname}</span>
 												</div>
-												
-												<div class="custom-file">
-													<input type="file" name="report" 
-														class="custom-file-input" id="file01"/>
-														
-													<label class="custom-file-label" for="file01">${fname}</label>
-												</div>		
 											</div> 	 
 											</c:forEach>
-
+			
+											<script>
+											function downFile(fname){
+												if(confirm("다운로드할 파일:"+fname)){
+													location.href="${path}/download.do?fname="+fname;
+												}
+											}
+											</script>
 
 
 

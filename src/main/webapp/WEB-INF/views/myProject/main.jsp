@@ -97,7 +97,7 @@ $(document).ready(function(){
 </script>
 
 <body>
-
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 
 
@@ -168,12 +168,16 @@ $(document).ready(function(){
 
 
 
-
+	
 
 
 			<script>
+			function gogo(data,key){
+				console.log(key)
+				location.href="/project5/dashBoard.do?projectkey="+key
+			}
+			
 			$(document).ready(function() {
-				
 				<c:forEach var="list" items="${list}">
 								var projectkey = "${list.projectkey}";
 								console.log("projectkey"+projectkey);
@@ -186,16 +190,10 @@ $(document).ready(function(){
 							      type: 'POST',
 							      dataType:'json',
 							        success: function(result){
-							        console.log("=================")
-							          console.log("프로젝트 데이터 불러오기완료")
-							          console.log("프로젝트 이미지 파일 데이터 불러오기완료")
-							          	console.log(result)
+							        console.log("성공")
 										console.log(result.projectInfo.name)
-										console.log(result.fileInfo)
 										console.log(result.fileInfo[0].fname)
 									  showProjectCard(result.projectInfo, result.fileInfo[0].fname);             // 함수 호출
-									  console.log("=================")
-									  
 							      },
 							      error: function(result){
 							          console.log("불러오기 실패");
@@ -204,34 +202,21 @@ $(document).ready(function(){
 							    }); //$.ajax
 							    
 							    
-							    $.ajax({
-							      url: '/project5/projectImg.do',
-							      data: data,
-							      type: 'POST',
-							      dataType:'json',
-							        success: function(result){
-							          console.log("프로젝트 이미지 파일 불러오기 완료")
-									  //showUploadResult2(result.get[0]);// 함수 호출 
-							      },
-							      error: function(result){
-							          console.log("불러오기 실패");
-							          console.log(result); 
-							      }
-							    }); //$.ajax
 			    </c:forEach>
 							    
 							    
 							    
-				
+			
+					
 			  function showProjectCard(obj, fname){
-				  console.log("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+				  console.log("!!!")
 				  console.log(obj.projectkey)
 				    var uploadUL = $("#content-types");
 				    var str ="";
 				    		console.log("obj"+obj);
 							var fileCallPath =  encodeURIComponent(fname);
 							console.log(fileCallPath);
-								str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;' onclick='location.href='/project5/dashBoard.do?projectkey=1''>"
+								str += "<div class='card' style='margin-right:40px; width: 470px; cursor:pointer;' id='go' onclick='gogo(this,"+obj.projectkey+")'>"
 									str += "<div class='card-content' id='prjImg'>"
 										str += "<div class='card-body'>"
 											str += "<h5 class='card-title' >"+obj.name+"</h5>"
@@ -245,6 +230,12 @@ $(document).ready(function(){
 											str += "<li class='list-group-item'> 진행 정도 : "+obj.progress+"</li>"
 									str += "</div>"
 									str += "</div>"
+									
+										
+
+										
+								
+									
 									console.log("str : "+str)
 						    		uploadUL.append(str);
 									console.log("uploadUL : "+uploadUL)

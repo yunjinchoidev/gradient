@@ -45,6 +45,7 @@
 
 
 <body>
+	<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 
 
@@ -92,8 +93,6 @@
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-
-
 
 							<div class="dataTable-top">
 								<div class="dataTable-dropdown" style="width: 30%;">
@@ -147,8 +146,8 @@
 										<c:forEach var="list" items="${voteList }">
 											<tr>
 												<td>${list.votekey }</td>
-												<td style="color: red; cursor:pointer" onclick="location.href='/project5/voteGet.do?votekey=${list.votekey}'" >[[투표]][${project.name }]
-													${list.title }</td>
+												<td style="color: red; cursor:pointer" onclick="location.href='/project5/voteGet.do?votekey=${list.votekey}'" >[[투표]][${list.pname }]
+													${list.title } 작성자[${list.mname }]</td>
 												<td><fmt:formatDate value="${list.writedate }" /></td>
 												<td><fmt:formatDate value="${list.enddate }" /></td>
 												<td>${list.voteoption}</td>
@@ -160,10 +159,9 @@
 											<tr>
 												<td>${list.projectHomekey }</td>
 												<td>[${project.name }][${list.workSortTitle}]
-													${list.title }</td>
+													${list.title } 	<span class="badge bg-danger" id="delBtn" style="cursor: pointer;" onclick="location.href='/project5/projectHomeDelete.do?projectHomekey=${list.projectHomekey }'; return false;">삭제</span></td>
 												<td><fmt:formatDate value="${list.writedate }" /></td>
 												<td>${list.workSortTitle}</td>
-
 												<td><c:if test="${list.importance==1 }">
 														<span class="badge bg-success">최하</span>
 													</c:if> <c:if test="${list.importance==2 }">
@@ -177,20 +175,10 @@
 													</c:if></td>
 											</tr>
 										</c:forEach>
-
-
-
-
-
 									</tbody>
-
-
-
-
-
 								</table>
-
 							</div>
+																
 
 
 

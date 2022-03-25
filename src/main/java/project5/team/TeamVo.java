@@ -6,6 +6,12 @@ public class TeamVo {
 	private String email;
 	private String dname;
 	private int deptno;
+	
+	
+	
+	
+	
+	
 	public TeamVo() {
 		super();
 		// TODO Auto-generated constructor stub

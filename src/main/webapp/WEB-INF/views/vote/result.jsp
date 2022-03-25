@@ -17,6 +17,7 @@
 
 
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 		<section id="multiple-column-form">
@@ -114,10 +115,10 @@
 								<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 								    <script type="text/javascript">
 								    
-									var voteItem5 = parseInt("${get.voteItem5}");
+										var voteItem5 = parseInt("${get.voteItem5}");
 								    
-								      google.charts.load("current", {packages:["corechart"]});
-								      google.charts.setOnLoadCallback(drawChart);
+								      	google.charts.load("current", {packages:["corechart"]});
+								     	 google.charts.setOnLoadCallback(drawChart);
 									      function drawChart() {
 									        var data = google.visualization.arrayToDataTable(
 									       	[

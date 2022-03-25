@@ -35,7 +35,7 @@ public class projectController {
 		return "WEB-INF\\views\\projectManage\\main.jsp";
 	}
 
-	// 프로젝트 관리를 위한 프로젝트 리스트 
+	// 프로젝트 관리를 위한 프로젝트 조회
 	@RequestMapping("/projectManageGet.do")
 	public String projectManageGet(Model d, int projectkey) {
 		d.addAttribute("get", service.get(projectkey));
@@ -70,7 +70,7 @@ public class projectController {
 		return "forward:/projectManageMain.do";
 	}
 
-	// 프로젝트 관리를 위한 프로젝트 리스트 
+	// 프로젝트 관리를 위한 프로젝트 상태 업데이트
 	@RequestMapping("/projectProgressUpdate.do")
 	public String projectProgressUpdate(Model d, ProjectVO vo) {
 		service.progressUpdate(vo);
@@ -84,6 +84,9 @@ public class projectController {
 		service.delete(projectkey);
 		return "WEB-INF\\views\\projectManage\\get.jsp";
 	}
+	
+	
+	
 	
 	
 	

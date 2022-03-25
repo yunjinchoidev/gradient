@@ -143,57 +143,38 @@ to {
 
 
 
-		<script>
-							$(document).ready(function() {
-				
-										<c:forEach var="list" items="${list}">
-														var projectkey = "${list.projectkey}";
-														console.log("projectkey"+projectkey);
-														 var data = { projectkey : projectkey};
-														
-														 // 프로젝트 데이터 가져오기
-														 $.ajax({
-													        url: '/project5/projectData.do',
-													        data: data,
-													         type: 'POST',
-													         dataType:'json',
-													         success: function(result){
-													         console.log("=================")
-													         console.log("프로젝트 데이터 불러오기완료")
-													         console.log("프로젝트 이미지 파일 데이터 불러오기완료")
-													         console.log(result)
-															 console.log(result.projectInfo.name)
-															 console.log(result.fileInfo)
-															 console.log(result.fileInfo[0].fname)
-															 showProjectCard(result.projectInfo, result.fileInfo[0].fname);// 함수 호출
-															 console.log("=================")
-													      },
-													      error: function(result){
-													          console.log("불러오기 실패");
-													          console.log(result);
-													      }
-													    }); //$.ajax
-													    
-													    /*
-													    $.ajax({
-													      url: '/project5/projectImg.do',
-													      data: data,
-													      type: 'POST',
-													      dataType:'json',
-													        success: function(result){
-													          console.log("프로젝트 이미지 파일 불러오기 완료")
-															  //showUploadResult2(result.get[0]);// 함수 호출 
-													      },
-													      error: function(result){
-													          console.log("불러오기 실패");
-													          console.log(result); 
-													      }
-													    }); //$.ajax
-													    */
-									    </c:forEach>
+										<script>
+										function gogo(data,key){
+											console.log(key)
+											location.href="/project5/dashBoard.do?projectkey="+key
+										}
+										
+										
+											$(document).ready(function() {
+												<c:forEach var="list" items="${list}">
+																var projectkey = "${list.projectkey}";
+																 var data = { projectkey : projectkey};
+																 // 프로젝트 데이터 가져오기
+																 $.ajax({
+															        url: '/project5/projectData.do',
+															        data: data,
+															         type: 'POST',
+															         dataType:'json',
+															         success: function(result){
+															         console.log("성공")
+																	 console.log(result.projectInfo.name)
+																	 console.log(result.fileInfo[0].fname)
+																	 showProjectCard(result.projectInfo, result.fileInfo[0].fname);// 함수 호출
+															      },
+															      error: function(result){
+															          console.log("불러오기 실패");
+															          console.log(result);
+															      }
+															    }); //$.ajax
+									    		</c:forEach>
 							    
 							    
-							    
+												
 				
 								  function showProjectCard(obj, fname){
 									    var uploadUL = $("#content-types");
@@ -201,7 +182,7 @@ to {
 				    					console.log("obj"+obj);
 										var fileCallPath =  encodeURIComponent(fname);
 										console.log(fileCallPath);
-										str += "<div class='card' style='margin-right: 40px; width: 470px; cursor: pointer;' onclick='location.href='/project5/dashBoard.do?projectkey="+  obj.projectkey+" >"
+										str += "<div class='card' style='margin-right:40px; width: 470px; cursor:pointer;' id='go' onclick='gogo(this,"+obj.projectkey+")'>"		
 										str += "<div class='card-content' id='prjImg'>"
 										str += "<img src='/project5/display2.do?fileName="+fileCallPath+"' class='card-img-top img-fluid' alt='singleminded' style='width:100%; height:400px' >";
 										str += "<div class='card-body'>"
@@ -219,8 +200,6 @@ to {
 				    					uploadUL.append(str);
 				  					}
 						
-								  
-								  
 								  
 										// 파일 다운로드		
 										function downFile(fname){

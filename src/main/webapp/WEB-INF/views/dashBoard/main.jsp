@@ -33,19 +33,20 @@ $(document).ready(function(){
 		var memberkey;
 	// ajax를 통한 파일 정보 불러오기 
 	// 페이지 접속시 자동으로 실행
-	var memberkeyValue ="${member.memberkey}";
+	var memberkeyValue =parseInt("${member.memberkey}");
 	  console.log(memberkey);
 	 var data = { memberkey : memberkeyValue};
 	 // 업로드 파일 결과 가져오기
     $.ajax({
-      url: '/project5/aaaa.do',
+      url: '/project5/myfaceData.do',
       data: data,
       type: 'POST',
       dataType:'json',
         success: function(result){
           console.log(result); 
           console.log("파일 불러오기 완료")
-		  showUploadResult2(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
+          console.log(result.myfaceData[0]); 
+		  showUploadResult2(result.myfaceData[0]);//이곳에서 함수 호출 
       },
       error: function(result){
     	  console.log(memberkey)
@@ -320,39 +321,10 @@ $(document).ready(function(){
 					
 					
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 					<div class="row">
 						<div class="col-12">
 						
 					
-  										
-  										
-  										
-  										
-  										
-  										
-  										
-  										
-  										
-							
-
-
-
-
-
-
-
-
 
 
 
@@ -443,7 +415,6 @@ $(document).ready(function(){
 													}else{
 														$(".importance22").css("display","");
 													}
-													console.log("a"+a)
 											}, 1000);
 											
 										})
@@ -502,7 +473,6 @@ $(document).ready(function(){
 									
 									var memberkey = "${member.memberkey}"
 									var data = {memberkey : memberkey};
-									
 												  $.ajax({
 												      url: '/project5/outputSortCnt.do',
 												      type: 'POST',
@@ -510,18 +480,42 @@ $(document).ready(function(){
 												      data : data,
 												      dataType:'json',
 												        success: function(result){
-												          console.log(result);
-												          console.log(result.outputSortCnt);
-												          console.log(result.outputSortCntByMemberkey);
-												          console.log(result.worksortList);
+												          //console.log("result :::::::::::::::::::::::::"+result[0]);
+												          //console.log("result :::::::::::::::::::::::::"+result.outputSortCnt[0].count);
+												          //console.log("result :::::::::::::::::::::::::"+result.outputSortCntByMemberkey[1].count);
+												          //console.log("result :::::::::::::::::::::::::"+result.worksortList[0]);
+												          //console.log("result.outputSortCnt[0].count :::::::::::::::::"+result.outputSortCnt[1].count);
+												          //console.log("result.outputSortCntByMemberkey[0].count ::::::::::::::::"+result.outputSortCntByMemberkey[0].count);
+												         outputSortCntByMemberkey[0] = result.outputSortCntByMemberkey[0].count;
+												         outputSortCntByMemberkey[1] = result.outputSortCntByMemberkey[1].count;
+												         outputSortCntByMemberkey[2] = result.outputSortCntByMemberkey[2].count;
+												         outputSortCntByMemberkey[3] = result.outputSortCntByMemberkey[3].count;
+												         outputSortCntByMemberkey[4] = result.outputSortCntByMemberkey[4].count;
+												         outputSortCntByMemberkey[5] = result.outputSortCntByMemberkey[5].count;
+												         outputSortCntByMemberkey[6] = result.outputSortCntByMemberkey[6].count;
+												         outputSortCntByMemberkey[7] = result.outputSortCntByMemberkey[7].count;
+												         outputSortCntByMemberkey[8] = result.outputSortCntByMemberkey[8].count;
+												          //outputSortCnt[0] = result.outputSortCnt[0].count;
 												          console.log("일단 성공")
+												          console.log(outputSortCntByMemberkey[0])
 												          
-												          for(var i=0; i<10; i++){
-												        	  outputSortCnt[i] = result.outputSortCnt[i].count
-												        	  outputSortCntByMemberkey[i] = result.outputSortCntByMemberkey[i].count
-												        	  worksortList[i] = result.worksortList[i].title
+												         for(var i=0; i<10; i++){
+												        	  
+												        	  if(result.outputSortCnt[i] ==null){
+												        		  outputSortCnt[i] = 0
+												        	  }else{
+												        		  outputSortCnt[i] = result.outputSortCnt[i].count;
+												        	  }
+												        	  
+												        	  if(outputSortCntByMemberkey[i] == null){
+												        		  outputSortCntByMemberkey[i] = 0
+												        	  }else{
+														        	 outputSortCntByMemberkey[i] =result.outputSortCntByMemberkey[i].count;
+												        	  }
+												        	  
+												        	  
+												        	  worksortList[i] = result.worksortList[i].title;
 												          }
-												          
 												          console.log(" outputSortCnt 완료")
 												      },
 												      error: function(result){
@@ -533,7 +527,6 @@ $(document).ready(function(){
 												    console.log("outputSortCnt : :::::=====" +outputSortCnt)
 												    console.log("workSortList : ::::=====" +worksortList)
 												    console.log("outputSortCntByMemberkey : ::::=====" +outputSortCntByMemberkey)
-								
 								
 												 google.charts.load('current', {'packages':['corechart']});
 										    	  google.charts.setOnLoadCallback(drawChart);
@@ -582,21 +575,18 @@ $(document).ready(function(){
 
 												<script>
 												$(document).ready(function(){
-													
 												google.charts.load('current', {packages: ['corechart', 'bar']});
 												google.charts.setOnLoadCallback(drawBasic);
 												
-																	
 																	var importance = []
 																	var count = []
-																	
-																	
 																    $.ajax({
 																      url: '/project5/riskDashBoardData.do',
 																      type: 'POST',
 																      async:false, 
 																      dataType:'json',
 																        success: function(result){
+																        	 console.log(" riskDashBoardData 일단 성공")
 																          console.log(result.get);
 																          console.log(result.get[0]);
 																          console.log(result.get[0].importance);
@@ -660,17 +650,73 @@ $(document).ready(function(){
 					
 					<div class="row">
 						<div class="col-12 col-xl-8">
-						
 							<div class="card">
 								<div class="card-header">
-									<h4></h4>
+									<h4>프로젝트 조직 분석</h4>
 								</div>
-								
 								<div class="card-body">
 								  	<div id="piechart1" style="width: 100%; height: 100%;"></div>
 								</div>
 							</div>
 						</div>
+
+	<script type="text/javascript">
+									
+									var projectkey;
+									var projectkeyRe = "${project.projectkey}";
+									
+									var dataRe = {projectkey : projectkeyRe}
+									
+									var cntList = []
+								 	$.ajax({
+										url : '/project5/teamCnt.do',
+										type : 'POST',
+										data : dataRe,
+										async:false, 
+										dataType:'json',
+										success : function(result){
+											console.log("프로젝트 조직 분석 데이터 불러오기 성공")
+											cntList[0] = result.teamCntByProject1
+											cntList[1] = result.teamCntByProject2
+											cntList[2] = result.teamCntByProject2
+										},
+										error : function(result){
+											alert("실패")
+										}
+								 	})
+								 console.log("cntList::::::::::::::::::::::::::::::"+cntList)
+								 
+												google.charts.load('current', {'packages':['corechart']});
+										      google.charts.setOnLoadCallback(drawChart);
+																		
+										      function drawChart() {
+										          var data1 = google.visualization.arrayToDataTable([
+										            ['Task', 'Hours per Day'],
+										            ['기획팀',     cntList[0]],
+										            ['개발팀',     cntList[1]],
+										            ['고객전담팀',     cntList[2]],
+										          ]);
+										          var options = {
+										            title: '조직 분포'
+										          };
+										          var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+										          chart.draw(data1, options);
+										        }
+							    </script>
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -693,13 +739,11 @@ $(document).ready(function(){
 								<div class="card-body">
 									<div class="table-responsive">
 									
-									
-									
 										<table class="table table-hover table-lg">
 											<thead>
 												<tr>
-													<th>Name</th>
-													<th>Comment</th>
+													<th></th>
+													<th></th>
 												</tr>
 											</thead>
 											
@@ -709,28 +753,30 @@ $(document).ready(function(){
 													<td class="col-3">
 														<div class="d-flex align-items-center">
 															<div class="avatar avatar-md">
+															<!-- 
 																<img
-																	src="/project5/resources/dist/assets/images/faces/5.jpg">
+																	src="/project5/resources/dist/assets/images/faces/5.jpg"> -->
 															</div>
-															<p class="font-bold ms-3 mb-0">냉무</p>
+															<p class="font-bold ms-3 mb-0"></p>
 														</div>
 													</td>
 													<td class="col-auto">
-														<p class=" mb-0">냉무</p>
+														<p class=" mb-0"></p>
 													</td>
 												</tr>
 												<tr>
 													<td class="col-3">
 														<div class="d-flex align-items-center">
 															<div class="avatar avatar-md">
+															<!-- 
 																<img
-																	src="/project5/resources/dist/assets/images/faces/2.jpg">
+																	src="/project5/resources/dist/assets/images/faces/2.jpg"> -->
 															</div>
-															<p class="font-bold ms-3 mb-0">냉무</p>
+															<p class="font-bold ms-3 mb-0"></p>
 														</div>
 													</td>
 													<td class="col-auto">
-														<p class=" mb-0">냉무
+														<p class=" mb-0">
 															</p>
 													</td>
 												</tr>
@@ -778,8 +824,10 @@ $(document).ready(function(){
 					</div>
 					<div class="card">
 						<div class="card-header">
-							<h4>최근 메시지</h4>
+							<h4></h4>
 						</div>
+						
+						<!-- 
 						<div class="card-content pb-4">
 							<div class="recent-message d-flex px-4 py-3">
 								<div class="avatar avatar-lg">
@@ -812,11 +860,14 @@ $(document).ready(function(){
 								<button
 									class='btn btn-block btn-xl btn-light-primary font-bold mt-3'
 									onclick="window.open('/project5/chatTEST.do', 'PopupWin', 'width=1000,height=1200');"
-									
 									>채팅 시작
 									</button>
 							</div>
 						</div>
+						 -->
+						
+						
+						
 					</div>
 					
 					
@@ -826,57 +877,13 @@ $(document).ready(function(){
 					
 					<div class="card">
 						<div class="card-header">
-							<h4>프로젝트 조직 분석</h4>
+							<h4></h4>
 						</div>
 						<div class="card-body">
 					
 						</div>
 					</div>
-					<script type="text/javascript">
-									
-									var projectkey;
-									var projectkeyRe = "${project.projectkey}";
-									
-									var dataRe = {projectkey : projectkeyRe}
-									
-									var cntList = []
-								 	$.ajax({
-										url : '/project5/teamCnt.do',
-										type : 'POST',
-										data : dataRe,
-										async:false, 
-										dataType:'json',
-										success : function(result){
-											console.log("프로젝트 조직 분석 데이터 불러오기 성공")
-											cntList[0] = result.teamCntByProject1
-											cntList[1] = result.teamCntByProject2
-											cntList[2] = result.teamCntByProject2
-										},
-										error : function(result){
-											alert("실패")
-										}
-								 	})
-								 console.log("cntList::::::::::::::::::::::::::::::"+cntList)
-								 
-											google.charts.load('current', {'packages':['corechart']});
-										      google.charts.setOnLoadCallback(drawChart);
-										
-																		
-										      function drawChart() {
-										          var data1 = google.visualization.arrayToDataTable([
-										            ['Task', 'Hours per Day'],
-										            ['기획팀',     cntList[0]],
-										            ['개발팀',     cntList[1]],
-										            ['고객전담팀',     cntList[2]],
-										          ]);
-										          var options = {
-										            title: '조직 분포'
-										          };
-										          var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
-										          chart.draw(data1, options);
-										        }
-							    </script>
-					
+				
 					
 					
 					

@@ -70,7 +70,7 @@ $(document).ready(function(){
 
 
 <body>
-
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 
 	<div id="main">
@@ -236,50 +236,36 @@ $(document).ready(function(){
 															<td>${list.projectkey}</td>
 															<td style="cursor: pointer;" onclick="location.href='/project5/projectManageGet.do?projectkey=${list.projectkey}'">${list.name }</td>
 															<td>
-															<fmt:formatNumber>${list.take }</fmt:formatNumber>
+																<fmt:formatNumber>${list.take }</fmt:formatNumber>
 															</td>
 															<td>
-															
 																<c:if test="${list.importance eq '하'}">
-															<span class="badge bg-primary">하</span>
-															</c:if>
-															<c:if test="${list.importance eq '중'}">
-															<span class="badge bg-secondary">중</span>
-															</c:if>
-															<c:if test="${list.importance eq '상'}">
-															<span class="badge bg-danger">상</span>
-															</c:if>
-															
+																<span class="badge bg-primary">하</span>
+																</c:if>
+																<c:if test="${list.importance eq '중'}">
+																<span class="badge bg-secondary">중</span>
+																</c:if>
+																<c:if test="${list.importance eq '상'}">
+																<span class="badge bg-danger">상</span>
+																</c:if>
 															</td>
-															
-															
-															
-															
-															
 															<td id="progress" style="cursor: pointer;" data-bs-toggle="modal"  data-bs-target="#inlineForm">
-
-															
-															<c:if test="${list.progress eq '대기'}">
-															<span class="badge bg-primary">대기</span>
-															</c:if>
-															<c:if test="${list.progress eq '초기'}">
-															<span class="badge bg-secondary">초기</span>
-															</c:if>
-															<c:if test="${list.progress eq '중기'}">
-															<span class="badge bg-success">중기</span>
-															</c:if>
-															<c:if test="${list.progress eq '말기'}">
-															<span class="badge bg-danger">말기</span>
-															</c:if>
-															<c:if test="${list.progress eq '종료'}">
-															<span class="badge bg-dark">종료</span>
-															</c:if>
-															
-															
-															
+																<c:if test="${list.progress eq '대기'}">
+																<span class="badge bg-primary">대기</span>
+																</c:if>
+																<c:if test="${list.progress eq '초기'}">
+																<span class="badge bg-secondary">초기</span>
+																</c:if>
+																<c:if test="${list.progress eq '중기'}">
+																<span class="badge bg-success">중기</span>
+																</c:if>
+																<c:if test="${list.progress eq '말기'}">
+																<span class="badge bg-danger">말기</span>
+																</c:if>
+																<c:if test="${list.progress eq '종료'}">
+																<span class="badge bg-dark">종료</span>
+																</c:if>
 															</td>
-															
-															
 														</tr>
 													</c:forEach>
 												</tbody>
@@ -309,15 +295,78 @@ $(document).ready(function(){
 
 
 
-
 <div class="card">
+								<div class="card-header">
+									<h4>작업량 분석</h4>
+								</div>
+								
+								<div class="card-body">
+									 <!--  커밋 차트 -->
+								
+									    <script type="text/javascript">
+									      google.charts.load("current", {packages:["calendar"]});
+									      google.charts.setOnLoadCallback(drawChart);
+									
+									   function drawChart() {
+									       var dataTable = new google.visualization.DataTable();
+									       dataTable.addColumn({ type: 'date', id: 'Date' });
+									       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+									       dataTable.addRows([
+									          [ new Date(2012, 3, 13), 37032 ],
+									          [ new Date(2012, 3, 14), 38024 ],
+									          [ new Date(2012, 3, 15), 38024 ],
+									          [ new Date(2012, 3, 16), 38108 ],
+									          [ new Date(2012, 3, 17), 38229 ],
+									          // Many rows omitted for brevity.
+									          [ new Date(2013, 9, 4), 38177 ],
+									          [ new Date(2013, 9, 5), 38705 ],
+									          [ new Date(2013, 9, 12), 38210 ],
+									          [ new Date(2013, 9, 13), 38029 ],
+									          [ new Date(2013, 9, 19), 38823 ],
+									          [ new Date(2013, 9, 23), 38345 ],
+									          [ new Date(2013, 9, 24), 38436 ],
+									          [ new Date(2013, 9, 30), 38447 ]
+									        ]);
+									
+									       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+									
+									       var options = {
+									         title: "Red Sox Attendance",
+									         height: 350,
+									       };
+									
+									      // chart.draw(dataTable, options);
+									   }
+									    </script>
+  								<div id="calendar_basic" style="width: 1000px; height: 100%; margin-left: 40px;"></div>
+  								
+     						
+      
+									
+								</div>
+							</div>
+
+
+
+
+
+
+
+
+
+
+
+
+					<div class="card">
+					
+					 
 								<div class="card-header">
 									<h4>작업 스케쥴</h4>
 								</div>
-								<div class="card-body">
 								
+								<div class="card-body">
+								<!--
   								<div id="chart_div"></div>
-     							 <!-- 막대 차트 -->
 								<script>
 								google.charts.load('current', {packages: ['corechart', 'bar']});
 								google.charts.setOnLoadCallback(drawBasic);
@@ -362,65 +411,19 @@ $(document).ready(function(){
 								      chart.draw(data, options);
 								    }
 								</script>
-      
+       -->
 									
 								</div>
+								
+								
+								
 							</div>
 
 
 
 
 
-						<div class="card">
-								<div class="card-header">
-									<h4>작업량 분석</h4>
-								</div>
-								
-								<div class="card-body">
-									 <!--  커밋 차트 -->
-								
-									    <script type="text/javascript">
-									      google.charts.load("current", {packages:["calendar"]});
-									      google.charts.setOnLoadCallback(drawChart);
-									
-									   function drawChart() {
-									       var dataTable = new google.visualization.DataTable();
-									       dataTable.addColumn({ type: 'date', id: 'Date' });
-									       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
-									       dataTable.addRows([
-									          [ new Date(2012, 3, 13), 37032 ],
-									          [ new Date(2012, 3, 14), 38024 ],
-									          [ new Date(2012, 3, 15), 38024 ],
-									          [ new Date(2012, 3, 16), 38108 ],
-									          [ new Date(2012, 3, 17), 38229 ],
-									          // Many rows omitted for brevity.
-									          [ new Date(2013, 9, 4), 38177 ],
-									          [ new Date(2013, 9, 5), 38705 ],
-									          [ new Date(2013, 9, 12), 38210 ],
-									          [ new Date(2013, 9, 13), 38029 ],
-									          [ new Date(2013, 9, 19), 38823 ],
-									          [ new Date(2013, 9, 23), 38345 ],
-									          [ new Date(2013, 9, 24), 38436 ],
-									          [ new Date(2013, 9, 30), 38447 ]
-									        ]);
-									
-									       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
-									
-									       var options = {
-									         title: "Red Sox Attendance",
-									         height: 350,
-									       };
-									
-									       chart.draw(dataTable, options);
-									   }
-									    </script>
-  								<div id="calendar_basic" style="width: 1000px; height: 100%; margin-left: 40px;"></div>
-  								
-     						
-      
-									
-								</div>
-							</div>
+						
 							
 							
 							
@@ -445,62 +448,14 @@ $(document).ready(function(){
 						<div class="col-12 col-xl-4">
 							<div class="card">
 								<div class="card-header">
-									<h4>Profile Visit</h4>
+									<h4></h4>
 								</div>
 								<div class="card-body">
 									<div class="row">
-										<div class="col-6">
-											<div class="d-flex align-items-center">
-												<svg class="bi text-primary" width="32" height="32"
-													fill="blue" style="width: 10px">
-                                                        <use
-														xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-												<h5 class="mb-0 ms-3">Europe</h5>
-											</div>
-										</div>
-										<div class="col-6">
-											<h5 class="mb-0">862</h5>
-										</div>
-										<div class="col-12">
-											<div id="chart-europe"></div>
-										</div>
 									</div>
 									<div class="row">
-										<div class="col-6">
-											<div class="d-flex align-items-center">
-												<svg class="bi text-success" width="32" height="32"
-													fill="blue" style="width: 10px">
-                                                        <use
-														xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-												<h5 class="mb-0 ms-3">America</h5>
-											</div>
-										</div>
-										<div class="col-6">
-											<h5 class="mb-0">375</h5>
-										</div>
-										<div class="col-12">
-											<div id="chart-america"></div>
-										</div>
 									</div>
 									<div class="row">
-										<div class="col-6">
-											<div class="d-flex align-items-center">
-												<svg class="bi text-danger" width="32" height="32"
-													fill="blue" style="width: 10px">
-                                                        <use
-														xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                                    </svg>
-												<h5 class="mb-0 ms-3">Indonesia</h5>
-											</div>
-										</div>
-										<div class="col-6">
-											<h5 class="mb-0">1025</h5>
-										</div>
-										<div class="col-12">
-											<div id="chart-indonesia"></div>
-										</div>
 									</div>
 								</div>
 							</div>
@@ -513,9 +468,10 @@ $(document).ready(function(){
 						<div class="col-12 col-xl-8">
 							<div class="card">
 								<div class="card-header">
-									<h4>Latest Comments</h4>
+									<h4></h4>
 								</div>
 								<div class="card-body">
+								<!-- 
 									<div class="table-responsive">
 										<table class="table table-hover table-lg">
 											<thead>
@@ -557,6 +513,7 @@ $(document).ready(function(){
 											</tbody>
 										</table>
 									</div>
+									 -->
 								</div>
 							</div>
 						</div>
@@ -575,11 +532,17 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
+					
+					
+					
+					
 					<div class="card">
 						<div class="card-header">
-							<h4>최근 메시지</h4>
+							<h4>최근 온 메시지</h4>
 						</div>
 						<div class="card-content pb-4">
+						
+						<!-- 
 							<div class="recent-message d-flex px-4 py-3">
 								<div class="avatar avatar-lg">
 									<img src="/project5/resources/dist/assets/images/faces/4.jpg">
@@ -607,6 +570,7 @@ $(document).ready(function(){
 									<h6 class="text-muted mb-0">@김영희</h6>
 								</div>
 							</div>
+							-->
 							<div class="px-4">
 								<button
 									class='btn btn-block btn-xl btn-light-primary font-bold mt-3'
@@ -615,13 +579,16 @@ $(document).ready(function(){
 									>채팅 시작
 									</button>
 							</div>
+						
 						</div>
+						 
 					</div>
 					<div class="card">
 						<div class="card-header">
 							<h4>예산 분석</h4>
 						</div>
 						<div class="card-body">
+						
 						 <script type="text/javascript">
    							   google.charts.load('current', {'packages':['corechart']});
 						      google.charts.setOnLoadCallback(drawChart);
@@ -643,10 +610,12 @@ $(document).ready(function(){
 						
 						        var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div2'));
 						
-						        chart.draw(data, options);
+						      //  chart.draw(data, options);
 						      }
 						    </script>
+						    <!-- 
 						<div id="chart_div2"></div>
+						 -->
 						</div>
 					</div>
 					
@@ -671,6 +640,7 @@ $(document).ready(function(){
 						</div>
 						<div class="card-body">
 							 <div id="curve_chart"></div>
+							 
 							   <script type="text/javascript">
 								      google.charts.load('current', {'packages':['corechart']});
 								      google.charts.setOnLoadCallback(drawChart);
@@ -692,7 +662,7 @@ $(document).ready(function(){
 								
 								        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
 								
-								        chart.draw(data, options);
+								        //chart.draw(data, options);
 								      }
 								    </script>
 						</div>
@@ -728,7 +698,7 @@ $(document).ready(function(){
 
         var chart = new google.visualization.PieChart(document.getElementById('piechart'));
 
-        chart.draw(data, options);
+        //chart.draw(data, options);
       }
     </script>
     

@@ -56,7 +56,7 @@ $(document).ready(function(){
 
 
 <body>
-
+<%@ include file="../chatBot/chatBot.jsp"%>
 
 	<%@ include file="../common/header.jsp"%>
 

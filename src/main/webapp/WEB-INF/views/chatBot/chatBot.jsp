@@ -6,7 +6,7 @@
 <fmt:requestEncoding value="utf-8" />
 
 <!DOCTYPE html>
-<html>
+<html class="no-js">
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -26,148 +26,202 @@ var wsocket;
 $(document).ready(function(){
 	
 	
+			/*메시지 전송*/
+			$("#msg").keyup(function(){
+				if(event.keyCode==13) {
+					var msg = $("#msg").val();
+					console.log(msg);
+					
+					var data = {inputdata : msg}
+					$.ajax({
+						url : '/project5/getbyInputData.do',
+						method : 'POST',
+						async : false,
+						data : data,
+						dataType : 'json',
+						success : function(result) {
+							console.log(result)
+							if(result.answer == null){
+								sendMsgChatBot("올바르지 않은 명령어입니다. 명령어를 다시 입력해주세요");
+								sendMsgChatBotReply();
+							}else{
+								sendMsgChatBot(result.answer.contents)
+							}
+						}
+					})
+				}
+					
+			});
 	
-	// 1. 웹 소켓 클라이언트를 통해 웹 서버 연결하기.
-	$("#id").keyup(function(){
-		if(event.keyCode==13){
-			conn();
-		}
-	})
+			// 버튼을 직접 클릭 했을 때
+			$("#sendBtn").click(function(){
+				sendMsg();
+				
+				var msg = $("#msg").val();
+				var data = {inputdata : msg}
+				$.ajax({
+					url : '/project5/getbyInputData.do',
+					method : 'POST',
+					async : false,
+					data : data,
+					dataType : 'json',
+					success : function(result) {
+						console.log(result)
+						if(result.answer == null){
+							sendMsgChatBot("올바르지 않은 명령어입니다. 명령어를 다시 입력해주세요");
+							sendMsgChatBotReply();
+						}else{
+							sendMsgChatBot(result.answer.contents)
+						}
+					}
+				})
+			});
 	
-	
-	$("#msg").keyup(function(){
-		if(event.keyCode==13) sendMsg();
-	});
-	
-	$("#sendBtn").click(function(){
-		sendMsg();
-	});
-	
-	
-	// 접속 종료를 처리했을 시
-	$("#exitBtn").click(function(){
-		wsocket.send("msg:"+$("#id").val()+":접속 종료 했습니다!");
-		wsocket.close();
-	});
-
-	
-	
-	// 메시지 보내기
-	function sendMsg(){
-		var id = $("#id").val();
-		var msg = $("#msg").val();
-		var str = "";
-		str +="<div class='chat'>"
-			str +="<div class='chat-body'>"
-			str +="<div class='chat-message'>"+msg+"</div>"
-			str +="</div></div>"
-		wsocket.send("msg:"+str);
-		$("#msg").val(""); 
-		$("#msg").focus();
-	}
-
-	// 메시지 보내기
-
-	
-});
-
-
-function sendMsg2(data){
-	var str = "";
-	str +="<div class='chat'>"
-		str +="<div class='chat-body'>"
-		str +="<div class='chat-message'>"+data+"</div>"
-		str +="</div></div>"
-	wsocket.send("msg:"+str);
-	$("#msg").val(""); 
-	$("#msg").focus();
-}
-
-function sendMsgInit(){
-		
-		var str = "";
-		var str2 = "";
-		var str3 = "";
-			str +="<div class='chat'>"
-			str +="<div class='chat-body'>"
-			str +="<div class='chat-message'>챗봇을 연결합니다.</div>"
-			str +="</div></div>"
-
-			str2 +="<div class='chat chat-left' style='color:red'>"
-			str2 +=" <div class='chat-body' style='color:red'>"
-			str2 +="<div class='chat-message'>환영합니다. <br> 무엇을 도와드릴까요? <br>사용 가능한 명령어가 있습니다.<br><br> 1. 그래디언트가 뭐야 <br>2. 그래디언트 사용법<br>3. 가입 방법<br>4. 회원 탈퇴<br>5. 파일 첨부법 <br><br><br><br> 하단 버튼을 눌러보세요</div> "
-				str2 +="<div class='chat-message' style='color:red'><a href='#' class='btn btn-danger chatAuto' onclick='fnc(this); return false;' >그래디언트</a>" 
-				str2 += "<a href='#' class='btn btn-danger chatAuto' onclick='fnc(this); return false;'>회원탈퇴</a>"
-				str2 += "<a href='#' class='btn btn-danger chatAuto' id='g' onclick='fnc(this); return false;'>파일첨부</a></div> "
-			str2 += "</div> </div>"
+			// 종료 버튼 클릭 시
+			$("#exitBtn").click(function(){
+				wsocket.send("msg:접속 종료 했습니다!");
+				wsocket.close();
+			});
 			
-			wsocket.send("msg:"+str);
-			wsocket.send("msg:"+str2);
-		
-		
-		
-		
-	$("#msg").val(""); 
-	$("#msg").focus();
-}
 
-
-
-
-
-var fnc = function(what){
-	var inputdata = $(what).text();
-	var data = {inputdata : inputdata }
-	console.log(data);
-	$.ajax({
-		url : '/project5/getbyInputData.do',
-		method : 'POST',
-		async:false,
-		data : data,
-		dataType : 'json',
-		success : function(result){
-			console.log(result)
-			console.log(result.answer.contents)
-			sendMsg2(result.answer.contents)
-			// 다시 초기화 메시지 출력
-			sendMsgInit();
-		}
-	})
 	
-									
 	
-}
-
-
-
-function conn(){
-			wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
-			wsocket.onopen=function(evt){
-				console.log(evt);
-				sendMsgInit();
+			// 사람이 메시지 보내기
+			function sendMsg(){
+				var msg = $("#msg").val();
+				var str = "";
+				str +="<div class='chat'>"
+					str +="<div class='chat-body'>"
+					str +="<div class='chat-message'>"+msg+"</div>"
+					str +="</div></div>"
+				wsocket.send("msg:"+str);
+				$("#msg").val(""); 
+				$("#msg").focus();
 			}
 			
 			
-			wsocket.onmessage=function(evt){
+		});
+
+
+
+
+		
+		// 챗봇이 보내는 메시지
+		function sendMsgChatBot(data){
+			var str = "";
+			str +="<div class='chat chat-left'>"
+				str +="<div class='chat-body'>"
+				str +="<div class='chat-message'>"+data+"</div>"
+				str +="</div></div>"
+			wsocket.send("msg:"+str);
+			$("#msg").val(""); 
+			$("#msg").focus();
+		}
+
+		
+		
+		
+
+
+
+		// 맨 처음 실행되는 메시지
+		function sendMsgInit(){
+			var str = "";
+			var str2 = "";
+			var str3 = "";
+			str +="<div class='chat chat-left'>"
+			str +="<div class='chat-body'>"
+			str +="<div class='chat-message'>챗봇을 연결합니다.</div>"
+			str +="</div></div>"
+			str2 += "<div class='chat chat-left' style='color:red'>"
+			str2 += "<div class='chat-body' style='color:red'>"
+			str2 += "<div class='chat-message'>환영합니다. <br> 무엇을 도와드릴까요? <br>사용 가능한 명령어가 있습니다.<br><br> 1. 그래디언트가 뭐야 <br>2. 그래디언트 사용법<br>3. 가입 방법<br>4. 회원 탈퇴<br>5. 파일 첨부법 <br><br><br><br> 하단 버튼을 눌러보세요</div> "
+			str2 += "<div class='chat-message' style='color:red'><a href='#' class='btn btn-danger chatAuto' onclick='fnc(this); return false;' >그래디언트</a>"
+			str2 += "<a href='#' class='btn btn-danger chatAuto' onclick='fnc(this); return false;'>회원탈퇴</a>"
+			str2 += "<a href='#' class='btn btn-danger chatAuto' id='g' onclick='fnc(this); return false;'>파일첨부</a></div> "
+			str2 += "</div> </div>"
+			wsocket.send("msg:" + str);
+			wsocket.send("msg:" + str2);
+			$("#msg").val("");
+			$("#msg").focus();
+		}
+
+	
+	
+		function sendMsgChatBotReply(){
+			var str2 = "";
+			str2 += "<div class='chat chat-left' style='color:red'>"
+			str2 += " <div class='chat-body' style='color:red'>"
+			str2 += "<div class='chat-message'>더 도움이 필요하세요 ? <br>사용 가능한 명령어가 있습니다.<br><br> 1. 그래디언트가 뭐야 <br>2. 그래디언트 사용법<br>3. 가입 방법<br>4. 회원 탈퇴<br>5. 파일 첨부법 <br><br><br><br> 하단 버튼을 눌러보세요</div> "
+			str2 += "<div class='chat-message' style='color:red'><a href='#' class='btn btn-danger chatAuto' onclick='fnc(this); return false;' >그래디언트</a>"
+			str2 += "<a href='#' class='btn btn-danger chatAuto' onclick='fnc(this); return false;'>회원탈퇴</a>"
+			str2 += "<a href='#' class='btn btn-danger chatAuto' id='g' onclick='fnc(this); return false;'>파일첨부</a></div> "
+			str2 += "</div> </div>"
+			wsocket.send("msg:" + str2);
+			$("#msg").val("");
+			$("#msg").focus();
+		}
+	
+	
+	
+	
+	
+	
+		// 도우미 버튼을 클릭 했을 때
+		var fnc = function(what) {
+			var inputdata = $(what).text();
+			var data = {
+				inputdata : inputdata
+			}
+			console.log(data);
+			$.ajax({
+				url : '/project5/getbyInputData.do',
+				method : 'POST',
+				async : false,
+				data : data,
+				dataType : 'json',
+				success : function(result) {
+					console.log(result)
+					console.log(result.answer.contents)
+					sendMsgChatBot(result.answer.contents)
+					//준비된 재응답 메시지
+					sendMsgChatBotReply();
+				}
+			})
+		}
+
+	
+	
+		
+		
+		
+		
+		
+	
+		// 연결
+		function conn() {
+			wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
+			wsocket.onopen = function(evt) {
+				console.log(evt);
+				sendMsgInit();
+			}
+			wsocket.onmessage = function(evt) {
 				var msg = evt.data;
-				if(msg.substring(0,4)=="msg:"){
+				if (msg.substring(0, 4) == "msg:") {
 					var revMsg = msg.substring(4)
-					$("#chatMessageArea").append(revMsg+"<br>");
+					$("#chatMessageArea").append(revMsg + "<br>");
 					var mx = parseInt($("#chatMessageArea").height())
 					$("#chatArea").scrollTop(mx);
 				}
 			}
-			wsocket.onclose=function(){
+			
+			wsocket.onclose = function() {
 				alert("접속 종료합니다.")
 				$("#chatMessageArea").text("");
 				$("#id").val("");
 				$("#id").focus();
 			}
-}
-
-
-
-
+		}
 </script>
 
 
@@ -185,6 +239,8 @@ function conn(){
 
 <script>
 	$(document).ready(function() {
+		$('html').removeClass('no-js');
+		
 		$("#layer").hide();
 		
 		$("#chatBot").click(function() {
@@ -208,16 +264,20 @@ function conn(){
 
 
 <style>
+
+.no-js{
+	display:none;
+}
 #chatBot {
 	position: fixed;
 	top: 800px;
-	right: 20px;
+	right: 5px;
 	z-index: 99
 }
 
 #layer{
 	position: fixed;
-	top: 200px;
+	top: 230px;
 	right:100px;
 	z-index: 98;
 }

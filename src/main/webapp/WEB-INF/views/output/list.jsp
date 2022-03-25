@@ -30,6 +30,7 @@ $(document).ready(function(){
 </script>
 
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 
@@ -104,13 +105,19 @@ $(document).ready(function(){
 									<tbody>
 										<c:forEach var="list" items="${list}">
 											<tr>
-												<td>${list.outputkey }</td>
-												
-												<td onclick="location.href='${path}/outputGet.do?outputkey=${list.outputkey}'" style="cursor: pointer;">
-												[ ${list.worksortTitle} ]${list.title } < 버전 ${list.version }> [${list.pname}]</td>
-												
-												<td>${list.dname }
-													<fmt:formatDate value="${list.writedate }"/>
+												<td
+													onclick="location.href='${path}/outputGet.do?outputkey=${list.outputkey}'"
+													style="cursor: pointer;">${list.outputkey }</td>
+
+												<td><span
+													onclick="location.href='${path}/outputGet.do?outputkey=${list.outputkey}'"
+													style="cursor: pointer;">[ ${list.worksortTitle}
+														]${list.title } < 버전 ${list.version }> [${list.pname}]
+														&nbsp </span><span class="badge bg-danger"
+													onclick="location.href='/project5/outputDelete.do?outputkey=${list.outputkey}'"
+													style="cursor: pointer;">삭제</span></td>
+												<td>${list.dname }<fmt:formatDate
+														value="${list.writedate }" />
 												</td>
 												<td>${list.mname }</td>
 												<td><span class="badge bg-success">${list.status }</span></td>

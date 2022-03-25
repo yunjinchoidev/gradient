@@ -44,7 +44,7 @@
 </script>
 
 <body>
-
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="auth"  style="margin-left: 350px;">
 		<div class="row h-100" style="width: 900px; ">

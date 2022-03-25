@@ -172,7 +172,6 @@ public class MemberContoller {
 		
 		@PostMapping("/myfaceData.do")
 		public String projectdata(int memberkey, Model d) {
-			//int memberkeyN = Integer.parseInt(memberkey);
 			System.out.println("/myfaceData.do 진입");
 			System.out.println("memberkey:"+memberkey);
 			d.addAttribute("myfaceData", service3.findbyfno(memberkey));

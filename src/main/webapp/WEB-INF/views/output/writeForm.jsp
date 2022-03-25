@@ -18,6 +18,7 @@ $(document).ready(function(){
 
 
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 		<section id="multiple-column-form">
@@ -134,7 +135,7 @@ $(document).ready(function(){
 
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="email-id-column">버전</label> <input type="text"
+												<label for="email-id-column">버전</label> <input type="number"
 													id="email-id-column" class="form-control"
 													placeholder="version" name="version"
 													value="${get.version }">

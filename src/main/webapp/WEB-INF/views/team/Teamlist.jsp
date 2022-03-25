@@ -127,19 +127,17 @@
 
 									<tbody>
 
-										<c:forEach var="tlist" items="${teamlist}">
-											<tr onclick="TeamDetail(${tlist.prjkey})">
-												<td>${tlist.teamkey}</td>
-												<td>${tlist.projectname}</td>
-												<td>${tlist.auth}</td>
-												<c:if test="${tlist.progress eq '진행전'}">
-													<td><span class="badge bg-primary">${tlist.progress}</span></td>
+										<c:forEach var="list" items="${projetList}">
+											<tr onclick="TeamDetail(${list.projectkey})">
+												<td>${list.name}</td>
+												<c:if test="${list.progress eq '진행전'}">
+													<td><span class="badge bg-primary">${list.progress}</span></td>
 												</c:if>
-												<c:if test="${tlist.progress eq '진행중'}">
-													<td><span class="badge bg-warning">${tlist.progress}</span></td>
+												<c:if test="${list.progress eq '진행중'}">
+													<td><span class="badge bg-warning">${list.progress}</span></td>
 												</c:if>
-												<c:if test="${tlist.progress eq '진행완료'}">
-													<td><span class="badge bg-success">${tlist.progress}</span></td>
+												<c:if test="${list.progress eq '진행완료'}">
+													<td><span class="badge bg-success">${list.progress}</span></td>
 												</c:if>
 											</tr>
 										</c:forEach>

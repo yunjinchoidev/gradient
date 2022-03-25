@@ -83,7 +83,7 @@ public class ProjectHomeController {
 	public String projectHomeDelete(Model d, int projectHomekey) {
 		service.delete(projectHomekey);
 		d.addAttribute("psc", "delete");
-		System.out.println("공지사항 삭제 완료");
-		return "forward:/projectHome.do";
+		System.out.println("프로젝트 공지사항 삭제 완료");
+		return "forward:/projectHome.do?projectkey=1";
 	}
 }

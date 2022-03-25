@@ -46,7 +46,7 @@
 						<!-- compose button  -->
 						<button type="button"
 							class="btn btn-primary btn-block my-4 compose-btn">
-							<i class="bx bx-plus"></i> 기능
+							<i class="bx bx-plus"></i> 구분
 						</button>
 					</div>
 

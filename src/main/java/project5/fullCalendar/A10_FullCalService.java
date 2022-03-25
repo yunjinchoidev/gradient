@@ -59,8 +59,7 @@ public class A10_FullCalService {
 		dao.insertCalendar(ins);
 		String msg = "등록성공";
 		//dao2.update(new FileInfoVO(uploadPath, "1", "일정 제목" + ins.getTitle()));
-		System.out.println("여기까지는 된다.");
-		
+		System.out.println("여기까지는 ok");
 		// 업로드 파일이 없을 때를 피하기 위해
 		if (ins.getUploadFile() != null && ins.getUploadFile().length > 0) {
 			try {
