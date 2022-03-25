@@ -10,11 +10,11 @@
 
 <script>
 	$(document).ready(function() {
-		var noticekey = "${notice.noticekey}"
-		console.log("noticekey : " + noticekey);
+		var qualitykey = "${quality.qualitykey}"
+		console.log("qualitykey : " + qualitykey);
 		$("#del").click(function() {
 			confirm("정말 삭제하시겠습니까?");
-			location.href = "/project5/noticeDelete.do?noticekey=" + noticekey;
+			location.href = "/project5/qualityDelete.do?qualitykey=" + qualitykey;
 		})
 
 		var formObj = $("form")
@@ -41,10 +41,10 @@
 					<div class="card">
 
 						<div class="card-header">
-							<h4 class="card-title">공지사항</h4>
+							<h4 class="card-title">품질</h4>
 						</div>
-						<form action="/project5/noticeUpdate.do">
-						<input type="hidden" name="noticekey" value="${notice.noticekey }">
+						<form action="/project5/qualityUpdate.do">
+						<input type="hidden" name="qualitykey" value="${quality.qualitykey }">
 						<div class="card-content">
 							<div class="card-body">
 								<div class="row">
@@ -53,18 +53,11 @@
 											<div class="form-group">
 												<label for="first-name-column">공지 제목</label> <input
 													type="text" id="first-name-column" class="form-control"
-													placeholder="title" name="title" value="${notice.title }"
+													placeholder="title" name="title" value="${quality.title }"
 													>
 											</div>
 										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="first-name-column">조회수</label> <input
-													type="text" id="first-name-column" class="form-control"
-													placeholder="title" name="title" value="${notice.cnt }"
-													readonly="readonly">
-											</div>
-										</div>
+										
 										<div class="col-md-6 col-12">
 											<div class="form-group">
 												<label for="first-name-column">작성자</label> <input
@@ -183,7 +176,7 @@
 											<button type="button"
 												class="btn btn-danger btn-icon icon-left"
 												style="height: 90%;"
-												onclick="location.href='/project5/notice.do'">
+												onclick="location.href='/project5/quality.do'">
 												<i class="fas fa-plane"></i> 목록으로
 											</button>
 											<button type="button" class="btn btn-primary me-1 mb-1"
