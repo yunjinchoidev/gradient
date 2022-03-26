@@ -55,7 +55,7 @@ document.getElementById('text').addEventListener('click', (e) => {
         showCancelButton: true,
     })
 
-})
+});
 document.getElementById('email').addEventListener('click', async (e) => {
  
     const { value: email } = await Swal.fire({

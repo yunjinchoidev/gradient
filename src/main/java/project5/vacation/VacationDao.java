@@ -1,8 +1,10 @@
 package project5.vacation;
 
+import java.util.List;
+
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class VacationDao {
-
+public interface VacationDao {
+	public List<VacationVO> list();
 }

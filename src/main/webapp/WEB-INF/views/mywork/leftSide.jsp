@@ -30,18 +30,23 @@
 
 
 </head>
+
+
+
+
+
 <body>
 
 
 
-	<div class="sidebar-left" style="height: 2000px;">
-		<div class="sidebar" style="height: 2000px;">
+	<div class="sidebar-left" style="height: 5000px;">
+		<div class="sidebar" style="height: 5000px;">
 			<div class="sidebar-content email-app-sidebar d-flex">
 				<!-- sidebar close icon -->
 				<span class="sidebar-close-icon"> <i class="bx bx-x"></i>
 				</span>
 				<!-- sidebar close icon -->
-				<div class="email-app-menu" style="height: 2000px;">
+				<div class="email-app-menu" style="height: 5000px;">
 					<div class="form-group form-group-compose">
 						<!-- compose button  -->
 						<button type="button"
@@ -186,7 +191,7 @@
 							
 							
 							
-							<a href="#" class="list-group-item"
+							<a href="/project5/myWorkFileBox.do?memberkey=${member.memberkey }" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 
@@ -201,7 +206,7 @@
 							
 							
 							
-							 <a href="#" class="list-group-item"
+							 <a href="/project5/myWorkFileBox.do?memberkey=${member.memberkey }" class="list-group-item"
 								style="font-size: 20px; font-weight: bolder;">
 								<div class="fonticon-wrap d-inline me-3">
 									<svg class="bi" width="1.5em" height="1.5em"

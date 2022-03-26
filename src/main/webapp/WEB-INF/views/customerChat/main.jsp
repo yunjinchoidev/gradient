@@ -472,103 +472,119 @@ body{margin-top:20px;}
 								</div>
 							</div>
 							<div class="dataTable-container">
-							<main class="content" style=" margin-top: 40px;">
-							    <div class="container p-0">
-									<h1 class="h3 mb-3">고객상담</h1>
-									<input class="dataTable-input" placeholder="${member.name }님" value="${member.name }님" type="text"  id="id"> 
-										<a class="btn btn-danger"  id="enterBtn" style="color:white">상담 시작</a> 
-										<a class="btn btn-info" id="exitBtn"  style="color:white">종료</a> 
-										<a class="btn btn-warning" id="newConsult"  style="color:white">새 상담</a> 
-										<a class="btn btn-secondary" id="eraseBtn"  style="color:white">내용 지우기</a> 
-										<br>
-									<div class="card" style="height: 1000px; border: 1px solid black; margin-top: 30px;">
-									
-										<div class="row g-0">
-											<div class="col-12 col-lg-5 col-xl-3 border-right">
-												<div class="px-4 d-none d-md-block">
-													<div class="d-flex align-items-center">
-														<div class="flex-grow-1">
-															<input type="text" class="form-control my-3" placeholder="Search...">
-														</div>
-													</div>
-												</div>
-										
-							
-							
-												<div id="consultChatList" class="consult">
-														
-													<a href="#" class="list-group-item list-group-item-action border-0">
-														<div class="badge bg-success float-right"></div>
-														<div class="d-flex align-items-start">
-															<img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Vanessa Tucker" width="40" height="40">
-															<div class="flex-grow-1 ml-3">
-																상담사 A 
-																<div class="small"><span class="fas fa-circle chat-online"></span> </div>
+								<main class="content" style="margin-top: 40px;">
+									<div class="container p-0">
+										<h1 class="h3 mb-3">고객상담</h1>
+										<input class="dataTable-input" placeholder="${member.name }님"
+											value="${member.name }님" type="text" id="id"> <a
+											class="btn btn-danger" id="enterBtn" style="color: white">상담
+											시작</a> <a class="btn btn-info" id="exitBtn" style="color: white">종료</a>
+										<a class="btn btn-warning" id="newConsult"
+											style="color: white">새 상담</a> <a class="btn btn-secondary"
+											id="eraseBtn" style="color: white">내용 지우기</a> <br>
+										<div class="card"
+											style="height: 1000px; border: 1px solid black; margin-top: 30px;">
+
+											<div class="row g-0">
+												<div class="col-12 col-lg-5 col-xl-3 border-right">
+													<div class="px-4 d-none d-md-block">
+														<div class="d-flex align-items-center">
+															<div class="flex-grow-1">
+																<input type="text" class="form-control my-3"
+																	placeholder="Search...">
 															</div>
 														</div>
-													</a>
-												
+													</div>
+
+
+
+													<div id="consultChatList" class="consult">
+
+														<a href="#"
+															class="list-group-item list-group-item-action border-0">
+															<div class="badge bg-success float-right"></div>
+															<div class="d-flex align-items-start">
+																<img
+																	src="https://bootdey.com/img/Content/avatar/avatar3.png"
+																	class="rounded-circle mr-1" alt="Vanessa Tucker"
+																	width="40" height="40">
+																<div class="flex-grow-1 ml-3">
+																	상담사 A
+																	<div class="small">
+																		<span class="fas fa-circle chat-online"></span>
+																	</div>
+																</div>
+															</div>
+														</a>
+
+													</div>
+
+
+
+
+
+
+
+
+
+
+													<hr class="d-block d-lg-none mt-1 mb-0">
 												</div>
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-												<hr class="d-block d-lg-none mt-1 mb-0">
-											</div>
-											<div class="col-12 col-lg-7 col-xl-9">
-											
-												<div class="py-2 px-4 border-bottom d-none d-lg-block">
-													<div class="d-flex align-items-center py-1">
-														<div class="position-relative">
-															<img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mr-1" alt="Sharon Lessman" width="40" height="40">
-														</div>
-														<div class="flex-grow-1 pl-3">
-															<strong>상담원1</strong>
-															<div class="text-muted small"><em>Typing...</em></div>
-														</div>
-														<div>
-															<a class="btn btn-info" style="color:white">추천하기</a> 
-															<a class="btn btn-danger" style="color:white">신고하기</a> 
-															<a class="btn btn-secondary" style="color:white">건의하기</a> 
+												<div class="col-12 col-lg-7 col-xl-9">
+
+													<div class="py-2 px-4 border-bottom d-none d-lg-block">
+														<div class="d-flex align-items-center py-1">
+															<div class="position-relative">
+																<img
+																	src="https://bootdey.com/img/Content/avatar/avatar3.png"
+																	class="rounded-circle mr-1" alt="Sharon Lessman"
+																	width="40" height="40">
+															</div>
+															<div class="flex-grow-1 pl-3">
+																<strong>상담원1</strong>
+																<div class="text-muted small">
+																	<em>Typing...</em>
+																</div>
+															</div>
+															<div>
+																<a class="btn btn-info" style="color: white">추천하기</a> <a
+																	class="btn btn-danger" style="color: white">신고하기</a> <a
+																	class="btn btn-secondary" style="color: white">건의하기</a>
+															</div>
 														</div>
 													</div>
-												</div>
-							
-							
-							
-							
-							
-							
-							
-												<div class="position-relative" id="chatBody">
-													<div class="chat-messages p-4" id="chatMessageArea" style="height: 1000px;">
+
+
+
+
+
+
+
+													<div class="position-relative" id="chatBody">
+														<div class="chat-messages p-4" id="chatMessageArea"
+															style="height: 1000px;"></div>
 													</div>
-												</div>
-												
-												
-												
-												
-												
-												<div class="flex-grow-0 py-3 px-4 border-top">
-													<div class="input-group">
-														<input type="text" class="form-control" placeholder="Type your message" id="msg" >
-														<button class="btn btn-primary"  id="sendBtn">전송</button>
+
+
+
+
+
+													<div class="flex-grow-0 py-3 px-4 border-top">
+														<div class="input-group">
+															<input type="text" class="form-control"
+																placeholder="Type your message" id="msg">
+															<button class="btn btn-primary" id="sendBtn">전송</button>
+														</div>
+														<input class="form-control form-control-lg" id="formFileLg" type="file" style="width: 300px;" name="fileInfo" id="msg2">
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</main>
-								
+								</main>
 
-							
+
+
 
 
 

@@ -22,14 +22,11 @@ $(document).ready(function(){
 		location.href="/project5/main.do"
 	}
 	
-	
-	
 	$("#progress").click(function(){
 		alert("프로젝트 진행 상태를 바꾸시겠습니까?");
 		$(".modal").modal('show');
 		
 	})
-	
 	
 		var memberkey;
 	// ajax를 통한 파일 정보 불러오기 
@@ -473,7 +470,10 @@ $(document).ready(function(){
 												      data : data,
 												      dataType:'json',
 												        success: function(result){
-												         
+												         console.log("==============================")
+												         console.log(result)
+												         console.log("outputSortCntByMemberkey")
+												         console.log("==============================")
 												        	for(var i=0; i<11; i++){
 												        	  if(result.outputSortCnt[i] ==null){
 												        		  outputSortCnt[i] = 0
@@ -483,10 +483,10 @@ $(document).ready(function(){
 												         }
 												          
 												          for(var i=0; i<11; i++){
-												        	  if(outputSortCntByMemberkey[i] == null){
+												        	  if(result.outputSortCntByMemberkey[i] == null){
 												        		  outputSortCntByMemberkey[i] = 0
 												        	  }else{
-														        	 outputSortCntByMemberkey[i] =result.outputSortCntByMemberkey[i].count;
+												        		  outputSortCntByMemberkey[i] =result.outputSortCntByMemberkey[i].count;
 												        	  }
 												          }
 												          
@@ -628,58 +628,60 @@ $(document).ready(function(){
 
 					<div class="card">
 						<div class="card-header">
-							<h4>프로젝트 조직 분석</h4>
+							<h4>프로젝트 참여율 분석</h4>
 						</div>
 						<div class="card-body">
-							<div id="piechart1" style="width: 100%; height: 400px;"></div>
+							   <div id="calendar_basic" style="width: 1000px; height: 250px; margin: 0 auto;"></div>
 						</div>
 					</div>
-
-
-
-
-					<script type="text/javascript">
-									var projectkey;
-									var projectkeyRe = "${project.projectkey}";
-									
-									var dataRe = {projectkey : projectkeyRe}
-									
-									var cntList = []
-								 	$.ajax({
-										url : '/project5/teamCnt.do',
-										type : 'POST',
-										data : dataRe,
-										async:false, 
-										dataType:'json',
-										success : function(result){
-											console.log("프로젝트 조직 분석 데이터 불러오기 성공")
-											cntList[0] = result.teamCntByProject1
-											cntList[1] = result.teamCntByProject2
-											cntList[2] = result.teamCntByProject2
-										},
-										error : function(result){
-											alert("실패")
-										}
-								 	})
-								 console.log("cntList::::::::::::::::::::::::::::::"+cntList)
+						 <script type="text/javascript">
+						 
+						 $.ajax({
+							 url : '/project5/TotalOutputCntByDayList.do',
+							 dataType:'json',
+							 success:function(result){
+								 console.log("하루하루작업량 업로드 성공")
+								 console.log(result)
+								 console.log(result.TotalOutputCntByDayList)
+								 console.log(result.TotalOutputCntByDayList[0].writedate)
+								 console.log(result.TotalOutputCntByDayList[0].count)
 								 
-												google.charts.load('current', {'packages':['corechart']});
-										      google.charts.setOnLoadCallback(drawChart);
-																		
-										      function drawChart() {
-										          var data1 = google.visualization.arrayToDataTable([
-										            ['Task', 'Hours per Day'],
-										            ['기획팀',     cntList[0]],
-										            ['개발팀',     cntList[1]],
-										            ['고객전담팀',     cntList[2]],
-										          ]);
-										          var options = {
-										            title: '조직 분포'
-										          };
-										          var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
-										          chart.draw(data1, options);
-										        }
-							    </script>
+								 for(var i=0; i<result.TotalOutputCntByDayList.length; i++){
+									 commitdata.push ([
+										 new Date(result.TotalOutputCntByDayList[i].writedate.substr(0,4),
+								        		  result.TotalOutputCntByDayList[i].writedate.substr(4,2), 
+								        		  result.TotalOutputCntByDayList[i].writedate.substr(6,2)), result.TotalOutputCntByDayList[i].count
+									 ]);
+									 console.log(i);
+								 }
+								 
+							 }
+						 })
+						 
+							var commitdata=[];
+						 
+						 
+						      google.charts.load("current", {packages:["calendar"]});
+						      google.charts.setOnLoadCallback(drawChart);
+						
+						   function drawChart() {
+						       var dataTable = new google.visualization.DataTable();
+						       dataTable.addColumn({ type: 'date', id: 'Date' });
+						       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
+						       dataTable.addRows(commitdata);
+						
+						       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
+						
+						       var options = {
+						         title: "일일 프로젝트 참여 분석",
+						         height: 400,
+						       };
+						
+						       chart.draw(dataTable, options);
+						   }
+						    </script>
+
+
 
 
 
@@ -938,20 +940,45 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<script type="text/javascript">
+					
+					
+									var projectkey = parseInt("${project.projectkey}");
+									var pvc = {projectkey : projectkey}
+									$.ajax({
+										url : '/project5/projectVacationCnt.do',
+										method : 'POST',
+										data : pvc,
+										dataType : 'json',
+										success:function(result){
+											console.log("====================")
+											console.log(result)
+											console.log(result.yesterdayCanCnt)
+											console.log(result.tommorwCanCnt)
+											console.log(result.todayCanCnt)
+											console.log(result.projectTotalCnt)
+											go = [
+										          ['Year', '휴가자', '근무 가능 인원 '],
+										          ['어제',  result.yesterdayCanCnt,result.projectTotalCnt-result.yesterdayCanCnt],
+										          ['오늘',  result.todayCanCnt,result.projectTotalCnt-result.todayCanCnt],
+										          ['내일',  result.tommorwCanCnt,result.projectTotalCnt-result.tommorwCanCnt]
+										        ]
+										},
+										error:function(result){
+											console.log("휴가인원 불러오기 실패")
+										}
+									})
+									
+										var go = []
+									
+					
 								      google.charts.load('current', {'packages':['corechart']});
 								      google.charts.setOnLoadCallback(drawChart);
 								
 								      function drawChart() {
-								        var data = google.visualization.arrayToDataTable([
-								          ['Year', 'Sales', 'Expenses'],
-								          ['2004',  1000,      400],
-								          ['2005',  1170,      460],
-								          ['2006',  660,       1120],
-								          ['2007',  1030,      540]
-								        ]);
+								        var data = google.visualization.arrayToDataTable(go);
 								
 								        var options = {
-								          title: '작업속도',
+								          title: '근무 가능 인원',
 								          curveType: 'function',
 								          legend: { position: 'bottom' }
 								        };
@@ -979,6 +1006,7 @@ $(document).ready(function(){
 
 
 
+				
 
 
 
@@ -986,39 +1014,57 @@ $(document).ready(function(){
 
 					<div class="card">
 						<div class="card-header">
-							<h4></h4>
+							<h4>프로젝트 조직 분석	</h4>
 						</div>
 						<div class="card-body">
-
-							<script type="text/javascript">
-						      google.charts.load('current', {'packages':['corechart']});
-						      google.charts.setOnLoadCallback(drawChart);
-						
-						      function drawChart() {
-						
-						        var data = google.visualization.arrayToDataTable([
-						          ['Task', 'Hours per Day'],
-						          ['Work',     11],
-						          ['Eat',      2],
-						          ['Commute',  2],
-						          ['Watch TV', 2],
-						          ['Sleep',    7]
-						        ]);
-						
-						        var options = {
-						          title: '분류'
-						        };
-						
-						        //var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-						
-						        //chart.draw(data, options);
-						      }
-						    </script>
-							<!-- 
-							<div id="piechart"></div>
-							 -->
+							<div id="piechart1" style="width: 100%; height: 400px;"></div>
 						</div>
 					</div>
+					
+					<script type="text/javascript">
+									var projectkey;
+									var projectkeyRe = "${project.projectkey}";
+									
+									var dataRe = {projectkey : projectkeyRe}
+									
+									var cntList = []
+								 	$.ajax({
+										url : '/project5/teamCnt.do',
+										type : 'POST',
+										data : dataRe,
+										async:false, 
+										dataType:'json',
+										success : function(result){
+											console.log("프로젝트 조직 분석 데이터 불러오기 성공")
+											cntList[0] = result.teamCntByProject1
+											cntList[1] = result.teamCntByProject2
+											cntList[2] = result.teamCntByProject2
+										},
+										error : function(result){
+											alert("실패")
+										}
+								 	})
+								 console.log("cntList::::::::::::::::::::::::::::::"+cntList)
+								 
+												google.charts.load('current', {'packages':['corechart']});
+										      google.charts.setOnLoadCallback(drawChart);
+																		
+										      function drawChart() {
+										          var data1 = google.visualization.arrayToDataTable([
+										            ['Task', 'Hours per Day'],
+										            ['기획팀',     cntList[0]],
+										            ['개발팀',     cntList[1]],
+										            ['고객전담팀',     cntList[2]],
+										          ]);
+										          var options = {
+										            title: '조직 분포'
+										          };
+										          var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
+										          chart.draw(data1, options);
+										        }
+							    </script>
+							    
+							    
 				</div>
 			</section>
 		</div>

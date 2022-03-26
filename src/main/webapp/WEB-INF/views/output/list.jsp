@@ -105,9 +105,9 @@ $(document).ready(function(){
 									<tbody>
 										<c:forEach var="list" items="${list}">
 											<tr>
+											
 												<td
-													onclick="location.href='${path}/outputGet.do?outputkey=${list.outputkey}'"
-													style="cursor: pointer;">${list.outputkey }</td>
+													style="cursor: pointer;">${list.outputkey } </td>
 
 												<td><span
 													onclick="location.href='${path}/outputGet.do?outputkey=${list.outputkey}'"
@@ -135,8 +135,6 @@ $(document).ready(function(){
 
 
 
-
-
 							<div class="dataTable-bottom">
 								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
 								<ul
@@ -159,7 +157,13 @@ $(document).ready(function(){
 
 			</section>
 		</div>
-
 	</div>
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

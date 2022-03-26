@@ -61,4 +61,24 @@ public class DashBoardService {
 	}
 	
 	
+	public int yesterdayCanCnt(int projectkey) {
+		return dao.yesterdayCanCnt(projectkey);
+	}
+	
+	public int tommorwCanCnt(int projectkey) {
+		return dao.tommorwCanCnt(projectkey);
+	}
+	
+	public int todayCanCnt(int projectkey) {
+		return dao.todayCanCnt(projectkey);
+	}
+	
+	public int projectTotalCnt(int projectkey) {
+		return dao.projectTotalCnt(projectkey);
+	}
+	
+	public List<TotalOutputCntByDayVO> TotalOutputCntByDay(){
+		return dao.TotalOutputCntByDay();
+	}
+	
 }

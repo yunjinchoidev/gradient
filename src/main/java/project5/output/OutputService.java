@@ -16,42 +16,34 @@ import project5.fileInfo.FileInfoVO;
 
 @Service
 public class OutputService {
-	
+
 	@Autowired
 	OutputDao dao;
-	
+
 	@Autowired
 	FileInfoDao dao2;
-	
-	
-	public List<OutputVO> list(){
+
+	public List<OutputVO> list() {
 		return dao.list();
 	}
-	
+
 	public OutputVO get(int outputkey) {
-		
+
 		OutputVO vo = dao.get(outputkey);
 		vo.setFnames(dao2.getFileInfoNames(outputkey));
 		return vo;
-		
-	}
-	
 
-		
-		
-		
-		
-	
-	
+	}
+
 	@Value("${upload}")
 	private String uploadPath;
 
 	public String insert(OutputVO ins) {
-		
+
 		dao.insert(ins);
 		dao2.insert(new FileInfoVO(uploadPath, "1", "게시물 제목:" + ins.getTitle()));
 		String msg = "등록성공";
-		
+
 		// 파일을 업로드 했는지 안했는지 점검
 		if (ins.getUploadFile() != null && ins.getUploadFile().length > 0) {
 			try {
@@ -76,31 +68,25 @@ public class OutputService {
 				// TODO Auto-generated catch block
 				// e.printStackTrace();
 				msg = "파일전송오류:" + e.getMessage();
-			} catch(Exception e) {
+			} catch (Exception e) {
 				msg = "기타예외:" + e.getMessage();
 			}
-		}else {
+		} else {
 			System.out.println("비었네요");
 		}
 		return msg;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	public void update(OutputVO vo) {
 		dao.update(vo);
 	}
-	
+
 	public void delete(int outputkey) {
 		dao.delete(outputkey);
 	}
-	
+
+	public void outputEvaluation(OutputVO vo) {
+		dao.outputEvaluation(vo);
+	}
+
 }

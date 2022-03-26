@@ -24,4 +24,10 @@ public interface DashBoardDao {
 	public int teamCntByProject2(int projectkey);
 	public int teamCntByProject3(int projectkey);
 	public List<CostDetail> costDetailGet(int no);
+	public int yesterdayCanCnt(int projectkey);
+	public int tommorwCanCnt(int projectkey);
+	public int todayCanCnt(int projectkey);
+	public int projectTotalCnt(int projectkey);
+	public List<TotalOutputCntByDayVO> TotalOutputCntByDay();
+	
 }

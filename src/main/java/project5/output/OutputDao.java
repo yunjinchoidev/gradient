@@ -11,5 +11,5 @@ public interface OutputDao {
 	public void insert(OutputVO vo);
 	public void update(OutputVO vo);
 	public void delete(int outputkey);
-	
+	public void outputEvaluation(OutputVO vo);
 }

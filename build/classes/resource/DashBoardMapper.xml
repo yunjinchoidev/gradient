@@ -64,7 +64,8 @@
 		resultType="project5.dashBoard.OutputDashBoardVO" parameterType="int">
 		SELECT worksortkey, count(worksortkey) count
 		FROM OUTPUT
-		WHERE memberkey=#{memberkey}
+		WHERE
+		memberkey=#{memberkey}
 		GROUP BY worksortkey
 		ORDER BY
 		WORKSORTKEY
@@ -73,30 +74,92 @@
 
 	<select id="teamCntByProject" parameterType="int"
 		resultType="int">
-		SELECT count(*) count FROM team WHERE projectkey=#{projectkey}
+		SELECT count(*) count FROM team WHERE
+		projectkey=#{projectkey}
 	</select>
 
 	<select id="teamCntByProject1" parameterType="int"
 		resultType="int">
-	SELECT count(*) count FROM team WHERE projectkey=#{projectkey}  and teamname like '기획%'
+		SELECT count(*) count FROM team WHERE
+		projectkey=#{projectkey} and teamname
+		like '기획%'
 	</select>
 
 	<select id="teamCntByProject2" parameterType="int"
 		resultType="int">
-	SELECT count(*) count FROM team WHERE projectkey=#{projectkey}  and teamname like '개발%'
+		SELECT count(*) count FROM team WHERE
+		projectkey=#{projectkey} and teamname
+		like '개발%'
 	</select>
 
 	<select id="teamCntByProject3" parameterType="int"
 		resultType="int">
-		SELECT count(*) count FROM team WHERE projectkey=#{projectkey}  and teamname like '고객%'
+		SELECT count(*) count FROM team WHERE
+		projectkey=#{projectkey} and teamname like '고객%'
 	</select>
 
 
-	<select id="costDetailGet" parameterType="int" resultType="project5.cost.CostDetail">
+	<select id="costDetailGet" parameterType="int"
+		resultType="project5.cost.CostDetail">
 		select * from costdetail where no=#{no}
 	</select>
 
 
+	<!-- 오늘 근무하는 인원 -->
+	<select id="todayCanCnt" parameterType="int" resultType="int">
+		SELECT count(*) FROM vacation WHERE TO_CHAR(SYSDATE, 'YYYY/MM/dd') <![CDATA[<=]]>
+		TO_CHAR(startdate+duration, 'YYYY/MM/DD')
+		AND TO_CHAR(SYSDATE,
+		'YYYY/MM/dd') <![CDATA[>=]]>
+		TO_CHAR(startdate, 'YYYY/MM/dd')
+		AND projectkey=#{projectkey}
+	</select>
+
+	<select id="tommorwCanCnt" parameterType="int" resultType="int">
+		SELECT count(*) FROM vacation WHERE TO_CHAR(SYSDATE+1, 'YYYY/MM/dd') <![CDATA[<=]]>
+		TO_CHAR(startdate+duration, 'YYYY/MM/DD')
+		AND TO_CHAR(SYSDATE,
+		'YYYY/MM/dd') <![CDATA[>=]]>
+		TO_CHAR(startdate, 'YYYY/MM/dd')
+		AND projectkey=#{projectkey}
+	</select>
+
+	<select id="yesterdayCanCnt" parameterType="int"
+		resultType="int">
+		SELECT count(*) FROM vacation WHERE TO_CHAR(SYSDATE-1, 'YYYY/MM/dd') <![CDATA[<=]]>
+		TO_CHAR(startdate+duration, 'YYYY/MM/DD')
+		AND TO_CHAR(SYSDATE,
+		'YYYY/MM/dd') <![CDATA[>=]]>
+		TO_CHAR(startdate, 'YYYY/MM/dd')
+		AND projectkey=#{projectkey}
+	</select>
+
+	<!-- 프로젝트 전체 인원 -->
+	<select id="projectTotalCnt" parameterType="int"
+		resultType="int">
+		SELECT count(*) FROM team_member WHERE teamkey IN(
+		SELECT
+		teamkey FROM team WHERE projectkey=#{projectkey})
+	</select>
+
+
+
+
+	<select id="TotalOutputCntByDay"
+		resultType="project5.dashBoard.TotalOutputCntByDayVO">
+		SELECT to_char(writedate,'yyyymmdd') writedate, count(*) count FROM
+		OUTPUT WHERE
+		projectkey=1 and
+		to_char(writedate,'yymmdd') IN
+		(SELECT DISTINCT A.DD
+		FROM (
+		SELECT TO_CHAR( TO_DATE( '220101','yymmdd') - 1 + LEVEL, 'YYMMdd' ) AS DD
+		FROM DUAL
+		CONNECT BY LEVEL <![CDATA[<=]]>
+		TO_DATE( '230101','yymmdd' ) - TO_DATE( '220101','yymmdd') + 1
+		) A) GROUP BY to_char(writedate,'yyyymmdd') ORDER BY WRITEDATE
+
+	</select>
 
 
 

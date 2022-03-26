@@ -1,10 +1,13 @@
-package project5.mywork;
+package project5.myWork;
+
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import project5.fileInfo.FileInfoVO;
 import project5.fullCalendar.A10_FullCalService;
 import project5.fullCalendar.Calendar;
 import project5.gantt.GanttController;
@@ -15,7 +18,7 @@ import project5.kanban.KanbanService;
 import project5.kanban.KanbanVO;
 
 @Controller
-public class MyworkController {
+public class MyWorkController {
 
 	@Autowired
 	A10_FullCalService service;
@@ -25,6 +28,9 @@ public class MyworkController {
 	
 	@Autowired
 	GanttService service3;
+	
+	@Autowired
+	MyWorkService service4;
 	
 	
 	@RequestMapping("/myworkCalendar.do")
@@ -73,6 +79,22 @@ public class MyworkController {
 	@RequestMapping("/myWorkganttGet.do")
 	public String myWorkganttGet(Model d, GanttVO vo) {
 		return "WEB-INF\\views\\mywork\\ganttGet.jsp";
+	}
+
+	@RequestMapping("/myWorkFileBox.do")
+	public String myWorkFileBox(Model d, int memberkey) {
+		return "WEB-INF\\views\\mywork\\fileBox.jsp";
+	}
+
+	@RequestMapping("/myFileListInOutput.do")
+	public String myFileListInOutput(Model d, int memberkey) {
+		d.addAttribute("myFileListInOutput", service4.myFileListInOutput(memberkey));
+		return "pageJsonReport";
+	}
+	
+	@RequestMapping("/galley.do")
+	public String galley(Model d, int memberkey) {
+		return "WEB-INF\\views\\mywork\\galley.jsp";
 	}
 	
 	

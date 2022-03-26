@@ -43,5 +43,11 @@
 		<mapper resource="resource/DashBoardMapper.xml"/>
 		<mapper resource="resource/CustoChatMapper.xml"/>
 		<mapper resource="resource/ChatBotMapper.xml"/>
+		<mapper resource="resource/VacationMapper.xml"/>
+		<mapper resource="resource/AttendanceMapper.xml"/>
+		<mapper resource="resource/BidMapper.xml"/>
+		<mapper resource="resource/ProcuSituationMapper.xml"/>
+		<mapper resource="resource/ContractMapper.xml"/>
+		<mapper resource="resource/MyWorkMapper.xml"/>
 	</mappers>
 </configuration>

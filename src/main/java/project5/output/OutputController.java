@@ -61,6 +61,16 @@ public class OutputController {
 		return "forward:/output.do";
 	}
 	
+	@RequestMapping("/outputEvaluation.do")
+	public String outputEvaluation(Model d, OutputVO vo) {
+		service.outputEvaluation(vo);
+		return "forward:/output.do";
+	}
+	
+	
+	
+	
+	
 	
 	
 	

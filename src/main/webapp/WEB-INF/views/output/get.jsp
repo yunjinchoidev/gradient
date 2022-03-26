@@ -6,6 +6,17 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+	$(document).ready(function(){
+		var outputkey = parseInt("${get.outputkey}")
+		$("#assessBtn").click(function(){
+			$("[name=outputkey]").val(outputkey)
+		})
+	})
+</script>
+
+
 <body>
 <%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
@@ -16,7 +27,11 @@
 					<div class="card">
 
 						<div class="card-header">
-							<h4 class="card-title">산출물 조회</h4>
+							<h4 class="card-title">산출물 조회  
+								<span class="badge bg-warning"  data-bs-toggle="modal"  data-bs-target="#inlineForm" id="assessBtn" value="${list.outputkey }"
+													>평가하기</span>
+													<span>${get.evaluation }</span>
+							</h4>
 						</div>
 
 						<div class="card-content">
@@ -81,7 +96,7 @@
 
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="city-column">작성일 ${list.writedate}</label> <input
+												<label for="city-column">작성일 ${get.writedate}</label> <input
 													type="text" id="city-column" class="form-control"
 													placeholder="writedateS" name="writeDateS"
 													value='<fmt:formatDate value="${get.writedate }" />'
@@ -174,8 +189,6 @@
 								</form>
 
 
-
-
 							</div>
 						</div>
 					</div>
@@ -183,5 +196,68 @@
 			</div>
 		</section>
 	</div>
+	
+	
+	
+	
+	
+	<form action="/project5/outputEvaluation.do">
+		<div class="modal fade text-left" id="inlineForm" tabindex="-1"
+			role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
+			<div
+				class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
+				role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h4 class="modal-title" id="myModalLabel33">평가하기</h4>
+						<button type="button" class="close" data-bs-dismiss="modal"
+							aria-label="Close">
+							<i data-feather="x"></i>
+						</button>
+					</div>
+
+					<div class="modal-body">
+				
+					<label>outputkey: </label>
+					<div class="form-group">
+						<input type="text" name="outputkey" class="form-control">
+					</div>
+
+					<label>평가점수 : </label>
+						<div class="form-group">
+							<select class="form-control" name="evaluation" >
+								<option value="1">1</option>
+								<option value="2">2</option>
+								<option value="3">3</option>
+								<option value="4">4</option>
+								<option value="5">5</option>
+								<option value="6">6</option>
+								<option value="7">7</option>
+								<option value="8">8</option>
+								<option value="9">9</option>
+								<option value="10">10</option>
+							</select>
+						</div>
+					</div>
+
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-light-secondary"
+							data-bs-dismiss="modal">
+							<i class="bx bx-x d-block d-sm-none"></i> <span
+								class="d-none d-sm-block">닫기</span>
+						</button>
+						<button type="submit" class="btn btn-danger ml-2">
+							<i class="bx bx-check d-block d-sm-none"></i> <span
+								class="d-none d-sm-block">수정</span>
+						</button>
+					</div>
+
+				</div>
+			</div>
+		</div>
+</form>	
+	
+	
 </body>
 </html>

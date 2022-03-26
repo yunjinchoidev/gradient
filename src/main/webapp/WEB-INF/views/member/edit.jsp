@@ -108,7 +108,6 @@ $(document).ready(function() {
 			    
 			    
 			    
-			    
 				// 이미지 클라리언트 딴에 띄우는 합수
 				// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
 			  function showUploadResult2(obj){

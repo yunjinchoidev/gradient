@@ -1,5 +1,5 @@
 package project5.fileInfo;
-
+//project5.fileInfo.FileInfoVO
 import java.util.Date;
 
 public class FileInfoVO {

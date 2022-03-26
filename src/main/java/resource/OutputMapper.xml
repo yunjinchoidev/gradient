@@ -40,7 +40,7 @@
 		(seq_output.nextval,
 		#{title},#{contents},#{version},#{status},sysdate,
 		#{workSortKey},#{projectkey},
-		#{memberkey},#{deptno})
+		#{memberkey},#{deptno},0)
 	</insert>
 
 	<update id="update">
@@ -63,6 +63,15 @@
 		delete from output
 		where outputkey = #{outputkey}
 	</delete>
+	
+	<update id="outputEvaluation" parameterType="project5.output.OutputVO">
+	update output
+	set
+	evaluation=#{evaluation}
+	where outputkey=#{outputkey}
+	</update>
+	
+	
 
 
 

@@ -92,8 +92,29 @@ public class DashBoardController {
 		return "pageJsonReport";
 	}
 	
-
 	
+	
+	@RequestMapping("/projectVacationCnt.do")
+	public String projectVacationCnt(Model d, int projectkey) {
+		System.out.println("projectVacationCnt 진입!");
+		int yesterdayCanCnt = service3.yesterdayCanCnt(projectkey);
+		int tommorwCanCnt = service3.tommorwCanCnt(projectkey);
+		int todayCanCnt = service3.todayCanCnt(projectkey);
+		int projectTotalCnt = service3.projectTotalCnt(projectkey);
+		d.addAttribute("yesterdayCanCnt", yesterdayCanCnt);
+		d.addAttribute("tommorwCanCnt", tommorwCanCnt);
+		d.addAttribute("todayCanCnt", todayCanCnt);
+		d.addAttribute("projectTotalCnt", projectTotalCnt);
+		return "pageJsonReport";
+	}
+	
+	@RequestMapping("/TotalOutputCntByDayList.do")
+	public String todayTotalCnt(Model d) {
+		System.out.println("projectVacationCnt 진입!");
+		List<TotalOutputCntByDayVO> TotalOutputCntByDayList = service3.TotalOutputCntByDay();
+		d.addAttribute("TotalOutputCntByDayList", TotalOutputCntByDayList);
+		return "pageJsonReport";
+	}
 	
 	
 	

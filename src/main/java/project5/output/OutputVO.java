@@ -22,14 +22,13 @@ public class OutputVO {
 	private String worksortTitle;
 	private String pname;
 	private String dname;
-	
+	private int evaluation;
+
 	// 파일을 저장하기 위한
 	private MultipartFile[] uploadFile;
-	
+
 	// 파일이름을 불러오기 위한
 	private ArrayList<String> fnames;
-	
-	
 
 	public OutputVO() {
 		super();
@@ -56,10 +55,29 @@ public class OutputVO {
 		this.dname = dname;
 	}
 
-	
-	
-	
-	
+	public OutputVO(int outputkey, String title, String contents, int version, String status, Date writedate,
+			int workSortKey, int projectkey, int memberkey, int deptno, String mname, String worksortTitle,
+			String pname, String dname, int evaluation, MultipartFile[] uploadFile, ArrayList<String> fnames) {
+		super();
+		this.outputkey = outputkey;
+		this.title = title;
+		this.contents = contents;
+		this.version = version;
+		this.status = status;
+		this.writedate = writedate;
+		this.workSortKey = workSortKey;
+		this.projectkey = projectkey;
+		this.memberkey = memberkey;
+		this.deptno = deptno;
+		this.mname = mname;
+		this.worksortTitle = worksortTitle;
+		this.pname = pname;
+		this.dname = dname;
+		this.evaluation = evaluation;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+	}
+
 	public OutputVO(int outputkey, String title, String contents, int version, String status, Date writedate,
 			int workSortKey, int projectkey, int memberkey, int deptno, String mname, String worksortTitle,
 			String pname, String dname, MultipartFile[] uploadFile, ArrayList<String> fnames) {
@@ -209,7 +227,13 @@ public class OutputVO {
 	public void setFnames(ArrayList<String> fnames) {
 		this.fnames = fnames;
 	}
-	
-	
+
+	public int getEvaluation() {
+		return evaluation;
+	}
+
+	public void setEvaluation(int evaluation) {
+		this.evaluation = evaluation;
+	}
 
 }
