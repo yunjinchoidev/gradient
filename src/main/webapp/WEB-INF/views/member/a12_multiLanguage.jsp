@@ -69,8 +69,12 @@ en=english
   <!-- 언어 선택 -->
   <select class="form-control" id="selectLan">
   	<option value=""><spring:message code="chlange"/></option>
-  	<option value="ko"><spring:message code="ko"/></option>
-  	<option value="en"><spring:message code="en"/></option>
+  	<option value="korean"><spring:message code="korean"/></option>
+  	<option value="english"><spring:message code="english"/></option>
+  	<option value="japanese"><spring:message code="japanese"/></option>
+  	<option value="german"><spring:message code="german"/></option>
+  	<option value="french"><spring:message code="french"/></option>
+  	<option value="chinese"><spring:message code="chinese"/></option>
   	<option value="spanish"><spring:message code="spanish"/></option>
   </select>
 </div>
