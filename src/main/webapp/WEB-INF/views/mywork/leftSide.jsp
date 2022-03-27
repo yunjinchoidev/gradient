@@ -27,10 +27,60 @@
 <link rel="shortcut icon"
 	href="/project5/resources/dist/assets/images/favicon.svg"
 	type="image/x-icon">
-
-
 </head>
 
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(document).ready(function(){
+	
+	
+	$("#btn1").click(function(){
+		var menubar;
+		var menubar=this.text();
+		var data ={menubar:menubar, status:1}
+		alert("즐겨찾기에 추가합니다");
+		$.ajax({
+			url:'/project5/favoriteUpdate.do',
+			type:'POST',
+			data:data,
+			dataType:'json',
+			success:function(result){
+				alert("성공")
+			}
+		})
+	})
+	
+	$.ajax({
+			url:'/project5/favoriteList.do',
+			type:'POST',
+  			dataType:'json',
+			success:function(result){
+				console.log(result)
+				console.log(result.list)
+				for(var i=0; i<result.list.length; i++){
+					console.log(i)
+					var favoriteListHtml = $("#favoriteList");
+					str="";
+					str+= "<div>"
+					str+= "<span class='fonticon-wrap d-inline me-3' onclick='alert('GGG')' style=' display: inline-block; ' >"
+					str+= "<svg class='bi' width='1.5em' height='1.5em' 	fill='currentColor' >"
+					str+= "<use	xlink:href='/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star'></use>"
+					str+= "</svg>"
+					str+= "</span>"
+					str+= "<a onclick='/project5/myworkCalendar.do?memberkey=1' class='list-group-item'"
+					str+= "style='font-size: 20px; font-weight: bolder; display: inline-block;' id='btn1'>일정 전체 조회</a>"
+					str+= "</div>"
+						
+					favoriteListHtml.append(str)	;
+				}
+				
+			}
+	})
+	
+	
+	
+})
+</script>
 
 
 
@@ -50,10 +100,44 @@
 					<div class="form-group form-group-compose">
 						<!-- compose button  -->
 						<button type="button"
-							class="btn btn-primary btn-block my-4 compose-btn">
-							<i class="bx bx-plus"></i> 구분
+							class="btn btn-warning btn-block my-4 compose-btn">
+							<i class="bx bx-plus"></i> 즐겨찾기
 						</button>
+						
+						<div id="favoriteList">
+								<div>
+									<span class="fonticon-wrap d-inline me-3" onclick="alert('GGG')" style=" display: inline-block; " >
+										<svg class="bi" width="1.5em" height="1.5em" 	fill="currentColor" >
+											<use	xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
+	                                    </svg>        
+									</span>
+									<a onclick="/project5/myworkCalendar.do?memberkey=${member.memberkey }" class="list-group-item"
+									style="font-size: 20px; font-weight: bolder; display: inline-block;" id="btn1" >전체일정조회</a>
+								</div>
+						</div>
+						
 					</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 					<div class="sidebar-menu-list ps">
@@ -61,20 +145,26 @@
 						<div class="list-group list-group-messages">
 
 
-
-
-							<a href="/project5/myworkCalendar.do?memberkey=${member.memberkey }" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-                                        </svg>
-								</div> 일정 전체 조회
-							</a> 
-							
+								<div class="form-group form-group-compose">
+												<!-- compose button  -->
+												<button type="button"
+													class="btn btn-primary btn-block my-4 compose-btn">
+													<i class="bx bx-plus"></i> 구분
+												</button>
+											
+								</div>
+											
+											
+								
+								<div>
+									<span class="fonticon-wrap d-inline me-3" onclick="alert('GGG')" style=" display: inline-block; " >
+										<svg class="bi" width="1.5em" height="1.5em" 	fill="currentColor" >
+											<use	xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
+	                                    </svg>        
+									</span>
+									<a onclick="/project5/myworkCalendar.do?memberkey=${member.memberkey }"class="list-group-item"
+									style="font-size: 20px; font-weight: bolder; display: inline-block;" id="btn1">일정 전체 조회</a>
+								</div>
 							
 							
 							
@@ -255,6 +345,7 @@
                                         </svg>
 								</div> 휴가 관리
 							</a>
+						
 						</div>
 						<!-- sidebar menu  end-->
 

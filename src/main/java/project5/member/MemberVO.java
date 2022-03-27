@@ -14,6 +14,7 @@ public class MemberVO {
 	private int projectkey;
 	private int deptno;
 	private String email;
+	private List<String> emailList;
 
 	private MultipartFile[] uploadFile;
 
@@ -34,6 +35,82 @@ public class MemberVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public MemberVO(List<String> emailList) {
+		super();
+		this.emailList = emailList;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public List<String> getEmailList() {
+		return emailList;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	public void setEmailList(List<String> emailList) {
+		this.emailList = emailList;
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,

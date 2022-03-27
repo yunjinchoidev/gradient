@@ -23,6 +23,11 @@ public class CustoChatService {
 		return dao.MessageListbyRoomkey(roomkey);
 	}
 
+	public List<CustoChatMessageVO> AllMessage(){
+		return dao.AllMessage();
+	}
+	
+	
 	public void createMessage(CustoChatMessageVO vo) {
 		dao.createMessage(vo);
 		System.out.println("서비스단도 성공");
@@ -41,5 +46,8 @@ public class CustoChatService {
 		return dao.getChatRoom(roomkey);
 	}
 	
+	public void plusLikeCnt(int messagekey) {
+		dao.plusLikeCnt(messagekey);
+	}
 	
 }

@@ -9,6 +9,7 @@ public class CustoChatMessageVO {
 	private String writedateS;
 	private int memberkey;
 	private int roomkey;
+	private int likecnt;
 
 	public CustoChatMessageVO() {
 		super();
@@ -24,6 +25,18 @@ public class CustoChatMessageVO {
 		this.writedateS = writedateS;
 		this.memberkey = memberkey;
 		this.roomkey = roomkey;
+	}
+
+	public CustoChatMessageVO(int messagekey, String message, Date writedate, String writedateS, int memberkey,
+			int roomkey, int likecnt) {
+		super();
+		this.messagekey = messagekey;
+		this.message = message;
+		this.writedate = writedate;
+		this.writedateS = writedateS;
+		this.memberkey = memberkey;
+		this.roomkey = roomkey;
+		this.likecnt = likecnt;
 	}
 
 	public int getMessagekey() {
@@ -72,6 +85,14 @@ public class CustoChatMessageVO {
 
 	public void setRoomkey(int roomkey) {
 		this.roomkey = roomkey;
+	}
+
+	public int getLikecnt() {
+		return likecnt;
+	}
+
+	public void setLikecnt(int likecnt) {
+		this.likecnt = likecnt;
 	}
 
 }

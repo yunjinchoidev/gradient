@@ -21,16 +21,17 @@ public class CustoChatController {
 		d.addAttribute("chatRoomList", service.chatRoomList());
 		return "WEB-INF\\views\\customerChat\\main.jsp";
 	}
-	@RequestMapping("/customerChat2.do")
-	public String chatting2(Model d) {
+	
+	
+	// 채팅방 목록 불러오기
+	@RequestMapping("/chatRoomList.do")
+	public String chatRoomList(Model d) {
 		d.addAttribute("chatRoomList", service.chatRoomList());
-		return "WEB-INF\\views\\customerChat\\main2.jsp";
+		return "pageJsonReport";
 	}
 	
 	
-	
-	
-	
+	// 회원 초대하기
 	@RequestMapping("/roomJoin.do")
 	public String roomJoin(Model d, CustoChatRoomJoinVO vo) {
 		service.roomJoin(vo);
@@ -46,13 +47,18 @@ public class CustoChatController {
 		return "pageJsonReport";
 	}
 	
+	
+	// 메시지 불러오기
 	@RequestMapping("/MessageListbyRoomkey.do")
 	public String MessageListbyRoomkey(Model d, int roomkey) {
-		service.MessageListbyRoomkey(roomkey);
+		d.addAttribute("MessageListbyRoomkey", service.MessageListbyRoomkey(roomkey));
 		return "pageJsonReport";
 	}
 	
 	
+	
+	
+	// 메시지 삽입
 	@RequestMapping("/createMessage.do")
 	public String createMessage(Model d,CustoChatMessageVO vo) {
 		System.out.println("createMessage 진입");
@@ -60,10 +66,13 @@ public class CustoChatController {
 		System.out.println(vo.getMemberkey());
 		System.out.println(vo.getMessage());
 		service.createMessage(vo);
-		System.out.println("마지막 전!");
 		d.addAttribute("psc", "success");
 		return "pageJsonReport";
 	}
+	
+	
+	
+	
 	
 	@RequestMapping("/createChat.do")
 	public String  createChat(Model d, CustoChatRoomVO vo) {
@@ -72,15 +81,16 @@ public class CustoChatController {
 		return "pageJsonReport";
 	}
 	
-	@RequestMapping("/chatRoomList.do")
-	public String  chatRoomList(Model d) {
-		d.addAttribute("chatRoomList", service.chatRoomList());
-		return "pageJsonReport";
-	}
-	
 	@RequestMapping("/getChatRoom.do")
 	public String  getChatRoom(Model d, int roomkey) {
 		d.addAttribute("getChatRoom", service.getChatRoom(roomkey));
+		return "pageJsonReport";
+	}
+
+	@RequestMapping("/plusLikeCnt.do")
+	public String  plusLikeCnt(Model d, int  messagekey) {
+		 service.plusLikeCnt(messagekey);
+		d.addAttribute("psc","plusLikeCntSuccess");
 		return "pageJsonReport";
 	}
 	

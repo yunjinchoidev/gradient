@@ -49,5 +49,6 @@
 		<mapper resource="resource/ProcuSituationMapper.xml"/>
 		<mapper resource="resource/ContractMapper.xml"/>
 		<mapper resource="resource/MyWorkMapper.xml"/>
+		<mapper resource="resource/FavoriteMapper.xml"/>
 	</mappers>
 </configuration>

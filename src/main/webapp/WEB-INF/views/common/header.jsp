@@ -171,26 +171,32 @@
 			}
 		})
 		
-		
-	
-	
-		
-
-		
 							$("#projectMange").click(function() {
-								if (memberName == "") {
-									alert("권한이 없습니다.");
+								if (auth != "pm") {
+									alert("관리자만 접근 가능합니다.");
 								} else {
 									location.href="/project5/projectManageMain.do"
 								}
 							});
-		
-		
-		
-		
-		
-		
-	})
+
+				
+						$("#EmailBtn").click(function() {
+							if (auth != "pm") {
+								alert("관리자만 접근 가능합니다.");
+							} else {
+								location.href = "/project5/mailFrm.do"
+							}
+						});
+
+						$("#MemberListBtn").click(function() {
+							if (auth != "pm") {
+								alert("관리자만 접근 가능합니다.");
+							} else {
+								location.href = "/project5/memberList.do"
+							}
+						});
+
+					})
 </script>
 
 
@@ -285,13 +291,15 @@
 											<li class="submenu-item ">
 												<a href="#" id="kanbanss">칸반보드 </a>
 											</li>
+										
 													
 											<li class="submenu-item ">
 												<a href="#" id="gantt">간트차트</a>
 											</li>
 											
+												
 											<li class="submenu-item ">
-												<a href="#" id="output">산출물 관리 </a>
+												<a href="#" id="kanbanss">캘린더 </a>
 											</li>
 											
 											<li class="submenu-item ">
@@ -303,16 +311,25 @@
 											</li>
 											
 											<li class="submenu-item ">
-												<a href="#" id="procu">조달 관리</a>
+												<a href="#" id="team">팀 관리</a>
 											</li>
 											
 											<li class="submenu-item ">
-												<a href="#" id="team">팀 관리</a>
+												<a href="#" id="output">산출물 관리 </a>
 											</li>
 											
 											<li class="submenu-item ">
 												<a href="#" id="risk">리스크 관리</a>
 											</li>
+											
+											
+											<li class="submenu-item ">
+												<a href="#" id="procu">조달 관리</a>
+											</li>
+											
+											
+											
+											
 										</ul>
 							</li>
 							
@@ -359,8 +376,8 @@
 									관리자 페이지 [PM]</span></a>
 							<ul class="submenu ">
 								<li class="submenu-item " id="projectMange"><a href="#">프로젝트 관리 </a></li>
-								<li class="submenu-item "><a href="/project5/mailFrm.do">이메일 발송 </a></li>
-								<li class="submenu-item "><a href="/project5/memberList.do">사용자 리스트 </a></li>
+								<li class="submenu-item "><a href="#" id="EmailBtn">이메일 발송 </a></li>
+								<li class="submenu-item "><a href="#" id="MemberListBtn">사용자 리스트 </a></li>
 							</ul>
 						</li>
 

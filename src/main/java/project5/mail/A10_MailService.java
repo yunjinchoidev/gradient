@@ -25,6 +25,8 @@ public class A10_MailService {
 	
 	
 	
+	
+	// 내 마음대로 메일 발송하기
 	public String sendMail(Mail email) {
 		String msg = "메일 발송 성공";
 		MimeMessage mmsg = sender.createMimeMessage();
@@ -42,13 +44,18 @@ public class A10_MailService {
 		return msg;
 	}
 	
+	
+	
+	
+	
+	// 임시 아이디/비밀번호 발급해주는 것
 	public String sendidpassMail(int memberkey, String reciever) {
 		String msg = "메일 발송 성공";
 		MimeMessage mmsg = sender.createMimeMessage();
 		try {
 			mmsg.setSubject("5조 pms 가입을 대단히 환영합니다");
 			mmsg.setRecipient(RecipientType.TO, new InternetAddress(reciever));
-			String infomation="안녕하세요? \n5조 PMS에 가입하신 여러분을 환영합니다. \n\n\n 임시 아이디는 "
+			String infomation="안녕하세요? \n5조 Gradient에 가입하신 여러분을 환영합니다. \n\n\n 임시 아이디는 "
 			+service.get(memberkey).getId() +"이고 "+
 			"\n임시 비밀번호는 "+service.get(memberkey).getPass() +"입니다. \n \n 즐거운 하루 되십시오.";
 			mmsg.setText(infomation);
@@ -64,6 +71,12 @@ public class A10_MailService {
 		}
 		return msg;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

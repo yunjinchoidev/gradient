@@ -57,12 +57,56 @@ $(document).ready(function(){
 </script>
 
 
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+
+<!--  카카오를 위해서 -->
+
+<!-- 카카오 스크립트 -->
+<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+<script>
+Kakao.init('9b27ef068ae5af77a894af32a4f1ee80'); //발급받은 키 중 javascript키를 사용해준다.
+console.log(Kakao.isInitialized()); // sdk초기화여부판단
+//카카오로그인
+function kakaoLogin() {
+    Kakao.Auth.login({
+      success: function (response) {
+        Kakao.API.request({
+          url: '/v2/user/me',
+          success: function (response) {
+        	  console.log(response)
+          },
+          fail: function (error) {
+            console.log(error)
+          },
+        })
+      },
+      fail: function (error) {
+        console.log(error)
+      },
+    })
+  }
+//카카오로그아웃  
+function kakaoLogout() {
+    if (Kakao.Auth.getAccessToken()) {
+      Kakao.API.request({
+        url: '/v1/user/unlink',
+        success: function (response) {
+        	console.log(response)
+        },
+        fail: function (error) {
+          console.log(error)
+        },
+      })
+      Kakao.Auth.setAccessToken(undefined)
+    }
+  }  
+</script>
 
 <body>
-<%@ include file="../chatBot/chatBot.jsp"%>
 
+<%@ include file="../chatBot/chatBot.jsp"%> 
+ 	<%@ include file="../common/header.jsp"%>
 
-	<%@ include file="../common/header.jsp"%>
 
 	<div id="auth" style="margin-left: 350px;" >
 		<div class="row h-100" style="width: 900px; ">
@@ -118,6 +162,22 @@ $(document).ready(function(){
 				<div id="auth-right"></div>
 			</div>
 			 -->
+			 <ul>
+	<li onclick="kakaoLogin();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그인</span>
+          
+      </a>
+	</li>
+	<li onclick="kakaoLogout();">
+      <a href="javascript:void(0)">
+          <span>카카오 로그아웃</span>
+      </a>
+	</li>
+</ul>
+			 
+			 
+			 
 		</div>
 
 	</div>

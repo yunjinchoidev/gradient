@@ -94,10 +94,19 @@
 			</div>
 
 			<br>
+				
 
 			<section class="section">
 				<div class="card">
-					<div class="card-body">
+						<div class="card-header">
+							여러 기능들이 있습니다.<br> <br>
+							<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
+								<a href="#" class="btn btn-danger" id="mailSendBtn">휴가 계획서 </a> 
+								
+							</div>
+						</div>
+					
+					
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 							<form id="schform" action="${path}/team.do" method="post">
@@ -106,6 +115,7 @@
 									<div class="dataTable-search">
 										<input type="text" id="schFrm" name="sch"
 											class="dataTable-input" placeholder="Search..." type="text">
+											<a href="#" class="btn btn-danger" id="mailSendBtn">작성하기</a> 
 									</div>
 								</div>
 							</form>

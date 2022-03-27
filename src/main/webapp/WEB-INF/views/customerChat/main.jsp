@@ -93,12 +93,149 @@ body{margin-top:20px;}
 	var myFaceData;
 	var theSrc;
 	var today=new Date(); 
+	
+	
+	function MessageListFunc(data){
+		console.log("MessageListFunc");
+		console.log(data);
+		var roomkey;
+		
+
+			roomkey = parseInt($(data).text().substr(0,1));
+		
+		var data ={roomkey:roomkey};
+		$.ajax({
+			url :'/project5/MessageListbyRoomkey.do',
+			type:'POST',
+			data : data,
+			dataType:'json',
+			success:function(result){
+				console.log("success")
+				console.log(result)
+				console.log(result.MessageListbyRoomkey)
+				console.log(result.MessageListbyRoomkey.length)
+				console.log(result.MessageListbyRoomkey[0].messagekey)
+				console.log(result.MessageListbyRoomkey[1].memberkey)
+				console.log(result.MessageListbyRoomkey[1].likecnt)
+				
+				for(var i=0; i<result.MessageListbyRoomkey.length; i++){
+				
+					if(result.MessageListbyRoomkey[i].memberkey==2){
+						var str = "";
+						str += "<div class='chat-message-right pb-4' onclick='likeCntFun(this)'>"
+						str += "<div>"
+						str += "<img src='#' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40' id='likecntBtn2'>"
+						str += "<div class='text-muted small text-nowrap mt-2'><p style='color:red;'>["+result.MessageListbyRoomkey[i].messagekey+"]좋아요 :"+result.MessageListbyRoomkey[i].likecnt+" </p>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
+						str += "</div>"
+						str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
+						str += "<div class='font-weight-bold mb-1'>" + $("#id").val()+ "</div>"
+						str +=result.MessageListbyRoomkey[i].message
+						str += "</div>"
+						str += "</div>"
+						console.log(str);
+						wsocket.send("msg:" + str);
+
+					}else{
+						// 상담원
+						var str2 = "";
+						str2 += "<div class='chat-message-left pb-4'>"
+						str2 += "<div>"
+						str2 += "<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1' alt='Chris Wood' width='40' height='40'>"
+						str2 += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
+						str2 += "</div>"
+						str2 += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
+						str2 += "<div class='font-weight-bold mb-1'>상담원 A</div>"
+						str2 += "<br>안녕하세요?<br><br>" + $("#id").val() + "<br> 무엇을 도와드릴까요?"
+						str2 += "</div>"
+						str2 += "</div>"
+						wsocket.send("msg:" + str2);
+					}
+			}
+		}})
+	}
+	
+	
+	
+	
+	
+	function likeCntFun(data){
+		console.log("data"+data)
+		console.log("data : "+$(data).text())
+		var data2 = $(data).text()
+		var pos = data2.indexOf(']');
+		var pos1 = data2.substring(1,pos)
+		console.log(pos1)
+		
+		var messagekey=pos1;
+		var data = {messagekey:messagekey}
+		$.ajax({
+			url:'/project5/plusLikeCnt.do',
+			type:'POST',
+			data:data,
+			dataType:'json',
+			success:function(result){
+				alert("좋아요를 눌렀습니다.")
+			}
+		})
+		
+		
+	}
+	
+
+	
+	
+	
+	
+	
 	$(document).ready(function(){
+		// 화면 로딩 되자 마자 상담 목록을 모조리 불러온다
+		$.ajax({
+			url : '/project5/chatRoomList.do',
+			type:'POST',
+			dataType:'json',
+			success:function(result){
+				console.log("chatRoomList=========================");
+				console.log(result);
+				console.log(result.chatRoomList)
+				
+				var consultChatList = $("#consultChatList");
+				for(var i=0; i<result.chatRoomList.length; i++){
+					var str="";
+					str +="<a href='#' class='list-group-item list-group-item-action border-0 consult' onclick='MessageListFunc(this)' >"
+					str +=[result.chatRoomList[i].roomkey]+"&nbsp"+result.chatRoomList[i].createDateS+"<div class='badge bg-success float-right consult'></div>"
+					str +="<div class='badge bg-success float-right consult'></div>"
+					str +="<div class='d-flex align-items-start consult'>"
+					str +="<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1 consult' alt='Vanessa Tucker' width='40' height='40'>"
+					str +="<div class='flex-grow-1 ml-3 consult'>"+result.chatRoomList[i].name
+					str +="<div class='small'><span class='fas fa-circle chat-online consult'></span> </div>"
+					str +="</div></div></a>"
+					consultChatList.append(str);
+				}
+			}
+		})
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 						playAlert = setInterval(function() {
 							//console.log("10초마다 반복")
 							theSrc(myFaceData.fname)
-						}, 1000);
+						}, 100);
 
 						console.log(today.toLocaleString());
 		
@@ -137,7 +274,6 @@ body{margin-top:20px;}
 								})
 					
 									console.log("====================")
-									console.log("내 얼굴 이미지 " +myFaceData)
 					
 								  function showImg(fname){
 								    var uploadUL = $(".myFace");
@@ -145,7 +281,7 @@ body{margin-top:20px;}
 								    var theSrc = '/project5/display2.do?fileName='+fileCallPath
 								    $(".myFace").attr("src",theSrc)
 								  }
-								theSrc(myFaceData.fname)
+								//theSrc(myFaceData.fname)
 
 		
 					
@@ -292,8 +428,6 @@ body{margin-top:20px;}
 						});
 
 						
-						
-						
 							// 접속 종료를 처리했을 시
 							$("#exitBtn").click(
 								function() {
@@ -302,6 +436,11 @@ body{margin-top:20px;}
 									sendMsgEnd();
 									wsocket.close();
 								});
+							
+							
+							$("#groupChatRoom").click(function(){
+								confirm("단체 톡을 시작하겠습니까?")
+							})
 
 							
 							
@@ -319,11 +458,48 @@ body{margin-top:20px;}
 							str += "<div class='chat-message-right pb-4'>"
 							str += "<div>"
 							str += "<img src='https://bootdey.com/img/Content/avatar/avatar1.png' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40'>"
-							str += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
+							str += "<div class='text-muted small text-nowrap mt-2'> <p style='color:red;'>좋아요 : 0</p>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
 							str += "</div>"
 							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
 							str += "<div class='font-weight-bold mb-1'>"	+ $("#id").val() + "</div>"
 							str += msg
+							str += "</div>"
+							str += "</div>"
+							//console.log("메시지 보내기 :::::::::::::::" + str);
+							wsocket.send("msg:" + str);
+							$("#msg").val("");
+							$("#msg").focus();
+						}
+						
+						
+						function sendMsgImg(obj) {
+							
+							if(obj.image){
+								var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
+								var go = "/project5/display.do?fileName="+fileCallPath;
+								console.log(fileCallPath)
+								
+							}else{
+								var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
+							    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+								var go2 = "<img src='/project5/resources/img/attach.png'>";
+							}
+							
+							
+							var id = $("#id").val();
+							var msg = $("#msg").val();
+							// message를 보내는 처리..서버의 handler의  handleTextMessage()와 연동
+							//wsocket.send("msg:"+id+":"+msg);
+							var str = "";
+							str += "<div class='chat-message-right pb-4'>"
+							str += "<div>"
+							str += "<img src='https://bootdey.com/img/Content/avatar/avatar1.png' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40'>"
+							str += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
+							str += "</div>"
+							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
+							str += "<div class='font-weight-bold mb-1'>"	+ $("#id").val() + "</div>"
+							str += "이미지를 전송합니다.<br><div style='margin : 0 auto'>"
+							str += "<img src='"+go+"' style='width:50px; height:50px;'></div>"
 							str += "</div>"
 							str += "</div>"
 							//console.log("메시지 보내기 :::::::::::::::" + str);
@@ -349,7 +525,6 @@ body{margin-top:20px;}
 							str += "<br>================"
 							str += "</div>"
 							str += "</div>"
-							//console.log("메시지 보내기 :::::::::::::::" + str);
 							wsocket.send("msg:" + str);
 							$("#msg").val("");
 							$("#msg").focus();
@@ -360,8 +535,115 @@ body{margin-top:20px;}
 						
 						
 						
+						  var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
+						  var maxSize = 5242880; //5MB
+					  
+						  function checkExtension(fileName, fileSize){
+						    if(fileSize >= maxSize){
+						      alert("파일 사이즈 초과");
+						      return false;
+						    }
+						    if(regex.test(fileName)){
+						      alert("해당 종류의 파일은 업로드할 수 없습니다.");
+						      return false;
+						    }
+						    return true;
+						  }
+						
+						$("input[type='file']").change(function(e){
+							var formData = new FormData();
+							var inputFile = $("input[name='fileInfo']");
+							var files = inputFile[0].files;
+							
+							for(var i = 0; i < files.length; i++){
+							if(!checkExtension(files[i].name, files[i].size) ){
+								return false;
+							}
+								formData.append("uploadFile", files[i]);
+							}
+							
+										// 화면단에서 바로 볼수 있게 하기 위해서 사용 + 파일저장
+										$.ajax({
+										url: '/project5/uploadAjaxAction.do',
+										processData: false, 
+										contentType: false,
+										data:formData,
+										type: 'POST',
+										dataType:'json',
+										success: function(result){
+											  console.log("result"+result.list); 
+											  console.log("result"+result.list[0]); 
+											  // 함수 호출
+											  showUploadResult(result.list[0]);//함수 호출
+										},
+										error: function(result){
+											  console.log("파일 업로드 실패했습니다.");
+											  console.log(result); 
+										}
+										}); //$.ajax
+
+								});  
+
+
+
+
+									// 파일 업로드 시 파일 정보 띄우기
+									// 이미지 뷰단에 띄어주기 함수  
+									function showUploadResult(obj){
+											if(obj.image){
+												var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
+												var go = "/project5/display.do?fileName="+fileCallPath;
+												$("#not").attr("src",go)
+												console.log(fileCallPath)
+												
+												sendMsgImg(obj);
+												
+											}else{
+												var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
+											    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
+												var go2 = "<img src='/project5/resources/img/attach.png'>";
+												$("#not").attr("src",go2)
+											}
+									}
+						
 					});
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -400,23 +682,12 @@ body{margin-top:20px;}
 			wsocket.send("msg:" + str2);
 		}
 
-		// handler의  handleTextMessage()
-		// 연결되어 있으면 메시지를 push형식으로 서버에서 받을 수 있다.
-		// ex) wsocket.send("msg:"+$("#id").val()+":연결 접속했습니다!");
-		// push 방식으로 서버에서 전달되어 온 데이터를 받게 처리..
 		wsocket.onmessage = function(evt) {
-			// 받은 데이터
 			var msg = evt.data;
-			// msg 내용 삭제 후, 처리
 			if (msg.substring(0, 4) == "msg:") {
-				// 메시지 내용만 전달
-				// 메시지 내용 scrolling 처리..
 				var revMsg = msg.substring(4)
 				$("#chatMessageArea").append(revMsg + "<br>");
-				// 1. 전체 chatMessageArea의 입력된 최대 높이 구하기..
 				var mx = parseInt($("#chatMessageArea").height())
-				// 2. 포함하고 있는 div의 scrollTop을 통해 최하단의 내용으로 scrolling 하기..
-				//    chatArea
 				$("#chatArea").scrollTop(mx);
 			}
 		}
@@ -435,6 +706,13 @@ body{margin-top:20px;}
 		}
 
 	}
+	
+	
+	
+	
+	
+	
+	
 </script>
 
 </head>
@@ -457,11 +735,16 @@ body{margin-top:20px;}
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
 								<li class="breadcrumb-item active" aria-current="page">DataTable</li>
+								<p style="color: red">a</p>
 							</ol>
 						</nav>
 					</div>
 				</div>
 			</div>
+			
+			
+			
+			
 			<section class="section">
 				<div class="card">
 					<div class="card-header"></div>
@@ -471,22 +754,24 @@ body{margin-top:20px;}
 								<div class="dataTable-search">
 								</div>
 							</div>
+							
 							<div class="dataTable-container">
 								<main class="content" style="margin-top: 40px;">
 									<div class="container p-0">
-										<h1 class="h3 mb-3">고객상담</h1>
-										<input class="dataTable-input" placeholder="${member.name }님"
-											value="${member.name }님" type="text" id="id"> <a
-											class="btn btn-danger" id="enterBtn" style="color: white">상담
-											시작</a> <a class="btn btn-info" id="exitBtn" style="color: white">종료</a>
-										<a class="btn btn-warning" id="newConsult"
-											style="color: white">새 상담</a> <a class="btn btn-secondary"
-											id="eraseBtn" style="color: white">내용 지우기</a> <br>
+											<h1 class="h3 mb-3">고객상담</h1>
+											<input class="dataTable-input" placeholder="${member.name }님" value="${member.name }님" type="text" id="id">
+											 <a class="btn btn-danger" id="enterBtn" style="color: white">상담 시작</a> 
+											<a class="btn btn-info" id="exitBtn" style="color: white">종료</a>
+											<a class="btn btn-warning" id="newConsult" style="color: white">새 상담</a> 
+											<a class="btn btn-secondary" id="eraseBtn" style="color: white">내용 지우기</a> 
+											<a class="btn btn-primary" id="createVote" style="color: white">투표 만들기</a> 
+											<a class="btn btn-success" id="groupChatRoom" style="color: white">단체톡</a>
+											<a class="btn btn-dark" id="personalChatRoom" style="color: white">1:1대화</a> <br>
+											
 										<div class="card"
-											style="height: 1000px; border: 1px solid black; margin-top: 30px;">
-
-											<div class="row g-0">
-												<div class="col-12 col-lg-5 col-xl-3 border-right">
+											style="height: 1200px; border: 1px solid black; margin-top: 30px; overflow: auto;">
+											<div class="row g-0" style="overflow: auto;">
+												<div class="col-12 col-lg-5 col-xl-3 border-right" style="overflow: auto;">
 													<div class="px-4 d-none d-md-block">
 														<div class="d-flex align-items-center">
 															<div class="flex-grow-1">
@@ -496,12 +781,8 @@ body{margin-top:20px;}
 														</div>
 													</div>
 
-
-
-													<div id="consultChatList" class="consult">
-
-														<a href="#"
-															class="list-group-item list-group-item-action border-0">
+													<div id="consultChatList" class="consult" >
+														<a href="#" class="list-group-item list-group-item-action border-0">
 															<div class="badge bg-success float-right"></div>
 															<div class="d-flex align-items-start">
 																<img
@@ -569,19 +850,52 @@ body{margin-top:20px;}
 
 
 
-													<div class="flex-grow-0 py-3 px-4 border-top">
-														<div class="input-group">
+													<div class="flex-grow-0 py-3 px-4 border-top" style="height: 200px; margin-top: 40px;">
+														<div class="input-group" style="margin-bottom: 30px; height: 50px;" >
 															<input type="text" class="form-control"
-																placeholder="Type your message" id="msg">
+																placeholder="Type your message" id="msg" style="height: 50px; font-size: 25px;">
 															<button class="btn btn-primary" id="sendBtn">전송</button>
+															<br>
 														</div>
-														<input class="form-control form-control-lg" id="formFileLg" type="file" style="width: 300px;" name="fileInfo" id="msg2">
+														
+														
+														<div style="display: inline-block;">
+														<!--  파일 첨부하기 -->
+														<input class="form-control form-control-lg" id="formFileLg" type="file" 
+														style="width: 300px; display: inline-block;" 
+														name="fileInfo" id="msg2">
+														<img src="" id="not" width="100px;" style="display: inline-block; border: 1px soild black" >
+														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</main>
+
+
+
+<script>
+// 업로드한 파일 이미지 처리를 위해서
+$(document).ready(function(){
+	
+	
+})
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -103,6 +103,13 @@ public class MemberContoller {
 		return "WEB-INF\\views\\member\\deleteResult.jsp";
 	}
 
+	@RequestMapping(value = "/memberDelete2.do")
+	public String memberDelete2(Model d, int memberkey) {
+		service.delete(memberkey);
+		d.addAttribute("psc", "memberDeleteSuccess");
+		return "forward:/memberList.do";
+	}
+
 	@RequestMapping("/memberRegisterForm.do")
 	public String registerForm(Model d) {
 		d.addAttribute("reginum", service.reginum());

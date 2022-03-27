@@ -120,9 +120,6 @@ $(document).ready(function() {
 				  }
 			    
 			    
-									    
-									    
-			    
 			 // 화면단에서 업로드한 것을 바로 확인   
 			// 에이젝스를 통한 파일 업로드
 			// 파일 업로드 처리
@@ -136,6 +133,8 @@ $(document).ready(function() {
 						}
 						formData.append("uploadFile", files[i]);
 						}
+						
+						
 						
 				// 화면단에서 바로 볼수 있게 하기 위해서 사용 + 파일저장
 				$.ajax({
@@ -158,10 +157,6 @@ $(document).ready(function() {
 				
 			});  
 	  
-			 
-	  
-			
-			 
 			 
 			 
 			 
@@ -203,6 +198,16 @@ $(document).ready(function() {
 			});// function 종료
 						
 						
+
+			
+			
+			
+			
+			
+			
+			
+			
+			
 						
 						
 						

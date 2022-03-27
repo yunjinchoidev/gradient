@@ -11,54 +11,66 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
-
-
-
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-
+<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 
 <script>
-$(document).ready(function(){
-	formObj = $("form");
-	
+	$(document).ready(function() {
 
-	
-	 var delchk = []; // key 값을 담을 배열
-	 $("#sendMail").click(function(e){
-			var checked =$('input:checkbox[id="memberkey"]:checked').val();
-		 $('input:checkbox[id="memberkey"]:checked').each(function(){
-		        delchk.push($(this).val());
-		   	 console.log(this)  ;
-		 });
-		 console.log("delchk : "+delchk);
-		 console.log("checked : "+checked);
-		 confirm("정말 메일을 발송하시겠습니까?");
-		 //confirm(delchk);
-		 e.preventDefault();
+		$("#allCheck").click(function() {
+			
+			if ($("#allCheck").prop("checked")) {
+				alert("전체 클릭합니다.")
+				$("input[type=checkbox]").prop("checked", true);
+			} else { //해당화면에 모든 checkbox들의 체크를해제시킨다. 
+				alert("전체 클릭 해제합니다.")
+				$("input[type=checkbox]").prop("checked", false);
+			}
+		})
 
-		 
-		 formObj.submit();
-		 
-	 })
-	 
-	 
-	 
-	 
-	
-});	
 		
 		
-	
+		$("#ManageBtn").click(function() {
+			confirm("이 회원을 관리하시겠습니까?")
+		})
 
+		
+		
+		$("#exileBtn").click(function() {
+			confirm("회원을 추방 하시겠습니까?")
+		})
+
+		
+		
+		$("#assessBtn").click(function() {
+			confirm("회원을 평가 하시겠습니까?")
+		})
+		
+		
+		
+		
+		$("#mailSendBtn").click(function(e) {
+			confirm("메일을 발송하시겠습니까?")
+			var array = new Array();
+			$('input:checkbox[name=email]:checked').each(function() {
+				array.push(this.value);
+			})
+			alert(array);
+			$("#arrayParam").val(array);
+			$("form").attr("action", "/project5/memberChkSendMail.do")
+			$("form").submit();
+		})
+
+		
+		
+	});
 </script>
 
 
 
 
 <body>
-<%@ include file="../chatBot/chatBot.jsp"%>
+	<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 
 	<div id="main">
@@ -93,32 +105,11 @@ $(document).ready(function(){
 			<section class="section">
 				<div class="card">
 					<div class="card-header">
-						당신을 위한 여러 기능들이 준비되어 있습니다.<br><br>
-
-
+						여러 기능들이 있습니다.<br> <br>
 						<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
-							<a href="" class="btn btn-dark" id="sendMail">메일발송</a>
-							<a href="#" class="btn btn-danger">추방</a> <a href="#"
-								class="btn btn-primary">평가</a> 
-								
-								
-								<!-- 
-								<a href="#"
-								class="btn btn-secondary">일정관리</a> <a href="#"
-								class="btn btn-info">회의록</a> <a href="#" class="btn btn-warning">채팅</a>
-							<a href="#" class="btn btn-danger">예산 관리</a> <a href="#"
-								class="btn btn-success">품질 관리</a> <a href="#"
-								class="btn btn-light">리스크 관리</a>
-								 -->
-								
+							<a href="#" class="btn btn-info" id="mailSendBtn">메일발송</a> 
 						</div>
-
 					</div>
-
-
-
-
-
 
 
 					<div class="card-body">
@@ -131,63 +122,92 @@ $(document).ready(function(){
 										<option value="10" selected="">10</option>
 										<option value="15">15</option>
 										<option value="20">20</option>
-										<option value="25">25</option></select><label>entries per page</label>
+										<option value="25">25</option></select><label>페이지당 글 개수</label>
 								</div>
 								<div class="dataTable-search">
 									<input class="dataTable-input" placeholder="Search..."
-										type="text">
+										type="text"> <a href="#" class="btn btn-danger">검색</a>
 								</div>
 							</div>
-							<div class="dataTable-container">
-								<table class="table table-striped dataTable-table" id="table1">
-									<thead>
-										<tr>
-											<th data-sortable="" style="width: 11.8185%;"><a
-												href="#" class="dataTable-sorter">이름</a></th>
-											<th data-sortable="" style="width: 35.9018%;"><a
-												href="#" class="dataTable-sorter">Email</a></th>
-											<th data-sortable="" style="width: 13.8021%;"><a
-												href="#" class="dataTable-sorter">직급</a></th>
-											<th data-sortable="" style="width: 16.423%;"><a href="#"
-												class="dataTable-sorter">담당 프로젝트</a></th>
-											<th data-sortable="" style="width: 12%;"><a href="#"
-												class="dataTable-sorter">소속 부서</a></th>
-											<th data-sortable="" style="width: 11.051%;"><a href="#"
-												class="dataTable-sorter">관리</a></th>
-											<th data-sortable="" style="width: 11.051%;"><a href="#"
-												class="dataTable-sorter">선택</a></th>
-										</tr>
-									</thead>
-									<tbody>
 
-										<c:forEach var="list" items="${list }">
+
+
+
+
+							<form id="form">
+
+
+								<div class="dataTable-container">
+									<table class="table table-striped dataTable-table" id="table1">
+										<thead>
 											<tr>
-												<td>${list.memberkey}:${list.name }</td>
-												<td>${list.email}</td>
-												<td>${list.auth }</td>
-												<td>${list.projectkey }</td>
-												<td>${list.deptno }</td>
-												<td><span class="badge bg-success">Active</span></td>
-												<td>
-												
-												
-												<form action="/project5/mailFrm2.do" method="post">
-                                                <div class="form-check">
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="form-check-input form-check-info chk" name="memberkey" value="${list.memberkey }" id="memberkey">
-                                                        <label class="form-check-label" for="customColorCheck5">Info</label>
-                                                    </div>
-                                                </div>
-                                                </form>
-                                           
-                                           
-                                           
-                                           
-                                            </td>
+												<th data-sortable="" style="width: 4.8185%;"><a
+													href="#" class="dataTable-sorter">번호</a></th>
+												<th data-sortable="" style="width: 13.9018%;"><a
+													href="#" class="dataTable-sorter">이름</a></th>
+
+												<th data-sortable="" style="width: 25.8021%;"><a
+													href="#" class="dataTable-sorter">이메일</a></th>
+
+												<th data-sortable="" style="width: 12.423%;"><a
+													href="#" class="dataTable-sorter">직급</a></th>
+												<th data-sortable="" style="width: 12.423%;"><a
+													href="#" class="dataTable-sorter">상황</a></th>
+
+												<th data-sortable="" style="width: 15.051%;"><a
+													href="#" class="dataTable-sorter">관리</a></th>
+													
+
+												<th data-sortable="" style="width: 12.051%;"><span class="dataTable-sorter">전체
+														선택&nbsp;&nbsp;&nbsp; <input type="checkbox"
+														class="form-check-input form-check-info chk"
+														name="cbx_chkAll" style="border: 1px solid black"
+														id="allCheck">
+												</span></th>
+
 											</tr>
-										</c:forEach>
-								</table>
-							</div>
+										</thead>
+
+										<tbody>
+
+											<c:forEach var="list" items="${list }">
+												<input type="hidden" name="memberkey" value="${list.memberkey }">
+												<tr>
+													<td><span class="badge bg-secondary">[${list.memberkey}]</span></td>
+													<td>${list.name}</td>
+													<td>${list.email }</td>
+													<td>${list.auth }</td>
+													<td style="cursor: pointer;" id="ManageBtn"><span
+														class="badge bg-info">요청</span>
+														</td>
+														<td>
+														 <span
+															class="badge bg-success" id="assessBtn" style="cursor: pointer;">평가</span> <span
+															class="badge bg-danger" id="exileBtn" style="cursor: pointer;" onclick="location.href='/project5/memberDelete2.do?memberkey=${list.memberkey}'">강제 추방</span>
+														</td>
+													<td>
+														<div style="margin-left: 30px;">
+															<input type="hidden" name="arrayParam" id="arrayParam">
+															<input type="checkbox"
+																class="form-check-input form-check-info chk"
+																name="email" value="${list.email }"
+																style="border: 1px solid black; margin: 0 auto">
+														</div>
+													</td>
+												</tr>
+											</c:forEach>
+									</table>
+								</div>
+
+
+							</form>
+
+
+
+
+
+
+
 							<div class="dataTable-bottom">
 								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
 								<ul
