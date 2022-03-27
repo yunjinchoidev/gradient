@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface TeamDao {
 	public List<TeamVo> getTeamList(TeamVo sch);
-	public void insertTeam(TeamVo sch);
-	public void uptTeam(TeamVo upt);
+//	public void insertTeam(TeamVo sch);
+//	public void uptTeam(TeamVo upt);
 }

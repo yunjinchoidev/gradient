@@ -5,8 +5,8 @@
 <mapper namespace="project5.team.TeamDao">
 	<!-- 팀관리 리스트 -->
 	<select id="getTeamList" resultType="team" parameterType="team">
-		 SELECT m.name,m.auth,m.email,d.deptno,d.DNAME 
-		FROM  MEMBER m, DEPARTMENT d
+		SELECT m.name,m.auth,m.email,d.deptno,d.DNAME
+		FROM MEMBER m, DEPARTMENT d
 		WHERE m.deptno =d.deptno
 	</select>
 </mapper>

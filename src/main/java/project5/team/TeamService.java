@@ -14,10 +14,10 @@ public class TeamService {
 	public List<TeamVo> getTeamList(TeamVo sch){
 		return dao.getTeamList(sch);
 	}
-	public void insertTeam(TeamVo sch) {
-		dao.insertTeam(sch);
-	}
-	public void uptTeam(TeamVo upt) {
-		dao.uptTeam(upt);
-	}
+//	public void insertTeam(TeamVo sch) {
+//		dao.insertTeam(sch);
+//	}
+//	public void uptTeam(TeamVo upt) {
+//		dao.uptTeam(upt);
+//	}
 }
