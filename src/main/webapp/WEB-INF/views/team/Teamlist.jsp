@@ -41,11 +41,37 @@
 
 
 <script>
-    $(document).ready(function(){
-	
-	$("#regbtn").click(function(){
-		location.href="${path}/RegTeam.do";
+$(document).ready(function() {
+	var proc = "${proc}";
+	if(proc!=""){
+		alert(proc);
+		location.href="${path}/teamlist.do";
+	}
+	$("#regBtn").click(function(){
+		if(confirm("등록하시겠습니까")){
+			$("#frm02").submit();
+		}
 	});
+	function regFun(){
+		$("#exampleModalLongTitle").text("팀원 등록");
+		$("#frm02")[0].reset(); // 초기화 처리.
+		$("#regBtn").show();$("#uptBtn").hide();$("#delBtn").hide();		
+	}
+	function detail(name, auth, email, dname){
+		console.log(name);
+		console.log(auth);
+		console.log(email);
+		console.log(dname);
+		// 타이틀 변경
+		$("#exampleModalLongTitle").text("부서정보(수정/삭제)");
+		// 버튼 활성화 비활성화 처리
+		$("#regBtn").hide();$("#uptBtn").show();$("#delBtn").show();		
+		// 각각의 form에 데이터 할당.
+		$("#frm02 [name=name]").val(name);
+		$("#frm02 [name=auth]").val(auth);
+		$("#frm02 [name=email]").val(email);
+		$("#frm02 [name=deptno]").val(dname);
+	}	
 </script>
 </head>
 
@@ -68,9 +94,8 @@
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>팀 관리</h3>
 
-						<a href="/project5/addmem.do" class="badge bg-light-secondary">팀
-							할당</a> <a
-							href="/project5/Allocation.do"
+						<a href="/project5/insertTeam.do" class="badge bg-light-secondary">팀
+							할당</a> <a href="/project5/Allocation.do"
 							class="badge bg-light-secondary">프로젝트 할당</a> <a
 							href="/project5/output.do?projectkey=${project.projectkey }"
 							class="badge bg-light-secondary">휴가 관리</a> <a
@@ -99,7 +124,7 @@
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-							<form id="schform" action="${path}/team.do" method="post">
+							<form id="schform" action="${path}/teamlist.do" method="post">
 								<input type="hidden" name="curPage" value="1" />
 								<div class="dataTable-top">
 									<div class="dataTable-search">
@@ -116,35 +141,82 @@
 												class="dataTable-sorter">이름</a></th>
 											<th data-sortable="" style="width: 10%;"><a href="#"
 												class="dataTable-sorter">직급</a></th>
-											<th data-sortable="" style="width: 35%;"><a href="#"
+											<th data-sortable="" style="width: 20%;"><a href="#"
 												class="dataTable-sorter">이메일</a></th>
-											<th data-sortable="" style="width: 20%;"><a href="#"
-												class="dataTable-sorter">담당프로젝트</a></th>
-											<th data-sortable="" style="width: 20%;"><a href="#"
-												class="dataTable-sorter">담당업무</a></th>
+											<th data-sortable="" style="width: 10%;"><a href="#"
+												class="dataTable-sorter">부서명</a></th>
 										</tr>
 									</thead>
 
 									<tbody>
 
-										<c:forEach var="list" items="${projetList}">
-											<tr onclick="TeamDetail(${list.projectkey})">
-												<td>${list.name}</td>
-												<c:if test="${list.progress eq '진행전'}">
-													<td><span class="badge bg-primary">${list.progress}</span></td>
-												</c:if>
-												<c:if test="${list.progress eq '진행중'}">
-													<td><span class="badge bg-warning">${list.progress}</span></td>
-												</c:if>
-												<c:if test="${list.progress eq '진행완료'}">
-													<td><span class="badge bg-success">${list.progress}</span></td>
-												</c:if>
+										<c:forEach var="tlist" items="${tlist}">
+											<tr
+												onclick="detail(${tlist.name},'${tlist.auth}','${tlist.email}','${tlist.dname}')"
+												data-toggle="modal" data-target="#exampleModalCenter">
+												<td>${tlist.name}</td>
+												<td>${tlist.auth}</td>
+												<td>${tlist.email}</td>
+												<td>${tlist.dname}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 
 							</div>
+							<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+								role="dialog" aria-labelledby="exampleModalCenterTitle"
+								aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLongTitle">팀원추가</h5>
+											<button type="button" class="close" data-dismiss="modal"
+												aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+											<form id="frm02" class="form" method="post"
+												action="${path}/insertTeam.do">
+
+												<div class="row">
+													<div class="col">
+														<input type="text" class="form-control"
+															placeholder="이름 입력" name="name">
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<input type="text" class="form-control"
+															placeholder="직급 입력" name="auth">
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<input type="text" class="form-control"
+															placeholder="이메일 입력" name="email">
+													</div>
+												</div>
+												<div class="row">
+													<div class="col">
+														<input type="text" class="form-control"
+															placeholder="부서 번호 입력" name="deptno">
+													</div>
+												</div>
+											</form>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary"
+												data-dismiss="modal">Close</button>
+											<button type="submit" class="btn btn-primary" id="regBtn">팀원등록</button>
+											<button type="button" class="btn btn-info" id="uptBtn">팀원수정</button>
+											<button type="button" class="btn btn-danger" id="delBtn">팀원삭제</button>
+										</div>
+									</div>
+								</div>
+							</div>
+
 
 						</div>
 					</div>
@@ -156,7 +228,6 @@
 	</div>
 	<!--  페이징 처리/ 프론트만 구현 -->
 	<div class="dataTable-bottom">
-		<div class="dataTable-info">전체 팀: ${TeamSch.count}</div>
 		<nav aria-label="Page navigation example" style="margin-top: 15px;">
 			<ul
 				class="pagination pagination-primary float-end dataTable-pagination">
@@ -172,6 +243,7 @@
 				<li class="page-item pager"><a class="page-link"
 					href="javascript:goPage(${TeamSch.endBlock!=TeamSch.pageCount?TeamSch.endBlock+1:TeamSch.endBlock})">›</a></li>
 			</ul>
+		</nav>
 	</div>
 </body>
 </html>

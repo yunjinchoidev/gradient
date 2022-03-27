@@ -10,22 +10,23 @@ public class TeamController {
 	
 	@Autowired
 	TeamService service;
-	
+	// http://localhost:7080/project5/teamlist.do
 	@RequestMapping("/teamlist.do")
-	public String Teamlist(Model d) {
-		d.addAttribute("teamlist", service.teamList());
+	public String teamlist(TeamVo sch, Model d) {
+		d.addAttribute("tlist",service.getTeamList(sch));
 		return "\\WEB-INF\\views\\team\\Teamlist.jsp";
 	}
-	@RequestMapping("/addmem.do")
-	public String addmem(Model d) {
-		return "\\WEB-INF\\views\\team\\Addmem.jsp";
-	}
-	@RequestMapping(params="method=update")
-	public String uptTeam() {
+	// http://localhost:7080/project5/insertTeam.do
+	@RequestMapping("insertTeam.do")
+	public String insertTeam(TeamVo ins, Model d) {
+		d.addAttribute("proc", "등록완료");
+		service.insertTeam(ins);
 		return "\\WEB-INF\\views\\team\\Teamlist.jsp";
 	}
-	@RequestMapping("/allocation.do")
-	public String allocation(Model d) {
-		return "\\WEB-INF\\views\\team\\Allocation.jsp";
+	// http://localhost:7080/project5/uptTeam.do
+	@RequestMapping("uptTeam.do")
+	public String uptTeam(TeamVo upt, Model d) {
+		d.addAttribute("proc", "부서 수정 완료");
+		return "\\WEB-INF\\views\\team\\Teamlist.jsp";
 	}
 }
