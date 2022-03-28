@@ -19,6 +19,7 @@ public class QualityController {
 	@RequestMapping("/qualityList.do")
 	public String qualityList(Model d) {
 		d.addAttribute("list", service.list());
+		d.addAttribute("prjlist",service.prjlist());
 		return "WEB-INF\\views\\quality\\list.jsp";
 	}
 	

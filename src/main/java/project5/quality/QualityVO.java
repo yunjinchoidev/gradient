@@ -10,6 +10,10 @@ public class QualityVO {
 	private String writedateS;
 	private String title;
 	private String contents;
+// 품질 평가
+	// 프로젝트 목록
+	private int prjkey;
+	private String prjname;
 	public QualityVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -79,6 +83,18 @@ public class QualityVO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-
+	public int getPrjkey() {
+		return prjkey;
+	}
+	public void setPrjkey(int prjkey) {
+		this.prjkey = prjkey;
+	}
+	public String getPrjname() {
+		return prjname;
+	}
+	public void setPrjname(String prjname) {
+		this.prjname = prjname;
+	}
+	
 
 }

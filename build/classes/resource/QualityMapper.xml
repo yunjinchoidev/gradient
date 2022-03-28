@@ -36,7 +36,13 @@
 		where
 		qualitykey = #{qualitykey}
 	</insert>
-
+	
+<!-- 품질 평가 -->
+	<!-- 프로젝트 목록 -->
+	<select id="prjlist" resultType="project5.quality.QualityVO">
+		SELECT PROJECTKEY prjkey, name prjname 
+		FROM PROJECT
+	</select>
 
 
 </mapper>

@@ -34,4 +34,10 @@ public class QualityService {
 		dao.delete(qualitykey);
 	}
 
+// 품질 평가
+	// 프로젝트 목록
+	public List<QualityVO> prjlist(){
+		return dao.prjlist();
+	}
+
 }

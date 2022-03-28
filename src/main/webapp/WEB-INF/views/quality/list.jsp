@@ -48,7 +48,7 @@
 				<div class="card">
 					<div class="card-header">
 					<a href="/project5/qualityList.do" class="btn btn-warning">품질 건의</a>
-					<a href="#" class="btn btn-danger">품질 평가</a>
+					<a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#evalModal">품질 평가</a>
 					<a href="#" class="btn btn-success">인증서 발급</a>
 					</div>
 					<div class="card-body">
@@ -157,65 +157,140 @@
 	</div>
 
 	<!-- 등록 Modal -->
-	<div class="modal fade text-left" id="regModal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-			role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel33">품질 등록</h4>
-					<button type="button" class="close" data-bs-dismiss="modal"
-						aria-label="Close">
-						<i data-feather="x"></i>
-					</button>
-				</div>
-				<form id="regForm" action="${path}/insertrisk.do" method="post">
-					<!-- 모달 입력 요소 영역 -->
-					<div class="modal-body" style="margin: 10px;">
-						<!-- 프로젝트 select box -->
-						<div id="prjselect">
-							<select class="form-select" style="text-align: center;"
-								name="prjkey">
-								<c:forEach var="prlist" items="${prjlist}">
-									<option value="${prlist.prjkey}">${prlist.prjname}</option>
-								</c:forEach>
-							</select>
-						</div>
-						<!-- 중요도, 제목 공통 영역 -->
-						<div id="headerdiv" style="display: flex; margin-top: 10px;">
-
-							<!-- 제목 -->
-							<div id="title" style="flex: 4;">
-								<input class="form-control" type="text" name="title"
-									placeholder="제목을 입력하세요">
-							</div>
-						</div>
-
-						<!-- 상세내용 -->
-						<div id="regcontent" style="margin-top: 10px;">
-							<textarea name="content" placeholder="상세 내용" class="form-control"
-								rows="5" cols="5"></textarea>
-						</div>
-
-
-						<!-- 버튼 영역 -->
-						<div class="modal-footer">
-							<button type="button" class="btn btn-light-secondary"
-								data-bs-dismiss="modal">
-								<i class="bx bx-x d-block d-sm-none"></i> <span
-									class="d-none d-sm-block">닫기</span>
-							</button>
-							<button type="button" id="regBtn" class="btn btn-primary ml-1"
-								data-bs-dismiss="modal">
-								<i class="bx bx-check d-block d-sm-none"></i> <span
-									class="d-none d-sm-block">등록</span>
-							</button>
-						</div>
-				</form>
-			</div>
-		</div>
-	</div>
+  	<div class="modal fade text-left" id="evalModal" tabindex="-1" role="dialog"
+       	aria-labelledby="myModalLabel33" aria-hidden="true" style="display:none;">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">품질평가</h4>
+                <button type="button" class="close" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <form id="regForm" action="${path}/insertrisk.do" method="post">
+            	<!-- 모달 입력 요소 영역 -->
+                <div class="modal-body" style="margin:10px;">
+                	<!-- 프로젝트 select box -->
+                	<div id="prjselect">
+                    	<select class="form-select" style="text-align:center;" name="prjkey">
+                    		<c:forEach var="prlist" items="${prjlist}">
+                    			<option value="${prlist.prjkey}">${prlist.prjname}</option>
+                    		</c:forEach>
+                    	</select>
+                    </div>
+                    <!-- 품질 체크 항목 -->
+                    <div style="margin-top: 50px;">
+                    	<!-- 1번문항 -->
+                    	<div>
+	                    	<h5>1. 고객의 요구사항과 프로젝트 내용이 일치 하는가?</h5>
+	                    	<input type="radio" name="chk01" class="form-check-input" id="flexRadioDefault1" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault1">예</label>
+	                    	<input type="radio" name="chk01" class="form-check-input" id="flexRadioDefault2" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault2">아니오</label>
+                    	</div>
+                    	<!-- 2번문항 -->
+                    	<div style="margin-top:20px;">
+	                    	<h5>2. 프로젝트의 결함은 없는가?</h5>
+	                    	<input type="radio" name="chk02" class="form-check-input" id="flexRadioDefault3" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault3">예</label>
+	                    	<input type="radio" name="chk02" class="form-check-input" id="flexRadioDefault4" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault4">아니오</label>
+                    	</div>
+                    	<!-- 3번문항 -->
+                    	<div style="margin-top:20px;">
+	                    	<h5>3. ?</h5>
+	                    	<input type="radio" name="chk03" class="form-check-input" id="flexRadioDefault5" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault5">예</label>
+	                    	<input type="radio" name="chk03" class="form-check-input" id="flexRadioDefault6" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault6">아니오</label>
+                    	</div>
+                    	<!-- 4번문항 -->
+                    	<div style="margin-top:20px;">
+	                    	<h5>4. ?</h5>
+	                    	<input type="radio" name="chk04" class="form-check-input" id="flexRadioDefault7" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault7">예</label>
+	                    	<input type="radio" name="chk04" class="form-check-input" id="flexRadioDefault8" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault8">아니오</label>
+                    	</div>
+                    	<!-- 5번문항 -->
+                    	<div style="margin-top:20px;">
+	                    	<h5>5. ?</h5>
+	                    	<input type="radio" name="chk05" class="form-check-input" id="flexRadioDefault9" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault9">예</label>
+	                    	<input type="radio" name="chk05" class="form-check-input" id="flexRadioDefault10" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault10">아니오</label>
+                    	</div>
+                    	<!-- 6번문항 -->
+                    	<div style="margin-top:20px;">
+	                    	<h5>6. ?</h5>
+	                    	<input type="radio" name="chk06" class="form-check-input" id="flexRadioDefault11" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault11">예</label>
+	                    	<input type="radio" name="chk06" class="form-check-input" id="flexRadioDefault12" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault12">아니오</label>
+                    	</div>
+                    	<!-- 7번문항 -->
+                    	<div style="margin-top:20px;">
+	                    	<h5>7. ?</h5>
+	                    	<input type="radio" name="chk07" class="form-check-input" id="flexRadioDefault13" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault13">예</label>
+	                    	<input type="radio" name="chk07" class="form-check-input" id="flexRadioDefault14" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault14">아니오</label>
+                    	</div>
+                    	<!-- 8번문항 -->
+                    	<div style="margin-top:20px;">
+	                    	<h5>8. ?</h5>
+	                    	<input type="radio" name="chk08" class="form-check-input" id="flexRadioDefault15" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault15">예</label>
+	                    	<input type="radio" name="chk08" class="form-check-input" id="flexRadioDefault16" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault16">아니오</label>
+                    	</div>
+                    	<!-- 9번문항 -->
+                    	<div style="margin-top:20px;">
+	                    	<h5>9. ?</h5>
+	                    	<input type="radio" name="chk09" class="form-check-input" id="flexRadioDefault17" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault17">예</label>
+	                    	<input type="radio" name="chk09" class="form-check-input" id="flexRadioDefault18" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault18">아니오</label>
+                    	</div>
+                    	<!-- 10번문항 -->
+                    	<div style="margin-top:20px;">
+	                    	<h5>10. ?</h5>
+	                    	<input type="radio" name="chk10" class="form-check-input" id="flexRadioDefault19" value="10">
+	                    	<label class="form-check-label" for="flexRadioDefault19">예</label>
+	                    	<input type="radio" name="chk10" class="form-check-input" id="flexRadioDefault20" value="0"
+	                    		style="margin-left:10px;">
+	                    	<label class="form-check-label" for="flexRadioDefault20">아니오</label>
+                    	</div>
+                    	            	
+                    </div>                                          
+                </div>
+                <!-- 버튼 영역 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">닫기</span>
+                    </button>
+                    <button type="button" id="regBtn" class="btn btn-primary ml-1"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">등록</span>
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 	
 	
 </body>
