@@ -224,6 +224,12 @@
 	$(document).ready(function(){
 			
 		var score=0;
+		var msg = "${msg}";
+		
+		if(msg != ""){
+			alert(msg)
+			location.href = "${path}/qualityList.do"
+		}
 		
 		$("#evalregBtn").click(function(){
 		
@@ -266,7 +272,6 @@
 						alert("불합격입니다");
 						score=0;
 					}else{
-						alert("합격입니다");
 						$("#qualityeval").submit();
 					}	
 					

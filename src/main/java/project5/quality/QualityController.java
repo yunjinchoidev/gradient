@@ -73,8 +73,9 @@ public class QualityController {
 	}
 	
 	@RequestMapping("/qualitypass.do")
-	public String qualitypass(QualityVO upt) {
+	public String qualitypass(QualityVO upt, Model d) {
 		service.qualitypass(upt);
+		d.addAttribute("msg", "합격처리되었습니다");
 		return "forward:/qualityList.do";
 	}
 	
