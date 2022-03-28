@@ -43,6 +43,20 @@
 		SELECT PROJECTKEY prjkey, name prjname 
 		FROM PROJECT
 	</select>
+	<!-- 품질 평가 항목 -->
+	<select id="evallist" resultType="project5.quality.QualityVO">
+		SELECT EVALITEMKEY evalkey, CONTENT evalcontent
+		FROM EVALITEM
+	</select>
+	
+	<!-- 품질 평가 항목 수정 -->
+	<update id="upteval" parameterType="java.util.List">
+		<foreach collection="list" item="item" index="index" separator=";" open="DECLARE BEGIN" close="; END;">
+			UPDATE EVALITEM 
+			SET CONTENT = #{item.evalcontent}
+			WHERE EVALITEMKEY = #{item.evalkey}
+		</foreach>
+	</update>
 
 
 </mapper>

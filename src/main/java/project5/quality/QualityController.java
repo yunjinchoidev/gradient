@@ -20,6 +20,7 @@ public class QualityController {
 	public String qualityList(Model d) {
 		d.addAttribute("list", service.list());
 		d.addAttribute("prjlist",service.prjlist());
+		d.addAttribute("evallist", service.evallist());
 		return "WEB-INF\\views\\quality\\list.jsp";
 	}
 	
@@ -58,6 +59,18 @@ public class QualityController {
 		return "WEB-INF\\views\\quality\\get.jsp";
 	}
 	
+	@RequestMapping("/evalitem.do")
+	public String evaliten(Model d) {
+		d.addAttribute("evallist", service.evallist());
+		return "WEB-INF\\views\\quality\\evalitem.jsp";
+	}
+	
+	@RequestMapping("/uptevallist.do")
+	public String upteval(MultiQuality upt, Model d) {
+		service.upteval(upt);
+		d.addAttribute("msg","수정완료되었습니다");
+		return "forward:/evalitem.do";
+	}
 	
 	
 	

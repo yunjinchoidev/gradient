@@ -48,6 +48,7 @@
 				<div class="card">
 					<div class="card-header">
 					<a href="/project5/qualityList.do" class="btn btn-warning">품질 건의</a>
+					<a href="/project5/evalitem.do" class="btn btn-primary">품질 평가 항목</a>
 					<a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#evalModal">품질 평가</a>
 					<a href="#" class="btn btn-success">인증서 발급</a>
 					</div>

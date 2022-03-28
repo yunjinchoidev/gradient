@@ -20,5 +20,9 @@ public interface QualityDao {
 // 품질 평가
 	// 프로젝트 목록
 	public List<QualityVO> prjlist();
+	// 품질 평가 항목 목록
+	public List<QualityVO> evallist();
+	// 품질 평가 항목 수정
+	public void upteval(MultiQuality upt);
 
 }

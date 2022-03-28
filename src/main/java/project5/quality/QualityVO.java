@@ -14,6 +14,10 @@ public class QualityVO {
 	// 프로젝트 목록
 	private int prjkey;
 	private String prjname;
+	// 품목 평가 항목
+	private int evalkey;
+	private String evalcontent; 
+	
 	public QualityVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -95,6 +99,17 @@ public class QualityVO {
 	public void setPrjname(String prjname) {
 		this.prjname = prjname;
 	}
-	
+	public int getEvalkey() {
+		return evalkey;
+	}
+	public void setEvalkey(int evalkey) {
+		this.evalkey = evalkey;
+	}
+	public String getEvalcontent() {
+		return evalcontent;
+	}
+	public void setEvalcontent(String evalcontent) {
+		this.evalcontent = evalcontent;
+	}
 
 }

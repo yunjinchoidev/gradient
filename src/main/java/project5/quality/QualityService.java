@@ -39,5 +39,13 @@ public class QualityService {
 	public List<QualityVO> prjlist(){
 		return dao.prjlist();
 	}
+	// 품질 평가 항목 목록
+	public List<QualityVO> evallist(){
+		return dao.evallist();
+	}
+	// 품질 평가 항목 수정
+	public void upteval(MultiQuality upt){
+		dao.upteval(upt);
+	}
 
 }
