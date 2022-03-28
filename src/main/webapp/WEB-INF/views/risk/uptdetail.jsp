@@ -61,7 +61,7 @@
 			<!-- 프로젝트 명 -->
 			<select class="form-select" style="text-align:center;" name="prjkey">
                  <c:forEach var="prlist" items="${prjlist}">
-                    <option value="${prlist.prjkey}">${prlist.prjname}</option>
+                    <option value="${prlist.prjkey}" ${rdlist.prjkey eq prlist.prjkey  ? "selected" : ""}>${prlist.prjname}</option>
                  </c:forEach>
             </select>
 			<!-- 중요도, 리스크명, 작성일 -->
@@ -71,9 +71,9 @@
 					 <!-- 중요도 select box -->
                     	<div id="importselect" style="flex:1;margin-right:5px;">
                     		<select class="form-select" name="importance" style="text-align:center; font-size: 20px;">
-	                    		<option value="중요">중요</option>
-	                    		<option value="보통">보통</option>
-	                    		<option value="낮음">낮음</option>
+		                    	 <option value="중요" ${rdlist.importance eq "중요" ?  "selected" : ""}>중요</option>
+	                             <option value="보통" ${rdlist.importance eq "보통" ?  "selected" : ""}>보통</option>
+	                             <option value="낮음" ${rdlist.importance eq "낮음" ?  "selected" : ""}>낮음</option>
                     		</select>
                     	</div>
 				</div>
