@@ -158,9 +158,9 @@
 
 	<!-- 등록 Modal -->
   	<div class="modal fade text-left" id="evalModal" tabindex="-1" role="dialog"
-       	aria-labelledby="myModalLabel33" aria-hidden="true" style="display:none;">
+       	aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
-        <div class="modal-content">
+        <div class="modal-content" style="overflow:auto;">
             <div class="modal-header">
                 <h4 class="modal-title" id="myModalLabel33">품질평가</h4>
                 <button type="button" class="close" data-bs-dismiss="modal"
@@ -192,7 +192,7 @@
                     	</div>
                     	<!-- 2번문항 -->
                     	<div style="margin-top:20px;">
-	                    	<h5>2. 프로젝트의 결함은 없는가?</h5>
+	                    	<h5>2. 기능 구현이 완벽하게 되었는가?</h5>
 	                    	<input type="radio" name="chk02" class="form-check-input" id="flexRadioDefault3" value="10">
 	                    	<label class="form-check-label" for="flexRadioDefault3">예</label>
 	                    	<input type="radio" name="chk02" class="form-check-input" id="flexRadioDefault4" value="0"
@@ -201,7 +201,7 @@
                     	</div>
                     	<!-- 3번문항 -->
                     	<div style="margin-top:20px;">
-	                    	<h5>3. ?</h5>
+	                    	<h5>3. 유지보수가 편리하도록 설계 되었는가?</h5>
 	                    	<input type="radio" name="chk03" class="form-check-input" id="flexRadioDefault5" value="10">
 	                    	<label class="form-check-label" for="flexRadioDefault5">예</label>
 	                    	<input type="radio" name="chk03" class="form-check-input" id="flexRadioDefault6" value="0"
@@ -210,7 +210,7 @@
                     	</div>
                     	<!-- 4번문항 -->
                     	<div style="margin-top:20px;">
-	                    	<h5>4. ?</h5>
+	                    	<h5>4. DB의 데이터와 사용자가 입력하는 정보가 일치 하는가?</h5>
 	                    	<input type="radio" name="chk04" class="form-check-input" id="flexRadioDefault7" value="10">
 	                    	<label class="form-check-label" for="flexRadioDefault7">예</label>
 	                    	<input type="radio" name="chk04" class="form-check-input" id="flexRadioDefault8" value="0"
@@ -219,7 +219,7 @@
                     	</div>
                     	<!-- 5번문항 -->
                     	<div style="margin-top:20px;">
-	                    	<h5>5. ?</h5>
+	                    	<h5>5. 사용자가 사용하기에 직관적으로 설계되어 있는가?</h5>
 	                    	<input type="radio" name="chk05" class="form-check-input" id="flexRadioDefault9" value="10">
 	                    	<label class="form-check-label" for="flexRadioDefault9">예</label>
 	                    	<input type="radio" name="chk05" class="form-check-input" id="flexRadioDefault10" value="0"
@@ -228,7 +228,7 @@
                     	</div>
                     	<!-- 6번문항 -->
                     	<div style="margin-top:20px;">
-	                    	<h5>6. ?</h5>
+	                    	<h5>6. OS 환경에 영향을 받지 않는가?</h5>
 	                    	<input type="radio" name="chk06" class="form-check-input" id="flexRadioDefault11" value="10">
 	                    	<label class="form-check-label" for="flexRadioDefault11">예</label>
 	                    	<input type="radio" name="chk06" class="form-check-input" id="flexRadioDefault12" value="0"
@@ -237,7 +237,7 @@
                     	</div>
                     	<!-- 7번문항 -->
                     	<div style="margin-top:20px;">
-	                    	<h5>7. ?</h5>
+	                    	<h5>7. 에러 사항은 없는가?</h5>
 	                    	<input type="radio" name="chk07" class="form-check-input" id="flexRadioDefault13" value="10">
 	                    	<label class="form-check-label" for="flexRadioDefault13">예</label>
 	                    	<input type="radio" name="chk07" class="form-check-input" id="flexRadioDefault14" value="0"
@@ -246,7 +246,7 @@
                     	</div>
                     	<!-- 8번문항 -->
                     	<div style="margin-top:20px;">
-	                    	<h5>8. ?</h5>
+	                    	<h5>8. 예외 상황을 고려하고 설계 되었는가?</h5>
 	                    	<input type="radio" name="chk08" class="form-check-input" id="flexRadioDefault15" value="10">
 	                    	<label class="form-check-label" for="flexRadioDefault15">예</label>
 	                    	<input type="radio" name="chk08" class="form-check-input" id="flexRadioDefault16" value="0"
@@ -255,7 +255,7 @@
                     	</div>
                     	<!-- 9번문항 -->
                     	<div style="margin-top:20px;">
-	                    	<h5>9. ?</h5>
+	                    	<h5>9. 시스템 장애 발생 시 데이터는 변조되지 않는가?</h5>
 	                    	<input type="radio" name="chk09" class="form-check-input" id="flexRadioDefault17" value="10">
 	                    	<label class="form-check-label" for="flexRadioDefault17">예</label>
 	                    	<input type="radio" name="chk09" class="form-check-input" id="flexRadioDefault18" value="0"
@@ -264,14 +264,13 @@
                     	</div>
                     	<!-- 10번문항 -->
                     	<div style="margin-top:20px;">
-	                    	<h5>10. ?</h5>
+	                    	<h5>10. 보안성을 고려하고 설계 되었는가?</h5>
 	                    	<input type="radio" name="chk10" class="form-check-input" id="flexRadioDefault19" value="10">
 	                    	<label class="form-check-label" for="flexRadioDefault19">예</label>
 	                    	<input type="radio" name="chk10" class="form-check-input" id="flexRadioDefault20" value="0"
 	                    		style="margin-left:10px;">
 	                    	<label class="form-check-label" for="flexRadioDefault20">아니오</label>
-                    	</div>
-                    	            	
+                    	</div> 	            	
                     </div>                                          
                 </div>
                 <!-- 버튼 영역 -->
