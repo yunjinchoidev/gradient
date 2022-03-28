@@ -84,7 +84,7 @@
 				<div>
 	                <div class="card">
 	                    <div class="card-header">
-	                        <h4 class="card-title" align="center">${m.topic}</h4>
+	                        <h4 class="card-title" align="center">[${m.pname}]${m.topic}</h4>
 	                        <input type="hidden" name="minutesKey" value="${m.minutesKey}"/>
 	                    </div>
 	                    <table class="table mb-0 table-lg">
@@ -100,8 +100,8 @@
 	                            <th>작성일자</th><td><fmt:formatDate value="${m.writeDate}"/></td>
 	                        </tr>
 	                        <tr>
-	                            <th>작성자</th><td>${m.name}</td>
-	                            <th>부서명</th><td>${m.partname}</td>
+	                            <th>작성자</th><td>${m.mname}</td>
+	                            <th>부서명</th><td>${m.dname}</td>
 	                        </tr>
 	                        <tr>
 	                            <th>회의내용</th><td colspan="3">${m.content}</td>

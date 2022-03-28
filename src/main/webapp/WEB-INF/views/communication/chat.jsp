@@ -76,8 +76,11 @@ var currentTime = function(){
     var mm = date.getMinutes();
     var ss = date.getSeconds();
     var apm = hh >12 ? "오후":"오전";
-    if(hh<10){
-        hh = "0"+hh;
+    if(hh>12){
+    	hh = hh-12;
+    	if(hh<10){
+            hh = "0"+hh;
+        }
     }
     if(mm<10){
         mm = "0"+mm;
@@ -124,8 +127,6 @@ $(document).ready(function(){
 	--%>	
 });
 function conn(){
-	//  원격 접속시에는 고정 ip 할당 받아서 처리..
-	// local에서 다른 브라우저로 실행시 처리할 내용..
 	// wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
 	wsocket = new WebSocket("ws:/@localhost:7080/${path}/chat-ws.do");
 	// handler :afterConnectionEstablished(WebSocketSession session)와 연결
@@ -133,17 +134,12 @@ function conn(){
 		console.log(evt);
 		wsocket.send("msg:<div class='infoBox'>[입장메시지] "+$("#name").val()+"("+$("#auth").val()+")님이 채팅방에 입장했습니다.</div>");
 	}
-	// handler의  handleTextMessage()
-	// 연결되어 있으면 메시지를 push형식으로 서버에서 받을 수 있다.
-	// ex) wsocket.send("msg:"+$("#id").val()+":연결 접속했습니다!");
-	// push 방식으로 서버에서 전달되어 온 데이터를 받게 처리..
+
 	wsocket.onmessage=function(evt){
 		// 받은 데이터
 		var msg = evt.data;
 		// msg 내용 삭제 후, 처리
 		if(msg.substring(0,4)=="msg:"){
-			// 메시지 내용만 전달
-			// 메시지 내용 scrolling 처리..
 			var revMsg = msg.substring(4)
 			$("#chatMessageArea").append(revMsg+"<br>");
 			// 1. 전체 chatMessageArea의 입력된 최대 높이 구하기..

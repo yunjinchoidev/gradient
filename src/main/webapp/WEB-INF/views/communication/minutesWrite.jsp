@@ -16,7 +16,9 @@
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<style>
 		.dtl-button-box{display:flex;justify-content: space-between;}
-		textarea{resize:none;}
+		textarea{
+			resize:none;
+		}
 	</style>
 	<script>
 		$(document).ready(function(){
@@ -82,35 +84,51 @@
 	                        <tr>
 	                            <th>회의안건</th>
 	                            <td colspan="3" >
-	                            	<input type="text" class="form-control" id="basicInput" name="topic" value="${m.topic}"/>
+	                            	<input type="text" class="form-control" id="basicInput" name="topic"/>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                        	<th>프로젝트명</th>
+	                        	<td>
+	                            	<select class="form-select" name="projectKey">
+	                            		<option>프로젝트를 선택해주세요.</option>
+			                    		<c:forEach var="prj" items="${prjList}">
+			                    			<option value="${prj.projectKey}">${prj.pname}</option>
+			                    		</c:forEach>
+			                    	</select>
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th>참석자</th>
 	                            <td colspan="3" >
-	                            	<input type="text" class="form-control" id="basicInput" name="attendee" value="${m.attendee}"/>
+	                            	<input type="text" class="form-control" id="basicInput" name="attendee"/>
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th>회의일자</th>
 	                            <td>
-	                            	<input type="date" class="form-control" id="basicInput" name="conferenceDateS" value="${m.conferenceDate}"/>
+	                            	<input type="date" class="form-control" id="basicInput" name="conferenceDateS"/>
 	                            </td>
 	                            <th>부서명</th>
 	                            <td>
-	                            	<input type="text" class="form-control" id="basicInput" name="partname" value="${m.partname}"/>
+	                            	<select class="form-select" name="deptKey">
+	                            		<option>부서명을 선택해주세요.</option>
+			                    		<c:forEach var="dpt" items="${dptList}">
+			                    			<option value="${dpt.deptKey}">${dpt.dname}</option>
+			                    		</c:forEach>
+			                    	</select>
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th>회의내용</th>
 	                            <td colspan="3">
-	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="14" name="content">${m.content}</textarea>
+	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="14" name="content"></textarea>
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th>속기</th>
 	                            <td colspan="3">
-	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="shorthand">${m.shorthand}</textarea>
+	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="shorthand"></textarea>
 	                            </td>
 	                        </tr>
                        	</table>

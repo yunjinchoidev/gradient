@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+
+<mapper namespace="project5.favorite.FavoriteDao">
+	<select id="list" resultType="project5.favorite.FavoriteVO">
+		select * from favorite
+	</select>
+
+	<update id="update" parameterType="project5.favorite.FavoriteVO">\
+		update favorite
+		set
+		status =
+		#{status}
+		where
+		favoritekey = #{favoritekey}
+	</update>
+
+	<select id="delete" parameterType="int">
+		delete from favorite
+		where
+		favoritekey = #{favoritekey}
+	</select>
+
+</mapper>

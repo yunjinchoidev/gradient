@@ -14,7 +14,9 @@ public class minutesController {
 	// http://localhost:7080/project5/minutes.do?method=list
 	@RequestMapping(params="method=list")
 	public String minutesList(minutesSch sch, Model d) {
-		d.addAttribute("mList",service.minutesList(sch));
+		d.addAttribute("mList", service.minutesList(sch));
+		d.addAttribute("prjList", service.selectPrjList());
+		d.addAttribute("dptList", service.selectDptList());
 		return "WEB-INF\\views\\communication\\minutesList.jsp";
 	}
 	
@@ -24,9 +26,25 @@ public class minutesController {
 		return "WEB-INF\\views\\communication\\minutesDetail.jsp";
 	}
 	
+	// http://localhost:8080/project5/minutes.do?method=insertFrm
+	@RequestMapping(params="method=insertFrm")
+	public String insMinutesFrm(Model d) {
+		d.addAttribute("prjList", service.selectPrjList());
+		d.addAttribute("dptList", service.selectDptList());
+		return "WEB-INF\\views\\communication\\minutesWrite.jsp";
+	}
+	
+	@RequestMapping(params="method=insert")
+	public String insMinutes(minutesVO ins, Model d) {
+		d.addAttribute("msg", service.insMinutes(ins));
+		return "WEB-INF\\views\\communication\\minutesWrite.jsp";
+	}	
+	
 	@RequestMapping(params="method=updateFrm")
 	public String uptMinutes(int minutesKey, Model d) {
-		d.addAttribute("m",service.getMinutes(minutesKey));
+		d.addAttribute("m", service.getMinutes(minutesKey));
+		d.addAttribute("prjList", service.selectPrjList());
+		d.addAttribute("dptList", service.selectDptList());
 		return "WEB-INF\\views\\communication\\minutesUpdate.jsp";
 	}
 	
@@ -35,18 +53,6 @@ public class minutesController {
 		service.uptMinutes(upt);
 		d.addAttribute("msg","수정되었습니다.");
 		return "forward:/minutes.do?method=detail";
-	}
-	       
-	// http://localhost:8080/project5/minutes.do?method=insertFrm
-	@RequestMapping(params="method=insertFrm")
-	public String insMinutesFrm() {
-		return "WEB-INF\\views\\communication\\minutesWrite.jsp";
-	}
-	
-	@RequestMapping(params="method=insert")
-	public String insMinutes(minutesVO ins, Model d) {
-		d.addAttribute("msg",service.insMinutes(ins));
-		return "WEB-INF\\views\\communication\\minutesWrite.jsp";
 	}
 	
 	@RequestMapping(params="method=delete")

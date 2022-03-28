@@ -9,6 +9,8 @@ public interface minutesDao {
 	public int totCnt(minutesSch sch);
 	
 	public List<minutesVO> minutesList(minutesSch sch);
+	public List<minutesVO> selectPrjList();
+	public List<minutesVO> selectDptList();
 	
 	public minutesVO getMinutes(int minutesKey);
 	

@@ -3,6 +3,7 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.communication.minutesDao">
+	<!-- 회의록 숫자 카운트 -->
 	<select id="totCnt" parameterType="minutesSch" resultType="int">
 		select count(*)
 			from minutes
@@ -11,35 +12,56 @@
 			and topic like '%'||#{topic}||'%'
 			</if>
 	</select>
+	<!-- 회의록 리스트 -->
 	<select id="minutesList" parameterType="minutesSch" resultType="minutes" >
 		SELECT *
 		FROM (
-			SELECT ROW_NUMBER() OVER (ORDER BY min.minutesKey  desc ) AS cnt, min.*, mem.name
-			FROM minutes min, member mem
+			SELECT ROW_NUMBER() OVER (ORDER BY min.minutesKey  desc ) AS cnt, min.*, mem.name as mname, prj.name as pname, dpt.dname as dname 
+			FROM minutes min, member mem, project prj, department dpt
 			WHERE 1=1
 			<if test="topic!=null and topic!=''">
 				AND topic like '%'||#{topic}||'%'
 			</if>
-			AND min.memberKey = mem.memberKey)
+			AND min.memberKey = mem.memberKey
+			AND min.projectKey = prj.projectKey
+			AND min.deptKey = dpt.deptno)
 		WHERE cnt BETWEEN #{start} AND #{end}
 	</select>
-
+	
+	<!-- 프로젝트 리스트 -->
+	<select id="selectPrjList" parameterType="string" resultType="minutes" >
+		SELECT projectKey AS projectKey, name AS pname
+		FROM project
+	</select>
+	
+	<!-- 부서 리스트 -->
+	<select id="selectDptList" parameterType="string" resultType="minutes" >
+		SELECT deptno AS deptKey, dname
+		FROM department
+	</select>
+	
+	<!-- 회의록 게시글 불러오기 -->
 	<select id="getMinutes" parameterType="int" resultType="minutes">
-		SELECT min.*, mem.name
-		FROM minutes min, Member mem
+		SELECT min.*, mem.name as mname, prj.name as pname, dpt.dname as dname 
+		FROM minutes min, Member mem, project prj, department dpt
 		WHERE minuteskey=#{minuteskey}
 		AND min.memberKey = mem.memberKey
+		AND min.projectKey = prj.projectKey
+		AND min.deptKey = dpt.deptno
 	</select>
 
+	<!-- 회의록 등록 -->
 	<insert id="insMinutes" parameterType="minutes">
-		INSERT INTO minutes VALUES(minutes_seq.nextval,2,(SELECT memberKey FROM member WHERE id = #{id}),#{topic},#{attendee},#{partname},to_date(#{conferenceDateS},'YYYY-MM-DD'),sysdate,sysdate,#{content},#{shorthand})
+		INSERT INTO minutes VALUES(minutes_seq.nextval,(SELECT memberKey FROM member WHERE id = #{id}),#{projectKey},#{deptKey},#{topic},#{attendee},to_date(#{conferenceDateS},'YYYY-MM-DD'),sysdate,sysdate,#{content},#{shorthand})
 	</insert>
 
+	<!-- 회의록 수정 -->
 	<update id="uptMinutes" parameterType="minutes">
-		UPDATE minutes
-			SET topic = #{topic},
+		UPDATE minutes 
+			SET projectKey = #{projectKey},
+			deptKey = #{deptKey},
+			topic = #{topic},
 			attendee = #{attendee},
-			partname = #{partname},
 			conferenceDate = to_date(#{conferenceDateS},'YYYY-MM-DD'),
 			updateDate = sysdate,
 			content = #{content},
@@ -47,6 +69,7 @@
 			WHERE minutesKey = #{minutesKey}
 	</update>
 
+	<!-- 회의록 삭제 -->
 	<delete id="delMinutes" parameterType="int">
 		DELETE FROM minutes
 		WHERE minutesKey=#{minutesKey}

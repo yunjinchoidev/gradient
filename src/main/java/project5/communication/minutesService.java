@@ -40,9 +40,19 @@ public class minutesService {
 	
 		return dao.minutesList(sch);
 	}
+	
+	public List<minutesVO> selectPrjList(){
+		return dao.selectPrjList();
+	}
+	
+	public List<minutesVO> selectDptList(){
+		return dao.selectDptList();
+	}
+	
 	public minutesVO getMinutes(int minutesKey) {
 		return dao.getMinutes(minutesKey);
 	}
+	
 	public String insMinutes(minutesVO ins) {
 		dao.insMinutes(ins);
 		String msg="등록성공";

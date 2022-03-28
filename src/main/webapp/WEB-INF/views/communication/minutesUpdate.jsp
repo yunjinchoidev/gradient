@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8" import="java.util.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<c:set var="path" value="${pageContext.request.contextPath }" />
-<fmt:requestEncoding value="utf-8"/>   
+	pageEncoding="UTF-8" 
+	import="java.util.*"
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<c:set var="path" value="${pageContext.request.contextPath }"/>
+<fmt:requestEncoding value="utf-8"/>
 <!DOCTYPE html>
 <%--
 
@@ -81,6 +83,17 @@
 	                            </td>
 	                        </tr>
 	                        <tr>
+	                        	<th>프로젝트명</th>
+	                        	<td>
+	                            	<select class="form-select" name="projectKey">
+	                            		<option>프로젝트를 선택해주세요.</option>
+			                    		<c:forEach var="prj" items="${prjList}">
+			                    			<option value="${prj.projectKey}" ${prj.projectKey eq m.projectKey ? "selected" : ""}>${prj.pname}</option>
+			                    		</c:forEach>
+			                    	</select>
+	                            </td>
+	                        </tr>
+	                        <tr>
 	                            <th>참석자</th>
 	                            <td colspan="3" >
 	                            	<input type="text" class="form-control" id="basicInput" name="attendee" value="${m.attendee}"/>
@@ -89,11 +102,17 @@
 	                        <tr>
 	                            <th>회의일자</th>
 	                            <td>
-	                            	<input type="date" class="form-control" id="basicInput" name="conferenceDateS" value="${m.conferenceDate}"/>
+	                            	<input type="date" class="form-control" id="basicInput" name="conferenceDateS" 
+	                            	value='<fmt:formatDate value="${m.conferenceDate}" pattern="yyyy-MM-dd"/>'/>
 	                            </td>
 	                            <th>부서명</th>
 	                            <td>
-	                            	<input type="text" class="form-control" id="basicInput" name="partname" value="${m.partname}"/>
+	                            	<select class="form-select" name="deptKey">
+	                            		<option>부서명을 선택해주세요.</option>
+			                    		<c:forEach var="dpt" items="${dptList}">
+			                    			<option value="${dpt.deptKey}" ${dpt.deptKey eq m.deptKey ? "selected" : ""}>${dpt.dname}</option>
+			                    		</c:forEach>
+			                    	</select>
 	                            </td>
 	                        </tr>
 	                        <tr>
