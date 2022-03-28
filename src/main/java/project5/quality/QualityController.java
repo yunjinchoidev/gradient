@@ -72,6 +72,12 @@ public class QualityController {
 		return "forward:/evalitem.do";
 	}
 	
+	@RequestMapping("/qualitypass.do")
+	public String qualitypass(QualityVO upt) {
+		service.qualitypass(upt);
+		return "forward:/qualityList.do";
+	}
+	
 	
 	
 	

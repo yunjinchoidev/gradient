@@ -259,7 +259,7 @@
 					</c:if>
 					<c:if test="${rcomm.id == member.id && rcomm.refno !=0}">
 						<td>
-							<form id="recommFrm" action="${path}/delriskrecomm.do">
+							<form id="recommFrm" action="${path}/delriskrecomm.do" method="post">
 								<input type="hidden" name="rrecommkey" value="${rcomm.rcommkey}">
 								<button id="recomdelBtn" class="btn btn-danger">답글삭제</button>
 							</form>

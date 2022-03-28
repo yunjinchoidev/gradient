@@ -29,7 +29,7 @@
 						</div>
 						    
 						<div class="card-content">
-						 <form action="${path}/uptevallist.do">
+						 <form action="${path}/uptevallist.do" method="post">
 							<div class="card-body">
 								<!-- 품질 평가 항목 -->
 								<c:forEach var="eval" items="${evallist}">

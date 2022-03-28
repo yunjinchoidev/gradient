@@ -53,7 +53,7 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
-	 <form action="${path}/uptrisk.do">
+	 <form action="${path}/uptrisk.do" method="post">
 		<!-- 리스크 키 -->
 		<input type="hidden" name="riskkey" value="${rdlist.riskkey}">
 		<!-- 상세화면 -->

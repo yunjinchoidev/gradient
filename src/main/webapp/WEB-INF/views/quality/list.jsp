@@ -171,7 +171,7 @@
             </div>
           
             	<!-- 모달 입력 요소 영역 -->
-            <form id="qualityeval">
+            <form id="qualityeval" action="${path}/qualitypass.do" method="post">
                 <div class="modal-body" style="margin:10px;">
                 	<!-- 프로젝트 select box -->
                 	<div id="prjselect">

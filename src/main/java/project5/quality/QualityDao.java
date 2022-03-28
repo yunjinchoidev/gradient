@@ -24,5 +24,7 @@ public interface QualityDao {
 	public List<QualityVO> evallist();
 	// 품질 평가 항목 수정
 	public void upteval(MultiQuality upt);
+	// 품질 평가 합격
+	public void qualitypass(QualityVO upt);
 
 }

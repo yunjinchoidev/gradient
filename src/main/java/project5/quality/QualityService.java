@@ -47,5 +47,9 @@ public class QualityService {
 	public void upteval(MultiQuality upt){
 		dao.upteval(upt);
 	}
+	// 품질 평가 합격
+	public void qualitypass(QualityVO upt) {
+		dao.qualitypass(upt);
+	}
 
 }

@@ -16,7 +16,8 @@ public class QualityVO {
 	private String prjname;
 	// 품목 평가 항목
 	private int evalkey;
-	private String evalcontent; 
+	private String evalcontent;
+	private String quality;
 	
 	public QualityVO() {
 		super();
@@ -111,5 +112,12 @@ public class QualityVO {
 	public void setEvalcontent(String evalcontent) {
 		this.evalcontent = evalcontent;
 	}
+	public String getQuality() {
+		return quality;
+	}
+	public void setQuality(String quality) {
+		this.quality = quality;
+	}
+	
 
 }

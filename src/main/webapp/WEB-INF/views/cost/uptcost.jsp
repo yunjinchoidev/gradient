@@ -207,7 +207,7 @@ margin
 							</div>
 						 
 							<div class="dataTable-container">
-								<form id="uptcostform" action="${path}/uptcost.do" method="get">
+								<form id="uptcostform" action="${path}/uptcost.do" method="post">
 								<input type="hidden" name=prjkey value="${prjkey}">
 								<table class="table table-striped dataTable-table" id="maintable">
 									<thead>
