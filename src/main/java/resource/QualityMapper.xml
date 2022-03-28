@@ -57,6 +57,10 @@
 			WHERE EVALITEMKEY = #{item.evalkey}
 		</foreach>
 	</update>
+	<!-- 품질 평가 합격 -->
+	<update id="">
+	
+	</update>
 
 
 </mapper>
