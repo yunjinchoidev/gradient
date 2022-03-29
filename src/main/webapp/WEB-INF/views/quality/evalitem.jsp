@@ -43,8 +43,8 @@
 								</c:forEach>
 							 
 								<div style="float: right; margin-top: 20px; margin-bottom: 20px;">
-									<button class="btn btn-primary" id="backbtn">뒤로가기</button>
-									<button class="btn btn-primary" id="uptbtn">수정</button>
+									<button type="button" class="btn btn-primary" id="backbtn">뒤로가기</button>
+									<button type="button" class="btn btn-primary" id="uptbtn">수정</button>
 								</div>
 							</div>
 						  </form>

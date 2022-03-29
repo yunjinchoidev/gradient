@@ -11,6 +11,8 @@
  --%>
 <html>
 <head>
+<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -50,7 +52,7 @@
 					<a href="/project5/qualityList.do" class="btn btn-warning">품질 건의</a>
 					<a href="/project5/evalitem.do" class="btn btn-primary">품질 평가 항목</a>
 					<a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#evalModal">품질 평가</a>
-					<a href="#" class="btn btn-success">인증서 발급</a>
+					<a href="${path}/certiprj.do" class="btn btn-success">인증서 발급</a>					
 					</div>
 					<div class="card-body">
 						<div
@@ -157,7 +159,7 @@
 
 	</div>
 
-	<!-- 등록 Modal -->
+<!-- 품질평가 Modal ==장훈주 start== -->
   	<div class="modal fade text-left" id="evalModal" tabindex="-1" role="dialog"
        	aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
@@ -216,19 +218,25 @@
         </div>
     </div>
 </div>
-	
+<!-- ==장훈주 end== -->
 	
 </body>
 
 <script>
+	// 장훈주 추가 start
 	$(document).ready(function(){
 			
 		var score=0;
 		var msg = "${msg}";
 		
-		if(msg != ""){
+		if(msg == "합격처리되었습니다"){
 			alert(msg)
 			location.href = "${path}/qualityList.do"
+		}
+		
+		if(msg == "인증되었습니다"){
+			alert(msg)
+			location.href = document.referrer;
 		}
 		
 		$("#evalregBtn").click(function(){
@@ -281,6 +289,7 @@
 		
 			
 	});
+	// 장훈주 추가 end
 	
 </script>
 

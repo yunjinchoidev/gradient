@@ -49,6 +49,12 @@
 		SELECT EVALITEMKEY evalkey, CONTENT evalcontent
 		FROM EVALITEM
 	</select>
+	<!-- 품질 합격 프로젝트 목록 -->
+	<select id="certiprjlist" resultType="project5.quality.QualityVO">
+		SELECT PROJECTKEY prjkey, name prjname
+		FROM PROJECT
+		WHERE QUALITY = '합격'
+	</select>
 	
 	<!-- 품질 평가 항목 수정 -->
 	<update id="upteval" parameterType="java.util.List">
