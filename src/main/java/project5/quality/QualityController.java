@@ -129,7 +129,7 @@ public class QualityController {
 			//JasperExportManager.exportReportToHtmlFile(jasperPrint, folderPath+"project5.html");
 			System.out.println("폴더패스:"+folderPath);
 			//JasperExportManager.exportReportToPdfFile(jasperPrint, folderPath+"/project5.pdf");
-			JasperExportManager.exportReportToPdfFile(jasperPrint, folderPath+"/project5.pdf");
+			JasperExportManager.exportReportToPdfFile(jasperPrint, folderPath+"project5.pdf");
 			
 			
 			conn.close();
