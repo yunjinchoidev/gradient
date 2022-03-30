@@ -8,12 +8,12 @@
     
     
     <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <link rel="stylesheet" href="/project5/jqwidgets-ver13.2.0/jqwidgets/styles/jqx.base.css" type="text/css" />
+    <link rel="stylesheet" href="/project5/jqwidgets-ver13.2.0/a/jqx.base.css" type="text/css" />
     <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/scripts/jquery-1.11.1.min.js"></script>
-    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxcore.js"></script>
-    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxsortable.js"></script>
-    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxkanban.js"></script>
-    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxdata.js"></script>
+    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/a/jqxcore.js"></script>
+    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/a/jqxsortable.js"></script>
+    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/a/jqxkanban.js"></script>
+    <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/a/jqxdata.js"></script>
     <script type="text/javascript">
     $(document).ready(function () {            
     	// 칸반보드 전체 값 저장할 변수 선언
