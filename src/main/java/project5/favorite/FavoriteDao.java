@@ -8,8 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface FavoriteDao {
 
 	public List<FavoriteVO> list();
-	public void insert(FavoriteVO vo);
-	public void delete(int favorkey);
-	public void update(FavoriteVO vo);
+	public void insert(String menubar);
+	public void delete(String menubar);
 	
 }

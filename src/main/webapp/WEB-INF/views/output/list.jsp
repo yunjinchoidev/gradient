@@ -107,7 +107,10 @@ $(document).ready(function(){
 											<tr>
 											
 												<td
-													style="cursor: pointer;">${list.outputkey } </td>
+													style="cursor: pointer;">${list.outputkey }
+														<span class="badge bg-warning">진행중</span>
+													
+													 </td>
 
 												<td><span
 													onclick="location.href='${path}/outputGet.do?outputkey=${list.outputkey}'"
@@ -120,8 +123,15 @@ $(document).ready(function(){
 														value="${list.writedate }" />
 												</td>
 												<td>${list.mname }</td>
-												<td><span class="badge bg-success">${list.status }</span></td>
-											</tr>
+												<td>
+												<c:if test="${list.status eq '2'}">
+													<span class="badge bg-primary">완료</span>
+												</c:if>
+												<c:if test="${list.status eq '1'}">
+												<span class="badge bg-primary">진행중</span>
+												</c:if>
+												</td>
+												</tr>
 										</c:forEach>
 									</tbody>
 

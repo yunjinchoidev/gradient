@@ -5,7 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
@@ -28,6 +28,30 @@
 
 <script src="/project5/resources/dist/assets/js/main.js"></script>
 </head>
+
+<script>
+$(document).ready(function(){
+	alert("F")
+	console.log("${member.visitcnt}");
+	$("#premium").click(function(){
+			confirm("정말 프리미엄으로 바꾸시겠습니까?")
+		if(parseInt("${member.visitcnt}") >= 500 ){
+			location.href='/project5/updatePricing.do?memberkey=${member.memberkey}&pricing=2'	
+		}else{
+			alert("불가합니다.")
+		}
+	})
+	$("#pro").click(function(){
+			confirm("정말 프리미엄으로 바꾸시겠습니까?")
+		if(parseInt("${member.visitcnt}")>=200 ){
+				location.href='/project5/updatePricing.do?memberkey=${member.memberkey}&pricing=1'								
+		}else{
+			alert("불가합니다.")
+		}
+	})
+})
+</script>
+
 <body>
 
 
@@ -50,7 +74,7 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>Plan</h3>
+						<h3>Pricing</h3>
 						<p class="text-subtitle text-muted">당신에 맞는 플랜을 선택하세요</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
@@ -76,7 +100,7 @@
 											<h4 class="card-title">기본</h4>
 											<p class="text-center">A standart features you can get</p>
 										</div>
-										<h1 class="price">무료</h1>
+										<h1 class="price">Free</h1>
 										<ul>
 											<li><i class="bi bi-check-circle"></i>Lorem ipsum dolor
 												sit amet</li>
@@ -92,17 +116,17 @@
 												amet</li>
 										</ul>
 										<div class="card-footer">
-											<button class="btn btn-primary btn-block">Order Now</button>
+											<button class="btn btn-primary btn-block">바꾸기</button>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 px-0">
 									<div class="card card-highlighted">
 										<div class="card-header text-center">
-											<h4 class="card-title">프리미엄</h4>
+											<h4 class="card-title" >프리미엄</h4>
 											<p></p>
 										</div>
-										<h1 class="price text-white">3900원</h1>
+										<h1 class="price text-white">방문수 500회</h1>
 										<ul>
 											<li><i class="bi bi-check-circle"></i>Lorem ipsum kolor
 												sit amet</li>
@@ -124,18 +148,18 @@
 												sit amet</li>
 										</ul>
 										<div class="card-footer">
-											<button class="btn btn-outline-white btn-block">Order
-												Now</button>
+											<button class="btn btn-outline-white btn-block" id="premium">바꾸기</button>
 										</div>
 									</div>
 								</div>
 								<div class="col-md-4 px-0">
 									<div class="card">
 										<div class="card-header text-center">
-											<h4 class="card-title">프로</h4>
+											<h4 class="card-title"
+											>프로</h4>
 											<p class="text-center">A higher features you will need</p>
 										</div>
-										<h1 class="price">1900원</h1>
+										<h1 class="price">방문 수 200회</h1>
 										<ul>
 											<li><i class="bi bi-check-circle"></i>Lorem ipsum dolor
 												sit amet</li>
@@ -151,7 +175,7 @@
 												amet</li>
 										</ul>
 										<div class="card-footer">
-											<button class="btn btn-primary btn-block">Order Now</button>
+											<button class="btn btn-primary btn-block" id="pro">바꾸기</button>
 										</div>
 									</div>
 								</div>

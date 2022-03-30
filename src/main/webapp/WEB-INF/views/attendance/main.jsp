@@ -116,6 +116,8 @@
 						여러 기능들이 있습니다.<br> <br>
 						<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
 							<a href="#" class="btn btn-danger" id="mailSendBtn">경고장 발송</a> 
+							<a href="#" class="btn btn-success" id="NonComplete" onclick="location.href='/project5/attendanceMain.do'">평가완료</a> 
+							<a href="#" class="btn btn-warning" id="Complete" onclick="location.href='/project5/attendanceMain2.do'">미평가자</a> 
 							
 						</div>
 					</div>
@@ -159,7 +161,7 @@
 												<th data-sortable="" style="width: 12.423%;"><a
 													href="#" class="dataTable-sorter">직급</a></th>
 												<th data-sortable="" style="width: 12.423%;"><a
-													href="#" class="dataTable-sorter">상황</a></th>
+													href="#" class="dataTable-sorter">평가점수</a></th>
 
 												<th data-sortable="" style="width: 15.051%;"><a
 													href="#" class="dataTable-sorter">관리</a></th>
@@ -181,15 +183,16 @@
 												<input type="hidden" name="memberkey" value="${list.memberkey }">
 												<tr>
 													<td><span class="badge bg-secondary">[${list.memberkey}]</span></td>
-													<td>${list.name}</td>
+													<td>${list.name} </td>
 													<td>${list.email }</td>
 													<td>${list.auth }</td>
 													<td style="cursor: pointer;" id="ManageBtn"><span
-														class="badge bg-info">요청</span>
+														class="badge bg-info">${list.score }</span>
 														</td>
 														<td>
 														 <span
-															class="badge bg-success" id="assessBtn" style="cursor: pointer;">근태 평가 하기</span>
+															class="badge bg-success" id="assessBtn" style="cursor: pointer;"
+															onclick="location.href='/project5/attendanceWriteForm.do?memberkey=${list.memberkey}'">근태 평가 하기</span>
 														</td>
 													<td>
 														<div style="margin-left: 30px;">

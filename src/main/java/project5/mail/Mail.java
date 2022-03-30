@@ -12,6 +12,9 @@ public class Mail {
 
 	private List<MemberVO> recievers;
 
+	private List<String> recivers;
+	private List<Mail> mails;
+
 	public Mail() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -24,6 +27,18 @@ public class Mail {
 		this.title = title;
 		this.content = content;
 		this.recievers = recievers;
+	}
+
+	public Mail(String reciever, String sender, String title, String content, List<MemberVO> recievers,
+			List<String> recivers, List<Mail> mails) {
+		super();
+		this.reciever = reciever;
+		this.sender = sender;
+		this.title = title;
+		this.content = content;
+		this.recievers = recievers;
+		this.recivers = recivers;
+		this.mails = mails;
 	}
 
 	public String getReciever() {
@@ -66,5 +81,20 @@ public class Mail {
 		this.recievers = recievers;
 	}
 
+	public List<String> getRecivers() {
+		return recivers;
+	}
+
+	public void setRecivers(List<String> recivers) {
+		this.recivers = recivers;
+	}
+
+	public List<Mail> getMails() {
+		return mails;
+	}
+
+	public void setMails(List<Mail> mails) {
+		this.mails = mails;
+	}
 
 }

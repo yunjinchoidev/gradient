@@ -3,7 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
-
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<fmt:requestEncoding value="utf-8"/>     
 
 
 
@@ -12,6 +13,9 @@
 <html lang="en">
 
 <head>
+<!--  구글 api 로그인 -->
+<meta name ="google-signin-client_id" content=828794941459-g78m89jn9pbv4o7h40jfn6nau33hs1h4.apps.googleusercontent.com>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Login - Mazer Admin Dashboard</title>
@@ -37,7 +41,16 @@
 
 
 $(document).ready(function(){
-	var gg = "${psc}"
+	
+	$("#selectLan").val("${param.lang}")
+	$("#selectLan").change(function(){
+		if($(this).val()!=""){
+			location.href="${path}/choiceLan.do?lang="+$(this).val();
+		}
+	});
+	
+	
+	var psc = "${psc}"
 	console.log("psc : "+psc)
 	if(psc == "fail"){
 		alert("아이디 비밀번호가 맞지 않습니다.");
@@ -64,42 +77,13 @@ $(document).ready(function(){
 <!-- 카카오 스크립트 -->
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
-Kakao.init('9b27ef068ae5af77a894af32a4f1ee80'); //발급받은 키 중 javascript키를 사용해준다.
-console.log(Kakao.isInitialized()); // sdk초기화여부판단
-//카카오로그인
-function kakaoLogin() {
-    Kakao.Auth.login({
-      success: function (response) {
-        Kakao.API.request({
-          url: '/v2/user/me',
-          success: function (response) {
-        	  console.log(response)
-          },
-          fail: function (error) {
-            console.log(error)
-          },
-        })
-      },
-      fail: function (error) {
-        console.log(error)
-      },
-    })
-  }
-//카카오로그아웃  
-function kakaoLogout() {
-    if (Kakao.Auth.getAccessToken()) {
-      Kakao.API.request({
-        url: '/v1/user/unlink',
-        success: function (response) {
-        	console.log(response)
-        },
-        fail: function (error) {
-          console.log(error)
-        },
-      })
-      Kakao.Auth.setAccessToken(undefined)
-    }
-  }  
+	
+	$(document).ready(function(){
+		
+
+	})
+	
+	
 </script>
 
 <body>
@@ -112,9 +96,24 @@ function kakaoLogout() {
 		<div class="row h-100" style="width: 900px; ">
 			<div class="col-lg-5 col-12" style="width: 900px;">
 				<div id="auth-left" style="width: 900px;">
-					<h1 class="auth-title">로그인</h1>
+						<h4>  	<spring:message code="multilang"/></h4>
+								 <select class="form-control" id="selectLan">
+					  	<option value=""><spring:message code="chlange"/></option>
+					  	<option value="korean"><spring:message code="korean"/></option>
+					  	<option value="english"><spring:message code="english"/></option>
+					  	<option value="japanese"><spring:message code="japanese"/></option>
+					  	<option value="german"><spring:message code="german"/></option>
+					  	<option value="french"><spring:message code="french"/></option>
+					  	<option value="chinese"><spring:message code="chinese"/></option>
+					  	<option value="spanish"><spring:message code="spanish"/></option>
+					  </select>
+					<h1 class="auth-title">
+					</h1>
+			
+			
+					
+					
 					<p class="auth-subtitle mb-5">
-						아이디와 비밀번호를 정확히 입력하시오<br>
 						pm : admin/7777
 						일반 : qq/qq
 					</p>
@@ -140,7 +139,314 @@ function kakaoLogout() {
 								class="form-check-label text-gray-600" for="flexCheckDefault">
 								Keep me logged in </label>
 						</div>
+						
+						
 						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" id="loginbtn">로그인</button>
+
+
+						<div >
+							<a href="javascript:kakaoLogin();"> <img
+								src="/project5/resources/login/kakaoLogin.png" alt="카카오계정 로그인"
+								style="width:300px; height: 50px; margin-top: 10px; margin-left: 140px;" />
+							</a> <a href="javascript:void(0)"> <img
+								src="/project5/resources/login/naverLogin.png" alt="네이버 로그인"
+								style="width:300px; height: 50px; margin-top: 10px; margin-left: 140px;" id="naverIdLogin_loginButton" />
+							</a> <a href="javascript:void(0)"> <img
+								src="/project5/resources/login/googleLogin.png" alt="구글 로그인"
+								style="width:300px;  height: 50px; margin-top: 10px; margin-left: 140px;" id="GgCustomLogin" />
+							</a>
+						</div>
+						<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+    <script>
+        window.Kakao.init('9b27ef068ae5af77a894af32a4f1ee80');
+
+        function kakaoLogin() {
+            window.Kakao.Auth.login({
+                scope: 'profile_nickname, profile_image, account_email', //동의항목 페이지에 있는 개인정보 보호 테이블의 활성화된 ID값을 넣습니다.
+                success: function(response) {
+                    console.log(response) // 로그인 성공하면 받아오는 데이터
+                    window.Kakao.API.request({ // 사용자 정보 가져오기 
+                        url: '/v2/user/me',
+                        success: (res) => {
+                            const kakao_account = res.kakao_account;
+                            console.log(kakao_account)
+                            console.log(kakao_account.profile)
+                            console.log(kakao_account.profile.nickname)
+                            console.log(kakao_account.email)
+                            alert("접속합니다.")
+	                            // 이름/ 이메일
+	                            
+                         	var nameValue=kakao_account.profile.nickname;
+                    		var emailValue=kakao_account.email;
+                    		
+                    		var data = {name:nameValue,
+                    						email:emailValue}
+                    		
+                    		
+                    		
+                        	$.ajax({
+                    			url:'/project5/insertMemberAjax.do',
+                    			type:'POST',
+                    			data : data,
+                    			dataType:'json',
+                    			success:function(result){
+                    				alert("카카오 로그인 성공")
+                    				location.href="/project5/main.do"
+                    			},
+                    			error:function(result){
+                    				alet("카카오 로그인 실패")
+                    			}
+                    		})
+                            
+                            
+	                            
+	                            
+	                            
+                            
+                        }
+                    });
+                     //window.location.href='/project5/main.do' //리다이렉트 되는 코드
+                },
+                fail: function(error) {
+                    console.log(error);
+                }
+            });
+        }
+    </script>
+				
+							
+
+
+
+<!--  네이버 api -->
+<script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+
+
+<script>
+var naverLogin = new naver.LoginWithNaverId(
+		{
+			clientId: "p9XWUSBuHjHd2RP1xTQP", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+			callbackUrl: "http://106.10.16.155:7080/project5/loginForm.do", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+			isPopup: false,
+			callbackHandle: true
+		}
+	);	
+
+naverLogin.init();
+
+window.addEventListener('load', function () {
+	naverLogin.getLoginStatus(function (status) {
+		if (status) {
+			var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
+			console.log(naverLogin.user); 
+			console.log(naverLogin.user.name); 
+			console.log(naverLogin.user.email); 
+    		
+            if( email == undefined || email == null) {
+				alert("이메일은 필수정보입니다. 정보제공을 동의해주세요.");
+				naverLogin.reprompt();
+				return;
+			}
+            
+            
+        	var nameValue=naverLogin.user.name;
+    		var emailValue=naverLogin.user.email;
+    		
+    		var data = {name:nameValue,
+    						email:emailValue}
+    		
+    		
+    		
+        	$.ajax({
+    			url:'/project5/insertMemberAjax.do',
+    			type:'POST',
+    			data : data,
+    			dataType:'json',
+    			success:function(result){
+    				alert("네이버 로그인 성공")
+    				location.href="/project5/main.do"
+    			},
+    			error:function(result){
+    				alert("네이버 로그인 실패")
+    			}
+    		})
+            
+            
+            
+            
+            
+            alert("성공")
+		} else {
+			console.log("callback 처리에 실패하였습니다.");
+		}
+	});
+});
+
+
+var testPopUp;
+function openPopUp() {
+    testPopUp= window.open("https://nid.naver.com/nidlogin.logout", "_blank", "toolbar=yes,scrollbars=yes,resizable=yes,width=1,height=1");
+}
+function closePopUp(){
+    testPopUp.close();
+}
+
+function naverLogout() {
+	openPopUp();
+	setTimeout(function() {
+		closePopUp();
+		}, 1000);
+}
+</script>
+
+
+
+
+
+<script>
+
+//처음 실행하는 함수
+function init() {
+	gapi.load('auth2', function() {
+		gapi.auth2.init();
+		options = new gapi.auth2.SigninOptionsBuilder();
+		options.setPrompt('select_account');
+        // 추가는 Oauth 승인 권한 추가 후 띄어쓰기 기준으로 추가
+		options.setScope('email profile openid https://www.googleapis.com/auth/user.birthday.read');
+        // 인스턴스의 함수 호출 - element에 로그인 기능 추가
+        // GgCustomLogin은 li태그안에 있는 ID, 위에 설정한 options와 아래 성공,실패시 실행하는 함수들
+		gapi.auth2.getAuthInstance().attachClickHandler('GgCustomLogin', options, onSignIn, onSignInFailure);
+	})
+}
+
+function onSignIn(googleUser) {
+	var access_token = googleUser.getAuthResponse().access_token
+	$.ajax({
+    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
+		url: 'https://people.googleapis.com/v1/people/me'
+        // key에 자신의 API 키를 넣습니다.
+		, data: {personFields:'birthdays', key:'AIzaSyBLU93r5-XQDjB-58ZU7LRiG1l_93AkYtU', 'access_token': access_token}
+		, method:'GET'
+	})
+	
+	
+	
+	.done(function(e){
+        //프로필을 가져온다.
+		var profile = googleUser.getBasicProfile();
+		console.log(profile)
+		console.log(profile.zv)
+		console.log(profile.sf)
+		var nameValue=profile.sf;
+		var emailValue=profile.zv;
+		
+		var data = {name:nameValue,
+						email:emailValue}
+		
+		$.ajax({
+			url:'/project5/insertMemberAjax.do',
+			type:'POST',
+			data : data,
+			dataType:'json',
+			success:function(result){
+				alert("구글 로그인 성공")
+				location.href="/project5/main.do"
+			},
+			error:function(result){
+				alert("구글 로그인 실패")
+			}
+		})
+		
+	})
+	.fail(function(e){
+		console.log(e);
+	})
+}
+function onSignInFailure(t){		
+	console.log(t);
+}
+</script>
+<!--  구글 api 사용을 위한 스크립트-->
+<script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+
+
+
+
+
+
+<!-- 페이스북 -->
+
+						<script async defer crossorigin="anonymous"
+							src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v13.0&appId=282186027273418&autoLogAppEvents=1"
+							nonce="lPx2leFM"></script>
+							<!-- 
+							<ul>
+							 <li onclick="fnFbCustomLogin();">
+							  <a href="javascript:void(0)">
+							   <span>Login with Facebook</span>
+							  </a>
+							 </li>
+							</ul>
+							 -->
+						
+
+						<script>
+
+//기존 로그인 상태를 가져오기 위해 Facebook에 대한 호출
+function statusChangeCallback(res){
+	statusChangeCallback(response);
+}
+
+function fnFbCustomLogin(){
+	FB.login(function(response) {
+		if (response.status === 'connected') {
+			FB.api('/me', 'get', {fields: 'name,email'}, function(r) {
+				console.log(r);
+				
+				
+				
+				
+				
+			})
+		} else if (response.status === 'not_authorized') {
+			// 사람은 Facebook에 로그인했지만 앱에는 로그인하지 않았습니다.
+			alert('앱에 로그인해야 이용가능한 기능입니다.');
+		} else {
+			// 그 사람은 Facebook에 로그인하지 않았으므로이 앱에 로그인했는지 여부는 확실하지 않습니다.
+			alert('페이스북에 로그인해야 이용가능한 기능입니다.');
+		}
+	}, {scope: 'public_profile,email'});
+}
+
+window.fbAsyncInit = function() {
+	FB.init({
+		appId      : '282186027273418', // 내 앱 ID를 입력한다.
+		cookie     : true,
+		xfbml      : true,
+		version    : 'v10.0'
+	});
+	FB.AppEvents.logPageView();   
+};
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 					</form>
@@ -162,26 +468,13 @@ function kakaoLogout() {
 				<div id="auth-right"></div>
 			</div>
 			 -->
-			 <ul>
-	<li onclick="kakaoLogin();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그인</span>
-          
-      </a>
-	</li>
-	<li onclick="kakaoLogout();">
-      <a href="javascript:void(0)">
-          <span>카카오 로그아웃</span>
-      </a>
-	</li>
-</ul>
+
 			 
 			 
 			 
 		</div>
 
 	</div>
-	
 </body>
 
 

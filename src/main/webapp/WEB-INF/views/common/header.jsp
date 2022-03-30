@@ -173,13 +173,18 @@
 		
 							$("#projectMange").click(function() {
 								if (auth != "pm") {
-									alert("관리자만 접근 가능합니다.");
+									alert("PM만 접근 가능합니다.");
 								} else {
 									location.href="/project5/projectManageMain.do"
 								}
 							});
-
-				
+						$("#MemberAnaysis").click(function() {
+							if (auth != "pm") {
+								alert("관리자만 접근 가능합니다.");
+							} else {
+								location.href = "/project5/mailFrm.do"
+							}
+						});
 						$("#EmailBtn").click(function() {
 							if (auth != "pm") {
 								alert("관리자만 접근 가능합니다.");
@@ -197,6 +202,11 @@
 						});
 
 					})
+					
+					
+					
+					
+					
 </script>
 
 
@@ -239,7 +249,7 @@
 						</script>
 
 						<c:if test="${ empty member.id}">
-							<li class="sidebar-item  "><a href="/project5/login.do"
+							<li class="sidebar-item  "><a href="/project5/loginForm.do"
 								class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>로그인</span>
 							</a></li>
 						</c:if>
@@ -373,13 +383,29 @@
 						</li>
 
 						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i class="bi bi-stack"></i> <span>
-									관리자 페이지 [PM]</span></a>
+									PM 페이지</span></a>
 							<ul class="submenu ">
 								<li class="submenu-item " id="projectMange"><a href="#">프로젝트 관리 </a></li>
+							</ul>
+						</li>
+
+
+
+
+
+						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> <i class="bi bi-stack"></i> <span>
+									ADMIN 페이지 </span></a>
+							<ul class="submenu ">
+								<li class="submenu-item "><a href="#" id="MemberAnaysis">메인 (사용자 분석)</a></li>
 								<li class="submenu-item "><a href="#" id="EmailBtn">이메일 발송 </a></li>
 								<li class="submenu-item "><a href="#" id="MemberListBtn">사용자 리스트 </a></li>
 							</ul>
 						</li>
+
+
+
+
+
 
 						<li class="sidebar-item  has-sub">
 								<a href="/project5/customerChat.do" class='sidebar-link'> 
@@ -390,7 +416,9 @@
 							</ul>
 						</li>
 						
-						
+						<li class="sidebar-item  "><a href="/project5/aboutUs.do"
+							class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>About US</span> </a>
+						</li>
 						
 					</ul>
 					

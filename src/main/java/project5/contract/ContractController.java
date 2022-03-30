@@ -16,6 +16,12 @@ public class ContractController {
 		return "WEB-INF\\views\\contract\\main.jsp";
 	}
 	
+	@RequestMapping("/contractWriteForm.do")
+	public String contractWriteForm(Model d) {
+		return "WEB-INF\\views\\contract\\writeForm.jsp";
+	}
+	
+	
 	
 	
 	

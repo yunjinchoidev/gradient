@@ -15,4 +15,14 @@ public class FavoriteService {
 		return dao.list();
 	}
 	
+	public void insert(String menubar) {
+		dao.insert(menubar);
+	}
+	
+	public void delete(String menubar) {
+		dao.delete(menubar);
+	}
+	
+	
+	
 }

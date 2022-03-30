@@ -76,19 +76,31 @@ public class MemberService {
 	
 	
 	
+	public void memberRegisterComplete(int memberkey) {
+		dao.memberRegisterComplete(memberkey);
+	}
 	
 	
+	public String 	memberIdFind(MemberVO vo){
+		return dao.memberIdFind(vo);
+	}
+	
+	public String memberPassFind(MemberVO vo) {
+		return dao.memberPassFind(vo);
+	}
 	
 	
-	
-	
-	
+	public void newIssuePassword(MemberVO vo) {
+		dao.newIssuePassword(vo);
+	}
 	
 	
 	public int reginum() {
 		return dao.reginum();
 	}
-	
+	public int reginumCurrvalAjax() {
+		return dao.reginumCurrvalAjax();
+	}
 	
 	public MemberVO get(int memberkey) {
 		
@@ -99,12 +111,16 @@ public class MemberService {
 	
 	
 	
+	public void memberRegisterApply(MemberVO vo) {
+		dao.memberRegisterApply(vo);
+	}
 	
 	
 	
 	
-	
-	
+	public MemberVO getByNameAndEmail(MemberVO vo) {
+		return dao.getByNameAndEmail(vo);
+	}
 	
 	
 	
@@ -112,6 +128,20 @@ public class MemberService {
 		dao.delete(memberkey);
 	}
 
+	public MemberVO read(String id) {
+		return dao.read(id);
+	}
 	
 	
+	public void updateVisitCnt(int memberkey) {
+		dao.updateVisitCnt(memberkey);
+	}
+
+	public void updatePricing(MemberVO vo) {
+		dao.updatePricing(vo);
+	}
+	
+	public void insertMemberAjax(MemberVO vo) {
+		dao.insertMemberAjax(vo);
+	}
 }

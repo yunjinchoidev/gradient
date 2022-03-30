@@ -33,8 +33,6 @@ public class A12_MultiLangCtrl {
 		System.out.println("선택한 언어:"+lang);
 		Locale locale = new Locale(lang);
 		localeResolver.setLocale(request, response, locale);
-		
-		return "WEB-INF\\views\\member\\a12_multiLanguage.jsp";
+		return "WEB-INF\\views\\member\\login.jsp";
 	}
-	
 }

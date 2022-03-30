@@ -17,8 +17,17 @@
 <script>
 	$(document).ready(function() {
 
+		
+		
+		
+		var psc = $("psc")
+		if(psc == "EmailSuccess"){
+			alert("이메일 발송이 완료 되었습니다.")
+		}
+		
+		
+		
 		$("#allCheck").click(function() {
-			
 			if ($("#allCheck").prop("checked")) {
 				alert("전체 클릭합니다.")
 				$("input[type=checkbox]").prop("checked", true);
@@ -31,7 +40,7 @@
 		
 		
 		$("#ManageBtn").click(function() {
-			confirm("이 회원을 관리하시겠습니까?")
+			confirm("이 회원을 가입 승인 하시겠습니까?")
 		})
 
 		
@@ -44,7 +53,11 @@
 		
 		$("#assessBtn").click(function() {
 			confirm("회원을 평가 하시겠습니까?")
+			
 		})
+		
+		
+		
 		
 		
 		
@@ -52,13 +65,13 @@
 		$("#mailSendBtn").click(function(e) {
 			confirm("메일을 발송하시겠습니까?")
 			var array = new Array();
-			$('input:checkbox[name=email]:checked').each(function() {
-				array.push(this.value);
-			})
+					$('input:checkbox[name=email]:checked').each(function() {
+						array.push(this.value);
+						console.log(this.value);
+						alert(this.value);
+					})
 			alert(array);
-			$("#arrayParam").val(array);
-			$("form").attr("action", "/project5/memberChkSendMail.do")
-			$("form").submit();
+			location.href="/project5/memberChkSendMail.do?arrayParam="+array;
 		})
 
 		
@@ -134,8 +147,6 @@
 
 
 
-							<form id="form">
-
 
 								<div class="dataTable-container">
 									<table class="table table-striped dataTable-table" id="table1">
@@ -177,32 +188,58 @@
 													<td>${list.name}</td>
 													<td>${list.email }</td>
 													<td>${list.auth }</td>
-													<td style="cursor: pointer;" id="ManageBtn"><span
-														class="badge bg-info">요청</span>
-														</td>
-														<td>
+
+
+													<td style="cursor: pointer;" id="ManageBtn"><c:if
+															test="${list.status == 0}">
+															<span class="badge bg-dark">비활성화</span>
+														</c:if> <c:if test="${list.status == 1}">
+															<span class="badge bg-danger nowRequesting" id="ManageBtn"
+															 onclick="location.href='/project5/memberRegister.do?memberkey=${list.memberkey}'">요청 중</span>
+														</c:if> <c:if test="${list.status == 2}">
+															<span class="badge bg-primary">발급 완료</span>
+														</c:if>
+													</td>
+										
+														
+													<td>
 														 <span
-															class="badge bg-success" id="assessBtn" style="cursor: pointer;">평가</span> <span
+															class="badge bg-success" id="assessBtn" style="cursor: pointer;">평가 하기</span> <span
 															class="badge bg-danger" id="exileBtn" style="cursor: pointer;" onclick="location.href='/project5/memberDelete2.do?memberkey=${list.memberkey}'">강제 추방</span>
 														</td>
-													<td>
-														<div style="margin-left: 30px;">
-															<input type="hidden" name="arrayParam" id="arrayParam">
-															<input type="checkbox"
-																class="form-check-input form-check-info chk"
-																name="email" value="${list.email }"
-																style="border: 1px solid black; margin: 0 auto">
-														</div>
-													</td>
+														
+												
+																	<td>
+																	<div style="margin-left: 30px;">
+																		<input type="hidden" name="arrayParam" id="arrayParam">
+																		<input type="checkbox"
+																			class="form-check-input form-check-info chk"
+																			name="email" value="${list.email }"
+																			style="border: 1px solid black; margin: 0 auto">
+																	</div>
+																</td>
+													
 												</tr>
 											</c:forEach>
 									</table>
 								</div>
 
 
-							</form>
+			<script>
+													$(document).ready(function(){
+														var i=0;
+														setInterval(function() {
+															i++;
+															if(i%2==0){
+																$(".nowRequesting").show()
+															}else{
+																$(".nowRequesting").hide()
+															}
+														}, 10000);
 
-
+													})
+													</script>
+													
 
 
 

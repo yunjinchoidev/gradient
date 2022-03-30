@@ -31,25 +31,81 @@
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+
+function absoulte(data){
+	alert("즐겨찾기에 추가합니다");
+		var menubarkey;
+  		console.log("menubarkey"+menubarkey);
+		var menubarkeyValue =$(data).text().substr(2,1);
+		console.log("menubarkeyValue"+menubarkeyValue);
+		var data = { menubarkey :menubarkeyValue};
+		console.log(data);
+	    $.ajax({
+	      url: '/project5/favoriteInsert.do',
+	      data: data,
+	      type: 'POST',
+	      dataType:'json',
+	        success: function(result){
+	        console.log(result)
+	        		alert("성공")
+	        		 location.reload();
+	      },
+	      error: function(result){
+	          console.log(result); 
+	          alert("실패")
+	      }
+	    }); //$.ajax
+	
+}
+
+
+
+
+
+function cancel(data){
+		var favoritekey;
+  		console.log("favoritekey"+favoritekey);
+  		favoritekey = parseInt($(data).text().substr(0,1));
+		console.log("favoritekey"+favoritekey);
+		var data = { favoritekey :favoritekey};
+		console.log(data);
+	    $.ajax({
+	      url: '/project5/favoriteDelete.do',
+	      data: data,
+	      type: 'POST',
+	      dataType:'json',
+	        success: function(result){
+	        console.log(result)
+	        		alert("즐겨찾기에서 해제 되었습니다.!")
+	        		 location.reload();
+	      },
+	      error: function(result){
+	          console.log(result); 
+	          alert("실패")
+	      }
+	    }); //$.ajax
+	    
+	    
+}
+
+
+
+
+
+
+
 $(document).ready(function(){
 	
 	
-	$("#btn1").click(function(){
-		var menubar;
-		var menubar=this.text();
-		var data ={menubar:menubar, status:1}
-		alert("즐겨찾기에 추가합니다");
-		$.ajax({
-			url:'/project5/favoriteUpdate.do',
-			type:'POST',
-			data:data,
-			dataType:'json',
-			success:function(result){
-				alert("성공")
-			}
-		})
-	})
 	
+	
+	
+	
+	
+	
+	
+	
+	// 즐겨 찾기 목록 불럴오기
 	$.ajax({
 			url:'/project5/favoriteList.do',
 			type:'POST',
@@ -61,16 +117,12 @@ $(document).ready(function(){
 					console.log(i)
 					var favoriteListHtml = $("#favoriteList");
 					str="";
-					str+= "<div>"
-					str+= "<span class='fonticon-wrap d-inline me-3' onclick='alert('GGG')' style=' display: inline-block; ' >"
-					str+= "<svg class='bi' width='1.5em' height='1.5em' 	fill='currentColor' >"
-					str+= "<use	xlink:href='/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star'></use>"
-					str+= "</svg>"
-					str+= "</span>"
-					str+= "<a onclick='/project5/myworkCalendar.do?memberkey=1' class='list-group-item'"
-					str+= "style='font-size: 20px; font-weight: bolder; display: inline-block;' id='btn1'>일정 전체 조회</a>"
-					str+= "</div>"
-						
+					str+="<div >"
+					str+="<span class='fonticon-wrap d-inline me-3' style='display: inline-block;' >"
+					str+="😃<a  onclick='cancel(this)' class='list-group-item' style='font-size: 20px; font-weight: bolder; display: inline-block;' >"+result.list[i].favoritekey+")</a>"
+					str +="<a onclick='/project5/myworkCalendar.do?memberkey=${member.memberkey }' class='list-group-item'"
+                    str+="style='font-size: 20px; font-weight: bolder; display: inline-block;' id='btn1'>"+ result.list[i].menubar+"</a> "
+                    str+="</span></div>"
 					favoriteListHtml.append(str)	;
 				}
 				
@@ -97,24 +149,28 @@ $(document).ready(function(){
 				</span>
 				<!-- sidebar close icon -->
 				<div class="email-app-menu" style="height: 5000px;">
-					<div class="form-group form-group-compose">
+					
+
+
+
+
+
+					<div class="sidebar-menu-list ps">
+						<!-- sidebar menu  -->
+						<div class="list-group list-group-messages">
+
+
+				<div class="form-group form-group-compose">
 						<!-- compose button  -->
 						<button type="button"
 							class="btn btn-warning btn-block my-4 compose-btn">
 							<i class="bx bx-plus"></i> 즐겨찾기
 						</button>
-						
-						<div id="favoriteList">
-								<div>
-									<span class="fonticon-wrap d-inline me-3" onclick="alert('GGG')" style=" display: inline-block; " >
-										<svg class="bi" width="1.5em" height="1.5em" 	fill="currentColor" >
-											<use	xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-	                                    </svg>        
-									</span>
-									<a onclick="/project5/myworkCalendar.do?memberkey=${member.memberkey }" class="list-group-item"
-									style="font-size: 20px; font-weight: bolder; display: inline-block;" id="btn1" >전체일정조회</a>
-								</div>
-						</div>
+
+							<div id="favoriteList">
+												
+													
+							</div>
 						
 					</div>
 
@@ -136,215 +192,35 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-					<div class="sidebar-menu-list ps">
-						<!-- sidebar menu  -->
-						<div class="list-group list-group-messages">
-
-
 								<div class="form-group form-group-compose">
 												<!-- compose button  -->
 												<button type="button"
 													class="btn btn-primary btn-block my-4 compose-btn">
 													<i class="bx bx-plus"></i> 구분
 												</button>
-											
 								</div>
-											
-											
-								
+							
+							
+							<c:forEach var="list" items="${menubarList }"> 				
 								<div>
-									<span class="fonticon-wrap d-inline me-3" onclick="alert('GGG')" style=" display: inline-block; " >
-										<svg class="bi" width="1.5em" height="1.5em" 	fill="currentColor" >
-											<use	xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-	                                    </svg>        
-									</span>
-									<a onclick="/project5/myworkCalendar.do?memberkey=${member.memberkey }"class="list-group-item"
-									style="font-size: 20px; font-weight: bolder; display: inline-block;" id="btn1">일정 전체 조회</a>
-								</div>
-							
-							
-							
-							
-							<a href="/project5/myworkKanban.do?memberkey=${member.memberkey }" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-									<svg class="bi" width="1.5em" height="1.5em" fill="currentColor" >
-											<use xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-                                    </svg>
-								</div> 
-								진행중인 칸반
-							</a> 
-							
-							
-							
-							
-							<a href="/project5/myworkGantt.do?memberkey=${member.memberkey }" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
+									<a class="list-group-item"
+									style="font-size: 20px; font-weight: bolder; display: inline-block; color: red" onclick='absoulte(this)' ">✔	${list.menubarkey})</a>
+									
+									<a onclick="location.href='/project5/myWork${list.menubarkey }.do?memberkey=${member.memberkey }'"class="list-group-item"
+									style="font-size: 20px; font-weight: bolder; display: inline-block;" id="btn1">
+									${list.title }</a>
+									
+									
+								 </div>
+							</c:forEach>
 
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-                                        </svg>
-								</div> 진행중인 간트
-							</a> 
-							
-							
-							
-							
-							
-							<a href="/project5/myworkCalendar7days.do?memberkey=${member.memberkey }" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
 
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-                                        </svg>
-								</div> 7일전
-							</a> 
-							
-							
-							<a href="/project5/myworkCalendar3days.do?memberkey=${member.memberkey }" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-                                        </svg>
-								</div> <strong>3일전</strong>
-							</a>
-							
-							
-							
-							 <a href="/project5/myworkCalendar1days.do?memberkey=${member.memberkey }" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-                                        </svg>
-								</div> 1일전
-							</a> 
-							
-							
-							
-							<a href="#" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-                                        </svg>
-								</div> 중요
-							</a> 
-							
-							
-							
-							<a href="#" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#archive"></use>
-                                        </svg>
-								</div> 시급
-							</a> 
-							
-							
-							
-							<a href="#" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#pencil"></use>
-                                        </svg>
-								</div> 완료
-							</a> 
-							
-							
-							
-							<a href="/project5/myWorkFileBox.do?memberkey=${member.memberkey }" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#star"></use>
-                                        </svg>
-								</div> 파일함
-							</a>
 							
 							
 							
 							
-							 <a href="/project5/myWorkFileBox.do?memberkey=${member.memberkey }" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#info-circle"></use>
-                                        </svg>
-								</div> 이미지 모아 보기 <span
-								class="badge badge-light-danger badge-pill badge-round float-right mt-50">3</span>
-							</a> 
 							
 							
-							<a href="#" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash"></use>
-                                        </svg>
-								</div> 이메일 모음
-							</a>
-							
-							
-							
-							 <a href="#" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash"></use>
-                                        </svg>
-								</div> 코멘트
-							</a> 
-							
-							
-							
-							<a href="#" class="list-group-item"
-								style="font-size: 20px; font-weight: bolder;">
-								<div class="fonticon-wrap d-inline me-3">
-									<svg class="bi" width="1.5em" height="1.5em"
-										fill="currentColor">
-                                            <use
-											xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash"></use>
-                                        </svg>
-								</div> 휴가 관리
-							</a>
 						
 						</div>
 						<!-- sidebar menu  end-->

@@ -37,9 +37,29 @@
 </head>
 <script>
 	$(document).ready(function() {
+
 		$("#make").click(function(){
-			alert("이메일이 전송되었습니다!")
+			confirm("정말 가입하시겠습니까?")
+			
+			alert("계정 발급 신청 완료 되었습니다.\n 관리자 승인후, 입력한 이메일로\n임시아이디/비밀번호가 발급될 예정입니다.")
+			
 		})
+		
+		
+		$.ajax({
+			url:'/project5/reginum.do',
+			type:'POST',
+			dataType:'json',
+			success:function(result){
+				console.log(result.reginum)
+				$("[name=memberkey]").val(result.reginum)
+			}
+		})
+		
+		
+		
+		
+		
 	});	
 </script>
 
@@ -52,26 +72,51 @@
 				<div id="auth-left" style="width: 900px;">
 					<h1 class="auth-title">처음 오셨습니까?</h1>
 					<p class="auth-subtitle mb-5" >이메일을 입력하시오</p>
-					<form action="/project5/memberRegister.do" method="post">
+					<p class="auth-subtitle mb-5" >관리자 승인후, 입력한 이메일로 <br>임시아이디/비밀번호가 발급될 예정입니다.</p>
+					
+					
+					
+					
+					
+					<form action="/project5/memberRegisterApplyFirst.do" method="post">
+					
+					
+					
 						<div class="form-group position-relative has-icon-left mb-4">
+						
 							<input type="text" class="form-control form-control-xl"
-								placeholder="가입번호 : ${reginum }" name="memberkey" readonly="readonly" value="${reginum }">
+								 name="memberkey" readonly="readonly" id="memberkey" name="memberkey">
 							<div class="form-control-icon"><i class="bi bi-envelope"></i></div>
 						</div>
+						
+						
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="email" class="form-control form-control-xl"
-								placeholder="이메일" name="reciever">
-							<div class="form-control-icon"><i class="bi bi-person"></i></div></div>
-								
+								placeholder="이메일" name="email">
+							<div class="form-control-icon"><i class="bi bi-person"></i></div>
+						</div>
+							
+						<div class="form-group position-relative has-icon-left mb-4">
+							<input type="text" class="form-control form-control-xl"
+								placeholder="이름" name="name" >
+							<div class="form-control-icon">
+								<i class="bi bi-person"></i>
+							</div>
+						</div>
 						
-						
 
 
-
-
-
-
-						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" id="make">임시 아이디/비밀번호 발급받기</button>
+						<div class="form-group position-relative has-icon-left mb-4">
+							<select class="form-control form-control-xl" name="auth"><option
+									value="" selected>직급</option>
+								<option value="pm">PM</option>
+								<option value="teamleader">팀장</option>
+								<option value="developer">개발자</option></select>
+							<div class="form-control-icon">
+								<i class="bi bi-shield-lock"></i>
+							</div>
+						</div>							
+						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" id="make">계정 발급 신청</button>
 					</form>
 					
 					

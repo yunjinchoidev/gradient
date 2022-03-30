@@ -10,8 +10,17 @@
 <script>
 	$(document).ready(function(){
 		var outputkey = parseInt("${get.outputkey}")
+		$("[name=outputkey]").val(outputkey)
+		
 		$("#assessBtn").click(function(){
-			$("[name=outputkey]").val(outputkey)
+			if("${member.auth}" == "pm"){
+				confirm("평가하시겠습니까?")
+			}else{
+				"pm 외에는 평가 불가합니다."
+			}			
+		})
+
+
 		})
 	})
 </script>
@@ -28,7 +37,7 @@
 
 						<div class="card-header">
 							<h4 class="card-title">산출물 조회  
-								<span class="badge bg-warning"  data-bs-toggle="modal"  data-bs-target="#inlineForm" id="assessBtn" value="${list.outputkey }"
+								<span class="badge bg-warning" style="cursor: pointer;" data-bs-toggle="modal"  data-bs-target="#inlineForm" id="assessBtn" value="${list.outputkey }"
 													>평가하기</span>
 													<span>${get.evaluation }</span>
 							</h4>

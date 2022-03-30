@@ -18,14 +18,18 @@
 		order by outputkey
 	</select>
 
-	<select id="get" parameterType="int" resultType="project5.output.OutputVO">
+	<select id="get" parameterType="int"
+		resultType="project5.output.OutputVO">
 		select o.*, m.name mname, w.title
-		worksortTitle, p.name pname, d.dname
+		worksortTitle, p.name
+		pname, d.dname
 		FROM output o, member m, workSort
-		w, project p, DEPARTMENT d
+		w, project p,
+		DEPARTMENT d
 		where o.memberkey = m.memberkey
 		and
-		o.worksortkey = w.worksortkey
+		o.worksortkey =
+		w.worksortkey
 		and o.projectkey = p.projectkey
 		and
 		o.deptno = d.deptno
@@ -63,15 +67,14 @@
 		delete from output
 		where outputkey = #{outputkey}
 	</delete>
-	
-	<update id="outputEvaluation" parameterType="project5.output.OutputVO">
-	update output
-	set
-	evaluation=#{evaluation}
-	where outputkey=#{outputkey}
+
+	<update id="outputEvaluation"
+		parameterType="project5.output.OutputVO">
+		update output
+		set
+		evaluation=#{evaluation}
+		where outputkey=#{outputkey}
 	</update>
-	
-	
 
 
 

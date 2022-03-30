@@ -18,9 +18,34 @@ public class AttendanceController {
 	
 	@RequestMapping("/attendanceMain.do")
 	public String attendance(Model d) {
-		d.addAttribute("list", service2.list());
+		d.addAttribute("list", service.memberPlusAttendacne());
 		return "WEB-INF\\views\\attendance\\main.jsp";
 	}
+
+	@RequestMapping("/attendanceMain2.do")
+	public String attendanceMain2(Model d) {
+		d.addAttribute("list", service2.list());
+		return "WEB-INF\\views\\attendance\\main2.jsp";
+	}
+
+	@RequestMapping("/attendanceWriteForm.do")
+	public String attendanceWriteForm(Model d, int memberkey) {
+		d.addAttribute("get", service2.get(memberkey));
+		return "WEB-INF\\views\\attendance\\writeForm.jsp";
+	}
+	
+	@RequestMapping("/attendanceWrite.do")
+	public String attendanceWrite(Model d, AttendanceVO vo) {
+		service.attendanceWrite(vo);
+		return "forward:/attendanceMain.do";
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

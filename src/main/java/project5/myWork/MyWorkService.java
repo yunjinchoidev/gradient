@@ -17,6 +17,11 @@ public class MyWorkService {
 		return dao.myFileListInOutput(memberkey);
 	}
 	
-	
-	
+	public List<MenubarVO> menubarList(){
+		return dao.menubarList();
+	}
+
+	public MenubarVO menubarGet(int menubarkey) {
+		return dao.menubarGet(menubarkey);
+	}
 }

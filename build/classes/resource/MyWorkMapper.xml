@@ -10,6 +10,23 @@
 		SELECT OUTPUTKEY FROM
 		OUTPUT WHERE memberkey =#{memberkey})
 	</select>
+	
+	
+	<select id="menubarList" resultType="project5.myWork.MenubarVO">
+		select *
+		from menubar
+		order by menubarkey
+	</select>
+	
+	
+	<select id="menubarGet" resultType="project5.myWork.MenubarVO">
+		select *
+		from menubar
+		where menubarkey=#{menubarkey}
+	</select>
+	
+	
+	
 
 
 

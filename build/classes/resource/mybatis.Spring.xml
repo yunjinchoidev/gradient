@@ -19,6 +19,7 @@
 	<mappers>
 		<mapper resource="resource/DeptMapper.xml" />
 		<mapper resource="resource/MemberMapper.xml" />
+		<mapper resource="resource/Member2Mapper.xml" />
 		<mapper resource="resource/CalendarMapper.xml" />
 		<mapper resource="resource/KanbanMapper.xml" />
 		<mapper resource="resource/GanttMapper.xml" />

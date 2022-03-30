@@ -71,7 +71,7 @@
 		<div class="input-group-prepend ">
 			<span class="input-group-text ">수신자</span>
 		</div>
-		<input name="reciever" class="form-control" placeholder="수신자 입력하세요" values="안녕하세요? 쌍용 5조 PMBOK입니다."/>	
+		<input name="reciever" class="form-control" placeholder="수신자 입력하세요" values="안녕하세요? Gradient입니다."/>	
 	</div>	
 	
 	

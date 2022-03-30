@@ -4,8 +4,17 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.attendance.AttendanceDao">
 
+	<insert id="attendanceWrite" parameterType="project5.attendance.AttendanceVO">
+		INSERT into attendance VALUES (seq_attendance.nextval, #{memberkey}, #{score})
+	</insert>
 
 
+	<select id="memberPlusAttendacne" resultType="project5.attendance.AttendanceVO2">
+		select m.*, a.score
+		from member m, attendance a
+		where m.memberkey =
+		a.memberkey
+	</select>
 
 </mapper>
 

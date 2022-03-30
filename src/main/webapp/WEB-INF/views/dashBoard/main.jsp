@@ -75,6 +75,20 @@ $(document).ready(function(){
 	
 	
 	
+	console.log("${member.pricing}")
+	if ("${member.pricing}"=='0'){
+			$("#openbox1").hide();
+			$("#openbox2").hide();
+			$("#openbox3").hide();
+	}else if("${member.pricing}"=='1'){
+		$("#openbox1").show();
+		$("#openbox2").hide();
+		$("#openbox3").hide();
+	}else {
+		$("#openbox1").show();
+		$("#openbox2").show();
+		$("#openbox3").show();
+	}
 	
 	
 	
@@ -258,7 +272,10 @@ $(document).ready(function(){
 								</div>
 							</div>
 						</div>
-						<div class="col-6 col-lg-3 col-md-6">
+						
+						
+						
+						<div class="col-6 col-lg-3 col-md-6 " id="openbox1">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
 									<div class="row">
@@ -268,14 +285,14 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프리미엄시 개방</h6>
-											<h6 class="font-extrabold mb-0">프리미엄시 개방</h6>
+											<h6 class="text-muted font-semibold">개방1</h6>
+											<h6 class="font-extrabold mb-0">개방1</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-6 col-lg-3 col-md-6">
+						<div class="col-6 col-lg-3 col-md-6"  id="openbox2">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
 									<div class="row">
@@ -285,14 +302,14 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프리미엄시 개방</h6>
-											<h6 class="font-extrabold mb-0">프리미엄시 개방</h6>
+											<h6 class="text-muted font-semibold">개방2</h6>
+											<h6 class="font-extrabold mb-0">개방2</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-6 col-lg-3 col-md-6">
+						<div class="col-6 col-lg-3 col-md-6"  id="openbox3">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
 									<div class="row">
@@ -302,13 +319,32 @@ $(document).ready(function(){
 											</div>
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">프리미엄시 개방</h6>
-											<h6 class="font-extrabold mb-0">프리미엄시 개방</h6>
+											<h6 class="text-muted font-semibold">개방3</h6>
+											<h6 class="font-extrabold mb-0">개방3</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 					</div>
 

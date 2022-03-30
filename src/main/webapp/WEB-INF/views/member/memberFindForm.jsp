@@ -66,10 +66,10 @@ $(document).ready(function(){
 				<div id="auth-left" style="width: 900px;">
 					<h1 class="auth-title">아이디 찾기</h1>
 					<p class="auth-subtitle mb-5">
-						아이디를 정확히 입력하시오
+						가입할 때 입력했던 <br> 이름과 이메일을 입력하세요
 					</p>
 
-					<form action="/project5/memberFind.do" method="post">
+					<form action="/project5/memberIdFind.do" method="post">
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"
 								placeholder="name" name="name">
@@ -90,13 +90,21 @@ $(document).ready(function(){
 					<br><br><br><br><br><br>
 					<h1 class="auth-title">비밀번호 찾기</h1>
 					<p class="auth-subtitle mb-5">
-						비밀번호를 정확히 입력하시오
+						가입할 때 입력했던 <br>이름, 이메일, 아이디를 입력하세요
+						<br> 관리자 승인 후 이메일로 임시 비밀번호를 보내겠습니다.
 					</p>
 
-					<form action="/project5/memberFind.do" method="post">
+					<form action="/project5/memberPassFind.do" method="post">
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"
 								placeholder="name" name="name">
+							<div class="form-control-icon">
+								<i class="bi bi-person"></i>
+							</div>
+						</div>
+						<div class="form-group position-relative has-icon-left mb-4">
+							<input type="text" class="form-control form-control-xl"
+								placeholder="email" name="email">
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>

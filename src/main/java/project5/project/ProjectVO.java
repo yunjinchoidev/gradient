@@ -20,6 +20,8 @@ public class ProjectVO {
 	private String startdateS;
 	private Date lastdate;
 	private String lastdateS;
+	private String quality;
+	
 	
 	private MultipartFile[] uploadFile;
 
@@ -50,6 +52,33 @@ public class ProjectVO {
 		this.startdateS = startdateS;
 		this.lastdate = lastdate;
 		this.lastdateS = lastdateS;
+	}
+	
+	
+	
+	
+	public ProjectVO(int projectkey, String name, Date term, String termS, int take, String manager, String progress,
+			String importance, String contents, int clientkey, Date startdate, String startdateS, Date lastdate,
+			String lastdateS, String quality, MultipartFile[] uploadFile, ArrayList<String> fnames, int fno) {
+		super();
+		this.projectkey = projectkey;
+		this.name = name;
+		this.term = term;
+		this.termS = termS;
+		this.take = take;
+		this.manager = manager;
+		this.progress = progress;
+		this.importance = importance;
+		this.contents = contents;
+		this.clientkey = clientkey;
+		this.startdate = startdate;
+		this.startdateS = startdateS;
+		this.lastdate = lastdate;
+		this.lastdateS = lastdateS;
+		this.quality = quality;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+		this.fno = fno;
 	}
 	public int getProjectkey() {
 		return projectkey;
@@ -153,6 +182,14 @@ public class ProjectVO {
 	public void setFno(int fno) {
 		this.fno = fno;
 	}
+	public String getQuality() {
+		return quality;
+	}
+	public void setQuality(String quality) {
+		this.quality = quality;
+	}
+	
+	
 
 
 }

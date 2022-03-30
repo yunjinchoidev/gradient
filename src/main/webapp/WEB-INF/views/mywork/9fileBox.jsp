@@ -280,7 +280,7 @@ $(document).ready(function(){
 										<div class="email-user-list list-group ps ps--active-y"
 											style="height: 5000px;">
 
-										<%@include file="gallery.jsp" %>
+										<%@include file="10gallery.jsp" %>
 
 
 

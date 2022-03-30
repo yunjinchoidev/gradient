@@ -5,7 +5,8 @@
 <mapper namespace="project5.member.MemberDao">
 
 	<select id="list" resultType="project5.member.MemberVO">
-		select * from member order by memberkey
+		select * from member order by
+		memberkey
 	</select>
 
 	<insert id="edit" parameterType="project5.member.MemberVO">
@@ -25,13 +26,19 @@
 		FROM dual
 	</select>
 
+	<select id="reginumCurrvalAjax" resultType="int">
+		SELECT
+		seq_memberregi.currval
+		FROM dual
+	</select>
+
 
 	<select id="get" resultType="project5.member.MemberVO">
 		select * from member where
 		memberkey=#{memberkey}
 	</select>
 
-	
+
 
 
 
@@ -55,6 +62,140 @@
 		from member
 		where memberkey=#{memberkey}
 	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<resultMap type="project5.member.MemberVO" id="memberMap">
+		<id property="memberkey" column="memberkey" />
+		<result property="id" column="id" />
+		<result property="pass" column="pass" />
+		<result property="email" column="email" />
+		<collection property="authList" resultMap="authMap">
+		</collection>
+	</resultMap>
+
+	<resultMap type="project5.member.AuthVO" id="authMap">
+		<result property="memberkey" column="memberkey" />
+		<result property="auth" column="auth" />
+	</resultMap>
+
+
+	<select id="read" resultMap="memberMap" parameterType="String">
+		SELECT
+		m.memberkey, m.id, m.pass,
+		m.email, auth.auth
+		FROM
+		member m LEFT OUTER
+		JOIN auth auth on m.memberkey
+		= auth.memberkey
+		WHERE m.id
+		=#{id}
+	</select>
+
+
+
+
+	<update id="memberRegisterApply"
+		parameterType="project5.member.MemberVO">
+		update member
+		set status = 1,
+		email = #{email},
+		auth =
+		#{auth},
+		name= #{name}
+		where memberkey=#{memberkey}
+	</update>
+
+	<update id="memberRegisterComplete"
+		parameterType="project5.member.MemberVO">
+		update member
+		set status = 2
+		where memberkey=#{memberkey}
+	</update>
+
+
+
+
+
+	<select id="memberIdFind"
+		parameterType="project5.member.MemberVO" resultType="String">
+		select id
+		from
+		member
+		where name=#{name}
+		and email=#{email}
+	</select>
+
+	<select id="memberPassFind"
+		parameterType="project5.member.MemberVO" resultType="String">
+		select pass
+		from
+		member
+		where name=#{name}
+		and id=#{id}
+		and email=#{email}
+	</select>
+
+
+
+
+	<select id="newIssuePassword"
+		parameterType="project5.member.MemberVO">
+		UPDATE MEMBER
+		SET
+		pass =
+		'newissuedpassword'||seq_memberpass.nextval
+		WHERE name=#{name}
+		and
+		id=#{id}
+		and email=#{email}
+	</select>
+
+
+	<select id="getByNameAndEmail"
+		parameterType="project5.member.MemberVO"
+		resultType="project5.member.MemberVO">
+		select *
+		from
+		member
+		where name=#{name}
+		and email=#{email}
+
+	</select>
+
+
+	<update id="updateVisitCnt"
+		parameterType="project5.member.MemberVO">
+		update member
+		set visitcnt = visitcnt+1
+		where memberkey = #{memberkey}
+	</update>
+
+	<update id="updatePricing"
+		parameterType="project5.member.MemberVO">
+		update member
+		set pricing= #{pricing}
+		where memberkey = #{memberkey}
+	</update>
+
+
+	<insert id="insertMemberAjax" parameterType="project5.member.MemberVO">
+		insert into member (memberkey, name, email) values 
+		(seq_member.nextval, #{name}, #{email})
+	</insert>
+
 
 
 

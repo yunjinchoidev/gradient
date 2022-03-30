@@ -7,13 +7,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import project5.fileInfo.FileInfoService;
 import project5.mail.A10_MailService;
 import project5.mail.Mail;
-import project5.project.ProjectVO;
 
 @Controller
 @SessionAttributes("member")
@@ -36,8 +36,8 @@ public class MemberContoller {
 		return new MemberVO();
 	}
 
-	@GetMapping("/login.do")
-	public String login() {
+	@GetMapping("/loginForm.do")
+	public String loginForm() {
 		return "WEB-INF\\views\\member\\login.jsp";
 	}
 
@@ -54,7 +54,7 @@ public class MemberContoller {
 	
 	
 	
-	@PostMapping("/login.do")
+	@RequestMapping("/login.do")
 	public String login(Model d, @ModelAttribute("member") MemberVO vo) {
 		vo = service.login(vo);
 		MemberVO vo2 = new MemberVO(1);
@@ -63,29 +63,32 @@ public class MemberContoller {
 			d.addAttribute("member", service.login(vo));
 			System.out.println("vo : "+vo);
 			System.out.println("로그인 성공하였습니다.");
+			service.updateVisitCnt(vo.getMemberkey());
 			return "forward:/main.do";
 		} else {
 			d.addAttribute("psc", "fail");
 			d.addAttribute("member", vo2);
 			System.out.println("vo : "+vo);
 			System.out.println("로그인 실패");
-			return "WEB-INF\\views\\member\\loginFail.jsp";
+			return "forward:/loginFail.do";
 		}
-		
-		
-		
-		
-		
-
 	}
+	
+	
+	
+	
 
+	@RequestMapping("/loginFail.do")
+	public String loginFail() {
+		System.out.println("로그인실패 성공");
+		return "WEB-INF\\views\\member\\loginFail.jsp";
+	}
+	
+	
 	@RequestMapping(value = "/logout.do")
 	public String userRemove(@ModelAttribute("member") MemberVO member, Model d) {
 		MemberVO vo = new MemberVO(1);
-		System.out.println("로그아웃 진입");
 		d.addAttribute("member", vo);
-		System.out.println(member);
-		System.out.println(member.getId());
 		System.out.println("로그아웃 성공");
 		return "redirect:/login.do";
 	}
@@ -116,15 +119,63 @@ public class MemberContoller {
 		return "WEB-INF\\views\\member\\registerForm.jsp";
 	}
 
-	@RequestMapping("/memberRegister.do")
-	public String register(Model d, MemberVO vo, Mail mail) {
+	
+	
+	@RequestMapping("/reginum.do")
+	public String reginumCurrvalAjax(Model d) {
+		d.addAttribute("reginum", service.reginum());
+		return "pageJsonReport";
+	}
+	
+	
+	@RequestMapping("/memberInfoByMemberKey.do")
+	public String memberInfoByMemberKey(Model d, int memberkey) {
+		d.addAttribute("memberInfoByMemberKey", service.get(memberkey));
+		return "pageJsonReport";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	/////////////////////////////////////////////////////////////////////
+	@RequestMapping("/memberRegisteraa.do")
+	public String memberRegister(Model d, MemberVO vo, Mail mail) {
 		System.out.println(vo.getMemberkey());
 		System.out.println(mail.toString());
 		d.addAttribute("psc", service2.sendidpassMail(vo.getMemberkey(), mail.getReciever()));
-		System.out.println("임시 아이디 비밀번호 발급 성공");
-		return "WEB-INF\\views\\member\\memberRegisterResult.jsp";
+		System.out.println("회원 신청 완료");
+		return "";
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	@RequestMapping("/memberRegister.do")
+	public String memberRegister(Model d, MemberVO vo) {
+		System.out.println(vo.getMemberkey());
+		MemberVO vo2 =service.get(vo.getMemberkey());
+		service2.sendidpassMail(vo.getMemberkey(), vo2.getEmail());
+		service.memberRegisterComplete(vo.getMemberkey());
+		d.addAttribute("psc", "EmailSuccess");
+		System.out.println("임시 아이디 비밀번호 발급 성공");
+		return "forward:/memberList.do";
+	}
+
+	
+	
+	
+	
+	
 	@RequestMapping("/memberRegisterResult.do")
 	public String memberRegisterResult() {
 		return "WEB-INF\\views\\member\\memberRegisterResult.jsp";
@@ -162,6 +213,73 @@ public class MemberContoller {
 		return "WEB-INF\\views\\member\\memberFindForm.jsp";
 	}
 	
+
+	
+	
+	
+	
+	
+	@RequestMapping("/memberIdFind.do")
+	public String memberIdFind(Model d, MemberVO vo) {
+		d.addAttribute("get", service.memberIdFind(vo));
+		return "WEB-INF\\views\\member\\memberIdFind.jsp";
+	}
+
+
+	
+	
+	@RequestMapping("/memberPassFind.do")
+	public String memberPassFind(Model d, MemberVO vo) {
+		d.addAttribute("get", service.memberPassFind(vo));
+		service.newIssuePassword(vo);
+		
+		MemberVO vo2 = service.getByNameAndEmail(vo);
+		if (vo2 !=null) {
+			service2.sendpassIssueMail(vo2.getMemberkey(), vo.getEmail());
+			return "WEB-INF\\views\\member\\memberPassFind.jsp";
+		}else {
+			return "WEB-INF\\views\\member\\memberPassFind.jsp";
+		}
+
+	}
+	
+	@RequestMapping("/updatePricing.do")
+	public String updatePricing(Model d, MemberVO vo) {
+		service.updatePricing(vo);
+		return "pageJsonReport";
+	}
+	
+	@RequestMapping("/insertMemberAjax.do")
+	public String insertMemberAjax(Model d, MemberVO vo) {
+		service.insertMemberAjax(vo);
+		d.addAttribute("insertMemberAjax","succeess");
+		return "pageJsonReport";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 		// 아이디 중복 검사
 		@RequestMapping("/memberIdChk.do")
 		@ResponseBody
@@ -185,9 +303,63 @@ public class MemberContoller {
 			return "pageJsonReport";
 		}
 		
+		@RequestMapping("/readreadread.do")
+		public String readreadread(String id, Model d) {
+			System.out.println("/readreadread.do 진입");
+			System.out.println("id:"+id);
+			d.addAttribute("readreadread", service.read(id));
+			return "pageJsonReport";
+		}
 		
 		
 		
-	
+		
+		
+		
+		
+		
+		
+		//카카오 api 로그인
+		@RequestMapping("/loginKaKao.do")
+		public String loginKaKao(@RequestParam("code") String code, Model d) {
+			System.out.println("===================================");
+			System.out.println(code);
+			d.addAttribute("code",   code);
+			return "WEB-INF\\views\\member\\login.jsp";
+		}
+		
+
+		
+		//카카오 api 로그인
+		@RequestMapping("/loginNaver.do")
+		public String loginNaver(@RequestParam("access_token") String access_token, Model d) {
+			System.out.println("===================================");
+			System.out.println(access_token);
+			d.addAttribute("access_token",   access_token);
+			return "WEB-INF\\views\\member\\login.jsp";
+		}
+		
+		
+		
+		
+		
+		
+		@RequestMapping("/memberRegisterApplyFirst.do")
+		public String memberRegisterApply(Model d, MemberVO vo) {
+			
+			service.memberRegisterApply(vo);
+			return "WEB-INF\\views\\member\\memberRegisterResult.jsp";
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 }

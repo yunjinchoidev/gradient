@@ -41,10 +41,41 @@
 		var list = "${list}";
 		var email = "${list.email }";
 		var results = "${results }";
+		var psc = "${psc }";
 		console.log("${list }");
 		console.log(list)
 		console.log(list.length)
 		console.log(results)
+		
+		if(psc=="success"){
+			alert("단체 메일을 발송 하였습니다.!")
+		}
+		
+		
+		
+		
+		$("#sendMailBtn").click(function(e) {
+			confirm("메일을 발송하시겠습니까?")
+			
+			var title= $("input[name=title]").val()
+			var content=$("input[name=content]").val()
+			var sender=	$("input[name=sender]").val()
+			
+			var array = new Array();
+			<c:forEach var="email" items="${results }">
+				array.push("${email}");
+			</c:forEach>
+			
+			alert(array);
+			
+			location.href="/project5/mailsend3.do?arrayParam="+array+"&title="+title
+					+"&content="+title+"&sender="+sender;
+		})
+
+		
+		
+		
+		
 	});
 </script>
 </head>
@@ -73,23 +104,16 @@
 
 
 		<div class="container">
-			<form method="post" action="/project5/mailsend.do">
-
-
-
+		
 				<c:forEach var="email" items="${results }">
 					<div class="input-group mb-3">
 						<div class="input-group-prepend ">
-							<span class="input-group-text">발신자</span>
+							<span class="input-group-text" style="color:red">수신자</span>
 						</div>
-						<input name="sender" class="form-control" reaonly
-							value="${email }" placeholder="발신자 입력하세요" />
+						<input name="reciever" class="form-control" reaonly
+							value="${email }" placeholder="수신자 입력하세요" style="color:red"/>
 					</div>
 				</c:forEach>
-
-
-
-
 
 				<div class="input-group mb-3">
 					<div class="input-group-prepend ">
@@ -98,7 +122,6 @@
 					<input name="sender" class="form-control" reaonly
 						value="qmwmemrmaa@gmail.com" placeholder="발신자 입력하세요" />
 				</div>
-
 
 
 				<div class="input-group mb-3">
@@ -125,7 +148,6 @@
 					<input type="submit" class="btn btn-success" value="메일발송"
 						id="sendMailBtn" />
 				</div>
-			</form>
 
 
 		</div>

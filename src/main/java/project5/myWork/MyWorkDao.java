@@ -10,6 +10,7 @@ import project5.fileInfo.FileInfoVO;
 public interface MyWorkDao {
 
 	public List<FileInfoVO> myFileListInOutput(int memberkey);
-	
+	public List<MenubarVO> menubarList();
+	public MenubarVO menubarGet(int menubarkey);
 	
 }

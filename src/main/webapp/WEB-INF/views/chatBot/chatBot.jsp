@@ -200,7 +200,8 @@ $(document).ready(function(){
 	
 		// 연결
 		function conn() {
-			wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
+//			wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
+			wsocket = new WebSocket("ws:/@localhost.155:7080/${path}/chat-ws.do");
 			wsocket.onopen = function(evt) {
 				console.log(evt);
 				sendMsgInit();

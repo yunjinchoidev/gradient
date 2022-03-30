@@ -59,104 +59,18 @@
 								<h5 class="card-title">안녕하세요?</h5>
 							</div>
 							<div class="card-body">
-							    조원 : 최윤진, 마혜민, 문재영, 신지호, 윤혜정, 장훈주<br>
-								프로젝트 기간 : 2022년 3월 4일 ~ 4월 12일 <br> <br> <a
-									href="https://github.com/yunjinchoidev/project5"
-									target="_blank">깃허브 링크입니다.<br> <br>
+							<a>Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
+							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
+							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
 								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
-
-
-			<!-- Groups section start -->
-			<section id="groups">
-				<div class="row match-height">
-					<div class="col-12 mt-3 mb-1">
-						<h4 class="section-title text-uppercase">5조</h4>
-					</div>
-				</div>
-				<div class="row match-height">
-					<div class="col-12">
-						<div class="card-group">
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/cyj.jpg" alt="Card image cap"
-										style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">최윤진</h4>
-										<p class="card-text">안녕하세요. 프로젝트 조장을 맡았습니다.</p>
-										<small class="text-muted">3월 9일</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/mhm.png" alt="Card image cap"
-										style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">마혜민</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/mjy.jpg" alt="Card image cap"
-										style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">문재영</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/sjh.jpg" alt="Card image cap"
-										style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">신지호</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/yhj.jpg" alt="Card image cap"
-										style="width: 100%; height: 200px">
-									<div class="card-body">
-										<h4 class="card-title">윤혜정</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
-							</div>
-							<div class="card">
-								<div class="card-content">
-									<img class="card-img-top img-fluid"
-										src="/project5/resources/emoji/jhj.jpg" alt="Card image cap"
-										style="width: 100%; height: 200px;">
-									<div class="card-body">
-										<h4 class="card-title">장훈주</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
-									</div>
-								</div>
+							<a>Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
+							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
+							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
+								</a>
+							<a>Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
+							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
+							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
+								</a>
 							</div>
 						</div>
 					</div>
@@ -164,38 +78,11 @@
 			</section>
 		</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>개발의 기록</h3>
+						<h3>그래디언트</h3>
 						<p class="text-subtitle text-muted">프로젝트의 여정을 기록해두었습니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
@@ -209,9 +96,139 @@
 					</div>
 				</div>
 			</div>
+			
 			<!-- Basic card section start -->
 			<section id="content-types">
 				<div class="row">
+				
+				<div class="col-md-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h4>With Captions</h4>
+                                    <p>A carousel with captions over the top</p>
+                                </div>
+                                <div class="card-body">
+                                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+                                        <ol class="carousel-indicators">
+                                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class=""></li>
+                                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="active"></li>
+                                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
+                                        </ol>
+                                        <div class="carousel-inner">
+                                            <div class="carousel-item active carousel-item-start">
+                                                <img src="/project5/resources/image/roadmap.png" class="d-block w-100" alt="...">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>First slide label</h5>
+                                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                                </div>
+                                            </div>
+                                            <div class="carousel-item carousel-item-next carousel-item-start">
+                                                <img src="/project5/resources/image/roadmap2.png" class="d-block w-100" alt="...">
+                                                <div class="carousel-caption d-none d-md-block">
+                                                    <h5>Second slide label</h5>
+                                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
+                                            <span class="carousel-control-prev-icon" aria-hidden="true" style="border:1px solid black"></span>
+                                            <span class="visually-hidden">Previous</span>
+                                        </a>
+                                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
+                                            <span class="carousel-control-next-icon" aria-hidden="true" style="border:1px solid black"></span>
+                                            <span class="visually-hidden">Next</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+				
+				
+				
+							
+					<div class="col-md-6 col-sm-12" >
+						<div class="card">
+							<div class="card-content">
+								<img class="card-img-top img-fluid"
+									src="/project5/resources/image/logo.png"
+									alt="Card image cap" style="height: 20em; width: 20em;">
+									
+								<div class="card-body">
+									<h4 class="card-title">왜 그래이언트 인가요?</h4>
+									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
+									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
+									<button class="btn btn-primary block">Update now</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-12" >
+						<div class="card">
+							<div class="card-content">
+								<img class="card-img-top img-fluid"
+									src="/project5/resources/image/logo.png"
+									alt="Card image cap" style="height: 20em; width: 20em;">
+									
+								<div class="card-body">
+									<h4 class="card-title">왜 그래이언트 인가요?</h4>
+									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
+									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
+									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
+									<button class="btn btn-primary block">Update now</button>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 					<div class="col-xl-4 col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
@@ -222,7 +239,7 @@
 										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
 								</div>
 								<img class="img-fluid w-100"
-									src="/project5/resources/image/notionconference.png"
+									src="/project5/resources/image/logo.png"
 									alt="Card image cap">
 							</div>
 							<div class="card-footer d-flex justify-content-between">
@@ -240,7 +257,7 @@
 										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
 								</div>
 								<img class="img-fluid w-100"
-									src="/project5/resources/image/ouroutput.png"
+									src="/project5/resources/image/logo.png"
 									alt="Card image cap">
 							</div>
 							<div class="card-footer d-flex justify-content-between">
@@ -248,18 +265,6 @@
 								<button class="btn btn-light-primary">Read More</button>
 							</div>
 						</div>
-
-
-
-
-
-
-
-
-
-
-
-
 					</div>
 
 
@@ -270,11 +275,9 @@
 
 
 					<div class="col-xl-4 col-md-6 col-sm-12">
-
-
 						<div class="card">
 							<div class="card-content">
-								<img src="/project5/resources/image/introduce.png"
+								<img src="/project5/resources/image/logo.png"
 									class="card-img-top img-fluid" alt="singleminded">
 								<div class="card-body">
 									<h5 class="card-title">Be Single Minded</h5>
@@ -350,7 +353,7 @@
 
 
 
-					<div class="col-xl-4 col-md-6 col-sm-12">
+					<div class="col-xl-4 col-md-6 col-sm-12" >
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
@@ -360,7 +363,7 @@
 										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
 								</div>
 								<img class="img-fluid w-100"
-									src="/project5/resources/image/after.png"
+									src="/project5/resources/image/logo.png"
 									alt="Card image cap">
 							</div>
 							<div class="card-footer d-flex justify-content-between">
@@ -368,47 +371,18 @@
 								<button class="btn btn-light-primary">Read More</button>
 							</div>
 						</div>
-
-
 					</div>
-					<div class="col-md-6 col-sm-12">
-						<div class="card">
-							<div class="card-content">
-								<img class="card-img-top img-fluid"
-									src="/project5/resources/dist/assets/images/samples/origami.jpg"
-									alt="Card image cap" style="height: 20rem">
-								<div class="card-body">
-									<h4 class="card-title">Top Image Cap</h4>
-									<p class="card-text">Jelly-o sesame snaps cheesecake
-										topping. Cupcake fruitcake macaroon donut pastry gummies
-										tiramisu chocolate bar muffin. Dessert bonbon caramels brownie
-										chocolate bar chocolate tart dragée.</p>
-									<p class="card-text">Cupcake fruitcake macaroon donut
-										pastry gummies tiramisu chocolate bar muffin.</p>
-									<button class="btn btn-primary block">Update now</button>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="col-md-6 col-sm-12">
-						<div class="card">
-							<div class="card-content">
-								<div class="card-body">
-									<h4 class="card-title">Bottom Image Cap</h4>
-									<p class="card-text">Jelly-o sesame snaps cheesecake
-										topping. Cupcake fruitcake macaroon donut pastry gummies
-										tiramisu chocolate bar muffin. Dessert bonbon caramels brownie
-										chocolate bar chocolate tart dragée.</p>
-									<p class="card-text">Cupcake fruitcake macaroon donut
-										pastry gummies tiramisu chocolate bar muffin.</p>
-									<small class="text-muted">Last updated 3 mins ago</small>
-								</div>
-								<img class="card-img-bottom img-fluid"
-									src="/project5/resources/dist/assets/images/samples/water.jpg"
-									alt="Card image cap" style="height: 20rem; object-fit: cover;">
-							</div>
-						</div>
-					</div>
+					
+					
+		
+					
+					
+					
+					
+					
+					
+					
+					
 				</div>
 			</section>
 			<!-- Basic Card types section end -->
@@ -417,25 +391,7 @@
 
 		</div>
 
-		<footer>
-			<div class="footer clearfix mb-0 text-muted">
-				<div class="float-start">
-					<p>2021 © Mazer</p>
-				</div>
-				<div class="float-end">
-					<p>
-						Crafted with <span class="text-danger"><i
-							class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A.
-							Saugi</a>
-					</p>
-				</div>
-			</div>
-		</footer>
 	</div>
-
-
-
-
 
 
 </body>

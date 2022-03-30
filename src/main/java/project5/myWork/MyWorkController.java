@@ -36,12 +36,14 @@ public class MyWorkController {
 	@RequestMapping("/myworkCalendar.do")
 	public String myWork(Model d, int memberkey) {
 		d.addAttribute("list", service.mywork(memberkey));
+		d.addAttribute("menubarList", service4.menubarList());
 		return "WEB-INF\\views\\mywork\\calendarList.jsp";
 	}
 
 	@RequestMapping("/myworkKanban.do")
 	public String myworkKanaban(Model d, int memberkey) {
 		d.addAttribute("list", service2.individualMemberList(memberkey));
+		d.addAttribute("menubarList", service4.menubarList());
 		return "WEB-INF\\views\\mywork\\kanbanList.jsp";
 	}
 
@@ -81,20 +83,31 @@ public class MyWorkController {
 		return "WEB-INF\\views\\mywork\\ganttGet.jsp";
 	}
 
-	@RequestMapping("/myWorkFileBox.do")
+	
+	
+	//파일함
+	@RequestMapping("/myWork9.do")
 	public String myWorkFileBox(Model d, int memberkey) {
-		return "WEB-INF\\views\\mywork\\fileBox.jsp";
+		return "WEB-INF\\views\\mywork\\9fileBox.jsp";
 	}
-
+	
+	
 	@RequestMapping("/myFileListInOutput.do")
 	public String myFileListInOutput(Model d, int memberkey) {
 		d.addAttribute("myFileListInOutput", service4.myFileListInOutput(memberkey));
 		return "pageJsonReport";
 	}
 	
-	@RequestMapping("/galley.do")
+	@RequestMapping("/myWork10.do")
 	public String galley(Model d, int memberkey) {
-		return "WEB-INF\\views\\mywork\\galley.jsp";
+		return "WEB-INF\\views\\mywork\\10galley.jsp";
+	}
+
+	
+	@RequestMapping("/leftSide.do")
+	public String leftSide(Model d) {
+		d.addAttribute("menubarList", service4.menubarList());
+		return "WEB-INF\\views\\mywork\\leftSide.jsp";
 	}
 	
 	

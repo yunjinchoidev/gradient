@@ -9,19 +9,14 @@
 		select * from favorite
 	</select>
 
-	<update id="update" parameterType="project5.favorite.FavoriteVO">\
-		update favorite
-		set
-		status =
-		#{status}
-		where
-		favoritekey = #{favoritekey}
+	<update id="insert" parameterType="String">
+		INSERT into FAVORITE VALUES (seq_FAVORITE.nextval, #{menubar}, 1)
 	</update>
 
 	<select id="delete" parameterType="int">
 		delete from favorite
 		where
-		favoritekey = #{favoritekey}
+		FAVORITEkey = #{FAVORITEkey}
 	</select>
 
 </mapper>
