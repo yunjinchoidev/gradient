@@ -11,8 +11,6 @@
  --%>
 <html>
 <head>
-<script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
-
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
@@ -52,25 +50,24 @@
 					<a href="/project5/qualityList.do" class="btn btn-warning">품질 건의</a>
 					<a href="/project5/evalitem.do" class="btn btn-primary">품질 평가 항목</a>
 					<a href="#" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#evalModal">품질 평가</a>
-					<a href="${path}/certiprj.do" class="btn btn-success">인증서 발급</a>					
+					<a href="#" class="btn btn-success">인증서 발급</a>
 					</div>
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+							<form id="frm01" class="form" action="/project5/quality.do">
 							<div class="dataTable-top">
 								<div class="dataTable-dropdown">
-									<select class="dataTable-selector form-select"><option
-											value="5">5</option>
-										<option value="10" selected="">10</option>
-										<option value="15">15</option>
-										<option value="20">20</option>
-										<option value="25">25</option></select><label>게시글 수</label>
+									<span class="input-group-text">총 ${qualitySch.count}건</span> <span
+											class="input-group-text">페이지 크기</span> <select
+											class="dataTable-selector form-select" name="pageSize"><option
+												value="5">5</option>
+											<option value="10" selected>10</option>
+											<option value="15">15</option>
+											<option value="20">20</option>
+											<option value="25">25</option></select><label>entries per page</label>
 								</div>
-								<div class="dataTable-search">
-									<input class="dataTable-input" placeholder="Search..."
-										type="text"> <a href="/project5/scheduleInsertForm.do"
-										class="btn btn-danger" style="text-align: right">글쓰기</a>
-								</div>
+								
 
 							</div>
 							<div class="dataTable-container">
@@ -117,6 +114,24 @@
 
 
 
+	<!-- class="page-item active" -->
+				<ul class="pagination  justify-content-end">
+					<li class="page-item"><a class="page-link"
+						href="javascript:goPage(${qualitySch.startBlock!=1?qualitySch.startBlock-1:1})"">Previous</a></li>
+					<c:forEach var="cnt" begin="${qualitySch.startBlock}"
+						end="${qualitySch.endBlock}">
+						<li class="page-item ${cnt==qualitySch.curPage?'active':''}">
+							<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
+							href="javascript:goPage(${cnt})">${cnt}</a>
+						</li>
+					</c:forEach>
+					<li class="page-item"><a class="page-link"
+						href="javascript:goPage(${qualitySch.endBlock!=qualitySch.pageCount?qualitySch.endBlock+1:qualitySch.endBlock})">Next</a></li>
+					<!-- 다음 block의 리스트는 현재 블럭의 마지막 번호 +1 
+	  	   마지막 블럭이 총페이지수일 때는 다음 블럭이 없기 때문에 그대로 두고
+	  	   다음 블럭이 있을 때만 카운트 되게 
+	  -->
+				</ul>
 
 
 
@@ -130,25 +145,7 @@
 
 
 
-							<div class="dataTable-bottom">
-								<div class="dataTable-info">전체 품질: ${qualitySch.count}</div>
-								<ul
-									class="pagination pagination-primary float-end dataTable-pagination">
-									<li class="page-item pager"><a class="page-link"
-										href="javascript:goPage(${qualitySch.startBlock!=1?qualitySch.startBlock-1:1})">‹</a></li>
-									<c:forEach var="cnt" begin="${qualitySch.startBlock}"
-										end="${qualitySch.endBlock}">
-										<li class="page-item ${cnt==qualitySch.curPage?'active':''}">
-											<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
-											href="javascript:goPage(${cnt})">${cnt}</a>
-										</li>
-									</c:forEach>
-									<li class="page-item pager"><a class="page-link"
-										href="javascript:goPage(${qualitySch.endBlock!=qualitySch.pageCount?qualitySch.endBlock+1:qualitySch.endBlock})">›</a></li>
-								</ul>
-
-							</div>
-						</div>
+					
 					</div>
 				</div>
 
@@ -159,7 +156,7 @@
 
 	</div>
 
-<!-- 품질평가 Modal ==장훈주 start== -->
+	<!-- 등록 Modal -->
   	<div class="modal fade text-left" id="evalModal" tabindex="-1" role="dialog"
        	aria-labelledby="myModalLabel33" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
@@ -218,25 +215,19 @@
         </div>
     </div>
 </div>
-<!-- ==장훈주 end== -->
+	
 	
 </body>
 
 <script>
-	// 장훈주 추가 start
 	$(document).ready(function(){
 			
 		var score=0;
 		var msg = "${msg}";
 		
-		if(msg == "합격처리되었습니다"){
+		if(msg != ""){
 			alert(msg)
 			location.href = "${path}/qualityList.do"
-		}
-		
-		if(msg == "인증되었습니다"){
-			alert(msg)
-			location.href = document.referrer;
 		}
 		
 		$("#evalregBtn").click(function(){
@@ -289,7 +280,6 @@
 		
 			
 	});
-	// 장훈주 추가 end
 	
 </script>
 
