@@ -77,124 +77,9 @@
 					<div class="card">
 
 						<div class="card-header">
-							<h4 class="card-title">품질 등록</h4>
+							<h4 class="card-title">품질 건의</h4>
 						</div>
-						<div class="card widget-todo">
-                                <div class="card-header border-bottom d-flex justify-content-between align-items-center">
-                                    <h4 class="card-title d-flex">
-                                        <i class="bx bx-check font-medium-5 pl-25 pr-75"></i>품질
-                                    </h4>
-                                  
-                                </div>
-                                <div class="card-body px-0 py-1">
-                                    <ul class="widget-todo-list-wrapper" id="widget-todo-list">
-                                        <li class="widget-todo-item">
-                                            <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
-                                                <div class="widget-todo-title-area d-flex align-items-center">
-                                                    <i data-feather="list" class="cursor-move"></i>
-                                                    <div class="checkbox checkbox-shadow">
-                                                        <input type="checkbox" class="form-check-input" id="checkbox1">
-                                                        <label for="checkbox1"></label>
-                                                    </div>
-                                                    <span class="widget-todo-title ml-50">높은 정확성, 정밀성을 갖추었다.</span>
-                                                </div>
-                                                <div class="widget-todo-item-action d-flex align-items-center">
-                                                    <div class="badge badge-pill badge-light-success me-1">frontend
-                                                    </div>
-                                                   
-                                                    <i class="bx bx-dots-vertical-rounded font-medium-3 cursor-pointer"></i>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="widget-todo-item">
-                                            <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
-                                                <div class="widget-todo-title-area d-flex align-items-center">
-                                                    <i data-feather="list" class="cursor-move"></i>
-                                                    <div class="checkbox checkbox-shadow">
-                                                        <input type="checkbox" class="form-check-input" id="checkbox2">
-                                                        <label for="checkbox2"></label>
-                                                    </div>
-                                                    <span class="widget-todo-title ml-50">완성된 결과물이 설계 명세서, 요구사항, 법규와 일치한다.</span>
-                                                </div>
-                                                <div class="widget-todo-item-action d-flex align-items-center">
-                                                    <div class="badge badge-pill badge-light-danger me-1">backend</div>
-                                                   
-                                                    <i class="bx bx-dots-vertical-rounded font-medium-3 cursor-pointer"></i>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="widget-todo-item completed">
-                                            <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
-                                                <div class="widget-todo-title-area d-flex align-items-center">
-                                                    <i data-feather="list" class="cursor-move"></i>
-                                                    <div class="checkbox checkbox-shadow">
-                                                        <input type="checkbox" class="form-check-input" id="checkbox3" checked="">
-                                                        <label for="checkbox3"></label>
-                                                    </div>
-                                                    <span class="widget-todo-title ml-50">완성된 결과물이 사용자가 애초에 의도한 목적 또는 필요를 만족한다.</span>
-                                                </div>
-                                                <div class="widget-todo-item-action d-flex align-items-center">
-                                                    <div class="badge badge-pill badge-light-primary me-1">UI/UX</div>
-                                                   
-                                                    <i class="bx bx-dots-vertical-rounded font-medium-3 cursor-pointer"></i>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="widget-todo-item">
-                                            <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
-                                                <div class="widget-todo-title-area d-flex align-items-center">
-                                                    <i data-feather="list" class="cursor-move"></i>
-                                                    <div class="checkbox checkbox-shadow">
-                                                        <input type="checkbox" class="form-check-input" id="checkbox4">
-                                                        <label for="checkbox4"></label>
-                                                    </div>
-                                                    <span class="widget-todo-title ml-50">품질이 너무 낮거나 높지 않다.</span>
-                                                </div>
-                                                <div class="widget-todo-item-action d-flex align-items-center">
-                                                    <div class="badge badge-pill badge-light-info me-1">Design</div>
-                                                   
-                                                    <i class="bx bx-dots-vertical-rounded font-medium-3 cursor-pointer"></i>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="widget-todo-item">
-                                            <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
-                                                <div class="widget-todo-title-area d-flex align-items-center">
-                                                    <i data-feather="list" class="cursor-move"></i>
-                                                    <div class="checkbox checkbox-shadow">
-                                                        <input type="checkbox" class="form-check-input" id="checkbox5">
-                                                        <label for="checkbox5"></label>
-                                                    </div>
-                                                    <span class="widget-todo-title ml-50">인도물과 작업 결과가 인수 기준을 만족한다.</span>
-                                                </div>
-                                                <div class="widget-todo-item-action d-flex align-items-center">
-                                                    <div class="badge badge-pill badge-light-warning me-1">Javascript
-                                                    </div>
-                                                   
-                                                    <i class="bx bx-dots-vertical-rounded font-medium-3 cursor-pointer"></i>
-                                                </div>
-                                            </div>
-                                        </li>
-                                        <li class="widget-todo-item">
-                                            <div class="widget-todo-title-wrapper d-flex justify-content-between align-items-center mb-50">
-                                                <div class="widget-todo-title-area d-flex align-items-center">
-                                                    <i data-feather="list" class="cursor-move"></i>
-                                                    <div class="checkbox checkbox-shadow">
-                                                        <input type="checkbox" class="form-check-input" id="checkbox6">
-                                                        <label for="checkbox6"></label>
-                                                    </div>
-                                                    <span class="widget-todo-title ml-50">품질 활동으로 인한 기간 및 비용이 잘 고려되었다.</span>
-                                                </div>
-                                                <div class="widget-todo-item-action d-flex align-items-center">
-                                                    <div class="badge badge-pill badge-light-primary me-1">UI/UX</div>
-                                                   
-                                                    <i class="bx bx-dots-vertical-rounded font-medium-3 cursor-pointer"></i>
-                                                </div>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+					
                             
                             
                             
@@ -207,7 +92,7 @@
 									<div class="row">
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="first-name-column">품질 제목</label> <input
+												<label for="first-name-column">제목</label> <input
 													type="text" id="first-name-column" class="form-control"
 													placeholder="title" name="title">
 											</div>

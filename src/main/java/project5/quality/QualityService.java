@@ -51,9 +51,5 @@ public class QualityService {
 	public void qualitypass(QualityVO upt) {
 		dao.qualitypass(upt);
 	}
-	// 품질 평가 합격 목록
-	public List<QualityVO> certiprjlist(){
-		return dao.certiprjlist();
-	}
 
 }
