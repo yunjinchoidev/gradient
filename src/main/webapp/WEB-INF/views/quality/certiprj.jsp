@@ -30,7 +30,7 @@
 					<div class="card">
 
 						<div class="card-header">
-							<h4 class="card-title">품질 평가 항목</h4>
+							<h4 class="card-title">품질 평가 항목 합격</h4>
 						</div>
 						    
 						<div class="card-content">
@@ -38,7 +38,8 @@
 							<div class="card-body">
 								<!-- 합격 프로젝트 목록 -->
 								<form action="${path}/jasper.do">
-									<div>
+									<div style="width:50%;margin:0 auto; ">
+										<h3 style="text-align:center;">프로젝트를 선택해주세요</h3>
 										<select name="prjkeyS" class="form-control">
 											<c:forEach var="plist" items="${prjlist}">
 												<option style="text-align:center;" value="${plist.prjkey}">${plist.prjname}</option>
@@ -47,7 +48,7 @@
 									</div>
 								</form>
 								<!-- 버튼 -->
-								<div>
+								<div style="margin-left:720px;margin-top: 100px;">
 									<button id="printbtn" class="btn btn-primary">출력</button>
 								</div>
 							</div>
