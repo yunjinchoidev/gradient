@@ -102,8 +102,7 @@ public class QualityController {
 	
 	String reportPath = request.getSession().getServletContext().getRealPath("/report/");
     String folderPath = reportPath;
-    String tempath = "C:\\Users\\yunji\\git\\project5\\src\\main\\webapp\\report";
-    
+    String tempath = "C:\\Users\\yunji\\git\\project5\\src\\main\\webapp\\report\\";
     int prjkey = 0;
     
     if(prjkeyS != null || prjkeyS != "" ) {
@@ -128,10 +127,11 @@ public class QualityController {
       */
 			//JasperExportManager.exportReportToHtmlFile(jasperPrint, folderPath+"project5.html");
 			System.out.println("폴더패스:"+folderPath);
+		    System.out.println("저장패스:"+tempath);   
 			//JasperExportManager.exportReportToPdfFile(jasperPrint, folderPath+"/project5.pdf");
-			JasperExportManager.exportReportToPdfFile(jasperPrint, tempath+"project5.pdf");
+			JasperExportManager.exportReportToPdfFile(jasperPrint, tempath+"project55.pdf");
 			
-			
+		
 			conn.close();
 		} catch (Exception e) {
 			e.printStackTrace();
