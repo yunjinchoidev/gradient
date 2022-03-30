@@ -1,6 +1,0 @@
-{
-    ".b-gantt-task": {
-        "title": "Custom tooltip",
-        "content": "Hover me to show a customized tooltip"
-    }
-}

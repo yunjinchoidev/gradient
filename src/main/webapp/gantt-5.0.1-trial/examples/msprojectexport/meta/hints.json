@@ -1,6 +1,0 @@
-{
-  "[data-ref=mspExportBtn]": {
-    "title": "Click to export",
-    "content": "Export to Microsoft Project"
-  }
-}
