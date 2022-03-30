@@ -26,6 +26,13 @@ text-align: center;
 <script>
 	$(document).ready(function(){
 		
+		var auth = "${member.auth}";
+		
+		if(auth != "pm"){
+			alert("접근 권한이 없습니다");
+			location.href="${path}/main.do";
+		}
+		
 		$("#regbtn").click(function(){
 			location.href="${path}/writecost.do";
 		});
