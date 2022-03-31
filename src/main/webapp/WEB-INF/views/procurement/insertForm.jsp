@@ -77,7 +77,7 @@
 					<div class="card">
 
 						<div class="card-header">
-							<h4 class="card-title">조달 계약서 작성</h4>
+							<h4 class="card-title">조달 요구서 작성</h4>
 						</div>
 					
                             
@@ -222,14 +222,5 @@ $(document).ready(function(e){
 });
 
 </script>
-
-
-
-
-
-
-
-
-
 
 
