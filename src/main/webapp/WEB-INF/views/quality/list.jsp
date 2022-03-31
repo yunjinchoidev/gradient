@@ -278,7 +278,6 @@
 						alert("불합격입니다");
 						score=0;
 					}else{
-						alert("합격입니다");
 						$("#qualityevalFrm").submit();
 					}	
 					
