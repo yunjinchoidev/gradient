@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import project5.quality.QualityVO;
 import project5.risk.RiskService;
 
 @Controller
@@ -33,9 +34,9 @@ public class ProcurementController {
 	}
 	
 	@RequestMapping("/procurementInsert.do")
-	public String procurementInsert(ProcurementVO vo){
+	public String qualityInsert(ProcurementVO vo){
 		service.insert(vo);
-		return "WEB-INF\\views\\procurement\\procurementList.jsp";
+		return "forward:/procurementList.do";
 	}
 	
 	

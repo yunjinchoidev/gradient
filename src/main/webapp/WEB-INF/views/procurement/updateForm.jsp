@@ -10,11 +10,11 @@
 
 <script>
 	$(document).ready(function() {
-		var noticekey = "${notice.noticekey}"
-		console.log("noticekey : " + noticekey);
+		var procurementkey = "${procurement.procurementkey}"
+		console.log("procurementkey : " + procurementkey);
 		$("#del").click(function() {
 			confirm("정말 삭제하시겠습니까?");
-			location.href = "/project5/noticeDelete.do?noticekey=" + noticekey;
+			location.href = "/project5/procurementDelete.do?procurementkey=" + procurementkey;
 		})
 
 		var formObj = $("form")
@@ -31,6 +31,7 @@
 
 </head>
 <body>
+<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 	
@@ -41,87 +42,41 @@
 					<div class="card">
 
 						<div class="card-header">
-							<h4 class="card-title">공지사항</h4>
+							<h4 class="card-title">조달 리스트</h4>
 						</div>
-						<form action="/project5/noticeUpdate.do">
-						<input type="hidden" name="noticekey" value="${notice.noticekey }">
+						<form action="/project5/procurementUpdate.do">
+						<input type="hidden" name="procurementkey" value="${procurement.procurementkey }">
 						<div class="card-content">
 							<div class="card-body">
 								<div class="row">
 				
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="first-name-column">공지 제목</label> <input
+												<label for="first-name-column">제목</label> <input
 													type="text" id="first-name-column" class="form-control"
-													placeholder="title" name="title" value="${notice.title }"
+													placeholder="title" name="title" value="${get.title }"
 													>
 											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="first-name-column">조회수</label> <input
-													type="text" id="first-name-column" class="form-control"
-													placeholder="title" name="title" value="${notice.cnt }"
-													readonly="readonly">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="first-name-column">작성자</label> <input
-													type="text" id="first-name-column" class="form-control"
-													placeholder="title" name="title" value="${notice.name }"
-													readonly="readonly">
-											</div>
-										</div>
-
+										</div>								
 
 										<div class="col-md-6 col-12">
 											<div class="form-group">
 												<label for="last-name-column">작성일</label> <input
 													id="last-name-column" class="form-control"
-													readonly="readonly" placeholder="writeDate"
+													readonly="readonly" placeholder="writeDates"
 												
-													value='<fmt:formatDate type="both" value="${notice.writeDate}" />' />
+													value='<fmt:formatDate type="both" value="${get.writedate}" />' />
 											</div>
 										</div>
 
 
 
 
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="city-column">City</label> <input type="text"
-													id="city-column" class="form-control" placeholder="City"
-													name="city-column">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="country-floating">Country</label> <input
-													type="text" id="country-floating" class="form-control"
-													name="country-floating" placeholder="Country">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="company-column">Company</label> <input
-													type="text" id="company-column" class="form-control"
-													name="company-column" placeholder="Company">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="email-id-column">Email</label> <input
-													type="email" id="email-id-column" class="form-control"
-													name="email-id-column" placeholder="Email">
-											</div>
-										</div>
 										<div class="col-md-6 col-12">
 											<div class="form-group">
 												<label for="email-id-column">Contents</label>
 												<textarea class="form-control" name="content"
-													placeholder="content" rows="4" readonly="readonly">${notice.content }</textarea>
+													placeholder="content" rows="4" readonly="readonly">${get.contents }</textarea>
 											</div>
 										</div>
 
@@ -183,7 +138,7 @@
 											<button type="button"
 												class="btn btn-danger btn-icon icon-left"
 												style="height: 90%;"
-												onclick="location.href='/project5/notice.do'">
+												onclick="location.href='/project5/procurementList.do'">
 												<i class="fas fa-plane"></i> 목록으로
 											</button>
 											<button type="button" class="btn btn-primary me-1 mb-1"
