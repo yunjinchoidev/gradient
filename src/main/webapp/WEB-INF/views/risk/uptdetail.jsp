@@ -35,10 +35,14 @@
 		}
 		
 		$("#uptbtn").click(function(){
-			if(confirm("수정하시겠습니까?")){
-				$('form').submit();
-			}
-					
+			
+			if($('[name=title]').val() == ""){
+				alert('제목을 입력해주세요');
+			}else{
+				if(confirm("수정하시겠습니까?")){
+					$('form').submit();
+				}
+			}		
 		});
 		
 		$("#canclebtn").click(function(){
@@ -121,9 +125,9 @@
 			<!-- 수정, 삭제,돌아가기 버튼 -->
 			<div style="margin-top: 30px;align-content:right;float:right;">
 				<!-- 수정버튼 -->
-					<button class="btn btn-warning" id="uptbtn">수정</button>
+					<button type="button" class="btn btn-warning" id="uptbtn">수정</button>
 				<!-- 돌아가기버튼 -->
-					<button class="btn btn-primary" id="canclebtn">취소</button>
+					<button type="button" class="btn btn-primary" id="canclebtn">취소</button>
 			
 			</div>
 		</div>
