@@ -3,7 +3,6 @@
 	pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <fmt:requestEncoding value="utf-8" />
 
@@ -12,9 +11,8 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 </head>
-
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(document).ready(function() {
 
@@ -40,44 +38,27 @@
 
 		
 		
-		$("#ManageBtn").click(function() {
-			confirm("이 회원을 가입 승인 하시겠습니까?")
-		})
-
-		$("#passRE").click(function() {
-			confirm("이 회원에게 새로운 비밀번호를 발급 하시겠습니까?")
-		})
-
-		
-		
-		$("#exileBtn").click(function() {
-			confirm("회원을 추방 하시겠습니까?")
-		})
-
-		
-		
-		$("#assessBtn").click(function() {
-			confirm("회원을 평가 하시겠습니까?")
+		$("#groupBtn").click(function(e) {
+			confirm("선택된 회원들을 단체 대화에 초대 하시겠습니까?")
 			
-		})
-		
-		
-		
-		
-		
-		
-		
-		$("#mailSendBtn").click(function(e) {
-			confirm("메일을 발송하시겠습니까?")
 			var array = new Array();
-					$('input:checkbox[name=email]:checked').each(function() {
+					$('input:checkbox[name=memberkey]:checked').each(function() {
 						array.push(this.value);
 						console.log(this.value);
-						alert(this.value);
 					})
-			alert(array);
-			location.href="/project5/memberChkSendMail.do?arrayParam="+array;
+			alert("선택한 회원들 : "+array);
+			location.href="/project5/groupInvitation.do?arrayParam="+array;
 		})
+		
+		
+	
+		$("#individualBtn").click(function(e) {
+				confirm("회원을 1:1 대화에 초대 하시겠습니까?")
+				var choiceMemberkey =	$('input:checkbox[name=memberkey]:checked').val();
+				location.href="/project5/individualInvitation.do?memberkey="+choiceMemberkey
+		})
+		
+		
 
 		
 		
@@ -102,11 +83,8 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-					<h1 style="color:red">
-						(security)어드민(연결 계정:<sec:authentication property="name" />	) 
-						</h1>
-						<h3>회원관리</h3>
-						<p class="text-subtitle text-muted">이곳에서 회원을 관리하십시오</p>
+						<h3>채팅 초대 가능 회원 목록</h3>
+						<p class="text-subtitle text-muted">채팅 초대 가능 회원 목록</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -126,9 +104,10 @@
 			<section class="section">
 				<div class="card">
 					<div class="card-header">
-						여러 기능들이 있습니다.<br> <br>
+						둘 중 하나를 선택하세요<br> <br>
 						<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
-							<a href="#" class="btn btn-info" id="mailSendBtn">메일발송</a> 
+							<a href="#" class="btn btn-danger" id="individualBtn">1:1 대화 초대하기</a> 
+							<a href="#" class="btn btn-primary" id="groupBtn">단체 톡 만들기</a> 
 						</div>
 					</div>
 
@@ -170,12 +149,6 @@
 
 												<th data-sortable="" style="width: 12.423%;"><a
 													href="#" class="dataTable-sorter">직급</a></th>
-												<th data-sortable="" style="width: 12.423%;"><a
-													href="#" class="dataTable-sorter">상황</a></th>
-
-												<th data-sortable="" style="width: 15.051%;"><a
-													href="#" class="dataTable-sorter">관리</a></th>
-													
 
 												<th data-sortable="" style="width: 12.051%;"><span class="dataTable-sorter">전체
 														선택&nbsp;&nbsp;&nbsp; <input type="checkbox"
@@ -197,45 +170,13 @@
 													<td>${list.email }</td>
 													<td>${list.auth }</td>
 
-
-													<td style="cursor: pointer;">
-													<c:if
-															test="${list.status == 0}">
-															<span class="badge bg-dark">비활성화</span>
-														</c:if> 
-														
-														<c:if test="${list.status == 1}">
-															<span class="badge bg-danger nowRequesting" id="ManageBtn"
-															 onclick="location.href='/project5/memberRegister.do?memberkey=${list.memberkey}'">요청 중</span>
-														</c:if> 
-														
-														<c:if test="${list.status == 2}">
-															<span class="badge bg-primary">발급 완료</span>
-														</c:if>
-														
-														
-														 <c:if test="${list.status == 3}">
-															<span class="badge bg-warning" id="passRE"
-															 onclick="location.href='/project5/memberPassFind.do?memberkey=${list.memberkey}'">비밀번호 <br>재발급 신청</span>
-														</c:if>
-														
-													</td>
-										
-														
-													<td>
-														 <span
-															class="badge bg-success" id="assessBtn" style="cursor: pointer;">평가 하기</span> <span
-															class="badge bg-danger" id="exileBtn" style="cursor: pointer;" 
-															onclick="location.href='/project5/memberDelete2.do?memberkey=${list.memberkey}'">강제 추방</span>
-														</td>
-														
 												
 																	<td>
 																	<div style="margin-left: 30px;">
 																		<input type="hidden" name="arrayParam" id="arrayParam">
 																		<input type="checkbox"
 																			class="form-check-input form-check-info chk"
-																			name="email" value="${list.email }"
+																			name="memberkey" value="${list.memberkey }"
 																			style="border: 1px solid black; margin: 0 auto">
 																	</div>
 																</td>
@@ -246,23 +187,6 @@
 								</div>
 
 
-											<script>
-											/*
-													$(document).ready(function(){
-														var i=0;
-														setInterval(function() {
-															i++;
-															if(i%2==0){
-																$(".nowRequesting").show()
-															}else{
-																$(".nowRequesting").hide()
-															}
-														}, 1000);
-
-													})
-													*/
-													</script>
-													
 
 
 

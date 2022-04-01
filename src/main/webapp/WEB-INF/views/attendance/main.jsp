@@ -48,19 +48,15 @@
 		
 		
 		
-		
+	
 		$("#mailSendBtn").click(function(e) {
-			confirm("메일을 발송하시겠습니까?")
+			confirm("경고장을 발송하시겠습니까?")
 			var array = new Array();
-			$('input:checkbox[name=email]:checked').each(function() {
-				array.push(this.value);
-			})
-			alert(array);
-			$("#arrayParam").val(array);
-			$("form").attr("action", "/project5/memberChkSendMail.do")
-			$("form").submit();
+			var theMember=$('input:checkbox[name=memberkey]:checked').val()
+			alert(theMember)
+			location.href="/project5/warningLetter.do?memberkey="+theMember
+			
 		})
-
 		
 		
 	});
@@ -189,17 +185,14 @@
 													<td style="cursor: pointer;" id="ManageBtn"><span
 														class="badge bg-info">${list.score }</span>
 														</td>
-														<td>
-														 <span
-															class="badge bg-success" id="assessBtn" style="cursor: pointer;"
-															onclick="location.href='/project5/attendanceWriteForm.do?memberkey=${list.memberkey}'">근태 평가 하기</span>
-														</td>
+														<td><span class="badge bg-dark" id="assessBtn"
+														style="cursor: pointer;">평가 완료</span></td>
 													<td>
 														<div style="margin-left: 30px;">
 															<input type="hidden" name="arrayParam" id="arrayParam">
 															<input type="checkbox"
 																class="form-check-input form-check-info chk"
-																name="email" value="${list.email }"
+																name="memberkey" value="${list.memberkey }"
 																style="border: 1px solid black; margin: 0 auto">
 														</div>
 													</td>

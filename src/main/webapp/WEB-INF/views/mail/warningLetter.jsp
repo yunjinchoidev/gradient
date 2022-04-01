@@ -4,6 +4,16 @@
     %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<%
+      pageContext.setAttribute("crcn", "\r\n");  
+      pageContext.setAttribute("br", "<br/>"); 
+    
+%> 
+
+
+
 <c:set var="path" value="${pageContext.request.contextPath }"/>
 <fmt:requestEncoding value="utf-8"/>     
 <!DOCTYPE html>
@@ -47,8 +57,6 @@
 		
 		
 		
-		
-		
 	});
 </script>
 </head>
@@ -72,7 +80,7 @@
 		<div class="compose-new-mail-sidebar ps" style="margin: 0 auto; width: 60%">
 			<div class="card shadow-none quill-wrapper p-0"  style="margin: 0 auto;">
 				<div class="card-header">
-					<h3 class="card-title" id="emailCompose">새 이메일</h3>
+					<h1 class="card-title" id="emailCompose" style="color: red">경고장 발송</h1>
 					<button type="button" class="close close-icon">
 						<i class="bx bx-x"></i>
 					</button>
@@ -93,6 +101,7 @@
 								<label for="emailTo">수신자</label> 
 								<input type="email" name="reciever"
 									id="emailTo" class="form-control" placeholder="To"  style="color: red"
+									value="${member.email }"
 									>
 							</div>
 							<br>
@@ -105,7 +114,12 @@
 							<div class="form-label-group" >
 								<label for="emailSubject">내용</label>
 								<textarea class="form-control" name="content"
-									placeholder="content" rows="4"  ></textarea>
+									placeholder="content" rows="4"  >
+									 안녕하세요? 
+									회원님의 근무 상태가 불량하여 경고장을 발송하오니
+									주의해 주시기 바랍니다.
+
+									</textarea>
 							</div>
 
 

@@ -10,6 +10,12 @@ public class CustoChatRoomJoinVO {
 		// TODO Auto-generated constructor stub
 	}
 
+	public CustoChatRoomJoinVO(int memberkey, int roomkey) {
+		super();
+		this.memberkey = memberkey;
+		this.roomkey = roomkey;
+	}
+
 	public CustoChatRoomJoinVO(int roomjoinkey, int memberkey, int roomkey) {
 		super();
 		this.roomjoinkey = roomjoinkey;

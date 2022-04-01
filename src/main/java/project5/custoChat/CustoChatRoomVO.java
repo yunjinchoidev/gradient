@@ -19,6 +19,15 @@ public class CustoChatRoomVO {
 		this.name = name;
 	}
 
+	
+	
+	
+	
+	public CustoChatRoomVO(String name) {
+		super();
+		this.name = name;
+	}
+
 	public CustoChatRoomVO(int roomkey, String name, Date createDate, String createDateS) {
 		super();
 		this.roomkey = roomkey;
@@ -27,6 +36,11 @@ public class CustoChatRoomVO {
 		this.createDateS = createDateS;
 	}
 
+	
+	
+	
+	
+	
 	public int getRoomkey() {
 		return roomkey;
 	}
@@ -35,6 +49,11 @@ public class CustoChatRoomVO {
 		this.roomkey = roomkey;
 	}
 
+	
+	
+	
+	
+	
 	public String getName() {
 		return name;
 	}

@@ -118,6 +118,12 @@ public class DashBoardController {
 	
 	
 	
+	@RequestMapping("/outputEvaluationDayByDay.do")
+	public String outputEvaluationDayByDay(Model d) {
+		d.addAttribute("list", service3.outputEvaluationDayByDay());
+		return "pageJsonReport";
+	}
+	
 	
 	
 }

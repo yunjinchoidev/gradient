@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -81,6 +82,11 @@ $(document).ready(function(){
 		</header>
 
 		<div class="page-heading" id="ok">
+				<h1 style="color:red">
+					(Security)안녕하세요? <br>
+					PM 페이지 입니다<br>
+					매니저PM(연결 계정: <sec:authentication property="name"/>) 님의 <br>
+					메인 화면입니다.<br><br><br>
 			<h3>프로젝트 관리 </h3>
 			<h5><span style="color: red">"${member.name }${member.auth }"</span>님 어서오십시오.</h5>
 			<h5>오직 PM만을 위해 제공하는 정보가 여기 있습니다. </h5>

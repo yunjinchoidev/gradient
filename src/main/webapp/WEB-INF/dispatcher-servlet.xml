@@ -30,17 +30,9 @@
        http://www.springframework.org/schema/security
        http://www.springframework.org/schema/security/spring-security.xsd		
 		">
-	<!-- springweb 하위에 있는 패키지는 자동 등록 처리..
-		Component  controller, service, 
-		
-		springweb 하위 패키지에 있는 @Controller,
-		@Service, @Repository가 선언되어 있으면 객체를 선언하여 로딩이
-		된 상황과 동일하다..
-		
-		웹서버가 기동이 되면 모든 springweb에 있는 객체가 로딩이 된다.
-		 (A01_StartController)      (A01_StartService)
-		 
-	 -->
+	<!-- springweb 하위에 있는 패키지는 자동 등록 처리.. Component controller, service, springweb 
+		하위 패키지에 있는 @Controller, @Service, @Repository가 선언되어 있으면 객체를 선언하여 로딩이 된 상황과 
+		동일하다.. 웹서버가 기동이 되면 모든 springweb에 있는 객체가 로딩이 된다. (A01_StartController) (A01_StartService) -->
 
 
 
@@ -49,64 +41,60 @@
 
 
 	<context:component-scan base-package="project5">
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller"/>
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Service"/>
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Repository"/>
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Component"/>
-	</context:component-scan>	
-	<!-- 컨테이너에 공통 DB 설정 정보 가져오기  -->
-	<context:property-placeholder location="classpath:/resource/config"/>
-	<!-- 웹 소켓 통신을 위한 handelr 선언 
-		component로 선언한 이름과 url패턴을 mapping
-		server handler와 client에서 js로 호출할 url형식을 선언..
-	-->
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
-	<bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
-	<mvc:default-servlet-handler/>
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Service" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Repository" />
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Component" />
+	</context:component-scan>
+	<!-- 컨테이너에 공통 DB 설정 정보 가져오기 -->
+	<context:property-placeholder
+		location="classpath:/resource/config" />
+	<!-- 웹 소켓 통신을 위한 handelr 선언 component로 선언한 이름과 url패턴을 mapping server handler와 
+		client에서 js로 호출할 url형식을 선언.. -->
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping" />
+	<bean
+		class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter" />
+	<mvc:default-servlet-handler />
 	<websocket:handlers>
-		<websocket:mapping handler="chatHandler" path="/chat-ws.do"/>
+		<websocket:mapping handler="chatHandler"
+			path="/chat-ws.do" />
 	</websocket:handlers>
-	<!-- 
-	client단에서 /chat-ws.do로 웹 소켓 클라이언트로 호출하면 Component로 선언한 chatHandler
-	가 호출되어지게 설정..
-	Component("chatHandler")
-	public class A02_ChattingHandler	
-	 -->
-		
-	<!--  lib에 있는 만들어진 객체들을 생성하고 사용
-	1. DB 처리를 위한 연결객체 선언화 활용.
-		config 안에 선언된 key를 아래 DB 연결 처리하는 정보에 설정.
-	 -->
-	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource"
-		destroy-method="close" ><!-- 자원의 해제하는 처리의 메서드를 지정. -->
-		<property name="driverClassName" value="${jdbc.driver}"/>
-		<property name="url" value="${jdbc.url}"/>
-		<property name="username" value="${jdbc.user}"/>
-		<property name="password" value="${jdbc.pass}"/>
+	<!-- client단에서 /chat-ws.do로 웹 소켓 클라이언트로 호출하면 Component로 선언한 chatHandler 
+		가 호출되어지게 설정.. Component("chatHandler") public class A02_ChattingHandler -->
+
+	<!-- lib에 있는 만들어진 객체들을 생성하고 사용 1. DB 처리를 위한 연결객체 선언화 활용. config 안에 선언된 key를 
+		아래 DB 연결 처리하는 정보에 설정. -->
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close"><!-- 
+			자원의 해제하는 처리의 메서드를 지정. -->
+		<property name="driverClassName" value="${jdbc.driver}" />
+		<property name="url" value="${jdbc.url}" />
+		<property name="username" value="${jdbc.user}" />
+		<property name="password" value="${jdbc.pass}" />
 	</bean>
-	<!-- 
-	2. mybatis 컨테이너에서 사용하기..
-	 -->
-	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	<!-- 2. mybatis 컨테이너에서 사용하기.. -->
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
 		<!-- dataSource에 의해 연결된 객체 호출하기. -->
-		<property name="dataSource" ref="dataSource"/>
+		<property name="dataSource" ref="dataSource" />
 		<!-- 설정 파일 지정하기 -->
-		<property name="configLocation" value="classpath:resource/mybatis.Spring.xml"/>
+		<property name="configLocation"
+			value="classpath:resource/mybatis.Spring.xml" />
 	</bean>
-	<!-- 
-	3. Dao 인터페이스 패키지 선언하기
-		mybatis 프레인웍에서 자동으로 만들어 주는 추상메서드({}-body가 없는 메서드)를
-		기준으로 상속받은 실제 객체를 만들어 준다.
-		이 때, 인터페이스가 있는 패키지를 지정하여야 한다.
-		- 추가적으로 패키지가 더 필요할 때,
-		value="패키지1, 패키지2, 패키지3..." 형식으로 지정하면 된다.
-	 -->
-	 <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-	 	<property name="basePackage" value="project5"/>
-	 </bean>
-	<!--  파일 업로드를 위한 viewer 선언 -->
-	<bean id="multipartResolver" 
-		class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+	<!-- 3. Dao 인터페이스 패키지 선언하기 mybatis 프레인웍에서 자동으로 만들어 주는 추상메서드({}-body가 없는 
+		메서드)를 기준으로 상속받은 실제 객체를 만들어 준다. 이 때, 인터페이스가 있는 패키지를 지정하여야 한다. - 추가적으로 패키지가 
+		더 필요할 때, value="패키지1, 패키지2, 패키지3..." 형식으로 지정하면 된다. -->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		<property name="basePackage" value="project5" />
+	</bean>
+	<!-- 파일 업로드를 위한 viewer 선언 -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver" />
 
 
 
@@ -123,54 +111,48 @@
 
 
 
-	<!-- 
-	# jsp/html 뷰와 기본 bean view의 우선 순위 설정..
-	1. jsp view 기본 설정. - 우선순위 property로 설정 1
-	2. bean으로 등록하는 view 설정. - 우선순위 property로 설정 0
-	 컨테이너에서 viewer를 찾을 때, 등록된 것인 적은 것부터 찾고, 등록된 것이 많은 것을 찾는 
-	 것이 효율적이기 때문이다.
-	 -->	
+	<!-- # jsp/html 뷰와 기본 bean view의 우선 순위 설정.. 1. jsp view 기본 설정. - 우선순위 property로 
+		설정 1 2. bean으로 등록하는 view 설정. - 우선순위 property로 설정 0 컨테이너에서 viewer를 찾을 때, 등록된 
+		것인 적은 것부터 찾고, 등록된 것이 많은 것을 찾는 것이 효율적이기 때문이다. -->
 	<!-- jsp view는 기본적으로 설정이 되어 있지만, 우선순위 때문에 선언한다. -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<!-- 
-		접두어/접미어 매핑
-		이 내용을 선언하면 controller의 view호출의 마지막 부분을
-		접두어와 접미어가 생략가능하다.
-		return "WEB-INF\\views\\a02_mvc\\a01_empList.jsp"
-		==> return "\\a02_mvc\\a01_empList"
-		<property name="prefix" value="WEB-INF\views"/>	 
-		<property name="suffix" value=".jsp"/>	 
-		 -->
-		<property name="order" value="1"/>
-	</bean> 
-	<!-- 정의한 bean viewer 선언 우선순위 첫번째로 지정. -->
-	<bean id="btnViewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
-		<property name="order" value="0"/>
+	<bean
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<!-- 접두어/접미어 매핑 이 내용을 선언하면 controller의 view호출의 마지막 부분을 접두어와 접미어가 생략가능하다. 
+			return "WEB-INF\\views\\a02_mvc\\a01_empList.jsp" ==> return "\\a02_mvc\\a01_empList" 
+			<property name="prefix" value="WEB-INF\views"/> <property name="suffix" value=".jsp"/> -->
+		<property name="order" value="1" />
 	</bean>
-	
-	
+	<!-- 정의한 bean viewer 선언 우선순위 첫번째로 지정. -->
+	<bean id="btnViewResolver"
+		class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<property name="order" value="0" />
+	</bean>
+
+
 	<!-- 다운로드 viewer 등록 컨트롤러에서 아래와 같이 viewer를 호출 처리.. return "download" -->
-	<bean id="download" class="project5.z01_util.DownloadViewer"/>
-	
-	
-	
-	<!-- json 뷰 선언return "pageJsonReport"-->
-	<bean id="pageJsonReport" class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
+	<bean id="download" class="project5.z01_util.DownloadViewer" />
+
+
+
+	<!-- json 뷰 선언return "pageJsonReport" -->
+	<bean id="pageJsonReport"
+		class="org.springframework.web.servlet.view.json.MappingJackson2JsonView">
 		<property name="contentType" value="text/html; charset=utf-8"></property>
-	</bean>	
-	
-	
-	
-	
-	
-	
+	</bean>
+
+
+
+
+
+
 	<!-- 메일 발송 서버 설정(SMTP) -->
-	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
-		<property name="host" value="smtp.gmail.com"/>
-		<property name="port" value="587"/>
-		<property name="username" value="ssangyoung7878@gmail.com"/> 
-			<!-- 등록한 gamil 계정과 비밀번호 입력.. -->
-		<property name="password" value="dkssudgktpdy"/>
+	<bean id="mailSender"
+		class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com" />
+		<property name="port" value="587" />
+		<property name="username" value="ssangyoung7878@gmail.com" />
+		<!-- 등록한 gamil 계정과 비밀번호 입력.. -->
+		<property name="password" value="dkssudgktpdy" />
 		<!--보안 관련 설정 -->
 		<property name="javaMailProperties">
 			<props>
@@ -178,27 +160,22 @@
 				<prop key="mail.smtp.starttls.enable">true</prop>
 			</props>
 		</property>
-	
+
 	</bean>
-	
-	
-	
-	
-	<!-- 다국어 처리를 위한 모듈 등록
-	1. 핵심 클래스
-	2. 다국어 파일 기본 위치 등록
-		\message\msg.properties 기준파일
-	3. 위치기반 session 설정  -->
+
+
+
+
 	<bean id="messageSource"
 		class="org.springframework.context.support.ResourceBundleMessageSource">
 		<property name="basenames">
 			<list>
 				<value>message.msg</value>
 			</list>
-		</property>	
+		</property>
 	</bean>
-	<bean id="localeResolver" 
-		class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+	<bean id="localeResolver"
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
 
 
 
@@ -221,19 +198,19 @@
 		view-name="/view/user/joinForm.jsp" />
 	<mvc:view-controller path="/security/accessDenied"
 		view-name="/view/security/accessDenied.jsp" />
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 
-	 <!-- 엑셀/pdf 다운로드 -->
-	 	<bean id="pageRank" class="project5.z01_util.PageRankView">
+
+
+
+
+
+
+
+
+	<!-- 엑셀/pdf 다운로드 -->
+	<bean id="pageRank" class="project5.z01_util.PageRankView">
 	</bean>
 
 	<bean id="pageReport" class="project5.z01_util.PageReportView">
-	</bean>	
-	 
+	</bean>
+
 </beans>

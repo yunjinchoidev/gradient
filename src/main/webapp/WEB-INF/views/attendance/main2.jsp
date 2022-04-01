@@ -27,39 +27,8 @@
 				$("input[type=checkbox]").prop("checked", false);
 			}
 		})
-
 		
 		
-		$("#ManageBtn").click(function() {
-			confirm("이 회원을 관리하시겠습니까?")
-		})
-
-		
-		
-		$("#exileBtn").click(function() {
-			confirm("회원을 추방 하시겠습니까?")
-		})
-
-		
-		
-		$("#assessBtn").click(function() {
-			confirm("회원을 평가 하시겠습니까?")
-		})
-		
-		
-		
-		
-		$("#mailSendBtn").click(function(e) {
-			confirm("메일을 발송하시겠습니까?")
-			var array = new Array();
-			$('input:checkbox[name=email]:checked').each(function() {
-				array.push(this.value);
-			})
-			alert(array);
-			$("#arrayParam").val(array);
-			$("form").attr("action", "/project5/memberChkSendMail.do")
-			$("form").submit();
-		})
 
 		
 		
@@ -116,9 +85,10 @@
 						여러 기능들이 있습니다.<br> <br>
 						<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
 							<a href="#" class="btn btn-danger" id="mailSendBtn">경고장 발송</a> 
+							<a href="#" class="btn btn-success" id="NonComplete" onclick="location.href='/project5/attendanceMain.do'">평가완료</a> 
+							<a href="#" class="btn btn-warning" id="Complete" onclick="location.href='/project5/attendanceMain2.do'">미평가자</a> 
 							
 						</div>
-					</div>
 
 
 					<div class="card-body">
@@ -199,7 +169,7 @@
 															<input type="hidden" name="arrayParam" id="arrayParam">
 															<input type="checkbox"
 																class="form-check-input form-check-info chk"
-																name="email" value="${list.email }"
+																name="memberkey" value="${list.memberkey }"
 																style="border: 1px solid black; margin: 0 auto">
 														</div>
 													</td>
@@ -240,20 +210,6 @@
 			</section>
 		</div>
 
-		<footer>
-			<div class="footer clearfix mb-0 text-muted">
-				<div class="float-start">
-					<p>2021 © Mazer</p>
-				</div>
-				<div class="float-end">
-					<p>
-						Crafted with <span class="text-danger"><i
-							class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A.
-							Saugi</a>
-					</p>
-				</div>
-			</div>
-		</footer>
 	</div>
 </body>
 </html>

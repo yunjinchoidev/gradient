@@ -32,61 +32,58 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 
-function absoulte(data){
-	alert("즐겨찾기에 추가합니다");
-		var menubarkey;
-  		console.log("menubarkey"+menubarkey);
-		var menubarkeyValue =$(data).text().substr(2,1);
-		console.log("menubarkeyValue"+menubarkeyValue);
-		var data = { menubarkey :menubarkeyValue};
-		console.log(data);
-	    $.ajax({
-	      url: '/project5/favoriteInsert.do',
-	      data: data,
-	      type: 'POST',
-	      dataType:'json',
-	        success: function(result){
-	        console.log(result)
-	        		alert("성공")
-	        		 location.reload();
-	      },
-	      error: function(result){
-	          console.log(result); 
-	          alert("실패")
-	      }
-	    }); //$.ajax
-	
-}
+				function absoulte(data){
+					alert("즐겨찾기에 추가합니다");
+						var menubarkey;
+				  		console.log("menubarkey"+menubarkey);
+						var menubarkeyValue =$(data).text().substr(2,1);
+						console.log("menubarkeyValue"+menubarkeyValue);
+						var data = { menubarkey :menubarkeyValue};
+						console.log(data);
+					    $.ajax({
+					      url: '/project5/favoriteInsert.do',
+					      data: data,
+					      type: 'POST',
+					      dataType:'json',
+					        success: function(result){
+					        console.log(result)
+					        		alert("성공")
+					        		 location.reload();
+					      },
+					      error: function(result){
+					          console.log(result); 
+					          alert("실패")
+					      }
+					    }); //$.ajax
+					}
 
 
 
 
 
-function cancel(data){
-		var favoritekey;
-  		console.log("favoritekey"+favoritekey);
-  		favoritekey = parseInt($(data).text().substr(0,1));
-		console.log("favoritekey"+favoritekey);
-		var data = { favoritekey :favoritekey};
-		console.log(data);
-	    $.ajax({
-	      url: '/project5/favoriteDelete.do',
-	      data: data,
-	      type: 'POST',
-	      dataType:'json',
-	        success: function(result){
-	        console.log(result)
-	        		alert("즐겨찾기에서 해제 되었습니다.!")
-	        		 location.reload();
-	      },
-	      error: function(result){
-	          console.log(result); 
-	          alert("실패")
-	      }
-	    }); //$.ajax
-	    
-	    
-}
+				function cancel(data){
+						var favoritekey;
+				  		console.log("favoritekey"+favoritekey);
+				  		favoritekey = parseInt($(data).text().substr(0,1));
+						console.log("favoritekey"+favoritekey);
+						var data = { favoritekey :favoritekey};
+						console.log(data);
+					    $.ajax({
+					      url: '/project5/favoriteDelete.do',
+					      data: data,
+					      type: 'POST',
+					      dataType:'json',
+					        success: function(result){
+					        console.log(result)
+					        		alert("즐겨찾기에서 해제 되었습니다.!")
+					        		 location.reload();
+					      },
+					      error: function(result){
+					          console.log(result); 
+					          alert("실패")
+					      }
+					    }); //$.ajax
+					}
 
 
 
@@ -119,9 +116,10 @@ $(document).ready(function(){
 					str="";
 					str+="<div >"
 					str+="<span class='fonticon-wrap d-inline me-3' style='display: inline-block;' >"
-					str+="😃<a  onclick='cancel(this)' class='list-group-item' style='font-size: 20px; font-weight: bolder; display: inline-block;' >"+result.list[i].favoritekey+")</a>"
+					str+="😃<a  onclick='cancel(this)' class='list-group-item' style='font-size: 15px; font-weight: bolder; display: inline-block;' >"
+					str +=result.list[i].favoritekey+")</a>"
 					str +="<a onclick='/project5/myworkCalendar.do?memberkey=${member.memberkey }' class='list-group-item'"
-                    str+="style='font-size: 20px; font-weight: bolder; display: inline-block;' id='btn1'>"+ result.list[i].menubar+"</a> "
+                    str+="style='font-size: 15px; font-weight: bolder; display: inline-block;' id='btn1'>"+ result.list[i].menubar+"</a> "
                     str+="</span></div>"
 					favoriteListHtml.append(str)	;
 				}
@@ -149,16 +147,10 @@ $(document).ready(function(){
 				</span>
 				<!-- sidebar close icon -->
 				<div class="email-app-menu" style="height: 5000px;">
-					
-
-
-
-
 
 					<div class="sidebar-menu-list ps">
 						<!-- sidebar menu  -->
 						<div class="list-group list-group-messages">
-
 
 				<div class="form-group form-group-compose">
 						<!-- compose button  -->
@@ -168,10 +160,7 @@ $(document).ready(function(){
 						</button>
 
 							<div id="favoriteList">
-												
-													
 							</div>
-						
 					</div>
 
 
@@ -209,7 +198,6 @@ $(document).ready(function(){
 									<a onclick="location.href='/project5/myWork${list.menubarkey }.do?memberkey=${member.memberkey }'"class="list-group-item"
 									style="font-size: 20px; font-weight: bolder; display: inline-block;" id="btn1">
 									${list.title }</a>
-									
 									
 								 </div>
 							</c:forEach>

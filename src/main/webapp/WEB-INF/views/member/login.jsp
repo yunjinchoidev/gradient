@@ -109,13 +109,10 @@ $(document).ready(function(){
 					  </select>
 					<h1 class="auth-title">
 					</h1>
-			
-			
 					
 					
 					<p class="auth-subtitle mb-5">
-						pm : admin/7777
-						일반 : qq/qq
+						<h2>login</h2>
 					</p>
 
 					<form action="/project5/login.do" method="post">
@@ -128,7 +125,7 @@ $(document).ready(function(){
 						</div>
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="password" class="form-control form-control-xl"
-								placeholder="pass" name="pass">
+								placeholder="password" name="pass">
 							<div class="form-control-icon">
 								<i class="bi bi-shield-lock"></i>
 							</div>
@@ -174,16 +171,10 @@ $(document).ready(function(){
                             console.log(kakao_account.profile.nickname)
                             console.log(kakao_account.email)
                             alert("접속합니다.")
-	                            // 이름/ 이메일
-	                            
-                         	var nameValue=kakao_account.profile.nickname;
-                    		var emailValue=kakao_account.email;
-                    		
+                         	var nameValue=kakao_account.profile.nickname; //이름
+                    		var emailValue=kakao_account.email; // 이메일
                     		var data = {name:nameValue,
                     						email:emailValue}
-                    		
-                    		
-                    		
                         	$.ajax({
                     			url:'/project5/insertMemberAjax.do',
                     			type:'POST',
@@ -247,29 +238,23 @@ window.addEventListener('load', function () {
 				naverLogin.reprompt();
 				return;
 			}
-            
-            
-        	var nameValue=naverLogin.user.name;
-    		var emailValue=naverLogin.user.email;
-    		
+        	var nameValue=naverLogin.user.name; // 이름
+    		var emailValue=naverLogin.user.email; // 이메일
     		var data = {name:nameValue,
     						email:emailValue}
-    		
-    		
-    		
-        	$.ajax({
-    			url:'/project5/insertMemberAjax.do',
-    			type:'POST',
-    			data : data,
-    			dataType:'json',
-    			success:function(result){
-    				alert("네이버 로그인 성공")
-    				location.href="/project5/main.do"
-    			},
-    			error:function(result){
-    				alert("네이버 로그인 실패")
-    			}
-    		})
+	        	$.ajax({
+	    			url:'/project5/insertMemberAjax.do',
+	    			type:'POST',
+	    			data : data,
+	    			dataType:'json',
+	    			success:function(result){
+	    				alert("네이버 로그인 성공")
+	    				//location.href="/project5/main.do"
+	    			},
+	    			error:function(result){
+	    				alert("네이버 로그인 실패")
+	    			}
+	    		})
             
             
             
@@ -319,45 +304,41 @@ function init() {
 	})
 }
 
-function onSignIn(googleUser) {
-	var access_token = googleUser.getAuthResponse().access_token
-	$.ajax({
-    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
-		url: 'https://people.googleapis.com/v1/people/me'
-        // key에 자신의 API 키를 넣습니다.
-		, data: {personFields:'birthdays', key:'AIzaSyBLU93r5-XQDjB-58ZU7LRiG1l_93AkYtU', 'access_token': access_token}
-		, method:'GET'
-	})
-	
-	
-	
-	.done(function(e){
-        //프로필을 가져온다.
-		var profile = googleUser.getBasicProfile();
-		console.log(profile)
-		console.log(profile.zv)
-		console.log(profile.sf)
-		var nameValue=profile.sf;
-		var emailValue=profile.zv;
-		
-		var data = {name:nameValue,
-						email:emailValue}
-		
-		$.ajax({
-			url:'/project5/insertMemberAjax.do',
-			type:'POST',
-			data : data,
-			dataType:'json',
-			success:function(result){
-				alert("구글 로그인 성공")
-				location.href="/project5/main.do"
-			},
-			error:function(result){
-				alert("구글 로그인 실패")
-			}
-		})
-		
-	})
+		function onSignIn(googleUser) {
+			var access_token = googleUser.getAuthResponse().access_token
+			$.ajax({
+				url: 'https://people.googleapis.com/v1/people/me'
+				, data: {personFields:'birthdays', key:'AIzaSyBLU93r5-XQDjB-58ZU7LRiG1l_93AkYtU', 'access_token': access_token}
+				, method:'GET'
+			})
+			
+			.done(function(e){
+		        //프로필을 가져온다.
+				var profile = googleUser.getBasicProfile();
+				console.log(profile)
+				console.log(profile.zv)
+				console.log(profile.sf)
+				var nameValue=profile.sf; // 이름
+				var emailValue=profile.zv; // 이메일
+				
+				var data = {name:nameValue,
+								email:emailValue}
+				
+				$.ajax({
+					url:'/project5/insertMemberAjax.do',
+					type:'POST',
+					data : data,
+					dataType:'json',
+					success:function(result){
+						alert("구글 로그인 성공")
+						location.href="/project5/main.do"
+					},
+					error:function(result){
+						alert("구글 로그인 실패")
+					}
+				})
+				
+			})
 	.fail(function(e){
 		console.log(e);
 	})
@@ -433,32 +414,16 @@ window.fbAsyncInit = function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 					</form>
 					
 					<div class="text-center mt-5 text-lg fs-4">
 						<p class="text-gray-600">
-							계정이 없습니까? <a href="/project5/memberRegisterForm.do" class="font-bold">회원가입
+							계정이 없습니까? <a href="/project5/memberRegisterForm.do" class="font-bold"><spring:message code="reg"/>
 							</a>
 						</p>
 						<p>
-							<a class="font-bold" href="/project5/memberFindForm.do">비밀번호가
-								생각나지 않습니까?</a>
+							<a class="font-bold" href="/project5/memberFindForm.do">
+							아이디/비밀번호가 생각나지 않습니까?</a>
 						</p>
 					</div>
 				</div>

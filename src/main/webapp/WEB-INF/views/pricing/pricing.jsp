@@ -31,7 +31,6 @@
 
 <script>
 $(document).ready(function(){
-	alert("F")
 	console.log("${member.visitcnt}");
 	$("#premium").click(function(){
 			confirm("정말 프리미엄으로 바꾸시겠습니까?")
@@ -100,7 +99,7 @@ $(document).ready(function(){
 											<h4 class="card-title">기본</h4>
 											<p class="text-center">A standart features you can get</p>
 										</div>
-										<h1 class="price">Free</h1>
+										<h1 class="price">무료</h1>
 										<ul>
 											<li><i class="bi bi-check-circle"></i>Lorem ipsum dolor
 												sit amet</li>
@@ -126,7 +125,7 @@ $(document).ready(function(){
 											<h4 class="card-title" >프리미엄</h4>
 											<p></p>
 										</div>
-										<h1 class="price text-white">방문수 500회</h1>
+										<h1 class="price text-white">방문수 <br>500회</h1>
 										<ul>
 											<li><i class="bi bi-check-circle"></i>Lorem ipsum kolor
 												sit amet</li>
@@ -159,7 +158,7 @@ $(document).ready(function(){
 											>프로</h4>
 											<p class="text-center">A higher features you will need</p>
 										</div>
-										<h1 class="price">방문 수 200회</h1>
+										<h1 class="price">방문 수 <br>200회</h1>
 										<ul>
 											<li><i class="bi bi-check-circle"></i>Lorem ipsum dolor
 												sit amet</li>

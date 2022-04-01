@@ -200,11 +200,11 @@ $(document).ready(function() {
 
 			
 			if ("${member.pricing}"=='0'){
-				$("input[name=pricing]").val('플랜 : 기본')
+				$("input[name=pricings]").val('플랜 : 기본')
 			}else if("${member.pricing}"=='1'){
-				$("input[name=pricing]").val('플랜 : 프로')
+				$("input[name=pricings]").val('플랜 : 프로')
 			}else {
-				$("input[name=pricing]").val('플랜 :프리미엄')
+				$("input[name=pricings]").val('플랜 :프리미엄')
 			}
 			
 			
@@ -353,18 +353,20 @@ $(document).ready(function() {
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl" readonly="readonly"
-								placeholder="방문 수" name="name" value="방문 수: ${member.visitcnt }">
+								placeholder="방문 수" name="visitcnts" value="방문 수: ${member.visitcnt }">
+								<input type="hidden" name="visitcnt" value="${member.visitcnt }" >
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>
 						</div>
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl" readonly="readonly"
-								placeholder="플랜 " name="pricing" value="플랜 : ">
+								placeholder="플랜 " name="pricings" value="">			
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>
 						</div>
+						<input type="hidden" name="pricing" value="${member.pricing }" >
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="email" class="form-control form-control-xl"

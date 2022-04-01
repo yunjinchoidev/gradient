@@ -115,6 +115,7 @@
 		AND projectkey=#{projectkey}
 	</select>
 
+	<!-- 내일 근무 가능 인원 -->
 	<select id="tommorwCanCnt" parameterType="int" resultType="int">
 		SELECT count(*) FROM vacation WHERE TO_CHAR(SYSDATE+1, 'YYYY/MM/dd') <![CDATA[<=]]>
 		TO_CHAR(startdate+duration, 'YYYY/MM/DD')
@@ -124,6 +125,7 @@
 		AND projectkey=#{projectkey}
 	</select>
 
+	<!-- 어제 근무 가능 인원 -->
 	<select id="yesterdayCanCnt" parameterType="int"
 		resultType="int">
 		SELECT count(*) FROM vacation WHERE TO_CHAR(SYSDATE-1, 'YYYY/MM/dd') <![CDATA[<=]]>
@@ -151,14 +153,31 @@
 		OUTPUT WHERE
 		projectkey=1 and
 		to_char(writedate,'yymmdd') IN
-		(SELECT DISTINCT A.DD
+		(SELECT
+		DISTINCT A.DD
 		FROM (
-		SELECT TO_CHAR( TO_DATE( '220101','yymmdd') - 1 + LEVEL, 'YYMMdd' ) AS DD
+		SELECT TO_CHAR( TO_DATE( '220101','yymmdd') - 1 +
+		LEVEL, 'YYMMdd' ) AS DD
 		FROM DUAL
 		CONNECT BY LEVEL <![CDATA[<=]]>
 		TO_DATE( '230101','yymmdd' ) - TO_DATE( '220101','yymmdd') + 1
-		) A) GROUP BY to_char(writedate,'yyyymmdd') ORDER BY WRITEDATE
+		) A)
+		GROUP BY to_char(writedate,'yyyymmdd') ORDER BY WRITEDATE
+	</select>
 
+
+	<!-- 날짜 별 산출물 평점 -->
+	<select id="outputEvaluationDayByDay"
+		resultType="project5.dashBoard.OutputVO2">
+		SELECT
+		TO_CHAR(writedate, 'yyyy-mm-dd') writedate,
+		avg(evaluation) evaluation
+		FROM output
+		WHERE to_char(writedate, 'yyyymmdd')
+		BETWEEN TO_CHAR(ADD_MONTHS(LAST_DAY(SYSDATE)+1,-1),'YYYYMMDD')
+		AND TO_CHAR(LAST_DAY(SYSDATE),'YYYYMMDD')
+		GROUP BY TO_CHAR(writedate, 'yyyy-mm-dd')
+		ORDER BY writedate
 	</select>
 
 

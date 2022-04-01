@@ -139,13 +139,15 @@
 	</select>
 
 	<select id="memberPassFind"
-		parameterType="project5.member.MemberVO" resultType="String">
-		select pass
+		parameterType="project5.member.MemberVO"
+		resultType="project5.member.MemberVO">
+		select *
 		from
 		member
 		where name=#{name}
 		and id=#{id}
-		and email=#{email}
+		and
+		email=#{email}
 	</select>
 
 
@@ -172,7 +174,6 @@
 		member
 		where name=#{name}
 		and email=#{email}
-
 	</select>
 
 
@@ -180,22 +181,34 @@
 		parameterType="project5.member.MemberVO">
 		update member
 		set visitcnt = visitcnt+1
-		where memberkey = #{memberkey}
+		where memberkey =
+		#{memberkey}
 	</update>
 
 	<update id="updatePricing"
 		parameterType="project5.member.MemberVO">
 		update member
 		set pricing= #{pricing}
-		where memberkey = #{memberkey}
+		where memberkey =
+		#{memberkey}
 	</update>
 
 
-	<insert id="insertMemberAjax" parameterType="project5.member.MemberVO">
-		insert into member (memberkey, name, email) values 
+	<insert id="insertMemberAjax"
+		parameterType="project5.member.MemberVO">
+		insert into member (memberkey, name, email) values
 		(seq_member.nextval, #{name}, #{email})
 	</insert>
 
+
+	<update id="updateStatus"
+		parameterType="project5.member.MemberVO">
+		UPDATE MEMBER
+		SET
+		status=#{status}
+		WHERE
+		memberkey=#{memberkey}
+	</update>
 
 
 

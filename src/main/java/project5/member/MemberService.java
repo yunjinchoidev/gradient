@@ -85,7 +85,7 @@ public class MemberService {
 		return dao.memberIdFind(vo);
 	}
 	
-	public String memberPassFind(MemberVO vo) {
+	public MemberVO memberPassFind(MemberVO vo) {
 		return dao.memberPassFind(vo);
 	}
 	
@@ -144,4 +144,9 @@ public class MemberService {
 	public void insertMemberAjax(MemberVO vo) {
 		dao.insertMemberAjax(vo);
 	}
+	
+	public void updateStatus(MemberVO vo) {
+		dao.updateStatus(vo);
+	}
+	
 }

@@ -18,44 +18,36 @@
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
-					<div class="col-12 col-md-6 order-md-1 order-last">
+					<div class="col-12 col-md-12 order-md-1 order-last">
 						<h1>
-							<ul>
-								<sec:authorize access="hasAuthority('USER_MANAGER')">
-									<li><a href="<c:url value='/admin/usermanager/main' />">
-											사용자 관리자</a></li>
+						<sec:authorize access="isAuthenticated()">
+												<h1>	[<sec:authentication property="name"/>]님, </h1><br><br>
+												</sec:authorize>
+
+								<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+								<h1>권한이 ROLE_ADMIN 일 경우에만 보입니다.</h1><br><br>
+											<a href="<c:url value='/admin/usermanager/main' />"> ()ADMIN) 관리자페이지 바로가기</a>
 								</sec:authorize>
 
-
-
-
-
-								<sec:authorize access="hasAuthority('USER')">
-									<li><a href="<c:url value='/member/main' />">회원메인</a></li>
+								<sec:authorize access="hasAuthority('ROLE_MANAGER')">
+									<h1>권한이 ROLE_Manager 일 경우에만 보입니다.</h1><br><br>
+											<a href="<c:url value='/admin/usermanager/main' />"> (MANAGER)사용자 관리페이지</a>
 								</sec:authorize>
 
-
-
+								<sec:authorize access="hasAuthority('ROLE_USER')">
+								<h1>권한이 ROLE_User 일 경우에만 보입니다.</h1><br><br>
+									<li><a href="<c:url value='/member/main' />">(USER)회원메인</a></li>
+								</sec:authorize>
 
 								<sec:authorize access="!isAuthenticated()">
-											<%--
-											<li><a href="<c:url value='/spring_security_login' />">로그인</a></li>
-											--%>
-									<li><a href="<c:url value='/user/loginform' />">로그인</a></li>
-									<li><a href="<c:url value='/user/join' />">회원가입</a></li>
+										<h2> 미 인증 상태입니다.</h2>
+									<a href="<c:url value='/user/loginform' />">(미인증)로그인</a>
+									<a href="<c:url value='/user/join' />">(미인증)회원가입 </a>
 								</sec:authorize>
-
-
-
-
-
-
-
 
 								<sec:authorize access="isAuthenticated()">
-									<li><a href="<c:url value='/user/logout' />">로그아웃</a></li>
+									<li><a href="<c:url value='/user/logout' />">()로그아웃</a></li>
 								</sec:authorize>
-							</ul>
 
 
 

@@ -19,7 +19,7 @@ public interface MemberDao {
 	public void memberRegisterApply(MemberVO vo);
 	public void memberRegisterComplete(int memberkey);
 	public String 	memberIdFind(MemberVO vo);
-	public String memberPassFind(MemberVO vo);
+	public MemberVO memberPassFind(MemberVO vo);
 	public void newIssuePassword(MemberVO vo);
 	
 	public MemberVO getByNameAndEmail(MemberVO vo);
@@ -29,5 +29,6 @@ public interface MemberDao {
 	public void updatePricing(MemberVO vo);
 	public void insertMemberAjax(MemberVO vo);
 	
+	public void updateStatus(MemberVO vo);
 	
 }

@@ -16,6 +16,7 @@ public class AttendanceController {
 	@Autowired
 	MemberService service2;
 	
+	
 	@RequestMapping("/attendanceMain.do")
 	public String attendance(Model d) {
 		d.addAttribute("list", service.memberPlusAttendacne());
@@ -39,6 +40,14 @@ public class AttendanceController {
 		service.attendanceWrite(vo);
 		return "forward:/attendanceMain.do";
 	}
+
+	@RequestMapping("/warningLetter.do")
+	public String WarningLetter(Model d, int memberkey) {
+		d.addAttribute("member", service2.get(memberkey));
+		return "WEB-INF\\views\\mail\\warningLetter.jsp";
+	}
+	
+	
 	
 	
 	

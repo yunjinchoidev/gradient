@@ -172,21 +172,21 @@
 		})
 		
 							$("#projectMange").click(function() {
-								if (auth != "pm") {
+								if (auth == "") {
 									alert("PM만 접근 가능합니다.");
 								} else {
 									location.href="/project5/projectManageMain.do"
 								}
 							});
 						$("#MemberAnaysis").click(function() {
-							if (auth != "pm") {
+							if (auth == "") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
 								location.href = "/project5/mailFrm.do"
 							}
 						});
 						$("#EmailBtn").click(function() {
-							if (auth != "pm") {
+							if (auth == "") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
 								location.href = "/project5/mailFrm.do"
@@ -194,7 +194,7 @@
 						});
 
 						$("#MemberListBtn").click(function() {
-							if (auth != "pm") {
+							if (auth == "") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
 								location.href = "/project5/memberList.do"

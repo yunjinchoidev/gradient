@@ -46,7 +46,7 @@
 	<%@ include file="../common/header.jsp"%>
 	<div id="auth"  style="margin-left: 350px;">
 		<div class="row h-100" style="width: 1100px; ">
-			<div class="col-lg-5 col-12">
+			<div class="col-lg-6 col-12">
 				<div id="auth-left" style="width: 1100px; ">
 				
 				
@@ -61,8 +61,9 @@
 
 					<c:if test="${not empty get}">
 						<h1 class="auth-title">
+						관리자 승인 후, <br>
 							입력한 이메일로 <br>
-							임시 비밀번호를 <br>발송했습니다.
+							임시 비밀번호이  <br>발송될 것입니다.
 						</h1>
 						<p class="auth-subtitle mb-5">
 							다시 로그인 시도하세요<br>부주의로 인한 피해는 본사에서 책임지지 않습니다.

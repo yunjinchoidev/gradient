@@ -73,7 +73,7 @@ nonce="SuTAbMKi">
 								
 									<!-- 댓글 들어가는 부분 -->
 								<div class="fb-comments" 
-								data-href="http://106.10.16.155:7080/project5/main.do" 
+								data-href="http://106.10.16.155:7080/project5/aboutUs.do" 
 								data-width="1100" data-numposts="5" style="width: 100%"></div>
 							</div>
 							

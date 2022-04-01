@@ -81,4 +81,8 @@ public class DashBoardService {
 		return dao.TotalOutputCntByDay();
 	}
 	
+	public List<OutputVO2> outputEvaluationDayByDay(){
+		return dao.outputEvaluationDayByDay();
+	}
+	
 }

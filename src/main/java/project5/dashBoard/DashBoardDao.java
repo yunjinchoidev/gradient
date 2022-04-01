@@ -29,5 +29,6 @@ public interface DashBoardDao {
 	public int todayCanCnt(int projectkey);
 	public int projectTotalCnt(int projectkey);
 	public List<TotalOutputCntByDayVO> TotalOutputCntByDay();
+	public List<OutputVO2> outputEvaluationDayByDay();
 	
 }

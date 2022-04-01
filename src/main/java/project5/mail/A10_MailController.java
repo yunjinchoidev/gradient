@@ -49,21 +49,15 @@ public class A10_MailController {
 		System.out.println(code_array); //[Ljava.lang.String;@4538a7fd
 		System.out.println(code_array.length); // 3
 		System.out.println(code_array[0]); // 3
-		
-		//ArrayList<Integer> results = new ArrayList<Integer>();
 		ArrayList<String> results2 = new ArrayList<String>();
-		
 		for(int i=0; i<code_array.length; i++) {
-			//results.add(Integer.parseInt(code_array[i]));
 			results2.add(code_array[i]);
 		}
-		
 		System.out.println(results2);
 		System.out.println(results2.size());
 	d.addAttribute("list",commandMap);
 	d.addAttribute("results",results2);
 	return "WEB-INF\\views\\mail\\memberchk.jsp";
-	
 }
 	
 	
@@ -88,30 +82,16 @@ public class A10_MailController {
 			System.out.println(commandMap); //{arrayParam=1,2,3, email=1}
 			String[] code_array=null;
 			String code=commandMap.get("arrayParam").toString();
-			System.out.println(code); //1,2,3
 			code_array =code.split(",");
-			System.out.println(code_array); //[Ljava.lang.String;@4538a7fd
-			System.out.println(code_array.length); // 3
-			System.out.println(code_array[0]); // 3
-			
-			//ArrayList<Integer> results = new ArrayList<Integer>();
 			ArrayList<String> results2 = new ArrayList<String>();
-			
 			for(int i=0; i<code_array.length; i++) {
-				//results.add(Integer.parseInt(code_array[i]));
 				results2.add(code_array[i]);
 			}
-			
-			System.out.println(results2);
-			System.out.println(results2.size());
-		d.addAttribute("list",commandMap);
-		d.addAttribute("results",results2);
-		d.addAttribute("mail", service.sendArrays(results2, mail));
-		d.addAttribute("psc","success");
+			d.addAttribute("psc","success");
 		
 		
-		return "WEB-INF\\views\\mail\\memberchk.jsp";
-	}
+			return "WEB-INF\\views\\mail\\memberchk.jsp";
+		}
 	
 	
 	

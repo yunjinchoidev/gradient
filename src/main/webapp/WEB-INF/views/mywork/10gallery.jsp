@@ -49,7 +49,6 @@ body{
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <!------ Include the above in your HEAD tag ---------->
-
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" />
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
@@ -96,7 +95,6 @@ $(document).ready(function(){
 					      type: 'POST',
 					      dataType:'json',
 						success:function(result){
-								alert("성공")
 								console.log("성공")
 								console.log(result);
 								console.log(result.myFileListInOutput)
@@ -114,6 +112,29 @@ $(document).ready(function(){
     
 	
 	
+							$("#allBtn").click(function(){
+								confirm("정말 jpg파일만 보시겠습니까?")
+										$.ajax({
+											  url: '/project5/myFileListInOutput.do',
+										      data: data,
+										      type: 'POST',
+										      dataType:'json',
+											success:function(result){
+															console.log("성공")
+															console.log(result);
+															console.log(result.myFileListInOutput)
+															$("#galleryImg").empty();
+															for(var i=0; i<result.myFileListInOutput.length; i++){
+																		showUploadResult2(result.myFileListInOutput[i]);// 이곳에서 함수 호출 
+															}
+												},
+											error:function(result){
+												console.log("실패")
+											}
+										})
+								})
+								
+								
 							$("#jpgBtn").click(function(){
 								confirm("정말 jpg파일만 보시겠습니까?")
 										$.ajax({
@@ -122,7 +143,6 @@ $(document).ready(function(){
 										      type: 'POST',
 										      dataType:'json',
 											success:function(result){
-															alert("성공")
 															console.log("성공")
 															console.log(result);
 															console.log(result.myFileListInOutput)
@@ -130,7 +150,7 @@ $(document).ready(function(){
 															for(var i=0; i<result.myFileListInOutput.length; i++){
 																if(result.myFileListInOutput[i].fname.slice(-3)=="jpg"){
 																console.log(i)
-																		showUploadResult2(result.myFileListInOutput[i]);// 이곳에서 함수 호출 
+																showUploadResult2(result.myFileListInOutput[i]);// 이곳에서 함수 호출 
 																console.log(i+"완료")
 																}else{
 																		continue;
@@ -150,7 +170,6 @@ $(document).ready(function(){
 										      type: 'POST',
 										      dataType:'json',
 											success:function(result){
-															alert("성공")
 															console.log("성공")
 															console.log(result);
 															console.log(result.myFileListInOutput)
@@ -178,7 +197,6 @@ $(document).ready(function(){
 										      type: 'POST',
 										      dataType:'json',
 											success:function(result){
-															alert("성공")
 															console.log("성공")
 															console.log(result);
 															console.log(result.myFileListInOutput)
@@ -206,7 +224,6 @@ $(document).ready(function(){
 										      type: 'POST',
 										      dataType:'json',
 											success:function(result){
-															alert("성공")
 															console.log("성공")
 															console.log(result);
 															console.log(result.myFileListInOutput)
@@ -234,7 +251,6 @@ $(document).ready(function(){
 										      type: 'POST',
 										      dataType:'json',
 											success:function(result){
-															alert("성공")
 															console.log("성공")
 															console.log(result);
 															console.log(result.myFileListInOutput)
@@ -261,10 +277,9 @@ $(document).ready(function(){
 	
 	
 	
-						  function showUploadResult2(obj){
-								var type = obj.fname.slice(-3);
-								console.log("type:"+type)
-								
+						 				 function showUploadResult2(obj){
+											var type = obj.fname.slice(-3);
+											console.log("type:"+type)
 											if(type=="png" || type=="jpg" || type=="img"){
 										    		console.log("obj"+obj);
 													var fileCallPath =  encodeURIComponent(obj.fname);
@@ -272,13 +287,12 @@ $(document).ready(function(){
 													var go="/project5/display2.do?fileName="+fileCallPath;
 													var A = $("#galleryImg")
 													var str = "";
-													str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style='border : 1px solid black; margin:10px; width:250px; height:250px;'>"
-													str += "<a href='https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg'"
+													str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style=' margin:10px; width:250px; height:250px;'>"
+													str += "<a href='#'"
 													str += "class='fancylight popup-btn' data-fancybox-group='light'> "+obj.fname
 													str += "<img class=img-fluid' src='"+go+"' alt='' style='width:200px; height:200px; margin:0 auto; padding:5px; border:1px solid black'>"
 													str += "</a></div>"
 													A.append(str)
-													//$("#not").attr("src",go)
 										  }else if (type=="ptx"){
 												console.log("obj"+obj);
 												var fileCallPath =  encodeURIComponent(obj.fname);
@@ -286,8 +300,8 @@ $(document).ready(function(){
 												var go="/project5/display2.do?fileName="+fileCallPath;
 												var A = $("#galleryImg")
 												var str = "";
-												str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style='border : 1px solid black; margin:10px; width:250px; height:250px;' >"
-												str += "<a href='https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg'"
+												str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style=' margin:10px; width:250px; height:250px;' >"
+												str += "<a href='#'"
 												str += "class='fancylight popup-btn' data-fancybox-group='light'> "+obj.fname
 												str += "<img class=img-fluid' src='/project5/resources/pptxLogo.png' alt='' style='width:200px; height:200px;'>"
 												str += "</a></div>"
@@ -299,8 +313,8 @@ $(document).ready(function(){
 											var go="/project5/display2.do?fileName="+fileCallPath;
 											var A = $("#galleryImg")
 											var str = "";
-											str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style='border : 1px solid black; margin:10px; width:250px; height:250px;' >"
-											str += "<a href='https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg'"
+											str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style=' margin:10px; width:250px; height:250px;' >"
+											str += "<a href='#'"
 											str += "class='fancylight popup-btn' data-fancybox-group='light'> "+obj.fname
 											str += "<img class=img-fluid' src='/project5/resources/excelLogo.png' alt='' style='width:200px; height:200px;'>"
 											str += "</a></div>"
@@ -315,8 +329,8 @@ $(document).ready(function(){
 											var go="/project5/display2.do?fileName="+fileCallPath;
 											var A = $("#galleryImg")
 											var str = "";
-											str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style='border : 1px solid black; margin:10px; width:250px; height:250px;' >"
-											str += "<a href='https://image.freepik.com/free-photo/stylish-young-woman-with-bags-taking-selfie_23-2147962203.jpg'"
+											str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style=' margin:10px; width:250px; height:250px;' >"
+											str += "<a href='#'"
 											str += "class='fancylight popup-btn' data-fancybox-group='light'>"+obj.fname
 											str += "<img class=img-fluid' src='/project5/resources/txtLogo.png' alt='' style='width:200px; height:200px;'>"
 											str += "</a></div>"
@@ -339,31 +353,40 @@ $(document).ready(function(){
 
 <body>
 
- <div class="container">
-         <div class="row">
-            <div class="col-lg-12 text-center my-2">
-                   <h3 class="py-3"><a href="https://spreeowl.com/">파일함입니다.</a></h3>
-            	   <h4>파일함입니다<h4>
-            </div>
-         </div>
-         
-         <div class="portfolio-menu mt-2 mb-4">
-            <ul>
-               <li class="btn btn-outline-dark active" data-filter="*" >전체</li>
-               <li class="btn btn-outline-dark" data-filter=".gts" id="txtBtn">txt</li>
-               <li class="btn btn-outline-dark" data-filter=".gts" id="pngBtn">png</li>
-               <li class="btn btn-outline-dark" data-filter=".lap" id="jpgBtn">jpg</li>
-               <li class="btn btn-outline-dark text" data-filter=".selfie" id="pptxBtn">pptx</li>
-               <li class="btn btn-outline-dark text" data-filter=".selfie" id="xlsxBtn">excel</li>
-            </ul>
-         </div>
-         
-         
-		<!--  갤러리함 -->         
-         <div class="portfolio-item row" id="galleryImg" style="margin: 0 auto;"> 
-         </div>
-         
-      </div>
+
+
+
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 text-center my-2">
+				<h3 class="py-3">
+					<a href="#">파일함입니다.</a>
+				</h3>
+			</div>
+		</div>
+		
+		<div class="portfolio-menu mt-2 mb-4">
+			<ul>
+				<li class="btn btn-outline-dark active" data-filter="*" id="allBtn">전체</li>
+				<li class="btn btn-outline-dark" data-filter=".gts" id="txtBtn">txt</li>
+				<li class="btn btn-outline-dark" data-filter=".gts" id="pngBtn">png</li>
+				<li class="btn btn-outline-dark" data-filter=".lap" id="jpgBtn">jpg</li>
+				<li class="btn btn-outline-dark text" data-filter=".selfie" id="pptxBtn">pptx</li>
+				<li class="btn btn-outline-dark text" data-filter=".selfie"	id="xlsxBtn">excel</li>
+			</ul>
+		</div>
+
+		<!--  갤러리함 -->
+		<div style="margin-left: 130px;">
+		<div class="portfolio-item row" id="galleryImg"
+			style="margin: 0 auto; ">
+			
+		</div>
+		</div>
+
+	</div>
 
 </body>
 </html>

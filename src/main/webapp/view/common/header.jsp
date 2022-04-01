@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
+	
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <fmt:requestEncoding value="utf-8" />
 
@@ -238,11 +240,88 @@
 							});
 						</script>
 
+
+
+
+
+						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
+							<li class="sidebar-item  "><a
+								href="<c:url value='/admin/usermanager/main' />"
+								class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span
+									style="color: red"> (ADMIN) 관리자페이지 </span></a></li>
+						</sec:authorize>
+
+
+
+
+
+						<sec:authorize access="hasAuthority('USER_MANAGER')">
+												<li class="sidebar-item  ">
+												<a href="<c:url value='/admin/usermanager/main' />"  class='sidebar-link'> 
+				<i class="bi bi-grid-fill"></i> <span style="color : red">								(MANAGER)사용자관리페이지</span></a></li>
+								</sec:authorize>
+
+								<sec:authorize access="hasAuthority('USER')">
+										<li class="sidebar-item  ">
+										<a href="<c:url value='/member/main' />"  class='sidebar-link'>
+					<i class="bi bi-grid-fill"></i> <span style="color : red">					(USER)회원메인</span></a></li>
+								</sec:authorize>
+
+						<sec:authorize access="!isAuthenticated()">
+							<li class="sidebar-item  "><a
+								href="<c:url value='/user/loginform' />" class='sidebar-link'>
+									<i class="bi bi-grid-fill"></i> <span style="color: red">
+										(미인증)로그인</span>
+							</a></li>
+							<li class="sidebar-item  "><a
+								href="<c:url value='/user/join' />" class='sidebar-link'> <i
+									class="bi bi-grid-fill"></i> <span style="color: red">
+										(미인증)회원가입 </span></a></li>
+						</sec:authorize>
+
+
+
+						<sec:authorize access="isAuthenticated()">
+							<li class="sidebar-item  "><a
+								href="<c:url value='/user/logout' />" class='sidebar-link'>
+									<i class="bi bi-grid-fill"></i> <span style="color: red">
+										(인증공통)로그아웃</span>
+							</a></li>
+						</sec:authorize>
+
+
+
+
+
+						<c:if test="${ empty member.id}">
+							<li class="sidebar-item  "><a href="/project5/loginForm.do"
+								class='sidebar-link'> <i class="bi bi-grid-fill"></i> 
+								<span style="color:red">
+									<sec:authorize access="isAuthenticated()">
+									<sec:authentication property="name"/>
+									</sec:authorize>님, 로그인
+								</span>
+							</a></li>
+						</c:if>
+						
+						
+						
+						
+						
 						<c:if test="${ empty member.id}">
 							<li class="sidebar-item  "><a href="/project5/loginForm.do"
 								class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span>로그인</span>
 							</a></li>
 						</c:if>
+
+
+
+
+
+
+
+
+
 
 						<c:if test="${not empty member.id}">
 							<li class="sidebar-item  "><a
@@ -279,6 +358,12 @@
 																				class="bi bi-stack"></i> <span>프로젝트</span>
 																		</a>
 										<ul class="submenu ">
+										
+										
+										
+										
+										
+										
 										
 											<li class="submenu-item ">
 												<a href="#" id="dashBoard">대시보드 </a>

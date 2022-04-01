@@ -31,6 +31,28 @@ public class MemberVO {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+
+	public MemberVO(int memberkey, int status) {
+		super();
+		this.memberkey = memberkey;
+		this.status = status;
+	}
+
+
+
+
+
+
+
+
 
 	public MemberVO(List<String> emailList) {
 		super();
