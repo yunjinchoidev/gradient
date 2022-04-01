@@ -46,6 +46,8 @@
 				$("#schform").submit();
 			});
 			
+		document.getElementById('comdate').value = new Date().toISOString().substring(0, 10);
+			
 		});
 	
 	function goDetail(riskkey){
@@ -249,7 +251,7 @@
                     <!-- 완료예정일 -->
                     	<div id="comdatediv" style="flex:1; margin-top:5px;">
                     		<input type="hidden" name="id" value="${member.id}">
-                    		<input type=date name="comdate">
+                    		<input type=date name="comdate" id="comdate">
                     	</div>
                     </div>
                         
