@@ -9,6 +9,8 @@ import project5.noticeAttach.NoticeAttachVO;
 @Data
 public class NoticeVO2 {
 	
+	// 계층형을 위해서
+	
 	private int cnt;
 	private int level;
 	private int noticekey;

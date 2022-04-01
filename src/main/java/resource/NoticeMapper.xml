@@ -12,34 +12,31 @@
 		select rownum cnt, level, b.*
 		from notice b
 		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
 		START WITH refno=0
 		CONNECT BY PRIOR noticekey=refno
-		ORDER siblings BY noticekey desc ) a, MEMBER m
-		where cnt between #{start} and #{end}
+		ORDER siblings BY
+		noticekey desc ) a, MEMBER m
+		where cnt between #{start} and #{end} <!-- cnt는 
+			rownum 접근 순서인데 몇 번에서 몇 번글을 볼거냐는 소리 -->
 		AND a.memberkey = m.memberkey
 		ORDER BY
 		noticekey
 	</select>
 
 
-	<select id="totCnt" resultType="int">
+	<!--  전체 개수 구하는 함수 -->
+	<select id="totCnt" resultType="int"
+		parameterType="project5.notice.NoticeSch">
 		select count(*)
 		from notice
 		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
 	</select>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<select id="get" resultType="project5.notice.NoticeVO2"
 		parameterType="int">
@@ -52,31 +49,22 @@
 		noticekey=#{noticekey}
 	</select>
 
-
-
-
-
 	<insert id="insert">
 		insert into notice values
 		(seq_notice.nextval,0,
 		#{title}, #{content}, 0, sysdate, #{memberkey})
 	</insert>
 
-	<select id="current"  resultType="int">
-		SELECT seq_notice.currval FROM dual
+	<select id="current" resultType="int">
+		SELECT seq_notice.currval FROM
+		dual
 	</select>
-
-
-
-
-
 
 	<insert id="delete" parameterType="int">
 		delete from notice
-		where noticekey=#{noticekey}
+		where
+		noticekey=#{noticekey}
 	</insert>
-
-
 
 	<update id="update" parameterType="project5.notice.NoticeVO">
 		update notice
@@ -85,10 +73,4 @@
 		content=#{content}
 		where noticekey=#{noticekey}
 	</update>
-
-
-
-
-
-
 </mapper>

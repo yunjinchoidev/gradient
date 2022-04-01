@@ -83,52 +83,24 @@
 
 						<div class="card-content">
 							<div class="card-body">
-								<form class="form" action="/project5/noticeWrite.do"	method="post">
+								<form class="form" action="/project5/noticeWrite.do"	>
 									<input type="hidden" name="memberkey" value="${member.memberkey }">
 									<div class="row">
-										<div class="col-md-6 col-12">
+										<div class="col-md-12 col-12">
 											<div class="form-group">
 												<label for="first-name-column">공지 제목</label> <input
 													type="text" id="first-name-column" class="form-control"
 													placeholder="title" name="title">
 											</div>
 										</div>
-										<div class="col-md-6 col-12">
+										<div class="col-md-12 col-12">
 											<div class="form-group">
 												<label for="last-name-column">작성일</label> <input type="date"
 													id="last-name-column" class="form-control"
 													placeholder="writeDate" name="writeDateS">
 											</div>
 										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="city-column">City</label> <input type="text"
-													id="city-column" class="form-control" placeholder="City"
-													name="city-column">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="country-floating">Country</label> <input
-													type="text" id="country-floating" class="form-control"
-													name="country-floating" placeholder="Country">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="company-column">Company</label> <input
-													type="text" id="company-column" class="form-control"
-													name="company-column" placeholder="Company">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="email-id-column">Email</label> <input
-													type="email" id="email-id-column" class="form-control"
-													name="email-id-column" placeholder="Email">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
+										<div class="col-md-12 col-12">
 											<div class="form-group">
 												<label for="email-id-column">Contents</label>
 												<textarea class="form-control" name="content"
@@ -137,67 +109,22 @@
 										</div>
 
 
-
-
-
-
-										<!--  
-										<div style="margin-bottom: 20px;">
-											<label for="formFileLg" class="form-label">파일 첨부Large
-												file input example</label> <input
-												class="form-control form-control-lg" id="formFileLg"
-												type="file" name="fileInfo" multiple>
-										</div>
-											-->
-
-
-
-
-
-
 										<div class="row">
 											<div class="col-lg-12">
 												<div class="panel panel-default">
-
 													<div class="panel-heading">File Attach</div>
-													<!-- /.panel-heading -->
 													<div class="panel-body">
 														<div class="form-group uploadDiv">
 															<input type="file" name='uploadFile' multiple>
 														</div>
-
 														<div class='uploadResult'>
 															<ul>
-
 															</ul>
 														</div>
-
-
 													</div>
-													<!--  end panel-body -->
-
-												</div>
-												<!--  end panel-body -->
-											</div>
-											<!-- end panel -->
-										</div>
-										<!-- /.row -->
-
-
-
-
-
-
-										<div class="form-group col-12">
-											<div class="form-check">
-												<div class="checkbox">
-													<input type="checkbox" id="checkbox5"
-														class="form-check-input" checked=""> <label
-														for="checkbox5">Remember Me</label>
 												</div>
 											</div>
 										</div>
-
 
 
 

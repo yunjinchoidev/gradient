@@ -12,6 +12,7 @@ import com.google.gson.JsonArray;
 
 import project5.cost.CostDetail;
 import project5.member.MemberVO;
+import project5.memo.MemoSch;
 import project5.memo.MemoService;
 import project5.output.OutputVO;
 import project5.project.ProjectService;
@@ -37,10 +38,10 @@ public class DashBoardController {
 	
 	
 	@RequestMapping("/dashBoard.do")
-	public String dashBoard(Model d, int projectkey,MemberVO vo, OutputVO vo2) {
+	public String dashBoard(Model d, int projectkey,MemberVO vo, OutputVO vo2, MemoSch sch) {
 		d.addAttribute("pjList", service.list());
 		d.addAttribute("project", service.get(projectkey));
-		d.addAttribute("memoList",service2.list());
+		d.addAttribute("memoList",service2.list(sch));
 		d.addAttribute("riskDashBoardList", service3.riskDashBoard());
 		d.addAttribute("calendarCountBelongTodayCnt", service3.calendarCountBelongTodayCnt()); // 오늘 껴있는 숫자 수
 		d.addAttribute("EmergencyCalendarTask", service3.EmergencyCalendarTask()); // 오늘 껴있는 숫자 수
