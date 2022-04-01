@@ -156,7 +156,7 @@ $("#frm02 [name=status]").val(status);
 												class="dataTable-sorter">직급</a></th>
 											<th data-sortable="" style="width: 10%;"><a href="#"
 												class="dataTable-sorter">부서명</a></th>
-											<th data-sortable="" style="width: 25%;"><a href="#"
+											<th data-sortable="" style="width: 20%;"><a href="#"
 												class="dataTable-sorter">이메일</a></th>
 											<th data-sortable="" style="width: 25%;"><a href="#"
 												class="dataTable-sorter">프로젝트명</a></th>
@@ -170,14 +170,21 @@ $("#frm02 [name=status]").val(status);
 										<c:forEach var="tlist" items="${tlist}">
 											<tr
 												onclick="detail(${tlist.name},'${tlist.auth}','${tlist.dname}','${tlist.email}',
-												'${tlist.projectname},'${tlist.status}')"
+												'${tlist.projectname},$${tlist.status}')"
 												data-toggle="modal" data-target="#exampleModalCenter">
 												<td>${tlist.name}</td>
 												<td>${tlist.auth}</td>
 												<td>${tlist.dname}</td>
 												<td>${tlist.email}</td>
 												<td>${tlist.projectname}</td>
-												<td>${tlist.status}</td>
+												<td><c:choose>
+														<c:when test="${tlist.status eq '배정'}">
+															<span class="badge bg-success">${tlist.status}</span>
+														</c:when>
+														<c:when test="${tlist.status eq ''}">
+															<span class="badge bg-danger">${tlist.status}</span>
+														</c:when>
+													</c:choose></td>
 											</tr>
 										</c:forEach>
 									</tbody>
@@ -215,33 +222,21 @@ $("#frm02 [name=status]").val(status);
 														<div class="dnameselect">
 															회원정보 <select class="form-select"
 																style="text-align: center;" name="memberkey">
-																<c:forEach var="m" items="${MemList}">
-																	<option value="${m.memberkey}">${m.name}</option>
+																<c:forEach var="MemList" items="${MemList}">
+																	<option value="${MemList.memberkey}">${MemList.name}</option>
 																</c:forEach>
 															</select>
 														</div>
-													</div>
-													<div class="auth">
-														직급<select class="form-select" name="auth">
-															<option value="developer">developer</option>
-															<option value="pm">pm</option>
-															<option value="ceo">ceo</option>
-														</select>
 													</div>
 													<div class="row">
 														<div class="dnameselect">
 															부서정보 <select class="form-select"
-																style="text-align: center;" name="dpt">
+																style="text-align: center;" name="deptno">
 																<c:forEach var="dpt" items="${dptList}">
-																	<option value="${dpt.deptno}">${dpt.dname}</option>
+																	<option value="${dptList.deptno}">${dptList.dname}</option>
 																</c:forEach>
 															</select>
 														</div>
-													</div>
-													<div class="email">
-														<label>이메일</label> <input type="email"
-															class="form-control" id="email" name="email"
-															placeholder="이메일을 입력해주세요." />
 													</div>
 												</div>
 											</form>
