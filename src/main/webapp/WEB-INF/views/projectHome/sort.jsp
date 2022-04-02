@@ -92,7 +92,7 @@
 			class="btn btn-success">산출물 관리</a> <a
 			href="/project5/risk.do?projectkey=${project.projectkey }"
 			class="btn btn-primary">리스크 관리</a> <a
-			href="/project5/contractMain.do?projectkey=${project.projectkey }"
+			href="/project5/procuSituationMain.do?projectkey=${project.projectkey }"
 			class="btn btn-secondary">조달 관리</a>
 
 	</div>

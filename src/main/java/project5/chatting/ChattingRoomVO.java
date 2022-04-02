@@ -8,6 +8,15 @@ public class ChattingRoomVO {
 	private Date makedate;
 	private String makedateS;
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	public ChattingRoomVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -19,6 +28,17 @@ public class ChattingRoomVO {
 		this.name = name;
 		this.makedate = makedate;
 		this.makedateS = makedateS;
+	}
+
+	
+	
+	
+	
+	
+	public ChattingRoomVO(int roomkey, String name) {
+		super();
+		this.roomkey = roomkey;
+		this.name = name;
 	}
 
 	public int getRoomkey() {

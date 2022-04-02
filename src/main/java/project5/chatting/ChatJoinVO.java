@@ -1,19 +1,30 @@
 package project5.chatting;
 
-public class Chat_memroom_joinVO {
+public class ChatJoinVO {
 	
 	int chat_memroom_join_key;
 	int roomkey;
 	int memberkey;
 
-	public Chat_memroom_joinVO() {
+	public ChatJoinVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Chat_memroom_joinVO(int chat_memroom_join_key, int roomkey, int memberkey) {
+	public ChatJoinVO(int chat_memroom_join_key, int roomkey, int memberkey) {
 		super();
 		this.chat_memroom_join_key = chat_memroom_join_key;
+		this.roomkey = roomkey;
+		this.memberkey = memberkey;
+	}
+	
+	
+	
+	
+	
+
+	public ChatJoinVO(int roomkey, int memberkey) {
+		super();
 		this.roomkey = roomkey;
 		this.memberkey = memberkey;
 	}

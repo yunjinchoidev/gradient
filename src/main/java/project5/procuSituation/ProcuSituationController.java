@@ -10,12 +10,24 @@ public class ProcuSituationController {
 
 	@Autowired
 	ProcuSituationService service;
-	
+
 	@RequestMapping("/procuSituationMain.do")
-	public String attendance(Model d) {
-		return "WEB-INF\\views\\procuSituation\\main.jsp";
+	public String procuSituationMain2(Model d, ProcuSituationSch sch) {
+		d.addAttribute("blist", service.listWithPaging(sch));
+		return "WEB-INF\\views\\procuSituation\\main.html";
 	}
 	
-	
+	@RequestMapping("/procuSituationData.do")
+	public String listTEST(Model d, ProcuSituationSch sch) {
+		d.addAttribute("blist", service.listWithPaging(sch));
+		d.addAttribute("procuSituationSch2", sch);
+		return "pageJsonReport";
+	}
+
+	@RequestMapping("procuSituationInsert.do")
+	public String procuSituationInsert(Model d, ProcuSituationSch sch) {
+		d.addAttribute("list", service.listWithPaging(sch));
+		return "pageJsonReport";
+	}
 	
 }

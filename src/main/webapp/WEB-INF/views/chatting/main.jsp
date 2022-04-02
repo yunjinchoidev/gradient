@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Gradient 채팅 서비스</title>
 
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -39,14 +39,17 @@
 	var myFaceData;
 	var theSrc;
 	var today=new Date(); 
-	
 	var roomkey;
 	var currentRoomkey;
+	
+	
+	
 	
 	
 	function MessageListFunc(data){
 		console.log("MessageListFunc");
 		console.log(data);
+		
 		if (parseInt($(data).text().substr(1,3)) >= 100){
 			roomkey = parseInt($(data).text().substr(1,2));
 		}else if (parseInt($(data).text().substr(1,2)) >= 10){
@@ -55,12 +58,14 @@
 			roomkey = parseInt($(data).text().substr(1,1));
 		}
 		
-			
 			currentRoomkey = roomkey
 			alert("채팅방번호:"+roomkey)
+			
 		var data ={roomkey:roomkey};
+		var memName ="${member.name}"
+		var myMemberkey ="${member.memberkey}"
 		$.ajax({
-			url :'/project5/MessageListbyRoomkey.do',
+			url :'/project5/chattingMListbyRoomkey.do',
 			type:'POST',
 			data : data,
 			dataType:'json',
@@ -69,42 +74,34 @@
 					if(result.MessageListbyRoomkey[0]==null){
 						alert("채팅 메시지가 없네요")
 					}else{
+						$("#chatMessageArea").text("");
+						alert("채팅을 출력합니다.")
 					console.log(result.MessageListbyRoomkey.legth)
 					for(var i=0; i<result.MessageListbyRoomkey.length; i++){
-						if(result.MessageListbyRoomkey[i].memberkey==2){
-							var str = "";
-							str += "<div class='chat-message-right pb-4' onclick='likeCntFun(this)'>"
-							str += "<div>"
-							str += "<img src='#' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40' id='likecntBtn2'>"
-							str += "<div class='text-muted small text-nowrap mt-2'><p style='color:red;'>["+result.MessageListbyRoomkey[i].messagekey+"]좋아요 :"+result.MessageListbyRoomkey[i].likecnt+" </p>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
-							str += "</div>"
-							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
-							str += "<div class='font-weight-bold mb-1'>" + $("#id").val()+ "</div>"
-							str += result.MessageListbyRoomkey[i].message
-							str += "</div>"
-							str += "</div>"
-							console.log(str);
-							wsocket.send("msg:" + str);
-	
+						if(result.MessageListbyRoomkey[i].memberkey==myMemberkey){
+								var str = "";
+								str += "<div class='media w-50 ml-auto mb-3'>"
+								str += "<div class='media-body'>"
+								str += " <div class='bg-primary rounded py-2 px-3 mb-2'>"
+								str += "<p class='text-small mb-0 text-white'>"+result.MessageListbyRoomkey[i].contents+"</p></div>"
+								str += " <p class='small text-muted'>"+today.toLocaleDateString()+"["+memName+"]"+"<br>"+today.toLocaleTimeString() +"</p>"
+								str += "	</div></div>"
+								console.log(str);
+								wsocket.send("msg:" + str);
 						}else{
-							// 상담원
+							// 상대방이 보낸 메시지
 							var str2 = "";
-							str2 += "<div class='chat-message-left pb-4'>"
-							str2 += "<div>"
-							str2 += "<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1' alt='Chris Wood' width='40' height='40'>"
-							str2 += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
-							str2 += "</div>"
-							str2 += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
-							str2 += "<div class='font-weight-bold mb-1'>상담원 A</div>"
-							str2 += "<br>안녕하세요?<br><br>" + $("#id").val() + "<br> 무엇을 도와드릴까요?"
-							str2 += "</div>"
-							str2 += "</div>"
+							str2 += 	"<div class='media w-50 mb-3'><img src='https://bootstrapious.com/i/snippets/sn-chat/avatar.svg' alt='user' width='50' class='rounded-circle'>"
+							str2 += "      <div class='media-body ml-3'>"
+							str2 +=  "       <div class='bg-light rounded py-2 px-3 mb-2'>"
+							str2 +=   "        <p class='text-small mb-0 text-muted'>"+result.MessageListbyRoomkey[i].contents+"</p></div>"
+						    str2 +="         <p class='small text-muted'>"+result.MessageListbyRoomkey[i].writedateS+"[ 작성자 :"+result.MessageListbyRoomkey[i].memberkey+"]"+"</p></div></div>"
+							console.log(str);
 							wsocket.send("msg:" + str2);
-									}
 							}
 						}
-								
-					}	
+					}
+				}	
 			})
 		
 		
@@ -146,60 +143,42 @@
 	$(document).ready(function(){
 		// 1:1 대화
 	
-		
 			var memberkey = "${memberk.memberkey}"
-			$("#personalChatRoom").click(function(){
+			$("#newChatBtn").click(function(){
 			confirm("1:1 대화를 하시겠습니까?")
 			location.href="/project5/invitationList.do?memberkey="+memberkey
 			})
 			
-			
-			$("#groupChatRoom").click(function(){
+			$("#newGroupChatBtn").click(function(){
 			confirm("그룹 대화를 하시겠습니까?")
 			location.href="/project5/invitationList.do?memberkey="+memberkey
 			})
 		
 		
 		
-		// 화면 로딩 되자 마자 상담 목록을 모조리 불러온다
-		$.ajax({
-			url : '/project5/chatRoomList.do',
-			type:'POST',
-			dataType:'json',
-			success:function(result){
-				console.log("chatRoomList=========================");
-				console.log(result);
-				console.log(result.chatRoomList)
-				
-				var consultChatList = $("#consultChatList");
-				for(var i=0; i<result.chatRoomList.length; i++){
-					var str="";
-					str +="<a href='#' class='list-group-item list-group-item-action border-0 consult' onclick='MessageListFunc(this)' >"
-					str +="["+result.chatRoomList[i].roomkey +"]번방 &nbsp : "+result.chatRoomList[i].createDateS+"일 생성<div class='badge bg-success float-right consult'></div>"
-					str +="<div class='badge bg-success float-right consult'></div>"
-					str +="<div class='d-flex align-items-start consult'>"
-					str +="<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1 consult' alt='Vanessa Tucker' width='40' height='40'>"
-					str +="<div class='flex-grow-1 ml-3 consult'> 방 명 : "+result.chatRoomList[i].name
-					str +="<div class='small'><span class='fas fa-circle chat-online consult'></span> </div>"
-					str +="</div></div></a>"
-					consultChatList.append(str);
-				}
-			}
-		})
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+							// 화면 로딩 되자 마자 상담 목록을 모조리 불러온다
+							$.ajax({
+								url : '/project5/chattingRoomList.do',
+								type:'POST',
+								dataType:'json',
+								success:function(result){
+									console.log("chattingRoomList=========================");
+									console.log(result);
+									console.log(result.chatRoomList)
+									
+									var consultChatList = $("#chattingRoomList");
+									for(var i=0; i<result.chatRoomList.length; i++){
+											var str="";
+											str +=" <a class='list-group-item list-group-item-action active text-white rounded-0' onclick='MessageListFunc(this)'>"+"["+result.chatRoomList[i].roomkey +"]번방 &nbsp : "
+											str +="   <div class='media'><img src='https://bootstrapious.com/i/snippets/sn-chat/avatar.svg' alt='user' width='50' class='rounded-circle'>"
+											str +="    <div class='media-body ml-4'>"
+											str +="        <div class='d-flex align-items-center justify-content-between mb-1'>"
+							                str +="         <h6 class='mb-0' style='color:white'> 방 이름 : <br>"+result.chatRoomList[i].name+"</h6><small class='small font-weight-bold'>"+result.chatRoomList[i].makedateS+"</small> </div>"
+						                	str +="         <p class='font-italic mb-0 text-small'></p></div></div></a>"
+										consultChatList.append(str);
+									}
+								}
+							})
 		
 		
 		
@@ -258,202 +237,131 @@
 		
 					
 								
-								
-								
-								
-								
-								
-								
-					
-					// 새 상담 만들기
-					$("#newConsult").click(function(){
-						alert("새 상담을 시작합니다.")
-						var consultChatList = $("#consultChatList");
-						var str="";
-						str +="<a href='#' class='list-group-item list-group-item-action border-0 consult' >"
-						str +="<div class='badge bg-success float-right consult'></div>"
-						str +="<div class='d-flex align-items-start consult'>"
-						str +="<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1 consult' alt='Vanessa Tucker' width='40' height='40'>"
-						str +="<div class='flex-grow-1 ml-3 consult'>상담사 A "
-						str +="<div class='small'><span class='fas fa-circle chat-online consult'></span> </div>"
-						str +="</div></div></a>"
-						consultChatList.append(str);
-						$.ajax({
-							url : '/project5/createChat.do',
-							success : function(result){
-								alert("새 상담이 정상적으로 만들어졌습니다.")
-								sendMsgEnd();
-							}
-						})
-						
-					})
-					
-					
-					
-					// 채팅 로드
-					$(".consult").click(function(){
-						alert("채팅을 로드합니다.")
-						$("#chatMessageArea").text("");
-					})
-					
-					
-					$("#eraseBtn").click(function(){
-						alert("내용을 모두 지웁니다.")
-						$("#chatMessageArea").text("");
-					})
-					
-						
-						
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 					
 					
 					
 
 						//////////////////////////////////////////////////////////////////////////////
 
-						// 1. 웹 소켓 클라이언트를 통해 웹 서버 연결하기.
+						// 연결
 						$("#enterBtn").click(function() {
 							conn();
 						});
 
-						$("#id").keyup(function() {
-							if (event.keyCode == 13) {
-								conn();
-							}
-						})
+
+						// 접속 종료를 처리했을 시
+							$("#exitBtn").click(function() {
+								wsocket.close();
+							});
+						
+							$("#exitBtn2").click(function() {
+								sendMsgEnd();
+							});
+						
+							
+							$("#groupChatRoom").click(function(){
+								confirm("단체 톡을 시작하겠습니까?")
+							})
 
 						
 						
-						
 						//////////////////////////////////////////////////////////////////////////////
-						// 메시지 보내기
+						// 엔터로 메시지 보내기
 						$("#msg").keyup(function() {
 							var roomkey2;
 							roomkey2 = currentRoomkey;
 							if (event.keyCode == 13) {
-								var message = $("#msg").val();
+								var contents = $("#msg").val();
 								var memberkey = "${member.memberkey}"
-								var data = {message : message,
+								var data = {contents : contents,
 													memberkey : memberkey,
-													roomkey : roomkey2
+													roomkey : 1
 									};
 								$.ajax({
-									url:'/project5/createMessage.do',
+									url:'/project5/chattingCreateMessage.do',
 									method:'POST',
 									data : data,
 									dataType:'json',
 									success:function(result){
 										console.log("대화 DB에 넣기 완료")
+										sendMsg();
 									},
 									error:function(result){
 										console.log("대화 DB에 넣기 실패")
+										alert("대화 전송에 실패했습니다.")
 									}
 								})
-								sendMsg();
+							
 							}
 						});
 						
-						
-						
-						
-						
-						
-						
 						// 전송 버튼을 눌렀을 때
 						$("#sendBtn").click(function() {
-							var message = $("#msg").val();
-							console.log("message ::::::::::::::::::::: "+ message);
-							sendMsg();
+							var contents = $("#msg").val();
 							var memberkey = parseInt("${member.memberkey}");
-							var data = {message : message,
+							var data = {contents : contents,
 												memberkey : memberkey,
-												roomkey : currentRoomkey
+												roomkey : 1
 								};
 							$.ajax({
-								url:'/project5/createMessage.do',
+								url:'/project5/chattingCreateMessage.do',
 								method:'POST',
 								data : data,
 								success:function(result){
 									console.log("대화 DB에 넣기 완료")
+									sendMsg();
 								},
 								error:function(result){
 									console.log("대화 DB에 넣기 실패")
+									alert("대화 전송에 실패했습니다.")
 								}
 							})
 							
 						});
 
 						
-						
-						
-						
-							// 접속 종료를 처리했을 시
-							$("#exitBtn").click(
-								function() {
-									wsocket.send("msg:" + $("#id").val()
-											+ ":접속 종료 했습니다!");
-									sendMsgEnd();
-									wsocket.close();
-								});
-							
-							
-							$("#groupChatRoom").click(function(){
-								confirm("단체 톡을 시작하겠습니까?")
-							})
-
 							
 							
 							
-							
-							
-						////////////////////////////////////////////////////////////////////////
-						// 메시지는 보내는 기능 메서드
+						// 화면에 메시지 출력
 						function sendMsg() {
-							var id = $("#id").val();
+							var id = "${member.name}"
 							var msg = $("#msg").val();
-							// message를 보내는 처리..서버의 handler의  handleTextMessage()와 연동
-							//wsocket.send("msg:"+id+":"+msg);
 							var str = "";
-							str += "<div class='chat-message-right pb-4'>"
-							str += "<div>"
-							str += "<img src='https://bootdey.com/img/Content/avatar/avatar1.png' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40'>"
-							str += "<div class='text-muted small text-nowrap mt-2'> <p style='color:red;'>좋아요 : 0</p>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
-							str += "</div>"
-							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
-							str += "<div class='font-weight-bold mb-1'>"	+ $("#id").val() + "</div>"
-							str += msg
-							str += "</div>"
-							str += "</div>"
+							str += "<div class='media w-50 ml-auto mb-3'>"
+							str += "<div class='media-body'>"
+							str += " <div class='bg-primary rounded py-2 px-3 mb-2'>"
+							str += "<p class='text-small mb-0 text-white'>"+msg+"</p></div>"
+							str += " <p class='small text-muted'>"+today.toLocaleDateString()+"["+id+"]"+"<br>"+today.toLocaleTimeString() +"</p>"
+							str += "	</div></div>"
+						
 							//console.log("메시지 보내기 :::::::::::::::" + str);
 							wsocket.send("msg:" + str);
 							$("#msg").val("");
 							$("#msg").focus();
-							
-							
 						}
 						
-						
+							
+							// 채팅 종료시 출력할 정보
+							function sendMsgEnd() {
+								var id = "${member.name}"
+								var str = "";
+								str += "<div class='media w-50 ml-auto mb-3'>"
+								str += "<div class='media-body'>"
+								str += " <div class='bg-primary rounded py-2 px-3 mb-2'>"
+								str += "<p class='text-small mb-0 text-white'>채팅을 종료합니다.</p></div>"
+								str += " <p class='small text-muted'>"+today.toLocaleDateString()+"["+id+"]"+"<br>"+today.toLocaleTimeString() +"</p>"
+								str += "	</div></div>"
+								wsocket.send("msg:" + str);
+								
+								$("#msg").val("");
+								$("#msg").focus();
+							}
 							
 							
 							
 							
-							
+							// 이미지 보내기
 						function sendMsgImg(obj) {
 							if(obj.image){
 								var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
@@ -464,10 +372,6 @@
 							    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
 								var go2 = "<img src='/project5/resources/img/attach.png'>";
 							}
-							
-							
-							
-							
 							
 							var id = $("#id").val();
 							var msg = $("#msg").val();
@@ -491,27 +395,9 @@
 							$("#msg").focus();
 						}
 						
+			
 						
-						// 상담 종료
-						function sendMsgEnd() {
-							var str = "";
-							str += "<div class='chat-message-left pb-4'>"
-							str += "<div>"
-							str += "<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40'>"
-							str += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
-							str += "</div>"
-							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
-							str += "<div class='font-weight-bold mb-1'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>상담을 종료합니다"
-							str += "<br>================"
-							str += "<br>================"
-							str += "<br>================"
-							str += "<br>================"
-							str += "</div>"
-							str += "</div>"
-							wsocket.send("msg:" + str);
-							$("#msg").val("");
-							$("#msg").focus();
-						}
+						
 						
 						
 						
@@ -533,6 +419,10 @@
 						    return true;
 						  }
 						
+						  
+						  
+						  
+						  
 						$("input[type='file']").change(function(e){
 							var formData = new FormData();
 							var inputFile = $("input[name='fileInfo']");
@@ -567,9 +457,6 @@
 										}); //$.ajax
 										
 										
-										
-										
-										
 
 								});  
 
@@ -593,14 +480,6 @@
 											}
 											
 											
-											
-											
-											
-											
-											
-											
-											
-											
 									}
 						
 					});
@@ -612,41 +491,9 @@
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	function conn() {
 		
-		wsocket = new WebSocket("ws:/@localhost:7080/${path}/chat-ws.do");
+		wsocket = new WebSocket("ws:/@106.10.16.155:7080/${path}/chat-ws.do");
 		wsocket.onopen = function(evt) {
 			console.log(evt);
 			var str = "";
@@ -657,9 +504,6 @@
 			str += " <p class='small text-muted'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</p></div></div>"
 			wsocket.send("msg:" + str);
 		}
-
-		
-		
 		
 		wsocket.onmessage = function(evt) {
 			var msg = evt.data;
@@ -670,7 +514,6 @@
 				$("#chatArea").scrollTop(mx);
 			}
 		}
-
 		
 		// handler의 afterConnectionClose와 연동
 		wsocket.onclose = function() {
@@ -692,21 +535,18 @@
 <body>
 <%@ include file="../common/header.jsp"%>
 	<div id="main" >
-	
 	<div class="container py-5 px-4">
   <!-- For demo purpose-->
   <header class="text-center">
-    <h1 class="display-4 text-white" style="font-weight: bolder;">Gradient 채팅 서비스</h1>
     <p class="text-white lead mb-0" style="font-weight: bolder;">더 자유롭게, 더 빠르게, 더 정확하게</p>
+    <h1 class="display-4 text-white" style="font-weight: bolder;">Gradient 채팅 서비스</h1>
     <hr>
-    <a href="#" class="btn btn-primary"  id="enterBtn">채팅입장</a>
-    <a href="#" class="btn btn-danger"   id="exitBtn">나가기</a>
-    <a href="#" class="btn btn-danger"  >1:1 대화</a>
-    <a href="#" class="btn btn-danger" >단체 대화</a>
-    <a href="#" class="btn btn-danger"  >냉무</a>
-    <a href="#" class="btn btn-danger"  >냉무</a>
-    <a href="#" class="btn btn-danger" >냉무</a>
-    <a href="#" class="btn btn-danger" >투표</a>
+	    <a href="#" class="btn btn-primary"  id="enterBtn">채팅 ON</a>
+	    <a href="#" class="btn btn-danger"   id="exitBtn">채팅 OFF</a>
+	    <a href="#" class="btn btn-primary"   id="exitBtn2">방 나가기</a>
+	    <a href="#" class="btn btn-success" id="newChatBtn" >1:1 대화</a>
+	    <a href="#" class="btn btn-warning" id="newGroupChatBtn">단체 대화</a>
+	    <a href="#" class="btn btn-dark" id="voteBtn">투표</a>
     <p class="text-white lead mb-4">
     </p>
   </header>
@@ -720,22 +560,11 @@
           <p class="h5 mb-0 py-1">최근 대화</p>
         </div>
 
+
+
         <div class="messages-box" >
-          <div class="list-group rounded-0">
-          
-          
-            <a class="list-group-item list-group-item-action active text-white rounded-0">
-              <div class="media"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
-                <div class="media-body ml-4">
-                  <div class="d-flex align-items-center justify-content-between mb-1">
-                    <h6 class="mb-0">Jason Doe</h6><small class="small font-weight-bold">25 Dec</small>
-                  </div>
-                  <p class="font-italic mb-0 text-small">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.</p>
-                </div>
-              </div>
-            </a>
-
-
+        <!--  채팅 방 목록 가져오는 곳 -->
+          <div class="list-group rounded-0" id="chattingRoomList">
           </div>
         </div>
       </div>
@@ -750,26 +579,11 @@
     <div class="col-7 px-0"  id="chatArea"> 
       <div class="px-4 py-5 chat-box bg-white" id="chatMessageArea">
 
-        <!-- Sender Message-->
-        <!--  사대 -->
-        <div class="media w-50 mb-3"><img src="https://bootstrapious.com/i/snippets/sn-chat/avatar.svg" alt="user" width="50" class="rounded-circle">
-          <div class="media-body ml-3">
-            <div class="bg-light rounded py-2 px-3 mb-2">
-              <p class="text-small mb-0 text-muted">Test which is a new approach all solutions</p>
-            </div>
-            <p class="small text-muted">12:00 PM | Aug 13</p>
-          </div>
-        </div>
+        <!-- Message-->
 
-        <!-- Reciever Message-->
-        <div class="media w-50 ml-auto mb-3">
-          <div class="media-body">
-            <div class="bg-primary rounded py-2 px-3 mb-2">
-              <p class="text-small mb-0 text-white">Test which is a new approach to have all solutions</p>
-            </div>
-            <p class="small text-muted">12:00 PM | Aug 13</p>
-          </div>
-        </div>
+
+
+        <!--  Message-->
 
 
       </div>
@@ -781,7 +595,7 @@
            class="form-control rounded-0 border-0 py-4 bg-light" id="msg" >
           <div class="input-group-append">
           <!--  전송 버튼 -->
-            <button id="button-addon2" type="button" class="btn btn-link"  id="sendBtn">
+            <button  type="button" class="btn btn-link"  id="sendBtn">
              <i class="fa fa-paper-plane"></i></button>
           </div>
         </div>

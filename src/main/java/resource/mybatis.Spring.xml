@@ -51,5 +51,6 @@
 		<mapper resource="resource/ContractMapper.xml"/>
 		<mapper resource="resource/MyWorkMapper.xml"/>
 		<mapper resource="resource/FavoriteMapper.xml"/>
+		<mapper resource="resource/ChattingMapper.xml"/>
 	</mappers>
 </configuration>

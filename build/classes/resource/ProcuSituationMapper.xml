@@ -5,6 +5,59 @@
 <mapper namespace="project5.procuSituation.ProcuSituationDao">
 
 
+	<!-- 전체 데이터 수 가져오기 -->
+	<select id="totCnt"
+		parameterType="project5.procuSituation.ProcuSituationSch"
+		resultType="int">
+		select count(*)
+		from procuSituation
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+		<if test="contents!=null and contents!=''">
+			and contents like '%'||#{contents}||'%'
+		</if>
+	</select>
+
+
+
+	<!-- 리스트를 불러오기 -->
+	<select id="listWithPaging"
+		resultType="project5.procuSituation.ProcuSituationVO"
+		parameterType="project5.procuSituation.ProcuSituationSch">
+		select *
+		from (
+		select rownum cnt, m.procusituationKey, m.title,
+		m.contents,
+		to_char(m.writedate, 'YYYY/MM/DD') writedateS,
+		m.memberkey,
+		m.projectkey
+		from procuSituation m
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+		<if test="contents!=null and contents!=''">
+			and contents like '%'||#{contents}||'%'
+		</if>
+		)
+		where cnt between #{start} and #{end}
+		order by procusituationKey
+	</select>
+
+
+
+	<insert id="insert"
+		parameterType="project5.procuSituation.ProcuSituationVO">
+		INSERT INTO
+		procusituation VALUES
+		(seq_procusituation.nextval, #{titie},
+		#{contents}, sysdate,
+		#{memberkey}, #{projectkey})
+	</insert>
+
+
 
 
 </mapper>

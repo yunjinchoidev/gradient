@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="/project5/a00_com/bootstrap.min.css" >
+<link rel="stylesheet" href="/project5/a00_com/jquery-ui.css" >
+<script src="/project5/a00_com/jquery.min.js"></script>
+<script src="/project5/a00_com/popper.min.js"></script>
+<script src="/project5/a00_com/bootstrap.min.js"></script>
+<script src="/project5/a00_com/jquery-ui.js"></script>
+<script src="/project5/a00_com/vue.js"></script>
+<script src="/project5/a00_com/axios.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<template id="schTmp">
+	<form id="frm01" class="form"  method="post">
+		<input type="hidden" v-model="procuSituationSch.curPage"/>
+  	
+  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+  	
+	    <input class="form-control mr-sm-2" @keyup.13="search"
+	    	v-model="procuSituationSch.title" placeholder="제목" />
+	    
+	    <input class="form-control mr-sm-2"
+	    	v-model="procuSituationSch.contents"  @keyup.13="search"
+	    	placeholder="내용" />
+	    	
+	    <button class="btn btn-info" type="button"
+	    	@click="search">Search</button>  <!--  searchSize  search-->
+ 	</nav>
+ 	
+	<div class="input-group mb-3">
+		<div class="input-group-prepend">
+			<span class="input-group-text">총{{sch.count}}건</span>
+		</div>
+		<input class="form-control"/>
+		<div class="input-group-append">
+			<span class="input-group-text">페이지 크기</span>
+			<select @change="searchSize" v-model="procuSituationSch.pageSize" class="form-control">
+				<option>3</option>
+				<option>5</option>
+				<option>10</option>
+				<option>20</option>
+				<option>50</option>
+			</select>
+		</div>
+	</div> 	
+	</form>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<template id="listTmp">
+   <table class="table table-hover table-striped">
+   	<col width="10%">
+   	<col width="50%">
+   	<col width="15%">
+   	<col width="15%">
+   	<col width="10%">
+    <thead>
+      <tr class="table-success text-center">
+        <th>번호</th>
+        <th>제목</th>
+        <th>작성자</th>
+        <th>작성일</th>
+        <th>조회</th>
+      </tr>
+    </thead>	
+    <tbody  class="text-center">
+    	<tr v-for="procuSituation in blist">
+    		<td>{{procuSituation.cnt}}</td>
+    		<td>{{procuSituation.title}}</td>
+    		<td>{{procuSituation.contents}}</td>
+    		<td v-text="new Date(procuSituation.regdte).toLocaleDateString()"></td>
+    		<td>{{procuSituation.readcnt}}</td></tr>
+    </tbody>
+	</table> 
+</template>
+
+
+
+
+
+
+
+
+
+
+
+<template id="pageTmp">
+		<!-- class="page-item active" -->
+	<ul class="pagination  justify-content-end">
+	  <li class="page-item">
+	  	<a class="page-link" 
+				  		@click="goPage(
+				  		C.startBlock!=1
+				  		?C.startBlock-1
+				  		:1)"
+	  		>Previous</a></li>
+	  	<!-- 
+	  	  :href : 해당 함수를 실행을 해버리는 bug가 있기에 이벤트로 변경.
+	  	 -->	
+	  		
+	  	<li v-for="cnt in list()"
+	  		:class="cnt==C.curPage?
+	  		'page-item active':'page-item '"> 
+	  		<a class="page-link" 
+	  			@click="goPage(cnt)">{{cnt}}</a>
+	  	</li>
+	  			
+	  <li class="page-item"><a class="page-link" 
+	  	@click="goPage(C.endBlock!=C.pageCount?
+	  	C.endBlock+1:C.endBlock)">Next</a></li>
+	</ul> 
+
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	var eventBus = new Vue()
+	
+	
+	
+	
+	
+	// sch, blist, procuSituationSch
+	Vue.component("sch-comp",{ 
+		template:"#schTmp",
+		data:function(){
+			// 컴포넌트에 사용 데이터 선언. 페이지 default 크기 지정..
+			return {procuSituationSch:{title:"",contents:"",curPage:1,pageSize:5, count:0}}
+		},
+		props:["sch"],
+		methods:{ // searchSize  search
+			
+			// 검색을 했을 때
+			search:function(){
+				// 이벤트 버스를 통해서 상위에 전달
+				eventBus.$emit("search", this.procuSituationSch)
+				// eventBus.$emit("curpage",page);	
+			},
+			
+			// 한 페이지 사이즈를 변경했을 때
+			searchSize:function(){
+				// 페이지 크기를 변경시, 해당 데이터의 첫번째 페이지가 로딩
+				// 되게 처리..
+				console.log("#현재 페이지크기:")
+				this.procuSituationSch.curPage=1
+				console.log(this.procuSituationSch.pageSize)
+				eventBus.$emit("search", this.procuSituationSch)
+				/*
+				console.log("현재 페이지:")
+				console.log(this.procuSituationSch)
+				this.search();
+				*/
+			}
+		}
+		
+	})
+		
+	Vue.component("list-comp",{ 
+		template:"#listTmp",
+		props:["blist"]})
+		
+		
+		
+		
+		
+		
+	Vue.component("page-comp",{ 
+		template:"#pageTmp",
+		props:["C"],
+		methods:{
+			list:function(){
+				// 페이징 블럭 리스트 처리를 위한 기능 메서드
+				var list = [];
+				for(var idx=this.C.startBlock;
+							idx<=this.C.endBlock;
+							idx++){
+					list.push(idx);
+				}	
+				console.log(list)
+				return list;
+			},
+			goPage:function(page){
+				// 현재 페이지 속성값을 호출하여 설정하고 search 기능메서드 호출
+				// 상위에 현재 페이지를 넘기기 위해 이벤트 버스 활용
+				eventBus.$emit("curpage",page);
+			}			
+		}
+	
+	})
+
+	
+	
+	
+	
+	
+	// 상위 컨테이너
+	$(document).ready(function(){
+		var vm = new Vue({
+			el:".container",
+			data:{A:{},blist:[]},
+			created:function(){
+				// 하위 컴포넌트에서 eventBus.$emit("이벤트버스명",매개변수)
+				eventBus.$on("search", this.search)
+				eventBus.$on("curpage",this.curpage);
+				this.search(); //초기 검색 처리..
+			},
+			methods:{
+				curpage:function(no){
+					this.procuSituationSch.curPage = no;
+					this.search(this.procuSituationSch);
+				},
+				search:function(sch){
+					// 기능 메서드 안에서는 this가 해당 기능을 메서드를 지정하기에
+					// 현재 instance 객체를 지정하기 위하여 vm으로 선언..
+					
+					vm = this;
+					vm.procuSituationSch = sch;
+					console.log("# 검색 요청값 #")
+					console.log(vm.procuSituationSch)
+					
+					
+					axios({
+						method:"get",
+						url:"/project5/procuSituationData.do",
+						params:vm.procuSituationSch
+					}).then((res)=>{
+						console.log("res"+res);
+						console.log("res.data.procuSituationSch2"+res.data.procuSituationSch2);
+						console.log("res.data.procuSituationSch2.startBlock:"+res.data.procuSituationSch2.startBlock);
+						
+						vm.A = res.data.procuSituationSch2;
+						vm.blist = res.data.blist;
+						
+						console.log("# 최종 받은 모델 #")
+						console.log("vm.procuSituationSch"+vm.procuSituationSch)
+						console.log("vm.blist"+vm.blist)
+						
+						
+						
+						
+						
+						
+						
+						
+						
+					}).catch(error=>{
+						console.log(error)
+						throw new Error(error)
+					})
+				}
+			}
+		});
+
+	});
+</script>
+</head>
+
+<body>
+<div class="jumbotron text-center">
+  <h2 data-toggle="modal" id="show" data-target="#exampleModalCenter">게시판2</h2>
+
+</div>
+<div class="container"> <!--  sch, blist, procuSituationSch -->
+	<sch-comp :sch="A"></sch-comp>
+	<list-comp :blist="blist"></list-comp>
+	<page-comp :C="A"></page-comp>	
+</div>
+
+
+
+
+</body>
+</html>

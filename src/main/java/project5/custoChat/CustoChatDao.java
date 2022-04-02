@@ -32,8 +32,6 @@ public interface CustoChatDao {
 	// 채팅방 불러오기
 	public List<CustoChatRoomVO> chatRoomList();
 
-	
-	
 	//채팅방 하나 이름 가져오기
 	public CustoChatRoomVO getChatRoom(int roomkey);
 	
