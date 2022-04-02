@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import project5.member.MemberService;
+import project5.project.ProjectSch;
 import project5.project.ProjectService;
 import project5.project.ProjectVO;
 import project5.vote.VoteService;
@@ -25,13 +26,13 @@ public class ProjectHomeController {
 	VoteService service3;
 	
 	@RequestMapping("/projectHome.do")
-	public String projectHome(Model d, ProjectVO vo) {
+	public String projectHome(Model d, ProjectHomeSch sch) {
 		// 프로젝트 홈에서 사용하는 공지 내용들 
-		d.addAttribute("list", service.getList(vo.getProjectkey())); //
+		d.addAttribute("list", service.listWithPaging(sch)); //
 		d.addAttribute("voteList", service3.list());
 		// 프로젝트 명단 // 공통
 		d.addAttribute("pjList", service2.list()); 
-		d.addAttribute("project", service2.get(vo.getProjectkey())); 
+		d.addAttribute("project", service2.get(1)); 
 		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
 

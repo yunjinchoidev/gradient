@@ -167,7 +167,7 @@
 				alert("미 로그인시 접근 불가합니다.");
 				location.href="/project5/main.do"
 			}else{
-				location.href="/project5/myworkCalendar.do?memberkey="+memberkey
+				location.href="/project5/myWork1.do?memberkey="+memberkey
 			}
 		})
 		
@@ -364,7 +364,7 @@
 							<ul class="submenu ">
 								<li class="submenu-item "><a
 									href="/project5/minutes.do?method=list">회의</a></li>
-								<li class="submenu-item "><a href="/project5/chat.do">채팅</a>
+								<li class="submenu-item "><a href="/project5/chatting.do">채팅</a>
 								</li>
 							</ul></li>
 

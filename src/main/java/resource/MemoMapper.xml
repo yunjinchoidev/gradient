@@ -20,6 +20,8 @@
 		</if>
 	</select>
 
+
+
 	<select id="list" resultType="project5.memo.MemoVO"
 		parameterType="project5.memo.MemoSch">
 		select *

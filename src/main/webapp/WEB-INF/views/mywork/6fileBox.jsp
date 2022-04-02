@@ -30,10 +30,47 @@
 
 
 </head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+<script>
+$(document).ready(function(){
+	console.log("준비완료")
+	var memberkey;
+	var memberkeyValue =parseInt("${member.memberkey}");
+	var data = { memberkey : memberkeyValue};
+	
+	$.ajax({
+		  url: '/project5/myFileListInOutput.do',
+	      data: data,
+	      type: 'POST',
+	      dataType:'json',
+		success:function(result){
+			console.log("성공")
+			console.log(result);
+			console.log(result.myFileListInOutput)
+			
+			
+			
+			
+			
+		},
+		error:function(result){
+			console.log("실패")
+		}
+	})
+	
+	
+	
+})
+</script>
+
 <body>
 
 <%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
+	
+	
+	
+	
 	<div id="main">
 		<header class="mb-3">
 			<a href="#" class="burger-btn d-block d-xl-none"> <i
@@ -44,8 +81,8 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>내 작업 목록</h3>
-						<p class="text-subtitle text-muted">당신이 해야만 하는 일입니다.</p>
+						<h3>내 작업 목록 [ 파일함 ]</h3>
+						<p class="text-subtitle text-muted">당신의 파일입니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -59,6 +96,14 @@
 					</div>
 				</div>
 			</div>
+			
+			
+			
+			
+			
+			
+			
+			
 			<section class="section content-area-wrapper" style="height: 5000px;">
 				<%@ include file="leftSide.jsp"%>
 				<div class="content-right">
@@ -163,6 +208,9 @@
 											</div>
 											<!-- action left end here -->
 
+
+
+
 											<!-- action right start here -->
 											<div
 												class="action-right d-flex flex-grow-1 align-items-center justify-content-around">
@@ -235,71 +283,8 @@
 										<!-- email user list start -->
 										<div class="email-user-list list-group ps ps--active-y"
 											style="height: 5000px;">
-											<ul class="users-list-wrapper media-list">
 
-
-												<c:forEach var="list" items="${list }" varStatus="var">
-													<li class="media mail-read"  onclick="window.open('/project5/myWorkModal.do?id=${list.id}','팝업창','width=500, height=610, left=400, top=200');">
-														<div class="user-action">
-															<div class="checkbox-con me-3">
-																<div class="checkbox checkbox-shadow checkbox-sm">
-																	<input type="checkbox" id="checkboxsmall1"
-																		class="form-check-input"> <label
-																		for="checkboxsmall1"></label>
-																</div>
-															</div>
-															<span class="favorite text-warning"> <svg class="bi" width="1.5em" height="1.5em"
-																	fill="currentColor">
-                                                        	<use xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#star-fill"></use></svg>
-															</span>
-														</div>
-														
-														
-														
-														
-														<div class="pr-50" >
-															<div class="avatar">
-																<img
-																	src="/project5/resources/dist/assets/images/faces/1.jpg"
-																	alt="avtar img holder">
-															</div>
-														</div>
-
-														<div class="media-body"      >
-															<div class="user-details">
-																
-																<div class="mail-items">
-																	<span class="list-group-item-text text-truncate">${list.title}</span>
-																</div>
-																
-																<div class="mail-meta-item">
-																	<span class="float-right"> <span
-																		class="mail-date">4:14 AM</span>
-																	</span>
-																</div>
-															</div>
-															<div class="mail-message">
-																<p class="list-group-item-text truncate mb-0">
-																	${list.content }</p>
-																<div class="mail-meta-item">
-																	<span class="float-right"> <span
-																		class="bullet bullet-success bullet-sm"></span>
-																	</span>
-																</div>
-															</div>
-														</div>
-													</li>
-												</c:forEach>
-											</ul>
-											<!-- email user list end -->
-
-
-
-											<!-- no result when nothing to show on list -->
-											<div class="no-results">
-												<i class="bx bx-error-circle font-large-2"></i>
-												<h5>No Items Found</h5>
-											</div>
+										<%@include file="gallery.jsp" %>
 
 
 
@@ -322,6 +307,43 @@
 									</div>
 								</div>
 								<!--/ Email list Area -->
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
 
 
 

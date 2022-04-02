@@ -186,20 +186,34 @@
 											<option value="20">20</option>
 											<option value="25">25</option></select><label>한 화면당 페이지 수</label>
 									</div>
-									<div class="dataTable-search">
-									<div class="dataTable-info">
-						<input class="dataTable-input" placeholder="제목 조회" type="text"
-							name="title" value="${noticeSch.title}" placeholder="제목">
-						<input class="dataTable-input" placeholder="내용 조회" type="text"
-							name="writer" value="${noticeSch.content}" placeholder="내용 조회">
-						<button class="btn btn-info" type="submit">조회</button>
-				</div>
-										
-									</div>
+									
+									
+									
+									
+									
+									
+										<div class="dataTable-search" style="display: inline-block; ">
+							
+							<div style="display: inline-block;" >
+								<select class="dataTable-selector form-select searchbar" 
+								name="searchbar" style="display: inline-block; ">
+										<option selected="selected">검색</option>
+										<option value="title" selected="selected">title</option>
+										<option value="contents">contents</option>
+								</select>
+								</div>
+								
+								<div style="display: inline-block;" >
+								<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
+									name="title" value="${memoSch.title}"> 
+								  <button class="btn btn-info" type="submit">검색</button>
+								  <a href="${path }/noticeWriteForm.do" class="btn btn-danger" id="write"
+											style="text-align: right">글쓰기</a>
+								</div>
+						</div>
 								</div>
 							</form>
-<a href="${path }/noticeWriteForm.do" class="btn btn-danger" id="write"
-											style="text-align: right">글쓰기</a>
+
 
 
 

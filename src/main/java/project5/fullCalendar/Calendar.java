@@ -19,14 +19,13 @@ public class Calendar {
 	private int projectkey;
 	private int memberkey;
 
+	private int cnt;
+
 	private MultipartFile[] uploadFile;
 
 	private ArrayList<String> fnames;
 	private int fno;
-	
-	
-	
-	
+
 	public Calendar() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -47,12 +46,29 @@ public class Calendar {
 		this.projectkey = projectkey;
 		this.memberkey = memberkey;
 	}
-	
-	
-	
-	
-	
-	
+
+	public Calendar(int id, String title, String start, String start1, String end, String end1, String content,
+			String borderColor, String backgroundColor, String textColor, boolean allDay, int projectkey, int memberkey,
+			int cnt, MultipartFile[] uploadFile, ArrayList<String> fnames, int fno) {
+		super();
+		this.id = id;
+		this.title = title;
+		this.start = start;
+		this.start1 = start1;
+		this.end = end;
+		this.end1 = end1;
+		this.content = content;
+		this.borderColor = borderColor;
+		this.backgroundColor = backgroundColor;
+		this.textColor = textColor;
+		this.allDay = allDay;
+		this.projectkey = projectkey;
+		this.memberkey = memberkey;
+		this.cnt = cnt;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+		this.fno = fno;
+	}
 
 	public Calendar(int id, String title, String start, String end, String content, String borderColor,
 			String backgroundColor, String textColor, boolean allDay, int projectkey, int memberkey,
@@ -74,19 +90,6 @@ public class Calendar {
 		this.fno = fno;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public Calendar(int id, String title, String start, String start1, String end, String end1, String content,
 			String borderColor, String backgroundColor, String textColor, boolean allDay, int projectkey, int memberkey,
 			MultipartFile[] uploadFile, ArrayList<String> fnames, int fno) {
@@ -236,12 +239,13 @@ public class Calendar {
 	public void setEnd1(String end1) {
 		this.end1 = end1;
 	}
-	
-	
-	
-	
-	
-	
-	
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 
 }

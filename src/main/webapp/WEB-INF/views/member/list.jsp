@@ -64,9 +64,6 @@
 		
 		
 		
-		
-		
-		
 		$("#mailSendBtn").click(function(e) {
 			confirm("메일을 발송하시겠습니까?")
 			var array = new Array();
@@ -78,13 +75,34 @@
 			alert(array);
 			location.href="/project5/memberChkSendMail.do?arrayParam="+array;
 		})
-
 		
+		
+		
+		var pageSize="${memberSch.pageSize}"
+			$("[name=pageSize]").val(pageSize);
+			$("[name=pageSize]").change(function(){
+				$("[name=curPage]").val(1);
+				$("#frm01").submit();
+			});	
+			
+			
+			var msg = "${msg}";
+			if(msg!=""){
+				if(confirm(msg+"\n메인화면으로 이동할까요?")){
+					location.href="${path}/memberList.do";
+				}
+			}
 		
 	});
+	
+
+	function goPage(no){
+		$("[name=curPage]").val(no);
+		$("#frm01").submit();
+	}
+	
+	
 </script>
-
-
 
 
 <body>
@@ -134,22 +152,82 @@
 
 
 					<div class="card-body">
-						<div
-							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-							<div class="dataTable-top">
-								<div class="dataTable-dropdown">
-									<select class="dataTable-selector form-select"><option
-											value="5">5</option>
-										<option value="10" selected="">10</option>
-										<option value="15">15</option>
-										<option value="20">20</option>
-										<option value="25">25</option></select><label>페이지당 글 개수</label>
+					
+			<form id="frm01" class="form" action="${path}/memberList.do"
+				method="post">
+				<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+					<div class="dataTable-top">
+						<div class="input-group-prepend">
+							<input type="hidden" name="curPage" value="1" /> <span
+								class="input-group-text">총 ${memberSch.count}건</span>
+						</div>
+						
+						<div class="dataTable-dropdown">
+							<select class="dataTable-selector form-select" name="pageSize">
+								<option value="3">3</option>
+								<option value="5">5</option>
+								<option value="10" selected="selected">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+							</select><label>entries per page</label>
+						</div>
+						
+						
+						<script>
+						$(document).ready(function(){
+							$( ".searchbar" ).change(function() {
+								  alert( "검색 종류를 변경합니다." );
+								  $(".searchWhat").attr("name", this.value)
+								  alert($(".searchWhat").value)
+						 });
+						
+						});
+						
+						</script>
+						
+						
+						
+						<div class="dataTable-search" style="display: inline-block; ">
+							
+							<div style="display: inline-block;" >
+								<select class="dataTable-selector form-select searchbar" 
+								name="searchbar" style="display: inline-block; ">
+										<option selected="selected">검색</option>
+										<option value="name" selected="selected">title</option>
+										<option value="email">contents</option>
+								</select>
 								</div>
-								<div class="dataTable-search">
-									<input class="dataTable-input" placeholder="Search..."
-										type="text"> <a href="#" class="btn btn-danger">검색</a>
+								
+								<div style="display: inline-block;" >
+								<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
+									name="title" value="${memberSch.name}"> 
+								  <button class="btn btn-info" type="submit">검색</button>
+								<a class="btn btn-danger" style="text-align: right"
+								data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
 								</div>
-							</div>
+						</div>
+						
+						
+						
+					</div>
+					</div>
+			</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -270,19 +348,19 @@
 
 							<div class="dataTable-bottom">
 								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-								<ul
-									class="pagination pagination-primary float-end dataTable-pagination">
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="1">‹</a></li>
-									<li class="page-item active"><a href="#" class="page-link"
-										data-page="1">1</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="2">2</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="3">3</a></li>
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="2">›</a></li>
-								</ul>
+									<ul class="pagination  justify-content-end">
+					<li class="page-item"><a class="page-link"
+						href="javascript:goPage(${memberSch.startBlock!=1?memberSch.startBlock-1:1})">Previous</a></li>
+					<c:forEach var="cnt" begin="${memberSch.startBlock}"
+						end="${memberSch.endBlock}">
+						<li class="page-item ${cnt==memberSch.curPage?'active':''}">
+							<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
+							href="javascript:goPage(${cnt})">${cnt}</a>
+						</li>
+					</c:forEach>
+					<li class="page-item"><a class="page-link"
+						href="javascript:goPage(${memberSch.endBlock!=memberSch.pageCount?memberSch.endBlock+1:memberSch.endBlock})">Next</a></li>
+				</ul>
 							</div>
 						</div>
 					</div>
@@ -291,20 +369,6 @@
 			</section>
 		</div>
 
-		<footer>
-			<div class="footer clearfix mb-0 text-muted">
-				<div class="float-start">
-					<p>2021 © Mazer</p>
-				</div>
-				<div class="float-end">
-					<p>
-						Crafted with <span class="text-danger"><i
-							class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A.
-							Saugi</a>
-					</p>
-				</div>
-			</div>
-		</footer>
 	</div>
 </body>
 </html>

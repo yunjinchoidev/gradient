@@ -27,9 +27,9 @@ public class OutputController {
 	DepartmentSevice service4;
 	
 	@RequestMapping("/output.do")
-	public String output(Model d) {
-		d.addAttribute("list", service.list());
-		d.addAttribute("pjList", service2.list());
+	public String output(Model d, OutputSch sch) {
+		d.addAttribute("list", service.listWithPaging(sch));
+		//return "pageJsonReport";
 		return "WEB-INF\\views\\output\\list.jsp";
 	}
 
@@ -51,7 +51,10 @@ public class OutputController {
 	public String outputWriteForm(Model d, OutputVO vo) {
 		service.insert(vo);
 		System.out.println("산출물 게시판에 등록완료");
-		return "forward:/output.do";
+		d.addAttribute("msg", "outputWriteSuccess");
+		
+		return "WEB-INF\\views\\output\\writeForm.jsp";
+
 	}
 	
 	

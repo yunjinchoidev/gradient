@@ -62,11 +62,28 @@ $(document).ready(function(){
 		  }
 	///////////////////////////////////////////////////////////////
 	
-	
+		var pageSize="${projectSch.pageSize}"
+			$("[name=pageSize]").val(pageSize);
+			$("[name=pageSize]").change(function(){
+				$("[name=curPage]").val(1);
+				$("#frm01").submit();
+			});	
+			
+			
+			var msg = "${msg}";
+			if(msg!=""){
+				if(confirm(msg+"\n메인화면으로 이동할까요?")){
+					location.href="${path}/projectList.do";
+				}
+			}
 	
 	
 })
 
+	function goPage(no){
+		$("[name=curPage]").val(no);
+		$("#frm01").submit();
+	}
 </script>
 
 
@@ -199,26 +216,67 @@ $(document).ready(function(){
 							<div class="card">
 								<div class="card-header"><h4>프로젝트 시작과 종료</h4></div>
 								<div class="card-body">
-									<div
-										class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-										<div class="dataTable-top">
-											<div class="dataTable-dropdown">
-												<select class="dataTable-selector form-select"><option
-														value="5">5</option>
-													<option value="10" selected="">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-													<option value="25">25</option></select><label>entries per
-													page</label>
-											</div>
-											<div class="dataTable-search">
-												<input class="dataTable-input" placeholder="Search..."
-													type="text"> <a
-													href="/project5/projectManageInsertForm.do"
-													class="btn btn-danger" style="text-align: right">새 프로젝트 만들기</a>
-											</div>
+										<form id="frm01" class="form" action="${path}/projectManageMain.do"
+				method="post">
+				<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+					<div class="dataTable-top">
+						<div class="input-group-prepend">
+							<input type="hidden" name="curPage" value="1" /> <span
+								class="input-group-text">총 ${projectSch.count}건</span>
+						</div>
+						
+						<div class="dataTable-dropdown">
+							<select class="dataTable-selector form-select" name="pageSize">
+								<option value="3">3</option>
+								<option value="5">5</option>
+								<option value="10" selected="selected">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+							</select><label>entries per page</label>
+						</div>
+						
+						
+						<script>
+						$(document).ready(function(){
+							$( ".searchbar" ).change(function() {
+								  alert( "검색 종류를 변경합니다." );
+								  $(".searchWhat").attr("name", this.value)
+								  alert($(".searchWhat").value)
+						 });
+						
+						});
+						
+						</script>
+						
+						
+						
+						<div class="dataTable-search" style="display: inline-block; ">
+							
+							<div style="display: inline-block;" >
+								<select class="dataTable-selector form-select searchbar" 
+								name="searchbar" style="display: inline-block; ">
+										<option selected="selected">검색</option>
+										<option value="name" selected="selected">name</option>
+										<option value="contents">contents</option>
+								</select>
+								</div>
+								
+								<div style="display: inline-block;" >
+								<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
+									name="name" value="${projectSch.name}"> 
+								  <button class="btn btn-info" type="submit">검색</button>
+								<a class="btn btn-danger" style="text-align: right"
+								data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
+								</div>
+						</div>
+						
+						
+						
+					</div>
+					</div>
+			</form>
 
-										</div>
 										<div class="dataTable-container">
 											<table class="table table-striped dataTable-table"
 												id="table1">
@@ -280,19 +338,19 @@ $(document).ready(function(){
 										<div class="dataTable-bottom">
 											<div class="dataTable-info">Showing 1 to 10 of 26
 												entries</div>
-											<ul
-												class="pagination pagination-primary float-end dataTable-pagination">
-												<li class="page-item pager"><a href="#"
-													class="page-link" data-page="1">‹</a></li>
-												<li class="page-item active"><a href="#"
-													class="page-link" data-page="1">1</a></li>
-												<li class="page-item"><a href="#" class="page-link"
-													data-page="2">2</a></li>
-												<li class="page-item"><a href="#" class="page-link"
-													data-page="3">3</a></li>
-												<li class="page-item pager"><a href="#"
-													class="page-link" data-page="2">›</a></li>
-											</ul>
+										<ul class="pagination  justify-content-end">
+					<li class="page-item"><a class="page-link"
+						href="javascript:goPage(${projectSch.startBlock!=1?projectSch.startBlock-1:1})">Previous</a></li>
+					<c:forEach var="cnt" begin="${projectSch.startBlock}"
+						end="${projectSch.endBlock}">
+						<li class="page-item ${cnt==projectSch.curPage?'active':''}">
+							<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
+							href="javascript:goPage(${cnt})">${cnt}</a>
+						</li>
+					</c:forEach>
+					<li class="page-item"><a class="page-link"
+						href="javascript:goPage(${projectSch.endBlock!=projectSch.pageCount?projectSch.endBlock+1:projectSch.endBlock})">Next</a></li>
+				</ul>
 										</div>
 									</div>
 								</div>
@@ -532,8 +590,8 @@ $(document).ready(function(){
 								<div class="avatar avatar-xl" id="myface">
 								</div>
 								<div class="ms-3 name">
-									<h5 class="font-bold">${member.name } 님</h5>
-									<h6 class="text-muted mb-0">직책 : ${member.auth } <br>${member.email} </h6>
+									<h5 class="font-bold">${project.name } 님</h5>
+									<h6 class="text-muted mb-0">직책 : ${project.auth } <br>${project.email} </h6>
 								</div>
 							</div>
 						</div>

@@ -10,7 +10,12 @@
 <script>
 $(document).ready(function(){
 
-	
+	var msg = "${msg}";
+	if(msg!=""){
+		if(confirm(msg+"\n메인화면으로 이동할까요?")){
+			location.href="${path}/output.do";
+		}
+	}
 	
 })
 

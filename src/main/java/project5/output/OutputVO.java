@@ -23,6 +23,7 @@ public class OutputVO {
 	private String pname;
 	private String dname;
 	private int evaluation;
+	private int cnt;
 
 	// 파일을 저장하기 위한
 	private MultipartFile[] uploadFile;
@@ -78,6 +79,45 @@ public class OutputVO {
 		this.fnames = fnames;
 	}
 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public OutputVO(int outputkey, String title, String contents, int version, String status, Date writedate,
+			int workSortKey, int projectkey, int memberkey, int deptno, String mname, String worksortTitle,
+			String pname, String dname, int evaluation, int cnt) {
+		super();
+		this.outputkey = outputkey;
+		this.title = title;
+		this.contents = contents;
+		this.version = version;
+		this.status = status;
+		this.writedate = writedate;
+		this.workSortKey = workSortKey;
+		this.projectkey = projectkey;
+		this.memberkey = memberkey;
+		this.deptno = deptno;
+		this.mname = mname;
+		this.worksortTitle = worksortTitle;
+		this.pname = pname;
+		this.dname = dname;
+		this.evaluation = evaluation;
+		this.cnt = cnt;
+	}
+
 	public OutputVO(int outputkey, String title, String contents, int version, String status, Date writedate,
 			int workSortKey, int projectkey, int memberkey, int deptno, String mname, String worksortTitle,
 			String pname, String dname, MultipartFile[] uploadFile, ArrayList<String> fnames) {
@@ -96,6 +136,30 @@ public class OutputVO {
 		this.worksortTitle = worksortTitle;
 		this.pname = pname;
 		this.dname = dname;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+	}
+
+	public OutputVO(int outputkey, String title, String contents, int version, String status, Date writedate,
+			int workSortKey, int projectkey, int memberkey, int deptno, String mname, String worksortTitle,
+			String pname, String dname, int evaluation, int cnt, MultipartFile[] uploadFile, ArrayList<String> fnames) {
+		super();
+		this.outputkey = outputkey;
+		this.title = title;
+		this.contents = contents;
+		this.version = version;
+		this.status = status;
+		this.writedate = writedate;
+		this.workSortKey = workSortKey;
+		this.projectkey = projectkey;
+		this.memberkey = memberkey;
+		this.deptno = deptno;
+		this.mname = mname;
+		this.worksortTitle = worksortTitle;
+		this.pname = pname;
+		this.dname = dname;
+		this.evaluation = evaluation;
+		this.cnt = cnt;
 		this.uploadFile = uploadFile;
 		this.fnames = fnames;
 	}
@@ -234,6 +298,14 @@ public class OutputVO {
 
 	public void setEvaluation(int evaluation) {
 		this.evaluation = evaluation;
+	}
+
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 
 }

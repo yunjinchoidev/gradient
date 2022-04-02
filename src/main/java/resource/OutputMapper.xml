@@ -4,6 +4,73 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.output.OutputDao">
 
+
+
+
+
+	<!-- 전체 데이터 수 가져오기 -->
+	<select id="totCnt" parameterType="project5.output.OutputSch"
+		resultType="int">
+		select count(*)
+		from output
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+		<if test="contents!=null and contents!=''">
+			and contents like '%'||#{contents}||'%'
+		</if>
+	</select>
+
+
+
+	<!-- 리스트를 불러오기 -->
+	<select id="listWithPaging"
+		resultType="project5.output.OutputVO"
+		parameterType="project5.output.OutputSch">
+		select *
+		from (
+		select rownum cnt,o.*, m.name mname, w.title
+		worksortTitle,
+		p.name pname, d.dname
+		from output o, member m, workSort
+		w, project p, department d
+		where 1=1
+		AND o.memberkey = m.memberkey
+		AND o.worksortkey = w.worksortkey
+		and
+		o.projectkey = p.projectkey
+		AND o.deptno = d.deptno
+		<if test="title!=null and title!=''">
+			and o.title like '%'||#{title}||'%'
+		</if>
+		<if test="contents!=null and contents!=''">
+			and o.contents like '%'||#{contents}||'%'
+		</if>
+		)
+		where cnt between #{start} and #{end}
+		order by outputkey
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<select id="list" resultType="project5.output.OutputVO">
 		select o.*, m.name mname, w.title
 		worksortTitle, p.name pname, d.dname
@@ -73,7 +140,8 @@
 		update output
 		set
 		evaluation=#{evaluation}
-		where outputkey=#{outputkey}
+		where
+		outputkey=#{outputkey}
 	</update>
 
 

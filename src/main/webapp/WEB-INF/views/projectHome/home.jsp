@@ -32,7 +32,29 @@
 			alert("성공적으로 투표하였습니다.")
 		}
 	
+		
+		
+		
+						var pageSize="${projectHomeSch.pageSize}"
+							$("[name=pageSize]").val(pageSize);
+							$("[name=pageSize]").change(function(){
+								$("[name=curPage]").val(1);
+								$("#frm01").submit();
+							});	
+							
+							
+							
 	})
+	
+	
+	
+		function goPage(no){
+			$("[name=curPage]").val(no);
+			$("#frm01").submit();
+		}
+		
+	
+	
 </script>
 <style>
 #moveBtn a {
@@ -91,21 +113,58 @@
 				<div class="card">
 					<div class="card-header">프로젝트 공지사항</div>
 					<div class="card-body">
-						<div
-							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-
-							<div class="dataTable-top">
-								<div class="dataTable-dropdown" style="width: 30%;">
-									<select class="dataTable-selector form-select"><option
-											value="5">5</option>
-										<option value="10" selected="">10</option>
-										<option value="15">15</option>
-										<option value="20">20</option>
-										<option value="25">25</option></select><label>entries per page</label>
+					
+			<form id="frm01" class="form" action="${path}/projectHome.do"
+				method="post">
+				<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+					<div class="dataTable-top">
+						<div class="input-group-prepend">
+							<input type="hidden" name="curPage" value="1" /> <span
+								class="input-group-text">총 ${projectHomeSch.count}건</span>
+						</div>
+						
+						<div class="dataTable-dropdown">
+							<select class="dataTable-selector form-select" name="pageSize">
+								<option value="3">3</option>
+								<option value="5">5</option>
+								<option value="10" selected="selected">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+							</select><label>entries per page</label>
+						</div>
+						
+						
+						<script>
+						$(document).ready(function(){
+							$( ".searchbar" ).change(function() {
+								  alert( "검색 종류를 변경합니다." );
+								  $(".searchWhat").attr("name", this.value)
+								  alert($(".searchWhat").value)
+						 });
+						
+						});
+						
+						</script>
+						
+						
+						
+						<div class="dataTable-search" style="display: inline-block; ">
+							
+							<div style="display: inline-block;" >
+								<select class="dataTable-selector form-select searchbar" 
+								name="searchbar" style="display: inline-block; ">
+										<option selected="selected">검색</option>
+										<option value="title" selected="selected">title</option>
+										<option value="contents">contents</option>
+								</select>
 								</div>
-								<div class="dataTable-search">
-									<input class="dataTable-input" placeholder="Search..."
-										type="text"> <a
+								
+								<div style="display: inline-block;" >
+								<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
+									name="title" value="${projectHomeSch.title}"> 
+								  <button class="btn btn-info" type="submit">검색</button>
+ <a
 										href="/project5/projectHomeWriteForm.do"
 										class="btn btn-danger" style="text-align: right">글쓰기</a> <a
 										href="/project5/voteWriteForm.do" class="btn btn-info"
@@ -114,10 +173,19 @@
 										style="text-align: right">진행중인 투표</a> <a
 										href="/project5/voteWriteForm.do" class="btn btn-warning"
 										style="text-align: right">투표 결과</a>
+
+
+
+
 								</div>
-							</div>
-
-
+						</div>
+						
+						
+						
+					</div>
+					</div>
+			</form>
+			
 
 
 
@@ -187,19 +255,19 @@
 
 							<div class="dataTable-bottom">
 								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-								<ul
-									class="pagination pagination-primary float-end dataTable-pagination">
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="1">‹</a></li>
-									<li class="page-item active"><a href="#" class="page-link"
-										data-page="1">1</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="2">2</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="3">3</a></li>
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="2">›</a></li>
-								</ul>
+								<ul class="pagination  justify-content-end">
+					<li class="page-item"><a class="page-link"
+						href="javascript:goPage(${projectHomeSch.startBlock!=1?projectHomeSch.startBlock-1:1})">Previous</a></li>
+					<c:forEach var="cnt" begin="${projectHomeSch.startBlock}"
+						end="${projectHomeSch.endBlock}">
+						<li class="page-item ${cnt==projectHomeSch.curPage?'active':''}">
+							<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
+							href="javascript:goPage(${cnt})">${cnt}</a>
+						</li>
+					</c:forEach>
+					<li class="page-item"><a class="page-link"
+						href="javascript:goPage(${projectHomeSch.endBlock!=projectHomeSch.pageCount?projectHomeSch.endBlock+1:projectHomeSch.endBlock})">Next</a></li>
+				</ul>
 							</div>
 						</div>
 					</div>

@@ -5,9 +5,18 @@ import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
+import project5.memo.MemoSch;
+
 @Repository
 public interface MemberDao {
+	
+	
 	public List<MemberVO> list();
+	public List<MemberVO> listWithPaging(MemberSch sch);
+	public int totCnt(MemberSch sch);
+	
+	
+	
 	public MemberVO login(MemberVO vo);
 	public MemberVO logout();
 	public void edit(MemberVO vo);

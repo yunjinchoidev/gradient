@@ -254,8 +254,6 @@ $(document).ready(function(){
 											<script>
 											$(document).ready(function(){
 												var i=0;
-												
-												
 												setInterval(function() {
 													i++;
 														if(i%2==0){
@@ -284,9 +282,11 @@ $(document).ready(function(){
 												<i class="iconly-boldBookmark"></i>
 											</div>
 										</div>
-										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">바로가기 추가</h6>
-											<h6 class="font-extrabold mb-0">바로가기 추가</h6>
+										<div class="col-md-8" style="cursor: pointer;"
+										onclick='window.open("/project5/memoList.do", 
+												"PopupWin","width=800,height=800");'>
+											<h6 class="text-muted font-semibold">메모장 열기</h6>
+											<h6 class="font-extrabold mb-0">클릭시 오픈</h6>
 										</div>
 									</div>
 								</div>
@@ -356,191 +356,6 @@ $(document).ready(function(){
 					<div class="row">
 						<div class="col-12">
 							
-<!--  메모장 -->
-	<div class="card">
-		<div class="card-header">
-			<h4>
-				[<span style="color: red">${member.name } </span>]님 만을 위한 메모장
-			</h4>
-		</div>
-		<div class="card-body">
-
-
-			<form id="frm01" class="form" action="${path}/memoList.do"
-				method="post">
-				<div
-					class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-					<div class="dataTable-top">
-						<div class="input-group-prepend">
-							<input type="hidden" name="curPage" value="1" /> <span
-								class="input-group-text">총 ${memoSch.count}건</span>
-						</div>
-						<div class="dataTable-dropdown">
-							<select class="dataTable-selector form-select" name="pageSize">
-								<option value="3">3</option>
-								<option value="5">5</option>
-								<option value="10" selected="selected">10</option>
-								<option value="15">15</option>
-								<option value="20">20</option>
-								<option value="25">25</option>
-							</select><label>entries per page</label>
-						</div>
-						<div class="dataTable-search">
-							<input class="dataTable-input" placeholder="title" type="text"
-								name="title" value="${memoSch.title}"> <input
-								class="form-control mr-sm-2" name="contents"
-								value="${memoSch.contents}" placeholder="contents"> 
-								  <button class="btn btn-info" type="submit">조회</button>
-	    <button class="btn btn-success" id="regBtn" type="button">등록</button>
-								
-								
-								<a
-								class="btn btn-danger" style="text-align: right"
-								data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
-						</div>
-					</div>
-					</div>
-			</form>
-
-
-
-
-
-
-
-
-
-			<div class="dataTable-container">
-				<table class="table table-striped dataTable-table" id="table1">
-					<thead>
-						<tr>
-							<th data-sortable="" style="width: 12.0176%;"><a href="#"
-								class="dataTable-sorter">메모 번호</a></th>
-							<th data-sortable="" style="width: 18.9989%;"><a href="#"
-								class="dataTable-sorter">메모 명</a></th>
-							<th data-sortable="" style="width: 42.0816%;"><a href="#"
-								class="dataTable-sorter">메모내용</a></th>
-							<th data-sortable="" style="width: 16.3175%;"><a href="#"
-								class="dataTable-sorter">작성일</a></th>
-							<th data-sortable="" style="width: 10.8049%;"><a href="#"
-								class="dataTable-sorter">중요도</a></th>
-						</tr>
-					</thead>
-
-					<tbody>
-						<c:forEach var="list" items="${list}">
-							<tr>
-								<td>${list.memokey}</td>
-								<td style="cursor: pointer;">${list.title }
-									<span class="badge bg-danger" id="delBtn"
-									onclick="location.href='/project5/memoDelete.do?memokey=${list.memokey}'">
-									삭제</span>
-								</td>
-								<td>${list.contents }</td>
-								<td><fmt:formatDate value="${list.writedate }" /></td>
-								<td style="cursor: pointer;"><c:if
-										test="${list.importance eq '하'}">
-										<span class="badge bg-primary importance22">하</span>
-									</c:if> <c:if test="${list.importance eq '중'}">
-										<span class="badge bg-secondary importance22">중</span>
-									</c:if> <c:if test="${list.importance eq '상'}">
-										<span class="badge bg-danger importance22">상</span>
-									</c:if></td>
-							</tr>
-						</c:forEach>
-					</tbody>
-				</table>
-			</div>
-
-			<script>
-										$(document).ready(function(){
-											$("#delBtn").click(function(){
-												confirm("정말 삭제 하시겠습니까?")
-											})
-											 var a=0;
-											
-											 setInterval(function() {
-												 a++;
-													if(a%2==0){
-														$(".importance22").css("display","none");
-													}else{
-														$(".importance22").css("display","");
-													}
-											}, 1000);
-											
-										})
-										
-										
-										</script>
-
-
-
-
-			<div class="dataTable-bottom">
-				<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-
-				<ul class="pagination  justify-content-end">
-					<li class="page-item"><a class="page-link"
-						href="javascript:goPage(${memoSch.startBlock!=1?memoSch.startBlock-1:1})">Previous</a></li>
-					<c:forEach var="cnt" begin="${memoSch.startBlock}"
-						end="${memoSch.endBlock}">
-						<li class="page-item ${cnt==memoSch.curPage?'active':''}">
-							<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
-							href="javascript:goPage(${cnt})">${cnt}</a>
-						</li>
-					</c:forEach>
-					<li class="page-item"><a class="page-link"
-						href="javascript:goPage(${memoSch.endBlock!=memoSch.pageCount?memoSch.endBlock+1:memoSch.endBlock})">Next</a></li>
-				</ul>
-
-
-			</div>
-		</div>
-	</div>
-							
-<script>
-$(document).ready(function(){
-	var pageSize="${memoSch.pageSize}"
-		$("[name=pageSize]").val(pageSize);
-		$("[name=pageSize]").change(function(){
-			$("[name=curPage]").val(1);
-			$("#frm01").submit();
-		});	
-		
-		if( $("psc")=="memoDelete"){
-			alert("메모가 정상적으로 삭제 되었습니다.")
-		}
-		
-		
-		
-});
-
-		function goPage(no){
-			$("[name=curPage]").val(no);
-			$("#frm01").submit();
-		}
-		
-		
-</script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 											

@@ -59,8 +59,19 @@
 
 
 </head>
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
+$(document).ready(function(){
 
+	
+	alert("g")
+	var A = "${psc}";
+	if(	A=="writeSuccess"){
+		confirm("작성을 완료했습니다. 메인 페이지로 이동할까요?")
+		location.href="/project5/notice.do"
+	}
+	
+})
 
 
 </script>

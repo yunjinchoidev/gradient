@@ -61,12 +61,6 @@ $(document).ready(function(){
 	
 	
 	
-	
-	
-	
-	
-	
-	
 	var pageSize="${memoSch.pageSize}"
 		$("[name=pageSize]").val(pageSize);
 		$("[name=pageSize]").change(function(){
@@ -140,23 +134,25 @@ $(document).ready(function(){
 						<div class="dataTable-search" style="display: inline-block; ">
 							
 							<div style="display: inline-block;" >
-					<select class="dataTable-selector form-select searchbar" 
-							name="searchbar" style="display: inline-block; ">
+								<select class="dataTable-selector form-select searchbar" 
+								name="searchbar" style="display: inline-block; ">
 										<option selected="selected">검색</option>
 										<option value="title" selected="selected">title</option>
 										<option value="contents">contents</option>
 								</select>
 								</div>
-								<div style="display: inline-block;" >
-							<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
-									name="title" value="${memoSch.title}"> 
 								
+								<div style="display: inline-block;" >
+								<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
+									name="title" value="${memoSch.title}"> 
 								  <button class="btn btn-info" type="submit">검색</button>
-								<a
-								class="btn btn-danger" style="text-align: right"
+								<a class="btn btn-danger" style="text-align: right"
 								data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
 								</div>
 						</div>
+						
+						
+						
 					</div>
 					</div>
 			</form>

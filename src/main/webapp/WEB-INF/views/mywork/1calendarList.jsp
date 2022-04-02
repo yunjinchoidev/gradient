@@ -8,7 +8,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script scr="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
@@ -30,6 +30,39 @@
 
 
 </head>
+
+
+<script>
+$(document).ready(function() {
+
+	var pageSize="${calendarSch.pageSize}"
+		$("[name=pageSize]").val(pageSize);
+		$("[name=pageSize]").change(function(){
+			$("[name=curPage]").val(1);
+			$("#frm01").submit();
+		});	
+		
+		
+		var msg = "${msg}";
+		if(msg!=""){
+			if(confirm(msg+"\n메인화면으로 이동할까요?")){
+				location.href="${path}/memberList.do";
+			}
+		}
+	
+});
+
+
+function goPage(no){
+	$("[name=curPage]").val(no);
+	$("#frm01").submit();
+}
+
+
+</script>
+
+
+
 <body>
 
 <%@ include file="../chatBot/chatBot.jsp"%>
@@ -59,8 +92,14 @@
 					</div>
 				</div>
 			</div>
+			
+			
 			<section class="section content-area-wrapper" style="height: 5000px;">
 				<%@ include file="leftSide.jsp"%>
+				
+				
+				
+				
 				<div class="content-right">
 					<div class="content-overlay"></div>
 					<div class="content-wrapper">
@@ -76,90 +115,70 @@
 											<!-- action left start here -->
 											<div class="action-left d-flex align-items-center">
 												<!-- select All checkbox -->
-												<div
-													class="checkbox checkbox-shadow checkbox-sm selectAll me-3">
-													<input type="checkbox" id="checkboxsmall"
-														class="form-check-input"> <label
-														for="checkboxsmall"></label>
-												</div>
-												<!-- delete unread dropdown -->
-												<ul class="list-inline m-0 d-flex">
-													<li class="list-inline-item mail-delete">
-														<button type="button" class="btn btn-icon action-icon"
-															data-toggle="tooltip">
-															<span class="fonticon-wrap"> <svg class="bi"
-																	width="1.5em" height="1.5em" fill="currentColor">
-                                                            <use
-																		xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#trash"></use>
-                                                        </svg>
-															</span>
-														</button>
-													</li>
-													<li class="list-inline-item mail-unread">
-														<button type="button" class="btn btn-icon action-icon">
-															<span class="fonticon-wrap d-inline"> <svg
-																	class="bi" width="1.5em" height="1.5em"
-																	fill="currentColor">
-                                                            <use
-																		xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#envelope"></use>
-                                                        </svg>
-															</span>
-														</button>
-													</li>
-													<li class="list-inline-item">
-														<div class="dropdown">
-															<button type="button"
-																class="dropdown-toggle btn btn-icon action-icon"
-																id="folder" data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false">
-																<span class="fonticon-wrap"> <svg class="bi"
-																		width="1.5em" height="1.5em" fill="currentColor">
-                                                                <use
-																			xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#folder"></use>
-                                                            </svg>
-																</span>
-															</button>
-															<div class="dropdown-menu dropdown-menu-right"
-																aria-labelledby="folder">
-																<a class="dropdown-item" href="#"><i
-																	class="bx bx-edit"></i> Draft</a> <a class="dropdown-item"
-																	href="#"><i class="bx bx-info-circle"></i>Spam</a> <a
-																	class="dropdown-item" href="#"><i
-																	class="bx bx-trash"></i>Trash</a>
-															</div>
-														</div>
-													</li>
-													<li class="list-inline-item">
-														<div class="dropdown">
-															<button type="button"
-																class="btn btn-icon dropdown-toggle action-icon"
-																id="tag" data-toggle="dropdown" aria-haspopup="true"
-																aria-expanded="false">
-																<span class="fonticon-wrap"> <svg class="bi"
-																		width="1.5em" height="1.5em" fill="currentColor">
-                                                                <use
-																			xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#tag"></use>
-                                                            </svg>
-																</span>
-															</button>
-															<div class="dropdown-menu dropdown-menu-right"
-																aria-labelledby="tag">
-																<a href="#" class="dropdown-item align-items-center">
-																	<span class="bullet bullet-success bullet-sm"></span> <span>Product</span>
-																</a> <a href="#" class="dropdown-item align-items-center">
-																	<span class="bullet bullet-primary bullet-sm"></span> <span>Work</span>
-																</a> <a href="#" class="dropdown-item align-items-center">
-																	<span class="bullet bullet-warning bullet-sm"></span> <span>Misc</span>
-																</a> <a href="#" class="dropdown-item align-items-center">
-																	<span class="bullet bullet-danger bullet-sm"></span> <span>Family</span>
-																</a> <a href="#" class="dropdown-item align-items-center">
-																	<span class="bullet bullet-info bullet-sm"></span> <span>
-																		Design</span>
-																</a>
-															</div>
-														</div>
-													</li>
-												</ul>
+											
+								
+													<form id="frm01" class="form" action="${path}/myWork1.do?memberkey=${member.memberkey}"
+				method="post">
+				<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+					<div class="dataTable-top">
+						<div class="input-group-prepend">
+							<input type="hidden" name="curPage" value="1" /> <span
+								class="input-group-text">총 ${calendarSch.count}건</span>
+						</div>
+						
+						<div class="dataTable-dropdown">
+							<select class="dataTable-selector form-select" name="pageSize">
+								<option value="3">3</option>
+								<option value="5">5</option>
+								<option value="10" selected="selected">10</option>
+								<option value="15">15</option>
+								<option value="20">20</option>
+								<option value="25">25</option>
+							</select>
+						</div>
+						
+						
+						<script>
+						$(document).ready(function(){
+							$( ".searchbar" ).change(function() {
+								  alert( "검색 종류를 변경합니다." );
+								  $(".searchWhat").attr("name", this.value)
+								  alert($(".searchWhat").value)
+						 });
+						
+						});
+						
+						</script>
+						
+						
+						
+						<div class="dataTable-search" style="display: inline-block; ">
+							
+							<div style="display: inline-block;" >
+								<select class="dataTable-selector form-select searchbar" 
+								name="searchbar" style="display: inline-block; ">
+										<option selected="selected">검색</option>
+										<option value="name" selected="selected">title</option>
+										<option value="email">contents</option>
+								</select>
+								</div>
+								
+								<div style="display: inline-block;" >
+								<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
+									name="title" value="${calendarSch.title}"> 
+								  <button class="btn btn-info" type="submit">검색</button>
+								<a class="btn btn-danger" style="text-align: right"
+								data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
+								</div>
+						</div>
+						
+						
+						
+					</div>
+					</div>
+			</form>
+												
+												
 											</div>
 											<!-- action left end here -->
 
@@ -171,38 +190,26 @@
 													<div class="sidebar-toggle d-block d-lg-none">
 														<i class="bx bx-menu"></i>
 													</div>
-
-													<div
-														class="form-group position-relative  mb-0 has-icon-left">
-														<input type="text" class="form-control"
-															placeholder="Search email..">
-														<div class="form-control-icon">
-															<svg class="bi" width="1.5em" height="1.5em"
-																fill="currentColor">
-                                                        <use
-																	xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#search"></use>
-                                                    </svg>
-														</div>
-													</div>
 												</div>
 												<!-- pagination and page count -->
-												<span class="d-none d-sm-block">1-10 of 653</span>
-												<button
-													class="btn btn-icon email-pagination-prev d-none d-sm-block">
-													<svg class="bi" width="1.5em" height="1.5em"
-														fill="currentColor">
-                                                <use
-															xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#chevron-left"></use>
-                                            </svg>
-												</button>
-												<button
-													class="btn btn-icon email-pagination-next d-none d-sm-block">
-													<svg class="bi" width="1.5em" height="1.5em"
-														fill="currentColor">
-                                                <use
-															xlink:href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.svg#chevron-right"></use>
-                                            </svg>
-												</button>
+												
+									<div class="dataTable-bottom">
+													<ul class="pagination  justify-content-end">
+														<li class="page-item"><a class="page-link"
+															href="javascript:goPage(${calendarSch.startBlock!=1?calendarSch.startBlock-1:1})">Previous</a></li>
+														<c:forEach var="cnt" begin="${calendarSch.startBlock}"
+															end="${calendarSch.endBlock}">
+															<li
+																class="page-item ${cnt==calendarSch.curPage?'active':''}">
+																<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
+																href="javascript:goPage(${cnt})">${cnt}</a>
+															</li>
+														</c:forEach>
+														<li class="page-item"><a class="page-link"
+															href="javascript:goPage(${calendarSch.endBlock!=calendarSch.pageCount?calendarSch.endBlock+1:calendarSch.endBlock})">Next</a></li>
+													</ul>
+												</div>
+												
 											</div>
 										</div>
 										<!-- / action right -->
@@ -239,7 +246,7 @@
 
 
 												<c:forEach var="list" items="${list }" varStatus="var">
-													<li class="media mail-read"  onclick="window.open('/project5/myWorkModal.do?id=${list.id}','팝업창','width=500, height=610, left=400, top=200');">
+													<li class="media mail-read"  onclick="window.open('/project5/myWorkCalendarGet.do?id=${list.id}','팝업창','width=500, height=610, left=400, top=200');">
 														<div class="user-action">
 															<div class="checkbox-con me-3">
 																<div class="checkbox checkbox-shadow checkbox-sm">
@@ -269,21 +276,23 @@
 															<div class="user-details">
 																
 																<div class="mail-items">
-																	<span class="list-group-item-text text-truncate">${list.title}</span>
+																	<span class="list-group-item-text text-truncate">[${list.id}]${list.title}</span>
 																</div>
 																
 																<div class="mail-meta-item">
-																	<span class="float-right"> <span
-																		class="mail-date">4:14 AM</span>
+																	<span class="float-right"> 
+																		<span class="mail-date">${list.start1 }</span>
 																	</span>
 																</div>
+																
 															</div>
+															
 															<div class="mail-message">
 																<p class="list-group-item-text truncate mb-0">
 																	${list.content }</p>
 																<div class="mail-meta-item">
 																	<span class="float-right"> <span
-																		class="bullet bullet-success bullet-sm"></span>
+																		class="bullet bullet-success bullet-sm">${list.end1 }</span>
 																	</span>
 																</div>
 															</div>

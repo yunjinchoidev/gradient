@@ -16,6 +16,59 @@
 	</select>
 
 
+
+
+
+	<!-- 전체 데이터 수 가져오기 -->
+	<select id="totCnt"
+		parameterType="project5.fullCalendar.CalendarSch" resultType="int">
+		select count(*)
+		from calendar
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+		<if test="contents!=null and contents!=''">
+			and contents like '%'||#{contents}||'%'
+		</if>
+	</select>
+
+	
+	<!-- 리스트를 불러오기 -->
+	<select id="listWithPaging"
+		resultType="project5.fullCalendar.Calendar"
+		parameterType="project5.fullCalendar.CalendarSch">
+		select *
+		from (
+		select rownum cnt,c.*
+		FROM
+		calendar c
+		where
+		1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+		<if test="contents!=null and contents!=''">
+			and contents like '%'||#{contents}||'%'
+		</if>
+		)
+		where cnt between #{start} and #{end}
+		order by id
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	<select id="getCalendarIndividaulList" resultMap="calResult" parameterType="int">
 		select * from calendars where memberkey = #{memberkey}
 	</select>

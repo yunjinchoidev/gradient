@@ -4,11 +4,19 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+import project5.project.ProjectSch;
+import project5.project.ProjectVO;
 import project5.workSort.WorkSortVO;
 
 
 @Repository
 public interface ProjectHomeDao {
+	
+	public List<ProjectHomeVO> listWithPaging(ProjectHomeSch sch);
+	public int totCnt(ProjectHomeSch sch);
+	
+	
+	
 	public List<ProjectHomeVO> getList(int projectkey);
 	public void insert(ProjectHomeVO vo);
 	public ProjectHomeVO get(int projectHomekey);

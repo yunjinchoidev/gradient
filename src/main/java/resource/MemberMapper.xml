@@ -4,10 +4,69 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.member.MemberDao">
 
-	<select id="list" resultType="project5.member.MemberVO">
-		select * from member order by
-		memberkey
+
+
+
+
+
+	<!-- 전체 데이터 수 가져오기 -->
+	<select id="totCnt" parameterType="project5.member.MemberSch"
+		resultType="int">
+		select count(*)
+		from member
+		where 1=1
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
 	</select>
+
+
+
+	<!-- 리스트를 불러오기 -->
+	<select id="listWithPaging" resultType="project5.member.MemberVO"
+		parameterType="project5.member.MemberSch">
+		select *
+		from (
+		select rownum cnt,m.*
+		from member m
+		where 1=1
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
+		)
+		where cnt between #{start} and #{end}
+		order by memberkey
+	</select>
+
+
+	<select id="list" resultType="project5.member.MemberVO">
+		select *
+		from member
+		order by memberkey
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<insert id="edit" parameterType="project5.member.MemberVO">
 		update member set
