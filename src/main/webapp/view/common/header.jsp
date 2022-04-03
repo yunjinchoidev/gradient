@@ -255,18 +255,30 @@
 
 
 
-						<sec:authorize access="hasAuthority('USER_MANAGER')">
-												<li class="sidebar-item  ">
-												<a href="<c:url value='/admin/usermanager/main' />"  class='sidebar-link'> 
-				<i class="bi bi-grid-fill"></i> <span style="color : red">								(MANAGER)사용자관리페이지</span></a></li>
+								<sec:authorize access="hasAuthority('ROLE_MANAGER')">
+														<li class="sidebar-item  ">
+															<a href="<c:url value='/admin/usermanager/main' />"  class='sidebar-link'> 
+																<i class="bi bi-grid-fill"></i> 
+																<span style="color : red">								
+																	(MANAGER)사용자관리페이지</span>
+															</a>
+														</li>
 								</sec:authorize>
 
-								<sec:authorize access="hasAuthority('USER')">
+
+
+
+								<sec:authorize access="hasAuthority('ROLE_USER')">
 										<li class="sidebar-item  ">
 										<a href="<c:url value='/member/main' />"  class='sidebar-link'>
 					<i class="bi bi-grid-fill"></i> <span style="color : red">					(USER)회원메인</span></a></li>
 								</sec:authorize>
 
+
+
+
+
+						<!--  미 로그인 시에만 -->
 						<sec:authorize access="!isAuthenticated()">
 							<li class="sidebar-item  "><a
 								href="<c:url value='/user/loginform' />" class='sidebar-link'>
@@ -281,12 +293,16 @@
 
 
 
+
+						
+						
 						<sec:authorize access="isAuthenticated()">
 							<li class="sidebar-item  "><a
 								href="<c:url value='/user/logout' />" class='sidebar-link'>
 									<i class="bi bi-grid-fill"></i> <span style="color: red">
 										(인증공통)로그아웃</span>
-							</a></li>
+								</a>
+							</li>
 						</sec:authorize>
 
 
