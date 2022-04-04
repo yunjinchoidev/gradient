@@ -20,11 +20,18 @@
 	$(document).ready(function(){
 		
 		var msg = "${msg}";
-					
+		var projectkey = "${projectkey}";
+		var id = "${member.id}";
+		
+		if(id == ""){
+			alert("접근 권한이 없습니다");
+			location.href = "${path}/main.do";
+		}
+						
 		if(msg!=""){
 			alert(msg);
 			if(msg=="등록되었습니다"){
-				location.href="${path}/risk.do";
+				location.href="${path}/risk.do?projectkey="+projectkey;
 			}
 		}
 		
@@ -97,8 +104,7 @@
 						  	<input type="hidden" name="curPage" value="1"/>
 							<div class="dataTable-top">
 								<div style="margin-right: 50px;width: 20%;">
-									<select name="projectkey" class="form-select" disabled="disabled">
-										<option value="0">전체목록</option>
+									<select name="projectkey" class="form-select">
 										<c:forEach var="prlist" items="${prjlist}">
 											<option value="${prlist.prjkey}" ${boardprjkey eq prlist.prjkey  ? "selected" : ""}>${prlist.prjname}</option>
 										</c:forEach>	
@@ -219,6 +225,7 @@
                 </button>
             </div>
             <form id="regForm" action="${path}/insertrisk.do" method="post">
+            	<input name="selprojectkey" type="hidden" value="${boardprjkey}">
             	<!-- 모달 입력 요소 영역 -->
                 <div class="modal-body" style="margin:10px;">
                 	<!-- 프로젝트 select box -->

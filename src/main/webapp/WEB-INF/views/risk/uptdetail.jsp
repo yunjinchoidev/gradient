@@ -28,10 +28,12 @@
 	$(document).ready(function(){
 		
 		var msg = "${msg}";
-		
+		var projectkey = "${rdlist.prjkey}";
+		var prjkey = "${prjkey}";
+				
 		if(msg!=""){
 			alert(msg);
-			location.href="${path}/risk.do";
+			location.href="${path}/risk.do?projectkey="+prjkey;
 		}
 		
 		$("#uptbtn").click(function(){
@@ -46,7 +48,7 @@
 		});
 		
 		$("#canclebtn").click(function(){
-			location.href="${path}/risk.do";
+			location.href="${path}/risk.do?projectkey="+projectkey;
 		});
 		
 	});
@@ -60,6 +62,8 @@
 	 <form action="${path}/uptrisk.do" method="post">
 		<!-- 리스크 키 -->
 		<input type="hidden" name="riskkey" value="${rdlist.riskkey}">
+		<!-- 프로젝트 키 -->
+		<input type="hidden" name="projectkey" value="${rdlist.prjkey}">
 		<!-- 상세화면 -->
 		<div id="mainform">
 			<!-- 프로젝트 명 -->

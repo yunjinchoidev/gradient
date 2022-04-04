@@ -10,8 +10,10 @@ public interface RiskDao {
 	public List<RiskVO> riskboardlist(RiskSch sch);
 	// 리스크 프로젝트 별 게시판 조회
 	public List<RiskVO> riskboardprlist(RiskSch sch);
+	// 프로젝트 전체 조회
+	public List<RiskVO> selectprjalllist();
 	// 프로젝트 조회
-	public List<RiskVO> selectprjlist();
+	public List<RiskVO> selectprjlist(int projectkey);
 	// 리스크 등록
 	public void insertRisk(RiskVO ins);
 	// 리스크 상세정보

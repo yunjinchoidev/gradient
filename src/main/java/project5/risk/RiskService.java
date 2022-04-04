@@ -103,9 +103,14 @@ public class RiskService {
 		
 		return dao.schRiskList(sch);
 	}
+	// 프로젝트 전체 조회
+	public List<RiskVO> selectprjalllist() {
+		return dao.selectprjalllist();
+	}
+	
 	// 프로젝트 조회
-	public List<RiskVO> selectprjlist() {
-		return dao.selectprjlist();
+	public List<RiskVO> selectprjlist(int projectkey) {
+		return dao.selectprjlist(projectkey);
 	}
 	// 리스크 게시글 조회
 	public RiskVO riskDetail(int riskkey){

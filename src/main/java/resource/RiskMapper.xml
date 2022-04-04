@@ -66,6 +66,13 @@
 	<select id="selectprjlist" resultType="risk" parameterType="string">
 		SELECT p.PROJECTKEY AS prjkey, p.NAME AS prjname
 		FROM PROJECT p
+		WHERE p.PROJECTKEY = #{projectkey}
+	</select>
+	
+	<!-- 리스크 수정, 프로젝트 전체 조회 -->
+	<select id="selectprjalllist" resultType="risk" parameterType="string">
+		SELECT p.PROJECTKEY AS prjkey, p.NAME AS prjname
+		FROM PROJECT p
 	</select>
 	
 	<select id="riskboardlist" resultType="risk" parameterType="riskSch">
@@ -85,7 +92,8 @@
 	<select id="riskboardprlist" resultType="risk" parameterType="riskSch">
 		SELECT*
 		FROM (
-			SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
+			SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname,
+			TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
 			TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name
 			FROM RISK r , MEMBER m, PROJECT p  
 			WHERE r.MEMBERKEY = m.MEMBERKEY 
