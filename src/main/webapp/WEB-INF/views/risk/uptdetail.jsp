@@ -111,9 +111,9 @@
 				<!-- 진행사항 -->
 				<div style="flex:1; margin-right: 350px;">
 					<select class="form-select" name="progress" style="font-size: 20px;">
-	                    <option value="진행중">진행중</option>
-	                    <option value="대기">대기</option>
-	                    <option value="완료">완료</option>
+						<option value="진행중" ${rdlist.progress eq "진행중" ?  "selected" : ""}>진행중</option>
+						<option value="대기" ${rdlist.progress eq "대기" ?  "selected" : ""}>대기</option>
+						<option value="완료" ${rdlist.progress eq "완료" ?  "selected" : ""}>완료</option>
                     </select>
 				</div>
 				<!-- 완료예정일 -->
