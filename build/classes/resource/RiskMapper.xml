@@ -27,6 +27,20 @@
 		</if>
 	</select>
 	
+	<!-- 프로젝트별 게시물 조회 -->
+	<select id="totprjCnt" resultType="int" parameterType="riskSch">
+		SELECT COUNT(*)
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
+		TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name, p.PROJECTKEY AS PROJECTKEY
+		FROM RISK r , MEMBER m, PROJECT p  
+		WHERE r.MEMBERKEY = m.MEMBERKEY 
+		AND r.PROJECTKEY = p.PROJECTKEY
+		order by cnt asc )
+		where 1=1
+		AND PROJECTKEY = #{boardprjkey}
+	</select>
+	
 	<!-- 게시글 검색 -->
 	<select id="schRiskList" parameterType="riskSch" resultType="risk">
 	SELECT*
@@ -54,7 +68,6 @@
 		FROM PROJECT p
 	</select>
 	
-	<!-- 리스크 리스트 조회 -->
 	<select id="riskboardlist" resultType="risk" parameterType="riskSch">
 		SELECT*
 		FROM (
@@ -63,6 +76,21 @@
 			FROM RISK r , MEMBER m, PROJECT p  
 			WHERE r.MEMBERKEY = m.MEMBERKEY 
 			AND r.PROJECTKEY = p.PROJECTKEY
+			order by cnt asc )
+		where cnt BETWEEN #{start} AND #{end}
+		order by cnt
+	</select>
+	
+	<!-- 리스크 프로젝트 별 리스트 조회 -->
+	<select id="riskboardprlist" resultType="risk" parameterType="riskSch">
+		SELECT*
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
+			TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name
+			FROM RISK r , MEMBER m, PROJECT p  
+			WHERE r.MEMBERKEY = m.MEMBERKEY 
+			AND r.PROJECTKEY = p.PROJECTKEY
+			AND r.PROJECTKEY = #{boardprjkey}
 			order by cnt asc )
 		where cnt BETWEEN #{start} AND #{end}
 		order by cnt

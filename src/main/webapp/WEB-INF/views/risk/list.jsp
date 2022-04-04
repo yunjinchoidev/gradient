@@ -46,6 +46,10 @@
 				$("#schform").submit();
 			});
 			
+			$("[name=boardprjkey]").change(function(){
+				$("#schform").submit();
+			});
+			
 		document.getElementById('comdate').value = new Date().toISOString().substring(0, 10);
 			
 		});
@@ -89,9 +93,17 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-						  <form id="schform" action="${path}/risk.do" method="post">
+						  <form id="schform" action="${path}/risk.do" method="get">
 						  	<input type="hidden" name="curPage" value="1"/>
 							<div class="dataTable-top">
+								<div style="margin-right: 50px;width: 20%;">
+									<select name="boardprjkey" class="form-select">
+										<c:forEach var="prlist" items="${prjlist}">
+											<option value="${prlist.prjkey}" ${boardprjkey eq prlist.prjkey  ? "selected" : ""}>${prlist.prjname}</option>
+										</c:forEach>	
+									</select>
+								</div>
+							
 								<div class="dataTable-dropdown">
 									<select name="pageSize" class="dataTable-selector form-select">
 										<option>5</option>
@@ -102,7 +114,7 @@
 									</select>
 									<label>게시글 수</label>	
 								</div>
-								
+	
 								<div class="dataTable-search">
 									<input type="text" id="schFrm" name="sch" class="dataTable-input" placeholder="Search..." type="text">
 								</div>
