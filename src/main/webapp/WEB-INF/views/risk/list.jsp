@@ -93,11 +93,12 @@
 				<div class="card">
 					<div class="card-body">
 						<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-						  <form id="schform" action="${path}/risk.do" method="get">
+						  <form id="schform" action="${path}/risk.do" method="post">
 						  	<input type="hidden" name="curPage" value="1"/>
 							<div class="dataTable-top">
 								<div style="margin-right: 50px;width: 20%;">
 									<select name="boardprjkey" class="form-select">
+										<option value="0">전체목록</option>
 										<c:forEach var="prlist" items="${prjlist}">
 											<option value="${prlist.prjkey}" ${boardprjkey eq prlist.prjkey  ? "selected" : ""}>${prlist.prjname}</option>
 										</c:forEach>	

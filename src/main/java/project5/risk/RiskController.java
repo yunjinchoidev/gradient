@@ -28,11 +28,18 @@ public class RiskController {
 						  @RequestParam(name="sch",required=false) String schS,
 						  @RequestParam(name="boardprjkey",required=false) String boardprjkey) {
 		d.addAttribute("pjList", service2.list());
+		
+		int boardprjkeyInt = 0;
+		
 		//리스크 게시판 목록
-		if(boardprjkey != null && boardprjkey !="") {
+		if(boardprjkey != null) {
+			boardprjkeyInt = Integer.parseInt(boardprjkey);
+		}
+		
+		if(boardprjkey != null && boardprjkeyInt != 0) {
 			d.addAttribute("risklist",service.riskboardprlist(sch));
 			d.addAttribute("boardprjkey",boardprjkey);
-		}else {
+		} else {
 			d.addAttribute("risklist",service.riskboardlist(sch));
 		}
 		
