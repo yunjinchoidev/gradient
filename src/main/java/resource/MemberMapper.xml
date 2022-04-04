@@ -270,6 +270,19 @@
 	</update>
 
 
+	<select id="duplicateEmail" resultType="project5.member.MemberVO" parameterType="String">
+	select * 
+	from member
+	where email=#{email}
+	</select>
+	<select id="duplicateId" resultType="project5.member.MemberVO" parameterType="String">
+	select id
+	from member
+	where id=#{id}
+	</select>
+	
+
+
 
 
 </mapper>

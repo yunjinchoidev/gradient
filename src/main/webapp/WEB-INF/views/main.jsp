@@ -13,6 +13,37 @@
 <html>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <head>
+
+<!-- 구글 어닐리틱스 -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SKC411JKMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SKC411JKMD');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta charset="UTF-8">
 <title>GRADIENT</title>
 <script type="text/javascript">
@@ -392,13 +423,38 @@
 														<hr>
 													</a>
 													<!-- 페이스북 댓글api -->
-					
 													<!-- 댓글 들어가는 부분 -->
 													<div class="fb-comments"
 														data-href="http://106.10.16.155:7080/project5/main.do"
 														data-width="1400" data-numposts="5"
 														style="width: 100%; margin: 30px;"></div>
+														
+														
+														
+														<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://gradient-1.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 												</div>
+												
+												
+												
+												
 											</div>
 										</div>
 									</div>
@@ -415,12 +471,11 @@
 			</section>
 			<!-- Basic Card types section end -->
 
-
-
 		</div>
 
 	</div>
 
-
+<script id="dsq-count-scr" src="//gradient-1.disqus.com/count.js" async></script>
 </body>
+
 </html>

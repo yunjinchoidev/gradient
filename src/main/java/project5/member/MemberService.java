@@ -29,8 +29,7 @@ public class MemberService {
 		return dao.list();
 	}
 
-	
-	//페이징 처리를 위해서!
+	// 페이징 처리를 위해서!
 	public List<MemberVO> listWithPaging(MemberSch sch) {
 
 		// 1. 전체 라인 수
@@ -177,4 +176,11 @@ public class MemberService {
 		dao.updateStatus(vo);
 	}
 
+	public MemberVO duplicateEmail(String email) {
+		return dao.duplicateEmail(email);
+	}
+
+	public MemberVO duplicateId(String id) {
+		return dao.duplicateId(id);
+	}
 }

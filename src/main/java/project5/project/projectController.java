@@ -31,6 +31,12 @@ public class projectController {
 		d.addAttribute("list", service.listWithPaging(sch));
 		return "WEB-INF\\views\\projectManage\\main.jsp";
 	}
+	// 프로젝트 관리를 위한 프로젝트 리스트
+	@RequestMapping("/projectManageMain2.do")
+	public String projectManageMain2(Model d, ProjectSch sch) {
+		d.addAttribute("list", service.listWithPaging(sch));
+		return "WEB-INF\\views\\projectManage\\main2.jsp";
+	}
 
 	// 프로젝트 관리를 위한 프로젝트 조회
 	@RequestMapping("/projectManageGet.do")

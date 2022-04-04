@@ -12,9 +12,14 @@ public class ProcuSituationController {
 	ProcuSituationService service;
 
 	@RequestMapping("/procuSituationMain.do")
-	public String procuSituationMain2(Model d, ProcuSituationSch sch) {
+	public String procuSituationMain(Model d, ProcuSituationSch sch) {
 		d.addAttribute("blist", service.listWithPaging(sch));
 		return "WEB-INF\\views\\procuSituation\\main.html";
+	}
+	@RequestMapping("/procuSituationMain2.do")
+	public String procuSituationMain2(Model d, ProcuSituationSch sch) {
+		d.addAttribute("blist", service.listWithPaging(sch));
+		return "WEB-INF\\views\\procuSituation\\realMain.jsp";
 	}
 	
 	@RequestMapping("/procuSituationData.do")

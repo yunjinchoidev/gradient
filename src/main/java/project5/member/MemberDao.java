@@ -40,4 +40,16 @@ public interface MemberDao {
 	
 	public void updateStatus(MemberVO vo);
 	
+	
+	
+	public MemberVO duplicateEmail(String email);
+	public MemberVO duplicateId(String id);
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -247,7 +247,7 @@
 								}); // ajax 
 							});
 						</script>
-
+						
 						<c:if test="${ empty member.id}">
 							<li class="sidebar-item  "><a href="/project5/loginForm.do"
 								class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>로그인</span>

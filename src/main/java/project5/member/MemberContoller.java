@@ -260,5 +260,48 @@ public class MemberContoller {
 		service.memberRegisterApply(vo);
 		return "WEB-INF\\views\\member\\memberRegisterResult.jsp";
 	}
+	
+	
+	@RequestMapping("/duplicateEmail.do")
+	public String duplicateEmail(String email, Model d) {
+		
+		MemberVO vo =service.duplicateEmail(email);
+		if(vo==null) {
+			d.addAttribute("duplicateEmail", "can");
+		}else {
+			d.addAttribute("duplicateEmail", "already");
+		}
+		return "pageJsonReport";
+	}
+	
+	
+	
+	
+	@RequestMapping("/duplicateId.do")
+	public String duplicateId(String id, Model d) {
+		d.addAttribute("id", id);
+		return "WEB-INF\\views\\member\\duplicateId.jsp";
+	}
+	
+	@RequestMapping("/duplicateIdCheck.do")
+	public String duplicateIdCheck(String id, Model d) {
+		MemberVO vo =service.duplicateId(id);
+		System.out.println("아이디 중복 검사 진입");
+		System.out.println("입력 받은 아이디"+id);
+		if(vo==null) {
+			d.addAttribute("duplicateId", "can");
+		}else {
+			d.addAttribute("duplicateId", "already");
+		}
+		
+		System.out.println("아이디 중복 검사 완료");
+		return "pageJsonReport";
+	}
+	
+	
+	
+	
+	
+	
 
 }

@@ -92,32 +92,32 @@ $(document).ready(function(){
 	<%@ include file="../common/header.jsp"%>
 
 	<div id="main">
-		<header class="mb-3">
-			<a href="#" class="burger-btn d-block d-xl-none"> <i
-				class="bi bi-justify fs-3"></i>
-			</a>
-		</header>
+			<header class="mb-3">
+				<a href="#" class="burger-btn d-block d-xl-none"> <i
+					class="bi bi-justify fs-3"></i>
+				</a>
+			</header>
 
-		<div class="page-heading" id="ok">
-				<h1 style="color:red">
-					(Security)안녕하세요? <br>
-					PM 페이지 입니다<br>
-					매니저PM(연결 계정: <sec:authentication property="name"/>) 님의 <br>
-					메인 화면입니다.<br><br><br>
-			<h3>프로젝트 관리 </h3>
-			<h5><span style="color: red">"${member.name }${member.auth }"</span>님 어서오십시오.</h5>
-			<h5>오직 PM만을 위해 제공하는 정보가 여기 있습니다. </h5>
-		</div>
+			<div class="page-heading" id="ok">
+					<h1 style="color:red">
+						(Security)안녕하세요? <br>
+						PM 페이지 입니다<br>
+						매니저PM(연결 계정: <sec:authentication property="name"/>) 님의 <br>
+						메인 화면입니다.<br><br><br>
+					</h1>
+				<h3>프로젝트 관리 </h3>
+				<h5><span style="color: red">"${member.name }${member.auth }"</span>님 어서오십시오.</h5>
+				<h5>오직 PM만을 위해 제공하는 정보가 여기 있습니다. </h5>
+			</div>
 		
 		
 		<div class="page-content">
 			<section class="row">
 				<div class="col-12 col-lg-9">
+				
+				
 					<div class="row">
-						
-						
-						
-						<div class="col-6 col-lg-3 col-md-6">
+											<div class="col-6 col-lg-3 col-md-6">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
 									<div class="row">
@@ -190,92 +190,84 @@ $(document).ready(function(){
 						</div>
 						
 					</div>
+					
+					
+					
+					
+					
 					<div class="row">
 						<div class="col-12">
 						
 					
-  										
-  										
-  										
-  										
-  										
-  										
-  										
-  										
-  										
+							<script>
+							$(document).ready(function(){
+								
+							})
 							
+							</script>
 
-
-
-
-
-
-
-
-
-							<div class="card">
+							<div class="card" style="border : 3px solid gold">
 								<div class="card-header"><h4>프로젝트 시작과 종료</h4></div>
 								<div class="card-body">
-										<form id="frm01" class="form" action="${path}/projectManageMain.do"
-				method="post">
-				<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-					<div class="dataTable-top">
-						<div class="input-group-prepend">
-							<input type="hidden" name="curPage" value="1" /> <span
-								class="input-group-text">총 ${projectSch.count}건</span>
-						</div>
-						
-						<div class="dataTable-dropdown">
-							<select class="dataTable-selector form-select" name="pageSize">
-								<option value="3">3</option>
-								<option value="5">5</option>
-								<option value="10" selected="selected">10</option>
-								<option value="15">15</option>
-								<option value="20">20</option>
-								<option value="25">25</option>
-							</select><label>entries per page</label>
-						</div>
-						
-						
-						<script>
-						$(document).ready(function(){
-							$( ".searchbar" ).change(function() {
-								  alert( "검색 종류를 변경합니다." );
-								  $(".searchWhat").attr("name", this.value)
-								  alert($(".searchWhat").value)
-						 });
-						
-						});
-						
-						</script>
-						
-						
-						
-						<div class="dataTable-search" style="display: inline-block; ">
+										<form id="frm01" class="form" action="${path}/projectManageMain.do" 	method="post">
+									<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+											<div class="dataTable-top">
+												<div class="input-group-prepend">
+													<input type="hidden" name="curPage" value="1" /> <span
+														class="input-group-text">총 ${projectSch.count}건</span>
+												</div>
 							
-							<div style="display: inline-block;" >
-								<select class="dataTable-selector form-select searchbar" 
-								name="searchbar" style="display: inline-block; ">
-										<option selected="selected">검색</option>
-										<option value="name" selected="selected">name</option>
-										<option value="contents">contents</option>
-								</select>
-								</div>
-								
-								<div style="display: inline-block;" >
-								<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
-									name="name" value="${projectSch.name}"> 
-								  <button class="btn btn-info" type="submit">검색</button>
-								<a class="btn btn-danger" style="text-align: right"
-								data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
-								</div>
-						</div>
+												<div class="dataTable-dropdown">
+													<select class="dataTable-selector form-select" name="pageSize">
+														<option value="3">3</option>
+														<option value="5">5</option>
+														<option value="10" selected="selected">10</option>
+														<option value="15">15</option>
+														<option value="20">20</option>
+														<option value="25">25</option>
+													</select><label>entries per page</label>
+												</div>
+						
+						
+												<script>
+												$(document).ready(function(){
+													$( ".searchbar" ).change(function() {
+														  alert( "검색 종류를 변경합니다." );
+														  $(".searchWhat").attr("name", this.value)
+														  alert($(".searchWhat").value)
+												 });
+												
+												});
+												
+												</script>
 						
 						
 						
-					</div>
-					</div>
-			</form>
+													<div class="dataTable-search" style="display: inline-block; ">
+														
+														<div style="display: inline-block;" >
+															<select class="dataTable-selector form-select searchbar" 
+															name="searchbar" style="display: inline-block; ">
+																	<option selected="selected">검색</option>
+																	<option value="name" selected="selected">name</option>
+																	<option value="contents">contents</option>
+															</select>
+															</div>
+															
+															<div style="display: inline-block;" >
+															<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
+																name="name" value="${projectSch.name}"> 
+															  <button class="btn btn-info" type="submit">검색</button>
+															<a class="btn btn-danger" style="text-align: right"
+															data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
+															</div>
+													</div>
+						
+						
+											
+										</div>
+										</div>
+								</form>
 
 										<div class="dataTable-container">
 											<table class="table table-striped dataTable-table"
@@ -338,76 +330,23 @@ $(document).ready(function(){
 										<div class="dataTable-bottom">
 											<div class="dataTable-info">Showing 1 to 10 of 26
 												entries</div>
-										<ul class="pagination  justify-content-end">
-					<li class="page-item"><a class="page-link"
-						href="javascript:goPage(${projectSch.startBlock!=1?projectSch.startBlock-1:1})">Previous</a></li>
-					<c:forEach var="cnt" begin="${projectSch.startBlock}"
-						end="${projectSch.endBlock}">
-						<li class="page-item ${cnt==projectSch.curPage?'active':''}">
-							<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
-							href="javascript:goPage(${cnt})">${cnt}</a>
-						</li>
-					</c:forEach>
-					<li class="page-item"><a class="page-link"
-						href="javascript:goPage(${projectSch.endBlock!=projectSch.pageCount?projectSch.endBlock+1:projectSch.endBlock})">Next</a></li>
-				</ul>
+													<ul class="pagination  justify-content-end">
+														<li class="page-item"><a class="page-link"
+															href="javascript:goPage(${projectSch.startBlock!=1?projectSch.startBlock-1:1})">Previous</a></li>
+														<c:forEach var="cnt" begin="${projectSch.startBlock}"
+															end="${projectSch.endBlock}">
+															<li class="page-item ${cnt==projectSch.curPage?'active':''}">
+																<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
+																href="javascript:goPage(${cnt})">${cnt}</a>
+															</li>
+														</c:forEach>
+														<li class="page-item"><a class="page-link"
+															href="javascript:goPage(${projectSch.endBlock!=projectSch.pageCount?projectSch.endBlock+1:projectSch.endBlock})">Next</a></li>
+													</ul>
 										</div>
 									</div>
 								</div>
 							</div>
-
-
-
-
-<div class="card">
-								<div class="card-header">
-									<h4>작업량 분석</h4>
-								</div>
-								
-								<div class="card-body">
-									 <!--  커밋 차트 -->
-								
-									    <script type="text/javascript">
-									      google.charts.load("current", {packages:["calendar"]});
-									      google.charts.setOnLoadCallback(drawChart);
-									
-									   function drawChart() {
-									       var dataTable = new google.visualization.DataTable();
-									       dataTable.addColumn({ type: 'date', id: 'Date' });
-									       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
-									       dataTable.addRows([
-									          [ new Date(2012, 3, 13), 37032 ],
-									          [ new Date(2012, 3, 14), 38024 ],
-									          [ new Date(2012, 3, 15), 38024 ],
-									          [ new Date(2012, 3, 16), 38108 ],
-									          [ new Date(2012, 3, 17), 38229 ],
-									          // Many rows omitted for brevity.
-									          [ new Date(2013, 9, 4), 38177 ],
-									          [ new Date(2013, 9, 5), 38705 ],
-									          [ new Date(2013, 9, 12), 38210 ],
-									          [ new Date(2013, 9, 13), 38029 ],
-									          [ new Date(2013, 9, 19), 38823 ],
-									          [ new Date(2013, 9, 23), 38345 ],
-									          [ new Date(2013, 9, 24), 38436 ],
-									          [ new Date(2013, 9, 30), 38447 ]
-									        ]);
-									
-									       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
-									
-									       var options = {
-									         title: "Red Sox Attendance",
-									         height: 350,
-									       };
-									
-									      // chart.draw(dataTable, options);
-									   }
-									    </script>
-  								<div id="calendar_basic" style="width: 1000px; height: 100%; margin-left: 40px;"></div>
-  								
-     						
-      
-									
-								</div>
 							</div>
 
 
@@ -421,63 +360,13 @@ $(document).ready(function(){
 
 
 
-					<div class="card">
-					
-					 
-								<div class="card-header">
-									<h4>작업 스케쥴</h4>
-								</div>
-								
-								<div class="card-body">
-								<!--
-  								<div id="chart_div"></div>
-								<script>
-								google.charts.load('current', {packages: ['corechart', 'bar']});
-								google.charts.setOnLoadCallback(drawBasic);
 
-								function drawBasic() {
 
-								      var data = new google.visualization.DataTable();
-								      data.addColumn('timeofday', 'Time of Day');
-								      data.addColumn('number', 'Motivation Level');
 
-								      data.addRows([
-								        [{v: [8, 0, 0], f: '8 am'}, 1],
-								        [{v: [9, 0, 0], f: '9 am'}, 2],
-								        [{v: [10, 0, 0], f:'10 am'}, 3],
-								        [{v: [11, 0, 0], f: '11 am'}, 4],
-								        [{v: [12, 0, 0], f: '12 pm'}, 5],
-								        [{v: [13, 0, 0], f: '1 pm'}, 6],
-								        [{v: [14, 0, 0], f: '2 pm'}, 7],
-								        [{v: [15, 0, 0], f: '3 pm'}, 8],
-								        [{v: [16, 0, 0], f: '4 pm'}, 9],
-								        [{v: [17, 0, 0], f: '5 pm'}, 10],
-								      ]);
 
-								      var options = {
-								        title: '작업 스케쥴',
-								        hAxis: {
-								          title: 'Time of Day',
-								          format: 'h:mm a',
-								          viewWindow: {
-								            min: [7, 30, 0],
-								            max: [17, 30, 0]
-								          }
-								        },
-								        vAxis: {
-								          title: 'Rating (scale of 1-10)'
-								        }
-								      };
 
-								      var chart = new google.visualization.ColumnChart(
-								        document.getElementById('chart_div'));
 
-								      chart.draw(data, options);
-								    }
-								</script>
-       -->
-									
-								</div>
+
 								
 								
 								
@@ -485,104 +374,18 @@ $(document).ready(function(){
 
 
 
-
-
-						
-							
-							
-							
-							
-							
-							
-							
-							
-							
-							
-
-
-
-
-
-
-
-
-						</div>
-					</div>
-					<div class="row">
-						<div class="col-12 col-xl-4">
-							<div class="card">
-								<div class="card-header">
-									<h4></h4>
-								</div>
-								<div class="card-body">
-									<div class="row">
-									</div>
-									<div class="row">
-									</div>
-									<div class="row">
-									</div>
-								</div>
-							</div>
-
-
-
-
-
-						</div>
-						<div class="col-12 col-xl-8">
-							<div class="card">
-								<div class="card-header">
-									<h4></h4>
-								</div>
-								<div class="card-body">
-								<!-- 
-									<div class="table-responsive">
-										<table class="table table-hover table-lg">
-											<thead>
-												<tr>
-													<th>Name</th>
-													<th>Comment</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="col-3">
-														<div class="d-flex align-items-center">
-															<div class="avatar avatar-md">
-																<img
-																	src="/project5/resources/dist/assets/images/faces/5.jpg">
-															</div>
-															<p class="font-bold ms-3 mb-0">Si Cantik</p>
-														</div>
-													</td>
-													<td class="col-auto">
-														<p class=" mb-0">Congratulations on your graduation!</p>
-													</td>
-												</tr>
-												<tr>
-													<td class="col-3">
-														<div class="d-flex align-items-center">
-															<div class="avatar avatar-md">
-																<img
-																	src="/project5/resources/dist/assets/images/faces/2.jpg">
-															</div>
-															<p class="font-bold ms-3 mb-0">Si Ganteng</p>
-														</div>
-													</td>
-													<td class="col-auto">
-														<p class=" mb-0">Wow amazing design! Can you make
-															another tutorial for this design?</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-									 -->
-								</div>
-							</div>
-						</div>
 					</div>
 				</div>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				<div class="col-12 col-lg-3">
 					<div class="card">
 						<div class="card-body py-4 px-5">

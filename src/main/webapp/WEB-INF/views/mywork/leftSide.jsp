@@ -60,11 +60,18 @@
 
 
 
-
+				// 즐겨찾기 해제
 				function cancel(data){
 						var favoritekey;
 				  		console.log("favoritekey"+favoritekey);
-				  		favoritekey = parseInt($(data).text().substr(0,1));
+				  		if (parseInt($(data).text())>=100){
+				  			favoritekey = parseInt($(data).text().substr(0,3));
+				  		} else if (parseInt($(data).text())>=10){
+				  			favoritekey = parseInt($(data).text().substr(0,2));
+				  		}else{
+					  		favoritekey = parseInt($(data).text().substr(0,1));
+				  		}
+				  		
 						console.log("favoritekey"+favoritekey);
 						var data = { favoritekey :favoritekey};
 						console.log(data);

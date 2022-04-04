@@ -1,18 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- # xml의 dtd 선언 부분 1. dtd : 상단에 어떤 태그를 사용할지를 선언하는 부분. 2. dtd에 맞는 태그를 활용 
-	할 수 있다. # 스프링은 이 dispacher-servlet.xml에서 선언한 클래스들을 객체로 컨테이너에서 로딩 후, 해당 객체들을 
-	url 패턴으로 호출하여 처리한다. -->
+<!-- 
+# xml의 dtd 선언 부분
+1. dtd : 상단에 어떤 태그를 사용할지를 선언하는 부분.
+2. dtd에 맞는 태그를 활용 할 수 있다.
+# 스프링은 이 dispacher-servlet.xml에서 선언한 클래스들을 
+객체로 컨테이너에서 로딩 후, 해당 객체들을 url 패턴으로 호출하여 처리한다.
+ -->
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:task="http://www.springframework.org/schema/task"
-	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:task="http://www.springframework.org/schema/task" 
+	xmlns:aop="http://www.springframework.org/schema/aop" 
 	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:mvc="http://www.springframework.org/schema/mvc"
+		xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:c="http://www.springframework.org/schema/c"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:util="http://www.springframework.org/schema/util"
-	xmlns:websocket="http://www.springframework.org/schema/websocket"
-	xmlns:sec="http://www.springframework.org/schema/security"
+	 xmlns:util="http://www.springframework.org/schema/util"
+	 xmlns:websocket="http://www.springframework.org/schema/websocket"
+	 xmlns:sec="http://www.springframework.org/schema/security"
+	 xmlns:tx="http://www.springframework.org/schema/tx" 
+	 
 	xsi:schemaLocation="http://www.springframework.org/schema/beans
        http://www.springframework.org/schema/beans/spring-beans.xsd
        http://www.springframework.org/schema/task
@@ -28,8 +34,10 @@
    		http://www.springframework.org/schema/websocket
 		http://www.springframework.org/schema/websocket/spring-websocket.xsd
        http://www.springframework.org/schema/security
-       http://www.springframework.org/schema/security/spring-security.xsd		
-		">
+       http://www.springframework.org/schema/security/spring-security.xsd	
+       http://www.springframework.org/schema/tx
+       http://www.springframework.org/schema/tx/spring-tx.xsd	
+		" >
 	<!-- springweb 하위에 있는 패키지는 자동 등록 처리.. Component controller, service, springweb 
 		하위 패키지에 있는 @Controller, @Service, @Repository가 선언되어 있으면 객체를 선언하여 로딩이 된 상황과 
 		동일하다.. 웹서버가 기동이 되면 모든 springweb에 있는 객체가 로딩이 된다. (A01_StartController) (A01_StartService) -->

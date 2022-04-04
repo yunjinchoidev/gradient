@@ -169,7 +169,7 @@
 									var consultChatList = $("#chattingRoomList");
 									for(var i=0; i<result.chatRoomList.length; i++){
 											var str="";
-											str +=" <a class='list-group-item list-group-item-action active text-white rounded-0' onclick='MessageListFunc(this)'>"+"["+result.chatRoomList[i].roomkey +"]번방 &nbsp : "
+											str +=" <a class='list-group-item list-group-item-action active text-white rounded-0' onclick='MessageListFunc(this)' style='cursor:pointer;'>"+"["+result.chatRoomList[i].roomkey +"]번방 &nbsp : "
 											str +="   <div class='media'><img src='https://bootstrapious.com/i/snippets/sn-chat/avatar.svg' alt='user' width='50' class='rounded-circle'>"
 											str +="    <div class='media-body ml-4'>"
 											str +="        <div class='d-flex align-items-center justify-content-between mb-1'>"

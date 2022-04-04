@@ -88,32 +88,42 @@ $(document).ready(function(){
 
 <body>
 
-<%@ include file="../chatBot/chatBot.jsp"%> 
- 	<%@ include file="../common/header.jsp"%>
+ 	<%@ include file="../../../../view/common/header.jsp"%>
+ 	<%@ include file="../../../../view/chatBot/chatBot.jsp"%>
 
 
 	<div id="auth" style="margin-left: 350px;" >
-		<div class="row h-100" style="width: 900px; ">
-			<div class="col-lg-5 col-12" style="width: 900px;">
-				<div id="auth-left" style="width: 900px;">
-						<h4>  	<spring:message code="multilang"/></h4>
-								 <select class="form-control" id="selectLan">
-					  	<option value=""><spring:message code="chlange"/></option>
-					  	<option value="korean"><spring:message code="korean"/></option>
-					  	<option value="english"><spring:message code="english"/></option>
-					  	<option value="japanese"><spring:message code="japanese"/></option>
-					  	<option value="german"><spring:message code="german"/></option>
-					  	<option value="french"><spring:message code="french"/></option>
-					  	<option value="chinese"><spring:message code="chinese"/></option>
-					  	<option value="spanish"><spring:message code="spanish"/></option>
-					  </select>
+		<div class="row h-100" style="width: 1000px; ">
+			<div class="col-lg-5 col-12" style="width: 1000px;">
+				<div id="auth-left" style="width: 1000px;">
+						<div style="margin-bottom: 40px;">
+						<h2 style="display: inline-block;">  <spring:message code="multilang"/></h2>
+						<select class="form-control" id="selectLan" style="width: 30%; display: inline-block;">
+						  	<option value=""><spring:message code="chlange"/></option>
+						  	<option value="korean" selected="selected"><spring:message code="korean"/></option>
+						  	<option value="english"><spring:message code="english"/></option>
+						  	<option value="japanese"><spring:message code="japanese"/></option>
+						  	<option value="german"><spring:message code="german"/></option>
+						  	<option value="french"><spring:message code="french"/></option>
+						  	<option value="chinese"><spring:message code="chinese"/></option>
+						  	<option value="spanish"><spring:message code="spanish"/></option>
+						  </select>
+						  </div>
+						  
+						  
+						  <div style="margin-bottom: 40px;">  
 					<h1 class="auth-title">
+					Gradient
+					<button class="btn btn-primary"  
+						onclick="location.href='/project5/user/loginform'"> 시큐리티 로그인<br> 화면으로</button>
 					</h1>
-					
-					
-					<p class="auth-subtitle mb-5">
-						<h2>login</h2>
-					</p>
+					<h1 class="auth-title">
+					로그인
+					</h1>
+							</div>
+
+
+
 
 					<form action="/project5/login.do" method="post">
 						<div class="form-group position-relative has-icon-left mb-4">
@@ -142,17 +152,29 @@ $(document).ready(function(){
 
 
 						<div >
-							<a href="javascript:kakaoLogin();"> <img
+							<a href="javascript:kakaoLogin();"
+							style="display: inline-block;"
+							> <img
 								src="/project5/resources/login/kakaoLogin.png" alt="카카오계정 로그인"
-								style="width:300px; height: 50px; margin-top: 10px; margin-left: 140px;" />
-							</a> <a href="javascript:void(0)"> <img
+								style="width:235px; height: 50px; margin-top: 10px; margin-left:10px;  display: inline-block;" />
+							</a> 
+							<a href="javascript:void(0)"
+							style="display: inline-block;"
+							> <img
 								src="/project5/resources/login/naverLogin.png" alt="네이버 로그인"
-								style="width:300px; height: 50px; margin-top: 10px; margin-left: 140px;" id="naverIdLogin_loginButton" />
-							</a> <a href="javascript:void(0)"> <img
+								style="width:235px; height: 50px; margin-top: 10px;  margin-left:10px; display: inline-block;" id="naverIdLogin_loginButton" />
+							</a>
+							<a href="javascript:void(0)"
+							style="display: inline-block;"
+							> <img
 								src="/project5/resources/login/googleLogin.png" alt="구글 로그인"
-								style="width:300px;  height: 50px; margin-top: 10px; margin-left: 140px;" id="GgCustomLogin" />
+								style="width:235px;  height: 50px; margin-top: 10px;  margin-left:10px; display: inline-block;" id="GgCustomLogin" />
 							</a>
 						</div>
+						
+						
+						
+						
 						<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         window.Kakao.init('9b27ef068ae5af77a894af32a4f1ee80');
@@ -423,7 +445,7 @@ window.fbAsyncInit = function() {
 						</p>
 						<p>
 							<a class="font-bold" href="/project5/memberFindForm.do">
-							아이디/비밀번호가 생각나지 않습니까?</a>
+							아이디/비밀번호를 잊으셨습니까?</a>
 						</p>
 					</div>
 				</div>
