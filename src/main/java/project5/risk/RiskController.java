@@ -26,19 +26,19 @@ public class RiskController {
 	@RequestMapping("/risk.do")
 	public String riskFrm(RiskSch sch, Model d,
 						  @RequestParam(name="sch",required=false) String schS,
-						  @RequestParam(name="boardprjkey",required=false) String boardprjkey) {
+						  @RequestParam(name="projectkey",required=false) String projectkey) {
 		d.addAttribute("pjList", service2.list());
 		
 		int boardprjkeyInt = 0;
 		
 		//리스크 게시판 목록
-		if(boardprjkey != null) {
-			boardprjkeyInt = Integer.parseInt(boardprjkey);
+		if(projectkey != null) {
+			boardprjkeyInt = Integer.parseInt(projectkey);
 		}
 		
-		if(boardprjkey != null && boardprjkeyInt != 0) {
+		if(projectkey != null && boardprjkeyInt != 0) {
 			d.addAttribute("risklist",service.riskboardprlist(sch));
-			d.addAttribute("boardprjkey",boardprjkey);
+			d.addAttribute("boardprjkey",projectkey);
 		} else {
 			d.addAttribute("risklist",service.riskboardlist(sch));
 		}

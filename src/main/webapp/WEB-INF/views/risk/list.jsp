@@ -97,7 +97,7 @@
 						  	<input type="hidden" name="curPage" value="1"/>
 							<div class="dataTable-top">
 								<div style="margin-right: 50px;width: 20%;">
-									<select name="boardprjkey" class="form-select">
+									<select name="projectkey" class="form-select">
 										<option value="0">전체목록</option>
 										<c:forEach var="prlist" items="${prjlist}">
 											<option value="${prlist.prjkey}" ${boardprjkey eq prlist.prjkey  ? "selected" : ""}>${prlist.prjname}</option>

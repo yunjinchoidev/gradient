@@ -38,7 +38,7 @@
 		AND r.PROJECTKEY = p.PROJECTKEY
 		order by cnt asc )
 		where 1=1
-		AND PROJECTKEY = #{boardprjkey}
+		AND PROJECTKEY = #{projectkey}
 	</select>
 	
 	<!-- 게시글 검색 -->
@@ -90,7 +90,7 @@
 			FROM RISK r , MEMBER m, PROJECT p  
 			WHERE r.MEMBERKEY = m.MEMBERKEY 
 			AND r.PROJECTKEY = p.PROJECTKEY
-			AND r.PROJECTKEY = #{boardprjkey}
+			AND r.PROJECTKEY = #{projectkey}
 			order by cnt asc )
 		where cnt BETWEEN #{start} AND #{end}
 		order by cnt
