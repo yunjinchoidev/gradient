@@ -45,6 +45,7 @@
 		where
 		1=1
 		and ph.workSortKey = ws.workSortKey
+		AND ph.projectkey = #{projectkey}
 		<if test="title!=null and title!=''">
 			and ph.title like '%'||#{title}||'%'
 		</if>

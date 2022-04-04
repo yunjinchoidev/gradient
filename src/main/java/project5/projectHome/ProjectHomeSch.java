@@ -17,10 +17,14 @@ public class ProjectHomeSch {
 	// 검색할 내용
 	private String title;
 	private String contents;
+
+	int projectkey;
+
 	public ProjectHomeSch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
 	public ProjectHomeSch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
 			int startBlock, int endBlock, String title, String contents) {
 		super();
@@ -36,84 +40,118 @@ public class ProjectHomeSch {
 		this.title = title;
 		this.contents = contents;
 	}
+
+	public ProjectHomeSch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
+			int startBlock, int endBlock, String title, String contents, int projectkey) {
+		super();
+		this.count = count;
+		this.pageSize = pageSize;
+		this.pageCount = pageCount;
+		this.curPage = curPage;
+		this.start = start;
+		this.end = end;
+		this.blockSize = blockSize;
+		this.startBlock = startBlock;
+		this.endBlock = endBlock;
+		this.title = title;
+		this.contents = contents;
+		this.projectkey = projectkey;
+	}
+
 	public int getCount() {
 		return count;
 	}
+
 	public void setCount(int count) {
 		this.count = count;
 	}
+
 	public int getPageSize() {
 		return pageSize;
 	}
+
 	public void setPageSize(int pageSize) {
 		this.pageSize = pageSize;
 	}
+
 	public int getPageCount() {
 		return pageCount;
 	}
+
 	public void setPageCount(int pageCount) {
 		this.pageCount = pageCount;
 	}
+
 	public int getCurPage() {
 		return curPage;
 	}
+
 	public void setCurPage(int curPage) {
 		this.curPage = curPage;
 	}
+
 	public int getStart() {
 		return start;
 	}
+
 	public void setStart(int start) {
 		this.start = start;
 	}
+
 	public int getEnd() {
 		return end;
 	}
+
 	public void setEnd(int end) {
 		this.end = end;
 	}
+
 	public int getBlockSize() {
 		return blockSize;
 	}
+
 	public void setBlockSize(int blockSize) {
 		this.blockSize = blockSize;
 	}
+
 	public int getStartBlock() {
 		return startBlock;
 	}
+
 	public void setStartBlock(int startBlock) {
 		this.startBlock = startBlock;
 	}
+
 	public int getEndBlock() {
 		return endBlock;
 	}
+
 	public void setEndBlock(int endBlock) {
 		this.endBlock = endBlock;
 	}
+
 	public String getTitle() {
 		return title;
 	}
+
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 	public String getContents() {
 		return contents;
 	}
+
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	public int getProjectkey() {
+		return projectkey;
+	}
+
+	public void setProjectkey(int projectkey) {
+		this.projectkey = projectkey;
+	}
+
 }

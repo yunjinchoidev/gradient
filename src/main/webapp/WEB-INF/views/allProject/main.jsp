@@ -162,6 +162,7 @@ to {
 															         dataType:'json',
 															         success: function(result){
 															         console.log("성공")
+																	 console.log(result)
 																	 console.log(result.projectInfo.name)
 																	 console.log(result.fileInfo[0].fname)
 																	 showProjectCard(result.projectInfo, result.fileInfo[0].fname);// 함수 호출

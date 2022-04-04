@@ -31,7 +31,7 @@
 													id="first-name-column" class="form-control"
 													name="projectkey">
 													<c:forEach var="pjList" items="${pjList}" varStatus="idx">
-														<option value="${idx.count }">${idx.count } : ${pjList.name }</option>
+														<option value="${pjList.projectkey }">${pjList.projectkey } : ${pjList.name }</option>
 													</c:forEach>
 												</select>
 											</div>

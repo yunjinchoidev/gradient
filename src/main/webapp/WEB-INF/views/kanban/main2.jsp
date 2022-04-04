@@ -267,7 +267,17 @@
     
     </head>
 <body>
+
+
+
+
+
+
+
           <div id="kanban"></div> 
+          
+          
+          
            <div id="log"></div>  
           
          	 <br>
@@ -276,11 +286,6 @@
 		        <a href="#" class="btn btn-danger" data-bs-toggle="modal"  data-bs-target="#inlineForm" id="addForm">칸반 추가 창 </a>
 		         <a href="#" class="btn btn-danger" id="getItems">모든 칸반 정보 얻기</a>
        		 </div>
-        
-        
-        
-        
-        
         
         
         

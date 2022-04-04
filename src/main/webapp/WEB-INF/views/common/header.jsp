@@ -283,7 +283,7 @@
 
 
 
-
+<!-- 
 						<li class="sidebar-item  has-sub"><a
 																			href="#" class='sidebar-link'> <i
 																				class="bi bi-stack"></i> <span>프로젝트</span>
@@ -343,7 +343,7 @@
 										</ul>
 							</li>
 							
-
+ -->
 
 
 
@@ -358,7 +358,18 @@
 
 
 
+						<li class="sidebar-item  "><a
+							href="/project5/chatting.do"
+							class='sidebar-link'> 
+							<i class="bi bi-chat-dots-fill"></i>
+							<span>
+									채팅</span>
+							</a>
+						</li>
 
+
+
+					<!-- 
 						<li class="sidebar-item  has-sub"><a href="#"
 							class='sidebar-link'> <i class="bi bi-chat-dots-fill"></i> <span>의사소통</span>
 						</a>
@@ -369,7 +380,7 @@
 								<li class="submenu-item "><a href="/project5/chatting.do">채팅</a>
 								</li>
 							</ul></li>
-
+								 -->
 
 
 

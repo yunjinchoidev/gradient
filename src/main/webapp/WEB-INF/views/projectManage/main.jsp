@@ -6,12 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-	   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 </head>
-
-
-
-
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -73,7 +68,7 @@ $(document).ready(function(){
 			var msg = "${msg}";
 			if(msg!=""){
 				if(confirm(msg+"\n메인화면으로 이동할까요?")){
-					location.href="${path}/projectList.do";
+					location.href="/project5/projectManageMain.do";
 				}
 			}
 	
@@ -87,18 +82,21 @@ $(document).ready(function(){
 </script>
 
 
+
+
 <body>
+
 <%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
-
+	
 	<div id="main">
-			<header class="mb-3">
-				<a href="#" class="burger-btn d-block d-xl-none"> <i
-					class="bi bi-justify fs-3"></i>
-				</a>
-			</header>
+            <header class="mb-3">
+                <a href="#" class="burger-btn d-block d-xl-none">
+                    <i class="bi bi-justify fs-3"></i>
+                </a>
+            </header>
 
-			<div class="page-heading" id="ok">
+            <div class="page-heading" id="ok">
 					<h1 style="color:red">
 						(Security)안녕하세요? <br>
 						PM 페이지 입니다<br>
@@ -109,107 +107,129 @@ $(document).ready(function(){
 				<h5><span style="color: red">"${member.name }${member.auth }"</span>님 어서오십시오.</h5>
 				<h5>오직 PM만을 위해 제공하는 정보가 여기 있습니다. </h5>
 			</div>
-		
-		
-		<div class="page-content">
-			<section class="row">
-				<div class="col-12 col-lg-9">
-				
-				
-					<div class="row">
-											<div class="col-6 col-lg-3 col-md-6">
-							<div class="card">
-								<div class="card-body px-3 py-4-5">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="stats-icon purple">
-												<i class="iconly-boldShow"></i>
-											</div>
-										</div>
-										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">이메일 보내기</h6>
-											<h6 class="font-extrabold mb-0">이메일 보내기</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-6 col-lg-3 col-md-6">
-							<div class="card">
-								<div class="card-body px-3 py-4-5">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="stats-icon blue">
-												<i class="iconly-boldProfile"></i>
-											</div>
-										</div>
-										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">직원 조회</h6>
-											<h6 class="font-extrabold mb-0">직원 조회</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-6 col-lg-3 col-md-6">
-							<div class="card">
-								<div class="card-body px-3 py-4-5">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="stats-icon green">
-												<i class="iconly-boldAdd-User"></i>
-											</div>
-										</div>
-										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">고객처 조회</h6>
-											<h6 class="font-extrabold mb-0">고객처 조회</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-						<div class="col-6 col-lg-3 col-md-6">
-							<div class="card">
-								<div class="card-body px-3 py-4-5">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="stats-icon red">
-												<i class="iconly-boldBookmark"></i>
-											</div>
-										</div>
-										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">알림 메시지</h6>
-											<h6 class="font-extrabold mb-0">알림 메시지</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						
-					</div>
-					
-					
-					
-					
-					
-					<div class="row">
-						<div class="col-12">
-						
-					
-							<script>
-							$(document).ready(function(){
-								
-							})
-							
-							</script>
-
-							<div class="card" style="border : 3px solid gold">
+			
+			
+			
+			
+            <div class="page-content">
+            
+            
+                <section class="row">
+            
+            
+            
+            
+            
+                    <div class="col-12 col-lg-8">
+                        <div class="row">
+                        
+                        
+                        
+                        
+                        
+                        
+                            <div class="col-6 col-lg-3 col-md-6">
+                            
+                            
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon purple">
+                                                    <i class="iconly-boldShow"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Profile Views</h6>
+                                                <h6 class="font-extrabold mb-0">112.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                
+                                
+                                
+                                
+                                
+                            </div>
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon blue">
+                                                    <i class="iconly-boldProfile"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Followers</h6>
+                                                <h6 class="font-extrabold mb-0">183.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon green">
+                                                    <i class="iconly-boldAdd-User"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Following</h6>
+                                                <h6 class="font-extrabold mb-0">80.000</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-6 col-lg-3 col-md-6">
+                                <div class="card">
+                                    <div class="card-body px-3 py-4-5">
+                                        <div class="row">
+                                            <div class="col-md-4">
+                                                <div class="stats-icon red">
+                                                    <i class="iconly-boldBookmark"></i>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-8">
+                                                <h6 class="text-muted font-semibold">Saved Post</h6>
+                                                <h6 class="font-extrabold mb-0">112</h6>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        <div class="row">
+                            <div class="col-12">
+                              <div class="card" style="border : 3px solid gold">
 								<div class="card-header"><h4>프로젝트 시작과 종료</h4></div>
 								<div class="card-body">
-										<form id="frm01" class="form" action="${path}/projectManageMain.do" 	method="post">
+							<form id="frm01" class="form" action="${path}/projectManageMain.do" 	method="post">
 									<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 											<div class="dataTable-top">
 												<div class="input-group-prepend">
@@ -346,331 +366,146 @@ $(document).ready(function(){
 										</div>
 									</div>
 								</div>
-							</div>
-							</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-								
-								
-								
-							</div>
-
-
-
-					</div>
-				</div>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				<div class="col-12 col-lg-3">
-					<div class="card">
-						<div class="card-body py-4 px-5">
-							<div class="d-flex align-items-center">
-								<div class="avatar avatar-xl" id="myface">
-								</div>
-								<div class="ms-3 name">
-									<h5 class="font-bold">${project.name } 님</h5>
-									<h6 class="text-muted mb-0">직책 : ${project.auth } <br>${project.email} </h6>
-								</div>
-							</div>
-						</div>
-					</div>
-					
-					
-					
-					
-					<div class="card">
-						<div class="card-header">
-							<h4>최근 온 메시지</h4>
-						</div>
-						<div class="card-content pb-4">
-						
-						<!-- 
-							<div class="recent-message d-flex px-4 py-3">
-								<div class="avatar avatar-lg">
-									<img src="/project5/resources/dist/assets/images/faces/4.jpg">
-								</div>
-								<div class="name ms-4">
-									<h5 class="mb-1">개발자 1</h5>
-									<h6 class="text-muted mb-0">@홍길동</h6>
-								</div>
-							</div>
-							<div class="recent-message d-flex px-4 py-3">
-								<div class="avatar avatar-lg">
-									<img src="/project5/resources/dist/assets/images/faces/5.jpg">
-								</div>
-								<div class="name ms-4">
-									<h5 class="mb-1">마케터 2</h5>
-									<h6 class="text-muted mb-0">@김철수</h6>
-								</div>
-							</div>
-							<div class="recent-message d-flex px-4 py-3">
-								<div class="avatar avatar-lg">
-									<img src="/project5/resources/dist/assets/images/faces/1.jpg">
-								</div>
-								<div class="name ms-4">
-									<h5 class="mb-1">인사과 1</h5>
-									<h6 class="text-muted mb-0">@김영희</h6>
-								</div>
-							</div>
-							-->
-							<div class="px-4">
-								<button
-									class='btn btn-block btn-xl btn-light-primary font-bold mt-3'
-									onclick="window.open('/project5/chatTEST.do', 'PopupWin', 'width=1000,height=1200');"
-									
-									>채팅 시작
-									</button>
-							</div>
-						
-						</div>
-						 
-					</div>
-					<div class="card">
-						<div class="card-header">
-							<h4>예산 분석</h4>
-						</div>
-						<div class="card-body">
-						
-						 <script type="text/javascript">
-   							   google.charts.load('current', {'packages':['corechart']});
-						      google.charts.setOnLoadCallback(drawChart);
-						
-						      function drawChart() {
-						        var data = google.visualization.arrayToDataTable([
-						          ['Director (Year)',  'Rotten Tomatoes', 'IMDB'],
-						          ['Alfred Hitchcock (1935)', 8.4,         7.9],
-						          ['Ralph Thomas (1959)',     6.9,         6.5],
-						          ['Don Sharp (1978)',        6.5,         6.4],
-						          ['James Hawes (2008)',      4.4,         6.2]
-						        ]);
-						
-						        var options = {
-						          title: 'The decline of \'The 39 Steps\'',
-						          vAxis: {title: 'Accumulated Rating'},
-						          isStacked: true
-						        };
-						
-						        var chart = new google.visualization.SteppedAreaChart(document.getElementById('chart_div2'));
-						
-						      //  chart.draw(data, options);
-						      }
-						    </script>
-						    <!-- 
-						<div id="chart_div2"></div>
-						 -->
-						</div>
-					</div>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					<div class="card">
-						<div class="card-header">
-							<h4>프로젝트 별 작업속도 분석</h4>
-						</div>
-						<div class="card-body">
-							 <div id="curve_chart"></div>
-							 
-							   <script type="text/javascript">
-								      google.charts.load('current', {'packages':['corechart']});
-								      google.charts.setOnLoadCallback(drawChart);
-								
-								      function drawChart() {
-								        var data = google.visualization.arrayToDataTable([
-								          ['Year', 'Sales', 'Expenses'],
-								          ['2004',  1000,      400],
-								          ['2005',  1170,      460],
-								          ['2006',  660,       1120],
-								          ['2007',  1030,      540]
-								        ]);
-								
-								        var options = {
-								          title: '작업속도',
-								          curveType: 'function',
-								          legend: { position: 'bottom' }
-								        };
-								
-								        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
-								
-								        //chart.draw(data, options);
-								      }
-								    </script>
-						</div>
-					</div>
-					
-					
-					
-					
-					<div class="card">
-						<div class="card-header">
-							<h4>현재 진행중인 프로젝트</h4>
-						</div>
-						<div class="card-body">
-						
-    <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-
-        var data = google.visualization.arrayToDataTable([
-          ['Task', 'Hours per Day'],
-          ['Work',     11],
-          ['Eat',      2],
-          ['Commute',  2],
-          ['Watch TV', 2],
-          ['Sleep',    7]
-        ]);
-
-        var options = {
-          title: '분류'
-        };
-
-        var chart = new google.visualization.PieChart(document.getElementById('piechart'));
-
-        //chart.draw(data, options);
-      }
-    </script>
-    
-							<div id="piechart"></div>
-						</div>
-					</div>
-				</div>
-			</section>
-		</div>
-
-	</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <!--login form Modal -->
-
-	<form action="/project5/projectProgressUpdate.do" id="frm01">
-		<div class="modal fade text-left" id="inlineForm" tabindex="-1"
-			role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-			<div
-				class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-				role="document">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h4 class="modal-title" id="myModalLabel33">프로젝트 상태 변경</h4>
-						<button type="button" class="close" data-bs-dismiss="modal"
-							aria-label="Close">
-							<i data-feather="x"></i>
-						</button>
-					</div>
-
-					<div class="modal-body">
-						<label>project : </label>
-						<div class="form-group">
-							<select class="form-control" name="projectkey">
-								<c:forEach var="list" items="${list }" varStatus="idx">
-									<option value="${idx.index+1 }">${idx.index+1}:
-										${list.name}</option>
-								</c:forEach>
-							</select>
-						</div>
-
-
-						<label>progress: </label>
-						<div class="form-group">
-							<select class="form-control" name="progress">
-								<option value="대기">대기</option>
-								<option value="초기">초기</option>
-								<option value="중기">중기</option>
-								<option value="말기">말기</option>
-								<option value="종료">종료</option>
-							</select>
-						</div>
-					</div>
-
-
-					<div class="modal-footer">
-						<button type="button" class="btn btn-light-secondary"
-							data-bs-dismiss="modal">
-							<i class="bx bx-x d-block d-sm-none"></i> <span
-								class="d-none d-sm-block">닫기</span>
-						</button>
-						<button type="submit" class="btn btn-danger ml-2">
-							<i class="bx bx-check d-block d-sm-none"></i> <span
-								class="d-none d-sm-block">수정</span>
-						</button>
-					</div>
-
-				</div>
-			</div>
-		</div>
-
-	</form>
-
-
-
-
-
-
-
-
-
-
-
-
-
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Profile Visit</h4>
+                                    </div>
+                                    <div class="card-body" style="position: relative;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Profile Visit</h4>
+                                    </div>
+                                    <div class="card-body" style="position: relative;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>Profile Visit</h4>
+                                    </div>
+                                    <div class="card-body" style="position: relative;">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    <div class="col-12 col-lg-4">
+                   
+                        <div class="card">
+                            <div class="card-body py-4 px-5">
+                                <div class="d-flex align-items-center">
+                                    <div class="avatar avatar-xl">
+                                        <img src="assets/images/faces/1.jpg" alt="Face 1">
+                                    </div>
+                                    <div class="ms-3 name">
+                                        <h5 class="font-bold">John Duck</h5>
+                                        <h6 class="text-muted mb-0">@johnducky</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Recent Messages</h4>
+                            </div>
+                            <div class="card-content pb-4">
+                                <div class="recent-message d-flex px-4 py-3">
+                                    <div class="avatar avatar-lg">
+                                        <img src="assets/images/faces/4.jpg">
+                                    </div>
+                                    <div class="name ms-4">
+                                        <h5 class="mb-1">Hank Schrader</h5>
+                                        <h6 class="text-muted mb-0">@johnducky</h6>
+                                    </div>
+                                </div>
+                                <div class="px-4">
+                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3">채팅 하러 가기
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>Visitors Profile</h4>
+                            </div>
+                            <div class="card-body" style="position: relative;">
+                            </div>
+                        </div>
+                        
+                        
+                        
+                        
+                    </div>
+                </section>
+            </div>
+
+        </div>
+	
 </body>
-
-
-
-
-
-
-    
-
 </html>

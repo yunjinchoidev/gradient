@@ -69,7 +69,8 @@ public class projectController {
 	@RequestMapping("/projectManageUpdate.do")
 	public String projectManageUpdate(Model d, ProjectVO vo) {
 		service.update(vo);
-		return "forward:/projectManageMain.do";
+		d.addAttribute("msg", "프로젝트가 성공적으로 수정되었습니다.");
+		return "WEB-INF\\views\\projectManage\\main.jsp";
 	}
 
 	// 프로젝트 관리를 위한 프로젝트 상태 업데이트

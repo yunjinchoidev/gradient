@@ -27,8 +27,9 @@ public class OutputController {
 	DepartmentSevice service4;
 	
 	@RequestMapping("/output.do")
-	public String output(Model d, OutputSch sch) {
+	public String output(Model d, OutputSch sch, int projectkey) {
 		d.addAttribute("list", service.listWithPaging(sch));
+		d.addAttribute("project", service2.get(projectkey));
 		//return "pageJsonReport";
 		return "WEB-INF\\views\\output\\list.jsp";
 	}

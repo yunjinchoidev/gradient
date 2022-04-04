@@ -64,14 +64,45 @@ $(document).ready(function(){
 			<div class="page-title">
 				<div class="row">
 
-					<%@ include file="../projectHome/sort.jsp" %>
+					
+						<div class="buttons" id="moveBtn" style="padding: 20px;">
+		<a href="/project5/dashBoard.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary" onclick="alert('${project.projectkey } : ${project.name } 이 유지됩니다.')">대시보드</a> 
+			<a
+			href="/project5/projectHome.do?projectkey=${project.projectkey }" class="btn btn-dark"
+			 >프로젝트
+			홈</a> 
+			<a href="/project5/kanbanMain.do?projectkey=${project.projectkey }"
+			class="btn btn-danger" >칸반보드</a> <a
+			href="/project5/ganttMain.do?projectkey=${project.projectkey }"
+			class="btn btn-warning" >간트차트</a> <a
+			href="/project5/calendar.do?projectkey=${project.projectkey }"
+			class="btn btn-success" >캘린더</a> <a
+			href="/project5/cost.do?projectkey=${project.projectkey }"
+			class="btn btn-primary">예산 관리</a> <a
+			href="/project5/qualityList.do?projectkey=${project.projectkey }"
+			class="btn btn-dark">품질 관리</a> <a
+			href="/project5/attendanceMain.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">팀 관리</a> <a
+			href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
+			class="btn btn-danger">회의록</a> <a
+			href="/project5/chatting.do?projectkey=${project.projectkey }"
+			class="btn btn-warning">채팅</a> <a
+			href="/project5/output.do?projectkey=${project.projectkey }"
+			class="btn btn-success">산출물 관리</a> <a
+			href="/project5/risk.do?projectkey=${project.projectkey }"
+			class="btn btn-primary">리스크 관리</a> <a
+			href="/project5/procuSituationMain.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">조달 관리</a>
+	</div>
+	<hr>
 
 
 
 
 
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>산출물 관리</h3>
+						<h3><span style="color:red">${project.name }</span>산출물 관리</h3>
 						<p class="text-subtitle text-muted">For user to check they
 							list</p>
 					</div>
@@ -148,7 +179,7 @@ $(document).ready(function(){
 									name="title" value="${outputSch.title}"> 
 								  <button class="btn btn-info" type="submit">검색</button>
 								<a class="btn btn-danger" style="text-align: right"
-								data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
+								data-bs-toggle="modal" data-bs-target="#inlineForm">글 쓰기</a>
 								</div>
 						</div>
 						
