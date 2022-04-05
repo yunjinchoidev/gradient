@@ -4,6 +4,11 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="project5.fullCalendar.A10_FullCalDao">
+
+
+
+
+
 	<!-- List<Calendar> getCalendarList(); -->
 	<resultMap type="calendar" id="calResult">
 		<result property="start" column="start1" />
@@ -87,12 +92,18 @@
 
 
 
-	<insert id="insertCalendar" parameterType="calendar">
+	<insert id="insertCalendar" parameterType="project5.fullCalendar.Calendar">
 		INSERT INTO calendars
 		values(cal_seq.nextval,
 		#{title},#{start},#{end},#{content},#{borderColor},#{backgroundColor},
-		#{textColor},#{allDay}, #{projectkey}, ${memberkey})
+		#{textColor},#{allDay}, #{projectkey}, #{memberkey})
 	</insert>
+
+
+
+
+
+
 
 
 

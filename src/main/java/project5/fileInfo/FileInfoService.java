@@ -18,6 +18,10 @@ public class FileInfoService {
 	public void insert2(FileInfoVO vo) {
 		dao.insert(vo);
 	}
+
+	public void insert4(FileInfoVO vo) {
+		dao.insert(vo);
+	}
 	
 	public void insertCalendarFile(FileInfoVO vo) {
 		dao.insertCalendarFile(vo);

@@ -20,6 +20,10 @@ public interface A10_FullCalDao {
 	
 	
 	public void insertCalendar(Calendar ins);
+	
+	
+	
+	
 	public void updateCalendar(Calendar upt);
 	public void deleteCalendar(int id);	
 	

@@ -136,23 +136,14 @@
 							</div>
 			
 			
-			
-			
-							
-							<section class="section">
-								<div class="card">
-									<div class="card-header">프로젝트 공지사항</div>
-									<div class="card-body">
 									
-										<iframe src="/project5/procuSituationDetail.do?projectkey=${project.projectkey }"
+										<iframe src="/project5/procuSituationList.do?projectkey=${project.projectkey }"
 										style="width:100%; height: 500px;"
 										></iframe>
 				
-										</div>
-									</div>
-							</section>
-			
-			
+				
+				
+				
 			
 		</div>
 

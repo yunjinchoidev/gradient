@@ -186,7 +186,7 @@ $(document).ready(function(){
 									name="title" value="${outputSch.title}"> 
 								  <button class="btn btn-info" type="submit">검색</button>
 								<a class="btn btn-danger" style="text-align: right"
-								data-bs-toggle="modal" data-bs-target="#inlineForm">글 쓰기</a>
+								href="/project5/outputWriteForm.do?projectkey=${project.projectkey }">글 쓰기</a>
 								</div>
 						</div>
 						

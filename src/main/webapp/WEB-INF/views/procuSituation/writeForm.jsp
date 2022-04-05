@@ -11,8 +11,8 @@
 $(document).ready(function(){
 
 	var msg = "${msg}";
-	if(msg=="outputWriteSuccess"){
-			location.href="/project5/output.do?projectkey=${project.projectkey}";
+	if(msg=="procuSituationWrite"){
+			location.href="/project5/procuSituationMain.do?projectkey=${project.projectkey}";
 	}
 	
 })
@@ -30,13 +30,13 @@ $(document).ready(function(){
 					<div class="card">
 
 						<div class="card-header">
-							<h4 class="card-title">산출물 작성</h4>
+							<h4 class="card-title">조달 일정</h4>
 						</div>
 
 						<div class="card-content">
 							<div class="card-body">
 
-								<form class="form" action="/project5/outputWrite.do"
+								<form class="form" action="/project5/procuSituationWrite.do"
 									method="post" enctype="multipart/form-data">
 									<input type="hidden" name="memberkey"
 										value="${member.memberkey }">
@@ -47,97 +47,40 @@ $(document).ready(function(){
 											<div class="form-group">
 												<label for="last-name-column">제목</label> <input type="text"
 													id="last-name-column" class="form-control"
-													placeholder="Last Name" name="title"
-													value="${output.title }">
+													placeholder="Last Name" name="title">
 											</div>
 										</div>
 									</div>
-								<input type="hidden" name="projectkey" value="${project.projectkey }" >
 								
 									<div class="row">
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="first-name-column">프로젝트</label> <input
-													id="first-name-column" class="form-control" readonly="readonly"
-													 value="${project.name }" >
+												<label for="first-name-column">프로젝트</label> <select
+													id="first-name-column" class="form-control"  name="projectkey"
+													  >
+													  <c:forEach var="list" items="${projectList }">
+													 <option value="${list.projectkey }">${list.projectkey } : ${list.name }</option>
+													 </c:forEach>
+													 </select>
 											</div>
 										</div>
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="first-name-column">작업 구분</label> <select
-													id="first-name-column" class="form-control"
-													name="workSortKey">
-													<c:forEach var="workSort" items="${workSort}"
-														varStatus="idx">
-														<option value="${idx.count }">${idx.count }:
-															${workSort.title }</option>
-													</c:forEach>
-												</select>
-											</div>
-										</div>
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="first-name-column">부서 구분</label> <select
-													id="first-name-column" class="form-control" name="deptno">
-													<c:forEach var="dlist" items="${dlist}" varStatus="idx">
-														<option value="${idx.count }">${idx.count }:
-															${dlist.dname }</option>
-													</c:forEach>
-												</select>
-											</div>
-										</div>
-
-
-
-
-
-
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="first-name-column">상황</label> <select
-													id="first-name-column" class="form-control" name="status"
-													id="status">
-													<option value="1">대기</option>
-													<option value="2">시작</option>
-													<option value="3">점검</option>
-													<option value="4">완료</option>
-													<option value="5">종료</option>
-												</select>
-											</div>
-										</div>
-
-
-
-
-
-
-
 
 
 										<div class="col-md-6 col-12">
 											<div class="form-group">
 												<label for="city-column">작성일 ${list.writedateS }</label> <input
 													type="date" id="city-column" class="form-control"
-													placeholder="writedateS" name="writeDateS"
-													value='<fmt:formatDate value="${list.writedate }"/>'>
+													placeholder="writedateS" name="writedateS">
 											</div>
 										</div>
 
 
 
-
-
-
-
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="email-id-column">버전</label> <input type="number"
+												<label for="email-id-column">계획 날짜</label> <input type="date"
 													id="email-id-column" class="form-control"
-													placeholder="version" name="version"
-													value="${get.version }">
+													placeholder="plandateS" name="plandateS">
 											</div>
 										</div>
 
@@ -145,7 +88,7 @@ $(document).ready(function(){
 										<div class="col-md-6 col-12">
 											<div class="form-group">
 												<label for="email-id-column">작성자</label> <input type="text"
-													id="email-id-column" class="form-control"
+													id="email-id-column" class="form-control" readonly="readonly"
 													placeholder="memberkey" value="${member.name }">
 											</div>
 										</div>

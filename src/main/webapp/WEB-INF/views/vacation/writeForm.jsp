@@ -6,13 +6,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
+
 <script>
 $(document).ready(function(){
 
 	var msg = "${msg}";
-	if(msg=="outputWriteSuccess"){
-			location.href="/project5/output.do?projectkey=${project.projectkey}";
+	if(msg!=""){
+		if(confirm(msg+"\n메인화면으로 이동할까요?")){
+			location.href="${path}/output.do";
+		}
 	}
 	
 })
@@ -36,8 +38,9 @@ $(document).ready(function(){
 						<div class="card-content">
 							<div class="card-body">
 
-								<form class="form" action="/project5/outputWrite.do"
+								<form class="form" action="/project5/vacationWrite.do"
 									method="post" enctype="multipart/form-data">
+									
 									<input type="hidden" name="memberkey"
 										value="${member.memberkey }">
 									<div class="row">
@@ -47,82 +50,57 @@ $(document).ready(function(){
 											<div class="form-group">
 												<label for="last-name-column">제목</label> <input type="text"
 													id="last-name-column" class="form-control"
-													placeholder="Last Name" name="title"
-													value="${output.title }">
+													name="title"
+													placeholder="Last Name" name="title">
 											</div>
 										</div>
 									</div>
-								<input type="hidden" name="projectkey" value="${project.projectkey }" >
-								
+
 									<div class="row">
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="first-name-column">프로젝트</label> <input
-													id="first-name-column" class="form-control" readonly="readonly"
-													 value="${project.name }" >
-											</div>
-										</div>
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="first-name-column">작업 구분</label> <select
+												<label for="first-name-column">휴가 종류</label> <select
 													id="first-name-column" class="form-control"
-													name="workSortKey">
-													<c:forEach var="workSort" items="${workSort}"
-														varStatus="idx">
-														<option value="${idx.count }">${idx.count }:
-															${workSort.title }</option>
-													</c:forEach>
+													name="sort">
+														<option value="regular">연차</option>
+														<option value="sick">병가</option>
+														<option value="public">공가</option>
+														<option value="family">경조사</option>
 												</select>
 											</div>
 										</div>
 
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="first-name-column">부서 구분</label> <select
-													id="first-name-column" class="form-control" name="deptno">
-													<c:forEach var="dlist" items="${dlist}" varStatus="idx">
-														<option value="${idx.count }">${idx.count }:
-															${dlist.dname }</option>
-													</c:forEach>
-												</select>
+												<label for="first-name-column">작성자</label> <input
+													id="first-name-column" class="form-control"
+													value="${member.name }">
+											</div>
+										</div>
+										
+										
+										<div class="col-md-6 col-12">
+											<div class="form-group">
+												<label for="first-name-column">프로젝트</label> 
+												
+												<select
+													id="first-name-column" class="form-control"
+													value="${project.name }" name="projectkey">
+													
+														<c:forEach var="list" items="${projectList }">
+															<option value="${list.projectkey }">${list.projectkey }:${list.name }</option>
+														</c:forEach>
+														
+													</select>
 											</div>
 										</div>
 
 
-
-
-
-
-
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="first-name-column">상황</label> <select
-													id="first-name-column" class="form-control" name="status"
-													id="status">
-													<option value="1">대기</option>
-													<option value="2">시작</option>
-													<option value="3">점검</option>
-													<option value="4">완료</option>
-													<option value="5">종료</option>
-												</select>
-											</div>
-										</div>
-
-
-
-
-
-
-
-
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="city-column">작성일 ${list.writedateS }</label> <input
+												<label for="city-column">시작일 </label> <input
 													type="date" id="city-column" class="form-control"
-													placeholder="writedateS" name="writeDateS"
-													value='<fmt:formatDate value="${list.writedate }"/>'>
+													placeholder="startdateS" name="startdateS">
 											</div>
 										</div>
 
@@ -134,23 +112,17 @@ $(document).ready(function(){
 
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="email-id-column">버전</label> <input type="number"
-													id="email-id-column" class="form-control"
-													placeholder="version" name="version"
-													value="${get.version }">
+												<label for="first-name-column">휴가 종류</label> <select
+													id="first-name-column" class="form-control"
+													name="duration">
+														<option value="1">1일</option>
+														<option value="2">2일</option>
+														<option value="3">3일</option>
+														<option value="4">4일<option>
+														<option value="5">5일</option>
+												</select>
 											</div>
 										</div>
-
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="email-id-column">작성자</label> <input type="text"
-													id="email-id-column" class="form-control"
-													placeholder="memberkey" value="${member.name }">
-											</div>
-										</div>
-
-
 
 
 
@@ -162,7 +134,7 @@ $(document).ready(function(){
 									<div class="row">
 										<div class="col-md-6 col-12" style="width: 100%">
 											<div class="form-group">
-												<label for="email-id-column">Contents</label>
+												<label for="email-id-column">상세내용</label>
 												<textarea class="form-control" name="contents"
 													placeholder="Contents" rows="6"></textarea>
 												<br>
@@ -175,33 +147,12 @@ $(document).ready(function(){
 									<div class="row">
 										<div class="col-md-6 col-12" style="width: 100%">
 											<div class="form-group">
-												<label for="email-id-column">파일 업로드</label> <input
+												<label for="email-id-column">휴가 계획서 파일 업로드</label> <input
 													class="form-control form-control-lg" id="uploadFile" name="uploadFile"
 													type="file" multiple="multiple"> <br>
 											</div>
 										</div>
 									</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -228,7 +179,6 @@ $(document).ready(function(){
 										<button type="submit" class="btn btn-primary me-1 mb-1" >등록</button>
 										<button type="reset" class="btn btn-light-secondary me-1 mb-1">초기화</button>
 									</div>
-
 
 
 								</form>

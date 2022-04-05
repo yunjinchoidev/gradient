@@ -41,8 +41,8 @@ public class OutputController {
 	}
 
 	@RequestMapping("/outputWriteForm.do")
-	public String outputWriteForm(Model d) {
-		d.addAttribute("pjList", service2.list());
+	public String outputWriteForm(Model d, int projectkey) {
+		d.addAttribute("project", service2.get(projectkey));
 		d.addAttribute("workSort", service3.list());
 		d.addAttribute("dlist", service4.list());
 		return "WEB-INF\\views\\output\\writeForm.jsp";
@@ -53,7 +53,7 @@ public class OutputController {
 		service.insert(vo);
 		System.out.println("산출물 게시판에 등록완료");
 		d.addAttribute("msg", "outputWriteSuccess");
-		
+		d.addAttribute("project", service2.get(vo.getProjectkey()));
 		return "WEB-INF\\views\\output\\writeForm.jsp";
 
 	}

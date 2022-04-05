@@ -79,6 +79,7 @@ public class A10_FullCalService {
 		return dao.getCalendarList(projectkey);
 	}
 
+	
 	public List<Calendar> getCalendarIndividaulList(int memberkey) {
 		return dao.getCalendarIndividaulList(memberkey);
 	}
@@ -94,6 +95,7 @@ public class A10_FullCalService {
 	@Value("${upload}")
 	private String uploadPath;
 
+	
 	public String insertCalendar(Calendar ins) {
 		dao.insertCalendar(ins);
 		String msg = "등록성공";

@@ -39,64 +39,33 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 <template id="schTmp">
-	<form id="frm01" class="form"  method="post">
-		<input type="hidden" v-model="procuSituationSch.curPage"/>
-  	
-  	<!-- 
-  	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-	    <input class="form-control mr-sm-2" @keyup.13="search"
-	    	v-model="procuSituationSch.title" placeholder="제목" />
-	    
-	    <input class="form-control mr-sm-2"
-	    	v-model="procuSituationSch.contents"  @keyup.13="search"
-	    	placeholder="내용" />
-	    	
-	    <button class="btn btn-info" type="button"
-	    	@click="search">Search</button>  <!--  searchSize  search-->
- <!-- 
- 	</nav>
- 	 -->
- 	
+	
+	
+									<form id="frm01" class="form"  method="post">
+											<input type="hidden" v-model="procuSituationSch.curPage"/>
+								<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+									<div class="dataTable-top">
+										<div class="input-group-prepend">
+											<input type="hidden" name="curPage" value="1" /> <span
+												class="input-group-text">총{{sch.count}} 건</span>
+										</div>
+										
+										<div class="dataTable-dropdown">
+											<select class="dataTable-selector form-select" 
+											@change="searchSize" v-model="procuSituationSch.pageSize">
+												<option value="3">3</option>
+												<option value="5">5</option>
+												<option value="10" selected="selected">10</option>
+												<option value="15">15</option>
+												<option value="20">20</option>
+												<option value="25">25</option>
+											</select><label>entries per page</label>
+									</div>
 						
- 	
- 	
- 	
- 	
- 	
- 	
- 	
- 	
-	<div class="input-group mb-3">
-		<div class="input-group-prepend" style="margin-right: 30px;">
-			<span class="input-group-text">총{{sch.count}}건</span>
-		</div>
-		
-		
-		<div class="input-group-append">
-			<span class="input-group-text">페이지 크기</span>
-			<select @change="searchSize" v-model="procuSituationSch.pageSize" class="form-control">
-				<option>3</option>
-				<option>5</option>
-				<option>10</option>
-				<option>20</option>
-				<option>50</option>
-			</select>
-		</div>
-		
-			<div class="dataTable-search" style="display: inline-block; margin-left: 800px;">
+						
+						<div class="dataTable-search" style="display: inline-block; ">
+							
 							<div style="display: inline-block;" >
 								<select class="dataTable-selector form-select searchbar" 
 								name="searchbar" style="display: inline-block; ">
@@ -107,24 +76,26 @@
 								</div>
 								
 								<div style="display: inline-block;" >
-								<input style="display: inline-block; " class="dataTable-input searchWhat"
-								 placeholder="검색어를 입력" type="text"
-									name="title"
-									v-model="procuSituationSch.contents"  @keyup.13="search"
+								<input style="display: inline-block; " class="dataTable-input searchWhat" 
+								placeholder="검색어를 입력" type="text"
+									@keyup.13="search"
+	    						v-model="procuSituationSch.title"
 									>
-								  <button class="btn btn-info" type="submit"
-								  @click="search"
-								  >검색</button>
-								  <a href="/project5/procuSituationWriteForm.do"
-								   class="btn btn-danger">글쓰기</a>
+									 
+									
+								  <button class="btn btn-info" type="button"
+								  @click="search">검색</button>
+								  
+								<a class="btn btn-danger" style="text-align: right"
+								href="/project5/procuSituationWriteForm.do"
+								target="_parent"
+								>글쓰기</a>
 								</div>
 						</div>
- 	
-		
-		
-		
-	</div> 	
-	</form>
+						
+					</div>
+					</div>
+			</form>
 </template>
 
 
@@ -142,23 +113,30 @@
 
 
 <template id="listTmp">
-<div class="dataTable-container">
-   <table class="table table-hover table-striped">
+   <table class="table table-hover table-striped dataTable-table">
    	<col width="10%">
    	<col width="50%">
    	<col width="15%">
    	<col width="15%">
    	<col width="10%">
-    <thead>
-      <tr class="table-success text-center">
-        <th>번호</th>
-        <th>제목</th>
-        <th>작성자</th>
-        <th>작성일</th>
-        <th>조회</th>
-      </tr>
-    </thead>	
-    <tbody  class="text-center">
+
+		<thead>
+			<tr>
+				<th data-sortable="" style="width: 12.0176%;"><a href="#"
+					class="dataTable-sorter">번호</a></th>
+				<th data-sortable="" style="width: 42.9989%;"><a href="#"
+					class="dataTable-sorter">작업구분/제목/버전</a></th>
+				<th data-sortable="" style="width: 18.0816%;"><a href="#"
+					class="dataTable-sorter">부서</a></th>
+				<th data-sortable="" style="width: 16.3175%;"><a href="#"
+					class="dataTable-sorter">작성자</a></th>
+				<th data-sortable="" style="width: 10.8049%;"><a href="#"
+					class="dataTable-sorter">상태</a></th>
+			</tr>
+		</thead>
+
+
+		<tbody  >
     	<tr v-for="procuSituation in blist">
     		<td>{{procuSituation.cnt}}</td>
     		<td>{{procuSituation.title}}</td>
@@ -167,7 +145,6 @@
     		<td>{{procuSituation.readcnt}}</td></tr>
     </tbody>
 	</table> 
-	</div>
 </template>
 
 
@@ -225,10 +202,6 @@
 
 <script type="text/javascript">
 	var eventBus = new Vue()
-	
-	
-	
-	
 	
 	// sch, blist, procuSituationSch
 	Vue.component("sch-comp",{ 
@@ -306,7 +279,7 @@
 	// 상위 컨테이너
 	$(document).ready(function(){
 		var vm = new Vue({
-			el:".container",
+			el:".card-body",
 			data:{A:{},blist:[]},
 			created:function(){
 				// 하위 컴포넌트에서 eventBus.$emit("이벤트버스명",매개변수)
@@ -316,8 +289,8 @@
 			},
 			methods:{
 				curpage:function(no){
-					this.procuSituationSch.curPage = no;
-					this.search(this.procuSituationSch);
+					this.A.curPage = no;
+					this.search(this.A);
 				},
 				search:function(sch){
 					// 기능 메서드 안에서는 this가 해당 기능을 메서드를 지정하기에
@@ -346,13 +319,6 @@
 						console.log("vm.blist"+vm.blist)
 						
 						
-						
-						
-						
-						
-						
-						
-						
 					}).catch(error=>{
 						console.log(error)
 						throw new Error(error)
@@ -366,13 +332,18 @@
 </head>
 
 <body>
-<div class="container"> <!--  sch, blist, procuSituationSch -->
-	<sch-comp :sch="A"></sch-comp>
-	<list-comp :blist="blist"></list-comp>
-	<page-comp :C="A"></page-comp>	
-</div>
 
+	<section class="section">
+		<div class="card">
+			<div class="card-header">Simple Datatable</div>
+			<div class="card-body">
+				<sch-comp :sch="A"></sch-comp>
+				<list-comp :blist="blist"></list-comp>
+				<page-comp :C="A"></page-comp>
+			</div>
+		</div>
 
+	</section>
 
 
 </body>

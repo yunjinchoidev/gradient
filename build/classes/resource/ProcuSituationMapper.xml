@@ -52,10 +52,22 @@
 		parameterType="project5.procuSituation.ProcuSituationVO">
 		INSERT INTO
 		procusituation VALUES
-		(seq_procusituation.nextval, #{titie},
-		#{contents}, sysdate,
-		#{memberkey}, #{projectkey})
+		(seq_procusituation.nextval, #{title},
+		#{contents},
+		to_date(#{writedateS}, 'YYYY/MM/DD'),
+		#{memberkey},
+		#{projectkey},to_date(#{plandateS}, 'YYYY/MM/DD') )
 	</insert>
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -49,6 +49,20 @@
 document.addEventListener('DOMContentLoaded', function() {
 	
 	
+	var msg = "${msg}"
+	
+	if(msg=="insertCalendar"){
+		location.href="/project5/calendar.do?projectkey=${project.projectkey}"
+	}
+	
+	if(msg=="deleteCalendar"){
+		location.href="/project5/calendar.do?projectkey=${project.projectkey}"
+	}
+	
+	if(msg=="updateCalendar"){
+		location.href="/project5/calendar.do?projectkey=${project.projectkey}"
+	}
+	
 	
 	
 	
@@ -233,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// 등록 버튼
 		$("#regBtn").click(function(){
 			if(confirm("일정등록하시겠습니까?")){
-				$("#frm01").attr("action","${path}/insertCalendar.do?memberkey=${member.memberkey}");
+				$("#frm01").attr("action","${path}/insertCalendar.do");
 				$("#frm01").submit();
 			}		
 		});
@@ -358,13 +372,27 @@ document.addEventListener('DOMContentLoaded', function() {
         </button>
       </div>
       <div class="modal-body">
-		<form id="frm01" class="form"  method="post" enctype="multipart/form-data" >
+      
+      
+      
+		<form id="frm01" class="form" method="post" enctype="multipart/form-data" >
 		 <input type="hidden" name="id" value="0"/>
+		 
+	        <input type="hidden" name="projectkey" value="${project.projectkey}" >
+	        <input type="hidden" class="form-control" placeholder="" name="memberkey" value="${member.memberkey }" >
+	     
 	     <div class="row">
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="제목 입력" name="title">
+	        <input type="text" class="form-control" placeholder="${project.name }">
 	      </div> 
 	     </div>
+	     
+	     <div class="row">
+	      <div class="col">
+	        <input type="text" class="form-control" placeholder="제목" name="title">
+	      </div> 
+	     </div>
+	     
 	     <div class="row">	     
 	      <div class="col">
 	        <input type="text" class="form-control" 
@@ -376,6 +404,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        	data-toggle="tooltip" data-placement="buttom" title="종료일"
 	         name="end" readonly>
 	      </div>
+	      
+	      
+	      
 	     </div>
 	     <div class="row">	     
 	      <div class="col">
@@ -434,10 +465,6 @@ document.addEventListener('DOMContentLoaded', function() {
 						</div>
 						<!-- /.row -->
 
-
-
-
-						<input type="hidden" name="memberkey" value="${member.memberkey }" >
 	    </form> 
 	 	<script>
 	      		
