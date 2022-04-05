@@ -17,7 +17,7 @@
 
 	<insert id="insert" parameterType="project5.quality.QualityVO">
 		insert into quality
-		values(seq_quality.nextval, 30001, #{memberkey}, sysdate, #{title},
+		values(seq_quality.nextval, 1, #{memberkey}, sysdate, #{title},
 		#{contents})
 	</insert>
 
