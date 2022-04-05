@@ -22,6 +22,14 @@
 
 	});
 </script>
+<style>
+#moveBtn a {
+	width: 135px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 <%@ include file="../chatBot/chatBot.jsp"%>

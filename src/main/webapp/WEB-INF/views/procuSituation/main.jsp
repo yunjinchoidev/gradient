@@ -144,8 +144,9 @@
 									<div class="card-header">프로젝트 공지사항</div>
 									<div class="card-body">
 									
-										<%@include file="detail.html" %>
-				
+										<iframe src="/project5/procuSituationDetail.do?projectkey=${project.projectkey }"
+										style="width:100%; height: 500px;"
+										></iframe>
 				
 										</div>
 									</div>

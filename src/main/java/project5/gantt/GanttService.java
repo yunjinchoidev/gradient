@@ -11,8 +11,8 @@ public class GanttService {
 	@Autowired
 	private GanttDao dao;
 
-	public List<GanttVO> list() {
-		return dao.list();
+	public List<GanttVO> list(int projectkey) {
+		return dao.list(projectkey);
 	}
 	public List<GanttVO> currentGantt(){
 		return dao.currentGantt();

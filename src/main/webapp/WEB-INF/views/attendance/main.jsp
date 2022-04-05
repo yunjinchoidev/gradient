@@ -12,6 +12,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+<style>
+#moveBtn a {
+	width: 135px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
+
 </head>
 
 <script>

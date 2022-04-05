@@ -65,10 +65,17 @@ public class KanbanController {
 	
 	@RequestMapping("/kanbanDelete.do")
 	public String kanbanDelete(Model d, KanbanVO vo) {
-		service.delete(vo.getId());
+		System.out.println("칸반 삭제 진입");
+		service.delete(vo);
 		d.addAttribute("psc", "delete");
 		return "forward:/kanbanMain.do";
 	}	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/kanbanInsert.do")
 	public String kanbanInsert(Model d, KanbanVO vo) {
 		service.insert(vo);
@@ -76,6 +83,12 @@ public class KanbanController {
 		return "forward:/kanbanMain.do";
 	}
 
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/kanbanUpdate.do")
 	public String kanbanUpdate(Model d, KanbanVO vo) {
 		service.update(vo);
@@ -84,8 +97,11 @@ public class KanbanController {
 	}
 	@RequestMapping("/kanbanUpdate2.do")
 	public String kanbanUpdate2(Model d, KanbanVO vo) {
+		System.out.println(vo.getContent());
+		System.out.println(vo.getText());
 		service.update2(vo);
 		d.addAttribute("psc", "move");
+		//return "pageJsonReport";
 		return "forward:/kanbanMain.do";
 	}
 	

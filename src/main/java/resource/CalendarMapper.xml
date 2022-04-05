@@ -11,8 +11,9 @@
 	</resultMap>
 	
 	
-	<select id="getCalendarList" resultMap="calResult">
+	<select id="getCalendarList" resultMap="calResult" parameterType="int">
 		select * from calendars
+		where projectkey=#{projectkey}
 	</select>
 
 
@@ -90,7 +91,7 @@
 		INSERT INTO calendars
 		values(cal_seq.nextval,
 		#{title},#{start},#{end},#{content},#{borderColor},#{backgroundColor},
-		#{textColor},#{allDay}, 1, ${memberkey})
+		#{textColor},#{allDay}, #{projectkey}, ${memberkey})
 	</insert>
 
 
@@ -107,6 +108,10 @@
 		allDay = #{allDay}
 		WHERE id = #{id}
 	</update>
+	
+	
+	
+	
 	<delete id="deleteCalendar" parameterType="int">
 		DELETE FROM calendars
 		WHERE id = #{id}

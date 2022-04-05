@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface GanttDao {
-	public List<GanttVO> list();
+	public List<GanttVO> list(int projectkey);
 	public List<GanttVO> currentGantt();
 	public List<GanttVO> currentGanttbymkey(int memberkey);
 	public List<GanttVO> individualMemberList(int memberkey);

@@ -10,7 +10,9 @@ import project5.member.MemberVO;
 
 @Repository
 public interface A10_FullCalDao {
-	public List<Calendar> getCalendarList();
+	public List<Calendar> getCalendarList(int projectkey);
+	
+	
 	public List<Calendar> getCalendarIndividaulList(int memberkey);
 	public List<Calendar> mywork(int memberkey);
 	public Calendar get(int id);

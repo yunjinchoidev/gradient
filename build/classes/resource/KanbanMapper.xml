@@ -38,14 +38,14 @@
 		insert into kanban
 		values
 		(seq_kanban.nextval, #{status}, #{text}, #{tags}, #{content},#{color},
-		sysdate, sysdate, #{projectkey}, #{memberkey}, 1)
+		sysdate, sysdate, #{projectkey}, #{resourceId}, 1)
 	</insert>
 
-	<delete id="delete" parameterType="int">
+	<delete id="delete" parameterType="project5.kanban.KanbanVO">
 		delete from
 		kanban
-		where
-		id=#{id}
+		where text=#{text}
+		and content=#{content}
 	</delete>
 
 
@@ -55,14 +55,17 @@
 		status=#{status},
 		text =#{text},
 		tags = #{tags}
-		where id=#{id}
+		where 
+		projectkey=#{projectkey}
+		and content=#{content}
 	</update>
 
 	<update id="update2" parameterType="project5.kanban.KanbanVO">
 		update kanban
 		set
 		status=#{status}
-		where id=#{id}
+		where text=#{text}
+		and content=#{content}
 	</update>
 
 

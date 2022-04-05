@@ -10,7 +10,7 @@ public interface KanbanDao {
 	
 	
 	public void insert(KanbanVO vo);
-	public void delete(int id);
+	public void delete(KanbanVO vo);
 	public void update(KanbanVO vo);
 	public void update2(KanbanVO vo);
 	

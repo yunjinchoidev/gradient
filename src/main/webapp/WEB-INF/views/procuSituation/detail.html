@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
 
 <link rel="stylesheet" href="/project5/a00_com/bootstrap.min.css" >
@@ -55,8 +55,8 @@
 	<form id="frm01" class="form"  method="post">
 		<input type="hidden" v-model="procuSituationSch.curPage"/>
   	
+  	<!-- 
   	<nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-  	
 	    <input class="form-control mr-sm-2" @keyup.13="search"
 	    	v-model="procuSituationSch.title" placeholder="제목" />
 	    
@@ -66,13 +66,25 @@
 	    	
 	    <button class="btn btn-info" type="button"
 	    	@click="search">Search</button>  <!--  searchSize  search-->
+ <!-- 
  	</nav>
+ 	 -->
+ 	
+						
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	
  	
 	<div class="input-group mb-3">
-		<div class="input-group-prepend">
+		<div class="input-group-prepend" style="margin-right: 30px;">
 			<span class="input-group-text">총{{sch.count}}건</span>
 		</div>
-		<input class="form-control"/>
+		
+		
 		<div class="input-group-append">
 			<span class="input-group-text">페이지 크기</span>
 			<select @change="searchSize" v-model="procuSituationSch.pageSize" class="form-control">
@@ -83,6 +95,34 @@
 				<option>50</option>
 			</select>
 		</div>
+		
+			<div class="dataTable-search" style="display: inline-block; margin-left: 800px;">
+							<div style="display: inline-block;" >
+								<select class="dataTable-selector form-select searchbar" 
+								name="searchbar" style="display: inline-block; ">
+										<option selected="selected">검색</option>
+										<option value="title" selected="selected">title</option>
+										<option value="contents">contents</option>
+								</select>
+								</div>
+								
+								<div style="display: inline-block;" >
+								<input style="display: inline-block; " class="dataTable-input searchWhat"
+								 placeholder="검색어를 입력" type="text"
+									name="title"
+									v-model="procuSituationSch.contents"  @keyup.13="search"
+									>
+								  <button class="btn btn-info" type="submit"
+								  @click="search"
+								  >검색</button>
+								  <a href="/project5/procuSituationWriteForm.do"
+								   class="btn btn-danger">글쓰기</a>
+								</div>
+						</div>
+ 	
+		
+		
+		
 	</div> 	
 	</form>
 </template>
@@ -102,6 +142,7 @@
 
 
 <template id="listTmp">
+<div class="dataTable-container">
    <table class="table table-hover table-striped">
    	<col width="10%">
    	<col width="50%">
@@ -126,6 +167,7 @@
     		<td>{{procuSituation.readcnt}}</td></tr>
     </tbody>
 	</table> 
+	</div>
 </template>
 
 
@@ -324,10 +366,6 @@
 </head>
 
 <body>
-<div class="jumbotron text-center">
-  <h2 data-toggle="modal" id="show" data-target="#exampleModalCenter">게시판2</h2>
-
-</div>
 <div class="container"> <!--  sch, blist, procuSituationSch -->
 	<sch-comp :sch="A"></sch-comp>
 	<list-comp :blist="blist"></list-comp>

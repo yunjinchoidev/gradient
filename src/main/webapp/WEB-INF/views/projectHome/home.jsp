@@ -73,7 +73,7 @@
 
 						<div class="buttons" id="moveBtn" style="padding: 20px;">
 		<a href="/project5/dashBoard.do?projectkey=${project.projectkey }"
-			class="btn btn-secondary" onclick="alert('${project.projectkey } : ${project.name } 이 유지됩니다.')">대시보드</a> 
+			class="btn btn-secondary" >대시보드</a> 
 			<a
 			href="/project5/projectHome.do?projectkey=${project.projectkey }" class="btn btn-dark"
 			 >프로젝트

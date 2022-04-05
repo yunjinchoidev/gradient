@@ -4,7 +4,16 @@
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
 <title>Basic initialization</title>
+<style>
+#moveBtn a {
+	width: 135px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
 </head>
+
 <body>
 <%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
@@ -45,12 +54,14 @@
 			class="btn btn-secondary">조달 관리</a>
 	</div>
 	<hr>
-	
+		<div class="row">
 		<div class="col-12 col-md-6 order-md-1 order-last">
 						<span style="font-size: 40px; font-weight: bolder; color: red;">[${project.name }]
 						</span> <span style="font-size: 40px; font-weight: bolder; color: black;">칸반보드</span>
 						<p class="text-subtitle text-muted">진행중인 칸반을 확인하세요</p>
 					</div>
+						</div>
+					
 					
 					<div class="row">
 					<%@ include file="main2.jsp"%>

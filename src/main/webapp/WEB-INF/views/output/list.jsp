@@ -14,6 +14,15 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+<style>
+#moveBtn a {
+	width: 135px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
+
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(document).ready(function(){
@@ -102,9 +111,9 @@ $(document).ready(function(){
 
 
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3><span style="color:red">${project.name }</span>산출물 관리</h3>
-						<p class="text-subtitle text-muted">For user to check they
-							list</p>
+						<h3><span style="color:red">[${project.name }]</span> 산출물 관리</h3>
+						<p class="text-subtitle text-muted">이곳에서 산출물을 관리하세요
+							</p>
 					</div>
 					
 					
@@ -130,37 +139,35 @@ $(document).ready(function(){
 					<div class="card-body">
 							
 								<form id="frm01" class="form" action="${path}/output.do" method="post">
-				<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-					<div class="dataTable-top">
-						<div class="input-group-prepend">
-							<input type="hidden" name="curPage" value="1" /> <span
-								class="input-group-text">총 ${outputSch.count}건</span>
-						</div>
+								<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+									<div class="dataTable-top">
+										<div class="input-group-prepend">
+											<input type="hidden" name="curPage" value="1" /> <span
+												class="input-group-text">총 ${outputSch.count}건</span>
+										</div>
+										
+										<div class="dataTable-dropdown">
+											<select class="dataTable-selector form-select" name="pageSize">
+												<option value="3">3</option>
+												<option value="5">5</option>
+												<option value="10" selected="selected">10</option>
+												<option value="15">15</option>
+												<option value="20">20</option>
+												<option value="25">25</option>
+											</select><label>entries per page</label>
+									</div>
 						
-						<div class="dataTable-dropdown">
-							<select class="dataTable-selector form-select" name="pageSize">
-								<option value="3">3</option>
-								<option value="5">5</option>
-								<option value="10" selected="selected">10</option>
-								<option value="15">15</option>
-								<option value="20">20</option>
-								<option value="25">25</option>
-							</select><label>entries per page</label>
-						</div>
-						
-						
-						<script>
-						$(document).ready(function(){
-							$( ".searchbar" ).change(function() {
-								  alert( "검색 종류를 변경합니다." );
-								  $(".searchWhat").attr("name", this.value)
-								  alert($(".searchWhat").value)
-						 });
-						
-						});
-						
-						</script>
-						
+													<script>
+													$(document).ready(function(){
+														$( ".searchbar" ).change(function() {
+															  alert( "검색 종류를 변경합니다." );
+															  $(".searchWhat").attr("name", this.value)
+															  alert($(".searchWhat").value)
+													 });
+													
+													});
+													
+													</script>
 						
 						
 						<div class="dataTable-search" style="display: inline-block; ">
@@ -182,8 +189,6 @@ $(document).ready(function(){
 								data-bs-toggle="modal" data-bs-target="#inlineForm">글 쓰기</a>
 								</div>
 						</div>
-						
-						
 						
 					</div>
 					</div>

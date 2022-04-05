@@ -169,7 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	  // 서버에 있는 json 데이터 가져와서, fullcalenar 입력하기
     	  $.ajax({
     		  type:"post",
-    		  url:"${path}/getCalendarListWithProjectkey.do?projectkey=${project.projectkey}",
+    		  url:"${path}/getCalendarIndividaulList.do?memberkey=${member.memberkey}",
     		  dataType:"json",
     		  success:function(data){
     			  console.log(data.calList)

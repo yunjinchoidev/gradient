@@ -8,6 +8,7 @@
 		SELECT id, text, to_char(start_date, 'DD-MM-YYYY') start_date, duration,
 		projectkey, memberkey
 		FROM gantt
+		where projectkey=#{projectkey}
 		order by start_date
 	</select>
 
@@ -25,17 +26,12 @@
 	</select>
 
 
-
-
-
 	<select id="individualMemberGanttList"
 		resultType="project5.gantt.GanttVO" parameterType="int">
 		select * from
 		gantt
 		where memberkey = #{memberkey}
 	</select>
-
-
 
 
 	<select id="individualProjectGanttList"
@@ -52,18 +48,14 @@
 	<insert id="insert" parameterType="project5.gantt.GanttVO">
 		insert into gantt
 		values 
-		(seq_gantt.nextval, #{text}, #{start_date}, #{duration}, 1, 1)
+		(seq_gantt.nextval, #{text}, #{start_date}, #{duration}, #{projectkey}, #{memberkey})
 	</insert>
-
-
 
 	<delete id="delete" parameterType="int">
 		delete from
 		gantt
 		where id=#{id}
 	</delete>
-
-
 
 	<update id="update" parameterType="project5.gantt.GanttVO">
 		update gantt

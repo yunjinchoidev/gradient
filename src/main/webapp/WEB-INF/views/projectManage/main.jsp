@@ -224,9 +224,26 @@ $(document).ready(function(){
                         
                         
                         
+                        
+                        <script>
+                        	$(document).ready(function(){
+                        		var z=0;
+                        		
+                        		setInterval(function() {
+                        			z++;
+                        			if(z%2==0){
+                        			 $("#projectManage").css("border", "3px solid red")
+                        			}else{
+                        				 $("#projectManage").css("border", "")
+                        			}
+                        		}, 500);
+                        		
+                        	})
+                        </script>
+                        
                         <div class="row">
                             <div class="col-12">
-                              <div class="card" style="border : 3px solid gold">
+                              <div class="card" style="border : 3px solid gold" id="projectManage">
 								<div class="card-header"><h4>프로젝트 시작과 종료</h4></div>
 								<div class="card-body">
 							<form id="frm01" class="form" action="${path}/projectManageMain.do" 	method="post">
@@ -294,7 +311,7 @@ $(document).ready(function(){
 												id="table1">
 												<thead>
 													<tr>
-														<th data-sortable="" style="width: 12.0176%;"><a
+														<th data-sortable="" style="width: 15.0176%;"><a
 															href="#" class="dataTable-sorter">프로젝트 번호</a></th>
 														<th data-sortable="" style="width: 42.9989%;"><a
 															href="#" class="dataTable-sorter">프로젝트 명</a></th>
@@ -404,6 +421,48 @@ $(document).ready(function(){
                         			console.log(result)
                         		}
                         	})
+                        	
+                        	
+                        	
+                        	$("#basicInput").change(function(){
+                        	
+                        		var temp = $("[name=thedate]").val().split("-");
+                        		var datedata4 = temp[0]+temp[1]+temp[2];
+                        		var datedata = temp[0]+temp[1]+temp[2];
+                     			alert("데이터를 가져옵니다."+ datedata);
+                        		var datedata={datedata : datedata}
+                        		$.ajax({
+                        		url :'/project5/crawling2.do',
+                        		type:'POST',
+                        		data : datedata,
+                        		dataType:'json',
+                        		success:function(result){
+                        			console.log("크롤링 성공")
+                        			console.log(result.elem)
+                        			console.log(result.elem.split('\.'))
+                        			var words = result.elem.split('\.');
+                        			console.log(words)
+                        			
+                        			var crawlingHTML =  $("#crawling")
+                        			crawlingHTML.empty();
+                        			crawlingHTML.append('<h2 style="color:red">'+datedata4+'. 일자<br><br> 주요 IT 뉴스</h2>')
+                        			
+                        			for(var i=0; i<words.length; i++){
+                        				crawlingHTML.append('<h5><span style="color:red">['+i+']</span>'+words[i]+'<br></h5>')
+                        			}
+                        			
+                        			
+                        		},
+                        		error:function(result){
+                        			console.log("크롤링 실패")
+                        			console.log(result)
+                        		}
+                        	})
+                        	})
+                        	
+                        	
+                        	
+                        	
                         })
                         
                         </script>
@@ -412,9 +471,13 @@ $(document).ready(function(){
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>크롤링 서비스</h4>
+                                        <h1>크롤링 서비스</h1>
+                                        <p>최신 뉴스를 한눈에</p>
                                         <form>
-	                                        <input type="date" class="form-control" id="basicInput" placeholder="Enter email">
+	                                        <input type="date" class="form-control" 
+	                                        id="basicInput" placeholder="Enter email"
+	                                        style="40px; font-size: 30px;" 
+	                                        name="thedate">
                                         </form>
                                     </div>
                                     <div class="card-body" style="position: relative;" id="crawling">

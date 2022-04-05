@@ -17,7 +17,7 @@
     <script type="text/javascript">
     $(document).ready(function () {        
     	
-    	var projectkey = parserInt("${project.projectkey}")
+    	var projectkey = parseInt("${project.projectkey}")
 		var data = {projectkey : projectkey}
     	// 칸반보드 전체 값 저장할 변수 선언
 	    var nice;
@@ -139,6 +139,7 @@
     	   // 칸반 수정 실행
     	    $("#updateItem").click(function () {
     	    	alert("정말 수정하시겠습니까?");
+    	    	
     	    	$("#frm01").attr("action","/project5/kanbanUpdate.do");
 				$("#frm01").submit();
     	    });
@@ -177,7 +178,7 @@
     	        console.log(args);
     	        console.log(itemId);
     	        console.log(attribute);
-    	        $("[name=id]").val(args.item.id);
+    	        $("[name=idhidden]").val(args.item.id);
     	        $("[name=status]").val(args.item.status);
     	        $("[name=text]").val(args.item.text);
     	        $("[name=tags]").val(args.item.tags);
@@ -211,7 +212,7 @@
     	       $("[name=status]").val(newColumn.dataField);
     	       $("[name=text]").val(itemData.text);
     	       $("[name=tags]").val(itemData.tags);
-    	    
+    	       $("[name=content]").val(itemData.content);
     	       $("#frm01").attr("action","/project5/kanbanUpdate2.do");
 				$("#frm01").submit();
     	    });
@@ -310,13 +311,18 @@
                                                         
                                                   
                                                         <form action="#" id="frm01">
+                                                        	<input type="hidden" name="projectkey" value="${project.projectkey }">
+                                                        	<input type="hidden" name="idhidden">
+                                                        
+                                                        
                                                             <div class="modal-body">
+                                                            	<!-- 
                                                                 <label>id: </label>
                                                                 <div class="form-group">
                                                                     <input type="text" name="id"
                                                                         class="form-control">
                                                                 </div>
-                                                                
+                                                                 -->
                                                                 
                                                                 <label>status: </label>
                                                                 <div class="form-group">
@@ -353,12 +359,23 @@
                                                                         class="form-control">
                                                                 </div>
                                                                 
-                                                                  <label>resourceId: </label>
+                                                                  <label>resourceId(담당자): </label>
                                                                 <div class="form-group">
-                                                                    <input type="text" name="resourceId" value=${member.memberkey }
-                                                                        class="form-control">
+                                                                    <input type="text" name="resourceId"  value="${member.memberkey }"
+                                                                        class="form-control" readonly="readonly">
+                                                                </div>
+                                                                
+                                                                
+                                                                  <label>프로젝트: </label>
+                                                                <div class="form-group">
+                                                                    <input type="text" value="${project.name }"
+                                                                        class="form-control" readonly="readonly">
                                                                 </div>
                                                             </div>
+                                                            
+                                                            
+                                                            
+                                                            
                                                             
                                                             
                                                             <div class="modal-footer">

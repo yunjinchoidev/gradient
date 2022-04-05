@@ -27,7 +27,6 @@ public class A20_FullCalController {
 	// http://localhost:7080/springweb/calendar.do
 	@GetMapping("calendar.do")
 	public String calendar(Model d, int projectkey) {
-		d.addAttribute("pjList", service2.list());
 		d.addAttribute("project", service2.get(projectkey));
 		return "WEB-INF\\views\\schedule\\fullCalendar.jsp";
 	}
@@ -41,9 +40,9 @@ public class A20_FullCalController {
 	
 	
 	// http://localhost:7080/springweb/calList.do
-	@RequestMapping("getCalendarList.do")
-	public String calList(Model d) {
-		d.addAttribute("calList", service.getCalendarList());	
+	@RequestMapping("getCalendarListWithProjectkey.do")
+	public String calList(Model d, int projectkey) {
+		d.addAttribute("calList", service.getCalendarList(projectkey));	
 		return "pageJsonReport";
 	}
 

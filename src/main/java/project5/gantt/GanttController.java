@@ -23,7 +23,6 @@ public class GanttController {
 	@RequestMapping("/ganttMain.do")
 	public String ganttMain(Model d, int projectkey) {
 		d.addAttribute("project", service2.get(projectkey));
-		d.addAttribute("pjList", service2.list());
 		return "WEB-INF\\views\\gantt\\main.jsp";
 	}
 
@@ -35,8 +34,8 @@ public class GanttController {
 
 	
 	@RequestMapping("/ganttList.do")
-	public String ganttList(Model d) {
-		d.addAttribute("list", service.list());
+	public String ganttList(Model d, int projectkey) {
+		d.addAttribute("list", service.list(projectkey));
 		return "pageJsonReport";
 	}
 

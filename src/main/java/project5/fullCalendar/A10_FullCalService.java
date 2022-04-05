@@ -68,8 +68,15 @@ public class A10_FullCalService {
 		return dao.totCnt(sch);
 	}
 
-	public List<Calendar> getCalendarList() {
-		return dao.getCalendarList();
+	
+	
+	
+	
+	
+	
+	
+	public List<Calendar> getCalendarList(int projectkey) {
+		return dao.getCalendarList(projectkey);
 	}
 
 	public List<Calendar> getCalendarIndividaulList(int memberkey) {
