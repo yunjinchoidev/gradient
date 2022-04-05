@@ -36,11 +36,9 @@ public class KanbanController {
 	
 	
 	
-	
-	
 	@RequestMapping("/kanbanList.do")
-	public String kanbanList(Model d) {
-		d.addAttribute("list", service.list());	
+	public String kanbanList(Model d, int projectkey) {
+		d.addAttribute("list", service.list(projectkey));	
 		return "pageJsonReport";
 	}
 

@@ -88,8 +88,8 @@ $(document).ready(function(){
 
 <body>
 
- 	<%@ include file="../../../../view/common/header.jsp"%>
- 	<%@ include file="../../../../view/chatBot/chatBot.jsp"%>
+ 	<%@ include file="../common/header.jsp"%>
+ 	<%@ include file="../chatBot/chatBot.jsp"%>
 
 
 	<div id="auth" style="margin-left: 350px;" >
@@ -103,10 +103,7 @@ $(document).ready(function(){
 						  	<option value="korean" selected="selected"><spring:message code="korean"/></option>
 						  	<option value="english"><spring:message code="english"/></option>
 						  	<option value="japanese"><spring:message code="japanese"/></option>
-						  	<option value="german"><spring:message code="german"/></option>
-						  	<option value="french"><spring:message code="french"/></option>
 						  	<option value="chinese"><spring:message code="chinese"/></option>
-						  	<option value="spanish"><spring:message code="spanish"/></option>
 						  </select>
 						  </div>
 						  
@@ -115,10 +112,12 @@ $(document).ready(function(){
 					<h1 class="auth-title">
 					Gradient
 					<button class="btn btn-primary"  
-						onclick="location.href='/project5/user/loginform'"> 시큐리티 로그인<br> 화면으로</button>
+						onclick="location.href='/project5/user/loginform'"> 
+						<spring:message code="securityLogin"/>
+						</button>
 					</h1>
 					<h1 class="auth-title">
-					로그인
+					<spring:message code="login"/>
 					</h1>
 							</div>
 
@@ -128,27 +127,35 @@ $(document).ready(function(){
 					<form action="/project5/login.do" method="post">
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"
-								placeholder="id" name="id">
+								placeholder="<spring:message code="id"/>" name="id">
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>
 						</div>
+						
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="password" class="form-control form-control-xl"
-								placeholder="password" name="pass">
+								placeholder="<spring:message code="pwd"/>" name="pass">
 							<div class="form-control-icon">
 								<i class="bi bi-shield-lock"></i>
 							</div>
 						</div>
+
+						<div style="margin-top: -40px;">
+							<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5"
+								id="loginbtn" ><spring:message code="login"/>
+							</button>
+						</div>
+						<!-- 
 						<div class="form-check form-check-lg d-flex align-items-end">
 							<input class="form-check-input me-2" type="checkbox" value=""
 								id="flexCheckDefault"> <label
 								class="form-check-label text-gray-600" for="flexCheckDefault">
-								Keep me logged in </label>
-						</div>
+								Keep me logged in </label> 
+						</div>-->
 						
+					
 						
-						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" id="loginbtn">로그인</button>
 
 
 						<div >
@@ -172,6 +179,34 @@ $(document).ready(function(){
 							</a>
 						</div>
 						
+					</form>
+					
+					<div class="text-center mt-5 text-lg fs-4">
+						<p class="text-gray-600">
+							<spring:message code="noAccout"/>
+							<a href="/project5/memberRegisterForm.do" class="font-bold">
+							<spring:message code="reg"/>
+							</a>
+						</p>
+						<p>
+							<a class="font-bold" href="/project5/memberFindForm.do">
+							<spring:message code="forget"/></a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- 
+			<div class="col-lg-7 d-none d-lg-block">
+				<div id="auth-right"></div>
+			</div>
+			 -->
+
+			 
+			 
+			 
+		</div>
+
+	</div>
 						
 						
 						
@@ -436,32 +471,6 @@ window.fbAsyncInit = function() {
 
 
 
-					</form>
-					
-					<div class="text-center mt-5 text-lg fs-4">
-						<p class="text-gray-600">
-							계정이 없습니까? <a href="/project5/memberRegisterForm.do" class="font-bold"><spring:message code="reg"/>
-							</a>
-						</p>
-						<p>
-							<a class="font-bold" href="/project5/memberFindForm.do">
-							아이디/비밀번호를 잊으셨습니까?</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<!-- 
-			<div class="col-lg-7 d-none d-lg-block">
-				<div id="auth-right"></div>
-			</div>
-			 -->
-
-			 
-			 
-			 
-		</div>
-
-	</div>
 </body>
 
 

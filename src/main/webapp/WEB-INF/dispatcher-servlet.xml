@@ -179,11 +179,13 @@
 		<property name="basenames">
 			<list>
 				<value>message.msg</value>
+				<value>message.error</value>
 			</list>
-		</property>
+		</property>	
+		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
-	<bean id="localeResolver"
-		class="org.springframework.web.servlet.i18n.SessionLocaleResolver" />
+	<bean id="localeResolver" 
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
 
 
 

@@ -116,8 +116,17 @@ $(document).ready(function(){
 								<br>
 							    <input type="password" class="form-control form-control-xl"
 								placeholder="password" name="password">
-							    <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="submit">로그인</button>
-							</form>	
+							   
+							    
+								<div class="form-check form-check-lg d-flex align-items-end" style="margin-top: 10px;">
+									<input class="form-check-input me-2" type="checkbox" value="" name="remember-me"
+										id="flexCheckDefault"> <label
+										class="form-check-label text-gray-600" for="flexCheckDefault" >
+										자동 로그인 </label>
+								</div>
+								
+								 <button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="submit"><spring:message code="login"/></button>
+					</form>	
 								
 					<div class="text-center mt-5 text-lg fs-4">
 						<p class="text-gray-600">
@@ -126,7 +135,7 @@ $(document).ready(function(){
 						</p>
 						<p>
 							<a class="font-bold" href="/project5/memberFindForm.do">
-							아이디/비밀번호가 생각나지 않습니까?</a>
+							<spring:message code="forget"/></a>
 						</p>
 					</div>
 				</div>

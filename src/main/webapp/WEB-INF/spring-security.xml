@@ -26,7 +26,14 @@
     
     
 		<sec:logout logout-url="/user/logout" />
+		<sec:remember-me
+			data-source-ref="dataSource" token-validity-seconds="604800" user-service-ref="customUserDetailsService"/>
+			
+			
 	</sec:http>
+	
+	
+	
 	<bean id="customUserDetailsService"
 		class="springweb.a03_sec.custom.CustomUserDetailsService" />
 

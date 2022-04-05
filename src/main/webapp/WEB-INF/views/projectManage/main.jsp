@@ -380,21 +380,44 @@ $(document).ready(function(){
                         
                         
                         
+                        <script>
+                        $(document).ready(function(){
+                        	$.ajax({
+                        		url :'/project5/crawling.do',
+                        		type:'POST',
+                        		dataType:'json',
+                        		success:function(result){
+                        			console.log("크롤링 성공")
+                        			console.log(result.elem)
+                        			console.log(result.elem.split('\.'))
+                        			var words = result.elem.split('\.');
+                        			console.log(words)
+                        			var crawlingHTML =  $("#crawling")
+                        			for(var i=0; i<words.length; i++){
+                        				crawlingHTML.append('<h5><span style="color:red">['+i+']</span>'+words[i]+'<br></h5>')
+                        			}
+                        			
+                        			
+                        		},
+                        		error:function(result){
+                        			console.log("크롤링 실패")
+                        			console.log(result)
+                        		}
+                        	})
+                        })
                         
-                        
-                        
-                        
-                        
-                        
-                        
+                        </script>
                         
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Profile Visit</h4>
+                                        <h4>크롤링 서비스</h4>
+                                        <form>
+	                                        <input type="date" class="form-control" id="basicInput" placeholder="Enter email">
+                                        </form>
                                     </div>
-                                    <div class="card-body" style="position: relative;">
+                                    <div class="card-body" style="position: relative;" id="crawling">
                                     </div>
                                 </div>
                             </div>

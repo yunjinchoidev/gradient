@@ -15,7 +15,10 @@
     <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/a/jqxkanban.js"></script>
     <script type="text/javascript" src="/project5/jqwidgets-ver13.2.0/a/jqxdata.js"></script>
     <script type="text/javascript">
-    $(document).ready(function () {            
+    $(document).ready(function () {        
+    	
+    	var projectkey = parserInt("${project.projectkey}")
+		var data = {projectkey : projectkey}
     	// 칸반보드 전체 값 저장할 변수 선언
 	    var nice;
 	    // 칸반보드 전체 값 객체 배열로 가져오기
@@ -23,6 +26,7 @@
          		  type:"post",
          		  url:"/project5/kanbanList.do",
          		 async:false,
+         		 data:data,
          		  dataType:"json",
          		  success:function(data){
          			console.log("조회성공");

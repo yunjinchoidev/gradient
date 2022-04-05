@@ -11,8 +11,8 @@ public class KanbanService {
 	@Autowired
 	private KanbanDao dao;
 
-	public List<KanbanVO> list() {
-		return dao.list();
+	public List<KanbanVO> list(int projectkey) {
+		return dao.list(projectkey);
 	}
 
 	public List<KanbanVO> listWork(){

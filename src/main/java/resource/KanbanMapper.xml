@@ -9,6 +9,7 @@
 		content, color, writedate, duedate, projectkey, deptno, memberkey
 		resourceId
 		from kanban
+		where projectkey=#{projectkey}
 	</select>
 
 
@@ -37,7 +38,7 @@
 		insert into kanban
 		values
 		(seq_kanban.nextval, #{status}, #{text}, #{tags}, #{content},#{color},
-		sysdate, sysdate, 1, 1, 1)
+		sysdate, sysdate, #{projectkey}, #{memberkey}, 1)
 	</insert>
 
 	<delete id="delete" parameterType="int">

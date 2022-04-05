@@ -187,7 +187,8 @@ to {
 										str += "<div class='card-content' id='prjImg'>"
 										str += "<img src='/project5/display2.do?fileName="+fileCallPath+"' class='card-img-top img-fluid' alt='singleminded' style='width:100%; height:400px' >";
 										str += "<div class='card-body'>"
-										str += "<h5 class='card-title' onclick='location.href='/project5/dashBoard.do?projectkey="  + obj.projectkey +  " ' '>"+obj.name+"</h5>"
+										str += "<h5 class='card-title' style='display:inline-block;' onclick='location.href='/project5/dashBoard.do?projectkey="  + obj.projectkey +  " ' '>"+obj.name+"</h5>"
+										str += "<a href='#' class='btn btn-danger rounded-pill progressBtn' style='display:inline-block; margin-left:20px;'>"+obj.progress+"</a>"
 										str += "<p class='card-text'>"+obj.contents+"</p>"
 										str += "</div></div>"
 										str += "<ul class='list-group list-groue-flush'>"
@@ -200,7 +201,30 @@ to {
 										console.log("str"+str)
 				    					uploadUL.append(str);
 				  					}
-						
+
+
+								  
+								  var i=0;
+									setInterval(function(){
+										i++;
+										if(i%2==0){
+											  $(".progressBtn").hide()					
+										}else{
+											  $(".progressBtn").show()			
+										}
+									}, 500)
+								  
+								  
+								  
+								  
+								  
+								  
+								  
+								  
+								  
+								  
+								  
+								  
 								  
 										// 파일 다운로드		
 										function downFile(fname){
