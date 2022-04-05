@@ -282,10 +282,9 @@
 			el:".card-body",
 			data:{A:{},blist:[]},
 			created:function(){
-				// 하위 컴포넌트에서 eventBus.$emit("이벤트버스명",매개변수)
 				eventBus.$on("search", this.search)
 				eventBus.$on("curpage",this.curpage);
-				this.search(); //초기 검색 처리..
+				this.search(); 
 			},
 			methods:{
 				curpage:function(no){
@@ -293,9 +292,6 @@
 					this.search(this.A);
 				},
 				search:function(sch){
-					// 기능 메서드 안에서는 this가 해당 기능을 메서드를 지정하기에
-					// 현재 instance 객체를 지정하기 위하여 vm으로 선언..
-					
 					vm = this;
 					vm.procuSituationSch = sch;
 					console.log("# 검색 요청값 #")
