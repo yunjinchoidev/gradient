@@ -28,7 +28,7 @@ text-align: center;
 		
 		var auth = "${member.auth}";
 		
-		if(auth != "pm"){
+		if(auth != 'pm' && auth != 'admin'){
 			alert("접근 권한이 없습니다");
 			location.href="${path}/main.do";
 		}

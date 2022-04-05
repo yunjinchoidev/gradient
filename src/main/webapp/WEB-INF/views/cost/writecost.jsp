@@ -52,6 +52,8 @@ margin
 		var prjcost = "${prjcost}";
 		var msg = "${msg}";
 		
+		alert('프로젝트를 먼저 선택해주세요');
+		
 		if(msg!=""){
 			alert(msg);
 			location.href="${path}/cost.do";
@@ -72,7 +74,7 @@ margin
 						 '<option value="${cslist.cskey}">${cslist.cscontent}</option>'+
 						</c:forEach>
 						'</select></td>'+
-					'<td><input class="form-control" type="text" name="list['+i+'].costcontent"></td>'+
+					'<td><input class="form-control costcontent" type="text" name="list['+i+'].costcontent"></td>'+
 					'<td><input class="form-control" type="text" name="list['+i+'].costnote"></td>'+
 					'<td><input class="form-control costex" type="text" id="costex'+i+'" name="list['+i+'].costex" onkeyup="inputNumberFormat(this)"></td>'+
 					'<td><input class="form-control" type="hidden" name="list['+i+'].no" value="${prjkey}"></td>'+
@@ -110,12 +112,26 @@ margin
 			// 콤마 제거 후 submit
 			var numItems = $('.costex').length
 			
-			for(var i=0; i<numItems; i++){
-				var temp = $('#costex'+i+'').val();
-				$('#costex'+i+'').val(temp.replace(/,/g,""));
+			for(var i2=0; i2<=numItems; i2++){
+				if($('.costcontent').eq(i2).val() == ""){
+					alert('예산내역을 입력해주세요');
+					break;
+				}else if($('.costex').eq(i2).val() == ""){
+					alert('예산금액을 입력해주세요');
+					break;
+				}else{
+					if(i2 == numItems){
+						for(var i=0; i<numItems; i++){
+							var temp = $('#costex'+i+'').val();
+							$('#costex'+i+'').val(temp.replace(/,/g,""));
+						}
+					
+						$("#inscostform").submit();
+						return;
+					}	
+				}
 			}
-		
-			$("#inscostform").submit();	
+				
 		});
 
 		
@@ -235,7 +251,7 @@ margin
 												</select>
 											</td>
 						
-											<td><input class="form-control" type="text" name="list[0].costcontent"></td>
+											<td><input class="form-control costcontent" type="text" name="list[0].costcontent"></td>
 											<td><input class="form-control" type="text" name="list[0].costnote"></td>
 											<td><input class="form-control costex" type="text" id="costex0" name="list[0].costex"
 													onkeyup="inputNumberFormat(this)"></td>

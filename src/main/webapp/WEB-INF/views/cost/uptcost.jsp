@@ -81,7 +81,7 @@ margin
 						 '<option value="${cslist.cskey}">${cslist.cscontent}</option>'+
 						</c:forEach>
 						'</select></td>'+
-					'<td><input class="form-control" type="text" name="list['+index+'].costcontent"></td>'+
+					'<td><input class="form-control costcontent" type="text" name="list['+index+'].costcontent"></td>'+
 					'<td><input class="form-control" type="text" name="list['+index+'].costnote"></td>'+
 					'<td><input class="form-control costex" type="text" id="costex'+index+'" name="list['+index+'].costex" onkeyup="inputNumberFormat(this)"></td>'+
 					'<td><input class="form-control" type="hidden" name="list['+index+'].coindex" value="'+mindex+'"></td></tr>');
@@ -115,14 +115,26 @@ margin
 		$("#regbtn").click(function(){
 			// 콤마 제거 후 submit
 			var numItems = $('.costex').length
-			$("#prjsel").prop('disabled',false);
 			
-			for(var i=0; i<numItems; i++){
-				var temp = $('#costex'+i+'').val();
-				$('#costex'+i+'').val(temp.replace(/,/g,""));
+			for(var i2=0; i2<=numItems; i2++){
+				if($('.costcontent').eq(i2).val() == ""){
+					alert('예산내역을 입력해주세요');
+					break;
+				}else if($('.costex').eq(i2).val() == ""){
+					alert('예산금액을 입력해주세요');
+					break;
+				}else{
+					if(i2 == numItems){
+						for(var i=0; i<numItems; i++){
+							var temp = $('#costex'+i+'').val();
+							$('#costex'+i+'').val(temp.replace(/,/g,""));
+						}
+						$("#prjsel").prop('disabled',false);
+						$("#uptcostform").submit();
+						return;
+					}	
+				}
 			}
-		
-			$("#uptcostform").submit();	
 		});
 		
 	});
@@ -247,7 +259,7 @@ margin
 														</select>
 													</td>
 								
-													<td><input class="form-control" type="text" name="list[${status.index}].costcontent"
+													<td><input class="form-control costcontent" type="text" name="list[${status.index}].costcontent"
 															value="${cdlist.content}"></td>
 													<td><input class="form-control" type="text" name="list[${status.index}].costnote"
 															value="${cdlist.costnote}"></td>
