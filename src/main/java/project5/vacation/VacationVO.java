@@ -12,8 +12,7 @@ public class VacationVO {
 	private Date startdate;
 	private String startdateS;
 	private int duration;
-	private Date applydate;
-	private String applydateS;
+	private String contents;
 
 	private MultipartFile[] uploadFile;
 
@@ -23,7 +22,7 @@ public class VacationVO {
 	}
 
 	public VacationVO(int vacationkey, int memberkey, int projectkey, String title, Date startdate, String startdateS,
-			int duration, Date applydate, String applydateS, MultipartFile[] uploadFile) {
+			int duration, String contents, MultipartFile[] uploadFile) {
 		super();
 		this.vacationkey = vacationkey;
 		this.memberkey = memberkey;
@@ -32,8 +31,7 @@ public class VacationVO {
 		this.startdate = startdate;
 		this.startdateS = startdateS;
 		this.duration = duration;
-		this.applydate = applydate;
-		this.applydateS = applydateS;
+		this.contents = contents;
 		this.uploadFile = uploadFile;
 	}
 
@@ -93,20 +91,12 @@ public class VacationVO {
 		this.duration = duration;
 	}
 
-	public Date getApplydate() {
-		return applydate;
+	public String getContents() {
+		return contents;
 	}
 
-	public void setApplydate(Date applydate) {
-		this.applydate = applydate;
-	}
-
-	public String getApplydateS() {
-		return applydateS;
-	}
-
-	public void setApplydateS(String applydateS) {
-		this.applydateS = applydateS;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 
 	public MultipartFile[] getUploadFile() {
@@ -116,5 +106,7 @@ public class VacationVO {
 	public void setUploadFile(MultipartFile[] uploadFile) {
 		this.uploadFile = uploadFile;
 	}
-
+	
+	
 }
+	

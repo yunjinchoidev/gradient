@@ -47,7 +47,8 @@ public class QualityController {
 	}
 	
 	@RequestMapping("/qualityUpdateFrom.do")
-	public String qualityUpdateFrom() {
+	public String qualityUpdateFrom(Model d, int qualitykey) {
+		d.addAttribute("get", service.get(qualitykey));
 		return "WEB-INF\\views\\quality\\update.jsp";
 	}
 	
