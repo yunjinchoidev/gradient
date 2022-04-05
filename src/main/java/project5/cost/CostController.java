@@ -88,6 +88,8 @@ public class CostController {
 		d.addAttribute("cdlist",service.costDetailList(prjkey));
 		// 프로젝트 예산 금액
 		d.addAttribute("prjkey",prjkey);
+		// 프로젝트 최대 인덱스
+		d.addAttribute("maxindex",service.getMaxIndex(prjkey));
 		d.addAttribute("prjcost",service.getPrjCost(prjkey));
 		return "WEB-INF\\views\\cost\\uptcost.jsp";
 	}

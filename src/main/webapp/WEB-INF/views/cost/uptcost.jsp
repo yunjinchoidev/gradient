@@ -51,6 +51,8 @@ margin
 		var prjkey = "${prjkey}";
 		var prjcost = "${prjcost}";
 		var msg = "${msg}";
+		var maxindex = "${maxindex}";
+		var mindex = parseInt(maxindex)+1;
 		
 		if(msg!=""){
 			alert(msg);
@@ -71,6 +73,7 @@ margin
 		
 		$("#addbtn").click(function(){
 			var index = i-1;
+			var i2 = $('#maintable > tbody > tr:last').attr('[name=list['+index+'].coindex]');
 			$('#maintable > tbody:last').append('<tr><td>'+i+'</td>'+
 					
 					'<td><select class="form-select" name="list['+index+'].cskey">'+
@@ -81,14 +84,16 @@ margin
 					'<td><input class="form-control" type="text" name="list['+index+'].costcontent"></td>'+
 					'<td><input class="form-control" type="text" name="list['+index+'].costnote"></td>'+
 					'<td><input class="form-control costex" type="text" id="costex'+index+'" name="list['+index+'].costex" onkeyup="inputNumberFormat(this)"></td>'+
-					'<td><input class="form-control" type="hidden" name="list['+index+'].coindex" value="'+i+'"></td></tr>');
+					'<td><input class="form-control" type="hidden" name="list['+index+'].coindex" value="'+mindex+'"></td></tr>');
 					
 			i+=1;
+			mindex+=1;
 		});
 		
 		$("#delbtn").click(function(){
 			$('#maintable > tbody > tr:last').remove();
 			i-=1;
+			mindex-=1;
 		});
 		
 		$("#canclebtn").click(function(){
