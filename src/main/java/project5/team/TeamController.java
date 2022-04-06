@@ -21,6 +21,8 @@ public class TeamController {
 		d.addAttribute("MemList", service.selectMemList());
 		return "WEB-INF\\views\\team\\Teamlist.jsp";
 	}
+	
+	
 	// http://localhost:7080/project5/insertTeam.do
 	@RequestMapping("/insertTeam.do")
 	public String insertTeam(TeamVo ins, Model d) {
