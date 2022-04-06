@@ -53,13 +53,15 @@
 		var commmsg = "${commmsg}";
 		var sessid = "${member.id}";
 		var id = $("[name=id]").val();
+		var prjkey = "${rdlist.prjkey}";
+		var prjkey2 = "${prjkey}";
 		
 		$('#recommwrite').hide();	
-		
+			
 		// 수정 삭제 메시지
 		if(msg!=""){
 			alert(msg);
-			location.href="${path}/risk.do";
+			location.href="${path}/risk.do?projectkey="+prjkey2;
 		}
 		
 		// 댓글 메시지
@@ -87,7 +89,7 @@
 		
 		$("#delbtn").click(function(){
 			if(confirm("삭제하시겠습니까?")){
-				location.href="${path}/delrisk.do?riskkey="+$("[name=riskkey]").val();
+				location.href="${path}/delrisk.do?riskkey="+$("[name=riskkey]").val()+"&projectkey="+prjkey;
 			}
 					
 		});
@@ -100,7 +102,7 @@
 		});
 		
 		$("#backbtn").click(function(){
-			location.href="${path}/risk.do";
+			location.href="${path}/risk.do?projectkey="+prjkey;
 		});
 		
 		$("#commregbtn").click(function(){
@@ -145,7 +147,7 @@
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
 		<!-- 리스크 키 -->
-		<input type="hidden" name="riskkey" value="${rdlist.riskkey}">
+		<input type="hidden" name="0" value="${rdlist.riskkey}">
 		<input type="hidden" name="id" value="${rdlist.id}">
 		<!-- 상세화면 -->
 		<div id="mainform">

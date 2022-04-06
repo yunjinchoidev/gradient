@@ -74,10 +74,11 @@ public class RiskController {
 	
 	//리스크 삭제
 	@RequestMapping("/delrisk.do")
-	public String riskdel(int riskkey, Model d) {
+	public String riskdel(int riskkey, Model d, int projectkey) {
 		d.addAttribute("msg","삭제되었습니다");
 		service.delRisk(riskkey);
-		return "WEB-INF\\views\\risk\\detail.jsp";
+		d.addAttribute("prjkey",projectkey);
+		return "forward:/riskdetail.do";
 	}
 	
 	//리스크 수정화면
