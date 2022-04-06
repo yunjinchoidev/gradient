@@ -8,6 +8,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import project5.member.MemberService;
+import project5.project.ProjectSch;
 import project5.project.ProjectService;
 import project5.project.ProjectVO;
 import project5.vote.VoteService;
@@ -25,13 +26,13 @@ public class ProjectHomeController {
 	VoteService service3;
 	
 	@RequestMapping("/projectHome.do")
-	public String projectHome(Model d, ProjectVO vo) {
+	public String projectHome(Model d, ProjectHomeSch sch, int projectkey) {
+		System.out.println(projectkey);
+		System.out.println(sch.getProjectkey());
 		// 프로젝트 홈에서 사용하는 공지 내용들 
-		d.addAttribute("list", service.getList(vo.getProjectkey())); //
+		d.addAttribute("list", service.listWithPaging(sch)); //
 		d.addAttribute("voteList", service3.list());
-		// 프로젝트 명단 // 공통
-		d.addAttribute("pjList", service2.list()); 
-		d.addAttribute("project", service2.get(vo.getProjectkey())); 
+		d.addAttribute("project", service2.get(projectkey)); 
 		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
 
@@ -51,7 +52,8 @@ public class ProjectHomeController {
 		service.insert(vo);
 		d.addAttribute("psc", "write");
 		System.out.println("프로젝트 홈 공지 작성 완료");
-		return "forward:/projectHome.do";
+		d.addAttribute("project", service2.get(30001));
+		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
 
 	
@@ -80,10 +82,13 @@ public class ProjectHomeController {
 	
 	
 	@RequestMapping("/projectHomeDelete.do")
-	public String projectHomeDelete(Model d, int projectHomekey) {
+	public String projectHomeDelete(Model d, int projectHomekey, int projectkey) {
 		service.delete(projectHomekey);
+		//System.out.println(service2.get(projectHomekey).getProjectkey());
+		//d.addAttribute("project", service2.get(service2.get(projectHomekey).getProjectkey()));
+		d.addAttribute("project", service2.get(projectkey));
 		d.addAttribute("psc", "delete");
 		System.out.println("프로젝트 공지사항 삭제 완료");
-		return "forward:/projectHome.do?projectkey=1";
+		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
 }

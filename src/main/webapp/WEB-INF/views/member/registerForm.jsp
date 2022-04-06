@@ -36,13 +36,17 @@
 	</style>
 </head>
 <script>
+var vali;
 	$(document).ready(function() {
 
-		$("#make").click(function(){
-			confirm("정말 가입하시겠습니까?")
-			
-			alert("계정 발급 신청 완료 되었습니다.\n 관리자 승인후, 입력한 이메일로\n임시아이디/비밀번호가 발급될 예정입니다.")
-			
+		$("#make").click(function(e){
+				if(vali==1){
+					e.preventDefault();
+					alert("이메일을 다시 확인하십시오.")
+				}else{
+					confirm("정말 가입하시겠습니까?")
+					alert("계정 발급 신청 완료 되었습니다.\n 관리자 승인후, 입력한 이메일로\n임시아이디/비밀번호가 발급될 예정입니다.")
+				}
 		})
 		
 		
@@ -54,6 +58,36 @@
 				console.log(result.reginum)
 				$("[name=memberkey]").val(result.reginum)
 			}
+		})
+		
+		
+		$("#already").hide();
+		$("#can").hide();
+		
+		$("input[name=email]").keyup(function(){
+			var inputData = $("input[name=email]").val();
+			var data = {email:inputData}
+			$.ajax({
+				url:'/project5/duplicateEmail.do',
+				type:'POST',
+				data:data,
+				dataType:'json',
+				success:function(result){
+					console.log("검사 성공");
+					console.log(result.duplicateEmail);
+					if(result.duplicateEmail=="can"){
+						vali=0
+						$("#can").show();
+						$("#already").hide();
+					}else{
+						vali=1
+						$("#can").hide();
+						$("#already").show();
+					}
+				}
+			})
+			
+			
 		})
 		
 		
@@ -76,8 +110,6 @@
 					
 					
 					
-					
-					
 					<form action="/project5/memberRegisterApplyFirst.do" method="post">
 					
 					
@@ -92,8 +124,10 @@
 						
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="email" class="form-control form-control-xl"
-								placeholder="이메일" name="email">
+								placeholder="이메일" name="email" >
 							<div class="form-control-icon"><i class="bi bi-person"></i></div>
+							<span id="already" style="color:red">이미 등록된 이메일이 있습니다.</span>
+							<span id="can" style="color:red">사용 가능한 이메일입니다.</span>
 						</div>
 							
 						<div class="form-group position-relative has-icon-left mb-4">

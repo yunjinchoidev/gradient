@@ -13,6 +13,9 @@ public class RiskSch {
 	private int endBlock; // 블럭의 마지막 번호
 	// 검색할 내용
 	private String sch;
+	// 프로젝트 보드 키
+	private int projectkey;
+	
 	public int getCount() {
 		return count;
 	}
@@ -73,6 +76,13 @@ public class RiskSch {
 	public void setSch(String sch) {
 		this.sch = sch;
 	}
+	public int getProjectkey() {
+		return projectkey;
+	}
+	public void setProjectkey(int projectkey) {
+		this.projectkey = projectkey;
+	}
+	
 	
 	
 }

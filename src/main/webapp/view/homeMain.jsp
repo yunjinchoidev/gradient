@@ -17,14 +17,16 @@
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
-					<div class="col-12 col-md-6 order-md-1 order-last">
+					<div class="col-12 col-md-12 order-md-1 order-last">
 					<h1>
 					
-					<sec:authorize access="isAuthenticated()">
-<sec:authentication property="name"/>님,
-</sec:authorize>
-홈 메인 화면입니다.
-<a href="<c:url value='/index'/>">[/index로 가기]</a><br><br>
+							<sec:authorize access="isAuthenticated()">
+								<sec:authentication property="name"/>님,
+							</sec:authorize>
+							홈 메인 화면입니다.
+							
+					<a href="<c:url value='/index'/>">[/index로 가기]</a><br><br>
+
 					<a href="/project5/main.do">메인 페이지 바로가기</a>
 					
 					

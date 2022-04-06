@@ -91,6 +91,12 @@
 		GROUP BY NO
 		HAVING NO = #{prjkey}
 	</select>
+	<!-- 예산 세부항목 인덱스 최대값 -->
+	<select id="getMaxIndex" resultType="int" parameterType="int">
+		SELECT MAX(COINDEX) as maxindex  
+		FROM COSTDETAIL
+		WHERE "NO" = #{prjkey}
+	</select>
 	<!-- 프로젝트 예산 배정 -->
 	<insert id="insPrjCost" parameterType="java.util.List">
 			<foreach collection="list" item="item" separator=" " open="INSERT ALL" close="SELECT * FROM SYS.DUAL">

@@ -11,8 +11,8 @@ public class KanbanService {
 	@Autowired
 	private KanbanDao dao;
 
-	public List<KanbanVO> list() {
-		return dao.list();
+	public List<KanbanVO> list(int projectkey) {
+		return dao.list(projectkey);
 	}
 
 	public List<KanbanVO> listWork(){
@@ -31,15 +31,19 @@ public class KanbanService {
 		dao.insert(vo);
 	}
 	
-	public void delete(int id) {
-		dao.delete(id);
+	public void delete(KanbanVO vo) {
+		dao.delete(vo);
 	};
+	
+	
+	
+	
 	
 	public void update(KanbanVO vo) {
 		dao.update(vo);
 	}
 	public void update2(KanbanVO vo) {
-		dao.update(vo);
+		dao.update2(vo);
 	}
 	
 	

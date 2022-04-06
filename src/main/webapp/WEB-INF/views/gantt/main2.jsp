@@ -21,11 +21,14 @@ html, body {
 	<script>
 		$(document).ready(function() {
 									var list;
-
+									
+									var projectkey = parseInt("${project.projectkey}");
+									var data = {projectkey:projectkey}
 									// 간트차트 리스트 불러오기
 									$.ajax({type : "post",
 										url : "/project5/ganttList.do",
 										async : false,
+										data:data,
 										dataType : "json",
 										success : function(result) {
 											console.log("간트 차트 리스트를 불러오는 데 성공했습니다.");
@@ -78,6 +81,10 @@ html, body {
 										$("#frm01").submit();
 									});
 
+									
+									
+									
+									
 							gantt.attachEvent("onTaskDblClick",
 									function(id, e) {
 										alert("간트 하나 더블 클릭")
@@ -194,8 +201,8 @@ html, body {
 
 				<form action="#" id="frm01">
 				
-					<input type="hidden" name="projectkey" value="1"> <input
-						type="hidden" name="memberkey" value="1">
+					<input type="hidden" name="projectkey" value="${project.projectkey }"> <input
+						type="hidden" name="memberkey" value="${member.memberkey }">
 						
 					<div class="modal-body">
 

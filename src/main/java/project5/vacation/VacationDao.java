@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VacationDao {
 	public List<VacationVO> list();
+	public void insert(VacationVO vo);
 }

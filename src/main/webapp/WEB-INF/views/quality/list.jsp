@@ -55,7 +55,7 @@
 					<div class="card-body">
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-							<form id="frm01" class="form" action="/project5/quality.do">
+							
 							<div class="dataTable-top">
 								<div class="dataTable-dropdown">
 									<span class="input-group-text">총 ${qualitySch.count}건</span> <span
@@ -170,7 +170,7 @@
             </div>
           
             	<!-- 모달 입력 요소 영역 -->
-            <form id="qualityeval" action="${path}/qualitypass.do" method="post">
+            <form id="qualityevalFrm" action="${path}/qualitypass.do" method="get">
                 <div class="modal-body" style="margin:10px;">
                 	<!-- 프로젝트 select box -->
                 	<div id="prjselect">
@@ -278,7 +278,7 @@
 						alert("불합격입니다");
 						score=0;
 					}else{
-						$("#qualityeval").submit();
+						$("#qualityevalFrm").submit();
 					}	
 					
 				}		

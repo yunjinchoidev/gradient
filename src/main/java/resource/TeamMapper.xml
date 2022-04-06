@@ -3,10 +3,58 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.team.TeamDao">
-	<!-- 팀관리 리스트 -->
+	<!-- 회원 목록 리스트 -->
 	<select id="getTeamList" resultType="team" parameterType="team">
-		SELECT m.name,m.auth,m.email,d.deptno,d.DNAME
-		FROM MEMBER m, DEPARTMENT d
+		SELECT
+		mp.status AS status, m.name AS name, m.auth AS auth,
+		m.email AS email, d.dname AS dname, p.name AS projectname
+		FROM MEMBER_PROJECT mp, MEMBER m, PROJECT p, DEPARTMENT d
+		WHERE m.name = #{name} AND m.id = #{id}
+		AND mp.memberkey = m.MEMBERKEY
+		AND mp.PROJECTKEY = p.PROJECTKEY
+		AND mp.DEPTNO = d.DEPTNO
+	</select>
+
+	<!-- 회원 배정 목록 리스트 -->
+	<select id="getDetail" resultType="team" parameterType="int">
+		SELECT
+		m.name, m.auth ,m.email, d.DNAME, p.name projectname,
+		p.PROJECTKEY
+		projectkey ,m.MEMBERKEY memberkey
 		WHERE m.deptno =d.deptno
 	</select>
+	<!-- 모달창 프로젝트 리스트 -->
+	<select id="selectPrjList" parameterType="string"
+		resultType="team">
+		SELECT projectKey AS projectKey, name AS
+		projectname
+		FROM
+		project
+	</select>
+	<!-- 부서 리스트 -->
+	<select id="selectdptList" parameterType="string"
+		resultType="team">
+		SELECT deptno as deptno, dname
+		FROM DEPARTMENT
+	</select>
+	<!-- 회원 리스트 -->
+	<select id="selectMemList" parameterType="string"
+		resultType="team">
+		SELECT memberkey AS memberkey, name AS name
+		FROM MEMBER
+		WHERE name IS NOT NULL
+	</select>
+
+	<!-- 프로젝트 배정 -->
+	<insert id="insertTeam" parameterType="team">
+		INSERT INTO MEMBER_PROJECT
+		VALUES
+		(seq_team.nextval,#{projectkey},#{memberkey},#{status})
+	</insert>
+	<update id="updateTeam" parameterType="team">
+		UPDATE MEMBER
+		SET status =
+		#{status}
+		WHERE PROJECTKEY = #{projectkey}
+	</update>
 </mapper>

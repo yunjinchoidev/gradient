@@ -4,19 +4,52 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="project5.memo.MemoDao">
 
-	<select id="list" resultType="project5.memo.MemoVO">
-		select * from memo
+
+
+
+	<select id="totCnt" parameterType="project5.memo.MemoSch"
+		resultType="int">
+		select count(*)
+		from memo
+		where 1=1
+		<if test="contents!=null and contents!=''">
+			and contents like '%'||#{contents}||'%'
+		</if>
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+	</select>
+
+
+
+	<select id="list" resultType="project5.memo.MemoVO"
+		parameterType="project5.memo.MemoSch">
+		select *
+		from (
+		select rownum cnt,m.*
+		from memo m
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+		<if test="contents!=null and contents!=''">
+			and contents like '%'||#{contents}||'%'
+		</if>
+		)
+		where cnt between #{start} and #{end}
 	</select>
 
 	<insert id="insert" parameterType="project5.memo.MemoVO">
 		insert into memo values
-		(seq_memo.nextval, #{title}, #{contents},sysdate,#{importance},	#{memberkey})
+		(seq_memo.nextval, #{title}, #{contents},sysdate,#{importance},
+		#{memberkey})
 	</insert>
-	
+
 	<delete id="delteMemo" parameterType="int">
-		delete 
+		delete
 		from memo
-		where memokey=#{memokey}
+		where
+		memokey=#{memokey}
 	</delete>
 
 

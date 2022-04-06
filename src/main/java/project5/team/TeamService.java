@@ -14,10 +14,22 @@ public class TeamService {
 	public List<TeamVo> getTeamList(TeamVo sch){
 		return dao.getTeamList(sch);
 	}
-//	public void insertTeam(TeamVo sch) {
-//		dao.insertTeam(sch);
-//	}
-//	public void uptTeam(TeamVo upt) {
-//		dao.uptTeam(upt);
-//	}
+	public void insertTeam(TeamVo sch) {
+		dao.insertTeam(sch);
+	}
+	public void updateTeam(TeamVo upt) {
+		dao.updateTeam(upt);
+	}
+	public List<TeamVo> selectPrjList(){
+		return dao.selectPrjList();
+	}
+	public List<TeamVo> selectdptList(){
+		return dao.selectdptList();
+	}
+	public List<TeamVo> selectMemList(){
+		return dao.selectMemList();
+	}
+	public TeamVo getDetail(TeamVo member_project_key) {
+		return dao.getDetail(member_project_key);
+	}
 }

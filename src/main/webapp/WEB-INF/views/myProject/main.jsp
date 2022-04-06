@@ -109,12 +109,9 @@ $(document).ready(function(){
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>나의 모든 프로젝트</h3>
-						<p class="text-subtitle text-muted">나의 프로젝트
-						나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트
-						나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트
-						나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트
-						나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트
-						나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트 나의 프로젝트</p>
+						<p class="text-subtitle text-muted">
+						내가 참여하고 있는 프로젝트 입니다.
+						</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -123,6 +120,7 @@ $(document).ready(function(){
 				</div>
 			</div>
 			
+			<!-- 
 			<section class="section">
 				<div class="row">
 					<div class="col-12">
@@ -139,7 +137,7 @@ $(document).ready(function(){
 					</div>
 				</div>
 			</section>
-			
+			 -->
 		</div>
 
 
@@ -220,7 +218,8 @@ $(document).ready(function(){
 									str += "<div class='card-content' id='prjImg'>"
 										str += "<div class='card-body'>"
 											str += "<h5 class='card-title' >"+obj.name+"</h5>"
-											str += "<p class='card-text'>"+obj.contents+"</p>"
+											str += "<p class='card-text' style='display:inline-block'>"+obj.contents+"</p>"
+											str += "<a href='#' class='btn btn-danger rounded-pill progressBtn' style='display:inline-block; margin-left:20px;'>"+obj.progress+"</a>"
 											str += "</div><hr>"
 											str += "<img src='/project5/display2.do?fileName="+fileCallPath+"' class='card-img-top img-fluid' alt='singleminded' style='width:100%; height:400px' >";
 											str += "<ul class='list-group list-groue-flush'>"
@@ -231,10 +230,6 @@ $(document).ready(function(){
 									str += "</div>"
 									str += "</div>"
 									
-										
-
-										
-								
 									
 									console.log("str : "+str)
 						    		uploadUL.append(str);
@@ -242,6 +237,20 @@ $(document).ready(function(){
 				  }
 			
 			
+			  var i=0;
+			setInterval(function(){
+				i++;
+				if(i%2==0){
+					  $(".progressBtn").hide()					
+				}else{
+					  $(".progressBtn").show()			
+				}
+			}, 1000)
+
+
+			  
+			  
+			  
 						
 				// 파일 다운로드		
 				function downFile(fname){

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<link rel="stylesheet" href="/project5/a00_com/bootstrap.min.css">
+<link rel="stylesheet" href="/project5/a00_com/jquery-ui.css">
+<script src="/project5/a00_com/jquery.min.js"></script>
+<script src="/project5/a00_com/popper.min.js"></script>
+<script src="/project5/a00_com/bootstrap.min.js"></script>
+<script src="/project5/a00_com/jquery-ui.js"></script>
+<script src="/project5/a00_com/vue.js"></script>
+<script src="/project5/a00_com/axios.js"></script>
+
+
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link
+	href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet"
+	href="/project5/resources/dist/assets/css/bootstrap.css">
+<link rel="stylesheet"
+	href="/project5/resources/dist/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+<link rel="stylesheet"
+	href="/project5/resources/dist/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+<link rel="stylesheet"
+	href="/project5/resources/dist/assets/css/app.css">
+<link rel="stylesheet"
+	href="/project5/resources/dist/assets/vendors/simple-datatables/style.css">
+<link rel="shortcut icon"
+	href="/project5/resources/dist/assets/images/favicon.svg"
+	type="image/x-icon">
+
+
+
+
+
+
+<template id="schTmp">
+
+
+	<form id="frm01" class="form" method="post">
+		<input type="hidden" v-model="procuSituationSch.curPage" />
+		<div
+			class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+			<div class="dataTable-top">
+				<div class="input-group-prepend">
+					<input type="hidden" name="curPage" value="1" /> <span
+						class="input-group-text">총{{sch.count}} 건</span>
+				</div>
+
+				<div class="dataTable-dropdown">
+					<select class="dataTable-selector form-select" @change="searchSize"
+						v-model="procuSituationSch.pageSize">
+						<option value="3">3</option>
+						<option value="5">5</option>
+						<option value="10" selected="selected">10</option>
+						<option value="15">15</option>
+						<option value="20">20</option>
+						<option value="25">25</option>
+					</select><label>entries per page</label>
+				</div>
+
+
+				<div class="dataTable-search" style="display: inline-block;">
+
+					<div style="display: inline-block;">
+						<select class="dataTable-selector form-select searchbar"
+							name="searchbar" style="display: inline-block;">
+							<option selected="selected">검색</option>
+							<option value="title" selected="selected">title</option>
+							<option value="contents">contents</option>
+						</select>
+					</div>
+
+					<div style="display: inline-block;">
+						<input style="display: inline-block;"
+							class="dataTable-input searchWhat" placeholder="검색어를 입력"
+							type="text" @keyup.13="search" v-model="procuSituationSch.title">
+
+						<button class="btn btn-info" type="button" @click="search">검색</button>
+
+						<a class="btn btn-danger" style="text-align: right"
+							href="/project5/procuSituationWriteForm.do" target="_parent">글쓰기</a>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</form>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<template id="listTmp">
+	<table class="table table-hover table-striped dataTable-table">
+		<col width="10%">
+		<col width="50%">
+		<col width="15%">
+		<col width="15%">
+		<col width="10%">
+
+		<thead>
+			<tr>
+				<th data-sortable="" style="width: 12.0176%;"><a href="#"
+					class="dataTable-sorter">번호</a></th>
+				<th data-sortable="" style="width: 42.9989%;"><a href="#"
+					class="dataTable-sorter">작업구분/제목/버전</a></th>
+				<th data-sortable="" style="width: 18.0816%;"><a href="#"
+					class="dataTable-sorter">부서</a></th>
+				<th data-sortable="" style="width: 16.3175%;"><a href="#"
+					class="dataTable-sorter">작성자</a></th>
+			</tr>
+		</thead>
+
+
+		<tbody>
+			<tr v-for="procuSituation in blist">
+				<td>{{procuSituation.cnt}}</td>
+				<td>{{procuSituation.title}}</td>
+				<td>{{procuSituation.contents}}</td>
+				<td>{{procuSituation.name}}</td>
+				<td>{{procuSituation.plandate}}</td>
+				<!-- 
+    		<td v-text="new Date(procuSituation.plandate).toLocaleDateString()"></td>
+    		 -->
+			</tr>
+		</tbody>
+	</table>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+<template id="pageTmp">
+	<!-- class="page-item active" -->
+	<ul class="pagination  justify-content-end">
+		<li class="page-item"><a class="page-link"
+			@click="goPage(
+				  		C.startBlock!=1
+				  		?C.startBlock-1
+				  		:1)">Previous</a></li>
+		<li v-for="cnt in list()"
+			:class="cnt==C.curPage?
+	  		'page-item active':'page-item '">
+			<a class="page-link" @click="goPage(cnt)">{{cnt}}</a>
+		</li>
+		<li class="page-item"><a class="page-link"
+			@click="goPage(C.endBlock!=C.pageCount?
+	  	C.endBlock+1:C.endBlock)">Next</a></li>
+	</ul>
+</template>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script type="text/javascript">
+	var eventBus = new Vue()
+	
+	// sch, blist, procuSituationSch
+	Vue.component("sch-comp",{ 
+		template:"#schTmp",
+		data:function(){
+			// 컴포넌트에 사용 데이터 선언. 페이지 default 크기 지정..
+			return {procuSituationSch:{title:"",contents:"",curPage:1,pageSize:5, count:0}}
+		},
+		props:["sch"],
+		methods:{ // searchSize  search
+			
+			// 검색을 했을 때
+			search:function(){
+				// 이벤트 버스를 통해서 상위에 전달
+				eventBus.$emit("search", this.procuSituationSch)
+				// eventBus.$emit("curpage",page);	
+			},
+			
+			// 한 페이지 사이즈를 변경했을 때
+			searchSize:function(){
+				// 페이지 크기를 변경시, 해당 데이터의 첫번째 페이지가 로딩
+				// 되게 처리..
+				console.log("#현재 페이지크기:")
+				this.procuSituationSch.curPage=1
+				console.log(this.procuSituationSch.pageSize)
+				eventBus.$emit("search", this.procuSituationSch)
+				/*
+				console.log("현재 페이지:")
+				console.log(this.procuSituationSch)
+				this.search();
+				*/
+			}
+		}
+		
+	})
+		
+	Vue.component("list-comp",{ 
+		template:"#listTmp",
+		props:["blist"]})
+		
+		
+		
+		
+		
+		
+	Vue.component("page-comp",{ 
+		template:"#pageTmp",
+		props:["C"],
+		methods:{
+			list:function(){
+				// 페이징 블럭 리스트 처리를 위한 기능 메서드
+				var list = [];
+				for(var idx=this.C.startBlock;
+							idx<=this.C.endBlock;
+							idx++){
+					list.push(idx);
+				}	
+				console.log(list)
+				return list;
+			},
+			goPage:function(page){
+				// 현재 페이지 속성값을 호출하여 설정하고 search 기능메서드 호출
+				// 상위에 현재 페이지를 넘기기 위해 이벤트 버스 활용
+				eventBus.$emit("curpage",page);
+			}			
+		}
+	
+	})
+
+	
+	
+	
+	
+	
+	// 상위 컨테이너
+	$(document).ready(function(){
+		var vm = new Vue({
+			el:".card-body",
+			data:{A:{},blist:[]},
+			created:function(){
+				eventBus.$on("search", this.search)
+				eventBus.$on("curpage",this.curpage);
+				this.search(); 
+			},
+			methods:{
+				curpage:function(no){
+					this.A.curPage = no;
+					this.search(this.A);
+				},
+				search:function(sch){
+					vm = this;
+					vm.procuSituationSch = sch;
+					console.log("# 검색 요청값 #")
+					console.log(vm.procuSituationSch)
+					
+					
+					axios({
+						method:"get",
+						url:"/project5/procuSituationData.do",
+						params:vm.procuSituationSch
+					}).then((res)=>{
+						console.log("res"+res);
+						console.log("res.data.procuSituationSch2"+res.data.procuSituationSch2);
+						console.log("res.data.procuSituationSch2.startBlock:"+res.data.procuSituationSch2.startBlock);
+						vm.A = res.data.procuSituationSch2;
+						vm.blist = res.data.blist;
+						console.log("# 최종 받은 모델 #")
+						console.log("vm.procuSituationSch"+vm.procuSituationSch)
+						console.log("vm.blist"+vm.blist)
+						
+						
+					}).catch(error=>{
+						console.log(error)
+						throw new Error(error)
+					})
+				}
+			}
+		});
+
+	});
+</script>
+</head>
+
+<body>
+
+	<section class="section">
+		<div class="card">
+			<div class="card-header">Simple Datatable</div>
+			<div class="card-body">
+				<sch-comp :sch="A"></sch-comp>
+				<list-comp :blist="blist"></list-comp>
+				<page-comp :C="A"></page-comp>
+			</div>
+		</div>
+
+	</section>
+
+
+</body>
+</html>

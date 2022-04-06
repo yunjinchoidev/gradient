@@ -7,32 +7,55 @@
 
 
 	<!-- 채팅방 만들기 -->
-	<insert id="createChat"
-		parameterType="project5.custoChat.CustoChatRoomVO">
+	<insert id="createChat">
 		INSERT INTO custochatroom VALUES
-		(seq_CustoChatRoom.nextval, '새상담'||seq_CustoChatRoom.nextval)
+		(seq_CustoChatRoom.nextval, '새상담'||seq_CustoChatRoom.nextval, sysdate)
 	</insert>
 
-	<!--  채팅방 목록 불루어괴 -->
+	<!-- 채팅방 만들기 -->
+	<insert id="createChat2" parameterType="String">
+		INSERT INTO custochatroom
+		VALUES
+		(seq_CustoChatRoom.nextval, #{name}||seq_CustoChatRoom.nextval,
+		sysdate)
+	</insert>
+
+	<!-- 채팅방 목록 불러오기 -->
 	<select id="chatRoomList"
 		resultType="project5.custoChat.CustoChatRoomVO">
-		SELECT roomkey, name, to_char(createdate,'YYYY/MM/DD') createDateS FROM custochatroom ORDER BY createdate
+		SELECT roomkey, name, to_char(createdate,'YYYY/MM/DD')
+		createDateS
+		FROM custochatroom ORDER BY roomkey
 	</select>
+	<!-- 채팅방 목록 불러오기 -->
+	<select id="chatRoomListCreatedate"
+		resultType="project5.custoChat.CustoChatRoomVO">
+		SELECT roomkey, name, to_char(createdate,'YYYY/MM/DD')
+		createDateS
+		FROM custochatroom ORDER BY Createdate
+	</select>
+	
+	
+	
+	
+	
+	
+	
 
 
 	<!-- 채팅방 하나 이름 불러오기 -->
 	<select id="getChatRoom" parameterType="int"
 		resultType="project5.custoChat.CustoChatRoomVO">
-		SELECT * FROM custochatroom where roomkey=${roomkey}
+		SELECT * FROM custochatroom where roomkey=#{roomkey}
 	</select>
 
 
-	<!-- 메시지 보낼때 자동 삽입 /////////////////////////////////////////////////-->
+	<!-- 메시지 보낼때 자동 삽입 ///////////////////////////////////////////////// -->
 	<insert id="createMessage"
 		parameterType="project5.custoChat.CustoChatMessageVO">
 		INSERT INTO custoChatMessage VALUES
 		(seq_custoChatMessage.nextval, #{message}, sysdate, #{memberkey},
-		#{roomkey})
+		#{roomkey},0)
 	</insert>
 
 	<!-- 메시지 룸키로 모조리 불러오기 -->
@@ -54,22 +77,38 @@
 	<!-- 메시지 삭제 -->
 	<delete id="DeleteMessagebyMessagekey" parameterType="int">
 		delete
-		from custoChatMessage
+		from
+		custoChatMessage
 		where messagekey = #{messagekey}
 	</delete>
 
 
-	<!--방 입장 / 회원 초대하기-->
+	<!--방 입장 / 회원 초대하기 -->
 	<insert id="roomJoin"
 		parameterType="project5.custoChat.CustoChatRoomJoinVO">
 		INSERT INTO custoChatRoomJoin VALUES
 		(seq_custoChatRoomJoin.nextval, #{memberkey}, #{roomkey})
 	</insert>
-	
-	
+
+
 	<update id="plusLikeCnt" parameterType="int">
-		UPDATE custoChatMessage SET likecnt = likecnt+1 where messagekey = #{messagekey}
+		UPDATE custoChatMessage
+		SET likecnt = likecnt+1 where messagekey = #{messagekey}
 	</update>
+
+	<select id="chatRoomMax" resultType="int">
+		SELECT max(roomkey) max
+		FROM
+		CUSTOCHATROOM c
+	</select>
+
+	<select id="custoChatRoomNameUpdate"
+		parameterType="project5.custoChat.CustoChatRoomVO">
+		update custoChatroom
+		set name= name||#{name}
+		where roomkey = #{roomkey}
+	</select>
+
 
 
 

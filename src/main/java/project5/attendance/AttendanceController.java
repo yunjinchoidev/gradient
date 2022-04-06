@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import project5.member.MemberService;
+import project5.project.ProjectService;
 
 @Controller
 public class AttendanceController {
@@ -16,8 +17,12 @@ public class AttendanceController {
 	@Autowired
 	MemberService service2;
 	
+	@Autowired
+	ProjectService service3;
+	
 	@RequestMapping("/attendanceMain.do")
-	public String attendance(Model d) {
+	public String attendance(Model d, int projectkey) {
+		d.addAttribute("project", service3.get(projectkey));
 		d.addAttribute("list", service.memberPlusAttendacne());
 		return "WEB-INF\\views\\attendance\\main.jsp";
 	}
@@ -39,6 +44,14 @@ public class AttendanceController {
 		service.attendanceWrite(vo);
 		return "forward:/attendanceMain.do";
 	}
+
+	@RequestMapping("/warningLetter.do")
+	public String WarningLetter(Model d, int memberkey) {
+		d.addAttribute("member", service2.get(memberkey));
+		return "WEB-INF\\views\\mail\\warningLetter.jsp";
+	}
+	
+	
 	
 	
 	

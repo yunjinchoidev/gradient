@@ -85,6 +85,10 @@ public class CostService {
 	public int getPrjCost(int prjkey) {
 		return dao.getPrjCost(prjkey);
 	}
+	// 프로젝트 인덱스 최대 값
+	public int getMaxIndex(int prjkey) {
+		return dao.getMaxIndex(prjkey);
+	}
 	// 프로젝트 예산 등록
 	public void insPrjCost(MultiRowCost ins) {
 		dao.insPrjCost(ins);

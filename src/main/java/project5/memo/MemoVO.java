@@ -2,6 +2,8 @@ package project5.memo;
 
 import java.util.Date;
 
+import org.apache.ibatis.ognl.InappropriateExpressionException;
+
 public class MemoVO {
 	private int memokey;
 	private String title;
@@ -10,7 +12,10 @@ public class MemoVO {
 	private String writedateS;
 	private String importance;
 	private int memberkey;
-
+	private int cnt;
+	
+	
+	
 	public MemoVO() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -26,6 +31,24 @@ public class MemoVO {
 		this.writedateS = writedateS;
 		this.importance = importance;
 		this.memberkey = memberkey;
+	}
+
+	
+	
+	
+	
+	
+	public MemoVO(int memokey, String title, String contents, Date writedate, String writedateS, String importance,
+			int memberkey, int cnt) {
+		super();
+		this.memokey = memokey;
+		this.title = title;
+		this.contents = contents;
+		this.writedate = writedate;
+		this.writedateS = writedateS;
+		this.importance = importance;
+		this.memberkey = memberkey;
+		this.cnt = cnt;
 	}
 
 	public int getMemokey() {
@@ -84,4 +107,26 @@ public class MemoVO {
 		this.memberkey = memberkey;
 	}
 
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

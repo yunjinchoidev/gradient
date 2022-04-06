@@ -17,6 +17,11 @@ public class NoticeSch {
 	// 검색할 내용
 	private String title;
 	private String content;
+	
+	
+	
+	
+	
 	public NoticeSch() {
 		super();
 		// TODO Auto-generated constructor stub

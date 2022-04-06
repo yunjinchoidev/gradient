@@ -6,11 +6,14 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
-
+<script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 $(document).ready(function(){
 
-	
+	var msg = "${msg}";
+	if(msg=="outputWriteSuccess"){
+			location.href="/project5/output.do?projectkey=${project.projectkey}";
+	}
 	
 })
 
@@ -49,18 +52,14 @@ $(document).ready(function(){
 											</div>
 										</div>
 									</div>
-
+								<input type="hidden" name="projectkey" value="${project.projectkey }" >
+								
 									<div class="row">
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="first-name-column">프로젝트</label> <select
-													id="first-name-column" class="form-control"
-													name="projectkey">
-													<c:forEach var="pjList" items="${pjList}" varStatus="idx">
-														<option value="${idx.count }">${idx.count }:
-															${pjList.name }</option>
-													</c:forEach>
-												</select>
+												<label for="first-name-column">프로젝트</label> <input
+													id="first-name-column" class="form-control" readonly="readonly"
+													 value="${project.name }" >
 											</div>
 										</div>
 

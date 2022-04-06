@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8" import="java.util.*"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<c:set var="path" value="${pageContext.request.contextPath }" />
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -56,8 +59,24 @@ $(document).ready(function() {
 	var passRE =	$("input[name=passRE]").val();
 	var data = {pass:pass, passRE, passRE};
 	
-	$("#notsame").show();
-	$("#same").show();
+	$("#notsame").hide();
+	$("#same").hide();
+	
+	$("input[name=passRE]").keyup(function(){
+		var pass =	$("input[name=pass]").val();
+		var passRE =	$("input[name=passRE]").val();
+		
+		if(pass==passRE){
+			$("#notsame").hide();
+			$("#same").show();
+		}else{
+			$("#notsame").show();
+			$("#same").hide();
+		}
+	})
+	
+	
+	
 	
 	
 	
@@ -176,38 +195,23 @@ $(document).ready(function() {
 				}
 
 
-						
-			
-			
-			
-			
-			//////////////////////////////////////////////////////////////////////////////////////
-			//아이디 중복검사
-			$('.id_input').on("propertychange change keyup paste input", function(){
-				var memberId = $('.id_input').val();			// .id_input에 입력되는 값
-				var memberkey = ${member.memberkey}
-				var data = {memberId : memberId}				// '컨트롤에 넘길 데이터 이름' : '데이터(.id_input에 입력되는 값)'
-				var data2 = {memberkey : memberkey}
-				$.ajax({
-					type : "post",
-					url : "/project5/memberIdChk.do",
-					data : data2
-				}); 
-
-			});// function 종료
-						
-						
-
 			
 			if ("${member.pricing}"=='0'){
-				$("input[name=pricing]").val('플랜 : 기본')
+				$("input[name=pricings]").val('플랜 : 기본')
 			}else if("${member.pricing}"=='1'){
-				$("input[name=pricing]").val('플랜 : 프로')
+				$("input[name=pricings]").val('플랜 : 프로')
 			}else {
-				$("input[name=pricing]").val('플랜 :프리미엄')
+				$("input[name=pricings]").val('플랜 :프리미엄')
 			}
 			
 			
+			$("#duplicateId").click(function(e){
+				e.preventDefault();
+				var inputId=$("input[name=id]").val();
+				confirm("아이디 중복 검사를 하시겠습니까?")
+				
+				window.open("/project5/duplicateId.do?id="+inputId, "PopupWin", "width=500,height=400");
+			})
 			
 			
 			
@@ -285,35 +289,28 @@ $(document).ready(function() {
 								<i class="bi bi-envelope"></i>
 							</div>
 						</div>
+						
+						
+						
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl id_input" 
-								placeholder="변경할 아이디" name="id">
-							<div class="form-control-icon">
+								placeholder="변경할 아이디" name="id" style="width: 85%; display: inline-block;">
+							<div class="form-control-icon" style="display: inline-block;">
 								<i class="bi bi-envelope"></i>
 							</div>
+									<button class="btn btn-danger" style="display: inline-block; height: 57.95px"
+								id="duplicateId">중복검사</button>
 						</div>
-						
-						
-							<span class="id_input_re_1">사용 가능한 아이디입니다.</span>
-							<span class="id_input_re_2">아이디가 이미 존재합니다.</span>
-
-
-
-
-
+				
 
 
 						<div class="form-group position-relative has-icon-left mb-4">
-							<input type="text" class="form-control form-control-xl"
+							<input type="password" class="form-control form-control-xl"
 								placeholder="변경할 비밀번호" name="pass">
 							<div class="form-control-icon">
 								<i class="bi bi-envelope"></i>
 							</div>
 						</div>
-
-
-
-
 
 
 						<div class="form-group position-relative has-icon-left mb-4">
@@ -325,15 +322,14 @@ $(document).ready(function() {
 								<i class="bi bi-envelope"></i>
 							</div>
 
-
-
 						</div>
+						
 						<div id="notsame"
-							style="color: red; margin-top: -20px; margin-bottom: 10px;">
+							style="color: red; margin-top: -20px; margin-bottom: 10px; font-weight: bolder;">
 							<span> 비밀번호가 서로 일치 하지 않습니다.</span>
 						</div>
 						<div id="same"
-							style="color: red; margin-top: -20px; margin-bottom: 10px;">
+							style="color: red; margin-top: -20px; margin-bottom: 10px; font-weight: bolder;">
 							<span> 비밀번호가 일치합니다.</span>
 						</div>
 
@@ -353,18 +349,20 @@ $(document).ready(function() {
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl" readonly="readonly"
-								placeholder="방문 수" name="name" value="방문 수: ${member.visitcnt }">
+								placeholder="방문 수" name="visitcnts" value="방문 수: ${member.visitcnt }">
+								<input type="hidden" name="visitcnt" value="${member.visitcnt }" >
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>
 						</div>
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl" readonly="readonly"
-								placeholder="플랜 " name="pricing" value="플랜 : ">
+								placeholder="플랜 " name="pricings" value="">			
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>
 						</div>
+						<input type="hidden" name="pricing" value="${member.pricing }" >
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="email" class="form-control form-control-xl"

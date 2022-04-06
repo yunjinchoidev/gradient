@@ -10,7 +10,14 @@
 </head>
 
 
-
+<style>
+#moveBtn a {
+	width: 135px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
@@ -109,7 +116,47 @@ $(document).ready(function(){
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
-					<%@include file="../projectHome/sort.jsp"%>
+					
+	<div class="buttons" id="moveBtn" style="padding: 20px;">
+		<a href="/project5/dashBoard.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">대시보드</a> 
+			<a
+			href="/project5/projectHome.do?projectkey=${project.projectkey }" class="btn btn-dark"
+			 >프로젝트
+			홈</a> 
+			<a href="/project5/kanbanMain.do?projectkey=${project.projectkey }"
+			class="btn btn-danger" >칸반보드</a> <a
+			href="/project5/ganttMain.do?projectkey=${project.projectkey }"
+			class="btn btn-warning" >간트차트</a> <a
+			href="/project5/calendar.do?projectkey=${project.projectkey }"
+			class="btn btn-success" >캘린더</a> <a
+			href="/project5/cost.do?projectkey=${project.projectkey }"
+			class="btn btn-primary">예산 관리</a> <a
+			href="/project5/qualityList.do?projectkey=${project.projectkey }"
+			class="btn btn-dark">품질 관리</a> <a
+			href="/project5/attendanceMain.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">팀 관리</a> <a
+			href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
+			class="btn btn-danger">회의록</a> <a
+			href="/project5/chatting.do?projectkey=${project.projectkey }"
+			class="btn btn-warning">채팅</a> <a
+			href="/project5/output.do?projectkey=${project.projectkey }"
+			class="btn btn-success">산출물 관리</a> <a
+			href="/project5/risk.do?projectkey=${project.projectkey }"
+			class="btn btn-primary">리스크 관리</a> <a
+			href="/project5/procuSituationMain.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">조달 관리</a>
+	</div>
+	<hr>
+					
+					
+					
+					
+					
+					
+					
+					
+					
 					<!--  
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<span style="font-size: 40px; font-weight: bolder; color: red;">[${project.name }]
@@ -254,8 +301,6 @@ $(document).ready(function(){
 											<script>
 											$(document).ready(function(){
 												var i=0;
-												
-												
 												setInterval(function() {
 													i++;
 														if(i%2==0){
@@ -272,9 +317,9 @@ $(document).ready(function(){
 								</div>
 							</div>
 						</div>
-						
-						
-						
+
+
+
 						<div class="col-6 col-lg-3 col-md-6 " id="openbox1">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -284,15 +329,17 @@ $(document).ready(function(){
 												<i class="iconly-boldBookmark"></i>
 											</div>
 										</div>
-										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">개방1</h6>
-											<h6 class="font-extrabold mb-0">개방1</h6>
+										<div class="col-md-8" style="cursor: pointer;"
+										onclick='window.open("/project5/memoList.do", 
+												"PopupWin","width=800,height=800");'>
+											<h6 class="text-muted font-semibold">메모장 열기</h6>
+											<h6 class="font-extrabold mb-0">클릭시 오픈</h6>
 										</div>
 									</div>
 								</div>
 							</div>
 						</div>
-						<div class="col-6 col-lg-3 col-md-6"  id="openbox2">
+						<div class="col-6 col-lg-3 col-md-6" id="openbox2">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
 									<div class="row">
@@ -309,7 +356,7 @@ $(document).ready(function(){
 								</div>
 							</div>
 						</div>
-						<div class="col-6 col-lg-3 col-md-6"  id="openbox3">
+						<div class="col-6 col-lg-3 col-md-6" id="openbox3">
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
 									<div class="row">
@@ -355,130 +402,10 @@ $(document).ready(function(){
 
 					<div class="row">
 						<div class="col-12">
-							<!--  메모장 -->
-							<div class="card">
-								<div class="card-header">
-									<h4>
-										[<span style="color: red">${member.name } </span>]님 만을 위한 메모장
-									</h4>
-								</div>
-								<div class="card-body">
-									<div
-										class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-										<div class="dataTable-top">
-											<div class="dataTable-dropdown">
-												<select class="dataTable-selector form-select"><option
-														value="5">5</option>
-													<option value="10" selected="">10</option>
-													<option value="15">15</option>
-													<option value="20">20</option>
-													<option value="25">25</option></select><label>entries per
-													page</label>
-											</div>
-											<div class="dataTable-search">
-												<input class="dataTable-input" placeholder="Search..."
-													type="text"> <a class="btn btn-danger"
-													style="text-align: right" data-bs-toggle="modal"
-													data-bs-target="#inlineForm">메모 쓰기</a>
-											</div>
-										</div>
+							
 
 
-										<div class="dataTable-container">
-											<table class="table table-striped dataTable-table"
-												id="table1">
-												<thead>
-													<tr>
-														<th data-sortable="" style="width: 12.0176%;"><a
-															href="#" class="dataTable-sorter">메모 번호</a></th>
-														<th data-sortable="" style="width: 18.9989%;"><a
-															href="#" class="dataTable-sorter">메모 명</a></th>
-														<th data-sortable="" style="width: 42.0816%;"><a
-															href="#" class="dataTable-sorter">메모내용</a></th>
-														<th data-sortable="" style="width: 16.3175%;"><a
-															href="#" class="dataTable-sorter">작성일</a></th>
-														<th data-sortable="" style="width: 10.8049%;"><a
-															href="#" class="dataTable-sorter">중요도</a></th>
-													</tr>
-												</thead>
-
-												<tbody>
-													<c:forEach var="list" items="${memoList}">
-														<tr>
-															<td>${list.memokey}</td>
-															<td style="cursor: pointer;" id="delBtn"
-																onclick="location.href='location.href='/project5/memoDelete.do?memokey=${list.memokey}'">${list.title }
-																<span class="badge bg-danger">삭제</span>
-															</td>
-															<td>${list.contents }</td>
-															<td><fmt:formatDate value="${list.writedate }" /></td>
-															<td style="cursor: pointer;"><c:if
-																	test="${list.importance eq '하'}">
-																	<span class="badge bg-primary importance22">하</span>
-																</c:if> <c:if test="${list.importance eq '중'}">
-																	<span class="badge bg-secondary importance22">중</span>
-																</c:if> <c:if test="${list.importance eq '상'}">
-																	<span class="badge bg-danger importance22">상</span>
-																</c:if></td>
-														</tr>
-													</c:forEach>
-												</tbody>
-											</table>
-										</div>
-
-										<script>
-										$(document).ready(function(){
-											$("#delBtn").click(function(){
-												confirm("정말 삭제 하시겠습니까?")
-											})
-											 var a=0;
 											
-											 setInterval(function() {
-												 a++;
-													if(a%2==0){
-														$(".importance22").css("display","none");
-													}else{
-														$(".importance22").css("display","");
-													}
-											}, 1000);
-											
-										})
-										
-										
-										</script>
-
-
-
-
-										<div class="dataTable-bottom">
-											<div class="dataTable-info">Showing 1 to 10 of 26
-												entries</div>
-											<ul
-												class="pagination pagination-primary float-end dataTable-pagination">
-												<li class="page-item pager"><a href="#"
-													class="page-link" data-page="1">‹</a></li>
-												<li class="page-item active"><a href="#"
-													class="page-link" data-page="1">1</a></li>
-												<li class="page-item"><a href="#" class="page-link"
-													data-page="2">2</a></li>
-												<li class="page-item"><a href="#" class="page-link"
-													data-page="3">3</a></li>
-												<li class="page-item pager"><a href="#"
-													class="page-link" data-page="2">›</a></li>
-											</ul>
-										</div>
-									</div>
-								</div>
-							</div>
-
-
-
-
-
-
-
-
-
 
 							<div class="card">
 								<div class="card-header">
@@ -667,47 +594,40 @@ $(document).ready(function(){
 							<h4>프로젝트 참여율 분석</h4>
 						</div>
 						<div class="card-body">
-							   <div id="calendar_basic" style="width: 1000px; height: 250px; margin: 0 auto;"></div>
+							<div id="calendar_basic"
+								style="width: 1000px; height: 250px; margin: 0 auto;"></div>
 						</div>
 					</div>
-						 <script type="text/javascript">
-						 
+					<script type="text/javascript">
 						 $.ajax({
 							 url : '/project5/TotalOutputCntByDayList.do',
 							 dataType:'json',
 							 success:function(result){
-								 console.log("하루하루작업량 업로드 성공")
+								 console.log("하루 하루작업량 업로드 성공")
 								 console.log(result)
 								 console.log(result.TotalOutputCntByDayList)
 								 console.log(result.TotalOutputCntByDayList[0].writedate)
 								 console.log(result.TotalOutputCntByDayList[0].count)
-								 
 								 for(var i=0; i<result.TotalOutputCntByDayList.length; i++){
 									 commitdata.push ([
 										 new Date(result.TotalOutputCntByDayList[i].writedate.substr(0,4),
 								        		  result.TotalOutputCntByDayList[i].writedate.substr(4,2), 
-								        		  result.TotalOutputCntByDayList[i].writedate.substr(6,2)), result.TotalOutputCntByDayList[i].count
+								        		  result.TotalOutputCntByDayList[i].writedate.substr(6,2)),
+								        		  result.TotalOutputCntByDayList[i].count
 									 ]);
 									 console.log(i);
 								 }
-								 
 							 }
 						 })
-						 
 							var commitdata=[];
-						 
-						 
 						      google.charts.load("current", {packages:["calendar"]});
 						      google.charts.setOnLoadCallback(drawChart);
-						
 						   function drawChart() {
 						       var dataTable = new google.visualization.DataTable();
 						       dataTable.addColumn({ type: 'date', id: 'Date' });
 						       dataTable.addColumn({ type: 'number', id: 'Won/Loss' });
 						       dataTable.addRows(commitdata);
-						
 						       var chart = new google.visualization.Calendar(document.getElementById('calendar_basic'));
-						
 						       var options = {
 						         title: "일일 프로젝트 참여 분석",
 						         height: 400,
@@ -728,21 +648,8 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 					<div class="row">
-						<div class="col-12 col-xl-8">
+						<div class="col-12 col-xl-12">
 							<div class="card">
 								<div class="card-header">
 									<h4></h4>
@@ -751,57 +658,6 @@ $(document).ready(function(){
 							</div>
 						</div>
 
-						<div class="col-12 col-xl-4">
-							<div class="card">
-								<div class="card-header">
-									<h4></h4>
-								</div>
-								<div class="card-body">
-									<div class="table-responsive">
-										<table class="table table-hover table-lg">
-											<thead>
-												<tr>
-													<th></th>
-													<th></th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr>
-													<td class="col-3">
-														<div class="d-flex align-items-center">
-															<div class="avatar avatar-md">
-																<!-- 
-																<img
-																	src="/project5/resources/dist/assets/images/faces/5.jpg"> -->
-															</div>
-															<p class="font-bold ms-3 mb-0"></p>
-														</div>
-													</td>
-													<td class="col-auto">
-														<p class=" mb-0"></p>
-													</td>
-												</tr>
-												<tr>
-													<td class="col-3">
-														<div class="d-flex align-items-center">
-															<div class="avatar avatar-md">
-																<!-- 
-																<img
-																	src="/project5/resources/dist/assets/images/faces/2.jpg"> -->
-															</div>
-															<p class="font-bold ms-3 mb-0"></p>
-														</div>
-													</td>
-													<td class="col-auto">
-														<p class=" mb-0"></p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-									</div>
-								</div>
-							</div>
-						</div>
 					</div>
 
 
@@ -902,7 +758,6 @@ $(document).ready(function(){
 					</div>
 					
 						<script type="text/javascript">
-								
 							  var no = parseInt("${project.projectkey}");
 							  var data = {no : no};
 							  console.log("no " +no);
@@ -925,7 +780,6 @@ $(document).ready(function(){
 								          ['사무용품',  parseInt("${project.take}"),       result.get[2].costex ],
 								          ['기타',  parseInt("${project.take}"),      result.get[3].costex ]
 									  ];
-									  
 								  },
 								  error:function(result){
 									  console.log("예산 데이터 받아오기 실패")
@@ -1077,7 +931,7 @@ $(document).ready(function(){
 											cntList[2] = result.teamCntByProject2
 										},
 										error : function(result){
-											alert("실패")
+											alert("로젝트 조직 분석 데이터 불러오기 실패")
 										}
 								 	})
 								 console.log("cntList::::::::::::::::::::::::::::::"+cntList)
@@ -1109,51 +963,73 @@ $(document).ready(function(){
 
 					<div class="card">
 						<div class="card-header">
-							<h4>근태 분석</h4>
+							<h4>산출물 평가 점수 분석</h4>
 						</div>
 						<div class="card-body">
-							  <div id="chart_div33" style="height: 500px;"></div>
+						<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+       <select id="format-select">
+      <option value="">none</option>
+      <option value="decimal" selected>decimal</option>
+      <option value="scientific">scientific</option>
+      <option value="percent">percent</option>
+      <option value="currency">currency</option>
+      <option value="short">short</option>
+      <option value="long">long</option>
+    </select>
+    <div id="number_format_chart">
 						</div>
 					</div>
 					
 					<script>
-					google.charts.load('current', {packages: ['corechart', 'line']});
-					google.charts.setOnLoadCallback(drawBasic);
+					
+					
+					$.ajax({
+						url : '/project5/outputEvaluationDayByDay.do',
+						type:'POST',
+						dataType:'json',
+						success:function(result){
+							console.log("'/project5/outputEvaluationDayByDay.do")
+							console.log(result.list)
+							console.log(result.list.length)
+							console.log(result.list[0].writedate)
+							console.log(result.list[0].evaluation)
+							data4 =[
+					              [result.list[0].writedate, result.list[0].evaluation],
+					              [result.list[1].writedate,  result.list[1].evaluation],
+					              [result.list[2].writedate,  result.list[2].evaluation]
+					            ]
+						},
+						error:function(result){
+							alert("실패")
+						}
+					})
+					var data4;
+					google.charts.load('current', {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawStuff);
 
-					function drawBasic() {
+			        function drawStuff() {
+			            var data = new google.visualization.DataTable();
+			            data.addColumn('string', 'Country');
+			            data.addColumn('number', 'GDP');
+			            data.addRows(data4);
 
-					      var data = new google.visualization.DataTable();
-					      data.addColumn('number', 'X');
-					      data.addColumn('number', 'Dogs');
+			           var options = {
+			             title: '산출물 평가 점수',
+			             width: 500,
+			             height: 300,
+			             legend: 'none',
+			             bar: {groupWidth: '95%'},
+			             vAxis: { gridlines: { count: 4 } }
+			           };
 
-					      data.addRows([
-					        [0, 0],   [1, 10],  [2, 23],  [3, 17],  [4, 18],  [5, 9],
-					        [6, 11],  [7, 27],  [8, 33],  [9, 40],  [10, 32], [11, 35],
-					        [12, 30], [13, 40], [14, 42], [15, 47], [16, 44], [17, 48],
-					        [18, 52], [19, 54], [20, 42], [21, 55], [22, 56], [23, 57],
-					        [24, 60], [25, 50], [26, 52], [27, 51], [28, 49], [29, 53],
-					        [30, 55], [31, 60], [32, 61], [33, 59], [34, 62], [35, 65],
-					        [36, 62], [37, 58], [38, 55], [39, 61], [40, 64], [41, 65],
-					        [42, 63], [43, 66], [44, 67], [45, 69], [46, 69], [47, 70],
-					        [48, 72], [49, 68], [50, 66], [51, 65], [52, 67], [53, 70],
-					        [54, 71], [55, 72], [56, 73], [57, 75], [58, 70], [59, 68],
-					        [60, 64], [61, 60], [62, 65], [63, 67], [64, 68], [65, 69],
-					        [66, 70], [67, 72], [68, 75], [69, 80]
-					      ]);
+			           var chart = new google.visualization.ColumnChart(document.getElementById('number_format_chart'));
+			           chart.draw(data, options);
 
-					      var options = {
-					        hAxis: {
-					          title: 'Time'
-					        },
-					        vAxis: {
-					          title: 'Popularity'
-					        }
-					      };
-
-					      var chart = new google.visualization.LineChart(document.getElementById('chart_div33'));
-
-					      chart.draw(data, options);
-					    }
+			           document.getElementById('format-select').onchange = function() {
+			             options['vAxis']['format'] = this.value;
+			             chart.draw(data, options);
+			           };
+			        };
 					</script>
 
 

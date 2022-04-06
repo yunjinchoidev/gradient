@@ -22,20 +22,30 @@ public class RiskController {
 	ProjectService service2;
 	
 	//리스크 메인
-	
 	@RequestMapping("/risk.do")
 	public String riskFrm(RiskSch sch, Model d,
-						  @RequestParam(name="sch",required=false) String schS) {
+						  @RequestParam(name="sch",required=false) String schS,
+						  @RequestParam(name="projectkey",required=false) String projectkey) {
 		d.addAttribute("pjList", service2.list());
-		//리스크 게시판 목록
-		d.addAttribute("risklist",service.riskboardlist(sch));
+		
+		int prjkey = Integer.parseInt(projectkey);
+		
+		
+		//리스크 게시판 목록	
+		d.addAttribute("boardprjkey",projectkey);
+		
+		if(projectkey != null) {
+			d.addAttribute("risklist",service.riskboardprlist(sch));
+		} else {
+			d.addAttribute("risklist",service.riskboardlist(sch));
+		}
+		
 		if(schS!=null && schS!="") {
 			d.addAttribute("risklist",service.schRiskList(sch));
 		}	
-		
+			
 		//리스크 등록 - 프로젝트 목록
-		d.addAttribute("prjlist",service.selectprjlist());
-
+		d.addAttribute("prjlist",service.selectprjlist(prjkey));
 		return "WEB-INF\\views\\risk\\list.jsp";
 	}
 
@@ -54,9 +64,11 @@ public class RiskController {
 	
 	//리스크 등록
 	@RequestMapping("/insertrisk.do")
-	public String riskinsert(RiskVO ins, Model d) {
+	public String riskinsert(RiskVO ins, Model d,
+							@RequestParam(name="selprojectkey",required=false) int projectkey) {
 		d.addAttribute("msg","등록되었습니다");
 		service.insertRisk(ins);
+		d.addAttribute("projectkey",projectkey);
 		return "WEB-INF\\views\\risk\\list.jsp";
 	}
 	
@@ -73,14 +85,15 @@ public class RiskController {
 	public String riskuptForm(int riskkey, Model d) {
 		d.addAttribute("rdlist",service.riskDetail(riskkey));
 		//리스크 등록 - 프로젝트 목록
-		d.addAttribute("prjlist",service.selectprjlist());
+		d.addAttribute("prjlist",service.selectprjalllist());
 		return "WEB-INF\\views\\risk\\uptdetail.jsp";
 	}
 
 	//리스크 수정
 	@RequestMapping("/uptrisk.do")
-	public String riskupt(RiskVO upt, int riskkey, Model d) {
+	public String riskupt(RiskVO upt, int riskkey, Model d, int projectkey) {
 		d.addAttribute("msg","수정되었습니다");
+		d.addAttribute("prjkey",projectkey);
 		service.uptRisk(upt);
 		return "WEB-INF\\views\\risk\\uptdetail.jsp";
 	}

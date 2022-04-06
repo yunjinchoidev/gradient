@@ -45,33 +45,44 @@ $(document).ready(function() {
 	var proc = "${proc}";
 	if(proc!=""){
 		alert(proc);
+		if(proc=="배정되었습니다!")
 		location.href="${path}/teamlist.do";
 	}
 	$("#regBtn").click(function(){
-		if(confirm("등록하시겠습니까")){
+		if(confirm("배정하시겠습니까?")){
 			$("#frm02").submit();
 		}
 	});
-	function regFun(){
-		$("#exampleModalLongTitle").text("팀원 등록");
-		$("#frm02")[0].reset(); // 초기화 처리.
-		$("#regBtn").show();$("#uptBtn").hide();$("#delBtn").hide();		
+
+$("#uptBtn").click(function(){
+	if(confirm("수정하시겠습니까?")){
+		$("#frm02").attr("action","${path}/updateTeam.do");
+		$("#frm02").submit();
 	}
-	function detail(name, auth, email, dname){
-		console.log(name);
-		console.log(auth);
-		console.log(email);
-		console.log(dname);
-		// 타이틀 변경
-		$("#exampleModalLongTitle").text("부서정보(수정/삭제)");
-		// 버튼 활성화 비활성화 처리
-		$("#regBtn").hide();$("#uptBtn").show();$("#delBtn").show();		
-		// 각각의 form에 데이터 할당.
-		$("#frm02 [name=name]").val(name);
-		$("#frm02 [name=auth]").val(auth);
-		$("#frm02 [name=email]").val(email);
-		$("#frm02 [name=deptno]").val(dname);
-	}	
+});		
+});
+function regFun(){
+$("#frm02")[0].reset(); // 초기화 처리.
+$("#regBtn").show();$("#uptBtn").hide();$("#delBtn").hide();		
+}
+function detail(name, auth, email, dname, projectname, status){
+console.log(name);
+console.log(auth);
+console.log(email);
+console.log(dname);
+console.log(projectname);
+console.log(status);
+	
+// 각각의 form에 데이터 할당.
+$("#frm02 [name=name]").val(name);
+$("#frm02 [name=auth]").val(auth);
+$("#frm02 [name=email]").val(email);
+$("#frm02 [name=dname]").val(dname);
+$("#frm02 [name=projectname]").val(projectname);
+$("#frm02 [name=status]").val(status);
+}
+
+	
 </script>
 </head>
 
@@ -94,9 +105,10 @@ $(document).ready(function() {
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>팀 관리</h3>
 
-						<a href="/project5/insertTeam.do" class="badge bg-light-secondary">팀
-							할당</a> <a href="/project5/Allocation.do"
-							class="badge bg-light-secondary">프로젝트 할당</a> <a
+						<a href="/project5/insertTeam.do" class="badge bg-light-secondary"
+							data-bs-toggle="modal" data-bs-target="#regModal">팀 할당</a> <a
+							href="/project5/Allocation.do" class="badge bg-light-secondary">프로젝트
+							할당</a> <a
 							href="/project5/output.do?projectkey=${project.projectkey }"
 							class="badge bg-light-secondary">휴가 관리</a> <a
 							href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
@@ -130,6 +142,7 @@ $(document).ready(function() {
 									<div class="dataTable-search">
 										<input type="text" id="schFrm" name="sch"
 											class="dataTable-input" placeholder="Search..." type="text">
+
 									</div>
 								</div>
 							</form>
@@ -141,10 +154,14 @@ $(document).ready(function() {
 												class="dataTable-sorter">이름</a></th>
 											<th data-sortable="" style="width: 10%;"><a href="#"
 												class="dataTable-sorter">직급</a></th>
-											<th data-sortable="" style="width: 20%;"><a href="#"
-												class="dataTable-sorter">이메일</a></th>
 											<th data-sortable="" style="width: 10%;"><a href="#"
 												class="dataTable-sorter">부서명</a></th>
+											<th data-sortable="" style="width: 25%;"><a href="#"
+												class="dataTable-sorter">이메일</a></th>
+											<th data-sortable="" style="width: 25%;"><a href="#"
+												class="dataTable-sorter">프로젝트명</a></th>
+											<th data-sortable="" style="width: 25%;"><a href="#"
+												class="dataTable-sorter">프로젝트 배정상태</a></th>
 										</tr>
 									</thead>
 
@@ -152,66 +169,89 @@ $(document).ready(function() {
 
 										<c:forEach var="tlist" items="${tlist}">
 											<tr
-												onclick="detail(${tlist.name},'${tlist.auth}','${tlist.email}','${tlist.dname}')"
+												onclick="detail(${tlist.name},'${tlist.auth}','${tlist.dname}','${tlist.email}',
+												'${tlist.projectname},'${tlist.status}')"
 												data-toggle="modal" data-target="#exampleModalCenter">
 												<td>${tlist.name}</td>
 												<td>${tlist.auth}</td>
-												<td>${tlist.email}</td>
 												<td>${tlist.dname}</td>
+												<td>${tlist.email}</td>
+												<td>${tlist.projectname}</td>
+												<td>${tlist.status}</td>
 											</tr>
 										</c:forEach>
 									</tbody>
 								</table>
 
 							</div>
-							<div class="modal fade" id="exampleModalCenter" tabindex="-1"
-								role="dialog" aria-labelledby="exampleModalCenterTitle"
-								aria-hidden="true">
+							<!--  모달창  -->
+							<div class="modal fade" id="regModal" tabindex="-1" role="dialog"
+								aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 								<div class="modal-dialog modal-dialog-centered" role="document">
 									<div class="modal-content">
 										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLongTitle">팀원추가</h5>
-											<button type="button" class="close" data-dismiss="modal"
+											<h5 class="modal-title" id="exampleModalLongTitle">팀원 배정</h5>
+											<button type="button" class="reg" data-dismiss="modal"
 												aria-label="Close">
-												<span aria-hidden="true">&times;</span>
+												<i data-feather="x"></i>
 											</button>
 										</div>
-										<div class="modal-body">
-											<form id="frm02" class="form" method="post"
-												action="${path}/insertTeam.do">
 
+
+
+										<div class="modal-body">
+											<form id="frm02" class="form" method="get"
+												action="${path}/insertTeam.do">
 												<div class="row">
-													<div class="col">
-														<input type="text" class="form-control"
-															placeholder="이름 입력" name="name">
+													<div class="projectselect">
+														프로젝트명 <select class="form-select"
+															style="text-align: center;" name="projectkey">
+															<c:forEach var="projectlist" items="${prjList}">
+																<option value="${projectlist.projectkey}">${projectlist.projectname}</option>
+															</c:forEach>
+														</select>
 													</div>
-												</div>
-												<div class="row">
-													<div class="col">
-														<input type="text" class="form-control"
-															placeholder="직급 입력" name="auth">
+													<div class="row">
+														<div class="dnameselect">
+															회원정보 <select class="form-select"
+																style="text-align: center;" name="memberkey">
+																<c:forEach var="m" items="${MemList}">
+																	<option value="${m.memberkey}">${m.name}</option>
+																</c:forEach>
+															</select>
+														</div>
 													</div>
-												</div>
-												<div class="row">
-													<div class="col">
-														<input type="text" class="form-control"
-															placeholder="이메일 입력" name="email">
+													<div class="auth">
+														직급<select class="form-select" name="auth">
+															<option value="developer">developer</option>
+															<option value="pm">pm</option>
+															<option value="ceo">ceo</option>
+														</select>
 													</div>
-												</div>
-												<div class="row">
-													<div class="col">
-														<input type="text" class="form-control"
-															placeholder="부서 번호 입력" name="deptno">
+													<div class="row">
+														<div class="dnameselect">
+															부서정보 <select class="form-select"
+																style="text-align: center;" name="dpt">
+																<c:forEach var="dpt" items="${dptList}">
+																	<option value="${dpt.deptno}">${dpt.dname}</option>
+																</c:forEach>
+															</select>
+														</div>
+													</div>
+													<div class="email">
+														<label>이메일</label> <input type="email"
+															class="form-control" id="email" name="email"
+															placeholder="이메일을 입력해주세요." />
 													</div>
 												</div>
 											</form>
 										</div>
 										<div class="modal-footer">
-											<button type="button" class="btn btn-secondary"
-												data-dismiss="modal">Close</button>
-											<button type="submit" class="btn btn-primary" id="regBtn">팀원등록</button>
-											<button type="button" class="btn btn-info" id="uptBtn">팀원수정</button>
-											<button type="button" class="btn btn-danger" id="delBtn">팀원삭제</button>
+											<button type="button" class="btn btn-primary"
+												data-bs-dismiss="modal" data-bs-target="#regModal"
+												id="regBtn">배정</button>
+											<button type="button" class="btn btn-info" id="uptBtn">수정</button>
+											<button type="button" class="btn btn-danger" id="delBtn">취소</button>
 										</div>
 									</div>
 								</div>

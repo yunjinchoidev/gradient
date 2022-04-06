@@ -16,14 +16,6 @@ public class NoticeAttachVO {
 
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
 	public NoticeAttachVO() {
 		super();
 		// TODO Auto-generated constructor stub

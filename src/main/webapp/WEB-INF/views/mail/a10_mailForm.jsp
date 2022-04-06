@@ -31,10 +31,22 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
+		// 메일 성공여부 확인장치
 		var msg = "${msg}";
 		if(msg!=""){
 			alert(msg);
 		}
+		
+		
+		$("#sendMailBtn").click(function(e) {
+			e.preventDefault()
+			confirm("메일을 발송하시겠습니까?")
+			$("form").submit()
+		})
+		
+		
+		
+		
 		
 		
 	});
@@ -56,55 +68,76 @@
 <%@ include file="../common/header.jsp"%>
 
 
+  	<div id="main">
+		<div class="compose-new-mail-sidebar ps" style="margin: 0 auto; width: 60%">
+			<div class="card shadow-none quill-wrapper p-0"  style="margin: 0 auto;">
+				<div class="card-header">
+					<h3 class="card-title" id="emailCompose">새 이메일</h3>
+					<button type="button" class="close close-icon">
+						<i class="bx bx-x"></i>
+					</button>
+				</div>
+				
+				
+					<form method="post" action="/project5/mailsend.do">
+					<div class="card-content">
+						<div class="card-body pt-0">
+							<br>
+							<div class="form-group pb-50">
+								<label for="emailfrom">발신자</label> <input type="text"
+									id="emailfrom" class="form-control" name="sender" value="qmwmemrmaa@gmail.com" 
+									placeholder="발신자 이메일을 입력하세요" readonly>
+							</div>
+							<br>
+							<div class="form-label-group">
+								<label for="emailTo">수신자</label> 
+								<input type="email" name="reciever"
+									id="emailTo" class="form-control" placeholder="To"  style="color: red"
+									>
+							</div>
+							<br>
+							<div class="form-label-group">
+								<label for="emailSubject">제목</label> <input type="text"  name="title" 
+									id="emailSubject" class="form-control" placeholder="제목"
+								>
+							</div>
+							<br>
+							<div class="form-label-group" >
+								<label for="emailSubject">내용</label>
+								<textarea class="form-control" name="content"
+									placeholder="content" rows="4"  ></textarea>
+							</div>
 
-<div id="main">
-<div class="jumbotron text-center">
-  <h2 data-toggle="modal" data-target="#exampleModalCenter">메일발송</h2>
-</div>
+
+							<div class="form-group mt-2">
+								<div class="custom-file">
+									<input type="file" class="custom-file-input" id="emailAttach">
+									<label class="custom-file-label" for="emailAttach">Attach
+										File</label>
+								</div>
+							</div>
+
+						</div>
+					</div>
+								<br>
 
 
-
-<div class="container">
-	<form method="post" action="/project5/mailsend.do">
-	
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend ">
-			<span class="input-group-text ">수신자</span>
+					<div class="card-footer" style="margin-top: 20px;">
+						<br>
+						<button type="submit" class="btn-send btn btn-danger" id="sendMailBtn">
+							 <span class="d-sm-inline d-none">보내기</span>
+						</button>
+						<button type="reset"
+							class="btn btn-light-secondary cancel-btn mr-1">
+							<i class="bx bx-x me-3"></i> <span class="d-sm-inline d-none">취소</span>
+						</button>
+					</div>
+						</form>	
+				
+				<!-- form start end-->
+			</div>
 		</div>
-		<input name="reciever" class="form-control" placeholder="수신자 입력하세요" values="안녕하세요? Gradient입니다."/>	
-	</div>	
-	
-	
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend ">
-			<span class="input-group-text"  >발신자</span>
-		</div>
-		<input name="sender" class="form-control"  reaonly
-				 value="qmwmemrmaa@gmail.com"  placeholder="발신자 입력하세요" />	
-	</div>	
-	
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend ">
-			<span class="input-group-text ">제목</span>
-		</div>
-		<input name="title" type="text"  placeholder="제목입력하세요" class="form-control" />
-	</div>		
-	
-	<div class="input-group mb-3">	
-		<div class="input-group-prepend ">
-			<span class="input-group-text ">내용</span>
-		</div>
-		<textarea cols="10" rows="10" name="content" class="form-control" placeholder="내용입력하세요"></textarea>	
-	</div>	
-	
-	
-	<div style="text-align:right;">
-		<input type="submit" class="btn btn-success" value="메일발송" id="sendMailBtn"/>
-	</div>	
-	</form>	
-    
-    </div>
-    
+	</div>  
     
     
     

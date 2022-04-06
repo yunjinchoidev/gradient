@@ -19,9 +19,10 @@
 					<div class="col-12 col-md-6 order-md-1 order-last">
 					<h1>
 						어드민(연결 계정:<sec:authentication property="name" />	) 메인 화면입니다. <br />
+						admin/abcd<br />
 								 
 								<a href="<c:url value='/index'/>">[/index로가기]</a><br>
-								<a href="/project5/memberList.do">관리자 페이지[구글 어닐리틱스] 바로가기</a>
+								<a href="/project5/memberList.do">ADMIN 관리자 페이지 바로가기 /project5/memberList.do</a>
 					
 					</h1>
 					</div>

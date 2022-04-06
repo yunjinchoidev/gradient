@@ -27,6 +27,20 @@
 		</if>
 	</select>
 	
+	<!-- 프로젝트별 게시물 조회 -->
+	<select id="totprjCnt" resultType="int" parameterType="riskSch">
+		SELECT COUNT(*)
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
+		TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name, p.PROJECTKEY AS PROJECTKEY
+		FROM RISK r , MEMBER m, PROJECT p  
+		WHERE r.MEMBERKEY = m.MEMBERKEY 
+		AND r.PROJECTKEY = p.PROJECTKEY
+		order by cnt asc )
+		where 1=1
+		AND PROJECTKEY = #{projectkey}
+	</select>
+	
 	<!-- 게시글 검색 -->
 	<select id="schRiskList" parameterType="riskSch" resultType="risk">
 	SELECT*
@@ -52,9 +66,15 @@
 	<select id="selectprjlist" resultType="risk" parameterType="string">
 		SELECT p.PROJECTKEY AS prjkey, p.NAME AS prjname
 		FROM PROJECT p
+		WHERE p.PROJECTKEY = #{projectkey}
 	</select>
 	
-	<!-- 리스크 리스트 조회 -->
+	<!-- 리스크 수정, 프로젝트 전체 조회 -->
+	<select id="selectprjalllist" resultType="risk" parameterType="string">
+		SELECT p.PROJECTKEY AS prjkey, p.NAME AS prjname
+		FROM PROJECT p
+	</select>
+	
 	<select id="riskboardlist" resultType="risk" parameterType="riskSch">
 		SELECT*
 		FROM (
@@ -63,6 +83,22 @@
 			FROM RISK r , MEMBER m, PROJECT p  
 			WHERE r.MEMBERKEY = m.MEMBERKEY 
 			AND r.PROJECTKEY = p.PROJECTKEY
+			order by cnt asc )
+		where cnt BETWEEN #{start} AND #{end}
+		order by cnt
+	</select>
+	
+	<!-- 리스크 프로젝트 별 리스트 조회 -->
+	<select id="riskboardprlist" resultType="risk" parameterType="riskSch">
+		SELECT*
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname,
+			TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
+			TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name
+			FROM RISK r , MEMBER m, PROJECT p  
+			WHERE r.MEMBERKEY = m.MEMBERKEY 
+			AND r.PROJECTKEY = p.PROJECTKEY
+			AND r.PROJECTKEY = #{projectkey}
 			order by cnt asc )
 		where cnt BETWEEN #{start} AND #{end}
 		order by cnt
@@ -107,7 +143,7 @@
 	<!-- 답글 등록 -->
 	<insert id="insertrecomm" parameterType="insrcomm">
 		INSERT INTO RISKCOMM VALUES
-		 ((SELECT NVL(MAX(RCOMMENTKEY)+1,1) FROM riskcomm),(SELECT memberkey FROM member WHERE id = #{Id}),
+		 ((SELECT NVL(MAX(RCOMMENTKEY)+1,1) FROM riskcomm),(SELECT memberkey FROM member WHERE id = #{id}),
 		 #{recommcontents},sysdate,#{riskkey},#{refno})
 	</insert>
 	

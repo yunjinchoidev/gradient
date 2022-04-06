@@ -62,8 +62,20 @@ $(document).ready(function(){
 	
 	$("#loginbtn").click(function(e){
 		e.preventDefault();
-		confirm("로그인 하시겠습니까?")
-		frmObj.submit();
+		if(confirm("로그인 하시겠습니까?")){
+			if($("input[name=id]").val()=="" || $("input[name=pass]").val()==""  ){
+				alert("정보를 입력하세요")
+				e.preventDefault();
+			}else{
+				frmObj.submit();
+			}
+		}else{
+			e.preventDefault();
+		}
+		
+		
+		
+		
 	});
 })
 
@@ -78,84 +90,134 @@ $(document).ready(function(){
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	
-	$(document).ready(function(){
-		
-
-	})
 	
 	
 </script>
 
 <body>
 
-<%@ include file="../chatBot/chatBot.jsp"%> 
  	<%@ include file="../common/header.jsp"%>
+ 	<%@ include file="../chatBot/chatBot.jsp"%>
 
 
 	<div id="auth" style="margin-left: 350px;" >
-		<div class="row h-100" style="width: 900px; ">
-			<div class="col-lg-5 col-12" style="width: 900px;">
-				<div id="auth-left" style="width: 900px;">
-						<h4>  	<spring:message code="multilang"/></h4>
-								 <select class="form-control" id="selectLan">
-					  	<option value=""><spring:message code="chlange"/></option>
-					  	<option value="korean"><spring:message code="korean"/></option>
-					  	<option value="english"><spring:message code="english"/></option>
-					  	<option value="japanese"><spring:message code="japanese"/></option>
-					  	<option value="german"><spring:message code="german"/></option>
-					  	<option value="french"><spring:message code="french"/></option>
-					  	<option value="chinese"><spring:message code="chinese"/></option>
-					  	<option value="spanish"><spring:message code="spanish"/></option>
-					  </select>
+		<div class="row h-100" style="width: 1000px; ">
+			<div class="col-lg-5 col-12" style="width: 1000px;">
+				<div id="auth-left" style="width: 1000px;">
+						<div style="margin-bottom: 40px;">
+						<h2 style="display: inline-block;">  <spring:message code="multilang"/></h2>
+						<select class="form-control" id="selectLan" style="width: 30%; display: inline-block;">
+						  	<option value=""><spring:message code="chlange"/></option>
+						  	<option value="korean" selected="selected"><spring:message code="korean"/></option>
+						  	<option value="english"><spring:message code="english"/></option>
+						  	<option value="japanese"><spring:message code="japanese"/></option>
+						  	<option value="chinese"><spring:message code="chinese"/></option>
+						  </select>
+						  </div>
+						  
+						  
+						  <div style="margin-bottom: 40px;">  
 					<h1 class="auth-title">
+					Gradient
+					<button class="btn btn-primary"  
+						onclick="location.href='/project5/user/loginform'"> 
+						<spring:message code="securityLogin"/>
+						</button>
 					</h1>
-			
-			
-					
-					
-					<p class="auth-subtitle mb-5">
-						pm : admin/7777
-						일반 : qq/qq
-					</p>
+					<h1 class="auth-title">
+					<spring:message code="login"/>
+					</h1>
+							</div>
+
+
+
 
 					<form action="/project5/login.do" method="post">
 						<div class="form-group position-relative has-icon-left mb-4">
-							<input type="text" class="form-control form-control-xl"
-								placeholder="id" name="id">
+							<input type="text" class="form-control form-control-xl" id="idform"
+								placeholder="<spring:message code="id"/>" name="id">
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
 							</div>
 						</div>
+						
 						<div class="form-group position-relative has-icon-left mb-4">
-							<input type="password" class="form-control form-control-xl"
-								placeholder="pass" name="pass">
+							<input type="password" class="form-control form-control-xl" id="pwform"
+								placeholder="<spring:message code="pwd"/>" name="pass">
 							<div class="form-control-icon">
 								<i class="bi bi-shield-lock"></i>
 							</div>
 						</div>
+
+						<div style="margin-top: -40px;">
+							<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5"
+								id="loginbtn" ><spring:message code="login"/>
+							</button>
+						</div>
+						<!-- 
 						<div class="form-check form-check-lg d-flex align-items-end">
 							<input class="form-check-input me-2" type="checkbox" value=""
 								id="flexCheckDefault"> <label
 								class="form-check-label text-gray-600" for="flexCheckDefault">
-								Keep me logged in </label>
-						</div>
+								Keep me logged in </label> 
+						</div>-->
 						
+					
 						
-						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" id="loginbtn">로그인</button>
 
 
 						<div >
-							<a href="javascript:kakaoLogin();"> <img
+							<a href="javascript:kakaoLogin();"
+							style="display: inline-block;"
+							> <img
 								src="/project5/resources/login/kakaoLogin.png" alt="카카오계정 로그인"
-								style="width:300px; height: 50px; margin-top: 10px; margin-left: 140px;" />
-							</a> <a href="javascript:void(0)"> <img
+								style="width:235px; height: 50px; margin-top: 10px; margin-left:10px;  display: inline-block;" />
+							</a> 
+							<a href="javascript:void(0)"
+							style="display: inline-block;"
+							> <img
 								src="/project5/resources/login/naverLogin.png" alt="네이버 로그인"
-								style="width:300px; height: 50px; margin-top: 10px; margin-left: 140px;" id="naverIdLogin_loginButton" />
-							</a> <a href="javascript:void(0)"> <img
+								style="width:235px; height: 50px; margin-top: 10px;  margin-left:10px; display: inline-block;" id="naverIdLogin_loginButton" />
+							</a>
+							<a href="javascript:void(0)"
+							style="display: inline-block;"
+							> <img
 								src="/project5/resources/login/googleLogin.png" alt="구글 로그인"
-								style="width:300px;  height: 50px; margin-top: 10px; margin-left: 140px;" id="GgCustomLogin" />
+								style="width:235px;  height: 50px; margin-top: 10px;  margin-left:10px; display: inline-block;" id="GgCustomLogin" />
 							</a>
 						</div>
+						
+					</form>
+					
+					<div class="text-center mt-5 text-lg fs-4">
+						<p class="text-gray-600">
+							<spring:message code="noAccout"/>
+							<a href="/project5/memberRegisterForm.do" class="font-bold">
+							<spring:message code="reg"/>
+							</a>
+						</p>
+						<p>
+							<a class="font-bold" href="/project5/memberFindForm.do">
+							<spring:message code="forget"/></a>
+						</p>
+					</div>
+				</div>
+			</div>
+			<!-- 
+			<div class="col-lg-7 d-none d-lg-block">
+				<div id="auth-right"></div>
+			</div>
+			 -->
+
+			 
+			 
+			 
+		</div>
+
+	</div>
+						
+						
+						
 						<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
     <script>
         window.Kakao.init('9b27ef068ae5af77a894af32a4f1ee80');
@@ -174,16 +236,10 @@ $(document).ready(function(){
                             console.log(kakao_account.profile.nickname)
                             console.log(kakao_account.email)
                             alert("접속합니다.")
-	                            // 이름/ 이메일
-	                            
-                         	var nameValue=kakao_account.profile.nickname;
-                    		var emailValue=kakao_account.email;
-                    		
+                         	var nameValue=kakao_account.profile.nickname; //이름
+                    		var emailValue=kakao_account.email; // 이메일
                     		var data = {name:nameValue,
                     						email:emailValue}
-                    		
-                    		
-                    		
                         	$.ajax({
                     			url:'/project5/insertMemberAjax.do',
                     			type:'POST',
@@ -247,29 +303,23 @@ window.addEventListener('load', function () {
 				naverLogin.reprompt();
 				return;
 			}
-            
-            
-        	var nameValue=naverLogin.user.name;
-    		var emailValue=naverLogin.user.email;
-    		
+        	var nameValue=naverLogin.user.name; // 이름
+    		var emailValue=naverLogin.user.email; // 이메일
     		var data = {name:nameValue,
     						email:emailValue}
-    		
-    		
-    		
-        	$.ajax({
-    			url:'/project5/insertMemberAjax.do',
-    			type:'POST',
-    			data : data,
-    			dataType:'json',
-    			success:function(result){
-    				alert("네이버 로그인 성공")
-    				location.href="/project5/main.do"
-    			},
-    			error:function(result){
-    				alert("네이버 로그인 실패")
-    			}
-    		})
+	        	$.ajax({
+	    			url:'/project5/insertMemberAjax.do',
+	    			type:'POST',
+	    			data : data,
+	    			dataType:'json',
+	    			success:function(result){
+	    				alert("네이버 로그인 성공")
+	    				//location.href="/project5/main.do"
+	    			},
+	    			error:function(result){
+	    				alert("네이버 로그인 실패")
+	    			}
+	    		})
             
             
             
@@ -319,45 +369,41 @@ function init() {
 	})
 }
 
-function onSignIn(googleUser) {
-	var access_token = googleUser.getAuthResponse().access_token
-	$.ajax({
-    	// people api를 이용하여 프로필 및 생년월일에 대한 선택동의후 가져온다.
-		url: 'https://people.googleapis.com/v1/people/me'
-        // key에 자신의 API 키를 넣습니다.
-		, data: {personFields:'birthdays', key:'AIzaSyBLU93r5-XQDjB-58ZU7LRiG1l_93AkYtU', 'access_token': access_token}
-		, method:'GET'
-	})
-	
-	
-	
-	.done(function(e){
-        //프로필을 가져온다.
-		var profile = googleUser.getBasicProfile();
-		console.log(profile)
-		console.log(profile.zv)
-		console.log(profile.sf)
-		var nameValue=profile.sf;
-		var emailValue=profile.zv;
-		
-		var data = {name:nameValue,
-						email:emailValue}
-		
-		$.ajax({
-			url:'/project5/insertMemberAjax.do',
-			type:'POST',
-			data : data,
-			dataType:'json',
-			success:function(result){
-				alert("구글 로그인 성공")
-				location.href="/project5/main.do"
-			},
-			error:function(result){
-				alert("구글 로그인 실패")
-			}
-		})
-		
-	})
+		function onSignIn(googleUser) {
+			var access_token = googleUser.getAuthResponse().access_token
+			$.ajax({
+				url: 'https://people.googleapis.com/v1/people/me'
+				, data: {personFields:'birthdays', key:'AIzaSyBLU93r5-XQDjB-58ZU7LRiG1l_93AkYtU', 'access_token': access_token}
+				, method:'GET'
+			})
+			
+			.done(function(e){
+		        //프로필을 가져온다.
+				var profile = googleUser.getBasicProfile();
+				console.log(profile)
+				console.log(profile.zv)
+				console.log(profile.sf)
+				var nameValue=profile.sf; // 이름
+				var emailValue=profile.zv; // 이메일
+				
+				var data = {name:nameValue,
+								email:emailValue}
+				
+				$.ajax({
+					url:'/project5/insertMemberAjax.do',
+					type:'POST',
+					data : data,
+					dataType:'json',
+					success:function(result){
+						alert("구글 로그인 성공")
+						location.href="/project5/main.do"
+					},
+					error:function(result){
+						alert("구글 로그인 실패")
+					}
+				})
+				
+			})
 	.fail(function(e){
 		console.log(e);
 	})
@@ -433,48 +479,6 @@ window.fbAsyncInit = function() {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-					</form>
-					
-					<div class="text-center mt-5 text-lg fs-4">
-						<p class="text-gray-600">
-							계정이 없습니까? <a href="/project5/memberRegisterForm.do" class="font-bold">회원가입
-							</a>
-						</p>
-						<p>
-							<a class="font-bold" href="/project5/memberFindForm.do">비밀번호가
-								생각나지 않습니까?</a>
-						</p>
-					</div>
-				</div>
-			</div>
-			<!-- 
-			<div class="col-lg-7 d-none d-lg-block">
-				<div id="auth-right"></div>
-			</div>
-			 -->
-
-			 
-			 
-			 
-		</div>
-
-	</div>
 </body>
 
 

@@ -94,7 +94,8 @@ $(document).ready(function(){
 						<br> 관리자 승인 후 이메일로 임시 비밀번호를 보내겠습니다.
 					</p>
 
-					<form action="/project5/memberPassFind.do" method="post">
+					<form action="/project5/memberPassFindApply.do" method="post">
+						<input type="hidden" name="status" value="3">
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"
 								placeholder="name" name="name">

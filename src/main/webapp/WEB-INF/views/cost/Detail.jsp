@@ -50,9 +50,15 @@ height:40%;
 <script>
 	$(document).ready(function(){
 		var msg = "${msg}";
+		var auth = "${member.auth}";
+		
 		if(msg != ""){
 			alert(msg);
 			location.href = "${path}/cost.do";
+		}
+		
+		if(auth != "admin"){
+			$("#confirmbtn").hide();
 		}
 		
 		

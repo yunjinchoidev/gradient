@@ -17,6 +17,7 @@ public class MemberVO {
 	private int status;
 	private int pricing;
 	private int visitcnt;
+	private int cnt;
 
 	private List<String> emailList;
 
@@ -30,6 +31,12 @@ public class MemberVO {
 	public MemberVO() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+
+	public MemberVO(int memberkey, int status) {
+		super();
+		this.memberkey = memberkey;
+		this.status = status;
 	}
 
 	public MemberVO(List<String> emailList) {
@@ -58,6 +65,29 @@ public class MemberVO {
 		this.email = email;
 		this.uploadFile = uploadFile;
 		this.fnames = fnames;
+	}
+
+	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
+			String email, int status, int pricing, int visitcnt, int cnt, List<String> emailList,
+			MultipartFile[] uploadFile, ArrayList<String> fnames, int fno, List<AuthVO> authList) {
+		super();
+		this.memberkey = memberkey;
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.auth = auth;
+		this.projectkey = projectkey;
+		this.deptno = deptno;
+		this.email = email;
+		this.status = status;
+		this.pricing = pricing;
+		this.visitcnt = visitcnt;
+		this.cnt = cnt;
+		this.emailList = emailList;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+		this.fno = fno;
+		this.authList = authList;
 	}
 
 	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
@@ -132,6 +162,38 @@ public class MemberVO {
 		this.fnames = fnames;
 		this.fno = fno;
 		this.authList = authList;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
+			String email, int status, int pricing, int visitcnt, int cnt) {
+		super();
+		this.memberkey = memberkey;
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.auth = auth;
+		this.projectkey = projectkey;
+		this.deptno = deptno;
+		this.email = email;
+		this.status = status;
+		this.pricing = pricing;
+		this.visitcnt = visitcnt;
+		this.cnt = cnt;
 	}
 
 	public MemberVO(int deptno) {
@@ -259,5 +321,12 @@ public class MemberVO {
 		this.visitcnt = visitcnt;
 	}
 
+	public int getCnt() {
+		return cnt;
+	}
+
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
+	}
 
 }

@@ -5,16 +5,20 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.JsonArray;
 
 import project5.cost.CostDetail;
 import project5.member.MemberVO;
+import project5.memo.MemoSch;
 import project5.memo.MemoService;
 import project5.output.OutputVO;
 import project5.project.ProjectService;
+import project5.project.ProjectVO;
 import project5.workSort.WorkSortService;
 
 @Controller
@@ -37,16 +41,38 @@ public class DashBoardController {
 	
 	
 	@RequestMapping("/dashBoard.do")
-	public String dashBoard(Model d, int projectkey,MemberVO vo, OutputVO vo2) {
+	public String dashBoard(Model d, int projectkey,MemberVO vo, OutputVO vo2, MemoSch sch) {
 		d.addAttribute("pjList", service.list());
 		d.addAttribute("project", service.get(projectkey));
-		d.addAttribute("memoList",service2.list());
+		d.addAttribute("memoList",service2.list(sch));
 		d.addAttribute("riskDashBoardList", service3.riskDashBoard());
 		d.addAttribute("calendarCountBelongTodayCnt", service3.calendarCountBelongTodayCnt()); // 오늘 껴있는 숫자 수
 		d.addAttribute("EmergencyCalendarTask", service3.EmergencyCalendarTask()); // 오늘 껴있는 숫자 수
 		d.addAttribute("outputCnt", service3.outputCnt(vo2)); // 오늘 껴있는 숫자 수
 		return "WEB-INF\\views\\dashBoard\\main.jsp";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	@PostMapping("/riskDashBoardData.do")
 	public String riskDashBoardData(Model d) {
@@ -117,6 +143,12 @@ public class DashBoardController {
 	}
 	
 	
+	
+	@RequestMapping("/outputEvaluationDayByDay.do")
+	public String outputEvaluationDayByDay(Model d) {
+		d.addAttribute("list", service3.outputEvaluationDayByDay());
+		return "pageJsonReport";
+	}
 	
 	
 	

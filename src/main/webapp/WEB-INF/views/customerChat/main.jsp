@@ -94,15 +94,26 @@ body{margin-top:20px;}
 	var theSrc;
 	var today=new Date(); 
 	
+	var roomkey;
+	var currentRoomkey;
+	
+	
+	
 	
 	function MessageListFunc(data){
 		console.log("MessageListFunc");
 		console.log(data);
-		var roomkey;
+		if (parseInt($(data).text().substr(1,3)) >= 100){
+			roomkey = parseInt($(data).text().substr(1,2));
+		}else if (parseInt($(data).text().substr(1,2)) >= 10){
+			roomkey = parseInt($(data).text().substr(1,2));
+		}else if (parseInt($(data).text().substr(1,1)) < 10){
+			roomkey = parseInt($(data).text().substr(1,1));
+		}
 		
-
-			roomkey = parseInt($(data).text().substr(0,1));
-		
+			
+			currentRoomkey = roomkey
+			alert("채팅방번호:"+roomkey)
 		var data ={roomkey:roomkey};
 		$.ajax({
 			url :'/project5/MessageListbyRoomkey.do',
@@ -110,48 +121,51 @@ body{margin-top:20px;}
 			data : data,
 			dataType:'json',
 			success:function(result){
-				console.log("success")
-				console.log(result)
-				console.log(result.MessageListbyRoomkey)
-				console.log(result.MessageListbyRoomkey.length)
-				console.log(result.MessageListbyRoomkey[0].messagekey)
-				console.log(result.MessageListbyRoomkey[1].memberkey)
-				console.log(result.MessageListbyRoomkey[1].likecnt)
-				
-				for(var i=0; i<result.MessageListbyRoomkey.length; i++){
-				
-					if(result.MessageListbyRoomkey[i].memberkey==2){
-						var str = "";
-						str += "<div class='chat-message-right pb-4' onclick='likeCntFun(this)'>"
-						str += "<div>"
-						str += "<img src='#' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40' id='likecntBtn2'>"
-						str += "<div class='text-muted small text-nowrap mt-2'><p style='color:red;'>["+result.MessageListbyRoomkey[i].messagekey+"]좋아요 :"+result.MessageListbyRoomkey[i].likecnt+" </p>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
-						str += "</div>"
-						str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
-						str += "<div class='font-weight-bold mb-1'>" + $("#id").val()+ "</div>"
-						str +=result.MessageListbyRoomkey[i].message
-						str += "</div>"
-						str += "</div>"
-						console.log(str);
-						wsocket.send("msg:" + str);
-
+					console.log("success")
+					if(result.MessageListbyRoomkey[0]==null){
+						alert("채팅 메시지가 없네요")
 					}else{
-						// 상담원
-						var str2 = "";
-						str2 += "<div class='chat-message-left pb-4'>"
-						str2 += "<div>"
-						str2 += "<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1' alt='Chris Wood' width='40' height='40'>"
-						str2 += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
-						str2 += "</div>"
-						str2 += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
-						str2 += "<div class='font-weight-bold mb-1'>상담원 A</div>"
-						str2 += "<br>안녕하세요?<br><br>" + $("#id").val() + "<br> 무엇을 도와드릴까요?"
-						str2 += "</div>"
-						str2 += "</div>"
-						wsocket.send("msg:" + str2);
-					}
-			}
-		}})
+					console.log(result.MessageListbyRoomkey.legth)
+					for(var i=0; i<result.MessageListbyRoomkey.length; i++){
+						if(result.MessageListbyRoomkey[i].memberkey==2){
+							var str = "";
+							str += "<div class='chat-message-right pb-4' onclick='likeCntFun(this)'>"
+							str += "<div>"
+							str += "<img src='#' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40' id='likecntBtn2'>"
+							str += "<div class='text-muted small text-nowrap mt-2'><p style='color:red;'>["+result.MessageListbyRoomkey[i].messagekey+"]좋아요 :"+result.MessageListbyRoomkey[i].likecnt+" </p>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
+							str += "</div>"
+							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
+							str += "<div class='font-weight-bold mb-1'>" + $("#id").val()+ "</div>"
+							str += result.MessageListbyRoomkey[i].message
+							str += "</div>"
+							str += "</div>"
+							console.log(str);
+							wsocket.send("msg:" + str);
+	
+						}else{
+							// 상담원
+							var str2 = "";
+							str2 += "<div class='chat-message-left pb-4'>"
+							str2 += "<div>"
+							str2 += "<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1' alt='Chris Wood' width='40' height='40'>"
+							str2 += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
+							str2 += "</div>"
+							str2 += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
+							str2 += "<div class='font-weight-bold mb-1'>상담원 A</div>"
+							str2 += "<br>안녕하세요?<br><br>" + $("#id").val() + "<br> 무엇을 도와드릴까요?"
+							str2 += "</div>"
+							str2 += "</div>"
+							wsocket.send("msg:" + str2);
+									}
+							}
+						}
+								
+					}	
+			})
+		
+		
+		
+		
 	}
 	
 	
@@ -159,6 +173,7 @@ body{margin-top:20px;}
 	
 	
 	function likeCntFun(data){
+		alert("좋아요를 누룹니다")
 		console.log("data"+data)
 		console.log("data : "+$(data).text())
 		var data2 = $(data).text()
@@ -177,10 +192,7 @@ body{margin-top:20px;}
 				alert("좋아요를 눌렀습니다.")
 			}
 		})
-		
-		
 	}
-	
 
 	
 	
@@ -188,6 +200,23 @@ body{margin-top:20px;}
 	
 	
 	$(document).ready(function(){
+		// 1:1 대화
+	
+		
+			var memberkey = "${memberk.memberkey}"
+			$("#personalChatRoom").click(function(){
+			confirm("1:1 대화를 하시겠습니까?")
+			location.href="/project5/invitationList.do?memberkey="+memberkey
+			})
+			
+			
+			$("#groupChatRoom").click(function(){
+			confirm("그룹 대화를 하시겠습니까?")
+			location.href="/project5/invitationList.do?memberkey="+memberkey
+			})
+		
+		
+		
 		// 화면 로딩 되자 마자 상담 목록을 모조리 불러온다
 		$.ajax({
 			url : '/project5/chatRoomList.do',
@@ -202,11 +231,11 @@ body{margin-top:20px;}
 				for(var i=0; i<result.chatRoomList.length; i++){
 					var str="";
 					str +="<a href='#' class='list-group-item list-group-item-action border-0 consult' onclick='MessageListFunc(this)' >"
-					str +=[result.chatRoomList[i].roomkey]+"&nbsp"+result.chatRoomList[i].createDateS+"<div class='badge bg-success float-right consult'></div>"
+					str +="["+result.chatRoomList[i].roomkey +"]번방 &nbsp : "+result.chatRoomList[i].createDateS+"일 생성<div class='badge bg-success float-right consult'></div>"
 					str +="<div class='badge bg-success float-right consult'></div>"
 					str +="<div class='d-flex align-items-start consult'>"
 					str +="<img src='https://bootdey.com/img/Content/avatar/avatar3.png' class='rounded-circle mr-1 consult' alt='Vanessa Tucker' width='40' height='40'>"
-					str +="<div class='flex-grow-1 ml-3 consult'>"+result.chatRoomList[i].name
+					str +="<div class='flex-grow-1 ml-3 consult'> 방 명 : "+result.chatRoomList[i].name
 					str +="<div class='small'><span class='fas fa-circle chat-online consult'></span> </div>"
 					str +="</div></div></a>"
 					consultChatList.append(str);
@@ -231,14 +260,13 @@ body{margin-top:20px;}
 		
 		
 		
-		
+						// 얼굴을 바꾸기 위해서
 						playAlert = setInterval(function() {
 							//console.log("10초마다 반복")
 							theSrc(myFaceData.fname)
 						}, 100);
 
 						console.log(today.toLocaleString());
-		
 		
 							var theSrc =  function showImg2(fname){
 							    var uploadUL = $(".myFace");
@@ -306,7 +334,6 @@ body{margin-top:20px;}
 						str +="<div class='small'><span class='fas fa-circle chat-online consult'></span> </div>"
 						str +="</div></div></a>"
 						consultChatList.append(str);
-						
 						$.ajax({
 							url : '/project5/createChat.do',
 							success : function(result){
@@ -373,13 +400,14 @@ body{margin-top:20px;}
 						//////////////////////////////////////////////////////////////////////////////
 						// 메시지 보내기
 						$("#msg").keyup(function() {
+							var roomkey2;
+							roomkey2 = currentRoomkey;
 							if (event.keyCode == 13) {
 								var message = $("#msg").val();
-								console.log("message : "+ message);
 								var memberkey = "${member.memberkey}"
 								var data = {message : message,
 													memberkey : memberkey,
-													roomkey : 1
+													roomkey : roomkey2
 									};
 								$.ajax({
 									url:'/project5/createMessage.do',
@@ -411,7 +439,7 @@ body{margin-top:20px;}
 							var memberkey = parseInt("${member.memberkey}");
 							var data = {message : message,
 												memberkey : memberkey,
-												roomkey : 1
+												roomkey : currentRoomkey
 								};
 							$.ajax({
 								url:'/project5/createMessage.do',
@@ -427,6 +455,9 @@ body{margin-top:20px;}
 							
 						});
 
+						
+						
+						
 						
 							// 접속 종료를 처리했을 시
 							$("#exitBtn").click(
@@ -469,21 +500,29 @@ body{margin-top:20px;}
 							wsocket.send("msg:" + str);
 							$("#msg").val("");
 							$("#msg").focus();
+							
+							
 						}
 						
 						
-						function sendMsgImg(obj) {
 							
+							
+							
+							
+							
+						function sendMsgImg(obj) {
 							if(obj.image){
 								var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
 								var go = "/project5/display.do?fileName="+fileCallPath;
 								console.log(fileCallPath)
-								
 							}else{
 								var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
 							    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
 								var go2 = "<img src='/project5/resources/img/attach.png'>";
 							}
+							
+							
+							
 							
 							
 							var id = $("#id").val();
@@ -575,12 +614,18 @@ body{margin-top:20px;}
 											  console.log("result"+result.list[0]); 
 											  // 함수 호출
 											  showUploadResult(result.list[0]);//함수 호출
+											  
 										},
 										error: function(result){
 											  console.log("파일 업로드 실패했습니다.");
 											  console.log(result); 
 										}
 										}); //$.ajax
+										
+										
+										
+										
+										
 
 								});  
 
@@ -595,15 +640,23 @@ body{margin-top:20px;}
 												var go = "/project5/display.do?fileName="+fileCallPath;
 												$("#not").attr("src",go)
 												console.log(fileCallPath)
-												
 												sendMsgImg(obj);
-												
 											}else{
 												var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
 											    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
 												var go2 = "<img src='/project5/resources/img/attach.png'>";
 												$("#not").attr("src",go2)
 											}
+											
+											
+											
+											
+											
+											
+											
+											
+											
+											
 									}
 						
 					});
@@ -783,6 +836,7 @@ body{margin-top:20px;}
 													</div>
 
 													<div id="consultChatList" class="consult" >
+													<!-- 
 														<a href="#" class="list-group-item list-group-item-action border-0">
 															<div class="badge bg-success float-right"></div>
 															<div class="d-flex align-items-start">
@@ -798,7 +852,7 @@ body{margin-top:20px;}
 																</div>
 															</div>
 														</a>
-
+												 -->
 													</div>
 
 

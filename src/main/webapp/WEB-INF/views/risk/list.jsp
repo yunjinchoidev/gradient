@@ -20,17 +20,29 @@
 	$(document).ready(function(){
 		
 		var msg = "${msg}";
-					
+		var projectkey = "${projectkey}";
+		var id = "${member.id}";
+		
+		if(id == ""){
+			alert("접근 권한이 없습니다");
+			location.href = "${path}/main.do";
+		}
+						
 		if(msg!=""){
 			alert(msg);
 			if(msg=="등록되었습니다"){
-				location.href="${path}/risk.do";
+				location.href="${path}/risk.do?projectkey="+projectkey;
 			}
 		}
 		
 		$("#regBtn").click(function(){
-			if(confirm('등록 하시겠습니까?')){
-				$('#regForm').submit();
+			
+			if($('[name=title]').val() == ""){
+				alert('제목을 입력해주세요');
+			}else{
+				if(confirm('등록 하시겠습니까?')){
+					$('#regForm').submit();
+				}
 			}
 		});
 		
@@ -40,6 +52,12 @@
 				$("[name=curPage]").val(1);
 				$("#schform").submit();
 			});
+			
+			$("[name=boardprjkey]").change(function(){
+				$("#schform").submit();
+			});
+			
+		document.getElementById('comdate').value = new Date().toISOString().substring(0, 10);
 			
 		});
 	
@@ -85,6 +103,14 @@
 						  <form id="schform" action="${path}/risk.do" method="post">
 						  	<input type="hidden" name="curPage" value="1"/>
 							<div class="dataTable-top">
+								<div style="margin-right: 50px;width: 20%;">
+									<select name="projectkey" class="form-select">
+										<c:forEach var="prlist" items="${prjlist}">
+											<option value="${prlist.prjkey}" ${boardprjkey eq prlist.prjkey  ? "selected" : ""}>${prlist.prjname}</option>
+										</c:forEach>	
+									</select>
+								</div>
+							
 								<div class="dataTable-dropdown">
 									<select name="pageSize" class="dataTable-selector form-select">
 										<option>5</option>
@@ -95,7 +121,7 @@
 									</select>
 									<label>게시글 수</label>	
 								</div>
-								
+	
 								<div class="dataTable-search">
 									<input type="text" id="schFrm" name="sch" class="dataTable-input" placeholder="Search..." type="text">
 								</div>
@@ -199,6 +225,7 @@
                 </button>
             </div>
             <form id="regForm" action="${path}/insertrisk.do" method="post">
+            	<input name="selprojectkey" type="hidden" value="${boardprjkey}">
             	<!-- 모달 입력 요소 영역 -->
                 <div class="modal-body" style="margin:10px;">
                 	<!-- 프로젝트 select box -->
@@ -244,7 +271,7 @@
                     <!-- 완료예정일 -->
                     	<div id="comdatediv" style="flex:1; margin-top:5px;">
                     		<input type="hidden" name="id" value="${member.id}">
-                    		<input type=date name="comdate">
+                    		<input type=date name="comdate" id="comdate">
                     	</div>
                     </div>
                         

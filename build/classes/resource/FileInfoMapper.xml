@@ -30,6 +30,12 @@
 		insert into fileInfo values
 		(seq_project.currval, #{pathinfo}, #{fname}, sysdate, sysdate, #{etc})
 	</insert>
+
+	<!--  프로젝트 저장할 때-->
+	<insert id="insert4" parameterType="project5.fileInfo.FileInfoVO">
+		insert into fileInfo values
+		(seq_vacation.currval, #{pathinfo}, #{fname}, sysdate, sysdate, #{etc})
+	</insert>
 	
 	
 	<select id="getFileInfoNames" parameterType="int" resultType="string">

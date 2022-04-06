@@ -28,21 +28,27 @@
 	$(document).ready(function(){
 		
 		var msg = "${msg}";
-		
+		var projectkey = "${rdlist.prjkey}";
+		var prjkey = "${prjkey}";
+				
 		if(msg!=""){
 			alert(msg);
-			location.href="${path}/risk.do";
+			location.href="${path}/risk.do?projectkey="+prjkey;
 		}
 		
 		$("#uptbtn").click(function(){
-			if(confirm("수정하시겠습니까?")){
-				$('form').submit();
-			}
-					
+			
+			if($('[name=title]').val() == ""){
+				alert('제목을 입력해주세요');
+			}else{
+				if(confirm("수정하시겠습니까?")){
+					$('form').submit();
+				}
+			}		
 		});
 		
 		$("#canclebtn").click(function(){
-			location.href="${path}/risk.do";
+			location.href="${path}/risk.do?projectkey="+projectkey;
 		});
 		
 	});
@@ -56,6 +62,8 @@
 	 <form action="${path}/uptrisk.do" method="post">
 		<!-- 리스크 키 -->
 		<input type="hidden" name="riskkey" value="${rdlist.riskkey}">
+		<!-- 프로젝트 키 -->
+		<input type="hidden" name="projectkey" value="${rdlist.prjkey}">
 		<!-- 상세화면 -->
 		<div id="mainform">
 			<!-- 프로젝트 명 -->
@@ -103,9 +111,9 @@
 				<!-- 진행사항 -->
 				<div style="flex:1; margin-right: 350px;">
 					<select class="form-select" name="progress" style="font-size: 20px;">
-	                    <option value="진행중">진행중</option>
-	                    <option value="대기">대기</option>
-	                    <option value="완료">완료</option>
+						<option value="진행중" ${rdlist.progress eq "진행중" ?  "selected" : ""}>진행중</option>
+						<option value="대기" ${rdlist.progress eq "대기" ?  "selected" : ""}>대기</option>
+						<option value="완료" ${rdlist.progress eq "완료" ?  "selected" : ""}>완료</option>
                     </select>
 				</div>
 				<!-- 완료예정일 -->
@@ -121,9 +129,9 @@
 			<!-- 수정, 삭제,돌아가기 버튼 -->
 			<div style="margin-top: 30px;align-content:right;float:right;">
 				<!-- 수정버튼 -->
-					<button class="btn btn-warning" id="uptbtn">수정</button>
+					<button type="button" class="btn btn-warning" id="uptbtn">수정</button>
 				<!-- 돌아가기버튼 -->
-					<button class="btn btn-primary" id="canclebtn">취소</button>
+					<button type="button" class="btn btn-primary" id="canclebtn">취소</button>
 			
 			</div>
 		</div>

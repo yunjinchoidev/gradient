@@ -26,22 +26,23 @@ public class A20_FullCalController {
 	
 	// http://localhost:7080/springweb/calendar.do
 	@GetMapping("calendar.do")
-	public String calendar(Model d) {
-		d.addAttribute("pjList", service2.list());
+	public String calendar(Model d, int projectkey) {
+		d.addAttribute("project", service2.get(projectkey));
 		return "WEB-INF\\views\\schedule\\fullCalendar.jsp";
 	}
 
 	@GetMapping("calendar2.do")
-	public String calendar2() {
+	public String calendar2(Model d, int projectkey) {
+		d.addAttribute("project", service2.get(projectkey));
 		return "WEB-INF\\views\\schedule\\fullCalendar2.jsp";
 	}
 	
 	
 	
 	// http://localhost:7080/springweb/calList.do
-	@RequestMapping("getCalendarList.do")
-	public String calList(Model d) {
-		d.addAttribute("calList", service.getCalendarList());	
+	@RequestMapping("getCalendarListWithProjectkey.do")
+	public String calList(Model d, int projectkey) {
+		d.addAttribute("calList", service.getCalendarList(projectkey));	
 		return "pageJsonReport";
 	}
 
@@ -51,22 +52,51 @@ public class A20_FullCalController {
 		return "pageJsonReport";
 	}
 	
+	
+	
+	
+	
 	@RequestMapping("insertCalendar")
-	public String insertCalendar(Calendar ins, MemberVO vo, Model d){
-		d.addAttribute("memberkey", vo.getMemberkey());
+	public String insertCalendar(Calendar ins, Model d){
 		service.insertCalendar(ins);
-		return "redirect:/calendar.do";
+		d.addAttribute("project", service2.get(ins.getProjectkey()));
+		d.addAttribute("msg", "insertCalendar");
+		//return "redirect:/calendar.do";
+		return "WEB-INF\\views\\schedule\\fullCalendar.jsp";
 	}
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("updateCalendar")
-	public String updateCalendar(Calendar ins){
+	public String updateCalendar(Calendar ins, Model d){
 		System.out.println("수정 id:"+ins.getId());
 		service.updateCalendar(ins);
-		return "redirect:/calendar.do";
+		d.addAttribute("project", service2.get(ins.getProjectkey()));
+		d.addAttribute("msg", "updateCalendar");
+		//return "redirect:/calendar.do";
+		return "WEB-INF\\views\\schedule\\fullCalendar.jsp";
+		//return "redirect:/calendar.do";
 	}
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("deleteCalendar")
-	public String deleteCalendar(@RequestParam("id") int id){
+	public String deleteCalendar(@RequestParam("id") int id,Model d){
 		System.out.println("삭제 id:"+id);
+		d.addAttribute("project", service2.get(service.get(id).getProjectkey()));
+		d.addAttribute("msg", "deleteCalendar");
+		//return "redirect:/calendar.do";
 		service.deleteCalendar(id);
-		return "redirect:/calendar.do";
+		return "WEB-INF\\views\\schedule\\fullCalendar.jsp";
+		//return "redirect:/calendar.do";
 	}	
 }

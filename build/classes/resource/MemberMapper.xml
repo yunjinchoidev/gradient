@@ -4,10 +4,71 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.member.MemberDao">
 
+
+
+
+
+
+	<!-- 전체 데이터 수 가져오기 -->
+	<select id="totCnt" parameterType="project5.member.MemberSch"
+		resultType="int">
+		select count(*)
+		from member
+		where 1=1
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
+	</select>
+
+
+
+	<!-- 리스트를 불러오기 -->
+	<select id="listWithPaging"
+		resultType="project5.member.MemberVO"
+		parameterType="project5.member.MemberSch">
+		select *
+		from (
+		select rownum cnt,m.*
+		from member m
+		where 1=1
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
+		)
+		where cnt between #{start} and #{end}
+		order by memberkey
+	</select>
+
+
 	<select id="list" resultType="project5.member.MemberVO">
-		select * from member order by
+		select *
+		from member
+		order by
 		memberkey
 	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<insert id="edit" parameterType="project5.member.MemberVO">
 		update member set
@@ -139,13 +200,15 @@
 	</select>
 
 	<select id="memberPassFind"
-		parameterType="project5.member.MemberVO" resultType="String">
-		select pass
+		parameterType="project5.member.MemberVO"
+		resultType="project5.member.MemberVO">
+		select *
 		from
 		member
 		where name=#{name}
 		and id=#{id}
-		and email=#{email}
+		and
+		email=#{email}
 	</select>
 
 
@@ -172,7 +235,6 @@
 		member
 		where name=#{name}
 		and email=#{email}
-
 	</select>
 
 
@@ -180,21 +242,51 @@
 		parameterType="project5.member.MemberVO">
 		update member
 		set visitcnt = visitcnt+1
-		where memberkey = #{memberkey}
+		where memberkey =
+		#{memberkey}
 	</update>
 
 	<update id="updatePricing"
 		parameterType="project5.member.MemberVO">
 		update member
 		set pricing= #{pricing}
-		where memberkey = #{memberkey}
+		where memberkey =
+		#{memberkey}
 	</update>
 
 
-	<insert id="insertMemberAjax" parameterType="project5.member.MemberVO">
-		insert into member (memberkey, name, email) values 
+	<insert id="insertMemberAjax"
+		parameterType="project5.member.MemberVO">
+		insert into member (memberkey, name, email) values
 		(seq_member.nextval, #{name}, #{email})
 	</insert>
+
+
+	<update id="updateStatus"
+		parameterType="project5.member.MemberVO">
+		UPDATE MEMBER
+		SET
+		status=#{status}
+		WHERE
+		memberkey=#{memberkey}
+	</update>
+
+
+	<select id="duplicateEmail"
+		resultType="project5.member.MemberVO" parameterType="String">
+		select *
+		from
+		member
+		where email=#{email}
+	</select>
+	
+	
+	<select id="duplicateId" resultType="project5.member.MemberVO"
+		parameterType="String">
+		select id
+		from member
+		where id=#{id}
+	</select>
 
 
 

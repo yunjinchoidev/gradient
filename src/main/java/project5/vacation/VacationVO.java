@@ -1,29 +1,38 @@
 package project5.vacation;
 
+import java.util.Date;
+
+import org.springframework.web.multipart.MultipartFile;
+
 public class VacationVO {
 	private int vacationkey;
 	private int memberkey;
 	private int projectkey;
-	private int title;
-	private int startdate;
+	private String title;
+	private Date startdate;
+	private String startdateS;
 	private int duration;
-	private int applydate;
+	private String contents;
+
+	private MultipartFile[] uploadFile;
 
 	public VacationVO() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public VacationVO(int vacationkey, int memberkey, int projectkey, int title, int startdate, int duration,
-			int applydate) {
+	public VacationVO(int vacationkey, int memberkey, int projectkey, String title, Date startdate, String startdateS,
+			int duration, String contents, MultipartFile[] uploadFile) {
 		super();
 		this.vacationkey = vacationkey;
 		this.memberkey = memberkey;
 		this.projectkey = projectkey;
 		this.title = title;
 		this.startdate = startdate;
+		this.startdateS = startdateS;
 		this.duration = duration;
-		this.applydate = applydate;
+		this.contents = contents;
+		this.uploadFile = uploadFile;
 	}
 
 	public int getVacationkey() {
@@ -50,20 +59,28 @@ public class VacationVO {
 		this.projectkey = projectkey;
 	}
 
-	public int getTitle() {
+	public String getTitle() {
 		return title;
 	}
 
-	public void setTitle(int title) {
+	public void setTitle(String title) {
 		this.title = title;
 	}
 
-	public int getStartdate() {
+	public Date getStartdate() {
 		return startdate;
 	}
 
-	public void setStartdate(int startdate) {
+	public void setStartdate(Date startdate) {
 		this.startdate = startdate;
+	}
+
+	public String getStartdateS() {
+		return startdateS;
+	}
+
+	public void setStartdateS(String startdateS) {
+		this.startdateS = startdateS;
 	}
 
 	public int getDuration() {
@@ -74,12 +91,22 @@ public class VacationVO {
 		this.duration = duration;
 	}
 
-	public int getApplydate() {
-		return applydate;
+	public String getContents() {
+		return contents;
 	}
 
-	public void setApplydate(int applydate) {
-		this.applydate = applydate;
+	public void setContents(String contents) {
+		this.contents = contents;
 	}
 
+	public MultipartFile[] getUploadFile() {
+		return uploadFile;
+	}
+
+	public void setUploadFile(MultipartFile[] uploadFile) {
+		this.uploadFile = uploadFile;
+	}
+	
+	
 }
+	

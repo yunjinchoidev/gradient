@@ -5,23 +5,31 @@
 <head>
 <title id='Description'>Kanban Board.</title>
 <link rel="stylesheet"
-	href="/project5/jqwidgets-ver13.2.0/jqwidgets/styles/jqx.base.css"
+	href="/project5/jqwidgets-ver13.2.0/a/jqx.base.css"
 	type="text/css" />
 <script type="text/javascript"
 	src="/project5/jqwidgets-ver13.2.0/scripts/jquery-1.11.1.min.js"></script>
 <script type="text/javascript"
-	src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxcore.js"></script>
+	src="/project5/jqwidgets-ver13.2.0/a/jqxcore.js"></script>
 <script type="text/javascript"
-	src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxsortable.js"></script>
+	src="/project5/jqwidgets-ver13.2.0/a/jqxsortable.js"></script>
 <script type="text/javascript"
-	src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxkanban.js"></script>
+	src="/project5/jqwidgets-ver13.2.0/a/jqxkanban.js"></script>
 <script type="text/javascript"
-	src="/project5/jqwidgets-ver13.2.0/jqwidgets/jqxdata.js"></script>
+	src="/project5/jqwidgets-ver13.2.0/a/jqxdata.js"></script>
 <script type="text/javascript">
 	$(document).ready(function() {
 
 	});
 </script>
+<style>
+#moveBtn a {
+	width: 135px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
 </head>
 <body>
 <%@ include file="../chatBot/chatBot.jsp"%>
@@ -32,8 +40,54 @@
 			<div class="page-title">
 				
 				<div class="row">
-				<%@ include file="../projectHome/sort.jsp"%>
+					<div class="buttons" id="moveBtn" style="padding: 20px;">
+		<a href="/project5/dashBoard.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">대시보드</a> 
+			<a
+			href="/project5/projectHome.do?projectkey=${project.projectkey }" class="btn btn-dark"
+			 >프로젝트
+			홈</a> 
+			<a href="/project5/kanbanMain.do?projectkey=${project.projectkey }"
+			class="btn btn-danger" >칸반보드</a> <a
+			href="/project5/ganttMain.do?projectkey=${project.projectkey }"
+			class="btn btn-warning" >간트차트</a> <a
+			href="/project5/calendar.do?projectkey=${project.projectkey }"
+			class="btn btn-success" >캘린더</a> <a
+			href="/project5/cost.do?projectkey=${project.projectkey }"
+			class="btn btn-primary">예산 관리</a> <a
+			href="/project5/qualityList.do?projectkey=${project.projectkey }"
+			class="btn btn-dark">품질 관리</a> <a
+			href="/project5/attendanceMain.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">팀 관리</a> <a
+			href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
+			class="btn btn-danger">회의록</a> <a
+			href="/project5/chatting.do?projectkey=${project.projectkey }"
+			class="btn btn-warning">채팅</a> <a
+			href="/project5/output.do?projectkey=${project.projectkey }"
+			class="btn btn-success">산출물 관리</a> <a
+			href="/project5/risk.do?projectkey=${project.projectkey }"
+			class="btn btn-primary">리스크 관리</a> <a
+			href="/project5/procuSituationMain.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">조달 관리</a>
+			
+			<hr>
+				<div class="col-12 col-md-6 order-md-1" style="margin-top: 30px;">
+						<span style="font-size: 40px; font-weight: bolder; color: red;">[${project.name }]
+						</span> <span style="font-size: 40px; font-weight: bolder; color: black;">칸반보드</span>
+						<p class="text-subtitle text-muted">진행중인 칸반을 확인하세요</p>
+					</div>
+	</div>
+
+		
+					
+					<section class="section">
+					
 					<%@ include file="main2.jsp"%>
+					
+					</section>
+					
+					
+					
 				</div>
 			</div>
 		</div>

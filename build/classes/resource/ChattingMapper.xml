@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="project5.chatting.ChattingDao">
+
+
+
+	<!-- 채팅방 만들기 -->
+	<insert id="createChat">
+		INSERT INTO chattingroom VALUES
+		(seq_chattingroom.nextval, '새대화'||seq_chattingroom.nextval, sysdate)
+	</insert>
+
+	<!-- 채팅방 만들기 -->
+	<insert id="createChat2" parameterType="String">
+		INSERT INTO chattingroom
+		VALUES
+		(seq_chattingroom.nextval, #{name}|| '과의 새대화 ['||seq_chattingroom.nextval||']',
+		sysdate)
+	</insert>
+
+	<!-- 채팅방 목록 불러오기 -->
+	<select id="chatRoomList"
+		resultType="project5.chatting.ChattingRoomVO">
+		SELECT roomkey, name, to_char(makedate,'YYYY/MM/DD')
+		makedateS
+		FROM chattingroom ORDER BY roomkey
+	</select>
+	
+	
+
+	<!-- 메시지 보낼때 자동 삽입 ///////////////////////////////////////////////// -->
+	<insert id="createMessage"
+		parameterType="project5.chatting.ChattingMessageVO">
+		INSERT INTO chattingMessage VALUES
+		(seq_chattingMessage.nextval, #{contents}, sysdate, #{memberkey},
+		#{roomkey},0)
+	</insert>
+
+
+	<!-- 메시지 룸키로 모조리 불러오기 -->
+	<select id="MessageListbyRoomkey" parameterType="int"
+		resultType="project5.chatting.ChattingMessageVO">
+		SELECT messagekey, contents, to_char(writedate, 'YYYY/MM/DD') writedateS, roomkey, memberkey, likecnt
+		 FROM chattingMessage WHERE roomkey=#{roomkey}
+		ORDER BY messagekey
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<!-- 채팅방 하나 이름 불러오기 -->
+	<select id="getChatRoom" parameterType="int"
+		resultType="project5.chatting.ChattingRoomVO">
+		SELECT * FROM chattingroom where roomkey=#{roomkey}
+	</select>
+
+
+
+
+
+
+
+
+
+
+	<!-- 메시지 삭제 -->
+	<delete id="DeleteMessagebyMessagekey" parameterType="int">
+		delete
+		from
+		chattingMessage
+		where messagekey = #{messagekey}
+	</delete>
+
+
+
+
+	<!--방 입장 / 회원 초대하기 -->
+	<insert id="roomJoin"
+		parameterType="project5.chatting.ChatJoinVO">
+		INSERT INTO chat_memroom_join VALUES
+		(seq_chat_memroom_join.nextval, #{memberkey}, #{roomkey})
+	</insert>
+
+
+
+
+
+
+
+	<update id="plusLikeCnt" parameterType="int">
+		UPDATE chattingMessage
+		SET likecnt = likecnt+1 where messagekey = #{messagekey}
+	</update>
+
+	<select id="chatRoomMax" resultType="int">
+		SELECT max(roomkey) max
+		FROM
+		chattingroom c
+	</select>
+
+	<select id="custoChatRoomNameUpdate"
+		parameterType="project5.chatting.ChattingRoomVO">
+		update chattingroom
+		set name= name||#{name}
+		where roomkey = #{roomkey}
+	</select>
+
+
+
+
+
+
+
+
+</mapper>
+

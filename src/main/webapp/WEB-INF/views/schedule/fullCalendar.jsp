@@ -9,6 +9,14 @@
 <head>
 <meta charset="UTF-8">
 <title>캘린더</title>
+<style>
+#moveBtn a {
+	width: 135px;
+	margin-right: 10px;
+	font-size: 20px;
+	font-weight: bold;
+}
+</style>
 <script src="/project5/a00_com/jquery.min.js"></script>
 <script src="/project5/a00_com/jquery-ui.js"></script>
 <script src="/project5/a00_com/popper.min.js"></script>
@@ -41,6 +49,20 @@
 document.addEventListener('DOMContentLoaded', function() {
 	
 	
+	var msg = "${msg}"
+	
+	if(msg=="insertCalendar"){
+		location.href="/project5/calendar.do?projectkey=${project.projectkey}"
+	}
+	
+	if(msg=="deleteCalendar"){
+		location.href="/project5/calendar.do?projectkey=${project.projectkey}"
+	}
+	
+	if(msg=="updateCalendar"){
+		location.href="/project5/calendar.do?projectkey=${project.projectkey}"
+	}
+	
 	
 	
 	
@@ -61,7 +83,7 @@ document.addEventListener('DOMContentLoaded', function() {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      initialDate: '2022-03-17',
+      initialDate: '2022-04-10',
       navLinks: true, // can click day/week names to navigate views
       selectable: true,
       selectMirror: true,
@@ -161,7 +183,7 @@ document.addEventListener('DOMContentLoaded', function() {
     	  // 서버에 있는 json 데이터 가져와서, fullcalenar 입력하기
     	  $.ajax({
     		  type:"post",
-    		  url:"${path}/getCalendarIndividaulList.do?memberkey=${member.memberkey}",
+    		  url:"${path}/getCalendarListWithProjectkey.do?projectkey=${project.projectkey}",
     		  dataType:"json",
     		  success:function(data){
     			  console.log(data.calList)
@@ -225,7 +247,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// 등록 버튼
 		$("#regBtn").click(function(){
 			if(confirm("일정등록하시겠습니까?")){
-				$("#frm01").attr("action","${path}/insertCalendar.do?memberkey=${member.memberkey}");
+				$("#frm01").attr("action","${path}/insertCalendar.do");
 				$("#frm01").submit();
 			}		
 		});
@@ -269,15 +291,55 @@ document.addEventListener('DOMContentLoaded', function() {
 	<div id="main">
 		<div class="page-heading">
 			<div class="page-title">
-			<%@ include file="../projectHome/sort.jsp"%>
-				<div class="row">
+			
+						<div class="buttons" id="moveBtn" style="padding: 20px;">
+		<a href="/project5/dashBoard.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary" onclick="alert('${project.projectkey } : ${project.name } 이 유지됩니다.')">대시보드</a> 
+			<a
+			href="/project5/projectHome.do?projectkey=${project.projectkey }" class="btn btn-dark"
+			 >프로젝트
+			홈</a> 
+			<a href="/project5/kanbanMain.do?projectkey=${project.projectkey }"
+			class="btn btn-danger" >칸반보드</a> <a
+			href="/project5/ganttMain.do?projectkey=${project.projectkey }"
+			class="btn btn-warning" >간트차트</a> <a
+			href="/project5/calendar.do?projectkey=${project.projectkey }"
+			class="btn btn-success" >캘린더</a> <a
+			href="/project5/cost.do?projectkey=${project.projectkey }"
+			class="btn btn-primary">예산 관리</a> <a
+			href="/project5/qualityList.do?projectkey=${project.projectkey }"
+			class="btn btn-dark">품질 관리</a> <a
+			href="/project5/attendanceMain.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">팀 관리</a> <a
+			href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
+			class="btn btn-danger">회의록</a> <a
+			href="/project5/chatting.do?projectkey=${project.projectkey }"
+			class="btn btn-warning">채팅</a> <a
+			href="/project5/output.do?projectkey=${project.projectkey }"
+			class="btn btn-success">산출물 관리</a> <a
+			href="/project5/risk.do?projectkey=${project.projectkey }"
+			class="btn btn-primary">리스크 관리</a> <a
+			href="/project5/procuSituationMain.do?projectkey=${project.projectkey }"
+			class="btn btn-secondary">조달 관리</a>
+	</div>
+	<hr>
+					<div class="col-12 col-md-6 order-md-1 order-last">
+						<span style="font-size: 40px; font-weight: bolder; color: red;">[${project.name }]
+						</span> <span style="font-size: 40px; font-weight: bolder; color: black;">캘린더</span>
+						<p class="text-subtitle text-muted">캘린더를 확인하세요</p>
+					</div>
 					
-					<hr>
-					<div id='calendar' style="margin-top: 30px;"></div>
+					
+					
+								<section class="section">
+								
+									<div id='calendar' style="margin-top: 30px;"></div>
+								
+								</section>
 				</div>
 			</div>
 		</div>
-	</div>
+	
 
 
 
@@ -310,13 +372,27 @@ document.addEventListener('DOMContentLoaded', function() {
         </button>
       </div>
       <div class="modal-body">
-		<form id="frm01" class="form"  method="post" enctype="multipart/form-data" >
+      
+      
+      
+		<form id="frm01" class="form" method="post" enctype="multipart/form-data" >
 		 <input type="hidden" name="id" value="0"/>
+		 
+	        <input type="hidden" name="projectkey" value="${project.projectkey}" >
+	        <input type="hidden" class="form-control" placeholder="" name="memberkey" value="${member.memberkey }" >
+	     
 	     <div class="row">
 	      <div class="col">
-	        <input type="text" class="form-control" placeholder="제목 입력" name="title">
+	        <input type="text" class="form-control" placeholder="${project.name }">
 	      </div> 
 	     </div>
+	     
+	     <div class="row">
+	      <div class="col">
+	        <input type="text" class="form-control" placeholder="제목" name="title">
+	      </div> 
+	     </div>
+	     
 	     <div class="row">	     
 	      <div class="col">
 	        <input type="text" class="form-control" 
@@ -328,6 +404,9 @@ document.addEventListener('DOMContentLoaded', function() {
 	        	data-toggle="tooltip" data-placement="buttom" title="종료일"
 	         name="end" readonly>
 	      </div>
+	      
+	      
+	      
 	     </div>
 	     <div class="row">	     
 	      <div class="col">
@@ -386,10 +465,6 @@ document.addEventListener('DOMContentLoaded', function() {
 						</div>
 						<!-- /.row -->
 
-
-
-
-						<input type="hidden" name="memberkey" value="${member.memberkey }" >
 	    </form> 
 	 	<script>
 	      		

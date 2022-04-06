@@ -7,18 +7,96 @@
 
 	<select id="getList"
 		resultType="project5.projectHome.ProjectHomeVO" parameterType="int">
-						SELECT ph.*, ws.title workSortTitle
-				FROM projectHome ph, worksort ws
-				WHERE ph.workSortKey = ws.workSortKey
-				AND projectkey=#{projectkey}
-				order by projectHomekey
+		SELECT
+		ph.*, ws.title workSortTitle
+		FROM projectHome ph, worksort ws
+		WHERE
+		ph.workSortKey = ws.workSortKey
+		AND projectkey=#{projectkey}
+		order by
+		projectHomekey
 	</select>
+
+
+
+	<!-- 전체 데이터 수 가져오기 -->
+	<select id="totCnt"
+		parameterType="project5.projectHome.ProjectHomeSch" resultType="int">
+		select count(*)
+		from projectHome
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+		<if test="contents!=null and contents!=''">
+			and contents like '%'||#{contents}||'%'
+		</if>
+	</select>
+
+	<!-- 리스트를 불러오기 -->
+	<select id="listWithPaging"
+		resultType="project5.projectHome.ProjectHomeVO"
+		parameterType="project5.projectHome.ProjectHomeSch">
+		select *
+		from (
+		select rownum cnt,ph.*, ws.title workSortTitle
+		FROM
+		projectHome ph, worksort ws
+		where
+		1=1
+		and ph.workSortKey = ws.workSortKey
+		AND ph.projectkey = #{projectkey}
+		<if test="title!=null and title!=''">
+			and ph.title like '%'||#{title}||'%'
+		</if>
+		<if test="contents!=null and contents!=''">
+			and ph.contents like '%'||#{contents}||'%'
+		</if>
+		)
+		where cnt between #{start} and #{end}
+		order by projecthomekey
+	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 	<select id="get" resultType="project5.projectHome.ProjectHomeVO"
 		parameterType="int">
 		select * from projectHome where projectkey=#{projectkey}
 	</select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 	<insert id="insert">
 		insert into projectHome values
@@ -31,17 +109,20 @@
 		projectHomekey=#{projectHomekey}
 	</insert>
 
-	<update id="update" parameterType="project5.projectHome.ProjectHomeVO">
+	<update id="update"
+		parameterType="project5.projectHome.ProjectHomeVO">
 		update projectHome
 		set
 		title=#{title},
 		contents=#{contents},
 		importance=#{importance}
-		where projectHomekey=#{projectHomekey}
+		where
+		projectHomekey=#{projectHomekey}
 	</update>
-	
-	<select id="getWorkSortList" resultType="project5.workSort.WorkSortVO">
-		select * from worksort	
+
+	<select id="getWorkSortList"
+		resultType="project5.workSort.WorkSortVO">
+		select * from worksort
 	</select>
 
 

@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8" import="java.util.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>
 <c:set var="path" value="${pageContext.request.contextPath }" />
 <fmt:requestEncoding value="utf-8" />
 <!DOCTYPE html>
@@ -12,6 +13,37 @@
 <html>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <head>
+
+<!-- 구글 어닐리틱스 -->
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-SKC411JKMD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-SKC411JKMD');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <meta charset="UTF-8">
 <title>GRADIENT</title>
 <script type="text/javascript">
@@ -30,7 +62,12 @@
 </head>
 
 <body>
-
+	<div id="fb-root"></div>
+	<script async defer crossorigin="anonymous"
+		src="https://connect.facebook.net/ko_KR/sdk.js#xfbml=1&version=v13.0&appId=282186027273418&autoLogAppEvents=1"
+		nonce="SuTAbMKi">
+		
+	</script>
 	<%@ include file="chatBot/chatBot.jsp"%>
 	<%@ include file="common/header.jsp"%>
 
@@ -41,9 +78,16 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
+						<h1>
+						<span style="color:red">
+							"<sec:authorize access="isAuthenticated()">
+								<sec:authentication property="name"/>
+							" 님 </sec:authorize> </span>,
+						<h1>	안녕하세요?</h1>
+						</h1>
 						<h3>GRADIENT에 방문하신 여러분을 환영합니다</h3>
-						<p class="text-subtitle text-muted">
-						여러분을 더 유능하게 만들어 줄 당신의 친구가 바로 여기있습니다.</p>
+						<p class="text-subtitle text-muted">여러분을 더 유능하게 만들어 줄 당신의 친구가
+							바로 여기있습니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -51,31 +95,6 @@
 					</div>
 				</div>
 			</div>
-			<section class="section">
-				<div class="row">
-					<div class="col-12">
-						<div class="card">
-							<div class="card-header">
-								<h5 class="card-title">안녕하세요?</h5>
-							</div>
-							<div class="card-body">
-							<a>Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
-							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
-							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
-								</a>
-							<a>Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
-							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
-							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
-								</a>
-							<a>Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
-							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
-							Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient Gradient 
-								</a>
-							</div>
-						</div>
-					</div>
-				</div>
-			</section>
 		</div>
 
 		<div class="page-heading">
@@ -96,139 +115,158 @@
 					</div>
 				</div>
 			</div>
-			
+
+
+
+
+
+
+
 			<!-- Basic card section start -->
 			<section id="content-types">
 				<div class="row">
-				
-				<div class="col-md-12">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h4>With Captions</h4>
-                                    <p>A carousel with captions over the top</p>
-                                </div>
-                                <div class="card-body">
-                                    <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
-                                        <ol class="carousel-indicators">
-                                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class=""></li>
-                                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" class="active"></li>
-                                            <li data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"></li>
-                                        </ol>
-                                        <div class="carousel-inner">
-                                            <div class="carousel-item active carousel-item-start">
-                                                <img src="/project5/resources/image/roadmap.png" class="d-block w-100" alt="...">
-                                                <div class="carousel-caption d-none d-md-block">
-                                                    <h5>First slide label</h5>
-                                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                                </div>
-                                            </div>
-                                            <div class="carousel-item carousel-item-next carousel-item-start">
-                                                <img src="/project5/resources/image/roadmap2.png" class="d-block w-100" alt="...">
-                                                <div class="carousel-caption d-none d-md-block">
-                                                    <h5>Second slide label</h5>
-                                                    <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <a class="carousel-control-prev" href="#carouselExampleCaptions" role="button" data-bs-slide="prev">
-                                            <span class="carousel-control-prev-icon" aria-hidden="true" style="border:1px solid black"></span>
-                                            <span class="visually-hidden">Previous</span>
-                                        </a>
-                                        <a class="carousel-control-next" href="#carouselExampleCaptions" role="button" data-bs-slide="next">
-                                            <span class="carousel-control-next-icon" aria-hidden="true" style="border:1px solid black"></span>
-                                            <span class="visually-hidden">Next</span>
-                                        </a>
-                                    </div>
+
+					<div class="col-md-12">
+					<div class="card">
+                                <div class="card-content">
+                                    <img class="card-img-bottom img-fluid" src="/project5/resources/image/roadmap.png" alt="Card image cap" 
+                                    style="height: 50rem; object-fit: cover;">
                                 </div>
                             </div>
-                        </div>
-				
-				
-				
-							
-					<div class="col-md-6 col-sm-12" >
+						<div class="card">
+                                <div class="card-content">
+                                <img class="card-img-bottom img-fluid" src="/project5/resources/image/roadmap2.png" alt="Card image cap" 
+                                    style="height: 50rem; object-fit: cover;">
+                                    <div class="card-body">
+                                        
+                                        <h4 class="card-title">우리가 프로젝트를 관리하는 방식</h4>
+                                        <hr>
+                                          <h2> 프로젝트는 </h2><br>
+                                          <h2> 다음과 같은 순서대로 진행됩니다.</h2><br>
+                                          <p class="card-text" style="color: black; text-align: left; font-size: 15px; padding-left: 20px;">
+                                           1. 프로젝트 시작<br>
+                                           	-  PM<br><br>
+                                           2. 칸반 보드<br>
+                                           	- 프로젝트 범위 조정<br>
+                                           	- 요구사항 수립<br><br>
+                                           3. 간트차트<br>
+                                           	- 한 단계 세분화 된 일정계획 수립<br><br>
+                                           4. 예산 관리<br>
+                                            - 프로젝트 작업 범위에 걸맞은 예산 계획 수립<br><br>
+                                           5. 품질/산출물<br>
+                                           	- 요구사항에 맞게 품질의 관리 목표/계획 지정<br>
+                                           	- 산출물 점검을 통한 지속적 품질 점검<br><br>
+                                           6. 팀 관리<br>
+                                            - 실무진 팀 배정 <br><br>
+                                           7. 의사소통<br>
+                                           	- 회의/채팅<br><br>
+                                           8. 리스크 관리 <br>
+                                            - 주 단위 조정 작업<br><br>
+                                           9. 조달 관리<br>
+                                            - 수주사 전달<br><br>
+                                           10. 프로젝트 종료<br>
+                                            - PM : 프로젝트 종료<br><br>
+                                           + 고객센터<br>
+                                            - <br><br>
+                                        </p>
+                                        <p class="card-text">
+                                        </p>
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </div>
+                                
+                                </div>
+                            </div>
+						
+						</div>
+						
+						
+						
+						
+					<div class="col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
 								<img class="card-img-top img-fluid"
-									src="/project5/resources/image/logo.png"
-									alt="Card image cap" style="height: 20em; width: 20em;">
-									
+									src="/project5/resources/image/logo.png" alt="Card image cap"
+									style="height: 20em; width: 20em;">
+
 								<div class="card-body">
 									<h4 class="card-title">왜 그래이언트 인가요?</h4>
-									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
-									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
+									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요? 왜
+										그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요? 왜
+										그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요? 왜
+										그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
+									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜
+										그래이언트 인가요? 왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜
+										그래이언트 인가요? 왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜
+										그래이언트 인가요?</p>
 									<button class="btn btn-primary block">Update now</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					<div class="col-md-6 col-sm-12" >
+					<div class="col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
 								<img class="card-img-top img-fluid"
-									src="/project5/resources/image/logo.png"
-									alt="Card image cap" style="height: 20em; width: 20em;">
-									
+									src="/project5/resources/image/logo.png" alt="Card image cap"
+									style="height: 20em; width: 20em;">
+
 								<div class="card-body">
 									<h4 class="card-title">왜 그래이언트 인가요?</h4>
-									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
-									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?
-									왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
+									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요? 왜
+										그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요? 왜
+										그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요? 왜
+										그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?</p>
+									<p class="card-text">왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜
+										그래이언트 인가요? 왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜
+										그래이언트 인가요? 왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜 그래이언트 인가요?왜
+										그래이언트 인가요?</p>
 									<button class="btn btn-primary block">Update now</button>
 								</div>
 							</div>
 						</div>
 					</div>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 					<div class="col-xl-4 col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
@@ -239,8 +277,7 @@
 										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
 								</div>
 								<img class="img-fluid w-100"
-									src="/project5/resources/image/logo.png"
-									alt="Card image cap">
+									src="/project5/resources/image/logo.png" alt="Card image cap">
 							</div>
 							<div class="card-footer d-flex justify-content-between">
 								<span>Card Footer</span>
@@ -257,8 +294,7 @@
 										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
 								</div>
 								<img class="img-fluid w-100"
-									src="/project5/resources/image/logo.png"
-									alt="Card image cap">
+									src="/project5/resources/image/logo.png" alt="Card image cap">
 							</div>
 							<div class="card-footer d-flex justify-content-between">
 								<span>Card Footer</span>
@@ -353,7 +389,7 @@
 
 
 
-					<div class="col-xl-4 col-md-6 col-sm-12" >
+					<div class="col-xl-4 col-md-6 col-sm-12">
 						<div class="card">
 							<div class="card-content">
 								<div class="card-body">
@@ -363,8 +399,7 @@
 										sugar plum jelly-o jujubes bonbon dessert carrot cake.</p>
 								</div>
 								<img class="img-fluid w-100"
-									src="/project5/resources/image/logo.png"
-									alt="Card image cap">
+									src="/project5/resources/image/logo.png" alt="Card image cap">
 							</div>
 							<div class="card-footer d-flex justify-content-between">
 								<span>Card Footer</span>
@@ -372,27 +407,75 @@
 							</div>
 						</div>
 					</div>
+
 					
-					
-		
-					
-					
-					
-					
-					
-					
-					
-					
+					<section class="section">
+									<div class="row">
+										<div class="col-12">
+											<div class="card">
+												<div class="card-header">
+													<h5 class="card-title">안녕하세요?</h5>
+												</div>
+												<div class="card-body">
+													<a>
+														<h1>메인페이지 입니다.</h1>
+														<h3>Gradient가 어떠셨습니까?</h3>
+														<hr>
+													</a>
+													<!-- 페이스북 댓글api -->
+													<!-- 댓글 들어가는 부분 -->
+													<div class="fb-comments"
+														data-href="http://106.10.16.155:7080/project5/main.do"
+														data-width="1400" data-numposts="5"
+														style="width: 100%; margin: 30px;"></div>
+														
+														
+														
+														<div id="disqus_thread"></div>
+															<script>
+															    /**
+															    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+															    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+															    /*
+															    var disqus_config = function () {
+															    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+															    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+															    };
+															    */
+															    (function() { // DON'T EDIT BELOW THIS LINE
+															    var d = document, s = d.createElement('script');
+															    s.src = 'https://gradient-1.disqus.com/embed.js';
+															    s.setAttribute('data-timestamp', +new Date());
+															    (d.head || d.body).appendChild(s);
+															    })();
+															</script>
+															<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+														</div>
+												
+												
+												
+												
+											</div>
+										</div>
+									</div>
+								</section>
+
+
+
+
+
+
+
+
 				</div>
 			</section>
 			<!-- Basic Card types section end -->
-
-
 
 		</div>
 
 	</div>
 
-
+<script id="dsq-count-scr" src="//gradient-1.disqus.com/count.js" async></script>
 </body>
+
 </html>
