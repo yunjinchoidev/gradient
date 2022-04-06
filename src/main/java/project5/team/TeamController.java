@@ -34,9 +34,4 @@ public class TeamController {
 		d.addAttribute("proc", "배정되었습니다.");
 		return "WEB-INF\\views\\team\\uptTeam.jsp";
 	}
-	// http://localhost:7080/project5/team.do?memberprojectkey=123
-	@RequestMapping("/team.do")
-	public String getTeam(@RequestParam("memberprojectkey") int memberprojectkey, Model d) {
-		return "WEB-INF\\views\\team\\detail.jsp";
-	}
 }
