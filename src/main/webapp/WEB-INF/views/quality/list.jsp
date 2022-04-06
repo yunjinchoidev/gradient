@@ -29,7 +29,7 @@
 
 
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3 onclick="location.href='/project5/qualityList.do'" style="cursor: pointer;">품질 건의</h3>
+						<h3 onclick="location.href='/project5/qualityList.do'" style="cursor: pointer;">품질건의</h3>
 						<p class="text-subtitle text-muted">For user to check they
 							list</p>
 					</div>
@@ -44,6 +44,7 @@
 					</div>
 				</div>
 			</div>
+			
 			<section class="section">
 				<div class="card">
 					<div class="card-header">

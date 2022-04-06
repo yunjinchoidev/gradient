@@ -22,6 +22,7 @@ public class QualityService {
 	QualityAttachDao dao2;
 	
 	
+	
 	public List<QualityVO> getList(QualitySch sch) {
 		
 		// 1. 전체 갯수 totCnt

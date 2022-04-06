@@ -22,6 +22,7 @@ public class QualitySch {
 			// TODO Auto-generated constructor stub
 		}
 
+		
 
 		public QualitySch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
 				int startBlock, int endBlock, String title, String contents) {

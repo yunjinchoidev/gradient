@@ -9,12 +9,13 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface QualityDao {
 	
-	// 전체 데이터 수 가져오는 것
+		// 전체 데이터 수 가져오는 것
 		public int totCnt(QualitySch sch);
 		
 		// 리스트 가져오기
 		public List<QualityVO> getList(QualitySch sch);
 
+		
 	
 
 	public QualityVO2 get(int qualitykey);

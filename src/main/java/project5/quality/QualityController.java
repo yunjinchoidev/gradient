@@ -31,6 +31,7 @@ public class QualityController {
 	@Autowired
 	QualityService service;
 	
+	
 	@RequestMapping("/qualityList.do")
 	public String qualityList(Model d, QualitySch sch) {
 		d.addAttribute("list", service.getList(sch));

@@ -18,6 +18,7 @@ public class QualityVO2 {
 	private String name;
 	
 	
+	
 	public QualityVO2() {
 		super();
 		// TODO Auto-generated constructor stub

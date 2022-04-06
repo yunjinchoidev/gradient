@@ -17,6 +17,7 @@ public class QualityVO {
 	private List<QualityAttachVO> attachList;
 	
 	
+	
 public List<QualityAttachVO> getAttachList() {
 		return attachList;
 	}
