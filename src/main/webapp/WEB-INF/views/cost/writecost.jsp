@@ -52,8 +52,6 @@ margin
 		var prjcost = "${prjcost}";
 		var msg = "${msg}";
 		
-		alert('프로젝트를 먼저 선택해주세요');
-		
 		if(msg!=""){
 			alert(msg);
 			location.href="${path}/cost.do";
