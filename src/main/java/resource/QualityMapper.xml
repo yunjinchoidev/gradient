@@ -6,25 +6,19 @@
 <mapper namespace="project5.quality.QualityDao">
 
 
-	<select id="getList" resultType="project5.quality.QualityVO2"
+	<select id="getList" resultType="project5.quality.QualityVO"
 		parameterType="project5.quality.QualitySch">
-		select a.*, m.name
+		select *
 		from (
-		select rownum cnt, level, b.*
+		select rownum cnt, b.*
 		from quality b
 		where 1=1
 		<if test="title!=null and title!=''">
 			and title like '%'||#{title}||'%'
 		</if>
-		START WITH refno=0
-		CONNECT BY PRIOR qualitykey=refno
-		ORDER siblings BY
-		qualitykey desc ) a, MEMBER m
-		where cnt between #{start} and #{end} <!-- cnt는 
-			rownum 접근 순서인데 몇 번에서 몇 번글을 볼거냐는 소리 -->
-		AND a.memberkey = m.memberkey
-		ORDER BY
-		qualitykey
+		) 
+		where cnt between #{start} and #{end} 
+		ORDER BY qualitykey
 	</select>
 
 
