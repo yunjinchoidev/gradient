@@ -18,7 +18,7 @@ public interface QualityDao {
 		
 	
 
-	public QualityVO2 get(int qualitykey);
+	public QualityVO get(int qualitykey);
 
 	public void insert(QualityVO vo);
 

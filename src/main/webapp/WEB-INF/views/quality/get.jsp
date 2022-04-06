@@ -10,28 +10,23 @@
 
 
 <script>
-	$(document)
-			.ready(
-					function() {
-						var qualitykey = "${get.qualitykey}"
-						console.log("qualitykey : " + qualitykey);
-						$("#del")
-								.click(
-										function() {
-											confirm("정말 삭제하시겠습니까?");
-											location.href = "/project5/qualityDelete.do?qualitykey="
-													+ qualitykey;
-										})
+$(document).ready(function() {
+					
+	var qualitykey = "${get.qualitykey}";
 
-						$("#update")
-								.click(
-										function() {
-											confirm("정말 수정하시겠습니까?");
-											location.href = "/project5/qualityUpdateFrom.do?qualitykey="
-													+ qualitykey;
-										})
+	$("#del").click(function() {
+		if(confirm("정말 삭제하시겠습니까?")){
+			location.href = "/project5/qualityDelete.do?qualitykey="+ qualitykey;
+		}			
+	});
 
-					})
+	$("#update").click(function() {
+		if(confirm("정말 수정하시겠습니까?")){
+			location.href = "/project5/qualityUpdateFrom.do?qualitykey="+ qualitykey;	
+		}
+	});
+
+})
 </script>
 
 
@@ -50,7 +45,6 @@
 							<h4 class="card-title">품질 건의</h4>
 						</div>
 
-						
 
 						<div class="card-content">
 							<div class="card-body">

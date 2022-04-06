@@ -49,8 +49,7 @@
 	<select id="update" parameterType="project5.quality.QualityVO">
 		update quality
 		set
-		title
-		=#{title},
+		title=#{title},
 		contents = #{contents}
 		where qualitykey = #{qualitykey}
 	</select>

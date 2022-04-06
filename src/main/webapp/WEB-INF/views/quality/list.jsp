@@ -196,10 +196,10 @@
 										<tbody>
 											<c:forEach var="list" items="${list}">
 												<tr
-													onclick="location.href='/project5/qualityInsert.do?qualitykey='+${list.qualitykey}">
+													onclick="location.href='/project5/qualityGet.do?qualitykey='+${list.qualitykey}">
 													<td>${list.qualitykey }</td>
 													<td
-														onclick="locaion.href='/project5/qualityInsert.do?qualitykey='+${list.qualitykey}">${list.title }</td>
+														>${list.title }</td>
 													<td>${list.writedate }</td>
 													<td>${member.name}</td>
 													<td><span class="badge bg-success">Active</span></td>
@@ -318,9 +318,7 @@
 
 <script>
 	// 장훈주 추가 start
-	$(document)
-			.ready(
-					function() {
+	$(document).ready(function() {
 
 						var score = 0;
 						var msg = "${msg}";

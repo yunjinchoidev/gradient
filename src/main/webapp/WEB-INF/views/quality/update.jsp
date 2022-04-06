@@ -47,7 +47,6 @@
 						</div>
 						<form action="/project5/qualityUpdate.do">
 						<input type="hidden" name="qualitykey" value="${get.qualitykey }">
-						<input type="hidden" name="memberkey" value="${member.memberkey }">
 						<div class="card-content">
 							<div class="card-body">
 								<div class="row">
@@ -76,9 +75,9 @@
 
 										<div class="col-md-6 col-12">
 											<div class="form-group">
-												<label for="email-id-column">Contents</label>
+												<label for="email-id-column">내용</label>
 												<textarea class="form-control" name="contents"
-													placeholder="contents" rows="4" readonly="readonly">${get.contents }</textarea>
+													placeholder="contents" rows="4">${get.contents }</textarea>
 											</div>
 										</div>
 

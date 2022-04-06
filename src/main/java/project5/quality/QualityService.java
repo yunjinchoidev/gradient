@@ -88,7 +88,7 @@ dao2.insert(attach);
 });
 }
 
-	public QualityVO2 get(int qualitykey) {
+	public QualityVO get(int qualitykey) {
 		return dao.get(qualitykey);
 	}
 	
