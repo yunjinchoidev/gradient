@@ -157,7 +157,6 @@ public class MemberContoller {
 	@RequestMapping("/memberList.do")
 	public String memberList(Model d, MemberSch sch) {
 		d.addAttribute("list", service.listWithPaging(sch));
-		//return "pageJsonReport";
 		return "WEB-INF\\views\\member\\list.jsp";
 	}
 

@@ -62,9 +62,7 @@ $(document).ready(function() {
 	$("#notsame").hide();
 	$("#same").hide();
 	
-	
 	$("input[name=passRE]").keyup(function(){
-		console.log("키보드 동작 성공")
 		var pass =	$("input[name=pass]").val();
 		var passRE =	$("input[name=passRE]").val();
 		
@@ -75,9 +73,6 @@ $(document).ready(function() {
 			$("#notsame").show();
 			$("#same").hide();
 		}
-		
-		
-		
 	})
 	
 	
@@ -310,13 +305,12 @@ $(document).ready(function() {
 
 
 						<div class="form-group position-relative has-icon-left mb-4">
-							<input type="text" class="form-control form-control-xl"
+							<input type="password" class="form-control form-control-xl"
 								placeholder="변경할 비밀번호" name="pass">
 							<div class="form-control-icon">
 								<i class="bi bi-envelope"></i>
 							</div>
 						</div>
-
 
 
 						<div class="form-group position-relative has-icon-left mb-4">
