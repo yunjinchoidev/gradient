@@ -17,10 +17,20 @@ public class CalendarSch {
 	// 검색할 내용
 	private String title;
 	private String contents;
+	
+	private int memberkey;
+	
+	
+	
+	
+	
+	
 	public CalendarSch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	
+	
 	public CalendarSch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
 			int startBlock, int endBlock, String title, String contents) {
 		super();
@@ -36,6 +46,29 @@ public class CalendarSch {
 		this.title = title;
 		this.contents = contents;
 	}
+	
+	
+	
+	
+	
+	public CalendarSch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
+			int startBlock, int endBlock, String title, String contents, int memberkey) {
+		super();
+		this.count = count;
+		this.pageSize = pageSize;
+		this.pageCount = pageCount;
+		this.curPage = curPage;
+		this.start = start;
+		this.end = end;
+		this.blockSize = blockSize;
+		this.startBlock = startBlock;
+		this.endBlock = endBlock;
+		this.title = title;
+		this.contents = contents;
+		this.memberkey = memberkey;
+	}
+
+
 	public int getCount() {
 		return count;
 	}
@@ -101,6 +134,12 @@ public class CalendarSch {
 	}
 	public void setContents(String contents) {
 		this.contents = contents;
+	}
+	public int getMemberkey() {
+		return memberkey;
+	}
+	public void setMemberkey(int memberkey) {
+		this.memberkey = memberkey;
 	}
 
 	

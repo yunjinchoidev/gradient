@@ -8,6 +8,7 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
 
+
 <script>
 	$(document).ready(function() {
 		var qualitykey = "${quality.qualitykey}"

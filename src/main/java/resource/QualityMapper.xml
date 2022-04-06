@@ -5,14 +5,39 @@
 
 <mapper namespace="project5.quality.QualityDao">
 
-	<select id="list" resultType="project5.quality.QualityVO">
-		select * from quality
+
+	<select id="getList" resultType="project5.quality.QualityVO"
+		parameterType="project5.quality.QualitySch">
+		select *
+		from (
+		select rownum cnt, b.*
+		from quality b
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+		) 
+		where cnt between #{start} and #{end} 
+		ORDER BY qualitykey
+	</select>
+
+
+	<!--  전체 개수 구하는 함수 -->
+	<select id="totCnt" resultType="int"
+		parameterType="project5.quality.QualitySch">
+		select count(*)
+		from quality
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
 	</select>
 
 	<select id="get" resultType="project5.quality.QualityVO"
 		parameterType="int">
 		select * from quality where qualitykey = #{qualitykey}
 	</select>
+
 
 
 	<insert id="insert" parameterType="project5.quality.QualityVO">

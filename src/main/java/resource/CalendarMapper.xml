@@ -14,9 +14,16 @@
 		<result property="start" column="start1" />
 		<result property="end" column="end1" />
 	</resultMap>
-	
-	
-	<select id="getCalendarList" resultMap="calResult" parameterType="int">
+
+
+	<select id="getCalendarList" resultMap="calResult"
+		parameterType="int">
+		select * from calendars
+		where projectkey=#{projectkey}
+	</select>
+
+	<select id="getCalendarbyMemberKey" resultMap="calResult"
+		parameterType="int">
 		select * from calendars
 		where projectkey=#{projectkey}
 	</select>
@@ -29,7 +36,7 @@
 	<select id="totCnt"
 		parameterType="project5.fullCalendar.CalendarSch" resultType="int">
 		select count(*)
-		from calendar
+		from calendars
 		where 1=1
 		<if test="title!=null and title!=''">
 			and title like '%'||#{title}||'%'
@@ -39,18 +46,23 @@
 		</if>
 	</select>
 
-	
+
 	<!-- 리스트를 불러오기 -->
 	<select id="listWithPaging"
 		resultType="project5.fullCalendar.Calendar"
 		parameterType="project5.fullCalendar.CalendarSch">
-		select *
+		select cnt, id, title, to_char(TO_DATE(SUBSTR(end1,0,
+		10),
+		'YYYY-MM-DD'),'YYYY/MM/DD') start1, to_char(TO_DATE(SUBSTR(end1,0,
+		10), 'YYYY-MM-DD'),'YYYY/MM/DD') end1, content, bordercolor,
+		backgroundcolor, textcolor , allday, projectkey, memberkey
 		from (
 		select rownum cnt,c.*
 		FROM
-		calendar c
+		calendars c
 		where
 		1=1
+		AND memberkey=#{memberkey}
 		<if test="title!=null and title!=''">
 			and title like '%'||#{title}||'%'
 		</if>
@@ -75,16 +87,19 @@
 
 
 
-	<select id="getCalendarIndividaulList" resultMap="calResult" parameterType="int">
+	<select id="getCalendarIndividaulList" resultMap="calResult"
+		parameterType="int">
 		select * from calendars where memberkey = #{memberkey}
 	</select>
 
 
-	<select id="mywork" resultType="project5.fullCalendar.Calendar" parameterType="int">
+	<select id="mywork" resultType="project5.fullCalendar.Calendar"
+		parameterType="int">
 		select * from calendars where memberkey = #{memberkey}
 	</select>
 
-	<select id="get" resultType="project5.fullCalendar.Calendar" parameterType="int">
+	<select id="get" resultType="project5.fullCalendar.Calendar"
+		parameterType="int">
 		select * from calendars where id = #{id}
 	</select>
 
@@ -92,7 +107,8 @@
 
 
 
-	<insert id="insertCalendar" parameterType="project5.fullCalendar.Calendar">
+	<insert id="insertCalendar"
+		parameterType="project5.fullCalendar.Calendar">
 		INSERT INTO calendars
 		values(cal_seq.nextval,
 		#{title},#{start},#{end},#{content},#{borderColor},#{backgroundColor},
@@ -109,7 +125,8 @@
 
 	<update id="updateCalendar" parameterType="calendar">
 		UPDATE calendars
-		set title = #{title},
+		set
+		title = #{title},
 		start1 = #{start},
 		end1 = #{end},
 		content = #{content},
@@ -119,10 +136,10 @@
 		allDay = #{allDay}
 		WHERE id = #{id}
 	</update>
-	
-	
-	
-	
+
+
+
+
 	<delete id="deleteCalendar" parameterType="int">
 		DELETE FROM calendars
 		WHERE id = #{id}
