@@ -29,7 +29,7 @@
 
 
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>품질 건의</h3>
+						<h3 onclick="location.href='/project5/qualityList.do'" style="cursor: pointer;">품질 건의</h3>
 						<p class="text-subtitle text-muted">For user to check they
 							list</p>
 					</div>
@@ -56,17 +56,19 @@
 						<div
 							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 							
-							<div class="dataTable-top">
-								<div class="dataTable-dropdown">
-									<span class="input-group-text">총 ${qualitySch.count}건</span> <span
-											class="input-group-text">페이지 크기</span> <select
-											class="dataTable-selector form-select" name="pageSize"><option
-												value="5">5</option>
+							<!--  이곳에서 한 화면에서 몇 페이지를 볼 지 보내줍니다. -->
+							<form id="frm01" class="form" action="/project5/qualityList.do">
+								<div class="dataTable-top">
+									<div class="dataTable-dropdown">
+										<span class="input-group-text" style="margin-right: 10px;">총 ${qualitySch.count}건</span> <span
+											class="input-group-text">페이지 크기</span> 
+											<select class="dataTable-selector form-select" name="pageSize">
+											<option value="5">5</option>
 											<option value="10" selected>10</option>
 											<option value="15">15</option>
 											<option value="20">20</option>
-											<option value="25">25</option></select><label>entries per page</label>
-								</div>
+											<option value="25">25</option></select><label>한 화면당 페이지 수</label>
+									</div>
 								
 
 							</div>
@@ -92,10 +94,10 @@
 									<tbody>
 										<c:forEach var="list" items="${list}">
 											<tr
-											onclick="location.href='/project5/qualityGet.do?qualitykey='+${list.qualitykey}"
+											onclick="location.href='/project5/qualityInsert.do?qualitykey='+${list.qualitykey}"
 												>
 												<td>${list.qualitykey }</td>
-												<td onclick="locaion.href='/project5/qualityGet.do?qualitykey='+${list.qualitykey}">${list.title }</td>
+												<td onclick="locaion.href='/project5/qualityInsert.do?qualitykey='+${list.qualitykey}">${list.title }</td>
 												<td>${list.writedate }</td>
 												<td>${member.name}</td>
 												<td><span class="badge bg-success">Active</span></td>

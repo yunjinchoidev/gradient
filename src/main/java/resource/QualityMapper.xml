@@ -5,8 +5,38 @@
 
 <mapper namespace="project5.quality.QualityDao">
 
-	<select id="list" resultType="project5.quality.QualityVO">
-		select * from quality
+
+	<select id="getList" resultType="project5.quality.QualityVO2"
+		parameterType="project5.quality.QualitySch">
+		select a.*, m.name
+		from (
+		select rownum cnt, level, b.*
+		from quality b
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
+		START WITH refno=0
+		CONNECT BY PRIOR qualitykey=refno
+		ORDER siblings BY
+		qualitykey desc ) a, MEMBER m
+		where cnt between #{start} and #{end} <!-- cnt는 
+			rownum 접근 순서인데 몇 번에서 몇 번글을 볼거냐는 소리 -->
+		AND a.memberkey = m.memberkey
+		ORDER BY
+		qualitykey
+	</select>
+
+
+	<!--  전체 개수 구하는 함수 -->
+	<select id="totCnt" resultType="int"
+		parameterType="project5.quality.QualitySch">
+		select count(*)
+		from quality
+		where 1=1
+		<if test="title!=null and title!=''">
+			and title like '%'||#{title}||'%'
+		</if>
 	</select>
 
 	<select id="get" resultType="project5.quality.QualityVO"

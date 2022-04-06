@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="project5.qualityAttach.QualityAttachDao">
+
+	<insert id="insert">
+		insert into quality_Attach (uuid, uploadpath,
+		filename,
+		filetype, qualitykey)
+		values (#{uuid}, #{uploadPath}, #{fileName},
+		#{fileType},#{qualitykey})
+	</insert>
+
+	<delete id="delete">
+
+		delete from quality_Attach where uuid = #{uuid}
+
+	</delete>
+
+	<select id="findByBno"
+		resultType="project5.qualityAttach.QualityAttachVO">
+		select * from nquality_Attach where qualitykey = #{qualitykey}
+	</select>
+
+	<delete id="deleteAll">
+
+		delete quality_Attach where qualitykey = #{qualitykey}
+
+	</delete>
+
+	<select id="getOldFiles"
+		resultType="project5.qualityAttach.QualityAttachVO">
+
+		select * from quality_Attach where uploadpath =
+		to_char(sysdate -1 ,'yyyy\mm\dd')
+
+	</select>
+
+
+
+
+</mapper>

@@ -1,6 +1,9 @@
 package project5.quality;
 
 import java.util.Date;
+import java.util.List;
+
+import project5.qualityAttach.QualityAttachVO;
 
 public class QualityVO {
 	private int qualitykey;
@@ -10,7 +13,21 @@ public class QualityVO {
 	private String writedateS;
 	private String title;
 	private String contents;
-// 품질 평가
+	
+	private List<QualityAttachVO> attachList;
+	
+	
+public List<QualityAttachVO> getAttachList() {
+		return attachList;
+	}
+	public void setAttachList(List<QualityAttachVO> attachList) {
+		this.attachList = attachList;
+	}
+public QualityVO(List<QualityAttachVO> attachList) {
+		super();
+		this.attachList = attachList;
+	}
+	// 품질 평가
 	// 프로젝트 목록
 	private int prjkey;
 	private String prjname;

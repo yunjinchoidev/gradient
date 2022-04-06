@@ -4,18 +4,30 @@ import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
+
+
 @Repository
 public interface QualityDao {
+	
+	// 전체 데이터 수 가져오는 것
+		public int totCnt(QualitySch sch);
+		
+		// 리스트 가져오기
+		public List<QualityVO> getList(QualitySch sch);
 
-	public List<QualityVO> list();
+	
 
-	public QualityVO get(int qualitykey);
+	public QualityVO2 get(int qualitykey);
 
 	public void insert(QualityVO vo);
 
 	public void update(QualityVO vo);
 
 	public void delete(int qualitykey);
+	
+	public int totCnt();
+	
+	public int current();
 	
 // 품질 평가
 	// 프로젝트 목록
@@ -28,5 +40,7 @@ public interface QualityDao {
 	public void qualitypass(QualityVO upt);
 	// 품질 평가 합격 목록
 	public List<QualityVO> certiprjlist();
+
+	
 
 }
