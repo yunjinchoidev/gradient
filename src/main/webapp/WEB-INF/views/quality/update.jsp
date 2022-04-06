@@ -143,9 +143,9 @@
 												<i class="fas fa-plane"></i> 목록으로
 											</button>
 											<button type="button" class="btn btn-primary me-1 mb-1"
-												id="update">수정하기</button>
+												id="uptbtn">수정하기</button>
 											<button type="button"
-												class="btn btn-light-secondary me-1 mb-1" id="del">삭제하기</button>
+												class="btn btn-light-secondary me-1 mb-1" id="delBtn">삭제하기</button>
 										</div>
 								</div>
 								</form>

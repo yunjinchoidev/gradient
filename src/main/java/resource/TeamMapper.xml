@@ -3,32 +3,48 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.team.TeamDao">
-<!-- 회원 목록 리스트 -->
-	<select id="getTeamList" resultType="team" parameterType="team">
-		SELECT
+	<!-- 회원 목록 리스트 -->
+	<select id="getTeamList" resultType="team"
+		parameterType="TeamSch">
+		SELECT *FROM (SELECT ROW_NUMBER() OVER (ORDER BY
+		mp.MEMBER_PROJECT_KEY ASC)
+		AS cnt,
 		m.name AS name, m.auth AS auth,
 		d.dname AS dname, m.email AS email,
-		p.NAME AS projectname, mp.STATUS AS
-		STATUS, mp.MEMBER_PROJECT_KEY AS memberprojectkey
-		FROM MEMBER_PROJECT mp,
-		MEMBER m, PROJECT p, DEPARTMENT d
-		WHERE mp.STATUS LIKE '%'||#{status,
-		jdbcType=VARCHAR}||'%'
+		p.NAME AS
+		projectname, mp.STATUS AS
+		STATUS, mp.MEMBER_PROJECT_KEY AS
+		memberprojectkey
+		FROM MEMBER_PROJECT
+		mp,
+		MEMBER m, PROJECT p, DEPARTMENT
+		d
+		WHERE mp.STATUS LIKE
+		'%'||#{status}||'%'
 		AND m.name IS NOT null
 		AND mp.memberkey =
 		m.MEMBERKEY
-		AND mp.PROJECTKEY = p.PROJECTKEY
-		AND mp.DEPTNO = d.DEPTNO
+		AND mp.PROJECTKEY = p.PROJECTKEY)
+		WHERE cnt BETWEEN #{start}
+		AND #{end} ORDER BY memberprojectkey
 	</select>
-	<!-- 회원 배정 목록 리스트 -->
-	<select id="teamDetail" resultType="team" parameterType="team">
+	<select id="totCnt" resultType="int"
+		parameterType="TeamSch">
+		select count(*)
+		from MEMBER_PROJECT
+		where 1=1
+	</select>
+	<!-- 회원 배정 목록 리스트 
+	<select id="getTeamDetail" resultType="team" parameterType="team">
 		SELECT
 		m.name AS name, m.auth AS auth,
 		d.dname AS dname, m.email AS email,
 		p.NAME AS projectname, mp.STATUS AS
-		STATUS, mp.MEMBER_PROJECT_KEY AS memberprojectkey
+		STATUS, mp.MEMBER_PROJECT_KEY AS
+		memberprojectkey
 		FROM MEMBER_PROJECT mp,
-		MEMBER m, PROJECT p, DEPARTMENT d
+		MEMBER m, PROJECT p, DEPARTMENT
+		d
 		WHERE mp.STATUS = #{status}
 		AND
 		p.PROJECTKEY = #{projectkey}
@@ -40,11 +56,11 @@
 		AND mp.PROJECTKEY =
 		p.PROJECTKEY
 		AND mp.DEPTNO = d.DEPTNO
-	</select>
+	</select>   -->
 	<!-- 모달창 프로젝트 리스트 -->
 	<select id="selectPrjList" parameterType="string"
 		resultType="team">
-		SELECT projectKey AS projectKey, name AS
+		SELECT projectkey AS projectkey, name AS
 		projectname
 		FROM
 		project
@@ -69,17 +85,21 @@
 	</select>
 	<!-- 프로젝트 배정 MEMBER_PROJECT VALUES (seq_team.nextval,#{projectkey},#{memberkey}, 
 		#{deptno}, #{status}) -->
-	<insert id="insertTeam" parameterType="team">
+	<insert id="insTeam" parameterType="team">
 		INSERT INTO MEMBER_PROJECT
-		values (seq_team.nextval,#{memberkey},,#{projectkey},#{deptno},#{status}))
+		values
+		(seq_team.nextval,#{memberkey},#{projectkey},#{deptno},#{status}))
 	</insert>
-	<update id="updateTeam" parameterType="team">
+	<update id="uptTeam" parameterType="team">
 		UPDATE MEMBER
 		SET status =
 		#{status}
 		WHERE PROJECTKEY = #{projectkey}
 	</update>
-
+    <delete id="delTeam" parameterType="int">
+    DELETE FROM MEMBER_PROJECT
+	WHERE MEMBER_PROJECT_KEY = #{member_project_key}
+    </delete>
 
 
 </mapper>

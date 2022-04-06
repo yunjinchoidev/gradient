@@ -27,15 +27,19 @@ textarea {
 <script>
 	$(document).ready(
 			function() {
+
+				var sessid = "${member.id}";
+				var id = $("[name=id]").val();
+
 				var msg = "${msg}";
 				if (msg != "") {
 					if (confirm(msg + "\n팀관리 목록으로 이동할까요?")) {
-						location.href = "${path}/team.do?method=list";
+						location.href = "${path}/teamlist.do";
 					}
 				}
 
 				$("#goList").click(function() {
-					location.href = "${path}/team.do?method=list";
+					location.href = "${path}/teamlist.do";
 				});
 
 				$("#regBtn").click(
@@ -47,11 +51,21 @@ textarea {
 									return;
 								}
 								$("form").attr("action",
-										"${path}/team.do?method=insert");
+										"${path}/insertTeam.do");
 								$("form").submit();
 							}
 						});
 			});
+	if (sessid != id) {
+		$('#delbtn').hide();
+		$('#uptbtn').hide();
+	}
+	$("#delbtn").click(function() {
+		if (confirm("취소하시겠습니까?")) {
+			location.href = "${path}/teamlist.do";
+		}
+
+	});
 </script>
 </head>
 
@@ -79,16 +93,16 @@ textarea {
 				</div>
 			</div>
 			<section class="section">
-				<form action="#" method="post">
+				<form action="${path}/insertTeam.do" method="post">
 					<div>
-						<div class="card" style="width:850px;">
+						<div class="card" style="width: 850px;">
 							<div class="card-header">
 								<h4 class="card-title" align="center">팀원배정</h4>
-								<input type="hidden" name="id" value="${member.id}">
+								<input type="hidden" name="memberkey" value="${m.memberkey}">
 							</div>
 							<table class="table mb-0 table-lg">
 								<tr>
-									<th style="text-aligned:center;">회원명</th>
+									<th style="text-aligned: center;">회원명</th>
 									<td><select class="form-select" name="memberkey">
 											<option>회원의 이름을 선택해주세요.</option>
 											<c:forEach var="m" items="${MemList}">
@@ -100,7 +114,7 @@ textarea {
 								<td><select class="form-select" name="deptKey">
 										<option>부서명을 선택해주세요.</option>
 										<c:forEach var="dpt" items="${dptList}">
-											<option value="${dpt.deptKey}">${dpt.dname}</option>
+											<option value="${dpt.deptno}">${dpt.dname}</option>
 										</c:forEach>
 								</select></td>
 								<tr>
@@ -117,15 +131,14 @@ textarea {
 									<td><select class="form-select" name="projectKey">
 											<option>프로젝트를 선택해주세요.</option>
 											<c:forEach var="prj" items="${prjList}">
-												<option value="${prj.projectKey}">${prj.pname}</option>
+												<option value="${prj.projectkey}">${prj.pname}</option>
 											</c:forEach>
 									</select></td>
 								</tr>
 								<tr>
 									<th>이메일</th>
-									<td colspan="3" >
-	                            	<input type="text" class="form-control" id="basicInput" name="email" placeholder="이메일주소를 입력해주세요."/>	                      
-	                            </td>
+									<td colspan="3"><input type="text" class="form-control"
+										id="basicInput" name="email" placeholder="이메일주소를 입력해주세요." /></td>
 								</tr>
 								<tr>
 									<th>배정여부 선택</th>
@@ -142,14 +155,13 @@ textarea {
 					</div>
 				</form>
 			</section>
-					<input type="button" id="goList" class="btn btn-success" value="목록" />
-					<input type="button" id="regBtn" class="btn btn-primary" value="배정" />
-					<input type="button" id="backBtn" class="btn btn-danger" value="취소" />
+			<div id="button">
 
+				<button class="btn btn-warning" id="regbtn">등록</button>
 
-
+				<button class="btn btn-danger" id="delbtn">취소</button>
+			</div>
 		</div>
-
 	</div>
 </body>
 </html>

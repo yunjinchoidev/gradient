@@ -5,15 +5,15 @@ import java.util.List;
 //project5.team.TeamDao
 
 public interface TeamDao {
-	public List<TeamVo> getTeamList(TeamVo sch);
-	public void insertTeam(TeamVo sch);
-	public void updateTeam(TeamVo upt);
-	// 모달창 프로젝트 리스트 & 부서 리스트 & 회원 리스트
+	public List<TeamVo> getTeamList(TeamSch sch);
 	public List<TeamVo> selectPrjList();
 	public List<TeamVo> selectdptList();
 	public List<TeamVo> selectMemList();
-	public List<TeamVo> selectstatusList();
-	// 배정목록
-	public TeamVo getTeam(int memberprojectkey);
+	public int totCnt(TeamSch sch);
+	public void insTeam(TeamVo ins);
+	public void uptTeam(TeamVo upt);
+//	public List<TeamVo> getTeamDetail(TeamVo sch);
+	public void delTeam(int memberprojectkey);
+
 }
 

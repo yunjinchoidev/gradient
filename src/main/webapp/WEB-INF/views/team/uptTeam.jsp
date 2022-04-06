@@ -27,29 +27,38 @@ textarea {
 <script>
 	$(document).ready(
 			function() {
+
 				var msg = "${msg}";
+				var memberprojectkey = "${tlist.memberprojectkey}";
+				var memberprojectkey = "${memberprojectkey}";
+
 				if (msg != "") {
-					if (confirm(msg + "\n팀관리 리스트로 이동할까요?")) {
-						location.href = "${path}/teamlist.do;
-					}
+					alert(msg);
+					location.href = "${path}/risk.do?projectkey=" + prjkey;
 				}
 
-				$("#goList").click(function() {
-					location.href = "${path}/teamlist.do?";
+				$("#uptbtn").click(function() {
+
+					if ($('[name=email]').val() == "") {
+						alert('이메일을 입력해주세요');
+					} else {
+						if (confirm("수정하시겠습니까?")) {
+							$('form').submit();
+						}
+					}
 				});
 
-				$("#regBtn").click(
+				$("#backbtn").click(function() {
+					location.href = "${path}/teamlist.do";
+				});
+				$("#delbtn").click(
 						function() {
-							if (confirm("등록하시겠습니까?")) {
-								if ($("[name=name]").val() == ""
-										|| $("[name=email]").val() == "") {
-									alert("필수항목을 입력해주세요");
-									return;
-								}
-								$("form").attr("action",
-										"${path}/insertTeam.do");
-								$("form").submit();
+							if (confirm("삭제하시겠습니까?")) {
+								location.href = "${path}/delTeam.do?memberprojectkey="
+										+ $("[name=memberprojectkey]").val()
+										+ "&projectkey=" + prjkey;
 							}
+
 						});
 			});
 </script>
@@ -84,7 +93,7 @@ textarea {
 						<div class="card" style="width: 850px;">
 							<div class="card-header">
 								<h4 class="card-title" align="center">팀원배정</h4>
-								<input type="hidden" name="id" value="${member.id}">
+								<input type="hidden" name="memberkey" value="${m.memberkey}">
 							</div>
 							<table class="table mb-0 table-lg">
 								<tr>
@@ -100,7 +109,7 @@ textarea {
 								<td><select class="form-select" name="deptKey">
 										<option>부서명을 선택해주세요.</option>
 										<c:forEach var="dpt" items="${dptList}">
-											<option value="${dpt.deptKey}">${dpt.dname}</option>
+											<option value="${dpt.deptno}">${dpt.dname}</option>
 										</c:forEach>
 								</select></td>
 								<tr>
@@ -117,7 +126,7 @@ textarea {
 									<td><select class="form-select" name="projectKey">
 											<option>프로젝트를 선택해주세요.</option>
 											<c:forEach var="prj" items="${prjList}">
-												<option value="${prj.projectKey}">${prj.pname}</option>
+												<option value="${prj.projectkey}">${prj.pname}</option>
 											</c:forEach>
 									</select></td>
 								</tr>
