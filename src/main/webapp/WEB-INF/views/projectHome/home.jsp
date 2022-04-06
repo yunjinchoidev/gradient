@@ -294,6 +294,7 @@
 										<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
 										href="javascript:goPage(${cnt})">${cnt}</a>
 									</li>
+									
 								</c:forEach>
 								<li class="page-item"><a class="page-link"
 									href="javascript:goPage(${projectHomeSch.endBlock!=projectHomeSch.pageCount?projectHomeSch.endBlock+1:projectHomeSch.endBlock})">Next</a></li>
