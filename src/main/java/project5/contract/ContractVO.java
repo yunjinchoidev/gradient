@@ -19,6 +19,7 @@ import java.util.Date;
 	basicPayUnit varchar2(50),
 	basicPay NUMBER,
 	bonus NUMBER,
+	paymentDateUnit
 	paymentDate NUMBER,
 	paymentMethod varchar2(200),
 	socialInsurance varchar2(200), --checkbox
@@ -45,6 +46,7 @@ public class ContractVO {
 	private String basicPayUnit;
 	private int basicPay;
 	private int bonus;
+	private String paymentDateUnit;
 	private int paymentDate;
 	private String paymentMethod;
 	private String socialInsurance;
@@ -55,6 +57,37 @@ public class ContractVO {
 	public ContractVO() {
 		super();
 		// TODO Auto-generated constructor stub
+	}
+	public ContractVO(int contractKey, int memberKey, String employerName, String employeeName, Date termStart,
+			Date termEnd, String place, String description, String whStart, String whEnd, String phStart, String phEnd,
+			String holidays, String basicPayUnit, int basicPay, int bonus, String paymentDateUnit, int paymentDate,
+			String paymentMethod, String socialInsurance, Date writeDate, String employerAddress,
+			String employeeAddress, String employeeContact) {
+		super();
+		this.contractKey = contractKey;
+		this.memberKey = memberKey;
+		this.employerName = employerName;
+		this.employeeName = employeeName;
+		this.termStart = termStart;
+		this.termEnd = termEnd;
+		this.place = place;
+		this.description = description;
+		this.whStart = whStart;
+		this.whEnd = whEnd;
+		this.phStart = phStart;
+		this.phEnd = phEnd;
+		this.holidays = holidays;
+		this.basicPayUnit = basicPayUnit;
+		this.basicPay = basicPay;
+		this.bonus = bonus;
+		this.paymentDateUnit = paymentDateUnit;
+		this.paymentDate = paymentDate;
+		this.paymentMethod = paymentMethod;
+		this.socialInsurance = socialInsurance;
+		this.writeDate = writeDate;
+		this.employerAddress = employerAddress;
+		this.employeeAddress = employeeAddress;
+		this.employeeContact = employeeContact;
 	}
 	public int getContractKey() {
 		return contractKey;
@@ -152,6 +185,12 @@ public class ContractVO {
 	public void setBonus(int bonus) {
 		this.bonus = bonus;
 	}
+	public String getPaymentDateUnit() {
+		return paymentDateUnit;
+	}
+	public void setPaymentDateUnit(String paymentDateUnit) {
+		this.paymentDateUnit = paymentDateUnit;
+	}
 	public int getPaymentDate() {
 		return paymentDate;
 	}
@@ -194,37 +233,4 @@ public class ContractVO {
 	public void setEmployeeContact(String employeeContact) {
 		this.employeeContact = employeeContact;
 	}
-	public ContractVO(int contractKey, int memberKey, String employerName, String employeeName, Date termStart,
-			Date termEnd, String place, String description, String whStart, String whEnd, String phStart, String phEnd,
-			String holidays, String basicPayUnit, int basicPay, int bonus, int paymentDate, String paymentMethod,
-			String socialInsurance, Date writeDate, String employerAddress, String employeeAddress,
-			String employeeContact) {
-		super();
-		this.contractKey = contractKey;
-		this.memberKey = memberKey;
-		this.employerName = employerName;
-		this.employeeName = employeeName;
-		this.termStart = termStart;
-		this.termEnd = termEnd;
-		this.place = place;
-		this.description = description;
-		this.whStart = whStart;
-		this.whEnd = whEnd;
-		this.phStart = phStart;
-		this.phEnd = phEnd;
-		this.holidays = holidays;
-		this.basicPayUnit = basicPayUnit;
-		this.basicPay = basicPay;
-		this.bonus = bonus;
-		this.paymentDate = paymentDate;
-		this.paymentMethod = paymentMethod;
-		this.socialInsurance = socialInsurance;
-		this.writeDate = writeDate;
-		this.employerAddress = employerAddress;
-		this.employeeAddress = employeeAddress;
-		this.employeeContact = employeeContact;
-	}
-	
-	
-
 }

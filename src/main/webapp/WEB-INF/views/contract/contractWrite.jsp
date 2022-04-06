@@ -109,10 +109,42 @@
 	                        	</td>
 	                        </tr>
 	                        <tr>
-	                            
+	                        	<td>
+	                        		4. 소정근로시간 :     <input type="text" placeholder="   시   분"/>부터   <input type="text" placeholder="   시   분"/>까지
+	                        	</td>
 	                        </tr>
 	                        <tr>
-	                            
+	                            <td>
+	                        		5. 근무일/휴일 : 매주 <input type="text"/>일(또는 매일단위)근무, 주휴일 매주 요일
+	                        	</td>
+	                        </tr>
+	                        <tr>
+	                            <td>
+	                        		6. 임 금<br>
+									  - 
+									  <select>
+									  	<option>월</option>
+									  	<option>일</option>
+									  	<option>시간</option>
+									  </select>급 : ________________ 원<br>
+									  - 상여금 : ________________ 원<br>
+									  - 임금지급일 : 
+									  <select>
+									  	<option>매월</option>
+									  	<option>매주</option>
+									  	<option>매일</option>
+									  </select><input type="text"/>일(휴일의 경우는 전일 지급)
+	                        	</td>
+	                        </tr>
+	                        <tr>
+	                            <td>
+	                        	
+	                        	</td>
+	                        </tr>
+	                        <tr>
+	                            <td>
+	                        	
+	                        	</td>
 	                        </tr>
                        	</table>
 	                </div>
