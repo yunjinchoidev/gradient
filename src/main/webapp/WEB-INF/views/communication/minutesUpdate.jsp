@@ -34,9 +34,14 @@
 			});
 			
 			$("#uptBtn").click(function() {
-				if (confirm("수정하시겠습니까?")) {
-					$("form").attr("action", "${path}/minutes.do?method=update");
-					$("form").submit();
+				var hasSession="${member.id}";
+				if(hasSession!=""){
+					if (confirm("수정하시겠습니까?")) {
+						$("form").attr("action", "${path}/minutes.do?method=update");
+						$("form").submit();
+					}
+				}else{
+					alert("세션이 만료되었습니다. 로그인 후 다시 이용해주세요.");
 				}
 			});
 			

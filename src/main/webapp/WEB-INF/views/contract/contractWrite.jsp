@@ -25,12 +25,12 @@
 			var msg = "${msg}";
 			if (msg != "") {
 				if (confirm(msg + "\n회의록 리스트로 이동할까요?")) {
-					location.href = "${path}/minutes.do?method=list";
+					location.href = "${path}/contract.do?method=list";
 				}
 			}
 			
 			$("#goList").click(function(){
-				location.href="${path}/minutes.do?method=list";
+				location.href="${path}/contract.do?method=list";
 			});
 			
 
@@ -38,12 +38,7 @@
 				var hasSession="${member.id}";
 				if(hasSession!=""){
 					if (confirm("등록하시겠습니까?")) {
-						if ($("[name=topic]").val() == ""
-								|| $("[name=content]").val() == "") {
-							alert("필수항목을 입력해주세요");
-							return;
-						}
-						$("form").attr("action", "${path}/minutes.do?method=insert");
+						$("form").attr("action", "${path}/contract.do?method=insert");
 						$("form").submit();
 					}
 				}else{
@@ -52,6 +47,11 @@
 			});
 	    });
 	</script>
+	<style>
+		input[type=text]{
+			border:none;
+		}
+	</style>
 </head>
 
 <body>
@@ -82,59 +82,37 @@
 				<div>
 	                <div class="card">
 	                    <div class="card-header">
-	                        <h4 class="card-title" align="center">게시글 작성</h4>
+	                        <h4 class="card-title" align="center">근로 계약서 작성</h4>
 	                        <input type="hidden" name="id" value="${member.id}">
 	                    </div>
 	                    <table class="table mb-0 table-lg">
 	                        <tr>
-	                            <th>회의안건</th>
-	                            <td colspan="3" >
-	                            	<input type="text" class="form-control" id="basicInput" name="topic"/>
-	                            </td>
-	                        </tr>
-	                        <tr>
-	                        	<th>프로젝트명</th>
 	                        	<td>
-	                            	<select class="form-select" name="projectKey">
-	                            		<option>프로젝트를 선택해주세요.</option>
-			                    		<c:forEach var="prj" items="${prjList}">
-			                    			<option value="${prj.projectKey}">${prj.pname}</option>
-			                    		</c:forEach>
-			                    	</select>
-	                            </td>
+	                        		<input type="text"/>(이하 “사업주”라 함)과(와) <input type="text"/>(이하 “근로자”라 함)은 다음과 같이 근로계약을 체결한다.
+	                        	</td>
 	                        </tr>
 	                        <tr>
-	                            <th>참석자</th>
-	                            <td colspan="3" >
-	                            	<input type="text" class="form-control" id="basicInput" name="attendee"/>
-	                            </td>
+	                        	<td>
+	                        		1. 근로계약기간 :<input type="date"/>부터 <input type="date"/>까지<br>
+  									※ 근로계약기간을 정하지 않는 경우에는 “근로개시일”만 기재
+	                        	</td>
 	                        </tr>
 	                        <tr>
-	                            <th>회의일자</th>
+	                        	<td>
+	                        		2. 근 무 장 소 : <input type="text"/>
+	                        	</td>
+	                        </tr>
+	                        <tr>
 	                            <td>
-	                            	<input type="date" class="form-control" id="basicInput" name="conferenceDateS"/>
-	                            </td>
-	                            <th>부서명</th>
-	                            <td>
-	                            	<select class="form-select" name="deptKey">
-	                            		<option>부서명을 선택해주세요.</option>
-			                    		<c:forEach var="dpt" items="${dptList}">
-			                    			<option value="${dpt.deptKey}">${dpt.dname}</option>
-			                    		</c:forEach>
-			                    	</select>
-	                            </td>
+	                        		3. 업무의 내용 : 
+	                        			<textarea></textarea>
+	                        	</td>
 	                        </tr>
 	                        <tr>
-	                            <th>회의내용</th>
-	                            <td colspan="3">
-	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="14" name="content"></textarea>
-	                            </td>
+	                            
 	                        </tr>
 	                        <tr>
-	                            <th>속기</th>
-	                            <td colspan="3">
-	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="shorthand"></textarea>
-	                            </td>
+	                            
 	                        </tr>
                        	</table>
 	                </div>
