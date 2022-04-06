@@ -10,14 +10,25 @@
 
  --%>
 <html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+	<head>
+	<meta charset="UTF-8">
+	<title>Insert title here</title>
 </head>
 
 <body>
-
-
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script>
+	$(document).ready(function() {
+		$("#writeBtn").click(function() {
+			var hasSession="${member.id}";
+			if(hasSession!=""){
+				location.href = "${path}/contract.do?method=insertFrm";
+			}else{
+				alert("로그인 후 이용가능합니다.");
+			}
+		});
+	});
+	</script>
 	<%@ include file="../chatBot/chatBot.jsp"%>
 	<%@ include file="../common/header.jsp"%>
 
@@ -108,46 +119,7 @@
 								</table>
 								</tbody>
 
-								<div style="text-align: center">
-									<a href="/project5/procurementInsertFrom.do"
-										class="btn btn-primary" id="write" style="text-align: right">등록</a>
-								</div>
-
-							</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<div class="dataTable-bottom">
-								<div class="dataTable-info">전체 품질: ${procurementSch.count}</div>
-								<ul
-									class="pagination pagination-primary float-end dataTable-pagination">
-									<li class="page-item pager"><a class="page-link"
-										href="javascript:goPage(${procurementSch.startBlock!=1?procurementSch.startBlock-1:1})">‹</a></li>
-									<c:forEach var="cnt" begin="${procurementSch.startBlock}"
-										end="${procurementSch.endBlock}">
-										<li
-											class="page-item ${cnt==procurementSch.curPage?'active':''}">
-											<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
-											href="javascript:goPage(${cnt})">${cnt}</a>
-										</li>
-									</c:forEach>
-									<li class="page-item pager"><a class="page-link"
-										href="javascript:goPage(${procurementSch.endBlock!=procurementSch.pageCount?procurementSch.endBlock+1:procurementSch.endBlock})">›</a></li>
-								</ul>
+								<input type="button" id="writeBtn" class="btn btn-primary" value="계약서 작성"/>
 
 							</div>
 						</div>
@@ -156,69 +128,6 @@
 
 			</section>
 
-
-		</div>
-
-	</div>
-
-	<!-- 등록 Modal -->
-	<div class="modal fade text-left" id="regModal" tabindex="-1"
-		role="dialog" aria-labelledby="myModalLabel33" aria-hidden="true">
-		<div
-			class="modal-dialog modal-dialog-centered modal-dialog-scrollable"
-			role="document">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="myModalLabel33">품질 등록</h4>
-					<button type="button" class="close" data-bs-dismiss="modal"
-						aria-label="Close">
-						<i data-feather="x"></i>
-					</button>
-				</div>
-				<form id="regForm" action="${path}/insertrisk.do" method="post">
-					<!-- 모달 입력 요소 영역 -->
-					<div class="modal-body" style="margin: 10px;">
-						<!-- 프로젝트 select box -->
-						<div id="prjselect">
-							<select class="form-select" style="text-align: center;"
-								name="prjkey">
-								<c:forEach var="prlist" items="${prjlist}">
-									<option value="${prlist.prjkey}">${prlist.prjname}</option>
-								</c:forEach>
-							</select>
-						</div>
-						<!-- 중요도, 제목 공통 영역 -->
-						<div id="headerdiv" style="display: flex; margin-top: 10px;">
-
-							<!-- 제목 -->
-							<div id="title" style="flex: 4;">
-								<input class="form-control" type="text" name="title"
-									placeholder="제목을 입력하세요">
-							</div>
-						</div>
-
-						<!-- 상세내용 -->
-						<div id="regcontent" style="margin-top: 10px;">
-							<textarea name="content" placeholder="상세 내용" class="form-control"
-								rows="5" cols="5"></textarea>
-						</div>
-
-
-						<!-- 버튼 영역 -->
-						<div class="modal-footer">
-							<button type="button" class="btn btn-light-secondary"
-								data-bs-dismiss="modal">
-								<i class="bx bx-x d-block d-sm-none"></i> <span
-									class="d-none d-sm-block">닫기</span>
-							</button>
-							<button type="button" id="regBtn" class="btn btn-primary ml-1"
-								data-bs-dismiss="modal">
-								<i class="bx bx-check d-block d-sm-none"></i> <span
-									class="d-none d-sm-block">등록</span>
-							</button>
-						</div>
-				</form>
-			</div>
 		</div>
 	</div>
 </body>

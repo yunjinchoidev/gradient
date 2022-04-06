@@ -1,38 +1,24 @@
-package project5.fullCalendar;
+package project5.contract;
 
-public class CalendarSch {
+public class ContractSch {
 	private int count; // 총건수(DB)
 	private int pageSize; // 한번에 보여줄 데이터 건수(화면select-요청)
 	private int pageCount; // 총 페이지 수(총건수/한번에 보여줄 데이터 건수)
-
 	private int curPage; // 클릭한 현재 페이지 번호
 	private int start; // DB에 넘길 페이지의 시작 번호
-	private int end; // DB에 넘길 페이지의 마지막 번호
-
+	private int end;  // DB에 넘길 페이지의 마지막 번호
 	// block처리
 	private int blockSize; // 한번에 보여줄 하단의 페이지 블럭
 	private int startBlock; // 블럭의 시작 번호
 	private int endBlock; // 블럭의 마지막 번호
-
 	// 검색할 내용
-	private String title;
-	private String contents;
-	
-	private int memberkey;
-	
-	
-	
-	
-	
-	
-	public CalendarSch() {
+	private String employeeName;
+	public ContractSch() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	
-	
-	public CalendarSch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
-			int startBlock, int endBlock, String title, String contents) {
+	public ContractSch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
+			int startBlock, int endBlock, String employeeName) {
 		super();
 		this.count = count;
 		this.pageSize = pageSize;
@@ -43,32 +29,8 @@ public class CalendarSch {
 		this.blockSize = blockSize;
 		this.startBlock = startBlock;
 		this.endBlock = endBlock;
-		this.title = title;
-		this.contents = contents;
+		this.employeeName = employeeName;
 	}
-	
-	
-	
-	
-	
-	public CalendarSch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
-			int startBlock, int endBlock, String title, String contents, int memberkey) {
-		super();
-		this.count = count;
-		this.pageSize = pageSize;
-		this.pageCount = pageCount;
-		this.curPage = curPage;
-		this.start = start;
-		this.end = end;
-		this.blockSize = blockSize;
-		this.startBlock = startBlock;
-		this.endBlock = endBlock;
-		this.title = title;
-		this.contents = contents;
-		this.memberkey = memberkey;
-	}
-
-
 	public int getCount() {
 		return count;
 	}
@@ -123,36 +85,11 @@ public class CalendarSch {
 	public void setEndBlock(int endBlock) {
 		this.endBlock = endBlock;
 	}
-	public String getTitle() {
-		return title;
+	public String getEmployeeName() {
+		return employeeName;
 	}
-	public void setTitle(String title) {
-		this.title = title;
-	}
-	public String getContents() {
-		return contents;
-	}
-	public void setContents(String contents) {
-		this.contents = contents;
-	}
-	public int getMemberkey() {
-		return memberkey;
-	}
-	public void setMemberkey(int memberkey) {
-		this.memberkey = memberkey;
+	public void setEmployeeName(String employeeName) {
+		this.employeeName = employeeName;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 }

@@ -31,9 +31,10 @@ public class QualityController {
 	@Autowired
 	QualityService service;
 	
+	
 	@RequestMapping("/qualityList.do")
-	public String qualityList(Model d) {
-		d.addAttribute("list", service.list());
+	public String qualityList(Model d, QualitySch sch) {
+		d.addAttribute("list", service.getList(sch));
 		// 품질 리스트 - 장훈주 start
 		d.addAttribute("prjlist",service.prjlist());
 		d.addAttribute("evallist", service.evallist());

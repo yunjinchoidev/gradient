@@ -45,43 +45,32 @@
 </head>
 
 <script>
-$(document).ready(function(){
-	
-	
-	
-	var msg = "${msg}";
-	if(msg!=""){
-		if(confirm(msg+"\n메인화면으로 이동할까요?")){
-			location.href="${path}/memoList.do";
+	$(document).ready(function() {
+
+		var msg = "${msg}";
+		if (msg != "") {
+			if (confirm(msg + "\n메인화면으로 이동할까요?")) {
+				location.href = "${path}/memoList.do";
+			}
 		}
-	}
-	
-	
-	
-	
-	
-	
-	var pageSize="${memoSch.pageSize}"
+
+		var pageSize = "${memoSch.pageSize}"
 		$("[name=pageSize]").val(pageSize);
-		$("[name=pageSize]").change(function(){
+		$("[name=pageSize]").change(function() {
 			$("[name=curPage]").val(1);
 			$("#frm01").submit();
-		});	
-		
-		if( $("psc")=="memoDelete"){
+		});
+
+		if ($("psc") == "memoDelete") {
 			alert("메모가 정상적으로 삭제 되었습니다.")
 		}
-		
-		
-		
-});
 
-		function goPage(no){
-			$("[name=curPage]").val(no);
-			$("#frm01").submit();
-		}
-		
-		
+	});
+
+	function goPage(no) {
+		$("[name=curPage]").val(no);
+		$("#frm01").submit();
+	}
 </script>
 
 
@@ -98,13 +87,14 @@ $(document).ready(function(){
 
 			<form id="frm01" class="form" action="${path}/memoList.do"
 				method="post">
-				<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+				<div
+					class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 					<div class="dataTable-top">
 						<div class="input-group-prepend">
 							<input type="hidden" name="curPage" value="1" /> <span
 								class="input-group-text">총 ${memoSch.count}건</span>
 						</div>
-						
+
 						<div class="dataTable-dropdown">
 							<select class="dataTable-selector form-select" name="pageSize">
 								<option value="3">3</option>
@@ -115,46 +105,46 @@ $(document).ready(function(){
 								<option value="25">25</option>
 							</select><label>entries per page</label>
 						</div>
-						
-						
+
+
 						<script>
-						$(document).ready(function(){
-							$( ".searchbar" ).change(function() {
-								  alert( "검색 종류를 변경합니다." );
-								  $(".searchWhat").attr("name", this.value)
-								  alert($(".searchWhat").value)
-						 });
-						
-						});
-						
+							$(document).ready(function() {
+								$(".searchbar").change(function() {
+									alert("검색 종류를 변경합니다.");
+									$(".searchWhat").attr("name", this.value)
+									alert($(".searchWhat").value)
+								});
+
+							});
 						</script>
-						
-						
-						
-						<div class="dataTable-search" style="display: inline-block; ">
-							
-							<div style="display: inline-block;" >
-								<select class="dataTable-selector form-select searchbar" 
-								name="searchbar" style="display: inline-block; ">
-										<option selected="selected">검색</option>
-										<option value="title" selected="selected">title</option>
-										<option value="contents">contents</option>
+
+
+
+						<div class="dataTable-search" style="display: inline-block;">
+
+							<div style="display: inline-block;">
+								<select class="dataTable-selector form-select searchbar"
+									name="searchbar" style="display: inline-block;">
+									<option selected="selected">검색</option>
+									<option value="title" selected="selected">title</option>
+									<option value="contents">contents</option>
 								</select>
-								</div>
-								
-								<div style="display: inline-block;" >
-								<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
-									name="title" value="${memoSch.title}"> 
-								  <button class="btn btn-info" type="submit">검색</button>
+							</div>
+
+							<div style="display: inline-block;">
+								<input style="display: inline-block;"
+									class="dataTable-input searchWhat" placeholder="검색어를 입력"
+									type="text" name="title" value="${memoSch.title}">
+								<button class="btn btn-info" type="submit">검색</button>
 								<a class="btn btn-danger" style="text-align: right"
-								data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
-								</div>
+									data-bs-toggle="modal" data-bs-target="#inlineForm">메모 쓰기</a>
+							</div>
 						</div>
-						
-						
-						
+
+
+
 					</div>
-					</div>
+				</div>
 			</form>
 
 
@@ -186,10 +176,10 @@ $(document).ready(function(){
 						<c:forEach var="list" items="${list}">
 							<tr>
 								<td>${list.memokey}</td>
-								<td style="cursor: pointer;">${list.title }
-									<span class="badge bg-danger" id="delBtn"
+								<td style="cursor: pointer;">${list.title }<span
+									class="badge bg-danger" id="delBtn"
 									onclick="location.href='/project5/memoDelete.do?memokey=${list.memokey}'">
-									삭제</span>
+										삭제</span>
 								</td>
 								<td>${list.contents }</td>
 								<td><fmt:formatDate value="${list.writedate }" /></td>
@@ -208,32 +198,29 @@ $(document).ready(function(){
 			</div>
 
 			<script>
-										$(document).ready(function(){
-											$("#delBtn").click(function(){
-												confirm("정말 삭제 하시겠습니까?")
-											})
-											 var a=0;
-											
-											 setInterval(function() {
-												 a++;
-													if(a%2==0){
-														$(".importance22").css("display","none");
-													}else{
-														$(".importance22").css("display","");
-													}
-											}, 1000);
-											
-										})
-										
-										
-										</script>
+				$(document).ready(function() {
+					$("#delBtn").click(function() {
+						confirm("정말 삭제 하시겠습니까?")
+					})
+					var a = 0;
+
+					setInterval(function() {
+						a++;
+						if (a % 2 == 0) {
+							$(".importance22").css("display", "none");
+						} else {
+							$(".importance22").css("display", "");
+						}
+					}, 1000);
+
+				})
+			</script>
 
 
 
 
 			<div class="dataTable-bottom">
 				<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-
 				<ul class="pagination  justify-content-end">
 					<li class="page-item"><a class="page-link"
 						href="javascript:goPage(${memoSch.startBlock!=1?memoSch.startBlock-1:1})">Previous</a></li>
@@ -245,10 +232,9 @@ $(document).ready(function(){
 						</li>
 					</c:forEach>
 					<li class="page-item"><a class="page-link"
-						href="javascript:goPage(${memoSch.endBlock!=memoSch.pageCount?memoSch.endBlock+1:memoSch.endBlock})">Next</a></li>
+						href="javascript:goPage(${memoSch.endBlock!=memoSch.pageCount?memoSch.endBlock+1:memoSch.endBlock})">
+						Next</a></li>
 				</ul>
-
-
 			</div>
 		</div>
 	</div>
@@ -299,7 +285,7 @@ $(document).ready(function(){
 						<i data-feather="x"></i>
 					</button>
 				</div>
-				<form action="/project5/memoInsert.do" >
+				<form action="/project5/memoInsert.do">
 					<input type="hidden" name="memberkey" value="${member.memberkey }">
 					<input type="hidden" name="projectkey" value="1">
 					<div class="modal-body">

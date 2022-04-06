@@ -17,7 +17,12 @@
 	<script>
 	$(document).ready(function() {
 		$("#writeBtn").click(function() {
-			location.href = "${path}/minutes.do?method=insertFrm";
+			var hasSession="${member.id}";
+			if(hasSession!=""){
+				location.href = "${path}/minutes.do?method=insertFrm";
+			}else{
+				alert("로그인 후 이용가능합니다.");
+			}
 		});
 		var pageSize="${minutesSch.pageSize}"
 			$("[name=pageSize]").val(pageSize);
@@ -39,6 +44,7 @@
 <body>
 	<%@ include file="../common/header.jsp"%>
 	<div id="main">
+		<%@ include file="../projectHome/sort.jsp"%>
 
 		<div class="page-heading">
 			<div class="page-title">

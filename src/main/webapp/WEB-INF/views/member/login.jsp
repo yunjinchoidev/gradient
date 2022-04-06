@@ -62,8 +62,20 @@ $(document).ready(function(){
 	
 	$("#loginbtn").click(function(e){
 		e.preventDefault();
-		confirm("로그인 하시겠습니까?")
-		frmObj.submit();
+		if(confirm("로그인 하시겠습니까?")){
+			if($("input[name=id]").val()=="" || $("input[name=pass]").val()==""  ){
+				alert("정보를 입력하세요")
+				e.preventDefault();
+			}else{
+				frmObj.submit();
+			}
+		}else{
+			e.preventDefault();
+		}
+		
+		
+		
+		
 	});
 })
 
@@ -78,10 +90,6 @@ $(document).ready(function(){
 <script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
 <script>
 	
-	$(document).ready(function(){
-		
-
-	})
 	
 	
 </script>
@@ -126,7 +134,7 @@ $(document).ready(function(){
 
 					<form action="/project5/login.do" method="post">
 						<div class="form-group position-relative has-icon-left mb-4">
-							<input type="text" class="form-control form-control-xl"
+							<input type="text" class="form-control form-control-xl" id="idform"
 								placeholder="<spring:message code="id"/>" name="id">
 							<div class="form-control-icon">
 								<i class="bi bi-person"></i>
@@ -134,7 +142,7 @@ $(document).ready(function(){
 						</div>
 						
 						<div class="form-group position-relative has-icon-left mb-4">
-							<input type="password" class="form-control form-control-xl"
+							<input type="password" class="form-control form-control-xl" id="pwform"
 								placeholder="<spring:message code="pwd"/>" name="pass">
 							<div class="form-control-icon">
 								<i class="bi bi-shield-lock"></i>

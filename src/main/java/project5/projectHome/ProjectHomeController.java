@@ -52,7 +52,8 @@ public class ProjectHomeController {
 		service.insert(vo);
 		d.addAttribute("psc", "write");
 		System.out.println("프로젝트 홈 공지 작성 완료");
-		return "forward:/projectHome.do";
+		d.addAttribute("project", service2.get(30001));
+		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
 
 	
@@ -81,10 +82,13 @@ public class ProjectHomeController {
 	
 	
 	@RequestMapping("/projectHomeDelete.do")
-	public String projectHomeDelete(Model d, int projectHomekey) {
+	public String projectHomeDelete(Model d, int projectHomekey, int projectkey) {
 		service.delete(projectHomekey);
+		//System.out.println(service2.get(projectHomekey).getProjectkey());
+		//d.addAttribute("project", service2.get(service2.get(projectHomekey).getProjectkey()));
+		d.addAttribute("project", service2.get(projectkey));
 		d.addAttribute("psc", "delete");
 		System.out.println("프로젝트 공지사항 삭제 완료");
-		return "forward:/projectHome.do?projectkey=1";
+		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
 }

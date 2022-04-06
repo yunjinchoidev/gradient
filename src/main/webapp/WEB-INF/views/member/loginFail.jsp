@@ -49,7 +49,7 @@ $(documnet).ready(function(){
 					</p>
 
 						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" onclick="location.href='/project5/main.do'">메인으로 </button>
-						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" onclick="location.href='/project5/login.do'">로그인 화면으로</button>
+						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" onclick="location.href='/project5/loginForm.do'">로그인 화면으로</button>
 						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" onclick="location.href='/project5/memberRegisterForm.do'">회원가입</button>
 				</div>
 				<div class="text-center mt-5 text-lg fs-4">

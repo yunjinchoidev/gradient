@@ -65,7 +65,6 @@ var vali;
 		$("#can").hide();
 		
 		$("input[name=email]").keyup(function(){
-			console.log("타이핑중")
 			var inputData = $("input[name=email]").val();
 			var data = {email:inputData}
 			$.ajax({

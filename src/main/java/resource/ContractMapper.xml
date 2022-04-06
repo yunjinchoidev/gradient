@@ -3,9 +3,30 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.vacation.VacationDao">
-
-
-
+	<select id="totCnt" parameterType="contractSch" resultType="int">
+		select count(*)
+		from contract
+		where 1=1
+		<if test="employeeName!=null and topic!=''"> 
+		and topic like '%'||#{topic}||'%'
+		</if>
+	</select>
+	<select id="contractList" parameterType="contractSch" resultType="contract" >
+		SELECT *
+		FROM (
+			SELECT ROW_NUMBER() OVER (ORDER BY con.contractKey  desc ) AS cnt, con.*
+			FROM contract con
+			WHERE 1=1
+			<if test="employeeName!=null and employeeName!=''">
+				AND employeeName like '%'||#{employeeName}||'%'
+			</if>)
+		WHERE cnt BETWEEN #{start} AND #{end}
+	</select>
+	<select id="getContract" parameterType="int" resultType="contract">
+		SELECT con.*
+		FROM contract con
+		WHERE contractKey=#{contractKey}
+	</select>
 
 </mapper>
 
