@@ -12,6 +12,8 @@ public interface TeamDao {
 	public List<TeamVo> selectPrjList();
 	public List<TeamVo> selectdptList();
 	public List<TeamVo> selectMemList();
-	
-	public TeamVo getDetail(TeamVo member_project_key);
+	public List<TeamVo> selectstatusList();
+	// 배정목록
+	public TeamVo getTeam(int memberprojectkey);
 }
+

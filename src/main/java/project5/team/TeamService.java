@@ -29,7 +29,5 @@ public class TeamService {
 	public List<TeamVo> selectMemList(){
 		return dao.selectMemList();
 	}
-	public TeamVo getDetail(TeamVo member_project_key) {
-		return dao.getDetail(member_project_key);
-	}
 }
+

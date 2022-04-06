@@ -3,25 +3,43 @@
 	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="project5.team.TeamDao">
-	<!-- 회원 목록 리스트 -->
+<!-- 회원 목록 리스트 -->
 	<select id="getTeamList" resultType="team" parameterType="team">
 		SELECT
-		mp.status AS status, m.name AS name, m.auth AS auth,
-		m.email AS email, d.dname AS dname, p.name AS projectname
-		FROM MEMBER_PROJECT mp, MEMBER m, PROJECT p, DEPARTMENT d
-		WHERE m.name = #{name} AND m.id = #{id}
-		AND mp.memberkey = m.MEMBERKEY
+		m.name AS name, m.auth AS auth,
+		d.dname AS dname, m.email AS email,
+		p.NAME AS projectname, mp.STATUS AS
+		STATUS, mp.MEMBER_PROJECT_KEY AS memberprojectkey
+		FROM MEMBER_PROJECT mp,
+		MEMBER m, PROJECT p, DEPARTMENT d
+		WHERE mp.STATUS LIKE '%'||#{status,
+		jdbcType=VARCHAR}||'%'
+		AND m.name IS NOT null
+		AND mp.memberkey =
+		m.MEMBERKEY
 		AND mp.PROJECTKEY = p.PROJECTKEY
 		AND mp.DEPTNO = d.DEPTNO
 	</select>
-
 	<!-- 회원 배정 목록 리스트 -->
-	<select id="getDetail" resultType="team" parameterType="int">
+	<select id="teamDetail" resultType="team" parameterType="team">
 		SELECT
-		m.name, m.auth ,m.email, d.DNAME, p.name projectname,
+		m.name AS name, m.auth AS auth,
+		d.dname AS dname, m.email AS email,
+		p.NAME AS projectname, mp.STATUS AS
+		STATUS, mp.MEMBER_PROJECT_KEY AS memberprojectkey
+		FROM MEMBER_PROJECT mp,
+		MEMBER m, PROJECT p, DEPARTMENT d
+		WHERE mp.STATUS = #{status}
+		AND
+		p.PROJECTKEY = #{projectkey}
+		AND m.name
+		IS
+		NOT null
+		AND mp.memberkey =
+		m.MEMBERKEY
+		AND mp.PROJECTKEY =
 		p.PROJECTKEY
-		projectkey ,m.MEMBERKEY memberkey
-		WHERE m.deptno =d.deptno
+		AND mp.DEPTNO = d.DEPTNO
 	</select>
 	<!-- 모달창 프로젝트 리스트 -->
 	<select id="selectPrjList" parameterType="string"
@@ -40,16 +58,20 @@
 	<!-- 회원 리스트 -->
 	<select id="selectMemList" parameterType="string"
 		resultType="team">
-		SELECT memberkey AS memberkey, name AS name
+		SELECT memberkey AS memberkey,name AS name
 		FROM MEMBER
-		WHERE name IS NOT NULL
+		WHERE
+		id LIKE '%'||#{id,jdbcType=VARCHAR}||'%' AND pass LIKE
+		'%'||#{pass,jdbcType=VARCHAR}||'%'
+		AND name LIKE
+		'%'||#{name,jdbcType=VARCHAR}||'%'
+		ORDER BY memberkey asc
 	</select>
-
-	<!-- 프로젝트 배정 -->
+	<!-- 프로젝트 배정 MEMBER_PROJECT VALUES (seq_team.nextval,#{projectkey},#{memberkey}, 
+		#{deptno}, #{status}) -->
 	<insert id="insertTeam" parameterType="team">
 		INSERT INTO MEMBER_PROJECT
-		VALUES
-		(seq_team.nextval,#{projectkey},#{memberkey},#{status})
+		values (seq_team.nextval,#{memberkey},,#{projectkey},#{deptno},#{status}))
 	</insert>
 	<update id="updateTeam" parameterType="team">
 		UPDATE MEMBER
@@ -57,4 +79,7 @@
 		#{status}
 		WHERE PROJECTKEY = #{projectkey}
 	</update>
+
+
+
 </mapper>

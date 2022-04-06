@@ -15,14 +15,14 @@ public class TeamVo {
 	private int dcnt;
 	private String projectname;
 	private String status;
-	private int member_project_key;
+	private int memberprojectkey;
 	public TeamVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 	public TeamVo(int team_member_key, int teamkey, int memberkey, int projectkey, String id, String pass, String name,
 			String auth, int deptno, String email, String dname, int dcnt, String projectname, String status,
-			int member_project_key) {
+			int memberprojectkey) {
 		super();
 		this.team_member_key = team_member_key;
 		this.teamkey = teamkey;
@@ -38,7 +38,7 @@ public class TeamVo {
 		this.dcnt = dcnt;
 		this.projectname = projectname;
 		this.status = status;
-		this.member_project_key = member_project_key;
+		this.memberprojectkey = memberprojectkey;
 	}
 	public int getTeam_member_key() {
 		return team_member_key;
@@ -124,10 +124,10 @@ public class TeamVo {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getMember_project_key() {
-		return member_project_key;
+	public int getmemberprojectkey() {
+		return memberprojectkey;
 	}
-	public void setMember_project_key(int member_project_key) {
-		this.member_project_key = member_project_key;
+	public void setmemberprojectkey(int memberprojectkey) {
+		this.memberprojectkey = memberprojectkey;
 	}
 }

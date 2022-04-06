@@ -10,6 +10,13 @@ public class TeamSch {
 	private int blockSize;
 	private int startBlock;
 	private int endBlock;
+	private String sch;
+	public String getSch() {
+		return sch;
+	}
+	public void setSch(String sch) {
+		this.sch = sch;
+	}
 	public TeamSch() {
 		super();
 		// TODO Auto-generated constructor stub

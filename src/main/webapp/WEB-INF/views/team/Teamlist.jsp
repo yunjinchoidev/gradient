@@ -45,44 +45,39 @@ $(document).ready(function() {
 	var proc = "${proc}";
 	if(proc!=""){
 		alert(proc);
-		if(proc=="배정되었습니다!")
 		location.href="${path}/teamlist.do";
 	}
 	$("#regBtn").click(function(){
-		if(confirm("배정하시겠습니까?")){
+		if(confirm("배정하시겠습니까")){
 			$("#frm02").submit();
 		}
 	});
-
-$("#uptBtn").click(function(){
-	if(confirm("수정하시겠습니까?")){
-		$("#frm02").attr("action","${path}/updateTeam.do");
-		$("#frm02").submit();
-	}
-});		
+		
 });
 function regFun(){
-$("#frm02")[0].reset(); // 초기화 처리.
-$("#regBtn").show();$("#uptBtn").hide();$("#delBtn").hide();		
+	$("#exampleModalLongTitle").text("팀원 배정");
+	$("#frm02")[0].reset(); // 초기화 처리.
+	$("#regBtn").show();$("#uptBtn").hide();$("#delBtn").hide();		
 }
 function detail(name, auth, email, dname, projectname, status){
-console.log(name);
-console.log(auth);
-console.log(email);
-console.log(dname);
-console.log(projectname);
-console.log(status);
-	
-// 각각의 form에 데이터 할당.
-$("#frm02 [name=name]").val(name);
-$("#frm02 [name=auth]").val(auth);
-$("#frm02 [name=email]").val(email);
-$("#frm02 [name=dname]").val(dname);
-$("#frm02 [name=projectname]").val(projectname);
-$("#frm02 [name=status]").val(status);
-}
-
-	
+	console.log(name);
+	console.log(auth);
+	console.log(email);
+	console.log(dname);
+	console.log(projectname);
+	console.log(status);
+	// 타이틀 변경
+	$("#exampleModalLongTitle").text("배정목록(수정/삭제)");
+	// 버튼 활성화 비활성화 처리
+	$("#regBtn").hide();$("#uptBtn").show();$("#delBtn").show();		
+	// 각각의 form에 데이터 할당.
+	$("#frm02 [name=name]").val(name);
+	$("#frm02 [name=auth]").val(auth);
+	$("#frm02 [name=email]").val(email);
+	$("#frm02 [name=dname]").val(dname);
+	$("#frm02 [name=projectname]").val(projectname);
+	$("#frm02 [name=status]").val(status);
+}	
 </script>
 </head>
 
@@ -106,9 +101,9 @@ $("#frm02 [name=status]").val(status);
 						<h3>팀 관리</h3>
 
 						<a href="/project5/insertTeam.do" class="badge bg-light-secondary"
-							data-bs-toggle="modal" data-bs-target="#regModal">팀 할당</a> <a
-							href="/project5/Allocation.do" class="badge bg-light-secondary">프로젝트
-							할당</a> <a
+							data-bs-toggle="modal" data-bs-target="#regModal">팀 배정</a> <a
+							href="/project5/teamdetail.do" class="badge bg-light-secondary">배정
+							목록 </a> <a
 							href="/project5/output.do?projectkey=${project.projectkey }"
 							class="badge bg-light-secondary">휴가 관리</a> <a
 							href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
@@ -130,160 +125,184 @@ $("#frm02 [name=status]").val(status);
 			</div>
 
 			<br>
-
 			<section class="section">
-				<div class="card">
-					<div class="card-body">
-						<div
-							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-							<form id="schform" action="${path}/teamlist.do" method="post">
-								<input type="hidden" name="curPage" value="1" />
+				<form id="schform" action="${path}/teamlist.do" method="post">
+					<div class="card">
+						<div class="card-header">Simple Datatable</div>
+						<div class="card-body">
+							<div
+								class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 								<div class="dataTable-top">
+									<input type="hidden" name="curPage" value="1" />
+									<div class="dataTable-dropdown">
+										<select class="dataTable-selector form-select" name="pageSize">
+											<option>5</option>
+											<option>10</option>
+											<option>15</option>
+											<option>20</option>
+											<option>25</option>
+										</select>
+									</div>
 									<div class="dataTable-search">
-										<input type="text" id="schFrm" name="sch"
-											class="dataTable-input" placeholder="Search..." type="text">
-
+										<input type="text" class="dataTable-input"
+											placeholder="Search..." name="topic">
+										<button class="btn btn-primary" type="submit">Search</button>
 									</div>
 								</div>
-							</form>
-							<div class="dataTable-container">
-								<table class="table table-striped dataTable-table" id="table1">
-									<thead>
-										<tr>
-											<th data-sortable="" style="width: 10%;"><a href="#"
-												class="dataTable-sorter">이름</a></th>
-											<th data-sortable="" style="width: 10%;"><a href="#"
-												class="dataTable-sorter">직급</a></th>
-											<th data-sortable="" style="width: 10%;"><a href="#"
-												class="dataTable-sorter">부서명</a></th>
-											<th data-sortable="" style="width: 25%;"><a href="#"
-												class="dataTable-sorter">이메일</a></th>
-											<th data-sortable="" style="width: 25%;"><a href="#"
-												class="dataTable-sorter">프로젝트명</a></th>
-											<th data-sortable="" style="width: 25%;"><a href="#"
-												class="dataTable-sorter">프로젝트 배정상태</a></th>
-										</tr>
-									</thead>
 
-									<tbody>
 
-										<c:forEach var="tlist" items="${tlist}">
-											<tr
-												onclick="detail(${tlist.name},'${tlist.auth}','${tlist.dname}','${tlist.email}',
-												'${tlist.projectname},'${tlist.status}')"
-												data-toggle="modal" data-target="#exampleModalCenter">
-												<td>${tlist.name}</td>
-												<td>${tlist.auth}</td>
-												<td>${tlist.dname}</td>
-												<td>${tlist.email}</td>
-												<td>${tlist.projectname}</td>
-												<td>${tlist.status}</td>
+								<div class="dataTable-container">
+									<table class="table table-striped dataTable-table" id="table1">
+										<thead>
+											<tr>
+												<th data-sortable="" style="width: 10%;"><a href="#"
+													class="dataTable-sorter" style="text-align: center;">이름</a></th>
+												<th data-sortable="" style="width: 10%;"><a href="#"
+													class="dataTable-sorter" style="text-align: center;">직급</a></th>
+												<th data-sortable="" style="width: 10%;"><a href="#"
+													class="dataTable-sorter" style="text-align: center;">부서명</a></th>
+												<th data-sortable="" style="width: 25%;"><a href="#"
+													class="dataTable-sorter" style="text-align: center;">이메일</a></th>
+												<th data-sortable="" style="width: 25%;"><a href="#"
+													class="dataTable-sorter" style="text-align: center;">프로젝트명</a></th>
+												<th data-sortable="" style="width: 25%;"><a href="#"
+													class="dataTable-sorter" style="text-align: center;">프로젝트
+														배정상태</a></th>
 											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-
-							</div>
-							<!--  모달창  -->
-							<div class="modal fade" id="regModal" tabindex="-1" role="dialog"
-								aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-								<div class="modal-dialog modal-dialog-centered" role="document">
-									<div class="modal-content">
-										<div class="modal-header">
-											<h5 class="modal-title" id="exampleModalLongTitle">팀원 배정</h5>
-											<button type="button" class="reg" data-dismiss="modal"
-												aria-label="Close">
-												<i data-feather="x"></i>
-											</button>
-										</div>
-
-
-
-										<div class="modal-body">
-											<form id="frm02" class="form" method="get"
-												action="${path}/insertTeam.do">
-												<div class="row">
-													<div class="projectselect">
-														프로젝트명 <select class="form-select"
-															style="text-align: center;" name="projectkey">
-															<c:forEach var="projectlist" items="${prjList}">
-																<option value="${projectlist.projectkey}">${projectlist.projectname}</option>
-															</c:forEach>
-														</select>
-													</div>
-													<div class="row">
-														<div class="dnameselect">
-															회원정보 <select class="form-select"
-																style="text-align: center;" name="memberkey">
-																<c:forEach var="m" items="${MemList}">
-																	<option value="${m.memberkey}">${m.name}</option>
-																</c:forEach>
-															</select>
-														</div>
-													</div>
-													<div class="auth">
-														직급<select class="form-select" name="auth">
-															<option value="developer">developer</option>
-															<option value="pm">pm</option>
-															<option value="ceo">ceo</option>
-														</select>
-													</div>
-													<div class="row">
-														<div class="dnameselect">
-															부서정보 <select class="form-select"
-																style="text-align: center;" name="dpt">
-																<c:forEach var="dpt" items="${dptList}">
-																	<option value="${dpt.deptno}">${dpt.dname}</option>
-																</c:forEach>
-															</select>
-														</div>
-													</div>
-													<div class="email">
-														<label>이메일</label> <input type="email"
-															class="form-control" id="email" name="email"
-															placeholder="이메일을 입력해주세요." />
-													</div>
-												</div>
-											</form>
-										</div>
-										<div class="modal-footer">
-											<button type="button" class="btn btn-primary"
-												data-bs-dismiss="modal" data-bs-target="#regModal"
-												id="regBtn">배정</button>
-											<button type="button" class="btn btn-info" id="uptBtn">수정</button>
-											<button type="button" class="btn btn-danger" id="delBtn">취소</button>
-										</div>
-									</div>
+										</thead>
+										<tbody>
+											<c:forEach var="mp" items="${tlist}">
+												<tr
+													onclick="detail(${mp.name},'${mp.auth}','${mp.dname}','${mp.email}','${mp.projectname}','${mp.status}')"
+													data-toggle="modal" data-target="#exampleModalCenter">
+													<td style="text-align: center;">${mp.name}</td>
+													<td style="text-align: center;">${mp.auth}</td>
+													<td style="text-align: center;">${mp.dname}</td>
+													<td style="text-align: center;">${mp.email}</td>
+													<td style="text-align: center;">${mp.projectname}</td>
+													<td style="text-align: center;"><c:choose>
+															<c:when test="${mp.status eq '배정'}">
+																<span class="badge bg-success"
+																	style="text-align: center;">${mp.status}</span>
+															</c:when>
+															<c:when test="${mp.status eq '미배정'}">
+																<span class="badge bg-danger">${mp.status}</span>
+															</c:when>
+														</c:choose></td>
+												</tr>
+											</c:forEach>
+										</tbody>
+									</table>
+									<button data-toggle="modal" onclick="regFun()"
+										data-target="#exampleModalCenter" class="btn btn-primary"
+										type="button">배정</button>
 								</div>
+								<div class="dataTable-bottom">
+									<ul
+										class="pagination pagination-primary float-end dataTable-pagination">
+										<li class="page-item pager"><a
+											href="javascript:goPage(${TeamSch.startBlock!=1?TeamSch.startBlock-1:1})"
+											class="page-link" data-page="1">‹</a></li>
+										<c:forEach var="cnt" begin="${TeamSch.startBlock}"
+											end="${TeamSch.endBlock}">
+											<li class="page-item ${cnt==TeamSch.curPage?'active':''}"><a
+												href="javascript:goPage(${cnt})" class="page-link">${cnt}</a></li>
+										</c:forEach>
+										<li class="page-item pager"><a
+											href="javascript:goPage(${TeamSch.endBlock!=TeamSch.pageCount?TeamSch.endBlock+1:TeamSch.endBlock})"
+											class="page-link" data-page="2">›</a></li>
+									</ul>
+								</div>
+
 							</div>
-
-
 						</div>
 					</div>
-				</div>
-
+				</form>
 			</section>
 		</div>
 
-	</div>
-	<!--  페이징 처리/ 프론트만 구현 -->
-	<div class="dataTable-bottom">
-		<nav aria-label="Page navigation example" style="margin-top: 15px;">
-			<ul
-				class="pagination pagination-primary float-end dataTable-pagination">
-				<li class="page-item pager"><a class="page-link"
-					href="javascript:goPage(${TeamSch.startBlock!=1?costSch.startBlock-1:1})">‹</a></li>
-				<c:forEach var="cnt" begin="${TeamSch.startBlock}"
-					end="${TeamSch.endBlock}">
-					<li class="page-item ${cnt==TeamSch.curPage?'active':''}">
-						<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
-						href="javascript:goPage(${cnt})">${cnt}</a>
-					</li>
-				</c:forEach>
-				<li class="page-item pager"><a class="page-link"
-					href="javascript:goPage(${TeamSch.endBlock!=TeamSch.pageCount?TeamSch.endBlock+1:TeamSch.endBlock})">›</a></li>
-			</ul>
-		</nav>
-	</div>
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1"
+			role="dialog" aria-labelledby="exampleModalCenterTitle"
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">팀원배정</h5>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form id="frm02" class="form" method="post"
+							action="${path}/insertTeam.do">
+
+							<div class="row">
+								<div id="prjselect">
+									프로젝트명 <select class="form-select" name="projectkey">
+										<option>프로젝트를 선택해주세요.</option>
+										<c:forEach var="prj" items="${prjList}">
+											<option value="${prj.projectKey}">${prj.pname}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+
+							<div class="row">
+								<div id="memselect">
+									<select class="form-select" name="memberkey">
+										<option>회원을 선택해주세요.</option>
+										<c:forEach var="m" items="${MemList}">
+											<option value="${m.memberkey}">${m.name}</option>
+										</c:forEach>
+									</select>
+								</div>
+							</div>
+							<div class="row">
+								<div id="dptselect">
+									<select class="form-select" name="deptno">
+										<option>부서를 선택해주세요.</option>
+										<c:forEach var="dpt" items="${dptList}">
+											<option value="${dpt.deptno}">${dpt.dname}</option>
+										</c:forEach>
+									</select>
+								</div>
+								<div class="row">
+									<div id="authselect">
+										<select class="form-select" name="auth">
+											<option>직급을 선택해주세요.</option>
+											<option value="admin">admin</option>
+											<option value="pm">pm</option>
+											<option value="ceo">ceo</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div id="statusselect">
+										<select class="form-select" name="status">
+											<option>배정여부를 선택해주세요.</option>
+											<option value="assigned">배정</option>
+											<option value="notassigned">미배정</option>
+										</select>
+									</div>
+								</div>
+								<div class="row">
+									<div id="email">
+										<input class="form-control" type="text" name="email"
+											placeholder="이메일을 입력하세요.">
+									</div>
+								</div>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary"
+							data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="regBtn">배정</button>
+						<button type="button" class="btn btn-danger" id="delBtn">취소</button>
+					</div>
+				</div>
+			</div>
+		</div>
 </body>
 </html>
