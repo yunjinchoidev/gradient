@@ -183,7 +183,8 @@
 							if (auth == "") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
-								location.href = "/project5/mailFrm.do"
+								 window.open("https://analytics.google.com/analytics/web/?hl=ko&pli=1#/p309149054/reports/intelligenthome",
+										"PopupWin", "width=1000,height=800");
 							}
 						});
 						$("#EmailBtn").click(function() {

@@ -702,7 +702,7 @@ body{margin-top:20px;}
 	
 	function conn() {
 //		wsocket = new WebSocket("ws:/106.10.16.155:7080/${path}/chat-ws.do");
-		wsocket = new WebSocket("ws:/@localhost:7080/${path}/chat-ws.do");
+		wsocket = new WebSocket("ws:/@106.10.16.155:7080/${path}/chat-ws.do");
 		// handler :afterConnectionEstablished(WebSocketSession session)와 연결
 		wsocket.onopen = function(evt) {
 			console.log(evt);

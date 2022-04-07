@@ -17,6 +17,7 @@
 		<typeAlias alias="costDetailInfo" type="project5.cost.CostDetailInfo" />
 		<typeAlias alias="costSch" type="project5.cost.CostSch" />
 		<typeAlias alias="team" type="project5.team.TeamVo"/>
+		<typeAlias alias="TeamSch" type="project5.team.TeamSch"/>
 	</typeAliases>
 	<mappers>
 		<mapper resource="resource/DeptMapper.xml" />

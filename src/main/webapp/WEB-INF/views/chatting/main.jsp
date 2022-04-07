@@ -500,7 +500,7 @@
 			str += "<div class='media w-50 ml-auto mb-3'>"
 			str += "<div class='media-body'>"
 			str += " <div class='bg-primary rounded py-2 px-3 mb-2'>"
-			str += "<p class='text-small mb-0 text-white'>Test which is a new approach to have all solutions</p></div>"
+			str += "<p class='text-small mb-0 text-white'>채팅을 시작합니다</p></div>"
 			str += " <p class='small text-muted'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</p></div></div>"
 			wsocket.send("msg:" + str);
 		}
