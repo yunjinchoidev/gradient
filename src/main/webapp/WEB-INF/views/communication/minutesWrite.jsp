@@ -22,6 +22,52 @@
 	</style>
 	<script>
 		$(document).ready(function(){
+			$("[name=topic]").keyup(function(e){
+				let content = $(this).val();
+				
+				if (content.length == 0 || content == '') { 
+					$('.topicCount').text('0자'); 
+				} else { 
+					$('.topicCount').text(content.length + '자'); 
+				}
+				
+				if(content.length > 40){
+					$(this).val($(this).val().substring(0,40));
+					alert('회의안건은 20자 미만으로 입력해주세요.');
+				};			
+			});
+			
+			$("[name=content]").keyup(function(e){
+				let content = $(this).val();
+			
+				if (content.length == 0 || content == '') { 
+					$('.contentCount').text('0자'); 
+				} else { 
+					$('.contentCount').text(content.length + '자'); 
+				}
+				
+				if(content.length > 1000){
+					$(this).val($(this).val().substring(0,1000));
+					alert('속기는 1000자 미만으로 입력해주세요.');
+				};			
+			});
+			
+			$("[name=shorthand]").keyup(function(e){
+				let content = $(this).val();
+				
+				if (content.length == 0 || content == '') { 
+					$('.shCount').text('0자'); 
+				} else { 
+					$('.shCount').text(content.length + '자'); 
+				}
+				
+				
+				if(content.length > 1000){
+					$(this).val($(this).val().substring(0,1000));
+					alert('내용은 1000자 미만으로 입력해주세요.');
+				};			
+			});
+			
 			var msg = "${msg}";
 			if (msg != "") {
 				if (confirm(msg + "\n회의록 리스트로 이동할까요?")) {
@@ -38,9 +84,29 @@
 				var hasSession="${member.id}";
 				if(hasSession!=""){
 					if (confirm("등록하시겠습니까?")) {
-						if ($("[name=topic]").val() == ""
-								|| $("[name=content]").val() == "") {
-							alert("필수항목을 입력해주세요");
+						if ($("[name=topic]").val() == "") {
+							alert("회의안건을 필수로 입력하셔야합니다.");
+							$("[name=topic]").focus();
+							return;
+						}
+						if ($("[name=projectKey]").val() == 0){
+							alert("프로젝트명을 필수로 선택하셔야합니다.");
+							document.getElementsByName("projectKey")[0].focus();
+							return;
+						}
+						if ($("[name=conferenceDateS]").val() == "") {
+							alert("회의날짜를 필수로 선택하셔야합니다.");
+							$("[name=conferenceDateS]").focus();
+							return;
+						}
+						if ($("[name=deptKey]").val() == 0){
+							alert("부서명을 필수로 선택하셔야합니다.");
+							document.getElementsByName("deptKey")[0].focus();
+							return;
+						}
+						if ($("[name=content]").val() == "") {
+							alert("내용을 필수로 입력하셔야합니다.");
+							$("[name=content]").focus();
 							return;
 						}
 						$("form").attr("action", "${path}/minutes.do?method=insert");
@@ -90,13 +156,14 @@
 	                            <th>회의안건</th>
 	                            <td colspan="3" >
 	                            	<input type="text" class="form-control" id="basicInput" name="topic"/>
+	                            	<span class="topicCount">0자</span> / <span class="topicTotal">40자</span>
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                        	<th>프로젝트명</th>
 	                        	<td>
 	                            	<select class="form-select" name="projectKey">
-	                            		<option>프로젝트를 선택해주세요.</option>
+	                            		<option value="0">프로젝트를 선택해주세요.</option>
 			                    		<c:forEach var="prj" items="${prjList}">
 			                    			<option value="${prj.projectKey}">${prj.pname}</option>
 			                    		</c:forEach>
@@ -117,7 +184,7 @@
 	                            <th>부서명</th>
 	                            <td>
 	                            	<select class="form-select" name="deptKey">
-	                            		<option>부서명을 선택해주세요.</option>
+	                            		<option value="0">부서명을 선택해주세요.</option>
 			                    		<c:forEach var="dpt" items="${dptList}">
 			                    			<option value="${dpt.deptKey}">${dpt.dname}</option>
 			                    		</c:forEach>
@@ -128,12 +195,14 @@
 	                            <th>회의내용</th>
 	                            <td colspan="3">
 	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="14" name="content"></textarea>
+	                            	<span class="contentCount">0자</span> / <span class="contentTotal">1000자</span>
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th>속기</th>
 	                            <td colspan="3">
 	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="shorthand"></textarea>
+	                            	<span class="shCount">0자</span> / <span class="shTotal">1000자</span>
 	                            </td>
 	                        </tr>
                        	</table>
