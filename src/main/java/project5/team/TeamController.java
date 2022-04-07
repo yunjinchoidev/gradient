@@ -20,10 +20,12 @@ public class TeamController {
 		d.addAttribute("MemList", service.selectMemList());
 		return "WEB-INF\\views\\team\\Teamlist.jsp";
 	}
+	// http://localhost:7080/project5/insertTeam.do
 	@RequestMapping("/insertForm.do")
 	public String insForm() {
 		return "WEB-INF\\views\\team\\writeTeam.jsp";
 	}
+	// http://localhost:7080/project5/insertTeam.do
 	@RequestMapping("/insertTeam.do")
 	public String insTeam(TeamVo ins, Model d){
 		d.addAttribute("msg", "배정완료");
@@ -38,14 +40,15 @@ public class TeamController {
 	public String uptTeam(TeamVo upt, Model d) {
 		d.addAttribute("msg", "수정되었습니다.");
 		service.uptTeam(upt);
-		return"WEB-INF\\views\\team\\uptTeam.jsp";
+		return "WEB-INF\\views\\team\\Teamlist.jsp";
 	}
 	//@RequestMapping("/teamdetail.do")
 	//public String getTeamDetail(TeamVo sch, Model d) {
 	//	return "WEB-INF\\views\\team\\detail.jsp";
 //	}
 	@RequestMapping("/delTeam.do")
-	public String delTeam(int memberprojectkey) {
+	public String delTeam(int memberprojectkey, Model d) {
+		d.addAttribute("msg", "삭제되었습니다.");
 		service.delTeam(memberprojectkey);
 		return "forward:/teamlist.do";
 	}

@@ -91,7 +91,7 @@
 		(seq_team.nextval,#{memberkey},#{projectkey},#{deptno},#{status}))
 	</insert>
 	<update id="uptTeam" parameterType="team">
-		UPDATE MEMBER
+		UPDATE MEMBER_PROJECT
 		SET status =
 		#{status}
 		WHERE PROJECTKEY = #{projectkey}
@@ -100,6 +100,19 @@
     DELETE FROM MEMBER_PROJECT
 	WHERE MEMBER_PROJECT_KEY = #{member_project_key}
     </delete>
-
-
+    <!-- 회원 리스트 글 -->
+    <select id="getTeam" parameterType="int" resultType="team">
+    SELECT 
+		m.name AS name, m.auth AS auth,
+		d.dname AS dname, m.email AS email,
+		p.NAME AS projectname, mp.STATUS AS
+		STATUS, mp.MEMBER_PROJECT_KEY AS memberprojectkey
+		FROM MEMBER_PROJECT mp,
+		MEMBER m, PROJECT p, DEPARTMENT d
+		WHERE MEMBER_PROJECT_KEY = #{member_project_key}
+		AND mp.memberkey =
+		m.MEMBERKEY
+		AND mp.PROJECTKEY = p.PROJECTKEY
+		AND mp.DEPTNO = d.DEPTNO
+     </select>
 </mapper>

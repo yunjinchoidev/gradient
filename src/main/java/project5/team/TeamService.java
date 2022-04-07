@@ -53,5 +53,8 @@ public class TeamService {
 	public void delTeam(int memberprojectkey) {
 		dao.delTeam(memberprojectkey);
 	}
+	public TeamVo getTeam(int member_project_key) {
+		return dao.getTeam(member_project_key);
+	}
 }
 
