@@ -34,7 +34,7 @@ textarea {
 
 				if (msg != "") {
 					alert(msg);
-					location.href = "${path}/risk.do?projectkey=" + prjkey;
+					location.href = "${path}/uptTeam.do?memberprojectkey=" + memberprojectkey;
 				}
 
 				$("#uptbtn").click(function() {

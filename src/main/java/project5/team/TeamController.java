@@ -15,25 +15,31 @@ public class TeamController {
 	@RequestMapping("/teamlist.do")
 	public String getTeamList(TeamSch sch, Model d) {
 		d.addAttribute("tlist", service.getTeamList(sch));
-		d.addAttribute("prjList", service.selectPrjList());
-		d.addAttribute("dptList", service.selectdptList());
-		d.addAttribute("MemList", service.selectMemList());
 		return "WEB-INF\\views\\team\\Teamlist.jsp";
 	}
 	// http://localhost:7080/project5/insertTeam.do
-	@RequestMapping("/insertForm.do")
-	public String insForm() {
+/*	@RequestMapping("/insertForm.do")
+	public String insForm(Model d) {
+		d.addAttribute("prjList", service.selectPrjList());
+		d.addAttribute("dptList", service.selectdptList());
+		d.addAttribute("MemList", service.selectMemList());
 		return "WEB-INF\\views\\team\\writeTeam.jsp";
-	}
+	}*/
 	// http://localhost:7080/project5/insertTeam.do
 	@RequestMapping("/insertTeam.do")
 	public String insTeam(TeamVo ins, Model d){
+		d.addAttribute("prjList", service.selectPrjList());
+		d.addAttribute("dptList", service.selectdptList());
+		d.addAttribute("MemList", service.selectMemList());
 		d.addAttribute("msg", "배정완료");
 		service.insTeam(ins);
-		return "WEB-INF\\views\\team\\Teamlist.jsp";	
+		return "WEB-INF\\views\\team\\writeTeam.jsp";	
 	}
 	@RequestMapping("/uptForm.do")
-	public String uptForm() {
+	public String uptForm(Model d) {
+		d.addAttribute("prjList", service.selectPrjList());
+		d.addAttribute("dptList", service.selectdptList());
+		d.addAttribute("MemList", service.selectMemList());
 		return "WEB-INF\\views\\team\\uptTeam.jsp";	
 	}
 	@RequestMapping("/uptTeam.do")

@@ -51,22 +51,16 @@
 			location.href = "${path}/main.do";
 		}
 
-		if ("msg" != "") {
-			alert(msg);
-			if (msg = "배정되었습니다.")
-				location.href = "${path}/teamlist.do";
-		}
 		$("#regBtn").click(function() {
 			if (confirm("배정하시겠습니까?")) {
-				$("#frm02").submit();
+				location.href="${path}/insertTeam.do";
+			//	$("#frm02").submit();
 			}
 		});
 
 	});
-	$(document).ready(function() {
 		var pageSize = "${TeamSch.pageSize}"
 		$("[name=pageSize]").val(pageSize);
-
 		$("[name=pageSize]").change(function() {
 			$("[name=curPage]").val(1);
 			$("#frm02").submit();
@@ -105,101 +99,103 @@
 					</div>
 				</div>
 				<section class="section">
-					<form id="frm02" action="${path}/teamlist.do" method="post">
-						<input type="hidden" name="id" value="${member.name}">
+					<form id="frm02" action="${path}/teamlist.do" method="get">
+						<input type="hidden" name="id" value="${member.id}">
 						<div class="card">
 							<div class="card-body">
 								<div
 									class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+									<div class="dataTable-top">
 										<input type="hidden" name="curPage" value="1" />
-
-
 										<div class="dataTable-dropdown">
-											<select name="pageSize"
-												class="dataTable-selector form-select">
+											<select class="dataTable-selector form-select"
+												name="pageSize">
 												<option>5</option>
 												<option>10</option>
 												<option>15</option>
 												<option>20</option>
 												<option>25</option>
-											</select> <label>게시글 수</label>
+											</select>
 										</div>
 
-										<div class="dataTable-search">
-											<input type="text" id="schFrm" name="sch"
-												class="dataTable-input" placeholder="Search" type="text"
+										<div class="dataTable-search"><input type="text" id="schFrm" name="sch"
+												class="dataTable-input" placeholder="Search"
 												value="${TeamSch.status}">
-											<button class="btn btn-info" type="submit">검색</button>
+											<button class="btn btn-primary" type="submit">검색</button>
+										</div>
+                                      </div>
+										<div class="dataTable-container">
+											<table class="table table-striped dataTable-table"
+												id="table1">
+												<thead>
+													<tr>
+														<th data-sortable="" style="width: 10%;"><a href="#"
+															class="dataTable-sorter" style="text-align: center;">이름</a></th>
+														<th data-sortable="" style="width: 10%;"><a href="#"
+															class="dataTable-sorter" style="text-align: center;">직급</a></th>
+														<th data-sortable="" style="width: 10%;"><a href="#"
+															class="dataTable-sorter" style="text-align: center;">부서명</a></th>
+														<th data-sortable="" style="width: 25%;"><a href="#"
+															class="dataTable-sorter" style="text-align: center;">이메일</a></th>
+														<th data-sortable="" style="width: 25%;"><a href="#"
+															class="dataTable-sorter" style="text-align: center;">프로젝트명</a></th>
+														<th data-sortable="" style="width: 25%;"><a href="#"
+															class="dataTable-sorter" style="text-align: center;">프로젝트
+																배정상태</a></th>
+													</tr>
+												</thead>
+												<tbody>
+													<c:forEach var="tlist" items="${tlist}">
+														<tr
+															onclick="location.href='/project5/insertTeam.do?memberprojectkey='+${tlist.memberprojectkey}">
+															<td style="text-align: center;">${tlist.name}</td>
+															<td style="text-align: center;">${tlist.auth}</td>
+															<td style="text-align: center;">${tlist.dname}</td>
+															<td style="text-align: center;">${tlist.email}</td>
+															<td style="text-align: center;">${tlist.projectname}</td>
+															<td style="text-align: center;"><c:choose>
+																	<c:when test="${tlist.status eq '배정'}">
+																		<span class="badge bg-success"
+																			style="text-align: center;">${tlist.status}</span>
+																	</c:when>
+																	<c:when test="${tlist.status eq '미배정'}">
+																		<span class="badge bg-danger">${tlist.status}</span>
+																	</c:when>
+																</c:choose></td>
+														</tr>
+													</c:forEach>
+												</tbody>
+											</table>
+
+
+											<button style="margin: auto; display: block;" id="regBtn"
+												class="btn btn-primary" onclick="location.href='${path}/insertTeam.do';">배정</button>
+
 										</div>
 
-									<div class="dataTable-container">
-										<table class="table table-striped dataTable-table" id="table1">
-											<thead>
-												<tr>
-													<th data-sortable="" style="width: 10%;"><a href="#"
-														class="dataTable-sorter" style="text-align: center;">이름</a></th>
-													<th data-sortable="" style="width: 10%;"><a href="#"
-														class="dataTable-sorter" style="text-align: center;">직급</a></th>
-													<th data-sortable="" style="width: 10%;"><a href="#"
-														class="dataTable-sorter" style="text-align: center;">부서명</a></th>
-													<th data-sortable="" style="width: 25%;"><a href="#"
-														class="dataTable-sorter" style="text-align: center;">이메일</a></th>
-													<th data-sortable="" style="width: 25%;"><a href="#"
-														class="dataTable-sorter" style="text-align: center;">프로젝트명</a></th>
-													<th data-sortable="" style="width: 25%;"><a href="#"
-														class="dataTable-sorter" style="text-align: center;">프로젝트
-															배정상태</a></th>
-												</tr>
-											</thead>
-											<tbody>
-												<c:forEach var="tlist" items="${tlist}">
-													<tr
-														onclick="location.href='/project5/insertTeam.do?memberprojectkey='+${tlist.memberprojectkey}">
-														<td style="text-align: center;">${tlist.name}</td>
-														<td style="text-align: center;">${tlist.auth}</td>
-														<td style="text-align: center;">${tlist.dname}</td>
-														<td style="text-align: center;">${tlist.email}</td>
-														<td style="text-align: center;">${tlist.projectname}</td>
-														<td style="text-align: center;"><c:choose>
-																<c:when test="${tlist.status eq '배정'}">
-																	<span class="badge bg-success"
-																		style="text-align: center;">${tlist.status}</span>
-																</c:when>
-																<c:when test="${tlist.status eq '미배정'}">
-																	<span class="badge bg-danger">${tlist.status}</span>
-																</c:when>
-															</c:choose></td>
-													</tr>
+										<div class="dataTable-bottom">
+										<div class="dataTable-info">전체: ${TeamSch.count}</div>
+											<ul
+												class="pagination pagination-primary float-end dataTable-pagination">
+												<li class="page-item pager"><a
+													href="javascript:goPage(${TeamSch.startBlock!=1?TeamSch.startBlock-1:1})"
+													class="page-link" data-page="1">‹</a></li>
+												<c:forEach var="cnt" begin="${TeamSch.startBlock}"
+													end="${TeamSch.endBlock}">
+													<li class="page-item ${cnt==TeamSch.curPage?'active':''}">
+														<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
+														href="javascript:goPage(${cnt})">${cnt}</a>
+													</li>
 												</c:forEach>
-											</tbody>
-										</table>
-
-
-										<button style="margin: auto; display: block;" id="regBtn"
-											class="btn btn-primary">배정</button>
-
-									</div>
-
-									<div class="dataTable-bottom">
-										<ul
-											class="pagination pagination-primary float-end dataTable-pagination">
-											<li class="page-item"><a class="page-link"
-												href="javascript:goPage(${TeamSch.startBlock!=1?TeamSch.startBlock-1:1})">‹</a></li>
-											<c:forEach var="cnt" begin="${TeamSch.startBlock}"
-												end="${TeamSch.endBlock}">
-												<li class="page-item ${cnt==TeamSch.curPage?'active':''}">
-													<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
-													href="javascript:goPage(${cnt})">${cnt}</a>
-												</li>
-
-											</c:forEach>
-											<li class="page-item"><a class="page-link"
-												href="javascript:goPage(${TeamSch.endBlock!=TeamSch.pageCount?TeamSch.endBlock+1:TeamSch.endBlock})">›</a></li>
-										</ul>
+												<li class="page-item pager">
+											<a href="javascript:goPage(${TeamSch.endBlock!=TeamSch.pageCount?TeamSch.endBlock+1:TeamSch.endBlock})" 
+											class="page-link"	data-page="2">›</a>
+										</li>
+											</ul>
+										</div>
 									</div>
 								</div>
 							</div>
-						</div>
 					</form>
 				</section>
 

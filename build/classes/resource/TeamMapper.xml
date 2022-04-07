@@ -20,20 +20,14 @@
 		projectname, mp.STATUS AS
 		STATUS, mp.MEMBER_PROJECT_KEY AS
 		memberprojectkey
-		FROM MEMBER_PROJECT
-		mp,
-		MEMBER m, PROJECT p, DEPARTMENT
-		d
-		WHERE mp.STATUS LIKE
-		'%'||#{status}||'%'
-		AND m.name IS NOT null
-		AND mp.memberkey =
-		m.MEMBERKEY
+		FROM MEMBER_PROJECT mp,
+		MEMBER m, PROJECT p, DEPARTMENT d
+		WHERE  m.name IS NOT null
+		AND mp.memberkey = m.MEMBERKEY
 		AND mp.PROJECTKEY = p.PROJECTKEY)
 		WHERE cnt BETWEEN #{start}
 		AND #{end} ORDER BY memberprojectkey
 	</select>
-	
 	
 	
 	<select id="totCnt" resultType="int"
@@ -69,7 +63,7 @@
 		AND mp.DEPTNO = d.DEPTNO
 	</select>   -->
 	<!-- 모달창 프로젝트 리스트 -->
-	<select id="selectPrjList" parameterType="string"
+	<select id="selectPrjList" 
 		resultType="team">
 		SELECT projectkey AS projectkey, name AS
 		projectname
@@ -77,13 +71,13 @@
 		project
 	</select>
 	<!-- 부서 리스트 -->
-	<select id="selectdptList" parameterType="string"
+	<select id="selectdptList" 
 		resultType="team">
 		SELECT deptno as deptno, dname
 		FROM DEPARTMENT
 	</select>
 	<!-- 회원 리스트 -->
-	<select id="selectMemList" parameterType="string"
+	<select id="selectMemList" 
 		resultType="team">
 		SELECT memberkey AS memberkey,name AS name
 		FROM MEMBER
@@ -99,7 +93,7 @@
 	<insert id="insTeam" parameterType="team">
 		INSERT INTO MEMBER_PROJECT
 		values
-		(seq_team.nextval,#{memberkey},#{projectkey},#{deptno},#{status}))
+		(seq_team.nextval,#{memberkey},#{projectkey},#{deptno},#{status,jdbcType=VARCHAR}))
 	</insert>
 	<update id="uptTeam" parameterType="team">
 		UPDATE MEMBER_PROJECT

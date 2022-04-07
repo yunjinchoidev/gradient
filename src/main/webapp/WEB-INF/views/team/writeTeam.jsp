@@ -111,7 +111,7 @@ textarea {
 									</select></td>
 								</tr>
 								<th>부서명</th>
-								<td><select class="form-select" name="deptKey">
+								<td><select class="form-select" name="deptno">
 										<option>부서명을 선택해주세요.</option>
 										<c:forEach var="dpt" items="${dptList}">
 											<option value="${dpt.deptno}">${dpt.dname}</option>
@@ -128,7 +128,7 @@ textarea {
 								</tr>
 								<tr>
 									<th>프로젝트명</th>
-									<td><select class="form-select" name="projectKey">
+									<td><select class="form-select" name="projectkey">
 											<option>프로젝트를 선택해주세요.</option>
 											<c:forEach var="prj" items="${prjList}">
 												<option value="${prj.projectkey}">${prj.pname}</option>
