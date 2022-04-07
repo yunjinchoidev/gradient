@@ -34,8 +34,8 @@ public class ChattingService {
 
 	
 	// 채팅방 만들기
-	public void createChat() {
-		dao.createChat();
+	public void createChat(String name) {
+		dao.createChat(name);
 	}
 	
 	//방제로 만들기

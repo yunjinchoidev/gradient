@@ -54,7 +54,7 @@
 
 					
 					<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5"
-						onclick="location.href='/project5/login.do'">로그인 하기</button>
+						onclick="location.href='/project5/loginForm.do'">로그인 하기</button>
 					<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5"
 						onclick="location.href='/project5/main.do'">메인으로</button>
 					<div class="text-center mt-5 text-lg fs-4">

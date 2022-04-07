@@ -80,9 +80,14 @@ public class ChattingController {
 
 	
 
+	@RequestMapping("/chattingCreateChatForm.do")
+	public String chattingCreateChatForm(Model d) {
+		return "WEB-INF\\views\\chatting\\list.jsp";
+	}
+	
 	@RequestMapping("/chattingCreateChat.do")
-	public String chattingCreateChat(Model d) {
-		service.createChat();
+	public String chattingCreateChat(Model d, int memberkey) {
+		service.createChat(service2.get(memberkey).getName());
 		d.addAttribute("psc", "success");
 		return "pageJsonReport";
 	}

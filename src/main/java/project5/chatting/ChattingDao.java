@@ -22,7 +22,7 @@ public interface ChattingDao {
 
 	
 	// 채팅방 만들기
-	public void createChat();
+	public void createChat(String name);
 	
 	//방제로 만들기
 	public void createChat2(String name);

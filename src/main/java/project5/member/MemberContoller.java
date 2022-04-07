@@ -143,7 +143,7 @@ public class MemberContoller {
 	}
 
 	// 회원 정보 수정
-	@RequestMapping("/memberEdit.do")
+	@PostMapping("/memberEdit.do")
 	public String memberEdit(MemberVO vo, Model d, @ModelAttribute("member") MemberVO member) {
 		System.out.println("회원 정보 수정 진입");
 		service.edit(vo);

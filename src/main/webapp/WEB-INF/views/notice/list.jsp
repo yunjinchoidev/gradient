@@ -172,55 +172,50 @@
 						<div class="card-body">
 							<div	class="dataTable-wrapper dataTable-loading no-footer sortable searchable 
 							fixed-columns">
-						
+
 							<!--  이곳에서 한 화면에서 몇 페이지를 볼 지 보내줍니다. -->
 							<form id="frm01" class="form" action="/project5/notice.do">
 								<div class="dataTable-top">
 									<div class="dataTable-dropdown">
-										<span class="input-group-text" style="margin-right: 10px;">총 ${noticeSch.count}건</span> <span
-											class="input-group-text">페이지 크기</span> 
-											<select class="dataTable-selector form-select" name="pageSize">
+										<span class="input-group-text" style="margin-right: 10px;">총
+											${noticeSch.count}건</span> <span class="input-group-text">페이지
+											크기</span> <select class="dataTable-selector form-select"
+											name="pageSize">
 											<option value="5">5</option>
 											<option value="10" selected>10</option>
 											<option value="15">15</option>
 											<option value="20">20</option>
-											<option value="25">25</option></select><label>한 화면당 페이지 수</label>
+											<option value="25">25</option>
+										</select><label>한 화면당 페이지 수</label>
 									</div>
-									
-									
-									
-									
-									
-									
-										<div class="dataTable-search" style="display: inline-block; ">
-							
-							<div style="display: inline-block;" >
-								<select class="dataTable-selector form-select searchbar" 
-								name="searchbar" style="display: inline-block; ">
-										<option selected="selected">검색</option>
-										<option value="title" selected="selected">title</option>
-										<option value="contents">contents</option>
-								</select>
-								</div>
-								
-								<div style="display: inline-block;" >
-								<input style="display: inline-block; " class="dataTable-input searchWhat" placeholder="검색어를 입력" type="text"
-									name="title" value="${memoSch.title}"> 
-								  <button class="btn btn-info" type="submit">검색</button>
-								  <a href="${path }/noticeWriteForm.do" class="btn btn-danger" id="write"
-											style="text-align: right">글쓰기</a>
-								</div>
-						</div>
+									<div class="dataTable-search" style="display: inline-block;">
+										<div style="display: inline-block;">
+											<select class="dataTable-selector form-select searchbar"
+												name="searchbar" style="display: inline-block;">
+												<option selected="selected">검색</option>
+												<option value="title" selected="selected">title</option>
+												<option value="contents">contents</option>
+											</select>
+										</div>
+										<div style="display: inline-block;">
+											<input style="display: inline-block;"
+												class="dataTable-input searchWhat" placeholder="검색어를 입력"
+												type="text" name="title" value="${memoSch.title}">
+											<button class="btn btn-info" type="submit">검색</button>
+											<a href="${path }/noticeWriteForm.do" class="btn btn-danger"
+												id="write" style="text-align: right">글쓰기</a>
+										</div>
+									</div>
 								</div>
 							</form>
 
 
 
 
-						
-							
-							
-			<div class="dataTable-container">					
+
+
+
+							<div class="dataTable-container">					
 				<table class="table table-striped dataTable-table" id="table1">
 							<thead>
 								<tr>

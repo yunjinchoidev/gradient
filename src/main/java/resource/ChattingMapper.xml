@@ -7,9 +7,9 @@
 
 
 	<!-- 채팅방 만들기 -->
-	<insert id="createChat">
+	<insert id="createChat" parameterType="String">
 		INSERT INTO chattingroom VALUES
-		(seq_chattingroom.nextval, '새대화'||seq_chattingroom.nextval, sysdate)
+		(seq_chattingroom.nextval, #{name}||'와의 새대화', sysdate)
 	</insert>
 
 	<!-- 채팅방 만들기 -->

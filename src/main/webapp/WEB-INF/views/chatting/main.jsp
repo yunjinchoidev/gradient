@@ -169,11 +169,11 @@
 									var consultChatList = $("#chattingRoomList");
 									for(var i=0; i<result.chatRoomList.length; i++){
 											var str="";
-											str +=" <a class='list-group-item list-group-item-action active text-white rounded-0' onclick='MessageListFunc(this)' style='cursor:pointer;'>"+"["+result.chatRoomList[i].roomkey +"]번방 &nbsp : "
+											str +=" <a class='list-group-item list-group-item-action active text-white rounded-0' onclick='MessageListFunc(this)' style='cursor:pointer;'>"+"["+result.chatRoomList[i].roomkey +"]번방 &nbsp  "
 											str +="   <div class='media'><img src='https://bootstrapious.com/i/snippets/sn-chat/avatar.svg' alt='user' width='50' class='rounded-circle'>"
 											str +="    <div class='media-body ml-4'>"
 											str +="        <div class='d-flex align-items-center justify-content-between mb-1'>"
-							                str +="         <h6 class='mb-0' style='color:white'> 방 이름 : <br>"+result.chatRoomList[i].name+"</h6><small class='small font-weight-bold'>"+result.chatRoomList[i].makedateS+"</small> </div>"
+							                str +="         <h4 class='mb-0' style='color:white'>"+result.chatRoomList[i].name+"</h4><small class='small font-weight-bold'>"+result.chatRoomList[i].makedateS+"</small> </div>"
 						                	str +="         <p class='font-italic mb-0 text-small'></p></div></div></a>"
 										consultChatList.append(str);
 									}
@@ -268,6 +268,7 @@
 						//////////////////////////////////////////////////////////////////////////////
 						// 엔터로 메시지 보내기
 						$("#msg").keyup(function() {
+							console.log("메시지 창에 키 업")
 							var roomkey2;
 							roomkey2 = currentRoomkey;
 							if (event.keyCode == 13) {
@@ -347,13 +348,12 @@
 								var id = "${member.name}"
 								var str = "";
 								str += "<div class='media w-50 ml-auto mb-3'>"
-								str += "<div class='media-body'>"
-								str += " <div class='bg-primary rounded py-2 px-3 mb-2'>"
-								str += "<p class='text-small mb-0 text-white'>채팅을 종료합니다.</p></div>"
-								str += " <p class='small text-muted'>"+today.toLocaleDateString()+"["+id+"]"+"<br>"+today.toLocaleTimeString() +"</p>"
-								str += "	</div></div>"
-								wsocket.send("msg:" + str);
-								
+									str += "<div class='media-body'>"
+									str += " <div class='bg-primary rounded py-2 px-3 mb-2'>"
+									str += "<p class='text-small mb-0 text-white'>채팅 방을 나갑니다.</p></div>"
+									str += " <p class='small text-muted'>"+today.toLocaleDateString()+"["+id+"]"+"<br>"+today.toLocaleTimeString() +"</p>"
+									str += "	</div></div>"
+										wsocket.send("msg:" + str);
 								$("#msg").val("");
 								$("#msg").focus();
 							}
@@ -517,16 +517,19 @@
 		
 		// handler의 afterConnectionClose와 연동
 		wsocket.onclose = function() {
-			alert($("#id").val() + '접속 종료합니다.')
+			alert('접속 종료합니다.')
 			$("#chatMessageArea").text("");
 			$("#id").val("");
 			$("#id").focus();
 		}
 
 	}
-	
-	
 </script>
+
+
+
+
+
 
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
@@ -541,12 +544,14 @@
     <p class="text-white lead mb-0" style="font-weight: bolder;">더 자유롭게, 더 빠르게, 더 정확하게</p>
     <h1 class="display-4 text-white" style="font-weight: bolder;">Gradient 채팅 서비스</h1>
     <hr>
-	    <a href="#" class="btn btn-primary"  id="enterBtn">채팅 ON</a>
-	    <a href="#" class="btn btn-danger"   id="exitBtn">채팅 OFF</a>
-	    <a href="#" class="btn btn-primary"   id="exitBtn2">방 나가기</a>
+	    <a href="#" class="btn btn-primary"  id="enterBtn">소켓 ON</a>
+	    <a href="#" class="btn btn-danger"   id="exitBtn">소켓 OFF</a>
+	    <a href="#" class="btn btn-info"   id="exitBtn2">방 나가기</a>
 	    <a href="#" class="btn btn-success" id="newChatBtn" >1:1 대화</a>
+	    <!-- 
 	    <a href="#" class="btn btn-warning" id="newGroupChatBtn">단체 대화</a>
 	    <a href="#" class="btn btn-dark" id="voteBtn">투표</a>
+	    -->
     <p class="text-white lead mb-4">
     </p>
   </header>
@@ -605,47 +610,14 @@
     
     
     
-    
-    
-    
   </div>
 </div>
 	
 </div>
-<script>
-// 업로드한 파일 이미지 처리를 위해서
-$(document).ready(function(){
-	
-})
-</script>
 
 </body>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <style>
-/*
-*
-* ==========================================
-* FOR DEMO PURPOSES
-* ==========================================
-*
-*/
 body {
   background-color: #74EBD5;
   background-image: linear-gradient(90deg, #74EBD5 0%, #9FACE6 100%);
