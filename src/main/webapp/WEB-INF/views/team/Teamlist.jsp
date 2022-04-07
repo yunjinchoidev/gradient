@@ -53,7 +53,7 @@
 
 		$("#regBtn").click(function() {
 			if (confirm("배정하시겠습니까?")) {
-				location.href="${path}/insertTeam.do";
+				location.href="${path}/insertTeam.do?projectkey=30001";
 			//	$("#frm02").submit();
 			}
 		});
@@ -99,7 +99,7 @@
 					</div>
 				</div>
 				<section class="section">
-					<form id="frm02" action="${path}/teamlist.do" method="get">
+					<form id="frm02" action="${path}/teamlist.do?projectkey=30001" method="get">
 						<input type="hidden" name="id" value="${member.id}">
 						<div class="card">
 							<div class="card-body">
@@ -169,7 +169,7 @@
 
 
 											<button style="margin: auto; display: block;" id="regBtn"
-												class="btn btn-primary" onclick="location.href='${path}/insertTeam.do';">배정</button>
+												class="btn btn-primary" onclick="location.href='${path}/insertTeam.do?projectkey=30001';">배정</button>
 
 										</div>
 

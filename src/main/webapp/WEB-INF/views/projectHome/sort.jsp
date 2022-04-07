@@ -60,7 +60,7 @@
 							class="btn btn-dark">품질 관리</a> <a
 							href="/project5/attendanceMain.do?projectkey=30001"
 							class="btn btn-secondary">팀 관리</a> <a
-							href="/project5/minutes.do?method=list&projectkey=30001"
+							href="/project5/teamlist.do?projectkey=30001"
 							class="btn btn-danger">회의록</a> <a
 							href="/project5/chatting.do?projectkey=30001"
 							class="btn btn-warning">채팅</a> <a
