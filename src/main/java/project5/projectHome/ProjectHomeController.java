@@ -26,16 +26,13 @@ public class ProjectHomeController {
 	VoteService service3;
 	
 	@RequestMapping("/projectHome.do")
-	public String projectHome(Model d, ProjectHomeSch sch, int projectkey) {
-		System.out.println(projectkey);
+	public String projectHome(Model d, ProjectHomeSch sch) {
 		System.out.println(sch.getProjectkey());
 		// 프로젝트 홈에서 사용하는 공지 내용들 
 		d.addAttribute("list", service.listWithPaging(sch)); //
 		d.addAttribute("voteList", service3.list());
-		d.addAttribute("project", service2.get(projectkey)); 
 		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
-
 	
 	
 	@RequestMapping("/projectHomeWriteForm.do")

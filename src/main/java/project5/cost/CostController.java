@@ -22,8 +22,7 @@ public class CostController {
 	
 	@RequestMapping("/cost.do")
 	public String getCostList(CostSch sch, Model d,
-							@RequestParam(name="sch",required=false) String schS, int projectkey) {
-		d.addAttribute("project", service2.get(projectkey));
+							@RequestParam(name="sch",required=false) String schS) {
 		//게시글 목록
 		d.addAttribute("costlist",service.getCostList(sch));
 		if(schS!=null && schS!="") {

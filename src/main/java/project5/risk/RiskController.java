@@ -30,8 +30,6 @@ public class RiskController {
 		
 		int prjkey = Integer.parseInt(projectkey);
 		
-		d.addAttribute("project", service2.get(prjkey));
-		
 		//리스크 게시판 목록	
 		d.addAttribute("boardprjkey",projectkey);
 		

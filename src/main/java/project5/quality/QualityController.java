@@ -35,8 +35,7 @@ public class QualityController {
 	ProjectService service2;
 	
 	@RequestMapping("/qualityList.do")
-	public String qualityList(Model d, QualitySch sch, int projectkey) {
-		d.addAttribute("project", service2.get(projectkey));
+	public String qualityList(Model d, QualitySch sch) {
 		d.addAttribute("list", service.getList(sch));
 		// 품질 리스트 - 장훈주 start
 		d.addAttribute("prjlist",service.prjlist());
