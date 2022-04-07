@@ -9,15 +9,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import project5.project.ProjectService;
+
 @Controller
 public class CostController {
 	
 	@Autowired
 	CostService service;
 	
+	@Autowired
+	ProjectService service2;
+	
 	@RequestMapping("/cost.do")
 	public String getCostList(CostSch sch, Model d,
-							@RequestParam(name="sch",required=false) String schS) {
+							@RequestParam(name="sch",required=false) String schS, int projectkey) {
+		d.addAttribute("project", service2.get(projectkey));
 		//게시글 목록
 		d.addAttribute("costlist",service.getCostList(sch));
 		if(schS!=null && schS!="") {

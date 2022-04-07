@@ -62,7 +62,7 @@
 											<div class="form-group">
 												<label for="first-name-column">조회수</label> <input
 													type="text" id="first-name-column" class="form-control"
-													placeholder="title" name="title" value="${notice.cnt }"
+													placeholder="cnt" name="cnt" value="${notice.cnt }"
 													readonly="readonly">
 											</div>
 										</div>
@@ -70,7 +70,7 @@
 											<div class="form-group">
 												<label for="first-name-column">작성자</label> <input
 													type="text" id="first-name-column" class="form-control"
-													placeholder="title" name="title" value="${notice.name }"
+													placeholder="name" name="name" value="${notice.name }"
 													readonly="readonly">
 											</div>
 										</div>
@@ -95,27 +95,6 @@
 												<label for="city-column">City</label> <input type="text"
 													id="city-column" class="form-control" placeholder="City"
 													name="city-column">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="country-floating">Country</label> <input
-													type="text" id="country-floating" class="form-control"
-													name="country-floating" placeholder="Country">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="company-column">Company</label> <input
-													type="text" id="company-column" class="form-control"
-													name="company-column" placeholder="Company">
-											</div>
-										</div>
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="email-id-column">Email</label> <input
-													type="email" id="email-id-column" class="form-control"
-													name="email-id-column" placeholder="Email">
 											</div>
 										</div>
 										<div class="col-md-6 col-12">

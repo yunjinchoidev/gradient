@@ -57,7 +57,7 @@
 												<label for="last-name-column">제목</label> <input type="text"
 													id="last-name-column" class="form-control"
 													placeholder="Last Name" name="title" value="${get.title }"
-													readonly="readonly">
+													>
 											</div>
 										</div>
 
@@ -67,7 +67,7 @@
 											<div class="form-group">
 												<label for="first-name-column">프로젝트</label> <input
 													type="text" value="${get.pname }" id="first-name-column"
-													class="form-control" name="pname" readonly="readonly">
+													class="form-control" name="pname" >
 											</div>
 										</div>
 
@@ -76,7 +76,7 @@
 												<label for="first-name-column">작업 구분</label> <input
 													type="text" value="${get.worksortTitle }"
 													id="first-name-column" class="form-control"
-													name="workSortkey" readonly="readonly">
+													name="workSortkey" >
 											</div>
 										</div>
 
@@ -84,7 +84,7 @@
 											<div class="form-group">
 												<label for="first-name-column">부서 구분</label> <input
 													type="text" value="${get.dname }" id="first-name-column"
-													class="form-control" name="dname" readonly="readonly">
+													class="form-control" name="dname" >
 											</div>
 										</div>
 
@@ -98,7 +98,7 @@
 											<div class="form-group">
 												<label for="first-name-column">상황</label> <input type="text"
 													value="${get.status }" id="first-name-column"
-													class="form-control" name="status" readonly="readonly">
+													class="form-control" name="status" >
 											</div>
 										</div>
 
@@ -109,7 +109,7 @@
 													type="text" id="city-column" class="form-control"
 													placeholder="writedateS" name="writeDateS"
 													value='<fmt:formatDate value="${get.writedate }" />'
-													readonly="readonly">
+													>
 											</div>
 										</div>
 
@@ -124,7 +124,7 @@
 												<label for="email-id-column">버전</label> <input type="text"
 													id="email-id-column" class="form-control"
 													placeholder="memberkey" name="version"
-													value="${get.version }" readonly="readonly">
+													value="${get.version }" >
 											</div>
 										</div>
 
@@ -134,7 +134,7 @@
 												<label for="email-id-column">작성자</label> <input type="text"
 													id="email-id-column" class="form-control"
 													placeholder="memberkey" value="${member.name }"
-													readonly="readonly">
+													>
 											</div>
 										</div>
 
@@ -146,7 +146,7 @@
 											<div class="form-group">
 												<label for="email-id-column">Contents</label>
 												<textarea class="form-control" name="contents"
-													placeholder="Contents" rows="6" readonly="readonly">
+													placeholder="Contents" rows="6" >
 													${get.contents }
 													</textarea>
 											</div>
@@ -190,8 +190,7 @@
 										</div>
 									</div>
 									<div class="col-12 d-flex justify-content-end">
-										<button type="button" class="btn btn-primary me-1 mb-1"
-										onclick="location.href='/project5/outputUpdateForm.do?outputkey=${get.outputkey}'">수정하기</button>
+										<button type="submit" class="btn btn-primary me-1 mb-1">수정하기</button>
 										<button type="reset" class="btn btn-light-secondary me-1 mb-1">삭제하기</button>
 										<button type="button" class="btn btn-danger me-1 mb-1"
 											onclick="location.href='${path}/output.do?projectkey=1'">뒤로가기</button>

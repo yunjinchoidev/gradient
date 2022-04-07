@@ -250,18 +250,18 @@
 							});
 						</script>
 						
-						<c:if test="${ empty member.id}">
+						<c:if test="${ empty member.name}">
 							<li class="sidebar-item  "><a href="/project5/loginForm.do"
 								class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>
-								
 								<spring:message code="login"/></span>
 							</a></li>
 						</c:if>
 
-						<c:if test="${not empty member.id}">
+						<c:if test="${not empty member.name}">
 							<li class="sidebar-item  "><a
 								href="/project5/memberEdit.do?memberkey=${member.memberkey }"
-								class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>${member.id }님</span>
+								class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> 
+								<span>${member.name}${member.auth }</span>
 							</a></li>
 
 

@@ -22,7 +22,7 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.type.WhenNoDataTypeEnum;
-
+import project5.project.ProjectService;
 import project5.risk.RiskService;
 
 @Controller
@@ -31,9 +31,12 @@ public class QualityController {
 	@Autowired
 	QualityService service;
 	
+	@Autowired
+	ProjectService service2;
 	
 	@RequestMapping("/qualityList.do")
-	public String qualityList(Model d, QualitySch sch) {
+	public String qualityList(Model d, QualitySch sch, int projectkey) {
+		d.addAttribute("project", service2.get(projectkey));
 		d.addAttribute("list", service.getList(sch));
 		// 품질 리스트 - 장훈주 start
 		d.addAttribute("prjlist",service.prjlist());

@@ -26,6 +26,17 @@
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(document).ready(function() {
+		
+		var projectkey = "${project.projectkey}"
+		var psc = "${psc}";
+		alert(psc)
+		
+		if(psc == "outputDelete"){
+			location.href= "/project5/output.do?projectkey="+projectkey
+		}
+		
+		
+		
 		var mname = "${output.name}";
 		$("#WriteFormBtn").click(function() {
 			if (mname == "") {
@@ -227,7 +238,7 @@
 												style="cursor: pointer;">[ ${list.worksortTitle}
 													]${list.title } < 버전 ${list.version }> [${list.pname}]
 													&nbsp </span><span class="badge bg-danger"
-												onclick="location.href='/project5/outputDelete.do?outputkey=${list.outputkey}'"
+												onclick="location.href='/project5/outputDelete.do?outputkey=${list.outputkey}&projectkey=${project.projectkey }'"
 												style="cursor: pointer;">삭제</span></td>
 											<td>${list.dname }<fmt:formatDate
 													value="${list.writedate }" />

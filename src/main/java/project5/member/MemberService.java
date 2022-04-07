@@ -183,4 +183,9 @@ public class MemberService {
 	public MemberVO duplicateId(String id) {
 		return dao.duplicateId(id);
 	}
+	
+	
+	public MemberVO apiLogin(MemberVO vo) {
+		return dao.apiLogin(vo);
+	}
 }

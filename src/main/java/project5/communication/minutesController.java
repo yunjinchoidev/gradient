@@ -19,7 +19,8 @@ public class minutesController {
 	// http://localhost:7080/project5/main.do
 	// http://localhost:7080/project5/minutes.do?method=list
 	@RequestMapping(params="method=list")
-	public String minutesList(minutesSch sch, Model d) {
+	public String minutesList(minutesSch sch, Model d, int projectkey) {
+		d.addAttribute("project", service2.get(projectkey));
 		d.addAttribute("mList", service.minutesList(sch));
 		d.addAttribute("prjList", service.selectPrjList());
 		d.addAttribute("dptList", service.selectDptList());

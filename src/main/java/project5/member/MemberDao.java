@@ -45,7 +45,7 @@ public interface MemberDao {
 	public MemberVO duplicateEmail(String email);
 	public MemberVO duplicateId(String id);
 	
-	
+	public MemberVO apiLogin(MemberVO vo);
 	
 	
 	

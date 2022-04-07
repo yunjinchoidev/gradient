@@ -257,8 +257,8 @@
 
 	<insert id="insertMemberAjax"
 		parameterType="project5.member.MemberVO">
-		insert into member (memberkey, name, email) values
-		(seq_member.nextval, #{name}, #{email})
+		insert into member (memberkey, name, email, id, pass) values
+		(seq_member.nextval, #{name}, #{email}, seq_member.nextval||'apiID', seq_member.nextval||'apiPass')
 	</insert>
 
 
@@ -279,8 +279,8 @@
 		member
 		where email=#{email}
 	</select>
-	
-	
+
+
 	<select id="duplicateId" resultType="project5.member.MemberVO"
 		parameterType="String">
 		select id
@@ -288,6 +288,15 @@
 		where id=#{id}
 	</select>
 
+
+
+	<select id="apiLogin" parameterType="project5.member.MemberVO"
+		resultType="project5.member.MemberVO">
+		select * from
+		member
+		where name=#{name}
+		and email=#{email}
+	</select>
 
 
 

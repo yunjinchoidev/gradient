@@ -18,6 +18,9 @@ public class OutputSch {
 	private String title;
 	private String contents;
 
+	
+	private int projectkey;
+	
 	public OutputSch() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -37,6 +40,27 @@ public class OutputSch {
 		this.endBlock = endBlock;
 		this.title = title;
 		this.contents = contents;
+	}
+
+	
+	
+	
+	
+	public OutputSch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
+			int startBlock, int endBlock, String title, String contents, int projectkey) {
+		super();
+		this.count = count;
+		this.pageSize = pageSize;
+		this.pageCount = pageCount;
+		this.curPage = curPage;
+		this.start = start;
+		this.end = end;
+		this.blockSize = blockSize;
+		this.startBlock = startBlock;
+		this.endBlock = endBlock;
+		this.title = title;
+		this.contents = contents;
+		this.projectkey = projectkey;
 	}
 
 	public int getCount() {
@@ -127,4 +151,23 @@ public class OutputSch {
 		this.contents = contents;
 	}
 
+	public int getProjectkey() {
+		return projectkey;
+	}
+
+	public void setProjectkey(int projectkey) {
+		this.projectkey = projectkey;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

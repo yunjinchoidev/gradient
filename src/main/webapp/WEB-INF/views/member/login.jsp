@@ -176,7 +176,7 @@ $(document).ready(function(){
 							<a href="javascript:void(0)"
 							style="display: inline-block;"
 							> <img
-								src="/project5/resources/login/naverLogin.png" alt="네이버 로그인"
+								src="/project5/resources/login/naverLogin.png" alt="네이버 로그인" 
 								style="width:235px; height: 50px; margin-top: 10px;  margin-left:10px; display: inline-block;" id="naverIdLogin_loginButton" />
 							</a>
 							<a href="javascript:void(0)"
@@ -236,23 +236,46 @@ $(document).ready(function(){
                             console.log(kakao_account.profile.nickname)
                             console.log(kakao_account.email)
                             alert("접속합니다.")
+                            var name;
+                            var email;
                          	var nameValue=kakao_account.profile.nickname; //이름
                     		var emailValue=kakao_account.email; // 이메일
                     		var data = {name:nameValue,
                     						email:emailValue}
-                        	$.ajax({
-                    			url:'/project5/insertMemberAjax.do',
+                    		
+                    		$.ajax({
+                    			url:'/project5/apiLogin.do',
                     			type:'POST',
                     			data : data,
                     			dataType:'json',
                     			success:function(result){
-                    				alert("카카오 로그인 성공")
-                    				location.href="/project5/main.do"
+                    				if(result.member==null){
+                    					
+                    				 	$.ajax({
+                                			url:'/project5/insertMemberAjax.do',
+                                			type:'POST',
+                                			data : data,
+                                			dataType:'json',
+                                			success:function(result){
+                                				alert("카카오 api 최초 로그인에 성공했습니다. \n 다시 로그인 해주세요 ")
+                                				location.href="/project5/main.do"
+                                			},
+                                			error:function(result){
+                                				alet("카카오 로그인 실패")
+                                			}
+                                		})
+                    				}else{
+                    					console.log(result.member)
+                    					location.href="/project5/apiRealLogin.do?name="+nameValue+"&email="+emailValue;
+                    				}
                     			},
                     			error:function(result){
-                    				alet("카카오 로그인 실패")
+                    				console.log("접속 실패")
                     			}
                     		})
+                    		
+                    		
+                       
                             
                             
 	                            
@@ -279,18 +302,26 @@ $(document).ready(function(){
 
 
 <script>
-var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "p9XWUSBuHjHd2RP1xTQP", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-			callbackUrl: "http://106.10.16.155:7080/project5/loginForm.do", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
-			isPopup: false,
-			callbackHandle: true
-		}
-	);	
 
-naverLogin.init();
 
+
+
+	var naverLogin = new naver.LoginWithNaverId(
+			{
+				clientId: "p9XWUSBuHjHd2RP1xTQP", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
+				callbackUrl: "http://106.10.16.155:7080/project5/loginForm.do", // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
+				isPopup: false,
+				callbackHandle: true
+			}
+		);	
+
+	naverLogin.init();
+	
+
+	
 window.addEventListener('load', function () {
+	var msg="${msg}"
+	var msg22="${msg22}"
 	naverLogin.getLoginStatus(function (status) {
 		if (status) {
 			var email = naverLogin.user.getEmail(); // 필수로 설정할것을 받아와 아래처럼 조건문을 줍니다.
@@ -307,30 +338,59 @@ window.addEventListener('load', function () {
     		var emailValue=naverLogin.user.email; // 이메일
     		var data = {name:nameValue,
     						email:emailValue}
-	        	$.ajax({
-	    			url:'/project5/insertMemberAjax.do',
-	    			type:'POST',
-	    			data : data,
-	    			dataType:'json',
-	    			success:function(result){
-	    				alert("네이버 로그인 성공")
-	    				//location.href="/project5/main.do"
-	    			},
-	    			error:function(result){
-	    				alert("네이버 로그인 실패")
-	    			}
-	    		})
-            
-            
-            
-            
-            
-            alert("성공")
-		} else {
-			console.log("callback 처리에 실패하였습니다.");
+				
+    		
+    		$("#naverIdLogin_loginButton").click(function(){
+    			
+    		
+    		$.ajax({
+    			url:'/project5/apiLogin.do',
+    			type:'POST',
+    			data : data,
+    			dataType:'json',
+    			success:function(result){
+    				console.log(result.member)
+    				if(result.member==null){
+    				 	$.ajax({
+                			url:'/project5/insertMemberAjax.do',
+                			type:'POST',
+                			data : data,
+                			dataType:'json',
+                			success:function(result){
+                				alert("네이버 api 최초 로그인에 성공했습니다. \n 다시 로그인 해주세요 ")
+                				location.href="/project5/main.do"
+                			},
+                			error:function(result){
+                				alert("네이버 로그인 실패")
+                			}
+                		})
+    				}else{
+    					location.href="/project5/apiRealLogin.do?name="+nameValue+"&email="+emailValue;
+    					
+    				}
+    			},
+    			error:function(result){
+    				console.log("접속 실패")
+    			}
+    		})
+
+    		})
+    		
 		}
-	});
-});
+		})
+		});
+    		
+    		
+    		
+
+    		
+    		
+    		
+    		
+    		
+    		
+    		
+    		
 
 
 var testPopUp;
@@ -383,6 +443,8 @@ function init() {
 				console.log(profile)
 				console.log(profile.zv)
 				console.log(profile.sf)
+				var name;
+				var email;
 				var nameValue=profile.sf; // 이름
 				var emailValue=profile.zv; // 이메일
 				
@@ -390,18 +452,35 @@ function init() {
 								email:emailValue}
 				
 				$.ajax({
-					url:'/project5/insertMemberAjax.do',
-					type:'POST',
-					data : data,
-					dataType:'json',
-					success:function(result){
-						alert("구글 로그인 성공")
-						location.href="/project5/main.do"
-					},
-					error:function(result){
-						alert("구글 로그인 실패")
-					}
-				})
+	    			url:'/project5/apiLogin.do',
+	    			type:'POST',
+	    			data : data,
+	    			dataType:'json',
+	    			success:function(result){
+	    				console.log(result.member)
+	    				if(result.member==null){
+	    				 	$.ajax({
+	                			url:'/project5/insertMemberAjax.do',
+	                			type:'POST',
+	                			data : data,
+	                			dataType:'json',
+	                			success:function(result){
+	                				alert("구글 api 최초 로그인에 성공했습니다. \n 다시 로그인 해주세요 ")
+	                				location.href="/project5/main.do"
+	                			},
+	                			error:function(result){
+	                				alert("구글 로그인 실패")
+	                			}
+	                		})
+	    				}else{
+	    					console.log(result.member)
+	    					location.href="/project5/apiRealLogin.do?name="+nameValue+"&email="+emailValue;
+	    				}
+	    			},
+	    			error:function(result){
+	    				console.log("구글 api 로그인 접속 실패")
+	    			}
+	    		})
 				
 			})
 	.fail(function(e){

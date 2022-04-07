@@ -165,7 +165,7 @@
 			</div>
 
 	
-				<input type="hidden" name="curPage" value="1" />
+				
 				<section class="section">
 					<div class="card">
 						<div class="card-header"></div>
@@ -175,14 +175,16 @@
 
 							<!--  이곳에서 한 화면에서 몇 페이지를 볼 지 보내줍니다. -->
 							<form id="frm01" class="form" action="/project5/notice.do">
+							<input type="hidden" name="curPage" value="1" />
 								<div class="dataTable-top">
 									<div class="dataTable-dropdown">
 										<span class="input-group-text" style="margin-right: 10px;">총
 											${noticeSch.count}건</span> <span class="input-group-text">페이지
 											크기</span> <select class="dataTable-selector form-select"
 											name="pageSize">
+											<option value="3" selected>3</option>
 											<option value="5">5</option>
-											<option value="10" selected>10</option>
+											<option value="10" >10</option>
 											<option value="15">15</option>
 											<option value="20">20</option>
 											<option value="25">25</option>
@@ -200,7 +202,7 @@
 										<div style="display: inline-block;">
 											<input style="display: inline-block;"
 												class="dataTable-input searchWhat" placeholder="검색어를 입력"
-												type="text" name="title" value="${memoSch.title}">
+												type="text" name="title" value="${noticeSch.title}">
 											<button class="btn btn-info" type="submit">검색</button>
 											<a href="${path }/noticeWriteForm.do" class="btn btn-danger"
 												id="write" style="text-align: right">글쓰기</a>

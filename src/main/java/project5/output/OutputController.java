@@ -27,9 +27,9 @@ public class OutputController {
 	DepartmentSevice service4;
 	
 	@RequestMapping("/output.do")
-	public String output(Model d, OutputSch sch, int projectkey) {
+	public String output(Model d, OutputSch sch) {
 		d.addAttribute("list", service.listWithPaging(sch));
-		d.addAttribute("project", service2.get(projectkey));
+		d.addAttribute("project", service2.get(sch.getProjectkey()));
 		//return "pageJsonReport";
 		return "WEB-INF\\views\\output\\list.jsp";
 	}
@@ -47,7 +47,22 @@ public class OutputController {
 		d.addAttribute("dlist", service4.list());
 		return "WEB-INF\\views\\output\\writeForm.jsp";
 	}
+	@RequestMapping("/outputUpdateForm.do")
+	public String outputUpdateForm(Model d, int outputkey) {
+		d.addAttribute("get", service.get(outputkey));
+		d.addAttribute("workSort", service3.list());
+		d.addAttribute("dlist", service4.list());
+		return "WEB-INF\\views\\output\\writeForm.jsp";
+	}
 
+	@RequestMapping("/outputUpdate.do")
+	public String outputUpdate(Model d, OutputVO vo, int projectkey) {
+		d.addAttribute("psc", "outputUpdate");
+		service.update(vo);
+		d.addAttribute("project", service2.get(projectkey));
+		return "WEB-INF\\views\\output\\list.jsp";
+		
+	}
 	@RequestMapping("/outputWrite.do")
 	public String outputWriteForm(Model d, OutputVO vo) {
 		service.insert(vo);
@@ -60,9 +75,11 @@ public class OutputController {
 	
 	
 	@RequestMapping("/outputDelete.do")
-	public String outputDelete(Model d, OutputVO vo) {
+	public String outputDelete(Model d, OutputVO vo, int projectkey) {
 		service.delete(vo.getOutputkey());
-		return "forward:/output.do";
+		d.addAttribute("project", service2.get(projectkey));
+		d.addAttribute("psc", "outputDelete");
+		return "WEB-INF\\views\\output\\list.jsp";
 	}
 	
 	@RequestMapping("/outputEvaluation.do")

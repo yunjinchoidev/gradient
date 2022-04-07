@@ -63,6 +63,28 @@ public class MemberContoller {
 			return "forward:/loginFail.do";
 		}
 	}
+	
+	@RequestMapping("/apiRealLogin.do")
+	public String apiRealLogin(Model d, @ModelAttribute("member") MemberVO vo) {
+		System.out.println(vo.getName());
+		System.out.println(vo.getEmail());
+		vo = service.apiLogin(vo);
+		MemberVO vo2 = new MemberVO(1);
+		if (vo != null) {
+			d.addAttribute("psc", "success");
+			System.out.println("vo : " + vo);
+			System.out.println("api로그인 성공하였습니다.");
+			service.updateVisitCnt(vo.getMemberkey());
+			d.addAttribute("member", vo);
+			return "forward:/main.do";
+		} else {
+			d.addAttribute("psc", "fail");
+			d.addAttribute("member", vo2);
+			System.out.println("vo : " + vo);
+			System.out.println("로그인 실패");
+			return "forward:/loginFail.do";
+		}
+	}
 
 	@RequestMapping("/loginFail.do")
 	public String loginFail() {
@@ -74,8 +96,10 @@ public class MemberContoller {
 	public String userRemove(@ModelAttribute("member") MemberVO member, Model d) {
 		MemberVO vo = new MemberVO(1);
 		d.addAttribute("member", vo);
+		d.addAttribute("msg", "logout");
+		d.addAttribute("msg22", "logout");
 		System.out.println("로그아웃 성공");
-		return "redirect:/loginForm.do";
+		return "WEB-INF\\views\\member\\login.jsp";
 	}
 
 	@RequestMapping(value = "/memberDeleteForm.do")
@@ -259,48 +283,44 @@ public class MemberContoller {
 		service.memberRegisterApply(vo);
 		return "WEB-INF\\views\\member\\memberRegisterResult.jsp";
 	}
-	
-	
+
 	@RequestMapping("/duplicateEmail.do")
 	public String duplicateEmail(String email, Model d) {
-		
-		MemberVO vo =service.duplicateEmail(email);
-		if(vo==null) {
+
+		MemberVO vo = service.duplicateEmail(email);
+		if (vo == null) {
 			d.addAttribute("duplicateEmail", "can");
-		}else {
+		} else {
 			d.addAttribute("duplicateEmail", "already");
 		}
 		return "pageJsonReport";
 	}
-	
-	
-	
-	
+
 	@RequestMapping("/duplicateId.do")
 	public String duplicateId(String id, Model d) {
 		d.addAttribute("id", id);
 		return "WEB-INF\\views\\member\\duplicateId.jsp";
 	}
-	
+
 	@RequestMapping("/duplicateIdCheck.do")
 	public String duplicateIdCheck(String id, Model d) {
-		MemberVO vo =service.duplicateId(id);
+		MemberVO vo = service.duplicateId(id);
 		System.out.println("아이디 중복 검사 진입");
-		System.out.println("입력 받은 아이디"+id);
-		if(vo==null) {
+		System.out.println("입력 받은 아이디" + id);
+		if (vo == null) {
 			d.addAttribute("duplicateId", "can");
-		}else {
+		} else {
 			d.addAttribute("duplicateId", "already");
 		}
-		
+
 		System.out.println("아이디 중복 검사 완료");
 		return "pageJsonReport";
 	}
-	
-	
-	
-	
-	
-	
+
+	@RequestMapping("/apiLogin.do")
+	public String apiLogin(Model d, MemberVO vo) {
+		d.addAttribute("member", service.apiLogin(vo));
+		return "pageJsonReport";
+	}
 
 }
