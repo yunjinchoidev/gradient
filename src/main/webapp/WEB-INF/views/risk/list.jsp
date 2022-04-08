@@ -113,6 +113,7 @@
 						<div class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 						  <form id="schform" action="${path}/risk.do" method="post">
 						  	<input type="hidden" name="curPage" value="1"/>
+						  	<input name="schprjkey" type="hidden" value="${boardprjkey}">
 							<div class="dataTable-top">
 								<div style="margin-right: 50px;width: 20%;">
 									<select name="projectkey" class="form-select">

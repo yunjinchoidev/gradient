@@ -15,6 +15,7 @@ public class RiskSch {
 	private String sch;
 	// 프로젝트 보드 키
 	private int projectkey;
+	private int schprjkey;
 	
 	public int getCount() {
 		return count;
@@ -81,6 +82,12 @@ public class RiskSch {
 	}
 	public void setProjectkey(int projectkey) {
 		this.projectkey = projectkey;
+	}
+	public int getSchprjkey() {
+		return schprjkey;
+	}
+	public void setSchprjkey(int schprjkey) {
+		this.schprjkey = schprjkey;
 	}
 	
 	

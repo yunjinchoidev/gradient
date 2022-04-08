@@ -35,7 +35,7 @@ public class RiskController {
 		
 		if(projectkey != null) {
 			d.addAttribute("risklist",service.riskboardprlist(sch));
-		} else {
+		} else{
 			d.addAttribute("risklist",service.riskboardlist(sch));
 		}
 		

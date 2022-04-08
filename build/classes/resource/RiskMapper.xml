@@ -14,6 +14,7 @@
 		FROM RISK r , MEMBER m, PROJECT p  
 		WHERE r.MEMBERKEY = m.MEMBERKEY 
 		AND r.PROJECTKEY = p.PROJECTKEY
+		AND p.PROJECTKEY = #{schprjkey}
 		order by cnt asc )
 		where 1=1
 		<if test = "sch!=null and sch!=''">
@@ -45,11 +46,12 @@
 	<select id="schRiskList" parameterType="riskSch" resultType="risk">
 	SELECT*
 		FROM (
-		SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
+		SELECT ROW_NUMBER() OVER (ORDER BY r.RISKKEY  desc ) AS cnt, r.RISKKEY AS RISKKEY , r.TITLE AS title, p.NAME AS prjname, p.projectkey as schprjkey, TO_CHAR(r.WRITEDATE,'YYYY-MM-DD') AS writedates,
 		TO_CHAR(r.COMDATE,'YYYY-MM-DD') AS comdate,r.IMPORTANCE AS IMPORTANCE , r.PROGRESS AS PROGRESS , m.NAME AS name
 		FROM RISK r , MEMBER m, PROJECT p  
 		WHERE r.MEMBERKEY = m.MEMBERKEY 
 		AND r.PROJECTKEY = p.PROJECTKEY
+		AND p.PROJECTKEY = #{schprjkey}
 		order by cnt asc )
 	where cnt BETWEEN #{start} AND #{end}*999
 	AND title LIKE '%'||#{sch}||'%'
