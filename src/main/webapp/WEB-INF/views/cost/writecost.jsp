@@ -93,13 +93,26 @@ margin
 		
 		var prjkeyS = $('[name=prjkey]').val();
 		
+		
 		// 프로젝트 변경 시
 		$("#prjsel").change(function(){
-			$("#prjselfrm").submit();
+			if($('#prjsel').val() != 0){
+				$("#prjselfrm").submit();
+			}else{
+				alert('프로젝트를 먼저 선택해주세요');
+			}
 		});
 		
+		var prjkey2 = "${prjkey2}";
+		
 		// 프로젝트 셀렉트
-		$('#prjsel').val(prjkey).prop("selected", true);
+		if($('#prjsel').val() != prjkey2){
+			$('#prjsel').val(prjkey).prop("selected", true);
+		}else{
+			$('#prjsel').val(prjkey2).prop("selected", true);
+			alert('프로젝트를 먼저 선택해주세요');
+		}
+			
 		
 		// 계산 버튼
 		$("#calbtn").click(function(){
@@ -117,6 +130,9 @@ margin
 				}else if($('.costex').eq(i2).val() == ""){
 					alert('예산금액을 입력해주세요');
 					break;
+				}else if($('#prjsel').val() == '0'){
+					alert('프로젝트를 선택해주세요');
+					break;
 				}else{
 					if(i2 == numItems){
 						for(var i=0; i<numItems; i++){
@@ -130,9 +146,7 @@ margin
 				}
 			}
 				
-		});
-
-		
+		});		
 	});
 	
 	// 지출 금액 합산
@@ -287,12 +301,13 @@ margin
 	<div class="card" id="sideseldiv">
 		<div class="card-body">
 			<h4 style="text-align:center;">프로젝트 선택</h4>
-			<form id="prjselfrm" method="post">
+			<form id="prjselfrm" method="get">
 			<select style="text-align:center;" id="prjsel" name="prjkeyS" class="form-select">
-				<c:forEach var="plist" items="${prjlist}">
-					<option value="${plist.prjkey}">${plist.prjname}</option>
-				</c:forEach>
-			</select>
+				<option value="0">--프로젝트를 선택해주세요--</option>
+					<c:forEach var="plist" items="${prjlist}">
+						<option value="${plist.prjkey}">${plist.prjname}</option>
+					</c:forEach>
+				</select>
 			</form>
 		</div>	
 	</div>

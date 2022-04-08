@@ -46,7 +46,9 @@ public class CostController {
 			d.addAttribute("prjcost",service.getPrjCost(prjkey));	
 		}else {
 			int prjkey = 30001;
+			int prjkey2 = 0;
 			d.addAttribute("prjkey",prjkey);
+			d.addAttribute("prjkey2",prjkey2);
 			d.addAttribute("prjcost",service.getPrjCost(prjkey));
 		}
 		
