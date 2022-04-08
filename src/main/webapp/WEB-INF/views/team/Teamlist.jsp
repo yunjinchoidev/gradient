@@ -43,7 +43,7 @@
 <script>
 	$(document).ready(function() {
 		var msg = "${msg}";
-		var memberprojectkey = "${memberprojectkey}";
+		var projectkey = "${projectkey}";
 		var id = "${member.id}";
 
 		if (id == "") {
@@ -58,7 +58,6 @@
 			}
 		});
 
-	});
 		var pageSize = "${TeamSch.pageSize}"
 		$("[name=pageSize]").val(pageSize);
 		$("[name=pageSize]").change(function() {
@@ -66,8 +65,8 @@
 			$("#frm02").submit();
 		});
 	})
-	function goPage(memberprojectkey) {
-		$("[name=curPage]").val(memberprojectkey);
+	function goPage(projectkey) {
+		$("[name=curPage]").val(projectkey);
 		$("#frm02").submit();
 	}
 </script>
@@ -87,11 +86,11 @@
 
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>팀 관리</h3>
+						<h3>GRADIENT - 팀 관리</h3>
 
 						<a href="/project5/insertTeam.do" class="badge bg-light-secondary">팀
-							배정</a> <a href="/project5/teamdetail.do"
-							class="badge bg-light-secondary">배정 목록 </a> <a
+							관리</a> <a href="/project5/teamlist.do"
+							class="badge bg-light-secondary">배정목록 </a> <a
 							href="/project5/output.do?projectkey=${project.projectkey }"
 							class="badge bg-light-secondary">휴가 관리</a> <a
 							href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
@@ -118,7 +117,7 @@
 											</select>
 										</div>
 
-										<div class="dataTable-search"><input type="text" id="schFrm" name="sch"
+										<div class="dataTable-search"><input type="text" id="schFrm" name="status"
 												class="dataTable-input" placeholder="Search"
 												value="${TeamSch.status}">
 											<button class="btn btn-primary" type="submit">검색</button>
