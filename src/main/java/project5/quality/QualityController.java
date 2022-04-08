@@ -56,15 +56,17 @@ public class QualityController {
 	}
 	
 	@RequestMapping("/qualityInsert.do")
-	public String qualityInsert(QualityVO vo){
+	public String qualityInsert(QualityVO vo, Model d){
 		service.insert(vo);
+		d.addAttribute("msg", "등록되었습니다");
 		return "forward:/qualityList.do";
 	}
 	
 	
 	@RequestMapping("/qualityUpdate.do")
-	public String qualityUpdate(QualityVO vo){
+	public String qualityUpdate(QualityVO vo, Model d){
 		service.update(vo);
+		d.addAttribute("msg", "수정되었습니다");
 		return "forward:/qualityList.do";
 	}
 	

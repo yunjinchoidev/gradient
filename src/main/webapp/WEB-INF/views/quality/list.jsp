@@ -17,6 +17,14 @@
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>
 	$(document).ready(function() {
+		
+		var msg = "${msg}";
+		
+		if(msg!=''){
+			alert(msg);
+			location.href="${path}/qualityList.do";
+		}
+		
 		// 한 화면에서 몇 개씩 볼 것인지 생각해봅시다.		
 		var pageSize = "${qualitySch.pageSize}"
 		$("[name=pageSize]").val(pageSize);
@@ -157,7 +165,7 @@
 										<div style="display: inline-block;">
 											<input style="display: inline-block;"
 												class="dataTable-input searchWhat" placeholder="검색어를 입력"
-												type="text" name="title" value="${qualitySch.title}">
+												type="text" name="title">
 											<button class="btn btn-info" type="submit">검색</button>
 											<a href="/project5/qualityInsertFrom.do"
 												class="btn btn-danger" style="text-align: right">글쓰기</a> 
