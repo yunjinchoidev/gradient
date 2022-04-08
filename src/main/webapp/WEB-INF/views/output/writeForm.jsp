@@ -15,6 +15,30 @@ $(document).ready(function(){
 			location.href="/project5/output.do?projectkey=${project.projectkey}";
 	}
 	
+	
+	
+	
+	var formObj = $("form")
+	
+	$("#regBtn").click(function(e){
+		e.preventDefault();
+		if($("input[name=title]").val()=="" ||
+				$("input[name=version]").val()=="" ||
+				$("input[name=contents]").val()==""
+		){
+			alert("모든 항목을 입력해야 합니다.")
+			e.preventDefault();
+		}else{
+			formObj.submit();
+		}
+		
+		
+
+	})
+	
+	
+	
+	
 })
 
 </script>
@@ -146,7 +170,7 @@ $(document).ready(function(){
 											<div class="form-group">
 												<label for="email-id-column">작성자</label> <input type="text"
 													id="email-id-column" class="form-control"
-													placeholder="memberkey" value="${member.name }">
+													placeholder="memberkey" value="${member.name }" readonly="readonly">
 											</div>
 										</div>
 

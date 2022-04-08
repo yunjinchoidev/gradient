@@ -17,16 +17,14 @@ public class ProcuSituationController {
 	ProjectService service2;
 	
 	@RequestMapping("/procuSituationMain.do")
-	public String procuSituationMain(Model d, ProcuSituationSch sch, int projectkey) {
+	public String procuSituationMain(Model d, ProcuSituationSch sch) {
 		d.addAttribute("blist", service.listWithPaging(sch));
-		d.addAttribute("project", service2.get(projectkey));
 		return "WEB-INF\\views\\procuSituation\\main.jsp";
 	}
 	
 	@RequestMapping("/procuSituationList.do")
-	public String procuSituationDetail(Model d, ProcuSituationSch sch, int projectkey) {
+	public String procuSituationDetail(Model d, ProcuSituationSch sch) {
 		d.addAttribute("blist", service.listWithPaging(sch));
-		d.addAttribute("project", service2.get(projectkey));
 		return "WEB-INF\\views\\procuSituation\\list.html";
 	}
 	

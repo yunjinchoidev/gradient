@@ -218,6 +218,7 @@ $(document).ready(function() {
 			var formObj = $("form")
 			
 			$("#regBtn").click(function(e){
+				alert()
 				e.preventDefault();
 				if($("input[name=id]").val()=="" ||
 						$("input[name=pass]").val()=="" ||
@@ -229,10 +230,8 @@ $(document).ready(function() {
 				}else{
 					formObj.submit();
 				}
-				
-				
-
 			})
+			
 			
 						
 						
@@ -397,8 +396,8 @@ $(document).ready(function() {
 						<div class="form-group position-relative has-icon-left mb-4">
 							<select class="form-control form-control-xl" name="auth"><option
 									value="" selected>직급</option>
-								<option value="admin">admin</option>
-								<option value="pm">pm</option>
+								<option value="admin" selected>admin</option>
+								<option value="pm" >pm</option>
 								<option value="developer">developer</option></select>
 							<div class="form-control-icon">
 								<i class="bi bi-shield-lock"></i>
@@ -407,9 +406,9 @@ $(document).ready(function() {
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<select class="form-control form-control-xl" name="deptno"><option
-									value="" selected>소속 부서</option>
-								<option value="1">기획</option>
-								<option value="2">pm</option>
+									value="">소속 부서</option>
+								<option value="1" >기획</option>
+								<option value="2" selected>매니저</option>
 								<option value="3">프론트</option>
 								<option value="4">백엔드</option>
 								<option value="5">고객 관리</option></select>

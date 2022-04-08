@@ -200,6 +200,7 @@ to {
 										str += "</div>"
 										console.log("str"+str)
 				    					uploadUL.append(str);
+										
 				  					}
 
 
@@ -213,7 +214,6 @@ to {
 											  $(".progressBtn").show()			
 										}
 									}, 500)
-								  
 								  
 								  
 								  

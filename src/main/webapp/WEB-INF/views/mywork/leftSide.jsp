@@ -121,7 +121,7 @@ $(document).ready(function(){
 					console.log(i)
 					var favoriteListHtml = $("#favoriteList");
 					str="";
-					str+="<div >"
+					str+="<div style='cursor:pointer' >"
 					str+="<span class='fonticon-wrap d-inline me-3' style='display: inline-block;' >"
 					str+="😃<a  onclick='cancel(this)' class='list-group-item' style='font-size: 15px; font-weight: bolder; display: inline-block;' >"
 					str +=result.list[i].favoritekey+")</a>"

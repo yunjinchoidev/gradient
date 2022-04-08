@@ -60,13 +60,13 @@
 							class="btn btn-dark">품질 관리</a> <a
 							href="/project5/attendanceMain.do"
 							class="btn btn-secondary">팀 관리</a> <a
-							href="/project5/teamlist.do"
+							href="/project5/minutes.do?method=list"
 							class="btn btn-danger">회의록</a> <a
 							href="/project5/chatting.do"
 							class="btn btn-warning">채팅</a> <a
 							href="/project5/output.do"
 							class="btn btn-success">산출물 관리</a> <a
-							href="/project5/risk.do"
+							href="/project5/risk.do?projectkey=${project.projectkey }"
 							class="btn btn-primary">리스크 관리</a> <a
 							href="/project5/procuSituationMain.do"
 							class="btn btn-secondary">조달 관리</a>

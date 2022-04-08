@@ -29,7 +29,6 @@
 		
 		var projectkey = "${project.projectkey}"
 		var psc = "${psc}";
-		alert(psc)
 		
 		if(psc == "outputDelete"){
 			location.href= "/project5/output.do?projectkey="+projectkey
