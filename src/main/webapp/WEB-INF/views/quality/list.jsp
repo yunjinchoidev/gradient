@@ -64,7 +64,7 @@
 
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3 onclick="location.href='/project5/qualityList.do'"
-							style="cursor: pointer;">품질건의</h3>
+							style="cursor: pointer;">GRADIENT - 품질</h3>
 						<p class="text-subtitle text-muted">For user to check they
 							list</p>
 					</div>
