@@ -191,7 +191,7 @@
 	                            <th>속기</th>
 	                            <td colspan="3">
 	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="shorthand">${m.shorthand}</textarea>
-	                            	<span class="shCount"></span>ㄴ
+	                            	<span class="shCount"></span>
 	                            </td>
 	                        </tr>
                        	</table>
