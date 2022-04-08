@@ -22,7 +22,14 @@ import project5.project.ProjectVO;
 import project5.workSort.WorkSortService;
 
 @Controller
+@SessionAttributes("project")
 public class DashBoardController {
+	
+	@ModelAttribute("project")
+	public ProjectVO getUserVO() {
+		return new ProjectVO();
+	}
+
 	
 	
 	
@@ -41,7 +48,7 @@ public class DashBoardController {
 	
 	
 	@RequestMapping("/dashBoard.do")
-	public String dashBoard(Model d, int projectkey,MemberVO vo, OutputVO vo2, MemoSch sch) {
+	public String dashBoard(Model d, int projectkey,MemberVO vo, OutputVO vo2, MemoSch sch, @ModelAttribute("project") ProjectVO vo4) {
 		d.addAttribute("pjList", service.list());
 		d.addAttribute("project", service.get(projectkey));
 		d.addAttribute("memoList",service2.list(sch));

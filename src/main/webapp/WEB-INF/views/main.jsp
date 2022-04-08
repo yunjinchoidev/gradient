@@ -79,15 +79,15 @@
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h1>
-						<span style="color:red">
-							"<sec:authorize access="isAuthenticated()">
-								<sec:authentication property="name"/>
-							" 님 </sec:authorize> </span>,
-						<h1>	안녕하세요?</h1>
+								<span style="color:red">
+									<sec:authorize access="isAuthenticated()">
+										<sec:authentication property="name"/>
+									  </sec:authorize> 
+							  </span>
 						</h1>
+							<h1>	안녕하세요?</h1>
 						<h3>GRADIENT에 방문하신 여러분을 환영합니다</h3>
-						<p class="text-subtitle text-muted">여러분을 더 유능하게 만들어 줄 당신의 친구가
-							바로 여기있습니다.</p>
+						<p class="text-subtitle text-muted"> <br>더  유능하게 <br>더  프로페셔널하게 <br>더 섬세하게</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -102,7 +102,7 @@
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>그래디언트</h3>
-						<p class="text-subtitle text-muted">프로젝트의 여정을 기록해두었습니다.</p>
+						<p class="text-subtitle text-muted">저희는 이렇게 작업합니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"

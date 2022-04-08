@@ -11,12 +11,6 @@
 
 
 <style>
-#moveBtn a {
-	width: 135px;
-	margin-right: 10px;
-	font-size: 20px;
-	font-weight: bold;
-}
 </style>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
@@ -117,43 +111,7 @@ $(document).ready(function(){
 			<div class="page-title">
 				<div class="row">
 					
-	<div class="buttons" id="moveBtn" style="padding: 20px;">
-		<a href="/project5/dashBoard.do?projectkey=${project.projectkey }"
-			class="btn btn-secondary">대시보드</a> 
-			<a
-			href="/project5/projectHome.do?projectkey=${project.projectkey }" class="btn btn-dark"
-			 >프로젝트
-			홈</a> 
-			<a href="/project5/kanbanMain.do?projectkey=${project.projectkey }"
-			class="btn btn-danger" >칸반보드</a> <a
-			href="/project5/ganttMain.do?projectkey=${project.projectkey }"
-			class="btn btn-warning" >간트차트</a> <a
-			href="/project5/calendar.do?projectkey=${project.projectkey }"
-			class="btn btn-success" >캘린더</a> <a
-			href="/project5/cost.do?projectkey=${project.projectkey }"
-			class="btn btn-primary">예산 관리</a> <a
-			href="/project5/qualityList.do?projectkey=${project.projectkey }"
-			class="btn btn-dark">품질 관리</a> <a
-			href="/project5/attendanceMain.do?projectkey=${project.projectkey }"
-			class="btn btn-secondary">팀 관리</a> <a
-			href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
-			class="btn btn-danger">회의록</a> <a
-			href="/project5/chatting.do?projectkey=${project.projectkey }"
-			class="btn btn-warning">채팅</a> <a
-			href="/project5/output.do?projectkey=${project.projectkey }"
-			class="btn btn-success">산출물 관리</a> <a
-			href="/project5/risk.do?projectkey=${project.projectkey }"
-			class="btn btn-primary">리스크 관리</a> <a
-			href="/project5/procuSituationMain.do?projectkey=${project.projectkey }"
-			class="btn btn-secondary">조달 관리</a>
-	</div>
-	<hr>
-					
-					
-					
-					
-					
-					
+						<%@ include file="../projectHome/sort.jsp"%>
 					
 					
 					
@@ -381,18 +339,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 					</div>
 
 
@@ -403,9 +349,6 @@ $(document).ready(function(){
 					<div class="row">
 						<div class="col-12">
 							
-
-
-											
 
 							<div class="card">
 								<div class="card-header">
@@ -595,9 +538,10 @@ $(document).ready(function(){
 						</div>
 						<div class="card-body">
 							<div id="calendar_basic"
-								style="width: 1000px; height: 250px; margin: 0 auto;"></div>
+								style="width: 1000px; height: 330px; margin: 0 auto; margin-top: 50px;"></div>
 						</div>
 					</div>
+			
 					<script type="text/javascript">
 						 $.ajax({
 							 url : '/project5/TotalOutputCntByDayList.do',
@@ -640,29 +584,84 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-
-
-
-					<div class="row">
-						<div class="col-12 col-xl-12">
 							<div class="card">
-								<div class="card-header">
-									<h4></h4>
-								</div>
-								<div class="card-body"></div>
-							</div>
-						</div>
+											<div class="card-header">
+													<h4>산출물 평가 점수 분석</h4>
+											</div>
+												<div class="card-body">
+											<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+										       <select id="format-select">
+										      <option value="">none</option>
+										      <option value="decimal" selected>decimal</option>
+										      <option value="scientific">scientific</option>
+										      <option value="percent">percent</option>
+										      <option value="currency">currency</option>
+										      <option value="short">short</option>
+										      <option value="long">long</option>
+										    </select>
+										    <div id="number_format_chart">
+											</div>
+											</div>
+										</div>
 
-					</div>
+					<script>
+					$.ajax({
+						url : '/project5/outputEvaluationDayByDay.do',
+						type:'POST',
+						dataType:'json',
+						success:function(result){
+							console.log("'/project5/outputEvaluationDayByDay.do")
+							console.log(result.list)
+							console.log(result.list.length)
+							console.log(result.list[0].writedate)
+							console.log(result.list[0].evaluation)
+							data4 =[
+					              [result.list[0].writedate, result.list[0].evaluation],
+					              [result.list[1].writedate,  result.list[1].evaluation],
+					              [result.list[2].writedate,  result.list[2].evaluation]
+					            ]
+						},
+						error:function(result){
+							alert("실패")
+						}
+					})
+					var data4;
+					google.charts.load('current', {packages:['corechart']});
+      google.charts.setOnLoadCallback(drawStuff);
+
+			        function drawStuff() {
+			            var data = new google.visualization.DataTable();
+			            data.addColumn('string', 'Country');
+			            data.addColumn('number', 'GDP');
+			            data.addRows(data4);
+
+			           var options = {
+			             title: '산출물 평가 점수',
+			             width: 500,
+			             height: 300,
+			             legend: 'none',
+			             bar: {groupWidth: '95%'},
+			             vAxis: { gridlines: { count: 4 } }
+			           };
+
+			           var chart = new google.visualization.ColumnChart(document.getElementById('number_format_chart'));
+			           chart.draw(data, options);
+
+			           document.getElementById('format-select').onchange = function() {
+			             options['vAxis']['format'] = this.value;
+			             chart.draw(data, options);
+			           };
+			        };
+					</script>
+
+
 
 
 
 				</div>
+
+
+
 
 
 
@@ -689,57 +688,6 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
-
-
-
-
-
-					<div class="card">
-						<div class="card-header">
-							<h4>최근 프로젝트 참여자</h4>
-						</div>
-
-						<!-- 
-						<div class="card-content pb-4">
-							<div class="recent-message d-flex px-4 py-3">
-								<div class="avatar avatar-lg">
-									<img src="/project5/resources/dist/assets/images/faces/4.jpg">
-								</div>
-								<div class="name ms-4">
-									<h5 class="mb-1">개발자 1</h5>
-									<h6 class="text-muted mb-0">@홍길동</h6>
-								</div>
-							</div>
-							<div class="recent-message d-flex px-4 py-3">
-								<div class="avatar avatar-lg">
-									<img src="/project5/resources/dist/assets/images/faces/5.jpg">
-								</div>
-								<div class="name ms-4">
-									<h5 class="mb-1">마케터 2</h5>
-									<h6 class="text-muted mb-0">@김철수</h6>
-								</div>
-							</div>
-							<div class="recent-message d-flex px-4 py-3">
-								<div class="avatar avatar-lg">
-									<img src="/project5/resources/dist/assets/images/faces/1.jpg">
-								</div>
-								<div class="name ms-4">
-									<h5 class="mb-1">인사과 1</h5>
-									<h6 class="text-muted mb-0">@김영희</h6>
-								</div>
-							</div>
-							<div class="px-4">
-								<button
-									class='btn btn-block btn-xl btn-light-primary font-bold mt-3'
-									onclick="window.open('/project5/chatTEST.do', 'PopupWin', 'width=1000,height=1200');"
-									>채팅 시작
-									</button>
-							</div>
-						</div>
-						 -->
-
-					</div>
-
 
 
 
@@ -956,106 +904,6 @@ $(document).ready(function(){
 
 
 
-
-
-
-
-
-					<div class="card">
-						<div class="card-header">
-							<h4>산출물 평가 점수 분석</h4>
-						</div>
-						<div class="card-body">
-						<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-       <select id="format-select">
-      <option value="">none</option>
-      <option value="decimal" selected>decimal</option>
-      <option value="scientific">scientific</option>
-      <option value="percent">percent</option>
-      <option value="currency">currency</option>
-      <option value="short">short</option>
-      <option value="long">long</option>
-    </select>
-    <div id="number_format_chart">
-						</div>
-					</div>
-					
-					<script>
-					
-					
-					$.ajax({
-						url : '/project5/outputEvaluationDayByDay.do',
-						type:'POST',
-						dataType:'json',
-						success:function(result){
-							console.log("'/project5/outputEvaluationDayByDay.do")
-							console.log(result.list)
-							console.log(result.list.length)
-							console.log(result.list[0].writedate)
-							console.log(result.list[0].evaluation)
-							data4 =[
-					              [result.list[0].writedate, result.list[0].evaluation],
-					              [result.list[1].writedate,  result.list[1].evaluation],
-					              [result.list[2].writedate,  result.list[2].evaluation]
-					            ]
-						},
-						error:function(result){
-							alert("실패")
-						}
-					})
-					var data4;
-					google.charts.load('current', {packages:['corechart']});
-      google.charts.setOnLoadCallback(drawStuff);
-
-			        function drawStuff() {
-			            var data = new google.visualization.DataTable();
-			            data.addColumn('string', 'Country');
-			            data.addColumn('number', 'GDP');
-			            data.addRows(data4);
-
-			           var options = {
-			             title: '산출물 평가 점수',
-			             width: 500,
-			             height: 300,
-			             legend: 'none',
-			             bar: {groupWidth: '95%'},
-			             vAxis: { gridlines: { count: 4 } }
-			           };
-
-			           var chart = new google.visualization.ColumnChart(document.getElementById('number_format_chart'));
-			           chart.draw(data, options);
-
-			           document.getElementById('format-select').onchange = function() {
-			             options['vAxis']['format'] = this.value;
-			             chart.draw(data, options);
-			           };
-			        };
-					</script>
-
-
-
-
-
-
-
-
-
-
-
-				</div>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
 				
 				
 				

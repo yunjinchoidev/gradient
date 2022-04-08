@@ -51,7 +51,7 @@
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h3>근태 관리</h3>
 
-						<a href="/project5/addmem.do" class="badge bg-secondary">팀
+						<a href="/project5/teamlist.do" class="badge bg-secondary">팀
 							할당</a> 
 							<a
 							href="/project5/Allocation.do"

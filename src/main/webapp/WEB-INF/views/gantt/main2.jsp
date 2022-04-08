@@ -160,17 +160,17 @@ html, body {
 						
 						
 	</script>
-
+<div style="margin-bottom: 20px; margin-top: 20px;">
+	<a href="#" class="btn btn-danger" id="addBtn">추가 </a>
+	<a href="#" class="btn btn-danger" id="getItems">모든 정보 얻기</a>
+	</div>
 	
 	
 	<div id="gantt_here" style="width: 100%; height: 1000px; margin-top: 40px;"></div>
 
 	<br>
 	<br>
-<div>
-	<a href="#" class="btn btn-danger" id="addBtn">추가 </a>
-	<a href="#" class="btn btn-danger" id="getItems">모든 정보 얻기</a>
-	</div>
+
 
 
 

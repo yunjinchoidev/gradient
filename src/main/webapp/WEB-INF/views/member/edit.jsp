@@ -215,6 +215,24 @@ $(document).ready(function() {
 			
 			
 			
+			var formObj = $("form")
+			
+			$("#regBtn").click(function(e){
+				e.preventDefault();
+				if($("input[name=id]").val()=="" ||
+						$("input[name=pass]").val()=="" ||
+						$("input[name=passRE]").val()==""||
+						$("input[name=name]").val()==""
+				){
+					alert("모든 항목을 입력해야 합니다.")
+					e.preventDefault();
+				}else{
+					formObj.submit();
+				}
+				
+				
+
+			})
 			
 						
 						
@@ -258,7 +276,7 @@ $(document).ready(function() {
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl"
-								placeholder="임시 아이디" value="${member.id }" readonly="readonly">
+								placeholder="임시 아이디" value="기존 아이디 : ${member.id }" readonly="readonly">
 							<div class="form-control-icon">
 								<i class="bi bi-envelope"></i>
 							</div>
@@ -269,7 +287,7 @@ $(document).ready(function() {
 
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="password" class="form-control form-control-xl"
-								placeholder="임시 비밀번호" value="${member.pass }"
+								placeholder="임시 비밀번호" value="기존 비밀번호 : ${member.pass }"
 								readonly="readonly">
 							<div class="form-control-icon">
 								<i class="bi bi-envelope"></i>
@@ -294,7 +312,9 @@ $(document).ready(function() {
 						
 						<div class="form-group position-relative has-icon-left mb-4">
 							<input type="text" class="form-control form-control-xl id_input" 
-								placeholder="변경할 아이디" name="id" style="width: 85%; display: inline-block;">
+								placeholder="변경할 아이디" name="id" style="width: 85%; display: inline-block;"
+								value="${member.id }"
+								>
 							<div class="form-control-icon" style="display: inline-block;">
 								<i class="bi bi-envelope"></i>
 							</div>
@@ -377,9 +397,9 @@ $(document).ready(function() {
 						<div class="form-group position-relative has-icon-left mb-4">
 							<select class="form-control form-control-xl" name="auth"><option
 									value="" selected>직급</option>
-								<option value="pm">PM</option>
-								<option value="teamleader">팀장</option>
-								<option value="developer">개발자</option></select>
+								<option value="admin">admin</option>
+								<option value="pm">pm</option>
+								<option value="developer">developer</option></select>
 							<div class="form-control-icon">
 								<i class="bi bi-shield-lock"></i>
 							</div>
@@ -399,7 +419,7 @@ $(document).ready(function() {
 						</div>
 
 
-						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5">회원정보수정하기</button>
+						<button class="btn btn-primary btn-block btn-lg shadow-lg mt-5" type="button" id="regBtn">회원정보수정하기</button>
 					</form>
 
 

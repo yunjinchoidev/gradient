@@ -20,5 +20,11 @@ public class MyCalendarController {
 		return "WEB-INF\\views\\myCalendar\\main.jsp";
 	}
 	
+	@RequestMapping("/myCalendarInsert.do")
+	public String myCalendarInsert(Model d, int memberkey) {
+		d.addAttribute("list", service.getCalendarIndividaulList(memberkey));
+		return "WEB-INF\\views\\myCalendar\\main.jsp";
+	}
+	
 	
 }

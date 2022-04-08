@@ -85,18 +85,15 @@
 			
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>근태 관리</h3>
-
-						<a href="/project5/addmem.do" class="badge bg-secondary">팀
-							할당</a> 
-							<a
-							href="/project5/Allocation.do"
-							class="badge bg-secondary">프로젝트 할당</a> <a
-							href="/project5/vacationMain.do"
-							class="badge bg-secondary">휴가 관리</a> <a
-							href="/project5/attendanceMain.do"
-							class="badge bg-secondary">근태 관리</a>
+							<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
+								<a href="#" class="btn btn-dark" id="" onclick="location.href='/project5/attendanceMain.do'">근태 관리 </a> 
+								<a href="#" class="btn btn-dark" id="" onclick="location.href='/project5/Temlist.do'">프로젝트 할당</a> 
+								<a href="#" class="btn btn-dark" id="" onclick="location.href='/project5/vacationMain.do'">휴가 관리</a> 
+							</div>
+								<h3 style="margin-top: 20px;">근태 관리</h3>
 					</div>
+					
+					
 
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -111,7 +108,6 @@
 			</div>
 
 			<br>
-				<
 
 
 

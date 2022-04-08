@@ -36,9 +36,15 @@ public class VoteController {
 	@RequestMapping("/voteWrite.do")
 	public String voteWrite(Model d, VoteVO vo) {
 		service.insert(vo);
-		return "forward:/projectHome.do";
+		d.addAttribute("msg", "voteWrite");
+		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
 
+	
+	
+	
+	
+	
 	@RequestMapping("/voteGet.do")
 	public String voteGet(Model d, VoteVO vo) {
 		d.addAttribute("get", service.get(vo.getVotekey()));

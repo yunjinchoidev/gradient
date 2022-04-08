@@ -56,8 +56,7 @@
 											<div class="form-group">
 												<label for="last-name-column">제목</label> <input type="text"
 													id="last-name-column" class="form-control"
-													placeholder="Last Name" name="title" value="${get.title }"
-													>
+													placeholder="Last Name" name="title" value="${get.title }">
 											</div>
 										</div>
 

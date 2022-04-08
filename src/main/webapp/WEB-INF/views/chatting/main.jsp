@@ -541,7 +541,7 @@
 	<div class="container py-5 px-4">
   <!-- For demo purpose-->
   <header class="text-center">
-    <p class="text-white lead mb-0" style="font-weight: bolder;">더 자유롭게, 더 빠르게, 더 정확하게</p>
+    <p class="text-white lead mb-0" style="font-weight: bolder;">더 정확하게, 더 빠르게, 더 자유롭게</p>
     <h1 class="display-4 text-white" style="font-weight: bolder;">Gradient 채팅 서비스</h1>
     <hr>
 	    <a href="#" class="btn btn-primary"  id="enterBtn">소켓 ON</a>

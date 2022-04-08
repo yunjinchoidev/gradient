@@ -172,23 +172,41 @@
 			}
 		})
 		
+		
+		$("#chatting").click(function() {
+			if (memberName == "") {
+				alert("미 로그인시 접근 불가합니다.");
+				location.href="/project5/main.do"
+			}else{
+				location.href="/project5/chatting.do";
+			}
+		})
+		
 							$("#projectMange").click(function() {
-								if (auth == "") {
-									alert("PM만 접근 가능합니다.");
-								} else {
+								if (auth == "pm" || auth == "admin" ) {
 									location.href="/project5/projectManageMain.do"
+								} else {
+									alert("권한이 없습니다.");
 								}
 							});
+		
+		
+		
+		
+		
+		
 						$("#MemberAnaysis").click(function() {
-							if (auth == "") {
+							if (auth != "admin") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
 								 window.open("https://analytics.google.com/analytics/web/?hl=ko&pli=1#/p309149054/reports/intelligenthome",
 										"PopupWin", "width=1000,height=800");
 							}
 						});
+						
+						
 						$("#EmailBtn").click(function() {
-							if (auth == "") {
+							if (auth != "admin") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
 								location.href = "/project5/mailFrm.do"
@@ -196,7 +214,7 @@
 						});
 
 						$("#MemberListBtn").click(function() {
-							if (auth == "") {
+							if (auth != "admin") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
 								location.href = "/project5/memberList.do"
@@ -362,9 +380,8 @@
 
 
 
-						<li class="sidebar-item  "><a
-							href="/project5/chatting.do"
-							class='sidebar-link'> 
+						<li class="sidebar-item  " style="cursor: pointer;"><a
+							class='sidebar-link' id="chatting">  
 							<i class="bi bi-chat-dots-fill"></i>
 							<span>
 									<spring:message code="chatting"/></span>

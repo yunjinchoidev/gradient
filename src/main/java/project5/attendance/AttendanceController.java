@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import project5.member.MemberSch;
 import project5.member.MemberService;
 import project5.project.ProjectService;
 
@@ -21,8 +22,7 @@ public class AttendanceController {
 	ProjectService service3;
 	
 	@RequestMapping("/attendanceMain.do")
-	public String attendance(Model d, int projectkey) {
-		d.addAttribute("project", service3.get(projectkey));
+	public String attendance(Model d, MemberSch sch) {
 		d.addAttribute("list", service.memberPlusAttendacne());
 		return "WEB-INF\\views\\attendance\\main.jsp";
 	}

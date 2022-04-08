@@ -33,6 +33,9 @@
 		</if>
 	</select>
 
+
+
+
 	<!-- 리스트를 불러오기 -->
 	<select id="listWithPaging"
 		resultType="project5.projectHome.ProjectHomeVO"
@@ -45,7 +48,6 @@
 		where
 		1=1
 		and ph.workSortKey = ws.workSortKey
-		AND ph.projectkey = #{projectkey}
 		<if test="title!=null and title!=''">
 			and ph.title like '%'||#{title}||'%'
 		</if>

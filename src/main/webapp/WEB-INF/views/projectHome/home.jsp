@@ -20,6 +20,12 @@
 	$(document)
 			.ready(
 					function() {
+						
+						var msg = "${msg}"
+						if(msg == "voteWrite"){
+							location.href="/project5/projectHome.do"
+						}
+						
 
 						var psc = "${psc}"
 						if (psc == "voteSuccess") {
@@ -40,6 +46,10 @@
 							$("#frm01").submit();
 						});
 
+						
+						
+						
+						
 					})
 
 	function goPage(no) {
