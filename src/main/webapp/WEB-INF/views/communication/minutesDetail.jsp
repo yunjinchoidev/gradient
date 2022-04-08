@@ -12,7 +12,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>회의록 | 조회</title>
+	<title>GRADIENT - 회의록 조회</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<style>
 		.dtl-button-box{display:flex;justify-content: space-between;}

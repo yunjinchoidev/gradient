@@ -12,7 +12,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>회의 | 리스트</title>
+	<title>GRADIENT - 회의록 리스트</title>
 	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 	<script>
 	$(document).ready(function() {
@@ -123,7 +123,7 @@
 										</thead>
 										<tbody>
 											<c:forEach var="m" items="${mList}">
-												<tr ondblclick="detail(${m.minutesKey})">
+												<tr ondblclick="detail(${m.minutesKey})" onmouseover="this.style.background='#dcffff';this.style.color='#2c2c2e'" onmouseout="this.style.background='white';this.style.color='#6f7075'">
 													<td>${m.minutesKey}</td>
 													<td>${m.topic}</td>
 													<td><fmt:formatDate value="${m.conferenceDate}" /></td>
