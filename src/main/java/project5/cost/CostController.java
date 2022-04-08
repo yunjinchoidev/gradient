@@ -60,7 +60,7 @@ public class CostController {
 		service.insPrjCost(ins);
 		service.insCostList(clins);
 		d.addAttribute("msg","등록되었습니다");
-		return "forward:/writecost.do";
+		return "forward:/cost.do";
 	}
 	
 	@RequestMapping("/detailcost.do")

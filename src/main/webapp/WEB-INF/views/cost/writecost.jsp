@@ -50,12 +50,6 @@ margin
 		var i = 1;
 		var prjkey = "${prjkey}";
 		var prjcost = "${prjcost}";
-		var msg = "${msg}";
-		
-		if(msg!=""){
-			alert(msg);
-			location.href="${path}/cost.do";
-		}
 		
 		var currentPosition = parseInt($("#sideinfodiv").css("top"));
 		$(window).scroll(function() {
