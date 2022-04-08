@@ -104,8 +104,9 @@
 										<col width="5%">
 									   	<col width="20%">
 									   	<col width="10%">
-									   	<col width="15%">
-									   	<col width="15%">
+									   	<col width="10%">
+									   	<col width="10%">
+									   	<col width="10%">
 									   	<col width="10%">
 									   	<col width="10%">
 										<thead>
@@ -114,6 +115,7 @@
 												<th data-sortable="">회의안건</th>
 												<th data-sortable="">회의일시</th>
 												<th data-sortable="">작성일자</th>
+												<th data-sortable="">수정일자</th>
 												<th data-sortable="">프로젝트</th>
 												<th data-sortable="">부서</th>
 												<th data-sortable="">작성자</th>
@@ -125,7 +127,8 @@
 													<td>${m.minutesKey}</td>
 													<td>${m.topic}</td>
 													<td><fmt:formatDate value="${m.conferenceDate}" /></td>
-													<td><fmt:formatDate value="${m.writeDate}" />(<fmt:formatDate value="${m.updateDate}" />)</td>
+													<td><fmt:formatDate value="${m.writeDate}" /></td>
+													<td><fmt:formatDate value="${m.updateDate}" /></td>
 													<td>${m.pname}</td>
 													<td>${m.dname}</td>
 													<td>${m.mname}</td>

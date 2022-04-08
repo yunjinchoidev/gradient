@@ -29,6 +29,40 @@
 				}
 			}
 			
+			$("[name=topic]").keyup(function(e){
+				let content = $(this).val();
+				
+				$('.topicCount').text(content.length + '자 / 40자'); 
+				
+				if(content.length > 40){
+					$(this).val($(this).val().substring(0,40));
+					alert('회의안건은 20자 미만으로 입력해주세요.');
+				};			
+			});
+			
+			$("[name=content]").keyup(function(e){
+				let content = $(this).val();
+			
+				$('.contentCount').text(content.length + '자 / 1000자'); 
+				
+				if(content.length > 1000){
+					$(this).val($(this).val().substring(0,1000));
+					alert('속기는 1000자 미만으로 입력해주세요.');
+				};			
+			});
+			
+			$("[name=shorthand]").keyup(function(e){
+				let content = $(this).val();
+				
+				$('.shCount').text(content.length + '자 / 1000자'); 
+				
+				
+				if(content.length > 1000){
+					$(this).val($(this).val().substring(0,1000));
+					alert('내용은 1000자 미만으로 입력해주세요.');
+				};			
+			});
+			
 			$("#goList").click(function(){
 				location.href="${path}/minutes.do?method=list";
 			});
@@ -37,6 +71,31 @@
 				var hasSession="${member.id}";
 				if(hasSession!=""){
 					if (confirm("수정하시겠습니까?")) {
+						if ($("[name=topic]").val() == "") {
+							alert("회의안건을 필수로 입력하셔야합니다.");
+							$("[name=topic]").focus();
+							return;
+						}
+						if ($("[name=projectKey]").val() == 0){
+							alert("프로젝트명을 필수로 선택하셔야합니다.");
+							document.getElementsByName("projectKey")[0].focus();
+							return;
+						}
+						if ($("[name=conferenceDateS]").val() == "") {
+							alert("회의날짜를 필수로 선택하셔야합니다.");
+							$("[name=conferenceDateS]").focus();
+							return;
+						}
+						if ($("[name=deptKey]").val() == 0){
+							alert("부서명을 필수로 선택하셔야합니다.");
+							document.getElementsByName("deptKey")[0].focus();
+							return;
+						}
+						if ($("[name=content]").val() == "") {
+							alert("내용을 필수로 입력하셔야합니다.");
+							$("[name=content]").focus();
+							return;
+						}
 						$("form").attr("action", "${path}/minutes.do?method=update");
 						$("form").submit();
 					}
@@ -85,6 +144,7 @@
 	                            <th>회의안건</th>
 	                            <td colspan="3" >
 	                            	<input type="text" class="form-control" id="basicInput" name="topic" value="${m.topic}"/>
+	                            	<span class="topicCount"></span>
 	                            </td>
 	                        </tr>
 	                        <tr>
@@ -124,12 +184,14 @@
 	                            <th>회의내용</th>
 	                            <td colspan="3">
 	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="14" name="content">${m.content}</textarea>
+	                            	<span class="contentCount"></span>
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th>속기</th>
 	                            <td colspan="3">
 	                            	<textarea class="form-control" id="exampleFormControlTextarea1" rows="8" name="shorthand">${m.shorthand}</textarea>
+	                            	<span class="shCount"></span>ㄴ
 	                            </td>
 	                        </tr>
                        	</table>
