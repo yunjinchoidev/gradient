@@ -156,7 +156,8 @@
 									<tbody>
 									
 									<c:forEach var="rlist" items="${risklist}">
-                        				<tr onclick="goDetail(${rlist.riskkey})">                        					
+                        				<tr onclick="goDetail(${rlist.riskkey})" style="cursor:pointer;"
+												onmouseover="this.style.color='#2B65EC'" onmouseout="this.style.color='#607080'">                        					
 				                            <td id="rtitle">${rlist.title}</td>
 				                            <td id="rprjname">${rlist.prjname}</td>
 				                            <td>${rlist.writedates}</td>

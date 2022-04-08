@@ -126,7 +126,8 @@ text-align: center;
 
 									<tbody>
 										<c:forEach var="clist" items="${costlist}">
-											<tr onclick="goDetail(${clist.prjkey})">
+											<tr onclick="goDetail(${clist.prjkey})" style="cursor:pointer;"
+												onmouseover="this.style.color='#2B65EC'" onmouseout="this.style.color='#607080'">
 												<td>${clist.costkey}</td>
 												<td>${clist.prjname}</td>
 												<td>${clist.startdate}</td>
