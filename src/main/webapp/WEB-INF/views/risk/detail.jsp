@@ -42,7 +42,7 @@
 
 </style>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GRADIENT - 리스크</title>
 
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 
