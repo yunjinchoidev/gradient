@@ -120,8 +120,8 @@ public class DashBoardController {
 	public String dashCostDetailGet(Model d, int no) {
 		System.out.println("dashCostDetailGet 진입!");
 		List<CostDetail> detailGet = service3.costDetailGet(no);
+		System.out.println(detailGet.size());
 		d.addAttribute("get", detailGet);
-		System.out.println("확인:"+  service3.costDetailGet(no).get(no).getCostcontent());
 		return "pageJsonReport";
 	}
 	

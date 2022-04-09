@@ -28,6 +28,9 @@
 					if (psc == "update") {
 						alert("공지사항 수정이 완료되었습니다.");
 					}
+					if (msg == "updateForm") {
+						location.href = "/project5/notice.do";
+					}
 
 
 					console.log("psc : " + psc);
@@ -231,8 +234,6 @@
 										class="dataTable-sorter">조회수</a></th>
 									<th data-sortable="" style="width: 8%;"><a href="#"
 										class="dataTable-sorter">작성자</a></th>
-									<th data-sortable="" style="width: 10.8049%;"><a href="#"
-										class="dataTable-sorter">조회수</a></th>
 								</tr>
 							</thead>
 
@@ -253,9 +254,8 @@
 											</td>
 											
 										<td><fmt:formatDate value="${list.writeDate }"/></td>
-										<td>${list.cnt }</td>
+										<td>${list.views }</td>
 										<td>${list.name }</td>
-										<td><span class="badge bg-success">${list.views }</span></td>
 									</tr>
 								</c:forEach>
 							</tbody>

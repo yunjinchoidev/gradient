@@ -198,7 +198,7 @@ $(document).ready(function(){
 							
 							
 							<c:forEach var="list" items="${menubarList }"> 				
-								<div>
+								<div style="cursor:pointer">
 									<a class="list-group-item"
 									style="font-size: 20px; font-weight: bolder; display: inline-block; color: red" onclick='absoulte(this)' ">✔	${list.menubarkey})</a>
 									

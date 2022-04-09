@@ -589,19 +589,20 @@ $(document).ready(function(){
 													<h4>산출물 평가 점수 분석</h4>
 											</div>
 												<div class="card-body">
-											<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-										       <select id="format-select">
-										      <option value="">none</option>
-										      <option value="decimal" selected>decimal</option>
-										      <option value="scientific">scientific</option>
-										      <option value="percent">percent</option>
-										      <option value="currency">currency</option>
-										      <option value="short">short</option>
-										      <option value="long">long</option>
-										    </select>
-										    <div id="number_format_chart">
-											</div>
-											</div>
+														<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+															       <select id="format-select">
+																      <option value="">none</option>
+																      <option value="decimal" selected>decimal</option>
+																      <option value="scientific">scientific</option>
+																      <option value="percent">percent</option>
+																      <option value="currency">currency</option>
+																      <option value="short">short</option>
+																      <option value="long">long</option>
+															    </select>
+										    
+													    <div id="number_format_chart" style="margin-left: 300px; height: 500px;">
+														</div>
+												</div>
 										</div>
 
 					<script>
@@ -717,16 +718,16 @@ $(document).ready(function(){
 								  data : data,
 								  dataType:'json',
 								  success:function(result){
-									  console.log("-------------------------------------")
+									  console.log("예산 지출 상황---------------------------------------------")
 									  console.log(result)
 									  console.log(result.get)
-									  console.log(result.get[0])
+									  console.log(result.get[1].costex)
 									  mydata = [
 										  ['Year', '예산', '지출'],
 										  ['개발자',  parseInt("${project.take}"),      result.get[0].costex ],
 								          ['식비',  parseInt("${project.take}"),      result.get[1].costex ],
 								          ['사무용품',  parseInt("${project.take}"),       result.get[2].costex ],
-								          ['기타',  parseInt("${project.take}"),      result.get[3].costex ]
+								          ['복지비',  parseInt("${project.take}"),       result.get[3].costex ]
 									  ];
 								  },
 								  error:function(result){
@@ -755,6 +756,19 @@ $(document).ready(function(){
 						        chart.draw(data, options);
 						      }
 						    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -96,34 +96,6 @@
 
 									<div class="col-md-6 col-12">
 										<div class="form-group">
-											<label for="city-column">City</label> <input type="text"
-												id="city-column" class="form-control" placeholder="City"
-												name="city-column">
-										</div>
-									</div>
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="country-floating">Country</label> <input
-												type="text" id="country-floating" class="form-control"
-												name="country-floating" placeholder="Country">
-										</div>
-									</div>
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="company-column">Company</label> <input
-												type="text" id="company-column" class="form-control"
-												name="company-column" placeholder="Company">
-										</div>
-									</div>
-									<div class="col-md-6 col-12">
-										<div class="form-group">
-											<label for="email-id-column">Email</label> <input
-												type="email" id="email-id-column" class="form-control"
-												name="email-id-column" placeholder="Email">
-										</div>
-									</div>
-									<div class="col-md-6 col-12">
-										<div class="form-group">
 											<label for="email-id-column">Contents</label>
 											<textarea class="form-control" name="content"
 												placeholder="content" rows="4" readonly="readonly">${notice.content }</textarea>

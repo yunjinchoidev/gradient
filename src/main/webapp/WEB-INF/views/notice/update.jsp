@@ -62,8 +62,8 @@
 											<div class="form-group">
 												<label for="first-name-column">조회수</label> <input
 													type="text" id="first-name-column" class="form-control"
-													placeholder="cnt" name="cnt" value="${notice.cnt }"
-													readonly="readonly">
+													placeholder="cnt" name="cnt" value="${notice.cnt }" readonly="readonly"
+													>
 											</div>
 										</div>
 										<div class="col-md-6 col-12">
@@ -71,7 +71,7 @@
 												<label for="first-name-column">작성자</label> <input
 													type="text" id="first-name-column" class="form-control"
 													placeholder="name" name="name" value="${notice.name }"
-													readonly="readonly">
+													>
 											</div>
 										</div>
 
@@ -80,7 +80,7 @@
 											<div class="form-group">
 												<label for="last-name-column">작성일</label> <input
 													id="last-name-column" class="form-control"
-													readonly="readonly" placeholder="writeDate"
+													 placeholder="writeDate"
 												
 													value='<fmt:formatDate type="both" value="${notice.writeDate}" />' />
 											</div>
@@ -89,19 +89,11 @@
 
 
 
-
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="city-column">City</label> <input type="text"
-													id="city-column" class="form-control" placeholder="City"
-													name="city-column">
-											</div>
-										</div>
 										<div class="col-md-6 col-12">
 											<div class="form-group">
 												<label for="email-id-column">Contents</label>
 												<textarea class="form-control" name="content"
-													placeholder="content" rows="4" readonly="readonly">${notice.content }</textarea>
+													placeholder="content" rows="4" >${notice.content }</textarea>
 											</div>
 										</div>
 

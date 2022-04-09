@@ -95,6 +95,7 @@ public class NoticeService {
 	}
 
 	public NoticeVO2 get(int noticekey) {
+		dao.updateCnt(noticekey);
 		return dao.get(noticekey);
 	}
 	

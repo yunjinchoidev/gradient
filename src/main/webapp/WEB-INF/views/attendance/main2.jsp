@@ -49,17 +49,10 @@
 			
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>근태 관리</h3>
+					<%@ include file="sort.jsp"%>
+						<h3>근태 관리 <span style="color:red"> [미평가자]</span></h3>
 
-						<a href="/project5/teamlist.do" class="badge bg-secondary">팀
-							할당</a> 
-							<a
-							href="/project5/Allocation.do"
-							class="badge bg-secondary">프로젝트 할당</a> <a
-							href="/project5/vacationMain.do"
-							class="badge bg-secondary">휴가 관리</a> <a
-							href="/project5/attendanceMain.do"
-							class="badge bg-secondary">근태 관리</a>
+							
 					</div>
 
 					<div class="col-12 col-md-6 order-md-2 order-first">

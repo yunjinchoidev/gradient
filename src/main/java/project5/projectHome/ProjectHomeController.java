@@ -35,13 +35,6 @@ public class ProjectHomeController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	@RequestMapping("/projectHomeWriteForm.do")
 	public String projectHomeWriteForm(Model d) {
 		System.out.println(service2.list().size());
@@ -54,7 +47,7 @@ public class ProjectHomeController {
 	@RequestMapping("/projectHomeWrite.do")
 	public String projectHomeWrite(Model d, ProjectHomeVO vo) {
 		service.insert(vo);
-		d.addAttribute("psc", "write");
+		d.addAttribute("msg", "write");
 		System.out.println("프로젝트 홈 공지 작성 완료");
 		d.addAttribute("project", service2.get(30001));
 		return "WEB-INF\\views\\projectHome\\home.jsp";
@@ -64,22 +57,25 @@ public class ProjectHomeController {
 	
 	@RequestMapping("/projectHomeUpdateForm.do")
 	public String projectHomeUpdateFrom(Model d, ProjectHomeVO vo) {
-		d.addAttribute("projectHome", service.get(vo.getProjectHomekey()));
-		return "WEB-INF\\views\\projectHome\\update.jsp";
+		d.addAttribute("get", service.get(vo.getProjectHomekey()));
+		d.addAttribute("pjList", service2.list());
+		d.addAttribute("workSort", service.getWorkSortList());
+		return "WEB-INF\\views\\projectHome\\updateForm.jsp";
 	}
 
 	@RequestMapping("/projectHomeUpdate.do")
 	public String projectHomeUpdate(Model d, ProjectHomeVO vo) {
 		service.update(vo);
-		d.addAttribute("psc", "update");
-		return "forward:/projectHome.do";
+		d.addAttribute("msg", "update");
+		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}
 	
 	
 	
 	@RequestMapping("/projectHomeGet.do")
 	public String projectHomeGet(Model d, int projectHomekey) {
-		d.addAttribute("projectHome", service.get(projectHomekey));
+		d.addAttribute("get", service.get(projectHomekey));
+		//return "pageJsonReport";
 		return "WEB-INF\\views\\projectHome\\get.jsp";
 	}
 	
@@ -90,8 +86,7 @@ public class ProjectHomeController {
 		service.delete(projectHomekey);
 		//System.out.println(service2.get(projectHomekey).getProjectkey());
 		//d.addAttribute("project", service2.get(service2.get(projectHomekey).getProjectkey()));
-		d.addAttribute("project", service2.get(projectkey));
-		d.addAttribute("psc", "delete");
+		d.addAttribute("msg", "delete");
 		System.out.println("프로젝트 공지사항 삭제 완료");
 		return "WEB-INF\\views\\projectHome\\home.jsp";
 	}

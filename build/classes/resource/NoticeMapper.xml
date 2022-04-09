@@ -73,4 +73,11 @@
 		content=#{content}
 		where noticekey=#{noticekey}
 	</update>
+
+	<update id="updateCnt" parameterType="int">
+		update notice
+		set
+		views=views+1
+		where noticekey=#{noticekey}
+	</update>
 </mapper>

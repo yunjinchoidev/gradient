@@ -77,9 +77,7 @@ textarea {
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>팀원 배정</h3>
-						<p class="text-subtitle text-muted">For user to assign their
-							team</p>
+						<h3>${project.name } 프로젝트 배정 인원 </h3>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -92,24 +90,32 @@ textarea {
 					</div>
 				</div>
 			</div>
-			<section class="section">
+			
+			
+			
+			
+			<section class="section" >
 				<form action="${path}/insertTeam.do" method="post">
 					<div>
-						<div class="card" style="width: 850px;">
+						<div class="card" style="">
 							<div class="card-header">
-								<h4 class="card-title" align="center">팀원배정</h4>
-								<input type="hidden" name="memberkey" value="${m.memberkey}">
+								<h1 class="card-title" align="center">회원 프로젝트 배정<br>
+										<button class="btn btn-warning" id="regbtn">등록</button>
+										<button class="btn btn-danger" id="delbtn">취소</button>
+								</h1>
 							</div>
 							<table class="table mb-0 table-lg">
 								<tr>
 									<th style="text-aligned: center;">회원명</th>
-									<td><select class="form-select" name="memberkey">
+									<td>
+									<select class="form-select" name="memberkey">
 											<option>회원의 이름을 선택해주세요.</option>
 											<c:forEach var="m" items="${MemList}">
 												<option value="${m.memberkey}">${m.name}</option>
 											</c:forEach>
 									</select></td>
 								</tr>
+								
 								<th>부서명</th>
 								<td><select class="form-select" name="deptno">
 										<option>부서명을 선택해주세요.</option>
@@ -123,7 +129,7 @@ textarea {
 											<option>직급을 선택해주세요.</option>
 											<option value="admin">admin</option>
 											<option value="pm">pm</option>
-											<option value="ceo">ceo</option>
+											<option value="developer">developer</option>
 									</select></td>
 								</tr>
 								<tr>
@@ -131,20 +137,15 @@ textarea {
 									<td><select class="form-select" name="projectkey">
 											<option>프로젝트를 선택해주세요.</option>
 											<c:forEach var="prj" items="${prjList}">
-												<option value="${prj.projectkey}">${prj.pname}</option>
+												<option value="${prj.projectkey}">${prj.projectkey} : ${prj.projectname }</option>
 											</c:forEach>
 									</select></td>
-								</tr>
-								<tr>
-									<th>이메일</th>
-									<td colspan="3"><input type="text" class="form-control"
-										id="basicInput" name="email" placeholder="이메일주소를 입력해주세요." /></td>
 								</tr>
 								<tr>
 									<th>배정여부 선택</th>
 									<td><select class="form-select" name="status">
 											<option>배정여부를 선택해주세요.</option>
-											<option value="assigned">배정</option>
+											<option value="assigned" selected="selected">배정</option>
 											<option value="notassigned">미배정</option>
 									</select></td>
 								</tr>
@@ -155,12 +156,6 @@ textarea {
 					</div>
 				</form>
 			</section>
-			<div id="button">
-
-				<button class="btn btn-warning" id="regbtn">등록</button>
-
-				<button class="btn btn-danger" id="delbtn">취소</button>
-			</div>
 		</div>
 	</div>
 </body>

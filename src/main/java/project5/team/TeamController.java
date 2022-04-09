@@ -17,14 +17,22 @@ public class TeamController {
 		d.addAttribute("tlist", service.getTeamList(sch));
 		return "WEB-INF\\views\\team\\Teamlist.jsp";
 	}
+	
 	// http://localhost:7080/project5/insertTeam.do
-/*	@RequestMapping("/insertForm.do")
+	@RequestMapping("/teamInsertForm.do")
 	public String insForm(Model d) {
 		d.addAttribute("prjList", service.selectPrjList());
 		d.addAttribute("dptList", service.selectdptList());
 		d.addAttribute("MemList", service.selectMemList());
 		return "WEB-INF\\views\\team\\writeTeam.jsp";
-	}*/
+	}
+	
+	
+	
+	
+	
+	
+	
 	// http://localhost:7080/project5/insertTeam.do
 	@RequestMapping("/insertTeam.do")
 	public String insTeam(TeamVo ins, Model d){
@@ -35,6 +43,13 @@ public class TeamController {
 		service.insTeam(ins);
 		return "WEB-INF\\views\\team\\writeTeam.jsp";	
 	}
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/uptForm.do")
 	public String uptForm(Model d) {
 		d.addAttribute("prjList", service.selectPrjList());
@@ -42,6 +57,7 @@ public class TeamController {
 		d.addAttribute("MemList", service.selectMemList());
 		return "WEB-INF\\views\\team\\uptTeam.jsp";	
 	}
+	
 	@RequestMapping("/uptTeam.do")
 	public String uptTeam(TeamVo upt, Model d) {
 		d.addAttribute("msg", "수정되었습니다.");

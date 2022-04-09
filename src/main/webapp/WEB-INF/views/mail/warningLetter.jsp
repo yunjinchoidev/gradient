@@ -101,22 +101,23 @@
 								<label for="emailTo">수신자</label> 
 								<input type="email" name="reciever"
 									id="emailTo" class="form-control" placeholder="To"  style="color: red"
-									value="${member.email }"
+									value="${get.email }"
 									>
 							</div>
 							<br>
 							<div class="form-label-group">
 								<label for="emailSubject">제목</label> <input type="text"  name="title" 
 									id="emailSubject" class="form-control" placeholder="제목"
+									value="${get.name }님 안녕하세요? 경고장 드립니다"
 								>
 							</div>
 							<br>
 							<div class="form-label-group" >
 								<label for="emailSubject">내용</label>
 								<textarea class="form-control" name="content"
-									placeholder="content" rows="4"  >
+									placeholder="content" rows="8"  >
 									 안녕하세요? 
-									회원님의 근무 상태가 불량하여 경고장을 발송하오니
+									${get.name }회원님의 근무 상태가 불량하여 경고장을 발송하오니
 									주의해 주시기 바랍니다.
 
 									</textarea>
@@ -141,8 +142,9 @@
 						<button type="submit" class="btn-send btn btn-danger" id="sendMailBtn">
 							 <span class="d-sm-inline d-none">보내기</span>
 						</button>
-						<button type="reset"
-							class="btn btn-light-secondary cancel-btn mr-1">
+						<button type="button"
+							class="btn btn-light-secondary cancel-btn mr-1"
+							onclick="location.href='/project5/attendanceMain.do'">
 							<i class="bx bx-x me-3"></i> <span class="d-sm-inline d-none">취소</span>
 						</button>
 					</div>

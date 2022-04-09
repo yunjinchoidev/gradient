@@ -77,7 +77,7 @@
 
 	<select id="get" resultType="project5.projectHome.ProjectHomeVO"
 		parameterType="int">
-		select * from projectHome where projectkey=#{projectkey}
+		select * from projectHome where projectHomekey=#{projectHomekey}
 	</select>
 
 

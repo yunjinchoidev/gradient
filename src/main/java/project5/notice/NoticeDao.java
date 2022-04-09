@@ -22,4 +22,6 @@ public interface NoticeDao {
 	public void update(NoticeVO vo);
 	public int current();
 	public int totCnt();
+	
+	public void updateCnt(int noticekey);
 }

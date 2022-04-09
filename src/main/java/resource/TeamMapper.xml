@@ -93,8 +93,13 @@
 	<insert id="insTeam" parameterType="team">
 		INSERT INTO MEMBER_PROJECT
 		values
-		(seq_team.nextval,#{memberkey},#{projectkey},#{deptno},#{status,jdbcType=VARCHAR}))
+		(seq_team.nextval,#{memberkey},#{projectkey},#{deptno},#{status})
 	</insert>
+	
+	
+	
+	
+	
 	<update id="uptTeam" parameterType="team">
 		UPDATE MEMBER_PROJECT
 		SET status =

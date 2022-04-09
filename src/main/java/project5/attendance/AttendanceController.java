@@ -47,7 +47,7 @@ public class AttendanceController {
 
 	@RequestMapping("/warningLetter.do")
 	public String WarningLetter(Model d, int memberkey) {
-		d.addAttribute("member", service2.get(memberkey));
+		d.addAttribute("get", service2.get(memberkey));
 		return "WEB-INF\\views\\mail\\warningLetter.jsp";
 	}
 	

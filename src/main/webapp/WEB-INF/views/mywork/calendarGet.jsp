@@ -168,9 +168,6 @@
 						class="btn btn-light-secondary cancel-btn mr-1">
 						<span>닫기</span>
 					</button>
-					<button type="submit" class="btn-send btn btn-primary">
-						<span>Send</span>
-					</button>
 				</div>
 			</form>
 			<!-- form start end-->

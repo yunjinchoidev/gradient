@@ -51,6 +51,7 @@
 		where
 		votekey = #{votekey}
 	</delete>
+	
 
 
 

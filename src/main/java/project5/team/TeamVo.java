@@ -16,6 +16,12 @@ public class TeamVo {
 	private String projectname;
 	private String status;
 	private int memberprojectkey;
+	
+	
+	
+	
+	
+	
 	public TeamVo() {
 		super();
 		// TODO Auto-generated constructor stub

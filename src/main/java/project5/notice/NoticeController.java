@@ -47,7 +47,8 @@ public class NoticeController {
 	public String noticeUpdate(Model d, NoticeVO vo) {
 		service.update(vo);
 		d.addAttribute("psc", "update");
-		return "forward:/notice.do";
+		d.addAttribute("msg", "noticeUpdate");
+		return "WEB-INF\\views\\notice\\list.jsp";
 	}
 
 	@RequestMapping("/noticeGet.do")

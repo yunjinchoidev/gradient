@@ -32,7 +32,7 @@ $(document).ready(function(){
 					<div class="card">
 
 						<div class="card-header">
-							<h4 class="card-title">산출물 작성</h4>
+							<h4 class="card-title">휴가 계획서 작성</h4>
 						</div>
 
 						<div class="card-content">

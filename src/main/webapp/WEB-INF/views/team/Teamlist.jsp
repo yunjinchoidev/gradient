@@ -18,7 +18,7 @@
 }
 </style>
 <meta charset="UTF-8">
-<title>팀 관리</title>
+<title>Gradient - 팀 관리</title>
 <link rel="preconnect" href="https://fonts.gstatic.com">
 <link
 	href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap"
@@ -43,7 +43,7 @@
 <script>
 	$(document).ready(function() {
 		var msg = "${msg}";
-		var projectkey = "${projectkey}";
+		var memberprojectkey = "${memberprojectkey}";
 		var id = "${member.id}";
 
 		if (id == "") {
@@ -58,15 +58,24 @@
 			}
 		});
 
-		var pageSize = "${TeamSch.pageSize}"
+	
+	
+		var pageSize = "${teamSch.pageSize}"
 		$("[name=pageSize]").val(pageSize);
 		$("[name=pageSize]").change(function() {
 			$("[name=curPage]").val(1);
 			$("#frm02").submit();
 		});
+		
+		
 	})
-	function goPage(projectkey) {
-		$("[name=curPage]").val(projectkey);
+	
+	
+	
+	
+	
+	function goPage(memberprojectkey) {
+		$("[name=curPage]").val(memberprojectkey);
 		$("#frm02").submit();
 	}
 </script>
@@ -85,44 +94,70 @@
 
 
 				<div class="row">
+					<%@ include file="../attendance/sort.jsp"%>
+						<h3><span style="color: red">[${project.name }]</span> 프로젝트 회원 배정 
+						<a href="/project5/teamInsertForm.do" class="btn btn-danger"
+												id="write" style="text-align: right"
+												>배정 하기</a>
+						</h3>
+						
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>GRADIENT - 팀 관리</h3>
-
-						<a href="/project5/insertTeam.do" class="badge bg-light-secondary">팀
-							관리</a> <a href="/project5/teamlist.do"
-							class="badge bg-light-secondary">배정목록 </a> <a
-							href="/project5/output.do?projectkey=${project.projectkey }"
-							class="badge bg-light-secondary">휴가 관리</a> <a
-							href="/project5/minutes.do?method=list&projectkey=${project.projectkey }"
-							class="badge bg-light-secondary">근태 관리</a>
-					</div>
+					
+				
 				</div>
-				<section class="section">
-					<form id="frm02" action="${path}/teamlist.do?projectkey=30001" method="get">
-						<input type="hidden" name="id" value="${member.id}">
-						<div class="card">
-							<div class="card-body">
-								<div
-									class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-									<div class="dataTable-top">
-										<input type="hidden" name="curPage" value="1" />
-										<div class="dataTable-dropdown">
-											<select class="dataTable-selector form-select"
-												name="pageSize">
-												<option>5</option>
-												<option>10</option>
-												<option>15</option>
-												<option>20</option>
-												<option>25</option>
+						<section class="section">
+					<div class="card">
+						<div class="card-header">
+							<h1>배정 인원 리스트</h1>
+						</div>
+						<div class="card-body">
+							<div	class="dataTable-wrapper dataTable-loading no-footer sortable searchable 
+							fixed-columns">
+
+							<!--  이곳에서 한 화면에서 몇 페이지를 볼 지 보내줍니다. -->
+							<form id="frm02" class="form" action="/project5/teamlist.do">
+							<input type="hidden" name="curPage" value="1" />
+								<div class="dataTable-top">
+									<div class="dataTable-dropdown">
+										<span class="input-group-text" style="margin-right: 10px;">총
+											${teamSch.count}건</span> <span class="input-group-text">페이지
+											크기</span> <select class="dataTable-selector form-select"
+											name="pageSize">
+											<option value="3" selected>3</option>
+											<option value="5">5</option>
+											<option value="10" >10</option>
+											<option value="15">15</option>
+											<option value="20">20</option>
+											<option value="25">25</option>
+										</select><label>한 화면당 페이지 수</label>
+									</div>
+									<div class="dataTable-search" style="display: inline-block;">
+										<div style="display: inline-block;">
+											<select class="dataTable-selector form-select searchbar"
+												name="searchbar" style="display: inline-block;">
+												<option selected="selected">검색</option>
+												<option value="title" selected="selected">title</option>
+												<option value="contents">contents</option>
 											</select>
 										</div>
-
-										<div class="dataTable-search"><input type="text" id="schFrm" name="status"
-												class="dataTable-input" placeholder="Search"
-												value="${TeamSch.status}">
-											<button class="btn btn-primary" type="submit">검색</button>
+										<div style="display: inline-block;">
+											<input style="display: inline-block;"
+												class="dataTable-input searchWhat" placeholder="검색어를 입력"
+												type="text" name="title" value="">
+											<button class="btn btn-info" type="submit">검색</button>
+											
 										</div>
-                                      </div>
+									</div>
+								</div>
+							</form>
+							
+							
+							
+							
+							
+							
+							
+							
 										<div class="dataTable-container">
 											<table class="table table-striped dataTable-table"
 												id="table1">
@@ -145,8 +180,7 @@
 												</thead>
 												<tbody>
 													<c:forEach var="tlist" items="${tlist}">
-														<tr
-															onclick="location.href='/project5/insertTeam.do?memberprojectkey='+${tlist.memberprojectkey}">
+														<tr style="cursor: pointer;">
 															<td style="text-align: center;">${tlist.name}</td>
 															<td style="text-align: center;">${tlist.auth}</td>
 															<td style="text-align: center;">${tlist.dname}</td>
@@ -173,21 +207,21 @@
 										</div>
 
 										<div class="dataTable-bottom">
-										<div class="dataTable-info">전체: ${TeamSch.count}</div>
+										<div class="dataTable-info">전체: ${teamSch.count}</div>
 											<ul
 												class="pagination pagination-primary float-end dataTable-pagination">
 												<li class="page-item pager"><a
-													href="javascript:goPage(${TeamSch.startBlock!=1?TeamSch.startBlock-1:1})"
+													href="javascript:goPage(${teamSch.startBlock!=1?teamSch.startBlock-1:1})"
 													class="page-link" data-page="1">‹</a></li>
-												<c:forEach var="cnt" begin="${TeamSch.startBlock}"
-													end="${TeamSch.endBlock}">
-													<li class="page-item ${cnt==TeamSch.curPage?'active':''}">
+												<c:forEach var="cnt" begin="${teamSch.startBlock}"
+													end="${teamSch.endBlock}">
+													<li class="page-item ${cnt==teamSch.curPage?'active':''}">
 														<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
 														href="javascript:goPage(${cnt})">${cnt}</a>
 													</li>
 												</c:forEach>
 												<li class="page-item pager">
-											<a href="javascript:goPage(${TeamSch.endBlock!=TeamSch.pageCount?TeamSch.endBlock+1:TeamSch.endBlock})" 
+											<a href="javascript:goPage(${teamSch.endBlock!=teamSch.pageCount?teamSch.endBlock+1:teamSch.endBlock})" 
 											class="page-link"	data-page="2">›</a>
 										</li>
 											</ul>

@@ -15,6 +15,12 @@ public class TeamSch {
 	private String status;
 	private String dname;
 	private String auth;
+	
+	
+	
+	
+	
+	
 	public TeamSch() {
 		super();
 		// TODO Auto-generated constructor stub

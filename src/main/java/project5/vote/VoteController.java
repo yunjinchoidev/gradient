@@ -33,6 +33,20 @@ public class VoteController {
 		return "WEB-INF\\views\\vote\\writeForm.jsp";
 	}
 
+	
+	@RequestMapping("/voteUpdateForm.do")
+	public String voteupdateForm(Model d, int votekey) {
+		d.addAttribute("pjList", service2.list());
+		d.addAttribute("get", service.get(votekey));
+		return "WEB-INF\\views\\vote\\updateForm.jsp";
+	}
+	
+	@RequestMapping("/voteUpdate.do")
+	public String voteUpdate(Model d) {
+		d.addAttribute("pjList", service2.list());
+		return "WEB-INF\\views\\vote\\updateForm.jsp";
+	}
+
 	@RequestMapping("/voteWrite.do")
 	public String voteWrite(Model d, VoteVO vo) {
 		service.insert(vo);

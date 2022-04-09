@@ -221,6 +221,14 @@
 							}
 						});
 
+						
+						$("#logoutBtn").click(function() {
+							if(confirm("정말 로그아웃하시겠습니까?")){
+									location.href="	/project5/logout.do"								
+							}
+
+						});
+
 					})
 					
 					
@@ -283,8 +291,8 @@
 							</a></li>
 
 
-							<li class="sidebar-item  "><a href="/project5/logout.do"
-								class='sidebar-link' onclick="confirm('정말 로그아웃하시겠습니까?')"> <i class="bi bi-person-badge-fill"></i>
+							<li class="sidebar-item  "><a href="#" id="logoutBtn"
+								class='sidebar-link' > <i class="bi bi-person-badge-fill"></i>
 								 <span><spring:message code="logout"/></span>
 							</a></li>
 						</c:if>
