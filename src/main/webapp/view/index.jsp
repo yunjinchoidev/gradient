@@ -23,11 +23,11 @@
 					<div class="col-12 col-md-12 order-md-1 order-last">
 						<h1>
 										<sec:authorize access="isAuthenticated()">
-												<h1>	[<sec:authentication property="name"/>]님, </h1><br><br>
+												<h1>	[<sec:authentication property="name"/>]님, 안녕하세요?</h1><br><br>
 												</sec:authorize>
 
 								<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-								<h1>권한이 ROLE_ADMIN 일 경우에만 보입니다.</h1><br><br>
+											<h1>권한이 ROLE_ADMIN 일 경우에만 보입니다.</h1><br><br>
 											<a href="<c:url value='/admin/usermanager/main' />"> ()ADMIN) 관리자페이지 바로가기</a>
 								</sec:authorize>
 
@@ -48,26 +48,14 @@
 								</sec:authorize>
 
 								<sec:authorize access="isAuthenticated()">
-									<li><a href="<c:url value='/user/logout' />">()로그아웃</a></li>
+									<li><a href="<c:url value='/user/logout' />">로그아웃</a></li>
 								</sec:authorize>
 
-										<sec:authorize access="isAuthenticated()">
-									<li><a href="<c:url value='/user/logout' />">로그아웃</a></li>
-									</sec:authorize>
 
 
 
 
 
-<form:form action="${pageContext.request.contextPath}/user/logout" method="POST">
-    <input type="submit" value="Logout" />
-</form:form>
-
-<a href="#" onclick="document.getElementById('logout-form').submit();"> Logout </a>
-
-<form id="logout-form" action="<c:url value="/user/logout"/>" method="post">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
 
 
 						</h1>

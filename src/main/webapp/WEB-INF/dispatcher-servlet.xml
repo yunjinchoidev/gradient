@@ -190,24 +190,15 @@
 
 
 
-	<mvc:view-controller path="/index"
-		view-name="/view/index.jsp" />
-	<mvc:view-controller path="/home/main"
-		view-name="/view/homeMain.jsp" />
-	<mvc:view-controller path="/manager/main"
-		view-name="/view/managerMain.jsp" />
-	<mvc:view-controller path="/admin/usermanager/main"
-		view-name="/view/usermanagerMain.jsp" />
-	<mvc:view-controller path="/admin/main"
-		view-name="/view/adminMain.jsp" />
-	<mvc:view-controller path="/member/main"
-		view-name="/view/memberMain.jsp" />
-	<mvc:view-controller path="/user/loginform"
-		view-name="/view/user/loginForm.jsp" />
-	<mvc:view-controller path="/user/join"
-		view-name="/view/user/joinForm.jsp" />
-	<mvc:view-controller path="/security/accessDenied"
-		view-name="/view/security/accessDenied.jsp" />
+	<mvc:view-controller path="/index" view-name="/view/index.jsp" />
+	<mvc:view-controller path="/home/main" view-name="/view/homeMain.jsp" />
+	<mvc:view-controller path="/manager/main" view-name="/view/managerMain.jsp" />
+	<mvc:view-controller path="/admin/usermanager/main" view-name="/view/usermanagerMain.jsp" />	
+	<mvc:view-controller path="/admin/main" view-name="/view/adminMain.jsp" />
+	<mvc:view-controller path="/member/main" view-name="/view/memberMain.jsp" />
+	<mvc:view-controller path="/user/loginform" view-name="/view/user/loginForm.jsp" />
+	<mvc:view-controller path="/user/join" view-name="/view/user/joinForm.jsp" />
+	<mvc:view-controller path="/security/accessDenied" view-name="/view/security/accessDenied.jsp" />
 
 
 <bean

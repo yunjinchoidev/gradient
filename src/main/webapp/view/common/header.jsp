@@ -253,33 +253,40 @@
 						
 						
 						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-							<li class="sidebar-item  "><a
-								href="<c:url value='/admin/usermanager/main' />"
-								class='sidebar-link'> <i class="bi bi-grid-fill"></i> <span
-									style="color: red"> 관리자 페이지로 </span></a></li>
+										<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> 
+										<svg style="height: 16px; width:16px;"  class="svg-inline--fa fa-lock fa-w-14 fa-fw select-all" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg>
+										<span>
+													ADMIN 페이지 </span></a>
+											<ul class="submenu ">
+												<li class="submenu-item "><a href="#" id="MemberAnaysis">메인 (사용자 분석)</a></li>
+												<li class="submenu-item "><a href="#" id="EmailBtn">이메일 발송 </a></li>
+												<li class="submenu-item "><a href="#" id="MemberListBtn">사용자 리스트 </a></li>
+											</ul>
+										</li>
 						</sec:authorize>
 
 
 
 
-
 								<sec:authorize access="hasAuthority('ROLE_MANAGER')">
-														<li class="sidebar-item  ">
-															<a href="<c:url value='/admin/usermanager/main' />"  class='sidebar-link'> 
-																<i class="bi bi-grid-fill"></i> 
-																<span style="color : red">								
-																	PM 페이지로 </span>
-															</a>
-														</li>
+											<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> 
+											<svg style="height: 16px; width:16px;"  class="svg-inline--fa fa-lock fa-w-14 fa-fw select-all" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg>
+											<span>
+														PM 페이지</span></a>
+												<ul class="submenu ">
+													<li class="submenu-item " id="projectMange"><a href="#">프로젝트 관리 </a></li>
+												</ul>
+											</li>
 								</sec:authorize>
 
 
 
-
+								<!-- 유저만 보인다 -->
 								<sec:authorize access="hasAuthority('ROLE_USER')">
 										<li class="sidebar-item  ">
-										<a href="<c:url value='/member/main' />"  class='sidebar-link'>
-					<i class="bi bi-grid-fill"></i> <span style="color : red">	회원 메인 으로</span></a></li>
+											<a href="<c:url value='/member/main' />"  class='sidebar-link'>
+											<i class="bi bi-grid-fill"></i> <span style="color : red">	회원 메인 으로</span></a>
+										</li>
 								</sec:authorize>
 
 
@@ -290,8 +297,12 @@
 						<sec:authorize access="!isAuthenticated()">
 							<li class="sidebar-item  "><a
 								href="<c:url value='/user/join' />" class='sidebar-link'> <i
-									class="bi bi-grid-fill"></i> <span style="color: red">
-										회원가입 </span></a></li>
+									class="bi bi-grid-fill"></i> <span>
+										관리자 회원가입 </span></a></li>
+							<li class="sidebar-item  "><a
+								href="<c:url value='/user/loginfrom' />" class='sidebar-link'> <i
+									class="bi bi-grid-fill"></i> <span >
+										관리자 로그인 </span></a></li>
 						</sec:authorize>
 
 
@@ -302,13 +313,13 @@
 						<sec:authorize access="isAuthenticated()">
 							<li class="sidebar-item  "><a
 								href="<c:url value='/user/logout' />" class='sidebar-link'>
-									<i class="bi bi-grid-fill"></i> <span style="color: red">
-										<sec:authentication property="name"/></span>
+									<i class="bi bi-grid-fill"></i> <span>
+										<sec:authentication property="name"/>님, 로그인 중</span>
 								</a>
 							</li>
 							<li class="sidebar-item  "><a
 								href="<c:url value='/user/logout' />" class='sidebar-link'>
-									<i class="bi bi-grid-fill"></i> <span style="color: red">
+									<i class="bi bi-grid-fill"></i> <span>
 										로그아웃</span>
 								</a>
 							</li>
@@ -320,28 +331,6 @@
 						
 						
 						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						
-						<c:if test="${ empty member.id}">
-							<li class="sidebar-item  "><a href="/project5/loginForm.do"
-								class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> <span>로그인</span>
-							</a></li>
-						</c:if>
 
 						<c:if test="${not empty member.id}">
 							<li class="sidebar-item  "><a
@@ -507,29 +496,7 @@
 						
 						
 						
-						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> 
-						<svg style="height: 16px; width:16px;"  class="svg-inline--fa fa-lock fa-w-14 fa-fw select-all" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg>
-						<span>
-									PM 페이지</span></a>
-							<ul class="submenu ">
-								<li class="submenu-item " id="projectMange"><a href="#">프로젝트 관리 </a></li>
-							</ul>
-						</li>
-
-
-
-
-
-						<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> 
-						<svg style="height: 16px; width:16px;"  class="svg-inline--fa fa-lock fa-w-14 fa-fw select-all" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg>
-						<span>
-									ADMIN 페이지 </span></a>
-							<ul class="submenu ">
-								<li class="submenu-item "><a href="#" id="MemberAnaysis">메인 (사용자 분석)</a></li>
-								<li class="submenu-item "><a href="#" id="EmailBtn">이메일 발송 </a></li>
-								<li class="submenu-item "><a href="#" id="MemberListBtn">사용자 리스트 </a></li>
-							</ul>
-						</li>
+						
 					
 						
 						
