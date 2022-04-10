@@ -78,13 +78,6 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h1>
-								<span style="color:red">
-									<sec:authorize access="isAuthenticated()">
-										<sec:authentication property="name"/>
-									  </sec:authorize> 
-							  </span>
-						</h1>
 							<h1>	안녕하세요?</h1>
 						<h3>GRADIENT에 방문하신 여러분을 환영합니다</h3>
 						<p class="text-subtitle text-muted"> <br>더  유능하게 <br>더  프로페셔널하게 <br>더 섬세하게</p>

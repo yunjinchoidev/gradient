@@ -171,23 +171,26 @@
 				location.href="/project5/myWork1.do?memberkey="+memberkey
 			}
 		})
+						
+		var securityName = '<sec:authentication property="name"/>'
 		
 							$("#projectMange").click(function() {
-								if (auth == "") {
+								if (securityName == "") {
 									alert("PM만 접근 가능합니다.");
 								} else {
 									location.href="/project5/projectManageMain.do"
 								}
 							});
 						$("#MemberAnaysis").click(function() {
-							if (auth == "") {
+							if (securityName != "admin") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
-								location.href = "/project5/mailFrm.do"
+								window.open("https://analytics.google.com/analytics/web/?hl=ko&pli=1#/p309149054/reports/intelligenthome",
+										"PopupWin", "width=1000,height=800");
 							}
 						});
 						$("#EmailBtn").click(function() {
-							if (auth == "") {
+							if (securityName != "admin") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
 								location.href = "/project5/mailFrm.do"
@@ -195,13 +198,12 @@
 						});
 
 						$("#MemberListBtn").click(function() {
-							if (auth == "") {
+							if (securityName != "admin") {
 								alert("관리자만 접근 가능합니다.");
 							} else {
 								location.href = "/project5/memberList.do"
 							}
 						});
-
 					})
 					
 					
@@ -253,14 +255,14 @@
 						
 						
 						<sec:authorize access="hasAuthority('ROLE_ADMIN')">
-										<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> 
+										<li class="sidebar-item  has-sub"  style="color:red"><a href="#" class='sidebar-link'> 
 										<svg style="height: 16px; width:16px;"  class="svg-inline--fa fa-lock fa-w-14 fa-fw select-all" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg>
-										<span>
+										<span style="color:red">
 													ADMIN 페이지 </span></a>
 											<ul class="submenu ">
-												<li class="submenu-item "><a href="#" id="MemberAnaysis">메인 (사용자 분석)</a></li>
-												<li class="submenu-item "><a href="#" id="EmailBtn">이메일 발송 </a></li>
-												<li class="submenu-item "><a href="#" id="MemberListBtn">사용자 리스트 </a></li>
+												<li class="submenu-item "><a href="#" id="MemberAnaysis" style="color:red">메인 (사용자 분석)</a></li>
+												<li class="submenu-item "><a href="#" id="EmailBtn" style="color:red">이메일 발송 </a></li>
+												<li class="submenu-item "><a href="#" id="MemberListBtn" style="color:red">사용자 리스트 </a></li>
 											</ul>
 										</li>
 						</sec:authorize>
@@ -269,12 +271,12 @@
 
 
 								<sec:authorize access="hasAuthority('ROLE_MANAGER')">
-											<li class="sidebar-item  has-sub"><a href="#" class='sidebar-link'> 
+											<li class="sidebar-item  has-sub" style="color:red"><a href="#" class='sidebar-link'> 
 											<svg style="height: 16px; width:16px;"  class="svg-inline--fa fa-lock fa-w-14 fa-fw select-all" aria-hidden="true" focusable="false" data-prefix="fas" data-icon="lock" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg=""><path fill="currentColor" d="M400 224h-24v-72C376 68.2 307.8 0 224 0S72 68.2 72 152v72H48c-26.5 0-48 21.5-48 48v192c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48V272c0-26.5-21.5-48-48-48zm-104 0H152v-72c0-39.7 32.3-72 72-72s72 32.3 72 72v72z"></path></svg>
-											<span>
+											<span style="color:red">
 														PM 페이지</span></a>
 												<ul class="submenu ">
-													<li class="submenu-item " id="projectMange"><a href="#">프로젝트 관리 </a></li>
+													<li class="submenu-item " id="projectMange"><a href="#" style="color:red">프로젝트 관리 </a></li>
 												</ul>
 											</li>
 								</sec:authorize>

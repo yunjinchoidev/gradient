@@ -38,19 +38,16 @@
 
 
 <script type="text/javascript">
+
+function downFile(fname){
+	alert($(fname).text())
+	if(confirm("다운로드할 파일:"+$(fname).text())){
+		location.href="${path}/download.do?fname="+$(fname).text();
+	}
+}
+
+
 document.addEventListener('DOMContentLoaded', function() {
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
     var calendarEl = document.getElementById('calendar');
@@ -61,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
         center: 'title',
         right: 'dayGridMonth,timeGridWeek,timeGridDay'
       },
-      initialDate: '2022-03-17',
+      initialDate: '2022-04-12',
       navLinks: true, // can click day/week names to navigate views
       selectable: true,
       selectMirror: true,
@@ -108,15 +105,30 @@ document.addEventListener('DOMContentLoaded', function() {
       
       
       
-      
-      
-      
-      
-      
       // 조회
       eventClick: function(arg) {
-    	  console.log(arg.event)
-		  formData(arg.event);	      
+    	  console.log("event"+arg.event)
+    	  console.log("event"+arg.event._def.publicId)
+		  formData(arg.event);	  
+    	  alert("GG")
+    	  var id=arg.event._def.publicId;
+    	  var data={id:id}
+    	  $.ajax({
+    		  url:'/project5/getCalendar.do',
+    		  type:'POST',
+    		  data:data,
+    		  dataType:'json',
+    		  success:function(result){
+    			  console.log("가져오기성공")
+    			  console.log(result)
+    			  console.log(result.get.fnames) 
+    			  var str =result.get.fnames;
+    			  
+    			  console.log(str)
+    			  $(".uploadResult").append("<a onclick='downFile(this)' style='cursor:pointer; size:20px;'>"+str+"</a>");
+    			  
+    		  }
+    	  })
     	  $("#exampleModalLongTitle").text("일정상세");
     	  $("#regBtn").hide();
     	  $("#uptBtn").show();
@@ -138,7 +150,7 @@ document.addEventListener('DOMContentLoaded', function() {
       //  수정
       eventDrop:function(info){
     	  formData(info.event);
-		  $("#frm01").attr("action","${path}/updateCalendar.do");
+		  $("#frm01").attr("action","${path}/myCalendarUpdate.do?memberkey=${member.memberkey}");
     	  $("#frm01").submit();
       },
       
@@ -147,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
       // 수정
       eventResize:function(info){
     	  formData(info.event);
-		  $("#frm01").attr("action","${path}/updateCalendar.do");
+		  $("#frm01").attr("action","${path}/myCalendarUpdate.do?memberkey=${member.memberkey}");
     	  $("#frm01").submit();
       },	      
       editable: true,
@@ -198,6 +210,7 @@ document.addEventListener('DOMContentLoaded', function() {
   
   
   function formData(event){
+	  console.log("event"+event)
       $("[name=id]").val(event.id)
       $("[name=title]").val(event.title)
       // 내용을 기본 속성이 아니기에 extendedProps에 들어가 있다.
@@ -225,7 +238,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// 등록 버튼
 		$("#regBtn").click(function(){
 			if(confirm("일정등록하시겠습니까?")){
-				$("#frm01").attr("action","${path}/insertCalendar.do?memberkey=${member.memberkey}");
+				$("#frm01").attr("action","${path}/myCalendarInsert.do?memberkey=${member.memberkey}");
 				$("#frm01").submit();
 			}		
 		});
@@ -236,7 +249,7 @@ document.addEventListener('DOMContentLoaded', function() {
 		// 수정 버튼
 		$("#uptBtn").click(function(){
 			if(confirm("일정수정하시겠습니까?")){
-				$("#frm01").attr("action","${path}/updateCalendar.do");
+				$("#frm01").attr("action","${path}/myCalendarUpdate.do?memberkey=${member.memberkey}");
 				$("#frm01").submit();
 			}		
 		});	
@@ -246,10 +259,23 @@ document.addEventListener('DOMContentLoaded', function() {
 		// 삭제 버튼
 		$("#delBtn").click(function(){
 			if(confirm("일정삭제하시겠습니까?")){
-				$("#frm01").attr("action","${path}/deleteCalendar.do");
+				$("#frm01").attr("action","${path}/myCalendarDelete.do?memberkey=${member.memberkey}");
 				$("#frm01").submit();
 			}		
 		});			
+		
+		
+		var msg="${msg}"
+		if(msg!=""){
+			location.href='/project5/myCalendar.do?memberkey=${member.memberkey}'
+		}
+		
+		
+		
+		
+		
+		
+		
 	});
 </script>
 
@@ -271,18 +297,18 @@ document.addEventListener('DOMContentLoaded', function() {
 			<div class="page-title">
 			
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<span style="font-size: 40px; font-weight: bolder; color: red;">[${member.name }]
+						<span style="font-size: 40px; font-weight: bolder; color: red;">[${member.name }]님의
 						</span> <span style="font-size: 40px; font-weight: bolder; color: black;">캘린더</span>
-						<p class="text-subtitle text-muted">캘린더를 확인하세요</p>
+						<p class="text-subtitle text-muted">일정을 관리하세요</p>
 					</div>
 					
 					
-					
-								<section class="section">
-								
-									<div id='calendar' style="margin-top: 30px;"></div>
-								
-								</section>
+						
+			<section class="section">
+				<div class="card">
+				<div id='calendar' style="margin-top: 60px; margin-bottom:60px; height: 900px; width: 80%"></div>
+				</div>
+				</section>
 				</div>
 			</div>
 		</div>
@@ -383,8 +409,7 @@ document.addEventListener('DOMContentLoaded', function() {
 											<input type="file" name='uploadFile' multiple>
 										</div>
 										<div class='uploadResult'>
-											<ul>
-											</ul>
+										<h2>rr</h2>
 										</div>
 									</div>
 									<!--  end panel-body -->

@@ -65,7 +65,7 @@
 
 <body>
 <%@ include file="../chatBot/chatBot.jsp"%>
-<%@ include file="../common/header.jsp"%>
+<%@ include file="../../../view/common/header.jsp"%>
 
 
   	<div id="main">

@@ -103,7 +103,7 @@
 <body>
 
 	<%@ include file="../chatBot/chatBot.jsp"%>
-	<%@ include file="../common/header.jsp"%>
+	<%@ include file="../../../view/common/header.jsp"%>
 
 	<div id="main">
 		<header class="mb-3">
@@ -114,18 +114,11 @@
 
 		<div class="page-heading" id="ok">
 			<h1 style="color: red">
-				(Security)안녕하세요? <br> PM 페이지 입니다<br> 매니저PM(연결 계정:
 				<sec:authentication property="name" />
-				) 님의 <br> 메인 화면입니다.<br>
-				<br>
-				<br>
+				 님, 안녕하세요?<br>
 			</h1>
-			<h3>프로젝트 관리</h3>
-			<h5>
-				<span style="color: red">"${member.name }${member.auth }"</span>님
-				어서오십시오.
-			</h5>
-			<h5>오직 PM만을 위해 제공하는 정보가 여기 있습니다.</h5>
+			<h2>프로젝트 관리 페이지 </h2>
+			<h3>오직 PM만을 위해 제공하는 정보가 여기 있습니다.</h2>
 		</div>
 
 
@@ -136,9 +129,9 @@
 		
 			<section class="row">
 				<div class="col-12 col-lg-12">
-				
+				<!-- 
 					<div class="row">
-
+						
 						<div class="col-6 col-lg-6 col-md-6">
 
 							<div class="card">
@@ -154,26 +147,7 @@
 									</div>
 								</div>
 							</div>
-
-
-
-
-
-
 						</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 						<div class="col-6 col-lg-3 col-md-6">
@@ -211,7 +185,7 @@
 							</div>
 						</div>
 					</div>
-
+-->
 
 
 

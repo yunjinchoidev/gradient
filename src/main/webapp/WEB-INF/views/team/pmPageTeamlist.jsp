@@ -45,10 +45,10 @@
 		var msg = "${msg}";
 		var memberprojectkey = "${memberprojectkey}";
 		var id = "${member.id}";
-
-		if (id == "") {
+		var securityName = '<sec:authentication property="name"/>'
+		if (securityName == "") {
 			alert("접근 권한이 없습니다");
-			location.href = "${path}/main.do";
+			location.href = "/project5/index";
 		}
 
 		if (msg == "delTeam") {

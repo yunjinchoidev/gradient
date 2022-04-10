@@ -101,7 +101,7 @@ $(document).ready(function(){
 					<button class="btn btn-primary" type="submit"
 					onclick="location.href='/project5/loginForm.do'">일반 로그인<br> 페이지로</button>
 					</h1>
-					<h2 class="auth-title" style="color : red; margin-bottom: 50px;">
+					<h2 class="auth-title" style="margin-bottom: 50px;">
 					관리자 로그인
 					</h2>
 					

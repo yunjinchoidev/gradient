@@ -101,7 +101,8 @@
 
 <body>
 	<%@ include file="../chatBot/chatBot.jsp"%>
-	<%@ include file="../common/header.jsp"%>
+	
+	<%@ include file="../../../view/common/header.jsp"%>
 
 	<div id="main">
 		<header class="mb-3">
@@ -115,9 +116,7 @@
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<h1 style="color: red">
-							(security)어드민(연결 계정:
-							<sec:authentication property="name" />
-							)
+							<sec:authentication property="name" />님 안녕하세요?
 						</h1>
 						<h3>회원관리</h3>
 						<p class="text-subtitle text-muted">이곳에서 회원을 관리하십시오</p>

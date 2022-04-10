@@ -36,6 +36,8 @@
 		insert into fileInfo values
 		(seq_vacation.currval, #{pathinfo}, #{fname}, sysdate, sysdate, #{etc})
 	</insert>
+
+
 	
 	
 	<select id="getFileInfoNames" parameterType="int" resultType="string">

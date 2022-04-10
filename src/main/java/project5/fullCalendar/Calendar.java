@@ -24,6 +24,11 @@ public class Calendar {
 	private MultipartFile[] uploadFile;
 
 	private ArrayList<String> fnames;
+	
+	
+	
+	
+	
 	private int fno;
 
 	public Calendar() {

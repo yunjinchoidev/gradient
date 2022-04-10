@@ -89,9 +89,18 @@ public class A10_FullCalService {
 	}
 
 	public Calendar get(int id) {
-		return dao.get(id);
+		Calendar b = dao.get(id);
+		b.setFnames(dao2.getFileInfoNames(id));
+		
+		return b;
 	}
 
+	
+	
+	
+	
+	
+	
 	@Value("${upload}")
 	private String uploadPath;
 

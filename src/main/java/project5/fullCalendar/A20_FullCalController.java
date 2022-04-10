@@ -49,6 +49,12 @@ public class A20_FullCalController {
 		d.addAttribute("calList", service.getCalendarIndividaulList(vo.getMemberkey()));	
 		return "pageJsonReport";
 	}
+
+	@RequestMapping("getCalendar.do")
+	public String getCalendar(Model d, int id) {
+		d.addAttribute("get", service.get(id));
+		return "pageJsonReport";
+	}
 	
 	
 	
