@@ -12,7 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>프로젝트 홈</title>
+<title>GRADIENT</title>
 </head>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 

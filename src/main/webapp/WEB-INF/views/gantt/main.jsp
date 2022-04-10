@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<title>Basic initialization</title>
+<title>GRADIENT - 간트차트</title>
 <style>
 #moveBtn a {
 	width: 135px;

@@ -9,7 +9,7 @@
 <html class="no-js">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GRADIENT - 챗봇</title>
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/project5/resources/dist/assets/css/bootstrap.css">

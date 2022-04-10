@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GRADIENT - 고객 상담</title>
 </head>
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script>

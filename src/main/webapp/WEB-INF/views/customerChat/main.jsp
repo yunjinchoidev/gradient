@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GRADIENT - 고객 상담</title>
 <style>
 body{margin-top:20px;}
 
@@ -742,7 +742,7 @@ body{margin-top:20px;}
 				var revMsg = msg.substring(4)
 				$("#chatMessageArea").append(revMsg + "<br>");
 				var mx = parseInt($("#chatMessageArea").height())
-				$("#chatArea").scrollTop(mx);
+				$("#chatArea").scrollTop(1000000000000000);
 			}
 		}
 

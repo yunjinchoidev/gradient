@@ -19,7 +19,7 @@
 <script
 	src="/project5/resources/dist/assets/vendors/chartjs/Chart.min.js"></script>
 <meta charset="UTF-8">
-<title>쌍용 5조 PMBOK 메인 페이지</title>
+<title>GRADIENT - 모든 프로젝트</title>
 <script>
 	$(document).ready(function() {
 		var psc = "${psc}";

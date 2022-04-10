@@ -10,7 +10,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GRADIENT - 근태 평가</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <style>
 #moveBtn a {

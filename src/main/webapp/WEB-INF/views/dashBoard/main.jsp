@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GRADIENT - 대시보드</title>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 </head>

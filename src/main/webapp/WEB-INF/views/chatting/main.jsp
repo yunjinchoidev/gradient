@@ -14,7 +14,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Gradient 채팅 서비스</title>
+<title>GRADIENT - 채팅 서비스</title>
 
 
 <script  src="http://code.jquery.com/jquery-latest.min.js"></script>

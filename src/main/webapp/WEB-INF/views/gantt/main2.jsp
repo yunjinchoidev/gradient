@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <head>
 <meta http-equiv="Content-type" content="text/html; charset=utf-8">
-<title>Basic initialization</title>
+<title>GRADIENT - 간트차트</title>
 <script src="http://code.jquery.com/jquery-latest.min.js"></script>
 <script src="/project5/gantt/codebase/dhtmlxgantt.js?v=7.1.9"></script>
 <link rel="stylesheet"

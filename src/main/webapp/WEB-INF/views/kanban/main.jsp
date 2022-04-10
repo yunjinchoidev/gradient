@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title id='Description'>Kanban Board.</title>
+<title id='Description'>GRADIENT - 칸반보드</title>
 <link rel="stylesheet"
 	href="/project5/jqwidgets-ver13.2.0/a/jqx.base.css"
 	type="text/css" />
