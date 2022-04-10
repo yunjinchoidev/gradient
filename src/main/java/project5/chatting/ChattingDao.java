@@ -22,13 +22,13 @@ public interface ChattingDao {
 
 	
 	// 채팅방 만들기
-	public void createChat(String name);
+	public void createChat();
 	
 	//방제로 만들기
 	public void createChat2(String name);
 	
 	// 채팅방목록 불러오기
-	public List<ChattingRoomVO> chatRoomList();
+	public List<ChattingRoomVO> chatRoomList(int memberkey);
 
 	//채팅방 하나 이름 가져오기
 	public ChattingRoomVO getChatRoom(int roomkey);
@@ -41,5 +41,6 @@ public interface ChattingDao {
 
 	// 방 이름 바꾸기
 	public void ChattingRoomNameUpdate(ChattingRoomVO vo);
+	public void ChattingRoomNameUpdate2(ChattingRoomVO vo);
 	
 }

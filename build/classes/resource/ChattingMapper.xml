@@ -7,25 +7,25 @@
 
 
 	<!-- 채팅방 만들기 -->
-	<insert id="createChat" parameterType="String">
-		INSERT INTO chattingroom VALUES
-		(seq_chattingroom.nextval, #{name}||'와의 새대화', sysdate)
+	<insert id="createChat">
+		INSERT INTO chattingroom (roomkey, makedate)VALUES
+		(seq_chattingroom.nextval, sysdate)
 	</insert>
 
 	<!-- 채팅방 만들기 -->
 	<insert id="createChat2" parameterType="String">
 		INSERT INTO chattingroom
 		VALUES
-		(seq_chattingroom.nextval, #{name}|| '과의 새대화 ['||seq_chattingroom.nextval||']',
+		(seq_chattingroom.nextval, #{name},
 		sysdate)
 	</insert>
 
 	<!-- 채팅방 목록 불러오기 -->
-	<select id="chatRoomList"
+	<select id="chatRoomList" parameterType="int"
 		resultType="project5.chatting.ChattingRoomVO">
 		SELECT roomkey, name, to_char(makedate,'YYYY/MM/DD')
-		makedateS
-		FROM chattingroom ORDER BY roomkey
+		makedateS FROM chattingroom WHERE roomkey IN (SELECT roomkey FROM chat_memroom_join 
+WHERE memberkey=#{memberkey}) ORDER BY roomkey
 	</select>
 	
 	
@@ -34,8 +34,8 @@
 	<insert id="createMessage"
 		parameterType="project5.chatting.ChattingMessageVO">
 		INSERT INTO chattingMessage VALUES
-		(seq_chattingMessage.nextval, #{contents}, sysdate, #{memberkey},
-		#{roomkey},0)
+		(seq_chattingMessage.nextval, #{contents}, sysdate, #{roomkey},
+		#{memberkey},0)
 	</insert>
 
 
@@ -98,7 +98,7 @@
 	<insert id="roomJoin"
 		parameterType="project5.chatting.ChatJoinVO">
 		INSERT INTO chat_memroom_join VALUES
-		(seq_chat_memroom_join.nextval, #{memberkey}, #{roomkey})
+		(seq_chat_memroom_join.nextval, #{roomkey}, ${memberkey})
 	</insert>
 
 
@@ -118,13 +118,21 @@
 		chattingroom c
 	</select>
 
-	<select id="custoChatRoomNameUpdate"
+
+
+	<update id="ChattingRoomNameUpdate"
+		parameterType="project5.chatting.ChattingRoomVO">
+		update chattingroom
+		set name= name||'['||#{name}||']'
+		where roomkey = #{roomkey}
+	</update>
+
+	<update id="ChattingRoomNameUpdate2"
 		parameterType="project5.chatting.ChattingRoomVO">
 		update chattingroom
 		set name= name||#{name}
 		where roomkey = #{roomkey}
-	</select>
-
+	</update>
 
 
 

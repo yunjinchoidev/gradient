@@ -34,8 +34,8 @@ public class ChattingService {
 
 	
 	// 채팅방 만들기
-	public void createChat(String name) {
-		dao.createChat(name);
+	public void createChat() {
+		dao.createChat();
 	}
 	
 	//방제로 만들기
@@ -44,8 +44,8 @@ public class ChattingService {
 	}
 	
 	// 채팅방목록 불러오기
-	public List<ChattingRoomVO> chatRoomList(){
-		return dao.chatRoomList();
+	public List<ChattingRoomVO> chatRoomList(int memberkey){
+		return dao.chatRoomList(memberkey);
 	}
 
 	//채팅방 하나 이름 가져오기
@@ -66,5 +66,8 @@ public class ChattingService {
 	// 방 이름 바꾸기
 	public void ChattingRoomNameUpdate(ChattingRoomVO vo) {
 		dao.ChattingRoomNameUpdate(vo);
+	}
+	public void ChattingRoomNameUpdate2(ChattingRoomVO vo) {
+		dao.ChattingRoomNameUpdate2(vo);
 	}
 }

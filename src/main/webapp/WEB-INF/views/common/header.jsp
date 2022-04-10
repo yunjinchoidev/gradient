@@ -178,7 +178,7 @@
 				alert("미 로그인시 접근 불가합니다.");
 				location.href="/project5/main.do"
 			}else{
-				location.href="/project5/chatting.do";
+				location.href="/project5/chatting.do?memberkey=${member.memberkey}";
 			}
 		})
 		

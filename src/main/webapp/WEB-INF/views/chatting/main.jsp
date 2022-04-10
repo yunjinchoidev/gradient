@@ -46,10 +46,91 @@
 	
 	
 	
+	function delMessage(data){
+		alert($(data).text().substr(0,3))
+		var messagekey;
+		messagekey=parseInt($(data).text().substr(0,3));
+		var mess = {messagekey:messagekey}
+		
+		$.ajax({
+			url:'/project5/chattingMessageDelete.do',
+			type:'POST',
+			data : mess,
+			dataType:'json',
+			success:function(result){
+				console.log("성공")
+				location.href='/project5/chatting.do'
+				console.log(currentRoomkey);
+				MessageListFunc2(currentRoomkey)
+			}
+			
+		})
+		
+	}
+	
+	
+	
+	
+	function MessageListFunc2(data){
+		console.log("MessageListFunc");
+		console.log(data);
+		var roomkey;
+		var roomkey=parseInt(data);
+		
+		var data ={roomkey:roomkey};
+		var memName ="${member.name}"
+		var myMemberkey ="${member.memberkey}"
+		$.ajax({
+			url :'/project5/chattingMListbyRoomkey.do',
+			type:'POST',
+			data : data,
+			dataType:'json',
+			success:function(result){
+					console.log("success")
+					if(result.MessageListbyRoomkey[0]==null){
+						alert("채팅 메시지가 없네요")
+					}else{
+						$(".chat-box").text("");
+					console.log(result.MessageListbyRoomkey.legth)
+					for(var i=0; i<result.MessageListbyRoomkey.length; i++){
+						if(result.MessageListbyRoomkey[i].memberkey==myMemberkey){
+								var str = "";
+								str += "<div class='media w-50 ml-auto mb-3'>"
+								str += "<div class='media-body'>"
+								str += " <div class='bg-primary rounded py-2 px-3 mb-2'>"
+								str += "<p class='text-small mb-0 text-white'>"+result.MessageListbyRoomkey[i].contents+"</p></div>"
+								str += "<a style='color:red; cursor:pointer' onclick='delMessage(this)'><p style='display:none'>"+result.MessageListbyRoomkey[i].messagekey+"</p>[삭제]</a>"
+								str += " <p class='small text-muted'>"+today.toLocaleDateString()+"["+memName+"]"+"<br>"+today.toLocaleTimeString() +"</p>"
+								str += "	</div></div>"
+								console.log(str);
+								wsocket.send("msg:" + str);
+						}else{
+							// 상대방이 보낸 메시지
+							var str2 = "";
+							str2 += 	"<div class='media w-50 mb-3'><img src='https://bootstrapious.com/i/snippets/sn-chat/avatar.svg' alt='user' width='50' class='rounded-circle'>"
+							str2 += "      <div class='media-body ml-3'>"
+							str2 +=  "       <div class='bg-light rounded py-2 px-3 mb-2'>"
+							str2 +=   "        <p class='text-small mb-0 text-muted'>"+result.MessageListbyRoomkey[i].contents+"</p></div>"
+						    str2 +="         <p class='small text-muted'>"+result.MessageListbyRoomkey[i].writedateS+"[ 작성자 :"+result.MessageListbyRoomkey[i].memberkey+"]"+"</p></div></div>"
+							console.log(str);
+							wsocket.send("msg:" + str2);
+							}
+						}
+					}
+				},
+				error:function(result){
+					console.log("가져오기 실패")
+				}
+					})
+	}
+	
+	
+	
+	
+	
 	function MessageListFunc(data){
 		console.log("MessageListFunc");
 		console.log(data);
-		
 		if (parseInt($(data).text().substr(1,3)) >= 100){
 			roomkey = parseInt($(data).text().substr(1,2));
 		}else if (parseInt($(data).text().substr(1,2)) >= 10){
@@ -57,7 +138,6 @@
 		}else if (parseInt($(data).text().substr(1,1)) < 10){
 			roomkey = parseInt($(data).text().substr(1,1));
 		}
-		
 			currentRoomkey = roomkey
 			alert("채팅방번호:"+roomkey)
 			
@@ -84,6 +164,7 @@
 								str += "<div class='media-body'>"
 								str += " <div class='bg-primary rounded py-2 px-3 mb-2'>"
 								str += "<p class='text-small mb-0 text-white'>"+result.MessageListbyRoomkey[i].contents+"</p></div>"
+								str += "<a style='color:red; cursor:pointer' onclick='delMessage(this)'><p style='display:none'>"+result.MessageListbyRoomkey[i].messagekey+"</p>[삭제]</a>"
 								str += " <p class='small text-muted'>"+today.toLocaleDateString()+"["+memName+"]"+"<br>"+today.toLocaleTimeString() +"</p>"
 								str += "	</div></div>"
 								console.log(str);
@@ -137,7 +218,6 @@
 	
 	
 	$(document).ready(function(){
-		// 1:1 대화
 	
 			var memberkey = "${memberk.memberkey}"
 			$("#newChatBtn").click(function(){
@@ -150,12 +230,13 @@
 			location.href="/project5/chattingInvitationList.do?memberkey="+memberkey
 			})
 		
-		
-		
+									var memberkey = parseInt(${member.memberkey})
+									var godata = {memberkey : memberkey}
 							// 화면 로딩 되자 마자 상담 목록을 모조리 불러온다
 							$.ajax({
 								url : '/project5/chattingRoomList.do',
 								type:'POST',
+								data : godata,
 								dataType:'json',
 								success:function(result){
 									console.log("chattingRoomList=========================");
@@ -263,17 +344,19 @@
 						
 						//////////////////////////////////////////////////////////////////////////////
 						// 엔터로 메시지 보내기
-						$("#msg").keyup(function() {
-							console.log("메시지 창에 키 업")
+						$("#msg").keyup(function(e) {
+							console.log("현재 선택된 방번호"+currentRoomkey)
 							var roomkey2;
 							roomkey2 = currentRoomkey;
-							if (event.keyCode == 13) {
+							
+							if (e.keyCode == 13) {
 								var contents = $("#msg").val();
 								var memberkey = "${member.memberkey}"
 								var data = {contents : contents,
 													memberkey : memberkey,
-													roomkey : 1
+													roomkey : roomkey2
 									};
+								console.log(data)
 								$.ajax({
 									url:'/project5/chattingCreateMessage.do',
 									method:'POST',
@@ -296,9 +379,11 @@
 						$("#sendBtn").click(function() {
 							var contents = $("#msg").val();
 							var memberkey = parseInt("${member.memberkey}");
+							var roomkey2;
+							roomkey2 = currentRoomkey;
 							var data = {contents : contents,
 												memberkey : memberkey,
-												roomkey : 1
+												roomkey : roomkey2
 								};
 							$.ajax({
 								url:'/project5/chattingCreateMessage.do',
@@ -478,8 +563,8 @@
     
     
     <!--  채팅 공간 -->
-    <div class="col-7 px-0"  id="chatArea" style="border:3px solid blue"> 
-      <div class="px-4 py-5 chat-box bg-white" style="border:3px solid red">
+    <div class="col-7 px-0"  id="chatArea" > 
+      <div class="px-4 py-5 chat-box bg-white" >
 
         <!-- Message-->
         <!--  Message-->

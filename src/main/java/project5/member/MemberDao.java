@@ -14,6 +14,8 @@ public interface MemberDao {
 	public List<MemberVO> list();
 	public List<MemberVO> listWithPaging(MemberSch sch);
 	public int totCnt(MemberSch sch);
+	public List<MemberVO> listWithPaging2(MemberSch sch);
+	public int totCnt2(MemberSch sch);
 	
 	
 	

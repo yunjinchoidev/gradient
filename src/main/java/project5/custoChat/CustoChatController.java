@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import oracle.net.aso.a;
 import oracle.net.aso.d;
+import project5.member.MemberSch;
 import project5.member.MemberService;
 import project5.member.MemberVO;
 
@@ -97,9 +98,9 @@ public class CustoChatController {
 
 	// 1:1 대화하기
 	@RequestMapping("/invitationList.do")
-	public String invitationList(Model d, int memberkey) {
+	public String invitationList(Model d, int memberkey, MemberSch sch) {
 		service.createChat2(service2.get(memberkey).getName() + ",");
-		d.addAttribute("list", service2.list());
+		d.addAttribute("list", service2.listWithPaging(sch));
 		return "WEB-INF\\views\\customerChat\\list.jsp";
 	}
 

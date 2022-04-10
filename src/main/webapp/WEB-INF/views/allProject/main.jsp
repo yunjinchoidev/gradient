@@ -92,8 +92,6 @@ to {
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>공개된 모든 프로젝트</h3>
-						<p class="text-subtitle text-muted">대시보드입니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -104,16 +102,6 @@ to {
 			<section class="section">
 				<div class="row">
 					<div class="col-12">
-						<div class="card">
-							<div class="card-header">
-								<h5 class="card-title">대시보드입니다.</h5>
-							</div>
-							<div class="card-body">
-								대시보드입니다. <a href="https://github.com/yunjinchoidev/project5"
-									target="_blank">대시보드입니다.<br> <br>
-								</a>
-							</div>
-						</div>
 					</div>
 				</div>
 			</section>
@@ -122,8 +110,8 @@ to {
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
-					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>공개된 모든 프로젝트</h3>
+					<div class="col-12 col-md-6 order-md-1 order-last" style="margin-bottom: 20px;">
+						<h1>공개된 모든 프로젝트</h1>
 						<p class="text-subtitle text-muted">공개된 모든 프로젝트가 여기 있습니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
