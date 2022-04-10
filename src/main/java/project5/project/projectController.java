@@ -1,9 +1,18 @@
 package project5.project;
 
+import org.apache.poi.hssf.util.HSSFColor.TEAL;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import project5.attendance.AttendanceService;
+import project5.attendance.attendanceSch;
+import project5.member.MemberSch;
+import project5.member.MemberService;
+import project5.team.TeamSch;
+import project5.team.TeamService;
+import project5.vacation.Team_MemberVO;
 
 @Controller
 public class projectController {
@@ -11,6 +20,12 @@ public class projectController {
 	@Autowired
 	ProjectService service;
 
+	@Autowired
+	AttendanceService service2;
+	
+	@Autowired
+	TeamService service3;
+	
 	// 데이터 전달
 	@RequestMapping("/projectList.do")
 	public String projectList(Model d, ProjectSch sch) {
@@ -27,10 +42,17 @@ public class projectController {
 
 	// 프로젝트 관리를 위한 프로젝트 리스트
 	@RequestMapping("/projectManageMain.do")
-	public String projectManageMain(Model d, ProjectSch sch) {
+	public String projectManageMain(Model d, ProjectSch sch,MemberSch sch2, TeamSch sch3) {
 		d.addAttribute("list", service.listWithPaging(sch));
+		d.addAttribute("list3", service2.listWithPagingComplete(sch2));
+		d.addAttribute("pjList", service.list());
+		d.addAttribute("tlist", service3.getTeamList(sch3));
 		return "WEB-INF\\views\\projectManage\\main.jsp";
 	}
+	
+	
+	
+	
 	// 프로젝트 관리를 위한 프로젝트 리스트
 	@RequestMapping("/projectManageMain2.do")
 	public String projectManageMain2(Model d, ProjectSch sch) {

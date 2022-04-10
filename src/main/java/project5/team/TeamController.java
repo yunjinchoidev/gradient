@@ -17,6 +17,11 @@ public class TeamController {
 		d.addAttribute("tlist", service.getTeamList(sch));
 		return "WEB-INF\\views\\team\\Teamlist.jsp";
 	}
+	@RequestMapping("/pmPageTeamlist.do")
+	public String pmPageTeamlist(TeamSch sch, Model d) {
+		d.addAttribute("tlist", service.getTeamList(sch));
+		return "WEB-INF\\views\\team\\pmPageTeamlist.jsp";
+	}
 	
 	// http://localhost:7080/project5/insertTeam.do
 	@RequestMapping("/teamInsertForm.do")
@@ -68,10 +73,15 @@ public class TeamController {
 	//public String getTeamDetail(TeamVo sch, Model d) {
 	//	return "WEB-INF\\views\\team\\detail.jsp";
 //	}
-	@RequestMapping("/delTeam.do")
+	
+	
+	
+	
+	@RequestMapping("/deleteTeam.do")
 	public String delTeam(int memberprojectkey, Model d) {
 		d.addAttribute("msg", "삭제되었습니다.");
 		service.delTeam(memberprojectkey);
-		return "forward:/teamlist.do";
+		d.addAttribute("msg", "delTeam");
+		return "WEB-INF\\views\\team\\Teamlist.jsp";
 	}
 }

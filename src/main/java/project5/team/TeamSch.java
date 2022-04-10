@@ -16,6 +16,7 @@ public class TeamSch {
 	private String dname;
 	private String auth;
 	
+	private int projectkey;
 	
 	
 	
@@ -42,6 +43,31 @@ public class TeamSch {
 		this.status = status;
 		this.dname = dname;
 		this.auth = auth;
+	}
+	
+	
+	
+	
+	
+	public TeamSch(int count, int pageSize, int pageCount, int curPage, int start, int end, int blockSize,
+			int startBlock, int endBlock, String sch, String name, String status, String dname, String auth,
+			int projectkey) {
+		super();
+		this.count = count;
+		this.pageSize = pageSize;
+		this.pageCount = pageCount;
+		this.curPage = curPage;
+		this.start = start;
+		this.end = end;
+		this.blockSize = blockSize;
+		this.startBlock = startBlock;
+		this.endBlock = endBlock;
+		this.sch = sch;
+		this.name = name;
+		this.status = status;
+		this.dname = dname;
+		this.auth = auth;
+		this.projectkey = projectkey;
 	}
 	public int getCount() {
 		return count;
@@ -127,4 +153,22 @@ public class TeamSch {
 	public void setAuth(String auth) {
 		this.auth = auth;
 	}
+	public int getProjectkey() {
+		return projectkey;
+	}
+	public void setProjectkey(int projectkey) {
+		this.projectkey = projectkey;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import project5.member.MemberSch;
 import project5.member.MemberService;
+import project5.member.MemberVO;
 import project5.project.ProjectService;
 
 @Controller
@@ -21,18 +22,31 @@ public class AttendanceController {
 	@Autowired
 	ProjectService service3;
 	
-	@RequestMapping("/attendanceMain.do")
+	@RequestMapping("/forPM.do")
+	public String forPM(Model d, MemberSch sch) {
+		d.addAttribute("list3", service.listWithPagingComplete(sch));
+		//return "pageJsonReport";
+		return "WEB-INF\\views\\attendance\\forPM.jsp";
+	}
+	@RequestMapping("/attendanceMainComplete.do")
 	public String attendance(Model d, MemberSch sch) {
-		d.addAttribute("list", service.memberPlusAttendacne());
-		return "WEB-INF\\views\\attendance\\main.jsp";
+		d.addAttribute("list", service.listWithPagingComplete(sch));
+		//return "pageJsonReport";
+		return "WEB-INF\\views\\attendance\\finish.jsp";
 	}
 
-	@RequestMapping("/attendanceMain2.do")
-	public String attendanceMain2(Model d) {
-		d.addAttribute("list", service2.list());
-		return "WEB-INF\\views\\attendance\\main2.jsp";
+	@RequestMapping("/attendanceMainNotComplete.do")
+	public String attendanceMain2(Model d, MemberSch sch) {
+		d.addAttribute("list", service2.listWithPaging(sch));
+		//return "pageJsonReport";
+		return "WEB-INF\\views\\attendance\\notComplete.jsp";
 	}
 
+	
+	
+	
+	
+	
 	@RequestMapping("/attendanceWriteForm.do")
 	public String attendanceWriteForm(Model d, int memberkey) {
 		d.addAttribute("get", service2.get(memberkey));
@@ -40,9 +54,10 @@ public class AttendanceController {
 	}
 	
 	@RequestMapping("/attendanceWrite.do")
-	public String attendanceWrite(Model d, AttendanceVO vo) {
+	public String attendanceWrite(Model d, MemberVO vo) {
 		service.attendanceWrite(vo);
-		return "forward:/attendanceMain.do";
+		d.addAttribute("msg", "attendanceWrite");
+		return "WEB-INF\\views\\attendance\\complete.jsp";
 	}
 
 	@RequestMapping("/warningLetter.do")

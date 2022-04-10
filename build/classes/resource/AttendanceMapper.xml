@@ -5,23 +5,88 @@
 <mapper namespace="project5.attendance.AttendanceDao">
 
 	<insert id="attendanceWrite"
-		parameterType="project5.attendance.AttendanceVO">
-		INSERT into attendance VALUES (seq_attendance.nextval,
-		#{memberkey}, #{score})
+		parameterType="project5.member.MemberVO">
+		update member
+		score=#{score}
+		where memberkey=#{memberkey}
 	</insert>
 
 
-	<select id="memberPlusAttendacne"
-		resultType="project5.attendance.AttendanceVO2">
-		select m.*, a.score
-		from member m, attendance a
-		where
-		m.memberkey =
-		a.memberkey
+
+	<!-- 미평가자 전체 데이터 수 가져오기 -->
+	<select id="totCnt" parameterType="project5.member.MemberSch"
+		resultType="int">
+		select count(*)
+		from member
+		where 1=1
+		and score is null
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
+	</select>
+	
+	
+	<!-- 평가자 전체 데이터 수 가져오기 -->
+	<select id="totCntComplete" parameterType="project5.member.MemberSch"
+		resultType="int">
+		select count(*)
+		from member
+		where 1=1
+		and score is not null
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
 	</select>
 
 
 
+	<!-- 미 평가가자 리스트를 불러오기 -->
+	<select id="listWithPagingNotComplte"
+		resultType="project5.member.MemberVO"
+		parameterType="project5.member.MemberSch">
+		select *
+		from (
+		select rownum cnt,m.*
+		from member m
+		where 1=1
+		and m.score is  null
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
+		)
+		where cnt between #{start} and #{end}
+		order by memberkey
+	</select>
+	
+	<!-- 평가자 리스트를 불러오기 -->
+	<select id="listWithPagingComplete"
+		resultType="project5.member.MemberVO"
+		parameterType="project5.member.MemberSch">
+		select *
+		from (
+		select rownum cnt,m.*
+		from member m
+		where 1=1
+		and m.score is  not null
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
+		)
+		where cnt between #{start} and #{end}
+		order by memberkey
+	</select>
 
 
 

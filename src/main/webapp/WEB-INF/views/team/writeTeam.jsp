@@ -34,14 +34,17 @@ textarea {
 				var msg = "${msg}";
 				if (msg != "") {
 					if (confirm(msg + "\n팀관리 목록으로 이동할까요?")) {
-						location.href = "${path}/teamlist.do";
+						location.href = "${path}/teamlist.do?projectkey=${project.projectkey}";
 					}
 				}
 
 				$("#goList").click(function() {
-					location.href = "${path}/teamlist.do";
+					location.href = "${path}/teamlist.do?projectkey=${project.projectkey}";
 				});
 
+				
+				
+				
 				$("#regBtn").click(
 						function() {
 							if (confirm("배정하시겠습니까?")) {
@@ -77,7 +80,7 @@ textarea {
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>${project.name } 프로젝트 배정 인원 </h3>
+						<h1><span style="color: red">[${project.name }]</span> <br>프로젝트 배정 인원 </h1>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -100,8 +103,7 @@ textarea {
 						<div class="card" style="">
 							<div class="card-header">
 								<h1 class="card-title" align="center">회원 프로젝트 배정<br>
-										<button class="btn btn-warning" id="regbtn">등록</button>
-										<button class="btn btn-danger" id="delbtn">취소</button>
+				
 								</h1>
 							</div>
 							<table class="table mb-0 table-lg">
@@ -145,13 +147,24 @@ textarea {
 									<th>배정여부 선택</th>
 									<td><select class="form-select" name="status">
 											<option>배정여부를 선택해주세요.</option>
-											<option value="assigned" selected="selected">배정</option>
-											<option value="notassigned">미배정</option>
+											<option value="배정" selected="selected">배정</option>
+											<option value="미배정">미배정</option>
 									</select></td>
 								</tr>
 
+								<tr>
+									<th></th>
+									<td>
+									<div style="margin-left: 1400px;">
+										<button class="btn btn-warning" id="regbtn">등록</button>
+										<button class="btn btn-danger" id="delbtn">취소</button>
+									</div>
+									</td>
+									
+								</tr>
 
 							</table>
+												
 						</div>
 					</div>
 				</form>

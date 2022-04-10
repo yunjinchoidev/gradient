@@ -194,22 +194,14 @@
 											<div class="form-group">
 												<label for="first-name-column">피평가자 회원 번호</label> <input
 													type="text" id="first-name-column" class="form-control"
-													placeholder="memberkey" name="memberkey" value="${get.memberkey }">
+													placeholder="memberkey" name="memberkey" value="${get.memberkey }" readonly="readonly">
 											</div>
 										</div>
 										<div class="col-md-6 col-12">
 											<div class="form-group">
 												<label for="first-name-column">피평가자 이름</label> <input
 													type="text" id="first-name-column" class="form-control"
-													placeholder="name" name="name">
-											</div>
-										</div>
-										
-										<div class="col-md-6 col-12">
-											<div class="form-group">
-												<label for="first-name-column">근태 평가 분류</label> <input
-													type="text" id="first-name-column" class="form-control"
-													placeholder="title" name="sort">
+													placeholder="name" name="name" value="${get.name }" readonly="readonly">
 											</div>
 										</div>
 

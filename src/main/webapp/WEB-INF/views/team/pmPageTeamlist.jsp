@@ -89,27 +89,6 @@
 <!-- 팀관리 전체 조회  -->
 
 <body>
-	<%@ include file="../common/header.jsp"%>
-
-	<div id="main">
-		<div class="page-heading">
-			<div class="page-title">
-
-				<%@ include file="../projectHome/sort.jsp"%>
-
-
-				<div class="row">
-					<%@ include file="../attendance/sort.jsp"%>
-						<h3><span style="color: red">[${project.name }]</span> 프로젝트 회원 배정 
-						<a href="/project5/teamInsertForm.do" class="btn btn-danger"
-												id="write" style="text-align: right"
-												>배정 하기</a>
-						</h3>
-						
-					<div class="col-12 col-md-6 order-md-1 order-last">
-					
-				
-				</div>
 						<section class="section">
 					<div class="card">
 						<div class="card-header">
@@ -120,7 +99,7 @@
 							fixed-columns">
 
 							<!--  이곳에서 한 화면에서 몇 페이지를 볼 지 보내줍니다. -->
-							<form id="frm02" class="form" action="/project5/teamlist.do">
+							<form id="frm02" class="form" action="/project5/pmPageTeamlist.do">
 							<input type="hidden" name="projectkey" value="${project.projectkey }">
 							<input type="hidden" name="curPage" value="1" />
 								<div class="dataTable-top">

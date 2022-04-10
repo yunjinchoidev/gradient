@@ -176,9 +176,6 @@
 
 
 
-
-
-
 										</div>
 									</div>
 
@@ -216,9 +213,9 @@
 									<c:forEach var="list" items="${voteList }">
 										<tr >
 											<td>${list.votekey }</td>
-											<td style="color: red; cursor: pointer"
+											<td style="color: red; cursor: pointer; font-weight: bolder;" class="voteCC" 
 												onclick="location.href='/project5/voteGet.do?votekey=${list.votekey}'">[투표]
-												${list.title } </td>
+												<strong>${list.title }</strong> </td>
 											<td><fmt:formatDate value="${list.writedate }" />
 											~ <fmt:formatDate value="${list.enddate }" /></td>
 											<td>${member.name }</td>
@@ -226,7 +223,21 @@
 										</tr>
 									</c:forEach>
 
+								<script>
+								$(document).ready(function(){
+									var i=0;
+									setInterval(function(){
+										i++;
+										if(i%2==0){
+											$(".voteCC").css("color", "red")
+										}else{
+											$(".voteCC").css("color", "blue")
+										}										
+									},1000)
 
+								})
+								
+								</script>
 
 
 									<c:forEach var="list" items="${list }">

@@ -1,7 +1,7 @@
 package project5.team;
 
 public class TeamVo {
-	private int team_member_key;
+	private int member_project_key;
 	private int teamkey;
 	private int memberkey;
 	private int projectkey;
@@ -16,21 +16,17 @@ public class TeamVo {
 	private String projectname;
 	private String status;
 	private int memberprojectkey;
-	
-	
-	
-	
-	
-	
+
 	public TeamVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TeamVo(int team_member_key, int teamkey, int memberkey, int projectkey, String id, String pass, String name,
-			String auth, int deptno, String email, String dname, int dcnt, String projectname, String status,
-			int memberprojectkey) {
+
+	public TeamVo(int member_project_key, int teamkey, int memberkey, int projectkey, String id, String pass,
+			String name, String auth, int deptno, String email, String dname, int dcnt, String projectname,
+			String status, int memberprojectkey) {
 		super();
-		this.team_member_key = team_member_key;
+		this.member_project_key = member_project_key;
 		this.teamkey = teamkey;
 		this.memberkey = memberkey;
 		this.projectkey = projectkey;
@@ -46,94 +42,125 @@ public class TeamVo {
 		this.status = status;
 		this.memberprojectkey = memberprojectkey;
 	}
-	public int getTeam_member_key() {
-		return team_member_key;
+
+	public int getMember_project_key() {
+		return member_project_key;
 	}
-	public void setTeam_member_key(int team_member_key) {
-		this.team_member_key = team_member_key;
+
+	public void setMember_project_key(int member_project_key) {
+		this.member_project_key = member_project_key;
 	}
+
 	public int getTeamkey() {
 		return teamkey;
 	}
+
 	public void setTeamkey(int teamkey) {
 		this.teamkey = teamkey;
 	}
+
 	public int getMemberkey() {
 		return memberkey;
 	}
+
 	public void setMemberkey(int memberkey) {
 		this.memberkey = memberkey;
 	}
+
 	public int getProjectkey() {
 		return projectkey;
 	}
+
 	public void setProjectkey(int projectkey) {
 		this.projectkey = projectkey;
 	}
+
 	public String getId() {
 		return id;
 	}
+
 	public void setId(String id) {
 		this.id = id;
 	}
+
 	public String getPass() {
 		return pass;
 	}
+
 	public void setPass(String pass) {
 		this.pass = pass;
 	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getAuth() {
 		return auth;
 	}
+
 	public void setAuth(String auth) {
 		this.auth = auth;
 	}
+
 	public int getDeptno() {
 		return deptno;
 	}
+
 	public void setDeptno(int deptno) {
 		this.deptno = deptno;
 	}
+
 	public String getEmail() {
 		return email;
 	}
+
 	public void setEmail(String email) {
 		this.email = email;
 	}
+
 	public String getDname() {
 		return dname;
 	}
+
 	public void setDname(String dname) {
 		this.dname = dname;
 	}
+
 	public int getDcnt() {
 		return dcnt;
 	}
+
 	public void setDcnt(int dcnt) {
 		this.dcnt = dcnt;
 	}
+
 	public String getProjectname() {
 		return projectname;
 	}
+
 	public void setProjectname(String projectname) {
 		this.projectname = projectname;
 	}
+
 	public String getStatus() {
 		return status;
 	}
+
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public int getmemberprojectkey() {
+
+	public int getMemberprojectkey() {
 		return memberprojectkey;
 	}
-	public void setmemberprojectkey(int memberprojectkey) {
+
+	public void setMemberprojectkey(int memberprojectkey) {
 		this.memberprojectkey = memberprojectkey;
 	}
+
 }

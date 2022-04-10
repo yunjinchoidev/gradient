@@ -14,17 +14,22 @@
 		SELECT *FROM (SELECT ROW_NUMBER() OVER (ORDER BY
 		mp.MEMBER_PROJECT_KEY ASC)
 		AS cnt,
+		mp.MEMBER_PROJECT_KEY, 
 		m.name AS name, m.auth AS auth,
 		d.dname AS dname, m.email AS email,
 		p.NAME AS
 		projectname, mp.STATUS AS
 		STATUS, mp.MEMBER_PROJECT_KEY AS
-		memberprojectkey
+		memberprojectkey,
+		mp.projectkey projectkey
 		FROM MEMBER_PROJECT mp,
 		MEMBER m, PROJECT p, DEPARTMENT d
 		WHERE  m.name IS NOT null
 		AND mp.memberkey = m.MEMBERKEY
-		AND mp.PROJECTKEY = p.PROJECTKEY)
+		AND mp.PROJECTKEY = p.PROJECTKEY
+		AND d.deptno = mp.deptno 
+		and mp.projectkey=#{projectkey} 
+		AND mp.STATUS='배정')
 		WHERE cnt BETWEEN #{start}
 		AND #{end} ORDER BY memberprojectkey
 	</select>
@@ -35,6 +40,8 @@
 		select count(*)
 		from MEMBER_PROJECT
 		where 1=1
+		and projectkey=${projectkey}
+		AND STATUS='배정'
 	</select>
 	
 	

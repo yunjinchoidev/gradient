@@ -26,7 +26,7 @@
 
 
 <div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
-								<a href="#" class="btn btn-dark" id="" onclick="location.href='/project5/attendanceMain.do'">근태 관리 </a> 
+								<a href="#" class="btn btn-dark" id="" onclick="location.href='/project5/attendanceMainComplete.do'">근태 관리 </a> 
 								<a href="#" class="btn btn-dark" id="" onclick="location.href='/project5/teamlist.do?projectkey=${project.projectkey}'">프로젝트 할당</a> 
 								<a href="#" class="btn btn-dark" id="" onclick="location.href='/project5/vacationMain.do'">휴가 관리</a> 
 							</div>

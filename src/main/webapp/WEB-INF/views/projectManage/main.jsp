@@ -82,7 +82,7 @@
 
 					})
 
-	function goPage(no) {
+	function goPage2(no) {
 		$("[name=curPage]").val(no);
 		$("#frm01").submit();
 	}
@@ -123,24 +123,14 @@
 
 
 		<div class="page-content">
-
-
+		
+		
 			<section class="row">
-
-
-
-
-
-				<div class="col-12 col-lg-8">
+				<div class="col-12 col-lg-12">
+				
 					<div class="row">
 
-
-
-
-
-
 						<div class="col-6 col-lg-3 col-md-6">
-
 
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
@@ -235,7 +225,6 @@
 
 
 
-
 					<script>
 						$(document).ready(
 								function() {
@@ -245,7 +234,7 @@
 										z++;
 										if (z % 2 == 0) {
 											$("#projectManage").css("border",
-													"3px solid red")
+													"5px solid red")
 										} else {
 											$("#projectManage").css("border",
 													"")
@@ -269,7 +258,9 @@
 											class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
 											<div class="dataTable-top">
 												<div class="input-group-prepend">
-													<input type="hidden" name="curPage" value="1" /> <span
+													<input type="hidden" name="curPage" value="1" /> 
+													<input type="hidden" name="projectkey" value="30001" />
+													<span
 														class="input-group-text">총 ${projectSch.count}건</span>
 												</div>
 
@@ -325,8 +316,17 @@
 															type="text" name="name" value="${projectSch.name}">
 														<button class="btn btn-info" type="submit">검색</button>
 														<a class="btn btn-danger" style="text-align: right"
-															data-bs-toggle="modal" data-bs-target="#inlineForm">메모
-															쓰기</a>
+															href="/project5/creatProject.do"
+															>프로젝트 만들기
+															</a>
+															
+															
+															
+														<a class="btn btn-danger" style="text-align: right"
+															data-bs-toggle="modal" data-bs-target="#inlineForm">상태 변경
+															</a>
+															
+	
 													</div>
 												</div>
 
@@ -391,16 +391,16 @@
 											entries</div>
 										<ul class="pagination  justify-content-end">
 											<li class="page-item"><a class="page-link"
-												href="javascript:goPage(${projectSch.startBlock!=1?projectSch.startBlock-1:1})">Previous</a></li>
+												href="javascript:goPage2(${projectSch.startBlock!=1?projectSch.startBlock-1:1})">Previous</a></li>
 											<c:forEach var="cnt" begin="${projectSch.startBlock}"
 												end="${projectSch.endBlock}">
 												<li class="page-item ${cnt==projectSch.curPage?'active':''}">
 													<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
-													href="javascript:goPage(${cnt})">${cnt}</a>
+													href="javascript:goPage2(${cnt})">${cnt}</a>
 												</li>
 											</c:forEach>
 											<li class="page-item"><a class="page-link"
-												href="javascript:goPage(${projectSch.endBlock!=projectSch.pageCount?projectSch.endBlock+1:projectSch.endBlock})">Next</a></li>
+												href="javascript:goPage2(${projectSch.endBlock!=projectSch.pageCount?projectSch.endBlock+1:projectSch.endBlock})">Next</a></li>
 										</ul>
 									</div>
 								</div>
@@ -549,12 +549,40 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h4>Profile Visit</h4>
+									<h4>트렌드 분석</h4>
 								</div>
-								<div class="card-body" style="position: relative;"></div>
+							 <div id="curve_chart66" style="width: 900px; height: 500px"></div>
 							</div>
 						</div>
 					</div>
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+				   <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', 'Expenses'],
+          ['2004',  1000,      400],
+          ['2005',  1170,      460],
+          ['2006',  660,       1120],
+          ['2007',  1030,      540]
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart66'));
+
+        chart.draw(data, options);
+      }
+    </script>
+				
+
 
 
 
@@ -564,9 +592,49 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h4>Profile Visit</h4>
+									<h4>회원 프로젝트 배정</h4>
+									
+									<%@ include file="../team/pmPageTeamlist.jsp" %>
+									
 								</div>
-								<div class="card-body" style="position: relative;"></div>
+							</div>
+						</div>
+					</div>
+					
+					
+					
+					
+					
+					
+					
+					
+					<div class="row"  style="width: 80%; margin-left: 330px;">
+						<div class="col-12">
+							<div class="card">
+								<div class="card-header">
+									<h4>근태 평가
+									<a href="#"  class="btn btn-danger" id="goDetail">상세 화면으로 </a> 
+									</h4>
+								
+													<select id="go" class="dataTable-selector form-select"  style="width: 30%">
+													<c:forEach items="${pjList }" var="list">
+														<option value="${list.projectkey }">${list.projectkey } : ${list.name}</option>
+													</c:forEach>
+													</select>
+													<script>
+													$(document).ready(function(){
+														var A;
+															$("#go").change(function(){
+																console.log("변경")
+																console.log($("#go option:selected").val())
+																A =  $("#go option:selected").val();
+																$("#goDetail").attr("href","/project5/attendanceMainComplete.do?projectkey="+A );
+															})
+													})
+													</script>
+								<%@ include file="../attendance/forPM.jsp" %>
+								
+								</div>
 							</div>
 						</div>
 					</div>
@@ -581,11 +649,7 @@
 
 
 
-
-
-
-
-
+			<!-- 
 				<div class="col-12 col-lg-4">
 
 					<div class="card">
@@ -642,10 +706,81 @@
 
 
 				</div>
+				-->
 			</section>
 		</div>
 
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	<div class="modal fade" id="inlineForm" 
+	tabindex="-1" role="dialog" 
+	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">일정등록</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+		<form id="frm01" class="form" method="post" enctype="multipart/form-data" >
+		 <input type="hidden" name="id" value="0"/>
+		 
+	        <input type="hidden" name="projectkey" value="${project.projectkey}" >
+	        <input type="hidden" class="form-control" placeholder="" name="memberkey" value="${member.memberkey }" >
+	     
+	     <div class="row">
+	      <div class="col">
+	        <input type="text" class="form-control" placeholder="${project.name }" readonly="readonly">
+	      </div> 
+	     </div>
+	     
+	     <div class="row">
+	      <div class="col">
+	        <input type="text" class="form-control" placeholder="제목" name="title">
+	      </div> 
+	     </div>
+	     
+	      
+	      
+	     </div>
+
+	    </form> 
+      </div>
+      <div class="modal-footer">
+
+        <button type="button" id="regBtn" class="btn btn-primary">일정등록</button>
+        <button type="button" id="uptBtn" class="btn btn-info">일정수정</button>
+        <button type="button" id="delBtn" class="btn btn-danger">일정삭제</button>
+         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>       
+      </div>
+    </div>
+  </div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 </body>
 </html>

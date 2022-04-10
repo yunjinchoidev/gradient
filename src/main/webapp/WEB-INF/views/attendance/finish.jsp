@@ -66,7 +66,20 @@
 			location.href="/project5/warningLetter.do?memberkey="+theMember
 			
 		})
-		
+		var pageSize = "${memberSch.pageSize}"
+			$("[name=pageSize]").val(pageSize);
+			$("[name=pageSize]").change(function() {
+				$("[name=curPage]").val(1);
+				$("#frm01").submit();
+			});
+
+
+		});
+
+function goPage(no) {
+$("[name=curPage]").val(no);
+$("#frm01").submit();
+}
 		
 	});
 </script>
@@ -111,30 +124,82 @@
 						여러 기능들이 있습니다.<br> <br>
 						<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
 							<a href="#" class="btn btn-danger" id="mailSendBtn">경고장 발송</a> 
-							<a href="#" class="btn btn-success" id="NonComplete" onclick="location.href='/project5/attendanceMain.do'">평가완료</a> 
-							<a href="#" class="btn btn-warning" id="Complete" onclick="location.href='/project5/attendanceMain2.do'">미평가자</a> 
+							<a href="#" class="btn btn-success" id="NonComplete" onclick="location.href='/project5/attendanceMainComplete.do'">평가완료</a> 
+							<a href="#" class="btn btn-warning" id="Complete" onclick="location.href='/project5/attendanceMainNotComplete.do'">미평가자</a> 
 							
 						</div>
 					</div>
 
 
 					<div class="card-body">
-						<div
-							class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
-							<div class="dataTable-top">
-								<div class="dataTable-dropdown">
-									<select class="dataTable-selector form-select"><option
-											value="5">5</option>
-										<option value="10" selected="">10</option>
-										<option value="15">15</option>
-										<option value="20">20</option>
-										<option value="25">25</option></select><label>페이지당 글 개수</label>
-								</div>
-								<div class="dataTable-search">
-									<input class="dataTable-input" placeholder="Search..."
-										type="text"> <a href="#" class="btn btn-danger">검색</a>
+							<form id="frm01" class="form" action="${path}/attendanceMain.do"
+							method="post">
+							<div
+								class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
+								<div class="dataTable-top">
+									<div class="input-group-prepend">
+										<input type="hidden" name="curPage" value="1" /> <span
+											class="input-group-text">총 ${memberSch.count}건</span>
+									</div>
+
+									<div class="dataTable-dropdown">
+										<select class="dataTable-selector form-select" name="pageSize">
+											<option value="3">3</option>
+											<option value="5">5</option>
+											<option value="10" selected="selected">10</option>
+											<option value="15">15</option>
+											<option value="20">20</option>
+											<option value="25">25</option>
+											<option value="100">100</option>
+										</select><label>entries per page</label>
+									</div>
+
+
+									<script>
+										$(document)
+												.ready(
+														function() {
+															$(".searchbar")
+																	.change(
+																			function() {
+																				alert("검색 종류를 변경합니다.");
+																				$(
+																						".searchWhat")
+																						.attr(
+																								"name",
+																								this.value)
+																				alert($(".searchWhat").value)
+																			});
+
+														});
+									</script>
+
+
+
+									<div class="dataTable-search" style="display: inline-block;">
+
+										<div style="display: inline-block;">
+											<select class="dataTable-selector form-select searchbar"
+												name="searchbar" style="display: inline-block;">
+												<option selected="selected">검색</option>
+												<option value="name" selected="selected">title</option>
+												<option value="email">contents</option>
+											</select>
+										</div>
+
+										<div style="display: inline-block;">
+											<input style="display: inline-block;"
+												class="dataTable-input searchWhat" placeholder="검색어를 입력"
+												type="text" name="title" value="${memberSch.name}">
+											<button class="btn btn-info" type="submit">검색</button>
+										</div>
+									</div>
+
+
+
 								</div>
 							</div>
+						</form>
 
 
 
@@ -211,20 +276,20 @@
 
 							<div class="dataTable-bottom">
 								<div class="dataTable-info">Showing 1 to 10 of 26 entries</div>
-								<ul
-									class="pagination pagination-primary float-end dataTable-pagination">
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="1">‹</a></li>
-									<li class="page-item active"><a href="#" class="page-link"
-										data-page="1">1</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="2">2</a></li>
-									<li class="page-item"><a href="#" class="page-link"
-										data-page="3">3</a></li>
-									<li class="page-item pager"><a href="#" class="page-link"
-										data-page="2">›</a></li>
-								</ul>
-							</div>
+							<ul class="pagination  justify-content-end">
+								<li class="page-item"><a class="page-link"
+									href="javascript:goPage(${memberSch.startBlock!=1?memberSch.startBlock-1:1})">Previous</a></li>
+								<c:forEach var="cnt" begin="${memberSch.startBlock}"
+									end="${memberSch.endBlock}">
+									<li class="page-item ${cnt==memberSch.curPage?'active':''}">
+										<!-- 클릭한 현재 페이지 번호 --> <a class="page-link"
+										href="javascript:goPage(${cnt})">${cnt}</a>
+									</li>
+								</c:forEach>
+								<li class="page-item"><a class="page-link"
+									href="javascript:goPage(${memberSch.endBlock!=memberSch.pageCount?memberSch.endBlock+1:memberSch.endBlock})">Next</a></li>
+							</ul>
+						</div>
 						</div>
 					</div>
 				</div>

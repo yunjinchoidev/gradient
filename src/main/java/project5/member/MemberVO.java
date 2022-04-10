@@ -18,6 +18,7 @@ public class MemberVO {
 	private int pricing;
 	private int visitcnt;
 	private int cnt;
+	private int score;
 
 	private List<String> emailList;
 
@@ -180,6 +181,30 @@ public class MemberVO {
 	
 	
 	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
+			String email, int status, int pricing, int visitcnt, int cnt, int score, List<String> emailList,
+			MultipartFile[] uploadFile, ArrayList<String> fnames, int fno, List<AuthVO> authList) {
+		super();
+		this.memberkey = memberkey;
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.auth = auth;
+		this.projectkey = projectkey;
+		this.deptno = deptno;
+		this.email = email;
+		this.status = status;
+		this.pricing = pricing;
+		this.visitcnt = visitcnt;
+		this.cnt = cnt;
+		this.score = score;
+		this.emailList = emailList;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+		this.fno = fno;
+		this.authList = authList;
+	}
+
+	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
 			String email, int status, int pricing, int visitcnt, int cnt) {
 		super();
 		this.memberkey = memberkey;
@@ -328,5 +353,17 @@ public class MemberVO {
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
 	}
+
+	public int getScore() {
+		return score;
+	}
+
+	public void setScore(int score) {
+		this.score = score;
+	}
+	
+	
+	
+	
 
 }
