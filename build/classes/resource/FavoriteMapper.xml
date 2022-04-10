@@ -6,17 +6,17 @@
 
 <mapper namespace="project5.favorite.FavoriteDao">
 	<select id="list" resultType="project5.favorite.FavoriteVO">
-		select * from favorite
+		select * from favorite where
+		status=1
 	</select>
 
 	<update id="insert" parameterType="String">
-		INSERT into FAVORITE VALUES (seq_FAVORITE.nextval, #{menubar}, 1)
+		update FAVORITE set status=1
+		where menubar = #{menubar}
 	</update>
 
-	<select id="delete" parameterType="int">
-		delete from favorite
-		where
-		FAVORITEkey = #{FAVORITEkey}
+	<select id="delete" parameterType="String">
+		update FAVORITE set status=0 where menubar = #{menubar}
 	</select>
 
 </mapper>

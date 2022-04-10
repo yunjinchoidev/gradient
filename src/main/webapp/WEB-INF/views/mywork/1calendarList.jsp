@@ -73,7 +73,7 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>내 작업 목록</h3>
+								<h3><span style="color:red">${member.name }</span>님의 작업 목록 - 캘린더 작업</h3>
 						<p class="text-subtitle text-muted">당신이 해야만 하는 일입니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">

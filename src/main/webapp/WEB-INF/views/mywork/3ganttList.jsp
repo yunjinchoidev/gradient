@@ -73,7 +73,7 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>내 작업 목록</h3>
+						<h3><span style="color:red">${member.name }</span>님의 작업 목록 - 간트 작업</h3>
 						<p class="text-subtitle text-muted">당신이 해야만 하는 일입니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
@@ -114,7 +114,7 @@
 
 
 												<form id="frm01" class="form"
-													action="${path}/myWork1.do?memberkey=${member.memberkey}"
+													action="${path}/myWork3.do?memberkey=${member.memberkey}"
 													method="post">
 													<div
 														class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">
@@ -259,7 +259,7 @@
 
 												<c:forEach var="list" items="${list }" varStatus="var">
 													<li class="media mail-read"
-														onclick="window.open('/project5/myWorkCalendarGet.do?id=${list.id}','팝업창','width=500, height=610, left=400, top=200');">
+														onclick="window.open('/project5/myWorkGanttGet.do?id=${list.id}','팝업창','width=500, height=610, left=400, top=200');">
 														<div class="user-action">
 															<div class="checkbox-con me-3">
 																<div class="checkbox checkbox-shadow checkbox-sm">
@@ -291,12 +291,12 @@
 															<div class="user-details">
 
 																<div class="mail-items">
-																	<span class="list-group-item-text text-truncate">[${list.id}]${list.id}</span>
+																	<span class="list-group-item-text text-truncate">[${list.id}]${list.text}</span>
 																</div>
 
 																<div class="mail-meta-item">
 																	<span class="float-right"> <span
-																		class="mail-date">${list.id }</span>
+																		class="mail-date">${list.start_date }~${list.duration }</span>
 																	</span>
 																</div>
 
@@ -304,10 +304,10 @@
 
 															<div class="mail-message">
 																<p class="list-group-item-text truncate mb-0">
-																	${list.id }</p>
+																	</p>
 																<div class="mail-meta-item">
 																	<span class="float-right"> <span
-																		class="bullet bullet-success bullet-sm">${list.id }</span>
+																		class="bullet bullet-success bullet-sm"></span>
 																	</span>
 																</div>
 															</div>

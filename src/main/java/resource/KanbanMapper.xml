@@ -15,10 +15,10 @@
 
 
 
-	<select id="listWork"
-		resultType="project5.kanban.KanbanVO">
+	<select id="listWork" resultType="project5.kanban.KanbanVO">
 		select * from
-		kanban where status='work'
+		kanban where
+		status='work'
 	</select>
 
 	<select id="individualMemberList"
@@ -44,7 +44,8 @@
 	<delete id="delete" parameterType="project5.kanban.KanbanVO">
 		delete from
 		kanban
-		where text=#{text}
+		where
+		text=#{text}
 		and content=#{content}
 	</delete>
 
@@ -55,7 +56,7 @@
 		status=#{status},
 		text =#{text},
 		tags = #{tags}
-		where 
+		where
 		projectkey=#{projectkey}
 		and content=#{content}
 	</update>
@@ -67,6 +68,56 @@
 		where text=#{text}
 		and content=#{content}
 	</update>
+
+
+
+
+
+	<!-- 전체 데이터 수 가져오기 -->
+	<select id="totCnt" parameterType="project5.kanban.KanbanSch"
+		resultType="int">
+		SELECT
+		count(*) FROM kanban WHERE projectkey IN (
+		SELECT
+		projectkey FROM
+		member_project WHERE memberkey=#{memberkey})
+	</select>
+
+
+	<!-- 리스트를 불러오기 -->
+	<select id="listWithPaging"
+		resultType="project5.kanban.KanbanVO"
+		parameterType="project5.kanban.KanbanSch">
+		select *
+		from (
+		select rownum cnt,g.*
+		FROM
+		kanban g
+		where
+		projectkey IN (
+		SELECT projectkey FROM member_project WHERE
+		memberkey=#{memberkey})
+		)
+		where cnt between
+		#{start} and #{end}
+		order by
+		id
+	</select>
+
+
+
+
+
+
+	<select id="get" parameterType="int"
+		resultType="project5.kanban.KanbanVO">
+		select * from kanban where id=#{id}
+	</select>
+
+
+
+
+
 
 
 

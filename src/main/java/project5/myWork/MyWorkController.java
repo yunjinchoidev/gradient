@@ -14,6 +14,7 @@ import project5.gantt.GanttSch;
 import project5.gantt.GanttService;
 import project5.gantt.GanttVO;
 import project5.kanban.KanbanController;
+import project5.kanban.KanbanSch;
 import project5.kanban.KanbanService;
 import project5.kanban.KanbanVO;
 
@@ -44,8 +45,8 @@ public class MyWorkController {
 	
 	// 2. 칸반 리스트
 	@RequestMapping("/myWork2.do")
-	public String myworkKanaban(Model d, int memberkey) {
-		d.addAttribute("list", service2.individualMemberList(memberkey));
+	public String myworkKanaban(Model d, KanbanSch sch) {
+		d.addAttribute("list", service2.kanbanlistWithPaging(sch));
 		d.addAttribute("menubarList", service4.menubarList());
 		return "WEB-INF\\views\\mywork\\2kanbanList.jsp";
 	}
@@ -57,8 +58,9 @@ public class MyWorkController {
 	// 3. 간트 리스트
 	@RequestMapping("/myWork3.do")
 	public String myworkGantt(Model d, GanttSch sch) {
-		d.addAttribute("list", service3.listWithPaging(sch));
+		d.addAttribute("list", service3.ganttlistWithPaging(sch));
 		d.addAttribute("menubarList", service4.menubarList());
+		//return "pageJsonReport";
 		return "WEB-INF\\views\\mywork\\3ganttList.jsp";
 	}
 
@@ -83,7 +85,7 @@ public class MyWorkController {
 	@RequestMapping("/myWork6.do")
 	public String myWorkFileBox(Model d, int memberkey) {
 		d.addAttribute("menubarList", service4.menubarList());
-		return "WEB-INF\\views\\mywork\\6fileBox.jsp";
+		return "WEB-INF\\views\\mywork\\4fileBox.jsp";
 	}
 	
 	
@@ -131,11 +133,13 @@ public class MyWorkController {
 
 	@RequestMapping("/myWorkKanbanGet.do")
 	public String myWorkKanbanGet(Model d, KanbanVO vo) {
+		d.addAttribute("get", service2.get(vo.getId()));
 		return "WEB-INF\\views\\mywork\\kanbanGet.jsp";
 	}
 
-	@RequestMapping("/myWorkganttGet.do")
+	@RequestMapping("/myWorkGanttGet.do")
 	public String myWorkganttGet(Model d, GanttVO vo) {
+		d.addAttribute("get", service3.get(vo.getId()));
 		return "WEB-INF\\views\\mywork\\ganttGet.jsp";
 	}
 

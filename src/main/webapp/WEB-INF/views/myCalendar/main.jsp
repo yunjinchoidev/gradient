@@ -408,7 +408,6 @@ document.addEventListener('DOMContentLoaded', function() {
 											<input type="file" name='uploadFile' multiple>
 										</div>
 										<div class='uploadResult'>
-										<h2>rr</h2>
 										</div>
 									</div>
 									<!--  end panel-body -->

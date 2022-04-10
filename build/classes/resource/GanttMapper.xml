@@ -97,8 +97,8 @@
 
 	<!-- 리스트를 불러오기 -->
 	<select id="listWithPaging"
-		resultType="project5.fullCalendar.Calendar"
-		parameterType="project5.fullCalendar.CalendarSch">
+		resultType="project5.gantt.GanttVO"
+		parameterType="project5.gantt.GanttSch">
 		select *
 		from (
 		select rownum cnt,g.*
@@ -111,6 +111,11 @@
 		where cnt between
 		#{start} and #{end}
 		order by id
+	</select>
+
+
+	<select id="get" parameterType="int" resultType="project5.gantt.GanttVO">
+		select * from gantt where id=#{id}
 	</select>
 
 

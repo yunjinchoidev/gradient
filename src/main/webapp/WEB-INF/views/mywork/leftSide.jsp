@@ -33,12 +33,13 @@
 <script>
 
 				function absoulte(data){
-					alert("즐겨찾기에 추가합니다");
 						var menubarkey;
-				  		console.log("menubarkey"+menubarkey);
-						var menubarkeyValue =$(data).text().substr(2,1);
+				  		//console.log("menubarkey"+menubarkey);
+						//var menubarkeyValue =$(data).text().substr(2,1);
+						var menubarkeyValue =$(data).text().substr(4);
+						alert(menubarkeyValue+"를 즐겨찾기에 추가합니다");
 						console.log("menubarkeyValue"+menubarkeyValue);
-						var data = { menubarkey :menubarkeyValue};
+						var data = { menubar :menubarkeyValue};
 						console.log(data);
 					    $.ajax({
 					      url: '/project5/favoriteInsert.do',
@@ -47,7 +48,6 @@
 					      dataType:'json',
 					        success: function(result){
 					        console.log(result)
-					        		alert("성공")
 					        		 location.reload();
 					      },
 					      error: function(result){
@@ -62,8 +62,8 @@
 
 				// 즐겨찾기 해제
 				function cancel(data){
-						var favoritekey;
-				  		console.log("favoritekey"+favoritekey);
+						console.log($(data).text().substr(3));
+				  		/*
 				  		if (parseInt($(data).text())>=100){
 				  			favoritekey = parseInt($(data).text().substr(0,3));
 				  		} else if (parseInt($(data).text())>=10){
@@ -71,9 +71,12 @@
 				  		}else{
 					  		favoritekey = parseInt($(data).text().substr(0,1));
 				  		}
-				  		
-						console.log("favoritekey"+favoritekey);
-						var data = { favoritekey :favoritekey};
+				  		*/
+				  		var memubar;
+				  		var menubarkeyValue =$(data).text().substr(2);
+						alert(menubarkeyValue+"를 즐겨찾기에서 해제합니다");
+						console.log("menubarkeyValue"+menubarkeyValue);
+						var data = { menubar :menubarkeyValue};
 						console.log(data);
 					    $.ajax({
 					      url: '/project5/favoriteDelete.do',
@@ -124,9 +127,9 @@ $(document).ready(function(){
 					str+="<div style='cursor:pointer' >"
 					str+="<span class='fonticon-wrap d-inline me-3' style='display: inline-block;' >"
 					str+="😃<a  onclick='cancel(this)' class='list-group-item' style='font-size: 15px; font-weight: bolder; display: inline-block;' >"
-					str +=result.list[i].favoritekey+")</a>"
-					str +="<a onclick='/project5/myworkCalendar.do?memberkey=${member.memberkey }' class='list-group-item'"
-                    str+="style='font-size: 15px; font-weight: bolder; display: inline-block;' id='btn1'>"+ result.list[i].menubar+"</a> "
+					str +=result.list[i].favoritekey+")"+ result.list[i].menubar+"</a>"
+					//str +="<a onclick='/project5/myworkCalendar.do?memberkey=${member.memberkey }' class='list-group-item'"
+                    //str+="style='font-size: 15px; font-weight: bolder; display: inline-block;' id='btn1'>"+ result.list[i].menubar+"</a> "
                     str+="</span></div>"
 					favoriteListHtml.append(str)	;
 				}
@@ -200,11 +203,11 @@ $(document).ready(function(){
 							<c:forEach var="list" items="${menubarList }"> 				
 								<div style="cursor:pointer">
 									<a class="list-group-item"
-									style="font-size: 20px; font-weight: bolder; display: inline-block; color: red" onclick='absoulte(this)' ">✔	${list.menubarkey})</a>
+									style="font-size: 15px; font-weight: bolder; display: inline-block; color: red" onclick='absoulte(this)' ">✔	${list.menubarkey})${list.title }</a>
 									
-									<a onclick="location.href='/project5/myWork${list.menubarkey }.do?memberkey=${member.memberkey }'"class="list-group-item"
-									style="font-size: 20px; font-weight: bolder; display: inline-block;" id="btn1">
-									${list.title }</a>
+									<a class="btn btn-danger" 
+									style="font-size: 10px; font-weight: bolder;" id="btn1"
+									onclick="location.href='/project5/myWork${list.menubarkey }.do?memberkey=${member.memberkey }'">이동</a>
 									
 								 </div>
 							</c:forEach>

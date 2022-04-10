@@ -38,6 +38,9 @@
 		select count(*)
 		from calendars
 		where 1=1
+		AND projectkey IN (
+		SELECT projectkey FROM member_project WHERE memberkey=#{memberkey})
+		or memberkey=#{memberkey}
 		<if test="title!=null and title!=''">
 			and title like '%'||#{title}||'%'
 		</if>
@@ -62,7 +65,9 @@
 		calendars c
 		where
 		1=1
-		AND memberkey=#{memberkey}
+		AND projectkey IN (
+		SELECT projectkey FROM member_project WHERE memberkey=#{memberkey})
+		or memberkey=#{memberkey}
 		<if test="title!=null and title!=''">
 			and title like '%'||#{title}||'%'
 		</if>

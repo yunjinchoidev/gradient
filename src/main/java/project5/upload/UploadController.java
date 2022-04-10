@@ -191,8 +191,7 @@ public class UploadController {
 	@PostMapping("/calImg.do")
 	public String calImg(String id, Model d) {
 		int idN = Integer.parseInt(id);
-		System.out.println("/aaaa.do 진입");
-		System.out.println("memberkey:"+idN);
+		System.out.println("/calImg.do 진입");
 		List<FileInfoVO> list = service2.findbyfno(idN);
 		System.out.println("list" + list);
 		d.addAttribute("get", service2.findbyfno(idN));

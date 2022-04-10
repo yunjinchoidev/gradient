@@ -32,6 +32,14 @@
 <script
 	src="/project5/resources/dist/assets/vendors/simple-datatables/simple-datatables.js"></script>
 <script src="/project5/resources/dist/assets/js/main.js"></script>
+<script>
+function downFile(fname){
+	alert($(fname).text())
+	if(confirm("다운로드할 파일:"+$(fname).text())){
+		location.href="/project5/download.do?fname="+$(fname).text();
+	}
+}
+</script>
 
 <body>
 
@@ -100,10 +108,10 @@
 			      dataType:'json',
 			        success: function(result){
 			          console.log(result); 
+			          console.log(result.get); 
 			          console.log(result.get[0].fname); 
 			          console.log("파일 불러오기 완료")
-					  showUploadResult2(result.get[0]);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
-					  console.log(result.fname)
+					  showUploadResult2(result.get[0].fname);//////////////////////////////////////////////////////////////////////// 이곳에서 함수 호출 
 			      },
 			      error: function(result){
 			    	  console.log(memberkey)
@@ -114,20 +122,22 @@
 			    
 				// 이미지 클라리언트 딴에 띄우는 합수
 				// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
-			  function showUploadResult2(uploadResultArr){
-				    if(!uploadResultArr || uploadResultArr.length == 0){ return; }
+			  function showUploadResult2(obj){
+			    	var k = obj.substr(-3)
+			    	console.log(k)
 				    var uploadUL = $("#myface");
 				    var str ="";
-				    $(uploadResultArr).each(function(i, obj){
-				    		console.log("obj"+obj);
-							var fileCallPath =  encodeURIComponent(obj.fname);
+				    if(k=="png"||k=="jpg"){
+							var fileCallPath =  encodeURIComponent(obj);
 							console.log(fileCallPath);
 							str = "<img src='/project5/display2.do?fileName="+fileCallPath+"' id='mymy' style='width:300px; height: 300px;'>";
 							console.log("str"+str)
-							$("#not").hide()
-							$("#mymy").show()
-						})
-				    uploadUL.append(str);
+				    		uploadUL.append(str);
+				    }else{
+				    	str += "<img src='/project5/resources/attach.png' style='width:300px; height: 300px;'><h2 onclick='downFile(this)' style='cursor:pointer; color:red'>"
+				    	str += obj +"</h2>";
+				    	uploadUL.append(str);
+				    }
 				  }
 			///////////////////////////////////////////////////////////////
 			
@@ -141,8 +151,6 @@
 		});
 		</script>
 
-
-
 						<div class="form-group mt-2" style="width:300px; height: 300px;">
 							<div class="custom-file" style="width:300px; height: 300px;">
 								<label class="custom-file-label" for="emailAttach">Attach
@@ -153,22 +161,10 @@
 							</div>
 						</div>
 
-
-
-
 						<br>
 					</div>
 				</div>
 
-
-
-
-				<div class="card-footer d-flex justify-content-end pt-0">
-					<button type="reset"
-						class="btn btn-light-secondary cancel-btn mr-1">
-						<span>닫기</span>
-					</button>
-				</div>
 			</form>
 			<!-- form start end-->
 

@@ -74,7 +74,7 @@
 					if(result.MessageListbyRoomkey[0]==null){
 						alert("채팅 메시지가 없네요")
 					}else{
-						$("#chatMessageArea").text("");
+						$(".chat-box").text("");
 						alert("채팅을 출력합니다.")
 					console.log(result.MessageListbyRoomkey.legth)
 					for(var i=0; i<result.MessageListbyRoomkey.length; i++){
@@ -103,10 +103,6 @@
 					}
 				}	
 			})
-		
-		
-		
-		
 	}
 	
 	
@@ -146,12 +142,12 @@
 			var memberkey = "${memberk.memberkey}"
 			$("#newChatBtn").click(function(){
 			confirm("1:1 대화를 하시겠습니까?")
-			location.href="/project5/invitationList.do?memberkey="+memberkey
+			location.href="/project5/chattingInvitationList.do?memberkey="+memberkey
 			})
 			
 			$("#newGroupChatBtn").click(function(){
 			confirm("그룹 대화를 하시겠습니까?")
-			location.href="/project5/invitationList.do?memberkey="+memberkey
+			location.href="/project5/chattingInvitationList.do?memberkey="+memberkey
 			})
 		
 		
@@ -335,7 +331,6 @@
 							str += "<p class='text-small mb-0 text-white'>"+msg+"</p></div>"
 							str += " <p class='small text-muted'>"+today.toLocaleDateString()+"["+id+"]"+"<br>"+today.toLocaleTimeString() +"</p>"
 							str += "	</div></div>"
-						
 							//console.log("메시지 보내기 :::::::::::::::" + str);
 							wsocket.send("msg:" + str);
 							$("#msg").val("");
@@ -357,111 +352,6 @@
 								$("#msg").val("");
 								$("#msg").focus();
 							}
-							
-							
-							
-							
-							// 이미지 보내기
-						function sendMsgImg(obj) {
-							if(obj.image){
-								var fileCallPath =  encodeURIComponent( obj.uploadPath+ "/"+obj.uuid +"_"+obj.fileName);
-								var go = "/project5/display.do?fileName="+fileCallPath;
-								console.log(fileCallPath)
-							}else{
-								var fileCallPath =  encodeURIComponent( obj.uploadPath+"/"+ obj.uuid +"_"+obj.fileName);			      
-							    var fileLink = fileCallPath.replace(new RegExp(/\\/g),"/");
-								var go2 = "<img src='/project5/resources/img/attach.png'>";
-							}
-							
-							var id = $("#id").val();
-							var msg = $("#msg").val();
-							// message를 보내는 처리..서버의 handler의  handleTextMessage()와 연동
-							//wsocket.send("msg:"+id+":"+msg);
-							var str = "";
-							str += "<div class='chat-message-right pb-4'>"
-							str += "<div>"
-							str += "<img src='https://bootdey.com/img/Content/avatar/avatar1.png' class='rounded-circle mr-1 myFace' alt='Chris Wood' width='40' height='40'>"
-							str += "<div class='text-muted small text-nowrap mt-2'>"+today.toLocaleDateString()+"<br>"+today.toLocaleTimeString() +"</div>"
-							str += "</div>"
-							str += "<div class='flex-shrink-1 bg-light rounded py-2 px-3 mr-3'>"
-							str += "<div class='font-weight-bold mb-1'>"	+ $("#id").val() + "</div>"
-							str += "이미지를 전송합니다.<br><div style='margin : 0 auto'>"
-							str += "<img src='"+go+"' style='width:50px; height:50px;'></div>"
-							str += "</div>"
-							str += "</div>"
-							//console.log("메시지 보내기 :::::::::::::::" + str);
-							wsocket.send("msg:" + str);
-							$("#msg").val("");
-							$("#msg").focus();
-						}
-						
-			
-						
-						
-						
-						
-						
-						
-						
-						
-						  var regex = new RegExp("(.*?)\.(exe|sh|zip|alz)$");
-						  var maxSize = 5242880; //5MB
-					  
-						  function checkExtension(fileName, fileSize){
-						    if(fileSize >= maxSize){
-						      alert("파일 사이즈 초과");
-						      return false;
-						    }
-						    if(regex.test(fileName)){
-						      alert("해당 종류의 파일은 업로드할 수 없습니다.");
-						      return false;
-						    }
-						    return true;
-						  }
-						
-						  
-						  
-						  
-						  
-						$("input[type='file']").change(function(e){
-							var formData = new FormData();
-							var inputFile = $("input[name='fileInfo']");
-							var files = inputFile[0].files;
-							
-							for(var i = 0; i < files.length; i++){
-							if(!checkExtension(files[i].name, files[i].size) ){
-								return false;
-							}
-								formData.append("uploadFile", files[i]);
-							}
-							
-										// 화면단에서 바로 볼수 있게 하기 위해서 사용 + 파일저장
-										$.ajax({
-										url: '/project5/uploadAjaxAction.do',
-										processData: false, 
-										contentType: false,
-										data:formData,
-										type: 'POST',
-										dataType:'json',
-										success: function(result){
-											  console.log("result"+result.list); 
-											  console.log("result"+result.list[0]); 
-											  // 함수 호출
-											  showUploadResult(result.list[0]);//함수 호출
-											  
-										},
-										error: function(result){
-											  console.log("파일 업로드 실패했습니다.");
-											  console.log(result); 
-										}
-										}); //$.ajax
-										
-										
-
-								});  
-
-
-
 
 									// 파일 업로드 시 파일 정보 띄우기
 									// 이미지 뷰단에 띄어주기 함수  
@@ -481,6 +371,8 @@
 											
 											
 									}
+									
+									
 						
 					});
 
@@ -507,18 +399,23 @@
 		
 		wsocket.onmessage = function(evt) {
 			var msg = evt.data;
+			console.log(msg)
+			console.log("wsocket.onmessage ")
 			if (msg.substring(0, 4) == "msg:") {
 				var revMsg = msg.substring(4)
-				$("#chatMessageArea").append(revMsg + "<br>");
-				var mx = parseInt($("#chatMessageArea").height())
-				$("#chatArea").scrollTop(mx);
+				$(".chat-box").append(revMsg + "<br>");
+				var mx = parseInt($(".chat-box").height())
+				var mx2 = parseInt($("#chatArea").height())
+				console.log(mx)
+				console.log(mx2)
+				$(".chat-box").scrollTop(1000000000000000);
 			}
 		}
-		
+	
 		// handler의 afterConnectionClose와 연동
 		wsocket.onclose = function() {
 			alert('접속 종료합니다.')
-			$("#chatMessageArea").text("");
+			$(".chat-box").text("");
 			$("#id").val("");
 			$("#id").focus();
 		}
@@ -546,10 +443,10 @@
     <hr>
 	    <a href="#" class="btn btn-primary"  id="enterBtn">소켓 ON</a>
 	    <a href="#" class="btn btn-danger"   id="exitBtn">소켓 OFF</a>
-	    <a href="#" class="btn btn-info"   id="exitBtn2">방 나가기</a>
+	    <a href="#" class="btn btn-danger"   id="exitBtn2">방 나가기</a>
 	    <a href="#" class="btn btn-success" id="newChatBtn" >1:1 대화</a>
-	    <!-- 
-	    <a href="#" class="btn btn-warning" id="newGroupChatBtn">단체 대화</a>
+	    <a href="#" class="btn btn-success" id="newGroupChatBtn">단체 대화</a>
+		<!-- 
 	    <a href="#" class="btn btn-dark" id="voteBtn">투표</a>
 	    -->
     <p class="text-white lead mb-4">
@@ -581,30 +478,27 @@
     
     
     <!--  채팅 공간 -->
-    <div class="col-7 px-0"  id="chatArea"> 
-      <div class="px-4 py-5 chat-box bg-white" id="chatMessageArea">
+    <div class="col-7 px-0"  id="chatArea" style="border:3px solid blue"> 
+      <div class="px-4 py-5 chat-box bg-white" style="border:3px solid red">
 
         <!-- Message-->
-
-
-
         <!--  Message-->
 
 
       </div>
 
-      <!-- Typing area -->
-      <form action="#" class="bg-light">
-        <div class="input-group">
-          <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
-           class="form-control rounded-0 border-0 py-4 bg-light" id="msg" >
-          <div class="input-group-append">
-          <!--  전송 버튼 -->
-            <button  type="button" class="btn btn-link"  id="sendBtn">
-             <i class="fa fa-paper-plane"></i></button>
-          </div>
-        </div>
-      </form>
+				      <!-- Typing area -->
+				      <form action="#" class="bg-light">
+				        <div class="input-group">
+				          <input type="text" placeholder="Type a message" aria-describedby="button-addon2"
+				           class="form-control rounded-0 border-0 py-4 bg-light" id="msg" >
+				          <div class="input-group-append">
+				          <!--  전송 버튼 -->
+				            <button  type="button" class="btn btn-link"  id="sendBtn">
+				             <i class="fa fa-paper-plane"></i></button>
+				          </div>
+				        </div>
+				      </form>
     </div>
     
     

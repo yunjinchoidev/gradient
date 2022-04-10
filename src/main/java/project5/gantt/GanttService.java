@@ -53,7 +53,7 @@ public class GanttService {
 	
 	
 	
-	public List<GanttVO> listWithPaging(GanttSch sch) {
+	public List<GanttVO> ganttlistWithPaging(GanttSch sch) {
 
 		// 1. 전체 라인 수
 		sch.setCount(dao.totCnt(sch));
@@ -101,6 +101,8 @@ public class GanttService {
 		return dao.totCnt(sch);
 	}
 
-	
+	public GanttVO get(int id) {
+		return dao.get(id);
+	}
 	
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import project5.fullCalendar.Calendar;
 import project5.fullCalendar.CalendarSch;
+import project5.kanban.KanbanVO;
 
 @Repository
 public interface GanttDao {
@@ -20,7 +21,7 @@ public interface GanttDao {
 	
 	public List<GanttVO> listWithPaging(GanttSch sch);
 	public int totCnt(GanttSch sch);
-	
+	public GanttVO get(int id);
 	
 
 }

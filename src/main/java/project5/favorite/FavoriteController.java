@@ -27,23 +27,17 @@ public class FavoriteController {
 	}
 
 	@RequestMapping("/favoriteInsert.do")
-	public String favoriteAdd(Model d, String menubarkey) {
-		service.insert(service2.menubarGet(Integer.parseInt(menubarkey)).getTitle());
-		
-		d.addAttribute("insertTitle",service2.menubarGet(Integer.parseInt(menubarkey)).getTitle());
+	public String favoriteAdd(Model d, String menubar) {
+		service.insert(menubar);
 		d.addAttribute("psc","favoriteInsertSuccess");
 		return "pageJsonReport";
 	}
-
-	
-	
-	
 	
 	
 	
 	@RequestMapping("/favoriteDelete.do")
-	public String favoriteDelete(Model d, String favoritekey) {
-		service.delete(favoritekey);
+	public String favoriteDelete(Model d, String menubar) {
+		service.delete(menubar);
 		d.addAttribute("psc","favoriteDeleteSuccess");
 		return "pageJsonReport";
 	}
