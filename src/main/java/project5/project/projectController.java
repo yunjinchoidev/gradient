@@ -84,9 +84,12 @@ public class projectController {
 	@RequestMapping("/projectManageInsert.do")
 	public String projectManageGet(Model d, ProjectVO vo) {
 		service.insert(vo);
-		return "forward:/projectManageMain.do";
+		return "WEB-INF\\views\\projectManage\\main.jsp";
 	}
 
+	
+	
+	
 	// 프로젝트 관리를 위한 프로젝트 리스트
 	@RequestMapping("/projectManageUpdate.do")
 	public String projectManageUpdate(Model d, ProjectVO vo) {
@@ -95,14 +98,28 @@ public class projectController {
 		return "WEB-INF\\views\\projectManage\\main.jsp";
 	}
 
+	
+	
+	
+	
+	
+	
+	
 	// 프로젝트 관리를 위한 프로젝트 상태 업데이트
-	@RequestMapping("/projectProgressUpdate.do")
+	@RequestMapping("/updateProjectProgress.do")
 	public String projectProgressUpdate(Model d, ProjectVO vo) {
 		service.progressUpdate(vo);
+		d.addAttribute("msg", "updateProjectProgress");
 		System.out.println("프로젝트 상황 업데이트 되었습니다.");
-		return "forward:/projectManageMain.do";
+		return "WEB-INF\\views\\projectManage\\main.jsp";
 	}
 
+	
+	
+	
+	
+	
+	
 	// 프로젝트 관리를 위한 프로젝트 업데이트폼
 	@RequestMapping("/projectManageDelete.do")
 	public String projectManageDelete(Model d, int projectkey) {

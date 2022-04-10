@@ -81,7 +81,6 @@ $("[name=curPage]").val(no);
 $("#frm01").submit();
 }
 		
-	});
 </script>
 
 

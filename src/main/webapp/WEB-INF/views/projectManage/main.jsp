@@ -14,6 +14,9 @@
 			.ready(
 					function() {
 
+						
+						
+						
 						//$("#progress").click(function(){
 						//	alert("프로젝트 진행 상태를 바꾸시겠습니까?");
 						//})
@@ -59,7 +62,7 @@
 												var fileCallPath = encodeURIComponent(obj.fname);
 												console.log(fileCallPath);
 												str += "<img src='/project5/display2.do?fileName="
-														+ fileCallPath + "'>";
+														+ fileCallPath + "' style='width:100px; height:80px; margin-left:30px;'>";
 												console.log("str : " + str)
 											})
 							uploadUL.append(str);
@@ -86,6 +89,12 @@
 		$("[name=curPage]").val(no);
 		$("#frm01").submit();
 	}
+	
+	
+	
+	
+	
+	
 </script>
 
 
@@ -130,19 +139,17 @@
 				
 					<div class="row">
 
-						<div class="col-6 col-lg-3 col-md-6">
+						<div class="col-6 col-lg-6 col-md-6">
 
 							<div class="card">
 								<div class="card-body px-3 py-4-5">
 									<div class="row">
-										<div class="col-md-4">
-											<div class="stats-icon purple">
-												<i class="iconly-boldShow"></i>
-											</div>
+										<div class="col-md-4" id="myface">
 										</div>
 										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">Profile Views</h6>
-											<h6 class="font-extrabold mb-0">112.000</h6>
+											<h6 class="text-muted font-semibold">${member.name }</h6>
+											<h6 class="font-extrabold mb-0">${member.auth }</h6>
+											<h6 class="font-extrabold mb-0">${member.email }</h6>
 										</div>
 									</div>
 								</div>
@@ -198,23 +205,6 @@
 										<div class="col-md-8">
 											<h6 class="text-muted font-semibold">Following</h6>
 											<h6 class="font-extrabold mb-0">80.000</h6>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="col-6 col-lg-3 col-md-6">
-							<div class="card">
-								<div class="card-body px-3 py-4-5">
-									<div class="row">
-										<div class="col-md-4">
-											<div class="stats-icon red">
-												<i class="iconly-boldBookmark"></i>
-											</div>
-										</div>
-										<div class="col-md-8">
-											<h6 class="text-muted font-semibold">Saved Post</h6>
-											<h6 class="font-extrabold mb-0">112</h6>
 										</div>
 									</div>
 								</div>
@@ -316,13 +306,13 @@
 															type="text" name="name" value="${projectSch.name}">
 														<button class="btn btn-info" type="submit">검색</button>
 														<a class="btn btn-danger" style="text-align: right"
-															href="/project5/creatProject.do"
+															href="/project5/projectManageInsertForm.do"
 															>프로젝트 만들기
 															</a>
 															
 															
 															
-														<a class="btn btn-danger" style="text-align: right"
+														<a class="btn btn-primary" style="text-align: right"
 															data-bs-toggle="modal" data-bs-target="#inlineForm">상태 변경
 															</a>
 															
@@ -371,13 +361,17 @@
 															data-bs-toggle="modal" data-bs-target="#inlineForm">
 															<c:if test="${list.progress eq '대기'}">
 																<span class="badge bg-primary">대기</span>
-															</c:if> <c:if test="${list.progress eq '초기'}">
+															</c:if>
+															 <c:if test="${list.progress eq '초기'}">
 																<span class="badge bg-secondary">초기</span>
-															</c:if> <c:if test="${list.progress eq '중기'}">
+															</c:if> 
+															<c:if test="${list.progress eq '중기'}">
 																<span class="badge bg-success">중기</span>
-															</c:if> <c:if test="${list.progress eq '말기'}">
-																<span class="badge bg-danger">말기</span>
-															</c:if> <c:if test="${list.progress eq '종료'}">
+															</c:if> 
+															<c:if test="${list.progress eq '후기'}">
+																<span class="badge bg-danger">후기</span>
+															</c:if> 
+															<c:if test="${list.progress eq '종료'}">
 																<span class="badge bg-dark">종료</span>
 															</c:if>
 														</td>
@@ -717,56 +711,82 @@
 	
 	
 	
-	
-	
-	<div class="modal fade" id="inlineForm" 
-	tabindex="-1" role="dialog" 
-	aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">일정등록</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      
-		<form id="frm01" class="form" method="post" enctype="multipart/form-data" >
-		 <input type="hidden" name="id" value="0"/>
-		 
-	        <input type="hidden" name="projectkey" value="${project.projectkey}" >
-	        <input type="hidden" class="form-control" placeholder="" name="memberkey" value="${member.memberkey }" >
-	     
-	     <div class="row">
-	      <div class="col">
-	        <input type="text" class="form-control" placeholder="${project.name }" readonly="readonly">
-	      </div> 
-	     </div>
-	     
-	     <div class="row">
-	      <div class="col">
-	        <input type="text" class="form-control" placeholder="제목" name="title">
-	      </div> 
-	     </div>
-	     
-	      
-	      
-	     </div>
-
-	    </form> 
-      </div>
-      <div class="modal-footer">
-
-        <button type="button" id="regBtn" class="btn btn-primary">일정등록</button>
-        <button type="button" id="uptBtn" class="btn btn-info">일정수정</button>
-        <button type="button" id="delBtn" class="btn btn-danger">일정삭제</button>
-         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>       
-      </div>
+<!-- 등록 Modal -->
+  	<div class="modal fade text-left" id="inlineForm" tabindex="-1" role="dialog"
+       	aria-labelledby="myModalLabel33" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel33">프로젝트 상태 변경</h4>
+                <button type="button" class="close" data-bs-dismiss="modal"
+                    aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <form id="updateProjectProgress" action="/project5/updateProjectProgress.do">
+            	<!-- 모달 입력 요소 영역 -->
+                <div class="modal-body" style="margin:10px;">
+                <div id="title" style="flex:4;">
+                    		<input class="form-control" type="text" name="title" placeholder="상태 변경합니다" readonly="readonly">
+                    	</div>
+                	<!-- 프로젝트 select box -->
+                	<div id="prjselect">
+                    	<select class="form-select" style="text-align:center;" name="projectkey">
+                    		<c:forEach var="prlist" items="${pjList}">
+                    			<option value="${prlist.projectkey}">${prlist.projectkey} : ${prlist.name}</option>
+                    		</c:forEach>
+                    	</select>
+                    </div>
+                    
+                    <!-- 중요도, 제목 공통 영역 -->
+                    <div id="headerdiv" style="display:flex;margin-top: 10px;">
+                    <!-- 중요도 select box -->
+                    	<div id="importselect" style="flex:1;margin-right:5px;">
+                    		<select class="form-select" name="progress">
+	                    		<option value="대기">대기</option>
+	                    		<option value="초기">초기</option>
+	                    		<option value="중기">중기</option>
+	                    		<option value="후기">후기</option>
+	                    		<option value="종료">종료</option>
+                    		</select>
+                    	</div>
+                    <!-- 제목 -->
+                    </div>
+                    
+                </div>
+                <!-- 버튼 영역 -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light-secondary"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-x d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">닫기</span>
+                    </button>
+                    
+                    
+                    <button type="button" id="regBtns" class="btn btn-primary ml-1"
+                        data-bs-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">등록</span>
+                    </button>
+                    
+                </div>
+                
+                <script>
+                $(document).ready(function(){
+                	$("#regBtns").click(function(e){
+                		if(confirm("정말 수정하시겠습니까?")){
+                			$("#updateProjectProgress").submit()
+                		}else{
+                			e.preventDefault()
+                		}
+                	})
+                })
+                </script>
+                
+            </form>
+        </div>
     </div>
-  </div>
-	
-	
+</div>
 	
 	
 	
