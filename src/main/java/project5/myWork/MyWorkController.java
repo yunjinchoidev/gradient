@@ -10,6 +10,7 @@ import project5.fullCalendar.A10_FullCalService;
 import project5.fullCalendar.Calendar;
 import project5.fullCalendar.CalendarSch;
 import project5.gantt.GanttController;
+import project5.gantt.GanttSch;
 import project5.gantt.GanttService;
 import project5.gantt.GanttVO;
 import project5.kanban.KanbanController;
@@ -39,6 +40,8 @@ public class MyWorkController {
 		return "WEB-INF\\views\\mywork\\1calendarList.jsp";
 	}
 
+	
+	
 	// 2. 칸반 리스트
 	@RequestMapping("/myWork2.do")
 	public String myworkKanaban(Model d, int memberkey) {
@@ -47,15 +50,51 @@ public class MyWorkController {
 		return "WEB-INF\\views\\mywork\\2kanbanList.jsp";
 	}
 
+	
+	
+	
+	
 	// 3. 간트 리스트
 	@RequestMapping("/myWork3.do")
-	public String myworkGantt(Model d, int memberkey) {
-		d.addAttribute("list", service3.currentGanttbymkey(memberkey));
+	public String myworkGantt(Model d, GanttSch sch) {
+		d.addAttribute("list", service3.listWithPaging(sch));
+		d.addAttribute("menubarList", service4.menubarList());
 		return "WEB-INF\\views\\mywork\\3ganttList.jsp";
 	}
 
 	
-	// 
+	// 긴급
+	@RequestMapping("/myWork4.do")
+	public String myWork4(Model d, int memberkey) {
+		d.addAttribute("menubarList", service4.menubarList());
+		return "WEB-INF\\views\\mywork\\4emergency.jsp";
+	}
+	// 완료된업무
+	@RequestMapping("/myWork5.do")
+	public String myWork5(Model d, int memberkey) {
+		d.addAttribute("menubarList", service4.menubarList());
+		return "WEB-INF\\views\\mywork\\5completed.jsp";
+	}
+	
+	
+	
+	
+	// 파일함
+	@RequestMapping("/myWork6.do")
+	public String myWorkFileBox(Model d, int memberkey) {
+		d.addAttribute("menubarList", service4.menubarList());
+		return "WEB-INF\\views\\mywork\\6fileBox.jsp";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/myworkCalendar7days.do")
 	public String myworkCalendar7days(Model d, int memberkey) {
 		d.addAttribute("list", service3.individualMemberList(memberkey));
@@ -78,6 +117,12 @@ public class MyWorkController {
 	
 	
 	
+	
+	
+	
+	
+	
+	
 	@RequestMapping("/myWorkCalendarGet.do")
 	public String myWorkModal(Model d, Calendar vo) {
 		d.addAttribute("get", service.get(vo.getId()));
@@ -95,26 +140,10 @@ public class MyWorkController {
 	}
 
 	
-	// 긴급
-	@RequestMapping("/myWork4.do")
-	public String myWork4(Model d, int memberkey) {
-		d.addAttribute("menubarList", service4.menubarList());
-		return "WEB-INF\\views\\mywork\\4emergency.jsp";
-	}
-	// 완료된업무
-	@RequestMapping("/myWork5.do")
-	public String myWork5(Model d, int memberkey) {
-		d.addAttribute("menubarList", service4.menubarList());
-		return "WEB-INF\\views\\mywork\\5completed.jsp";
-	}
+
 	
 	
-	// 파일함
-	@RequestMapping("/myWork6.do")
-	public String myWorkFileBox(Model d, int memberkey) {
-		d.addAttribute("menubarList", service4.menubarList());
-		return "WEB-INF\\views\\mywork\\6fileBox.jsp";
-	}
+
 
 	@RequestMapping("/myFileListInOutput.do")
 	public String myFileListInOutput(Model d, int memberkey) {

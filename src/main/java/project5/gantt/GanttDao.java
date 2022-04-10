@@ -3,6 +3,9 @@ package project5.gantt;
 import java.util.List;
 import org.springframework.stereotype.Repository;
 
+import project5.fullCalendar.Calendar;
+import project5.fullCalendar.CalendarSch;
+
 @Repository
 public interface GanttDao {
 	public List<GanttVO> list(int projectkey);
@@ -14,5 +17,10 @@ public interface GanttDao {
 	public void delete(int id);
 	public void update(GanttVO vo);
 	public void update2(GanttVO vo);
+	
+	public List<GanttVO> listWithPaging(GanttSch sch);
+	public int totCnt(GanttSch sch);
+	
+	
 
 }

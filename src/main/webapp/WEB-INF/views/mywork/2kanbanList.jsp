@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>GRADIENT-나의 작업</title>
 
 <script scr="http://code.jquery.com/jquery-1.11.3.min.js"></script>
 <link rel="preconnect" href="https://fonts.gstatic.com">

@@ -57,6 +57,15 @@
 		if (psc == "logout") {
 			alert("로그아웃 되었습니다.");
 		}
+		
+			$("#selectLan").val("${param.lang}")
+			$("#selectLan").change(function(){
+				if($(this).val()!=""){
+					location.href="${path}/choiceLan2.do?lang="+$(this).val();
+				}else{
+					location.href="${path}/choiceLan2.do?lang=korean"
+				}
+			});
 	})
 </script>
 </head>
@@ -78,6 +87,17 @@
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
+					<div style="margin-bottom: 40px;">
+						<h2 style="display: inline-block;">  <spring:message code="multilang"/></h2>
+						<select class="form-control" id="selectLan" style="width: 30%; display: inline-block;">
+						  	<option value="korean" selected><spring:message code="korean"/></option>
+						  	<option value="english"><spring:message code="english"/></option>
+						  		<option value="chlange"><spring:message code="chlange"/></option>
+						  	<option value="japanese"><spring:message code="japanese"/></option>
+						  	<option value="chinese"><spring:message code="chinese"/></option>
+						  </select>
+						  </div>
+						  <hr>
 							<h1>	안녕하세요?</h1>
 						<h3>GRADIENT에 방문하신 여러분을 환영합니다</h3>
 						<p class="text-subtitle text-muted"> <br>더  유능하게 <br>더  프로페셔널하게 <br>더 섬세하게</p>

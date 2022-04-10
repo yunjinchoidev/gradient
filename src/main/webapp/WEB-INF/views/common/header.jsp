@@ -389,19 +389,21 @@
 									<spring:message code="myCalendar"/></span>
 						</a></li>
 
-
+						<li class="sidebar-item  " id="mywork"><a href="#"
+							class='sidebar-link'> <i class="bi bi-puzzle"></i></i> <span>
+									<spring:message code="myWork" />
+							</span>
+						</a></li>
 
 						<li class="sidebar-item  " style="cursor: pointer;"><a
-							class='sidebar-link' id="chatting">  
-							<i class="bi bi-chat-dots-fill"></i>
-							<span>
-									<spring:message code="chatting"/></span>
-							</a>
-						</li>
+							class='sidebar-link' id="chatting"> <i
+								class="bi bi-chat-dots-fill"></i> <span> <spring:message
+										code="chatting" /></span>
+						</a></li>
 
 
 
-					<!-- 
+						<!-- 
 						<li class="sidebar-item  has-sub"><a href="#"
 							class='sidebar-link'> <i class="bi bi-chat-dots-fill"></i> <span>의사소통</span>
 						</a>
@@ -416,11 +418,7 @@
 
 
 
-						<li class="sidebar-item  " id="mywork"><a
-							href="#"
-							class='sidebar-link'> <i class="bi bi-puzzle"></i></i> <span>
-									<spring:message code="myWork"/></span>
-						</a></li>
+					
 
 
 						<li class="sidebar-item  "><a href="/project5/notice.do"

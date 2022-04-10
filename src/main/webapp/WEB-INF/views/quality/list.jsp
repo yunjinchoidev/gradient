@@ -39,7 +39,6 @@
 	
 	
 	function goPage(no) {
-		alert("페이지 이동")
 		// 현재 페이지에 입력한 no를 대입함으로써 페이지 이동 처리!
 		$("[name=curPage]").val(no);
 		$("#frm01").submit();

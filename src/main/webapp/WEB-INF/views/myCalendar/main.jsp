@@ -110,7 +110,6 @@ document.addEventListener('DOMContentLoaded', function() {
     	  console.log("event"+arg.event)
     	  console.log("event"+arg.event._def.publicId)
 		  formData(arg.event);	  
-    	  alert("GG")
     	  var id=arg.event._def.publicId;
     	  var data={id:id}
     	  $.ajax({

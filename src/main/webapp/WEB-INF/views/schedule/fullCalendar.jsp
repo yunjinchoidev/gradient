@@ -158,8 +158,28 @@ document.addEventListener('DOMContentLoaded', function() {
       
       // 조회
       eventClick: function(arg) {
-    	  console.log(arg.event)
-		  formData(arg.event);	      
+    	  console.log("event"+arg.event)
+    	  console.log("event"+arg.event._def.publicId)
+		  formData(arg.event);	  
+    	  var id=arg.event._def.publicId;
+    	  var data={id:id}
+    	  $.ajax({
+    		  url:'/project5/getCalendar.do',
+    		  type:'POST',
+    		  data:data,
+    		  dataType:'json',
+    		  success:function(result){
+    			  console.log("가져오기성공")
+    			  console.log(result)
+    			  console.log(result.get.fnames) 
+    			  var str =result.get.fnames;
+    			  
+    			  console.log(str)
+    			  $(".uploadResult").append("<a onclick='downFile(this)' style='cursor:pointer; font-size:20px; color:blue; border:3px solid blue' >"+str+"</a>");
+    			  
+    		  }
+    	  })
+    	  
     	  $("#exampleModalLongTitle").text("일정상세");
     	  $("#regBtn").hide();
     	  $("#uptBtn").show();

@@ -35,4 +35,15 @@ public class A12_MultiLangCtrl {
 		localeResolver.setLocale(request, response, locale);
 		return "WEB-INF\\views\\member\\login.jsp";
 	}
+
+	// 2. 언어 선택에 따른 변환처리.
+	@GetMapping("choiceLan2.do")
+	public String choiceLan2(@RequestParam("lang") String lang,
+			HttpServletRequest request,
+			HttpServletResponse response) {
+		System.out.println("선택한 언어:"+lang);
+		Locale locale = new Locale(lang);
+		localeResolver.setLocale(request, response, locale);
+		return "WEB-INF\\views\\main.jsp";
+	}
 }

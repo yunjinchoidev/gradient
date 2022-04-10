@@ -184,8 +184,12 @@
 		</property>	
 		<property name="defaultEncoding" value="UTF-8" />
 	</bean>
+	
+	
 	<bean id="localeResolver" 
-		class="org.springframework.web.servlet.i18n.SessionLocaleResolver"/>
+		class="org.springframework.web.servlet.i18n.SessionLocaleResolver">
+			<property name="defaultLocale" value="korean"></property>
+		</bean>
 
 
 
