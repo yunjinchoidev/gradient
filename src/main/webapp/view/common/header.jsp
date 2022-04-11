@@ -260,7 +260,7 @@
 										<span style="color:red">
 													ADMIN 페이지 </span></a>
 											<ul class="submenu ">
-												<li class="submenu-item "><a href="#" id="MemberAnaysis" style="color:red">메인 (사용자 분석)</a></li>
+												<li class="submenu-item "><a href="#" id="MemberAnaysis" style="color:red">사용자 분석</a></li>
 												<li class="submenu-item "><a href="#" id="EmailBtn" style="color:red">이메일 발송 </a></li>
 												<li class="submenu-item "><a href="#" id="MemberListBtn" style="color:red">사용자 리스트 </a></li>
 											</ul>

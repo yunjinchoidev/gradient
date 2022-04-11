@@ -219,7 +219,7 @@
 									
 									      var options = {
 									        title: "프로젝트 별 팀원 수 차트",
-									        width: 600,
+									        width: 1000,
 									        height: 400,
 									        bar: {groupWidth: "95%"},
 									        legend: { position: "none" },
@@ -251,7 +251,7 @@
                                         <h3>회원 방문수 분석</h3>
                                     </div>
                                     <div class="card-body" style="position: relative;">
-                                    <div id="chart_div4" style="width: 800px; height: 500px;"></div>
+                                    <div id="chart_div4" style="width: 900px; height: 500px;"></div>
                                     </div>
                                 </div>
                             </div>
@@ -286,16 +286,16 @@
 												function drawBackgroundColor() {
 												      var data = new google.visualization.DataTable();
 												      data.addColumn('number', 'X');
-												      data.addColumn('number', 'Dogs');
+												      data.addColumn('number', '방문 수 별 회원 수');
 												
 												      data.addRows(A);
 												
 												      var options = {
 												        hAxis: {
-												          title: 'Time'
+												          title: '회원 수'
 												        },
 												        vAxis: {
-												          title: 'Popularity'
+												          title: '방문수'
 												        },
 												        backgroundColor: ''
 												      };
@@ -461,7 +461,6 @@
 									data : godata,
 									dataType:'json',
 									success:function(result){
-										console.log("chattingRoomList=========================");
 										console.log(result);
 										console.log(result.chatRoomList)
 										

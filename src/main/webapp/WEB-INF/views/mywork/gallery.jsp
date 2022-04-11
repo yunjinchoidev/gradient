@@ -79,6 +79,15 @@ body{
  }
  });
  });
+ 
+ function downFile(fname){
+		//alert($(fname).text())
+		if(confirm("다운로드할 파일:"+$(fname).text())){
+			location.href="${path}/download.do?fname="+$(fname).text();
+		}
+	}
+ 
+ 
 </script>
 
 
@@ -289,7 +298,7 @@ $(document).ready(function(){
 													var str = "";
 													str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style=' margin:10px; width:250px; height:250px;'>"
 													str += "<a href='#'"
-													str += "class='fancylight popup-btn' data-fancybox-group='light'> "+obj.fname
+													str += "class='fancylight popup-btn' data-fancybox-group='light' onclick='downFile(this)'>"+obj.fname
 													str += "<img class=img-fluid' src='"+go+"' alt='' style='width:200px; height:200px; margin:0 auto; padding:5px; border:1px solid black'>"
 													str += "</a></div>"
 													A.append(str)
@@ -302,7 +311,7 @@ $(document).ready(function(){
 												var str = "";
 												str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style=' margin:10px; width:250px; height:250px;' >"
 												str += "<a href='#'"
-												str += "class='fancylight popup-btn' data-fancybox-group='light'> "+obj.fname
+												str += "class='fancylight popup-btn' data-fancybox-group='light' onclick='downFile(this)'>"+obj.fname
 												str += "<img class=img-fluid' src='/project5/resources/pptxLogo.png' alt='' style='width:200px; height:200px;'>"
 												str += "</a></div>"
 												A.append(str)
@@ -315,7 +324,7 @@ $(document).ready(function(){
 											var str = "";
 											str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style=' margin:10px; width:250px; height:250px;' >"
 											str += "<a href='#'"
-											str += "class='fancylight popup-btn' data-fancybox-group='light'> "+obj.fname
+											str += "class='fancylight popup-btn' data-fancybox-group='light' onclick='downFile(this)'>"+obj.fname
 											str += "<img class=img-fluid' src='/project5/resources/excelLogo.png' alt='' style='width:200px; height:200px;'>"
 											str += "</a></div>"
 											A.append(str)
@@ -331,7 +340,7 @@ $(document).ready(function(){
 											var str = "";
 											str += "<div class='item selfie col-lg-3 col-md-4 col-6 col-sm' style=' margin:10px; width:250px; height:250px;' >"
 											str += "<a href='#'"
-											str += "class='fancylight popup-btn' data-fancybox-group='light'>"+obj.fname
+											str += "class='fancylight popup-btn' data-fancybox-group='light' onclick='downFile(this)'>"+obj.fname
 											str += "<img class=img-fluid' src='/project5/resources/txtLogo.png' alt='' style='width:200px; height:200px;'>"
 											str += "</a></div>"
 												A.append(str)

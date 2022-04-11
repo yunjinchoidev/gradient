@@ -777,7 +777,6 @@ body{margin-top:20px;}
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
-					<%@ include file="../projectHome/sort.jsp"%>
 					<div class="col-12 col-md-6 order-md-1 order-last">
 						<span style="font-size: 40px; font-weight: bolder; color: red;">고객 상담
 						</span> <span style="font-size: 40px; font-weight: bolder; color: black;">홈</span>
@@ -789,7 +788,6 @@ body{margin-top:20px;}
 							<ol class="breadcrumb">
 								<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
 								<li class="breadcrumb-item active" aria-current="page">DataTable</li>
-								<p style="color: red">a</p>
 							</ol>
 						</nav>
 					</div>
