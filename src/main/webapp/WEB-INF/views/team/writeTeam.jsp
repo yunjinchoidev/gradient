@@ -109,25 +109,24 @@ textarea {
 						<div class="card" style="">
 							<div class="card-header">
 								<h1 class="card-title" align="center">
-									회원 프로젝트 배정<br>
 
 								</h1>
 							</div>
 
 							<div class="dataTable-container">
-								<table class="table dataTable-table" id="table1">
+								<table class="table dataTable-table" id="table1" style="width: 55%; margin-left: 100px;">
 									<thead>
 										<tr>
 											<th data-sortable="" style="width: 20%;"><a href="#"
 												class="dataTable-sorter" style="text-align: center;">구분</a></th>
 											<th data-sortable="" style="width: 80%;"><a href="#"
-												class="dataTable-sorter" style="text-align: center;">선택</a></th>
+												class="dataTable-sorter" style="text-align: left; padding-left: 100px;">선택</a></th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											<td>회원명</td>
-											<td><select class="form-select" name="memberkey">
+											<td><select class="form-select" name="memberkey" style="width: 50%">
 													<option>회원의 이름을 선택해주세요.</option>
 													<c:forEach var="m" items="${MemList}">
 														<option value="${m.memberkey}">${m.name}</option>
@@ -137,7 +136,7 @@ textarea {
 
 										<tr>
 											<td>부서명</td>
-											<td><select class="form-select" name="deptno">
+											<td><select class="form-select" name="deptno" style="width: 50%">
 													<option>부서명을 선택해주세요.</option>
 													<c:forEach var="dpt" items="${dptList}">
 														<option value="${dpt.deptno}">${dpt.dname}</option>
@@ -146,7 +145,7 @@ textarea {
 										</tr>
 										<tr>
 											<td>직급</td>
-											<td><select class="form-select" name="auth">
+											<td><select class="form-select" name="auth" style="width: 50%">
 													<option>직급을 선택해주세요.</option>
 													<option value="admin">admin</option>
 													<option value="pm">pm</option>
@@ -155,7 +154,7 @@ textarea {
 										</tr>
 										<tr>
 											<td>프로젝트명</td>
-											<td><select class="form-select" name="projectkey">
+											<td><select class="form-select" name="projectkey" style="width: 50%">
 													<option>프로젝트를 선택해주세요.</option>
 													<c:forEach var="prj" items="${prjList}">
 														<option value="${prj.projectkey}">${prj.projectkey}
@@ -165,7 +164,7 @@ textarea {
 										</tr>
 										<tr>
 											<td>배정여부 선택</td>
-											<td><select class="form-select" name="status">
+											<td><select class="form-select" name="status" style="width: 50%">
 													<option>배정여부를 선택해주세요.</option>
 													<option value="배정" selected="selected">배정</option>
 													<option value="미배정">미배정</option>

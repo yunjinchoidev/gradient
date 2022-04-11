@@ -512,7 +512,7 @@
 
 
 
-
+<!-- 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
@@ -550,25 +550,24 @@
       }
     </script>
 				
+ -->
 
 
 
-
-
-
+<!-- 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
 									<h4>회원 프로젝트 배정</h4>
 									
-									<%@ include file="../team/pmPageTeamlist.jsp" %>
 									
 								</div>
 							</div>
 						</div>
 					</div>
 					
+		 -->
 					
 					
 					
@@ -576,7 +575,7 @@
 					
 					
 					
-					<div class="row"  style="width: 80%; margin-left: 330px;">
+					<div class="row"  >
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">

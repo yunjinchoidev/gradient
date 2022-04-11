@@ -180,7 +180,7 @@ public class MemberContoller {
 
 	@RequestMapping("/memberList.do")
 	public String memberList(Model d, MemberSch sch) {
-		d.addAttribute("list", service.listWithPaging(sch));
+		d.addAttribute("list", service.listWithPaging3(sch));
 		return "WEB-INF\\views\\member\\list.jsp";
 	}
 

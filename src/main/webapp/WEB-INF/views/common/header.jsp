@@ -290,7 +290,7 @@
 							<li class="sidebar-item  "><a
 								href="/project5/memberEdit.do?memberkey=${member.memberkey }"
 								class='sidebar-link'> <i class="bi bi-person-badge-fill"></i> 
-								<span>[${member.auth }] ${member.name}</span>
+								<span> ${member.name}</span>
 							</a></li>
 
 

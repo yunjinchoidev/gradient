@@ -66,7 +66,7 @@ public class MyWorkController {
 
 	
 	// 긴급
-	@RequestMapping("/myWork4.do")
+	@RequestMapping("/myWork6.do")
 	public String myWork4(Model d, int memberkey) {
 		d.addAttribute("menubarList", service4.menubarList());
 		return "WEB-INF\\views\\mywork\\4emergency.jsp";
@@ -82,7 +82,7 @@ public class MyWorkController {
 	
 	
 	// 파일함
-	@RequestMapping("/myWork6.do")
+	@RequestMapping("/myWork4.do")
 	public String myWorkFileBox(Model d, int memberkey) {
 		d.addAttribute("menubarList", service4.menubarList());
 		return "WEB-INF\\views\\mywork\\4fileBox.jsp";

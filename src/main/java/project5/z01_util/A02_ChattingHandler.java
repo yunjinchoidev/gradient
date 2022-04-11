@@ -17,7 +17,6 @@ public class A02_ChattingHandler extends TextWebSocketHandler{
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
 		users.put(session.getId(), session);
-		log(session.getId()+"님 접속합니다!! 현재 접속자 수:"+users.size());
 	}
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {

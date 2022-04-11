@@ -70,6 +70,30 @@
 		where cnt <![CDATA[>]]> #{start}
 		order by memberkey
 	</select>
+
+
+	<!-- 리스트를 불러오기 -->
+	<select id="listWithPaging3"
+		resultType="project5.member.MemberVO"
+		parameterType="project5.member.MemberSch">
+		select *
+		from (
+		select rownum cnt,m.*
+		from member m
+		where 1=1
+		and status != 0
+		and rownum <![CDATA[<]]> #{end}
+			ORDER BY memberkey ASC
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
+		)
+		where cnt <![CDATA[>]]> #{start}
+		order by memberkey
+	</select>
 	
 		<!-- 전체 데이터 수 가져오기 -->
 	<select id="totCnt2" parameterType="project5.member.MemberSch"
@@ -78,6 +102,20 @@
 		from member
 		where 1=1
 		and email != '미입력'
+		<if test="name!=null and name!=''">
+			and name like '%'||#{name}||'%'
+		</if>
+		<if test="email!=null and email!=''">
+			and email like '%'||#{email}||'%'
+		</if>
+	</select>
+		<!-- 전체 데이터 수 가져오기 -->
+	<select id="totCnt3" parameterType="project5.member.MemberSch"
+		resultType="int">
+		select count(*)
+		from member
+		where 1=1
+		and status != 0
 		<if test="name!=null and name!=''">
 			and name like '%'||#{name}||'%'
 		</if>

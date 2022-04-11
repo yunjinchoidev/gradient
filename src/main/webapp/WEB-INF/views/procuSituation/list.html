@@ -108,7 +108,7 @@
 
 
 <template id="listTmp">
-	<table class="table table-hover table-striped dataTable-table">
+	<table class="table table-hover dataTable-table">
 		<col width="10%">
 		<col width="50%">
 		<col width="15%">
@@ -120,7 +120,7 @@
 				<th data-sortable="" style="width: 12.0176%;"><a href="#"
 					class="dataTable-sorter">번호</a></th>
 				<th data-sortable="" style="width: 42.9989%;"><a href="#"
-					class="dataTable-sorter">작업구분/제목/버전</a></th>
+					class="dataTable-sorter">제목</a></th>
 				<th data-sortable="" style="width: 18.0816%;"><a href="#"
 					class="dataTable-sorter">부서</a></th>
 				<th data-sortable="" style="width: 16.3175%;"><a href="#"
@@ -133,12 +133,10 @@
 			<tr v-for="procuSituation in blist">
 				<td>{{procuSituation.cnt}}</td>
 				<td>{{procuSituation.title}}</td>
-				<td>{{procuSituation.contents}}</td>
+				<td>{{procuSituation.writedate}}</td>
 				<td>{{procuSituation.name}}</td>
 				<td>{{procuSituation.plandate}}</td>
-				<!-- 
-    		<td v-text="new Date(procuSituation.plandate).toLocaleDateString()"></td>
-    		 -->
+    		<td v-text="new Date(procuSituation.writedate).toLocaleDateString()"></td>
 			</tr>
 		</tbody>
 	</table>
@@ -200,27 +198,15 @@
 		},
 		props:["sch"],
 		methods:{ // searchSize  search
-			
-			// 검색을 했을 때
 			search:function(){
-				// 이벤트 버스를 통해서 상위에 전달
 				eventBus.$emit("search", this.procuSituationSch)
-				// eventBus.$emit("curpage",page);	
 			},
 			
-			// 한 페이지 사이즈를 변경했을 때
 			searchSize:function(){
-				// 페이지 크기를 변경시, 해당 데이터의 첫번째 페이지가 로딩
-				// 되게 처리..
 				console.log("#현재 페이지크기:")
 				this.procuSituationSch.curPage=1
 				console.log(this.procuSituationSch.pageSize)
 				eventBus.$emit("search", this.procuSituationSch)
-				/*
-				console.log("현재 페이지:")
-				console.log(this.procuSituationSch)
-				this.search();
-				*/
 			}
 		}
 		

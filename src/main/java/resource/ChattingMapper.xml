@@ -24,13 +24,15 @@
 	<select id="chatRoomList" parameterType="int"
 		resultType="project5.chatting.ChattingRoomVO">
 		SELECT roomkey, name, to_char(makedate,'YYYY/MM/DD')
-		makedateS FROM chattingroom WHERE roomkey IN (SELECT roomkey FROM chat_memroom_join 
-WHERE memberkey=#{memberkey}) ORDER BY roomkey
+		makedateS FROM chattingroom WHERE roomkey
+		IN (SELECT roomkey FROM
+		chat_memroom_join
+		WHERE memberkey=#{memberkey})
+		ORDER BY roomkey
 	</select>
-	
-	
 
-	<!-- 메시지 보낼때 자동 삽입 ///////////////////////////////////////////////// -->
+
+
 	<insert id="createMessage"
 		parameterType="project5.chatting.ChattingMessageVO">
 		INSERT INTO chattingMessage VALUES
@@ -39,11 +41,12 @@ WHERE memberkey=#{memberkey}) ORDER BY roomkey
 	</insert>
 
 
-	<!-- 메시지 룸키로 모조리 불러오기 -->
 	<select id="MessageListbyRoomkey" parameterType="int"
 		resultType="project5.chatting.ChattingMessageVO">
-		SELECT messagekey, contents, to_char(writedate, 'YYYY/MM/DD') writedateS, roomkey, memberkey, likecnt
-		 FROM chattingMessage WHERE roomkey=#{roomkey}
+		SELECT messagekey, contents, to_char(writedate,
+		'YYYY/MM/DD') writedateS, roomkey, memberkey, likecnt
+		FROM
+		chattingMessage WHERE roomkey=#{roomkey}
 		ORDER BY messagekey
 	</select>
 
@@ -98,7 +101,8 @@ WHERE memberkey=#{memberkey}) ORDER BY roomkey
 	<insert id="roomJoin"
 		parameterType="project5.chatting.ChatJoinVO">
 		INSERT INTO chat_memroom_join VALUES
-		(seq_chat_memroom_join.nextval, #{roomkey}, ${memberkey})
+		(seq_chat_memroom_join.nextval, #{roomkey}, 
+		${memberkey})
 	</insert>
 
 
@@ -131,7 +135,8 @@ WHERE memberkey=#{memberkey}) ORDER BY roomkey
 		parameterType="project5.chatting.ChattingRoomVO">
 		update chattingroom
 		set name= name||#{name}
-		where roomkey = #{roomkey}
+		where roomkey
+		= #{roomkey}
 	</update>
 
 

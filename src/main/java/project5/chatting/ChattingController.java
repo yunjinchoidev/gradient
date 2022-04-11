@@ -139,7 +139,6 @@ public class ChattingController {
 			results2.add(code_array[i]);
 		}
 		int A = service.chatRoomMax();
-		System.out.println(A);
 		d.addAttribute("list", commandMap);
 		d.addAttribute("results2", results2);
 		
@@ -150,7 +149,6 @@ public class ChattingController {
 		}
 		
 		service.ChattingRoomNameUpdate2(new ChattingRoomVO(A, "의 새 대화"));
-		
 		
 		d.addAttribute("RoomNAme", service.getChatRoom(A).getName());
 		System.out.println("단톡 만들기 종료");

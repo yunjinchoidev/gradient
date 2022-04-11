@@ -218,7 +218,6 @@ $(document).ready(function() {
 			var formObj = $("form")
 			
 			$("#regBtn").click(function(e){
-				alert()
 				e.preventDefault();
 				if($("input[name=id]").val()=="" ||
 						$("input[name=pass]").val()=="" ||
@@ -228,6 +227,7 @@ $(document).ready(function() {
 					alert("모든 항목을 입력해야 합니다.")
 					e.preventDefault();
 				}else{
+					alert("회원 수정이 완료 되었습니다.")
 					formObj.submit();
 				}
 			})

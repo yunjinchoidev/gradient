@@ -232,7 +232,7 @@
 		
 									var memberkey = parseInt(${member.memberkey})
 									var godata = {memberkey : memberkey}
-							// 화면 로딩 되자 마자 상담 목록을 모조리 불러온다
+							// 화면 로딩 되자 마자 목록을 모조리 불러온다
 							$.ajax({
 								url : '/project5/chattingRoomList.do',
 								type:'POST',
