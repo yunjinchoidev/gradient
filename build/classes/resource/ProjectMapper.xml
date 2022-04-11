@@ -6,7 +6,7 @@
 <mapper namespace="project5.project.ProjectDao">
 	<select id="list" resultType="project5.project.ProjectVO">
 		select * from project order by
-		projectkey
+		projectkey asc
 	</select>
 
 

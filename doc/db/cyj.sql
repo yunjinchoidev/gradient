@@ -322,11 +322,17 @@ CREATE TABLE member(
 	email varchar2(200) DEFAULT 'test@testaaaaaaaa.com' NOT NULL
 	status NUMBER,
 	pricing NUMBER,
-	visitcnt NUMBER
+	visitcnt NUMBER,
+	score NUMBER
 );
+UPDATE MEMBER
+SET score=0
+WHERE memberkey BETWEEN 1 AND 100;
+
 ALTER TABLE member ADD status NUMBER;
 ALTER TABLE member ADD pricing NUMBER;
 ALTER TABLE member ADD visitcnt NUMBER;
+ALTER TABLE member ADD score NUMBER;
 UPDATE MEMBER SET pricing =1 	 WHERE memberkey=2;
 SELECT * FROM MEMBER WHERE memberkey=2;
 SELECT * FROM MEMBER ORDER BY memberkey;
@@ -801,6 +807,10 @@ AND  TO_CHAR(LAST_DAY(SYSDATE),'YYYYMMDD')
 GROUP BY TO_CHAR(writedate, 'yyyy-mm-dd')
 ORDER BY writedate;
 
+
+SELECT * FROM CUSTOCHATROOMJOIN c ORDER BY roomkey;
+
+
 SELECT seq_CustoChatRoom.currval FROM dual;
 SELECT * FROM custochatroom;
 		INSERT INTO custochatroom VALUES
@@ -1203,13 +1213,38 @@ drop SEQUENCE seq_vacation;
 INSERT INTO vacation VALUES (seq_vacation.nextval, 1, 1, '정기휴가7', '2022/3/26', 0, sysdate);
 
 SELECT * FROM team_member;
+		select cnt, id, title, to_char(TO_DATE(SUBSTR(end1,0,
+		10), 'YYYY-MM-DD'),'YYYY/MM/DD') start1, to_char(TO_DATE(SUBSTR(end1,0,
+		10), 'YYYY-MM-DD'),'YYYY/MM/DD') end1, content, bordercolor, backgroundcolor, textcolor , allday, projectkey, memberkey
+		from (
+		select rownum cnt,c.*
+		FROM
+		calendars c
+		where
+		1=1
+		AND memberkey=1
+		)
+		where cnt between 1 AND 5
+		order by id;
 
-SELECT * FROM OUTPUT;
 
-SELECT * FROM QUALITY q ;
+			select *
+		from (
+		select rownum cnt, b.*
+		from quality b
+		) 
+		where cnt between 1 AND 5
+		ORDER BY qualitykey;
+	
+	COMMIT;
+	
+SELECT * FROM MEMBER ORDER BY memberkey;
 
-
-
+SELECT * FROM fileinfo WHERE memberkey ;
+	
+SELECT * FROM chatbot;
+	
+	
 INSERT INTO OUTPUT VALUES (seq_output.nextval, '제출합니다', '제출합니다.', 1.2,'진행중',to_date('20220326','YYYY/MM/DD'),
 11,1,2,1);
 
@@ -1964,9 +1999,6 @@ SELECT * FROM team_member;
 
 
 
-1 - 다 - 다 
-pj  team memberf
-
 CREATE TABLE team_member
 
 
@@ -2045,19 +2077,6 @@ CREATE TABLE member_project(
 
 
 
-
-
-SELECT * FROM MEMBER;
-SELECT * FROM project;
-UPDATE project SET name='청소 대행 서비스 구축' WHERE projectkey=1;
-UPDATE project SET progress='중기' WHERE projectkey=1;
-UPDATE project SET progress='대기' WHERE projectkey=2;
-UPDATE project SET progress='초기' WHERE projectkey=3;
-UPDATE project SET progress='말기' WHERE projectkey=4;
-UPDATE project SET progress='종료' WHERE projectkey=5;
-UPDATE project SET importance='하' WHERE projectkey=2;
-UPDATE project SET importance='중' WHERE projectkey=3;
-UPDATE project SET importance='하' WHERE projectkey=4;
 INSERT INTO member_project VALUES (1,2,4);
 		select DISTINCT projectkey from member_project where memberkey=2 order by memberkey;
 SELECT * FROM project WHERE projectkey IN (1,2,3);
@@ -2112,11 +2131,6 @@ INSERT INTO hashtag VALUES (3, 'png');
 INSERT INTO hashtag VALUES (4, 'jpg');
 INSERT INTO hashtag VALUES (5, 'pptx');
 
-
-CREATE TABLE hashtag2(
-	hashtag2key NUMBER PRIMARY KEY,
-	title varchar2(400)
-);
 
 SELECT 
     TO_CHAR(writedate, 'yyyy-mm-dd') writedate,
@@ -2456,13 +2470,16 @@ CREATE TABLE chatBot(
 	inputdata varchar2(400),
 	contents varchar2(4000)
 );
-INSERT INTO chatbot VALUES (1, '그래디언트', '그래디언트그래디언트그래디언트그래디언트그래디언트그래디언트그래디언트그래디언트그래디언트');
-INSERT INTO chatbot VALUES (1, '회원탈퇴', '회원탈퇴는 이렇게하는겁니다회원탈퇴는 이렇게하는겁니다회원탈퇴는 이렇게하는겁니다회원탈퇴는 이렇게하는겁니다회원탈퇴는 이렇게하는겁니다');        
-INSERT INTO chatbot VALUES (1, '파일첨부','파일첨부는 이렇게합니다.파일첨부는 이렇게합니다.파일첨부는 이렇게합니다.파일첨부는 이렇게합니다.파일첨부는 이렇게합니다.파일첨부는 이렇게합니다.파일첨부는 이렇게합니다.');                   
+INSERT INTO chatbot VALUES (1, '그래디언트', '그래디언트는 여러분의 프로젝트 진행을 돕는 플랫폼입니다. 효율적인 작업 환경을 마련하였으니 잘 사용하시길 바랍니다.');
+INSERT INTO chatbot VALUES (2, '회원탈퇴', '회원탈퇴는 마이페이지에서 탈퇴 버튼을 누르면 됩니다.');        
+INSERT INTO chatbot VALUES (3, '파일첨부','파일 첨부는 게시판에 들어가 파일 선택을 누르면 됩니다.');                   
 SELECT * FROM chatbot WHERE inputdata = '그래디언트';
+SELECT * FROM chatbot;
 ---------------------------------------------------------------------
 ------------------------------------   ---------------------------------
-
+COMMIT;
+SELECT * FROM MEMBER ORDER BY MEMBERKEY;
+SELECT * FROM chatting;
 ---------------------------------------------------------------------
 ---------------------------------------------------------------------
 		SELECT m.name name, m.auth auth, m.email email, d.dname dname, d.deptno deptno
@@ -2472,16 +2489,7 @@ SELECT * FROM chatbot WHERE inputdata = '그래디언트';
 ---------------------------------------------------------------------
 
 ---------------------------------------------------------------------
----------------------------------------------------------------------
-SELECT * FROM team;
-SELECT * FROM team_member;
 
-
-
--- 프로젝트에 팀 배정
-INSERT INTO team VALUES (seq_team.nextval, '기획', 1);
-
--- 
 
 
 
@@ -2497,21 +2505,6 @@ INSERT INTO team VALUES (seq_team.nextval, '기획', 1);
 3. 팀에 회원 배정;
 INSERT INTO team_member VALUES (seq_team_member.nextval, 1, 2);
 
-SELECT v.*, p.name pname, m.NAME mname
-	FROM vote v, project p, MEMBER m
-	WHERE v.PROJECTKEY = p.PROJECTKEY
-	AND v.MEMBERKEY =m.MEMBERKEY
-	AND votekey = 22;
-
-DELETE FROM OUTPUT;
----------------------------------------------------------------------
----------------------------------------------------------------------
-SELECT * FROM COSTDETAIL;
----------------------------------------------------------------------
----------------------------------------------------------------------
-SELECT * FROM notice;
-
-SELECT * FROM team;
 
 
 ------------------------------------------------------------------------
@@ -2628,30 +2621,25 @@ INSERT INTO vacation VALUES (seq_vacation.nextval, 1, 1, '정기', sysdate-4, 4,
 		AND projectkey=1;
 
 
-SELECT * FROM memo;
-
-
--- no : 글번호
--- refno : 부모글 번호
--- level : 기본 0 , 답글 1 --------------------------- sql 에서 만드는 것 
--- cnt : 접근 순서 (rownum) -------------------------- sql 에서 만드는 것
-
-
 
 DROP TABLE chattingroom;
 CREATE TABLE chattingroom(
 	roomkey NUMBER PRIMARY KEY,
-	name varchar2(400),
+	name varchar2(4000),
 	makedate DATE
 );
+SELECT * FROM chattingroom;
+INSERT INTO chattingroom VALUES (1, '박진수님과의 새 대화', sysdate);
+INSERT INTO chattingroom VALUES (2, '임혜연님과의 새 대화', sysdate);
+INSERT INTO chattingroom VALUES (3, '이승기님과의 새 대화', sysdate);
+
+DROP TABLE chattingroom CASCADE CONSTRAINTS;
 
 INSERT INTO chattingroom
 		VALUES
 		(seq_chattingroom.nextval, '과의 새대화 ['||seq_chattingroom.nextval||']',
 		sysdate);
 		
-		
-
 CREATE SEQUENCE seq_chattingroom;
 
 
@@ -2664,19 +2652,40 @@ CREATE TABLE chattingMessage(
 	memberkey NUMBER CONSTRAINT chattingMessage_memberkey_fk REFERENCES MEMBER(memberkey) ON DELETE CASCADE,
 	likecnt number
 );
+
+SELECT * FROM project;
+COMMIT;
+
 SELECT * FROM chattingMessage;
 INSERT INTO chattingMessage VALUES (seq_chattingMessage.nextval,'r', sysdate, 1, 1,0);
+
+
+
+
+CREATE SEQUENCE seq_chat_memroom_join;
+CREATE TABLE chat_memroom_join(
+chat_memroom_join_key NUMBER PRIMARY KEY,
+	roomkey NUMBER CONSTRAINT chat_memroom_join_roomkey_fk REFERENCES chattingroom(roomkey) ON DELETE CASCADE,
+	memberkey NUMBER CONSTRAINT chat_memroom_join_memberkey_fk REFERENCES MEMBER(memberkey) ON DELETE CASCADE
+);
+
+
+
+
+
+
+
+
+
 
 CREATE TABLE projectPlan(
 	projectPlankey NUMBER PRIMARY KEY,
 	title varchar2(400),
 	contents vachar2(4000),
-	
 );
+COMMIT;
 CREATE SEQUENCE seq_projectPlan;
 
-SELECT * from procuSituation;
-DROP TABLE procusituation;
 CREATE TABLE procusituation(
 	procusituationKey NUMBER PRIMARY KEY,
 	title varchar2(400),
@@ -2686,79 +2695,11 @@ CREATE TABLE procusituation(
 	projectkey NUMBER CONSTRAINT procusituation_project_fk REFERENCES project(projectkey) ON DELETE CASCADE,
 	plandate DATE
 );
-
-	INSERT INTO
-		procusituation VALUES
-		(seq_procusituation.nextval, '1',
-		'1', to_date(sysdate, 'YYYY/MM/DD'),
-		1,30001,to_date(sysdate, 'YYYY/MM/DD') );
-		
-		
-		SELECT * FROM vacation;
-		
-
 CREATE SEQUENCE seq_procusituation;
-INSERT INTO procusituation VALUES (seq_procusituation.nextval, 'ssssssssssss', 'sssssssssss', sysdate, 1,1);
 SELECT * FROM procusituation;
 COMMIT;
 
-		select count(*)
-		from procusituation
-		where 1=1;
 
-SELECT * FROM MEMBER
-WHERE email = 'cyj7157@naver.com';
-
-UPDATE MEMBER
-set email = 'cyj7157@naver.com'
-WHERE memberkey=2;
-
-
-
-
-
-CREATE SEQUENCE seq_chattingMessage;
-CREATE TABLE chat_memroom_join(
-chat_memroom_join_key NUMBER PRIMARY KEY,
-	roomkey NUMBER CONSTRAINT chat_memroom_join_roomkey_fk REFERENCES chattingroom(roomkey) ON DELETE CASCADE,
-	memberkey NUMBER CONSTRAINT chat_memroom_join_memberkey_fk REFERENCES MEMBER(memberkey) ON DELETE CASCADE
-);
-CREATE SEQUENCE seq_chat_memroom_join;
-
-
-
-SELECT * FROM projectHome;
-
-
-
-SELECT * FROM MEMBER ORDER BY memberkey DESC;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	
-	SELECT * FROM projecthome;
-
-SELECT * FROM menubar;
-COMMIT;
-
-SELECT * FROM calendar;
-	
-	SELECT * FROM department;
-	SELECT * FROM OUTPUT;
-	
-SELECT * FROM OUTPUT;
 
 CREATE TABLE attendance (
 	attendancekey NUMBER PRIMARY KEY,
@@ -2767,24 +2708,7 @@ CREATE TABLE attendance (
 )
 
 
-SELECT * FROM team_member;
-SELECT * FROM MEMBER_PROJECT;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
--- 시큐리티
 DROP TABLE users CASCADE CONSTRAINTS;
 create table users(
 	username varchar2(50) not null primary key,
@@ -2792,117 +2716,14 @@ create table users(
 	enabled number(1) not null
 );
 
+SELECT * FROM users WHERE USERNAME != 'NORMALUSER4';
 DROP TABLE authorities CASCADE CONSTRAINTS;
 create table authorities (
 	username varchar2(50) not null,
 	authority varchar2(50) not null
 );
 
-insert into users values ('himan', '7777', 1);
-insert into users values ('admin', '1234', 1);
-insert into users values ('cyj', '7777', 1);
-insert into users values ('manager', '1111', 1);
-
-insert into authorities values ('admin', 'USER');
-insert into authorities values ('admin', 'USER_MANAGER');
-insert into authorities values ('manager', 'ROLE_MANAGER');
-insert into authorities values ('manager', 'USER');
-insert into authorities values ('admin', 'ROLE_ADMIN');
-insert into authorities values ('himan', 'USER');
 
 SELECT * FROM authorities;
-SELECT * FROM users;
-
-COMMIT;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-SELECT * FROM kanban;
-INSERT INTO kanban VALUES (1, 'new', '1','1','1','1',sysdate, sysdate,30001, 1, 1);
-
-
-SELECT * FROM MEMBER;
-SELECT * FROM project;
-SELECT * FROM risk;
-SELECT * FROM fileinfo ORDER BY fno;
-INSERT INTO fileinfo VALUES (30006, '1','1',sysdate, sysdate, '1');
-
-DELETE FROM project WHERE projectkey = 30000;
-INSERT INTO project VALUES (30001, '청소대행서비스', sysdate, 90000000, '홍길동', '초기', '중', '청소대행서비스', 1, sysdate, sysdate, '불합격');
-COMMIT;
-
-SELECT * FROM team_member;
-SELECT * FROM member_project;
-
-INSERT INTO member_project VALUES (128, 2, 30006, 1, '배정');
-
-
-UPDATE procusituation
-SET projectkey = 30001;
-
-SELECT * FROM procusituation;
-INSERT INTO procusituation VALUES (seq_procusituation.nextval, 'a','a',sysdate, 1, 30001);
-
-
-SELECT id, text, to_char(start_date, 'DD-MM-YYYY') start_date, duration,
-		projectkey, memberkey
-		FROM gantt
-		where projectkey=1
-		order by start_date;
-	
-	SELECT * FROM gantt;
-	
-SELECT * FROM calendars;
-SELECT * FROM OUTPUT;
-SELECT * FROM procuSituation;
-
-
-ADD TABLE procuSituation ADD plandate DATE;
-
-
-
-
-UPDATE calendars ;
-SET projectkey = 30002;
-
-SELECT * FROM kanban;
-
-	update kanban
-		set
-		status='done'
-		where text='ㅁ'
-		and content='ㅁㅁㅁㅁ';
--- 경고장
-SELECT * FROM projectHome;
-
-SELECT * FROM vote;
-
-UPDATE MEMBER SET auth = 'developer' WHERE memberkey BETWEEN 1 AND 46;
-SELECT * FROM MEMBER ORDER BY memberkey;
-
-CREATE TABLE persistent_logins(
-	username varchar2(400) NOT NULL,
-	series varchar2(400) PRIMARY KEY,
-	token varchar2(400) NOT NULL,
-	last_used timestamp NOT NULL
-);
-COMMIT;
-
-SELECT * FROM kanban;
-INSERT INTO kanban VALUES (1, '1', '1', '1', '1','1', sysdate, sysdate, 30004, 1, 1);
-INSERT INTO kanban VALUES (1, )
-
-SELECT * FROM persistent_logins;
-
-SELECT * FROM MEMBER ORDER BY MEMBERkey;
+INSERT INTO authorities VALUES ('1','1');
+INSERT INTO USERS VALUES ('NORMALUSER4', '7777','1');

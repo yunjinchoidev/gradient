@@ -25,40 +25,43 @@ textarea {
 }
 </style>
 <script>
-	$(document).ready(
-			function() {
+	$(document)
+			.ready(
+					function() {
 
-				var sessid = "${member.id}";
-				var id = $("[name=id]").val();
+						var sessid = "${member.id}";
+						var id = $("[name=id]").val();
 
-				var msg = "${msg}";
-				if (msg != "") {
-					if (confirm(msg + "\n팀관리 목록으로 이동할까요?")) {
-						location.href = "${path}/teamlist.do?projectkey=${project.projectkey}";
-					}
-				}
-
-				$("#goList").click(function() {
-					location.href = "${path}/teamlist.do?projectkey=${project.projectkey}";
-				});
-
-				
-				
-				
-				$("#regBtn").click(
-						function() {
-							if (confirm("배정하시겠습니까?")) {
-								if ($("[name=name]").val() == ""
-										|| $("[name=email]").val() == "") {
-									alert("필수항목을 입력해주세요");
-									return;
-								}
-								$("form").attr("action",
-										"${path}/insertTeam.do");
-								$("form").submit();
+						var msg = "${msg}";
+						if (msg != "") {
+							if (confirm(msg + "\n팀관리 목록으로 이동할까요?")) {
+								location.href = "${path}/teamlist.do?projectkey=${project.projectkey}";
 							}
-						});
-			});
+						}
+
+						$("#goList")
+								.click(
+										function() {
+											location.href = "${path}/teamlist.do?projectkey=${project.projectkey}";
+										});
+
+						$("#regBtn")
+								.click(
+										function() {
+											if (confirm("배정하시겠습니까?")) {
+												if ($("[name=name]").val() == ""
+														|| $("[name=email]")
+																.val() == "") {
+													alert("필수항목을 입력해주세요");
+													return;
+												}
+												$("form")
+														.attr("action",
+																"${path}/insertTeam.do");
+												$("form").submit();
+											}
+										});
+					});
 	if (sessid != id) {
 		$('#delbtn').hide();
 		$('#uptbtn').hide();
@@ -80,7 +83,10 @@ textarea {
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h1><span style="color: red">[${project.name }]</span> <br>프로젝트 배정 인원 </h1>
+						<h1>
+							<span style="color: red">[${project.name }]</span> <br>프로젝트
+							배정 인원
+						</h1>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -93,78 +99,90 @@ textarea {
 					</div>
 				</div>
 			</div>
-			
-			
-			
-			
-			<section class="section" >
+
+
+
+
+			<section class="section">
 				<form action="${path}/insertTeam.do" method="post">
 					<div>
 						<div class="card" style="">
 							<div class="card-header">
-								<h1 class="card-title" align="center">회원 프로젝트 배정<br>
-				
+								<h1 class="card-title" align="center">
+									회원 프로젝트 배정<br>
+
 								</h1>
 							</div>
-							<table class="table mb-0 table-lg">
-								<tr>
-									<th style="text-aligned: center;">회원명</th>
-									<td>
-									<select class="form-select" name="memberkey">
-											<option>회원의 이름을 선택해주세요.</option>
-											<c:forEach var="m" items="${MemList}">
-												<option value="${m.memberkey}">${m.name}</option>
-											</c:forEach>
-									</select></td>
-								</tr>
-								
-								<th>부서명</th>
-								<td><select class="form-select" name="deptno">
-										<option>부서명을 선택해주세요.</option>
-										<c:forEach var="dpt" items="${dptList}">
-											<option value="${dpt.deptno}">${dpt.dname}</option>
-										</c:forEach>
-								</select></td>
-								<tr>
-									<th>직급</th>
-									<td><select class="form-select" name="auth">
-											<option>직급을 선택해주세요.</option>
-											<option value="admin">admin</option>
-											<option value="pm">pm</option>
-											<option value="developer">developer</option>
-									</select></td>
-								</tr>
-								<tr>
-									<th>프로젝트명</th>
-									<td><select class="form-select" name="projectkey">
-											<option>프로젝트를 선택해주세요.</option>
-											<c:forEach var="prj" items="${prjList}">
-												<option value="${prj.projectkey}">${prj.projectkey} : ${prj.projectname }</option>
-											</c:forEach>
-									</select></td>
-								</tr>
-								<tr>
-									<th>배정여부 선택</th>
-									<td><select class="form-select" name="status">
-											<option>배정여부를 선택해주세요.</option>
-											<option value="배정" selected="selected">배정</option>
-											<option value="미배정">미배정</option>
-									</select></td>
-								</tr>
 
-								<tr>
-									<th></th>
-									<td>
-									<div style="margin-left: 1400px;">
-										<button class="btn btn-warning" id="regbtn">등록</button>
-										<button class="btn btn-danger" id="delbtn">취소</button>
-									</div>
-									</td>
-									
-								</tr>
+							<div class="dataTable-container">
+								<table class="table dataTable-table" id="table1">
+									<thead>
+										<tr>
+											<th data-sortable="" style="width: 20%;"><a href="#"
+												class="dataTable-sorter" style="text-align: center;">구분</a></th>
+											<th data-sortable="" style="width: 80%;"><a href="#"
+												class="dataTable-sorter" style="text-align: center;">선택</a></th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<td>회원명</td>
+											<td><select class="form-select" name="memberkey">
+													<option>회원의 이름을 선택해주세요.</option>
+													<c:forEach var="m" items="${MemList}">
+														<option value="${m.memberkey}">${m.name}</option>
+													</c:forEach>
+											</select></td>
+										</tr>
 
-							</table>
-												
+										<tr>
+											<td>부서명</td>
+											<td><select class="form-select" name="deptno">
+													<option>부서명을 선택해주세요.</option>
+													<c:forEach var="dpt" items="${dptList}">
+														<option value="${dpt.deptno}">${dpt.dname}</option>
+													</c:forEach>
+											</select></td>
+										</tr>
+										<tr>
+											<td>직급</td>
+											<td><select class="form-select" name="auth">
+													<option>직급을 선택해주세요.</option>
+													<option value="admin">admin</option>
+													<option value="pm">pm</option>
+													<option value="developer">developer</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td>프로젝트명</td>
+											<td><select class="form-select" name="projectkey">
+													<option>프로젝트를 선택해주세요.</option>
+													<c:forEach var="prj" items="${prjList}">
+														<option value="${prj.projectkey}">${prj.projectkey}
+															: ${prj.projectname }</option>
+													</c:forEach>
+											</select></td>
+										</tr>
+										<tr>
+											<td>배정여부 선택</td>
+											<td><select class="form-select" name="status">
+													<option>배정여부를 선택해주세요.</option>
+													<option value="배정" selected="selected">배정</option>
+													<option value="미배정">미배정</option>
+											</select></td>
+										</tr>
+										<tr>
+											<td></td>
+											<td>
+												<button class="btn btn-warning" id="regbtn">등록</button>
+												<button class="btn btn-danger" id="delbtn">취소</button>
+											</td>
+										</tr>
+									</tbody>
+								</table>
+
+
+							</div>
 						</div>
 					</div>
 				</form>

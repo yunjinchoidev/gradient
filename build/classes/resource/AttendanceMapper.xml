@@ -14,12 +14,13 @@
 
 
 	<!-- 미평가자 전체 데이터 수 가져오기 -->
-	<select id="totCnt" parameterType="project5.member.MemberSch"
+	<select id="totCntNotComplte" parameterType="project5.member.MemberSch"
 		resultType="int">
 		select count(*)
 		from member
 		where 1=1
 		and score is null
+		and email != '미입력'
 		<if test="name!=null and name!=''">
 			and name like '%'||#{name}||'%'
 		</if>
@@ -36,6 +37,7 @@
 		from member
 		where 1=1
 		and score is not null
+			and email != '미입력'
 		<if test="name!=null and name!=''">
 			and name like '%'||#{name}||'%'
 		</if>
@@ -56,6 +58,7 @@
 		from member m
 		where 1=1
 		and m.score is  null
+			and email != '미입력'
 		<if test="name!=null and name!=''">
 			and name like '%'||#{name}||'%'
 		</if>
@@ -77,6 +80,7 @@
 		from member m
 		where 1=1
 		and m.score is  not null
+			and email != '미입력'
 		<if test="name!=null and name!=''">
 			and name like '%'||#{name}||'%'
 		</if>

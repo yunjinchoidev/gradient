@@ -12,7 +12,7 @@ public interface AttendanceDao {
 	
 	public void attendanceWrite(MemberVO vo);
 	public List<MemberVO> listWithPagingNotComplte(MemberSch sch);
-	public int totCnt(MemberSch sch);
+	public int totCntNotComplte(MemberSch sch);
 	
 	public List<MemberVO> listWithPagingComplete(MemberSch sch);
 	public int totCntComplete(MemberSch sch);

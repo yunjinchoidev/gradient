@@ -21,7 +21,7 @@ public class AttendanceService {
 	public List<MemberVO> listWithPagingNotComplte(MemberSch sch) {
 
 		// 1. 전체 라인 수
-		sch.setCount(dao.totCnt(sch));
+		sch.setCount(dao.totCntNotComplte(sch));
 
 		// 2. 페이지 사이즈(페이퍼 크기)
 		if (sch.getPageSize() == 0) {

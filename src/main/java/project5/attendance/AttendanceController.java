@@ -28,6 +28,8 @@ public class AttendanceController {
 		//return "pageJsonReport";
 		return "WEB-INF\\views\\attendance\\forPM.jsp";
 	}
+	
+	
 	@RequestMapping("/attendanceMainComplete.do")
 	public String attendance(Model d, MemberSch sch) {
 		d.addAttribute("list", service.listWithPagingComplete(sch));
@@ -37,7 +39,7 @@ public class AttendanceController {
 
 	@RequestMapping("/attendanceMainNotComplete.do")
 	public String attendanceMain2(Model d, MemberSch sch) {
-		d.addAttribute("list", service2.listWithPaging(sch));
+		d.addAttribute("list", service.listWithPagingNotComplte(sch));
 		//return "pageJsonReport";
 		return "WEB-INF\\views\\attendance\\notComplete.jsp";
 	}

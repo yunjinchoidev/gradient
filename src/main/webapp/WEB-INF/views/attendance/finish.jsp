@@ -76,12 +76,11 @@
 
 		});
 
-function goPage(no) {
-$("[name=curPage]").val(no);
-$("#frm01").submit();
-}
+	function goPage(no) {
+		$("[name=curPage]").val(no);
+		$("#frm01").submit();
+		}
 		
-	});
 </script>
 
 
@@ -132,7 +131,7 @@ $("#frm01").submit();
 
 
 					<div class="card-body">
-							<form id="frm01" class="form" action="${path}/attendanceMain.do"
+							<form id="frm01" class="form" action="/project5/attendanceMainComplete.do"
 							method="post">
 							<div
 								class="dataTable-wrapper dataTable-loading no-footer sortable searchable fixed-columns">

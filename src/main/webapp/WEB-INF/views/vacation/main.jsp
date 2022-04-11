@@ -42,10 +42,20 @@
 
 <script>
     $(document).ready(function(){
+    
+    })
+    
+    
+    	function downFile(fname){
+    		alert($(fname).text()+'hwpx')
+    		var ok = $(fname).text()+'.hwpx'
+    		if(confirm("다운로드할 파일:"+ok)){
+    			location.href="/project5/download.do?fname="+ok;
+    		}
+    	}
+
 	
-	$("#regbtn").click(function(){
-		location.href="${path}/RegTeam.do";
-	});
+	
 </script>
 </head>
 
@@ -89,7 +99,8 @@
 						<div class="card-header">
 							여러 기능들이 있습니다.<br> <br>
 							<div class="buttons" style="margin-bottom: 10px; margin-top: 5px;">
-								<a href="#" class="btn btn-danger" id="mailSendBtn">휴가 계획서 </a> 
+								<a href="#" class="btn btn-danger" 
+								onclick="downFile(this)">휴가계획서</a> 
 								
 							</div>
 						</div>
