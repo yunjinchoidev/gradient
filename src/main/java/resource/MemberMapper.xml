@@ -34,8 +34,9 @@
 		select rownum cnt,m.*
 		from member m
 		where 1=1
-		and rownum <![CDATA[<]]> #{end}
-			ORDER BY memberkey ASC
+		and rownum <![CDATA[<]]>
+		#{end}
+		ORDER BY memberkey ASC
 		<if test="name!=null and name!=''">
 			and name like '%'||#{name}||'%'
 		</if>
@@ -43,7 +44,8 @@
 			and email like '%'||#{email}||'%'
 		</if>
 		)
-		where cnt <![CDATA[>]]> #{start}
+		where cnt <![CDATA[>]]>
+		#{start}
 		order by memberkey
 	</select>
 
@@ -57,9 +59,11 @@
 		select rownum cnt,m.*
 		from member m
 		where 1=1
-		and email != '미입력'
-		and rownum <![CDATA[<]]> #{end}
-			ORDER BY memberkey ASC
+		and email !=
+		'미입력'
+		and rownum <![CDATA[<]]>
+		#{end}
+		ORDER BY memberkey ASC
 		<if test="name!=null and name!=''">
 			and name like '%'||#{name}||'%'
 		</if>
@@ -67,7 +71,8 @@
 			and email like '%'||#{email}||'%'
 		</if>
 		)
-		where cnt <![CDATA[>]]> #{start}
+		where cnt <![CDATA[>]]>
+		#{start}
 		order by memberkey
 	</select>
 
@@ -81,9 +86,11 @@
 		select rownum cnt,m.*
 		from member m
 		where 1=1
-		and status != 0
-		and rownum <![CDATA[<]]> #{end}
-			ORDER BY memberkey ASC
+		and status !=
+		0
+		and rownum <![CDATA[<]]>
+		#{end}
+		ORDER BY memberkey ASC
 		<if test="name!=null and name!=''">
 			and name like '%'||#{name}||'%'
 		</if>
@@ -91,11 +98,12 @@
 			and email like '%'||#{email}||'%'
 		</if>
 		)
-		where cnt <![CDATA[>]]> #{start}
+		where cnt <![CDATA[>]]>
+		#{start}
 		order by memberkey
 	</select>
-	
-		<!-- 전체 데이터 수 가져오기 -->
+
+	<!-- 전체 데이터 수 가져오기 -->
 	<select id="totCnt2" parameterType="project5.member.MemberSch"
 		resultType="int">
 		select count(*)
@@ -109,7 +117,7 @@
 			and email like '%'||#{email}||'%'
 		</if>
 	</select>
-		<!-- 전체 데이터 수 가져오기 -->
+	<!-- 전체 데이터 수 가져오기 -->
 	<select id="totCnt3" parameterType="project5.member.MemberSch"
 		resultType="int">
 		select count(*)
@@ -123,8 +131,8 @@
 			and email like '%'||#{email}||'%'
 		</if>
 	</select>
-	
-	
+
+
 
 
 	<select id="list" resultType="project5.member.MemberVO">
@@ -338,8 +346,10 @@
 
 	<insert id="insertMemberAjax"
 		parameterType="project5.member.MemberVO">
-		insert into member (memberkey, name, email, id, pass) values
-		(seq_member.nextval, #{name}, #{email}, seq_member.nextval||'apiID', seq_member.nextval||'apiPass')
+		insert into member (memberkey, name, email, id, pass)
+		values
+		(seq_member.nextval, #{name}, #{email},
+		seq_member.nextval||'apiID', seq_member.nextval||'apiPass')
 	</insert>
 
 
@@ -378,6 +388,42 @@
 		where name=#{name}
 		and email=#{email}
 	</select>
+
+
+	<select id="visitCount1" resultType="int">
+		SELECT count(*) count FROM
+		MEMBER
+		WHERE VISITCNT BETWEEN 1 AND 100
+	</select>
+
+	<select id="visitCount2" resultType="int">
+		SELECT count(*) count FROM
+		MEMBER
+		WHERE VISITCNT BETWEEN 101 AND 300
+	</select>
+
+	<select id="visitCount3" resultType="int">
+		SELECT count(*) count FROM
+		MEMBER
+		WHERE VISITCNT BETWEEN 301 AND 1000
+	</select>
+
+	<select id="visitCount4" resultType="int">
+		SELECT count(*) count FROM MEMBER WHERE VISITCNT <![CDATA[>]]>
+		1001
+	</select>
+
+	<select id="authCount" resultType="project5.member.MemberVO">
+		SELECT count(*) count, auth
+		FROM MEMBER WHERE email!='미입력' GROUP BY auth
+	</select>
+
+
+
+
+
+
+
 
 
 

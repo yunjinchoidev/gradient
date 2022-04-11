@@ -51,7 +51,11 @@ public interface MemberDao {
 	
 	public MemberVO apiLogin(MemberVO vo);
 	
-	
+	public int visitCount1();
+	public int visitCount2();
+	public int visitCount3();
+	public int visitCount4();
+	public List<MemberVO> authCount();
 	
 	
 	

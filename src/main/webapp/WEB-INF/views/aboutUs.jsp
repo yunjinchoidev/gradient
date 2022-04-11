@@ -109,7 +109,6 @@ nonce="SuTAbMKi">
 									<div class="card-body">
 										<h4 class="card-title">최윤진</h4>
 										<p class="card-text">안녕하세요. 프로젝트 조장을 맡았습니다.</p>
-										<small class="text-muted">3월 9일</small>
 									</div>
 								</div>
 							</div>
@@ -120,9 +119,7 @@ nonce="SuTAbMKi">
 										style="width: 100%; height: 200px">
 									<div class="card-body">
 										<h4 class="card-title">마혜민</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
+										<p class="card-text">안녕하세요. 마혜민입니다</p>
 									</div>
 								</div>
 							</div>
@@ -133,9 +130,7 @@ nonce="SuTAbMKi">
 										style="width: 100%; height: 200px">
 									<div class="card-body">
 										<h4 class="card-title">문재영</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
+										<p class="card-text">안녕하세요 문재영입니다.</p>
 									</div>
 								</div>
 							</div>
@@ -146,9 +141,7 @@ nonce="SuTAbMKi">
 										style="width: 100%; height: 200px">
 									<div class="card-body">
 										<h4 class="card-title">신지호</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
+										<p class="card-text">안녕하세요. 신지호입니다.</p>
 									</div>
 								</div>
 							</div>
@@ -159,9 +152,7 @@ nonce="SuTAbMKi">
 										style="width: 100%; height: 200px">
 									<div class="card-body">
 										<h4 class="card-title">윤혜정</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
+										<p class="card-text">안녕하세요. 윤혜정입니다.</p>
 									</div>
 								</div>
 							</div>
@@ -172,9 +163,7 @@ nonce="SuTAbMKi">
 										style="width: 100%; height: 200px;">
 									<div class="card-body">
 										<h4 class="card-title">장훈주</h4>
-										<p class="card-text">This card has supporting text below
-											as a natural lead-in to additional content.</p>
-										<small class="text-muted">Last updated 3 mins ago</small>
+										<p class="card-text">안녕하세요. 장훈주입니다.</p>
 									</div>
 								</div>
 							</div>
@@ -210,7 +199,7 @@ nonce="SuTAbMKi">
 
 
 
-
+		<!-- 
 		<div class="page-heading">
 			<div class="page-title">
 				<div class="row">
@@ -229,7 +218,9 @@ nonce="SuTAbMKi">
 					</div>
 				</div>
 			</div>
+			 -->
 			<!-- Basic card section start -->
+			<!-- 
 			<section id="content-types">
 				<div class="row">
 					<div class="col-xl-4 col-md-6 col-sm-12">
@@ -431,26 +422,13 @@ nonce="SuTAbMKi">
 					</div>
 				</div>
 			</section>
+			 -->
 			<!-- Basic Card types section end -->
 
 
 
 		</div>
 
-		<footer>
-			<div class="footer clearfix mb-0 text-muted">
-				<div class="float-start">
-					<p>2021 © Mazer</p>
-				</div>
-				<div class="float-end">
-					<p>
-						Crafted with <span class="text-danger"><i
-							class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A.
-							Saugi</a>
-					</p>
-				</div>
-			</div>
-		</footer>
 	</div>
 
 

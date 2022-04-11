@@ -50,6 +50,8 @@
 			});
 	})
 </script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+      
 </head>
 
 <body>
@@ -63,11 +65,11 @@
             </header>
 
             <div class="page-heading">
-                <h3>Gradient</h3>
+                <h1>Gradient 메인 페이지</h1>
             </div>
             <div class="page-content">
                 <section class="row">
-                    <div class="col-12 col-lg-9">
+                    <div class="col-12 col-lg-8">
                         <div class="row">
                             <div class="col-6 col-lg-3 col-md-6">
                                 <div class="card">
@@ -79,8 +81,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Profile Views</h6>
-                                                <h6 class="font-extrabold mb-0">112.000</h6>
+                                                <h6 class="text-muted font-semibold">나의 정보</h6>
+                                                <h6 class="font-extrabold mb-0"><span style="color:red; cursor: pointer;"
+                                                onclick="location.href='/project5/memberEdit.do?memberkey=${member.memberkey }'">
+                                                바로가기</span></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -96,8 +100,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Followers</h6>
-                                                <h6 class="font-extrabold mb-0">183.000</h6>
+                                                <h6 class="text-muted font-semibold">나의 캘린더</h6>
+                                                <h6 class="font-extrabold mb-0"><span style="color:red; cursor: pointer;"
+                                                onclick="location.href='/project5/myCalendar.do?memberkey=${member.memberkey }'">
+                                                바로가기</span></h6>
+                                            
                                             </div>
                                         </div>
                                     </div>
@@ -113,8 +120,10 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Following</h6>
-                                                <h6 class="font-extrabold mb-0">80.000</h6>
+                                                <h6 class="text-muted font-semibold">나의 프로젝트</h6>
+                                                <h6 class="font-extrabold mb-0"><span style="color:red; cursor: pointer;"
+                                                onclick="location.href='/project5/myProject.do?memberkey=${member.memberkey }'">
+                                                바로가기</span></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -130,8 +139,11 @@
                                                 </div>
                                             </div>
                                             <div class="col-md-8">
-                                                <h6 class="text-muted font-semibold">Saved Post</h6>
-                                                <h6 class="font-extrabold mb-0">112</h6>
+                                                <h6 class="text-muted font-semibold">나의 작업</h6>
+                                                <h6 class="font-extrabold mb-0"><span style="color:red; cursor: pointer;"
+                                                onclick="location.href='/project5/myWork1.do?memberkey=${member.memberkey }'">
+                                                바로가기
+                                                </span></h6>
                                             </div>
                                         </div>
                                     </div>
@@ -141,39 +153,232 @@
                         
                         
                         
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Profile Visit</h4>
+                                        <h3>프로젝트 별 팀원 수</h3>
                                     </div>
-                                    <div class="card-body" style="position: relative;">
+                                    <div class="card-body" style="position: relative; width: 800px; height: 500px;" >
+                                     <div id="columnchart_values" style="width: 800px; height: 500px;"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        
+				                        <script>
+				                     	$(document).ready(function(){
+			                           		$.ajax({
+			                           			url:'/project5/projectTeamCnt.do',
+			                           			type:'POST',
+			                           			dataType:'json',
+			                           			success:function(result){
+			                           				console.log("projectTeamCnt.do 성공")
+			                           				console.log(result)
+			                           				console.log(result.projectTeamCnt[0].count)
+			                           				console.log(result.projectTeamCnt[0].projectkey)
+			                           				D = [
+												        ["Element", "Density", { role: "style" } ],
+												        [result.projectTeamCnt[0].projectkey, result.projectTeamCnt[0].count, "#b87333"],
+												        [result.projectTeamCnt[1].projectkey, result.projectTeamCnt[1].count, "#b87333"],
+												        [result.projectTeamCnt[2].projectkey, result.projectTeamCnt[2].count, "#b87333"],
+												        [result.projectTeamCnt[3].projectkey, result.projectTeamCnt[3].count, "#b87333"],
+												        [result.projectTeamCnt[4].projectkey, result.projectTeamCnt[4].count, "#b87333"],
+												        [result.projectTeamCnt[5].projectkey, result.projectTeamCnt[5].count, "#b87333"],
+												        [result.projectTeamCnt[6].projectkey, result.projectTeamCnt[6].count, "#b87333"],
+												        [result.projectTeamCnt[7].projectkey, result.projectTeamCnt[7].count, "#b87333"]
+												      ]
+			                           			},
+			                           			error:function(result){
+			                           				console.log("projectTeamCnt.do 실패")
+			                           			}
+			                           		})
+				                        google.charts.load("current", {packages:['corechart']});
+									    google.charts.setOnLoadCallback(drawChart);
+									    var D;
+									    function drawChart() {
+									      var data = google.visualization.arrayToDataTable(D);
+									
+									      var view = new google.visualization.DataView(data);
+									      view.setColumns([0, 1,
+									                       { calc: "stringify",
+									                         sourceColumn: 1,
+									                         type: "string",
+									                         role: "annotation" },
+									                       2]);
+									
+									      var options = {
+									        title: "프로젝트 별 팀원 수 차트",
+									        width: 600,
+									        height: 400,
+									        bar: {groupWidth: "95%"},
+									        legend: { position: "none" },
+									      };
+									      var chart = new google.visualization.ColumnChart(document.getElementById("columnchart_values"));
+									      chart.draw(view, options);
+									  }
+										
+										
+				                     	});
+										</script>       
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Profile Visit</h4>
+                                        <h3>회원 방문수 분석</h3>
                                     </div>
                                     <div class="card-body" style="position: relative;">
+                                    <div id="chart_div4" style="width: 800px; height: 500px;"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+                           <script type="text/javascript">
+                           	$(document).ready(function(){
+                           		$.ajax({
+                           			url:'/project5/visitCount.do',
+                           			type:'POST',
+                           			dataType:'json',
+                           			success:function(result){
+                           				console.log("visitCount.do 성공")
+                           				console.log(result)
+                           				console.log(result.visitCount1)
+                           				A = [
+									        [10, result.visitCount1],   [100, result.visitCount2],
+									        [300, result.visitCount3],  [1000, result.visitCount4]
+									      ]
+                           			},
+                           			error:function(result){
+                           				console.log("projectTeamCnt.do 실패")
+                           			}
+                           		})
+                           	
+                           		
+                           			var A;
+                           		
+									     google.charts.load('current', {packages: ['corechart', 'line']});
+												google.charts.setOnLoadCallback(drawBackgroundColor);
+												
+												function drawBackgroundColor() {
+												      var data = new google.visualization.DataTable();
+												      data.addColumn('number', 'X');
+												      data.addColumn('number', 'Dogs');
+												
+												      data.addRows(A);
+												
+												      var options = {
+												        hAxis: {
+												          title: 'Time'
+												        },
+												        vAxis: {
+												          title: 'Popularity'
+												        },
+												        backgroundColor: ''
+												      };
+												
+												      var chart = new google.visualization.LineChart(document.getElementById('chart_div4'));
+												      chart.draw(data, options);
+												    }
+                           	})
+									    </script>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         <div class="row">
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-header">
-                                        <h4>Profile Visit</h4>
+                                        <h3>프로젝트 상태 별 프로젝트 수 차트</h3>
                                     </div>
                                     <div class="card-body" style="position: relative;">
+                                       <div id="curve_chart" style="width: 800px; height: 500px"></div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        
+					                         <script type="text/javascript">
+					                         $(document).ready(function(){
+					                           		$.ajax({
+					                           			url:'/project5/progressCnt.do',
+					                           			type:'POST',
+					                           			dataType:'json',
+					                           			success:function(result){
+					                           				console.log("progressCnt.do 성공")
+					                           				console.log(result.progressCnt)
+					                           				B = [
+														          ['프로젝트', '팀원 수'],
+														          [result.progressCnt[0].progress,  result.progressCnt[0].count],
+														          [result.progressCnt[1].progress,  result.progressCnt[1].count],
+														          [result.progressCnt[2].progress,  result.progressCnt[2].count],
+														          [result.progressCnt[3].progress,  result.progressCnt[3].count],
+														          [result.progressCnt[4].progress,  result.progressCnt[4].count]
+														        ]
+					                           			},
+					                           			error:function(result){
+					                           				console.log("progressCnt.do 실패")
+					                           			}
+					                           		})
+											      google.charts.load('current', {'packages':['corechart']});
+											      google.charts.setOnLoadCallback(drawChart);
+											var B
+											      function drawChart() {
+											        var data = google.visualization.arrayToDataTable(B);
+											
+											        var options = {
+											          title: 'Company Performance',
+											          curveType: 'function',
+											          legend: { position: 'bottom' }
+											        };
+											
+											        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+											
+											        chart.draw(data, options);
+											      }
+											      
+					                         });
+											    </script>
+                        
                         
                         
                         
@@ -182,12 +387,57 @@
                     
                     
                     
-                    <div class="col-12 col-lg-3">
+                    
+                    
+                    
+                    <script>
+                    $(document).ready(function(){
+                 		var memberkey;
+        		  		console.log("memberkey"+memberkey);
+        				// ajax를 통한 파일 정보 불러오기 
+        				// 페이지 접속시 자동으로 실행
+        				var memberkeyValue =parseInt("${member.memberkey}");
+        				var data = { memberkey : memberkeyValue};
+        			    $.ajax({
+        			      url: '/project5/myfaceData.do',
+        			      data: data,
+        			      type: 'POST',
+        			      dataType:'json',
+        			        success: function(result){
+        			        console.log(result)
+        			          console.log(result.myfaceData[0]); 
+        			          console.log("파일 불러오기 완료")
+        					  showUploadResult2(result.myfaceData[0]);// 이곳에서 함수 호출 
+        			      },
+        			      error: function(result){
+        			    	  console.log(memberkey)
+        			          console.log("회원 이미지 정보 불러오기 실패");
+        			          console.log(result); 
+        			      }
+        			    }); //$.ajax
+        			    
+        			    
+        			    
+        				// 이미지 클라리언트 딴에 띄우는 합수
+        				// 외래키 없이 업로드 한 파일 결과 클라이언트 단으로 가져오기 함수
+        			  function showUploadResult2(obj){
+        				    		console.log("obj"+obj);
+        							var fileCallPath =  encodeURIComponent(obj.fname);
+        							console.log(fileCallPath);
+        							var go="/project5/display2.do?fileName="+fileCallPath;
+        							$("#not").attr("src",go)
+        				  }
+                    })
+                    
+                    </script>
+                    
+                    
+                    <div class="col-12 col-lg-4">
                         <div class="card">
                             <div class="card-body py-4 px-5">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-xl">
-                                        <img src="assets/images/faces/1.jpg" alt="Face 1">
+                                        <img src="assets/images/faces/1.jpg" id="not" style="border : 1px solid black">
                                     </div>
                                     <div class="ms-3 name">
                                         <h5 class="font-bold">${member.name }</h5>
@@ -196,109 +446,141 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        
+                        
+                        
+                        <script>
+                        $(document).ready(function(){
+                    		var memberkey = parseInt(${member.memberkey})
+							var godata = {memberkey : memberkey}
+								// 화면 로딩 되자 마자 목록을 모조리 불러온다
+								$.ajax({
+									url : '/project5/chattingRoomList.do',
+									type:'POST',
+									data : godata,
+									dataType:'json',
+									success:function(result){
+										console.log("chattingRoomList=========================");
+										console.log(result);
+										console.log(result.chatRoomList)
+										
+										var consultChatList = $("#chattingRoomList");
+										for(var i=0; i<result.chatRoomList.length; i++){
+												var str="";
+												str+="  <div class='recent-message d-flex px-4 py-3'>"
+												str+="    <div class='avatar avatar-lg'>"
+												str+="         <img src='/project5/resources/dist/assets/images/faces/1.jpg'></div>"
+												str+="    <div class='name ms-4'>"
+												str+="        <h6 class='mb-1'>"+result.chatRoomList[i].name+"</h6>"
+												str+="        <h6 class='text-muted mb-0'></h6>"
+												str+="    </div></div>"
+													consultChatList.append(str);
+				                                
+												
+												/*
+												str +=" <a class='list-group-item list-group-item-action active text-white rounded-0' onclick='MessageListFunc(this)' style='cursor:pointer;'>"+"["+result.chatRoomList[i].roomkey +"]번방 &nbsp  "
+												str +="   <div class='media'><img src='https://bootstrapious.com/i/snippets/sn-chat/avatar.svg' alt='user' width='50' class='rounded-circle'>"
+												str +="    <div class='media-body ml-4'>"
+												str +="        <div class='d-flex align-items-center justify-content-between mb-1'>"
+								                str +="         <h4 class='mb-0' style='color:white'>"+result.chatRoomList[i].name+"</h4><small class='small font-weight-bold'>"+result.chatRoomList[i].makedateS+"</small> </div>"
+							                	str +="         <p class='font-italic mb-0 text-small'></p></div></div></a>"
+							                	*/
+										
+										}
+									}
+								})
+                        	
+                        	
+                        })
+                        
+                        </script>
+                        
+                        
+                        
+                        
                         <div class="card">
                             <div class="card-header">
-                                <h4>Recent Messages</h4>
+                                <h3>나의 참여 채팅</h3>
                             </div>
-                            <div class="card-content pb-4">
-                                <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg">
-                                        <img src="assets/images/faces/4.jpg">
-                                    </div>
-                                    <div class="name ms-4">
-                                        <h5 class="mb-1">Hank Schrader</h5>
-                                        <h6 class="text-muted mb-0">@johnducky</h6>
-                                    </div>
+                            <div class="card-content pb-4" >
+                                <div id="chattingRoomList">
+                                
                                 </div>
-                                <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg">
-                                        <img src="assets/images/faces/5.jpg">
-                                    </div>
-                                    <div class="name ms-4">
-                                        <h5 class="mb-1">Dean Winchester</h5>
-                                        <h6 class="text-muted mb-0">@imdean</h6>
-                                    </div>
-                                </div>
-                                <div class="recent-message d-flex px-4 py-3">
-                                    <div class="avatar avatar-lg">
-                                        <img src="assets/images/faces/1.jpg">
-                                    </div>
-                                    <div class="name ms-4">
-                                        <h5 class="mb-1">John Dodol</h5>
-                                        <h6 class="text-muted mb-0">@dodoljohn</h6>
-                                    </div>
-                                </div>
+                                
+                                
                                 <div class="px-4">
-                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3">Start
-                                        Conversation</button>
+                                    <button class="btn btn-block btn-xl btn-light-primary font-bold mt-3"
+                                    onclick="location.href='/project5/chatting.do?memberkey=${member.memberkey}'">채팅 바로 가기</button>
                                 </div>
                             </div>
+                            
                         </div>
+                        
+                        
+                        
+                        
+                        
                         <div class="card">
                             <div class="card-header">
-                                <h4>Visitors Profile</h4>
+                                <h3>회원 권한 분포 차트</h3>
                             </div>
                             <div class="card-body" style="position: relative;">
-                                <div id="chart-visitors-profile" style="min-height: 260.7px;"><div id="apexcharts6ngsfq29" class="apexcharts-canvas apexcharts6ngsfq29 apexcharts-theme-light" style="width: 252px; height: 260.7px;"><svg id="SvgjsSvg1637" width="252" height="260.7" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" class="apexcharts-svg" xmlns:data="ApexChartsNS" transform="translate(0, 0)" style="background: transparent;"><foreignObject x="0" y="0" width="252" height="260.7"><div class="apexcharts-legend apexcharts-align-center position-bottom" xmlns="http://www.w3.org/1999/xhtml" style="inset: auto 0px 1px; position: absolute; max-height: 175px;"><div class="apexcharts-legend-series" rel="1" seriesname="Male" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="1" data:collapsed="false" style="background: rgb(67, 94, 190) !important; color: rgb(67, 94, 190); height: 12px; width: 12px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 12px;"></span><span class="apexcharts-legend-text" rel="1" i="0" data:default-text="Male" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 12px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">Male</span></div><div class="apexcharts-legend-series" rel="2" seriesname="Female" data:collapsed="false" style="margin: 2px 5px;"><span class="apexcharts-legend-marker" rel="2" data:collapsed="false" style="background: rgb(85, 198, 232) !important; color: rgb(85, 198, 232); height: 12px; width: 12px; left: 0px; top: 0px; border-width: 0px; border-color: rgb(255, 255, 255); border-radius: 12px;"></span><span class="apexcharts-legend-text" rel="2" i="1" data:default-text="Female" data:collapsed="false" style="color: rgb(55, 61, 63); font-size: 12px; font-weight: 400; font-family: Helvetica, Arial, sans-serif;">Female</span></div></div><style type="text/css">	
-    	
-      .apexcharts-legend {	
-        display: flex;	
-        overflow: auto;	
-        padding: 0 10px;	
-      }	
-      .apexcharts-legend.position-bottom, .apexcharts-legend.position-top {	
-        flex-wrap: wrap	
-      }	
-      .apexcharts-legend.position-right, .apexcharts-legend.position-left {	
-        flex-direction: column;	
-        bottom: 0;	
-      }	
-      .apexcharts-legend.position-bottom.apexcharts-align-left, .apexcharts-legend.position-top.apexcharts-align-left, .apexcharts-legend.position-right, .apexcharts-legend.position-left {	
-        justify-content: flex-start;	
-      }	
-      .apexcharts-legend.position-bottom.apexcharts-align-center, .apexcharts-legend.position-top.apexcharts-align-center {	
-        justify-content: center;  	
-      }	
-      .apexcharts-legend.position-bottom.apexcharts-align-right, .apexcharts-legend.position-top.apexcharts-align-right {	
-        justify-content: flex-end;	
-      }	
-      .apexcharts-legend-series {	
-        cursor: pointer;	
-        line-height: normal;	
-      }	
-      .apexcharts-legend.position-bottom .apexcharts-legend-series, .apexcharts-legend.position-top .apexcharts-legend-series{	
-        display: flex;	
-        align-items: center;	
-      }	
-      .apexcharts-legend-text {	
-        position: relative;	
-        font-size: 14px;	
-      }	
-      .apexcharts-legend-text *, .apexcharts-legend-marker * {	
-        pointer-events: none;	
-      }	
-      .apexcharts-legend-marker {	
-        position: relative;	
-        display: inline-block;	
-        cursor: pointer;	
-        margin-right: 3px;	
-        border-style: solid;
-      }	
-      	
-      .apexcharts-legend.apexcharts-align-right .apexcharts-legend-series, .apexcharts-legend.apexcharts-align-left .apexcharts-legend-series{	
-        display: inline-block;	
-      }	
-      .apexcharts-legend-series.apexcharts-no-click {	
-        cursor: auto;	
-      }	
-      .apexcharts-legend .apexcharts-hidden-zero-series, .apexcharts-legend .apexcharts-hidden-null-series {	
-        display: none !important;	
-      }	
-      .apexcharts-inactive-legend {	
-        opacity: 0.45;	
-      }</style></foreignObject><g id="SvgjsG1639" class="apexcharts-inner apexcharts-graphical" transform="translate(12, 0)"><defs id="SvgjsDefs1638"><clipPath id="gridRectMask6ngsfq29"><rect id="SvgjsRect1641" width="236" height="289" x="-3" y="-1" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><clipPath id="gridRectMarkerMask6ngsfq29"><rect id="SvgjsRect1642" width="234" height="291" x="-2" y="-2" rx="0" ry="0" opacity="1" stroke-width="0" stroke="none" stroke-dasharray="0" fill="#fff"></rect></clipPath><filter id="SvgjsFilter1651" filterUnits="userSpaceOnUse" width="200%" height="200%" x="-50%" y="-50%"><feFlood id="SvgjsFeFlood1652" flood-color="#000000" flood-opacity="0.45" result="SvgjsFeFlood1652Out" in="SourceGraphic"></feFlood><feComposite id="SvgjsFeComposite1653" in="SvgjsFeFlood1652Out" in2="SourceAlpha" operator="in" result="SvgjsFeComposite1653Out"></feComposite><feOffset id="SvgjsFeOffset1654" dx="1" dy="1" result="SvgjsFeOffset1654Out" in="SvgjsFeComposite1653Out"></feOffset><feGaussianBlur id="SvgjsFeGaussianBlur1655" stdDeviation="1 " result="SvgjsFeGaussianBlur1655Out" in="SvgjsFeOffset1654Out"></feGaussianBlur><feMerge id="SvgjsFeMerge1656" result="SvgjsFeMerge1656Out" in="SourceGraphic"><feMergeNode id="SvgjsFeMergeNode1657" in="SvgjsFeGaussianBlur1655Out"></feMergeNode><feMergeNode id="SvgjsFeMergeNode1658" in="[object Arguments]"></feMergeNode></feMerge><feBlend id="SvgjsFeBlend1659" in="SourceGraphic" in2="SvgjsFeMerge1656Out" mode="normal" result="SvgjsFeBlend1659Out"></feBlend></filter><filter id="SvgjsFilter1664" filterUnits="userSpaceOnUse" width="200%" height="200%" x="-50%" y="-50%"><feFlood id="SvgjsFeFlood1665" flood-color="#000000" flood-opacity="0.45" result="SvgjsFeFlood1665Out" in="SourceGraphic"></feFlood><feComposite id="SvgjsFeComposite1666" in="SvgjsFeFlood1665Out" in2="SourceAlpha" operator="in" result="SvgjsFeComposite1666Out"></feComposite><feOffset id="SvgjsFeOffset1667" dx="1" dy="1" result="SvgjsFeOffset1667Out" in="SvgjsFeComposite1666Out"></feOffset><feGaussianBlur id="SvgjsFeGaussianBlur1668" stdDeviation="1 " result="SvgjsFeGaussianBlur1668Out" in="SvgjsFeOffset1667Out"></feGaussianBlur><feMerge id="SvgjsFeMerge1669" result="SvgjsFeMerge1669Out" in="SourceGraphic"><feMergeNode id="SvgjsFeMergeNode1670" in="SvgjsFeGaussianBlur1668Out"></feMergeNode><feMergeNode id="SvgjsFeMergeNode1671" in="[object Arguments]"></feMergeNode></feMerge><feBlend id="SvgjsFeBlend1672" in="SourceGraphic" in2="SvgjsFeMerge1669Out" mode="normal" result="SvgjsFeBlend1672Out"></feBlend></filter></defs><g id="SvgjsG1643" class="apexcharts-pie"><g id="SvgjsG1644" transform="translate(0, 0) scale(1)"><circle id="SvgjsCircle1645" r="31.858536585365854" cx="115" cy="115" fill="transparent"></circle><g id="SvgjsG1646" class="apexcharts-slices"><g id="SvgjsG1647" class="apexcharts-series apexcharts-pie-series" seriesName="Male" rel="1" data:realIndex="0"><path id="SvgjsPath1648" d="M 115 8.80487804878048 A 106.19512195121952 106.19512195121952 0 1 1 14.00243726953417 147.81609740264688 L 84.70073118086026 124.84482922079405 A 31.858536585365854 31.858536585365854 0 1 0 115 83.14146341463415 L 115 8.80487804878048 z" fill="rgba(67,94,190,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-donut-slice-0" index="0" j="0" data:angle="252" data:startAngle="0" data:strokeWidth="2" data:value="70" data:pathOrig="M 115 8.80487804878048 A 106.19512195121952 106.19512195121952 0 1 1 14.00243726953417 147.81609740264688 L 84.70073118086026 124.84482922079405 A 31.858536585365854 31.858536585365854 0 1 0 115 83.14146341463415 L 115 8.80487804878048 z" stroke="#ffffff"></path></g><g id="SvgjsG1660" class="apexcharts-series apexcharts-pie-series" seriesName="Female" rel="2" data:realIndex="1"><path id="SvgjsPath1661" d="M 14.00243726953417 147.81609740264688 A 106.19512195121952 106.19512195121952 0 0 1 114.98146545481802 8.804879666224679 L 114.9944396364454 83.1414638998674 A 31.858536585365854 31.858536585365854 0 0 0 84.70073118086026 124.84482922079405 L 14.00243726953417 147.81609740264688 z" fill="rgba(85,198,232,1)" fill-opacity="1" stroke-opacity="1" stroke-linecap="butt" stroke-width="2" stroke-dasharray="0" class="apexcharts-pie-area apexcharts-donut-slice-1" index="0" j="1" data:angle="108" data:startAngle="252" data:strokeWidth="2" data:value="30" data:pathOrig="M 14.00243726953417 147.81609740264688 A 106.19512195121952 106.19512195121952 0 0 1 114.98146545481802 8.804879666224679 L 114.9944396364454 83.1414638998674 A 31.858536585365854 31.858536585365854 0 0 0 84.70073118086026 124.84482922079405 L 14.00243726953417 147.81609740264688 z" stroke="#ffffff"></path></g><g id="SvgjsG1649" class="apexcharts-datalabels"><text id="SvgjsText1650" font-family="Helvetica, Arial, sans-serif" x="170.8438779458668" y="155.5729522564129" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="600" fill="#ffffff" class="apexcharts-text apexcharts-pie-label" filter="url(#SvgjsFilter1651)" style="font-family: Helvetica, Arial, sans-serif;">70.0%</text></g><g id="SvgjsG1662" class="apexcharts-datalabels"><text id="SvgjsText1663" font-family="Helvetica, Arial, sans-serif" x="59.1561220541332" y="74.42704774358712" text-anchor="middle" dominant-baseline="auto" font-size="12px" font-weight="600" fill="#ffffff" class="apexcharts-text apexcharts-pie-label" filter="url(#SvgjsFilter1664)" style="font-family: Helvetica, Arial, sans-serif;">30.0%</text></g></g></g></g><line id="SvgjsLine1673" x1="0" y1="0" x2="230" y2="0" stroke="#b6b6b6" stroke-dasharray="0" stroke-width="1" class="apexcharts-ycrosshairs"></line><line id="SvgjsLine1674" x1="0" y1="0" x2="230" y2="0" stroke-dasharray="0" stroke-width="0" class="apexcharts-ycrosshairs-hidden"></line></g><g id="SvgjsG1640" class="apexcharts-annotations"></g></svg><div class="apexcharts-tooltip apexcharts-theme-dark"><div class="apexcharts-tooltip-series-group" style="order: 1;"><span class="apexcharts-tooltip-marker" style="background-color: rgb(67, 94, 190);"></span><div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"><div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-label"></span><span class="apexcharts-tooltip-text-value"></span></div><div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div></div></div><div class="apexcharts-tooltip-series-group" style="order: 2;"><span class="apexcharts-tooltip-marker" style="background-color: rgb(85, 198, 232);"></span><div class="apexcharts-tooltip-text" style="font-family: Helvetica, Arial, sans-serif; font-size: 12px;"><div class="apexcharts-tooltip-y-group"><span class="apexcharts-tooltip-text-label"></span><span class="apexcharts-tooltip-text-value"></span></div><div class="apexcharts-tooltip-z-group"><span class="apexcharts-tooltip-text-z-label"></span><span class="apexcharts-tooltip-text-z-value"></span></div></div></div></div></div></div>
-                            <div class="resize-triggers"><div class="expand-trigger"><div style="width: 301px; height: 286px;"></div></div><div class="contract-trigger"></div></div></div>
+                             <div id="piechart_3d" style="width: 100%; height: 600px;"></div>
+                            </div>
                         </div>
+                        
+                        
+                        
+                        <script type="text/javascript">
+                        $(document).ready(function(){
+                       		$.ajax({
+                       			url:'/project5/authCount.do',
+                       			type:'POST',
+                       			dataType:'json',
+                       			success:function(result){
+                       				console.log("authCount.do 성공")
+                       				console.log(result.authCount[0])
+                       				C =[
+          					          ['Task', 'Hours per Day'],
+        					          [result.authCount[0].auth,     result.authCount[0].count],
+        					          [result.authCount[1].auth,     result.authCount[1].count],
+        					          [result.authCount[2].auth,     result.authCount[2].count],
+        					          [result.authCount[3].auth,     result.authCount[3].count]
+        					        ]
+                       			},
+                       			error:function(result){
+                       				console.log("progressCnt.do 실패")
+                       			}
+                       		})
+					      google.charts.load("current", {packages:["corechart"]});
+					      google.charts.setOnLoadCallback(drawChart);
+					      var C;
+					      function drawChart() {
+					        var data = google.visualization.arrayToDataTable(C);
+					
+					        var options = {
+					          title: '회원 권한 분포',
+					          is3D: true,
+					        };
+					
+					        var chart = new google.visualization.PieChart(document.getElementById('piechart_3d'));
+					        chart.draw(data, options);
+					      }
+					      
+                        });
+					    </script>
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                     </div>
                 </section>
             </div>

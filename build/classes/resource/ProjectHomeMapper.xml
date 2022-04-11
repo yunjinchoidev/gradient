@@ -63,41 +63,11 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 	<select id="get" resultType="project5.projectHome.ProjectHomeVO"
 		parameterType="int">
-		select * from projectHome where projectHomekey=#{projectHomekey}
+		select * from projectHome where
+		projectHomekey=#{projectHomekey}
 	</select>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 	<insert id="insert">
@@ -126,6 +96,20 @@
 		resultType="project5.workSort.WorkSortVO">
 		select * from worksort
 	</select>
+
+
+
+	
+	
+	
+
+
+
+
+
+
+
+
 
 
 

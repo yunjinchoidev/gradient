@@ -127,10 +127,10 @@
 				console.log($(this).val())
 				console.log(total)
 			})
-			
 			alert(total)
-			location.href="/project5/attendanceWrite.do?memberkey="+${get.memberkey}+"&score="+total;
-			
+			location.href="/project5/attendanceWrite.do?
+					memberkey="+${get.memberkey}+"
+					&score="+total;
 		})
 		
 		
@@ -234,29 +234,24 @@
 													class="form-check-input me-1" type="checkbox" 
 													aria-label="..." name="score" value="3"> 주간 작업 량이 얼마나 됩니까</li>
 													
-													
 												<li class="list-group-item" >
 												<input
 													class="form-check-input me-1" type="checkbox" 
 													aria-label="..." name="score" value="3"> 정시 출근을 합니까?</li>
-													
 													
 												<li class="list-group-item">
 												<input
 													class="form-check-input me-1" type="checkbox" 
 													aria-label="..." name="score" value="3"> 주변 동료들의 평가는 어떱니까?</li>
 													
-													
 												<li class="list-group-item">
 												<input
 													class="form-check-input me-1" type="checkbox" 
 													aria-label="..." name="score" value="3"> 인사성이 밝습니까?</li>
 													
-													
 												<li class="list-group-item"><input
 													class="form-check-input me-1" type="checkbox"
 													aria-label="..." name="score" value="3"> 코드를 얼마나 잘 짭니까?</li>
-													
 													
 												<li class="list-group-item"><input
 													class="form-check-input me-1" type="checkbox"

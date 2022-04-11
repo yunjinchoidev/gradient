@@ -23,6 +23,8 @@ public class ProjectVO {
 	private String quality;
 	private int cnt;
 
+	private int count;
+
 	private MultipartFile[] uploadFile;
 
 	private ArrayList<String> fnames;
@@ -97,6 +99,33 @@ public class ProjectVO {
 		this.lastdateS = lastdateS;
 		this.quality = quality;
 		this.cnt = cnt;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+		this.fno = fno;
+	}
+
+	public ProjectVO(int projectkey, String name, Date term, String termS, int take, String manager, String progress,
+			String importance, String contents, int clientkey, Date startdate, String startdateS, Date lastdate,
+			String lastdateS, String quality, int cnt, int count, MultipartFile[] uploadFile, ArrayList<String> fnames,
+			int fno) {
+		super();
+		this.projectkey = projectkey;
+		this.name = name;
+		this.term = term;
+		this.termS = termS;
+		this.take = take;
+		this.manager = manager;
+		this.progress = progress;
+		this.importance = importance;
+		this.contents = contents;
+		this.clientkey = clientkey;
+		this.startdate = startdate;
+		this.startdateS = startdateS;
+		this.lastdate = lastdate;
+		this.lastdateS = lastdateS;
+		this.quality = quality;
+		this.cnt = cnt;
+		this.count = count;
 		this.uploadFile = uploadFile;
 		this.fnames = fnames;
 		this.fno = fno;
@@ -252,6 +281,14 @@ public class ProjectVO {
 
 	public void setCnt(int cnt) {
 		this.cnt = cnt;
+	}
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
 	}
 
 }

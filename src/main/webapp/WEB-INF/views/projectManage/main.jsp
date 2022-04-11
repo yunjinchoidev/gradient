@@ -233,8 +233,8 @@
 														name="pageSize">
 														<option value="3">3</option>
 														<option value="5">5</option>
-														<option value="10" selected="selected">10</option>
-														<option value="15">15</option>
+														<option value="10" >10</option>
+														<option value="15" selected="selected">15</option>
 														<option value="20">20</option>
 														<option value="25">25</option>
 													</select><label>entries per page</label>
@@ -512,62 +512,20 @@
 
 
 
-<!-- 
-					<div class="row">
-						<div class="col-12">
-							<div class="card">
-								<div class="card-header">
-									<h4>트렌드 분석</h4>
-								</div>
-							 <div id="curve_chart66" style="width: 900px; height: 500px"></div>
-							</div>
-						</div>
-					</div>
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-				   <script type="text/javascript">
-      google.charts.load('current', {'packages':['corechart']});
-      google.charts.setOnLoadCallback(drawChart);
-
-      function drawChart() {
-        var data = google.visualization.arrayToDataTable([
-          ['Year', 'Sales', 'Expenses'],
-          ['2004',  1000,      400],
-          ['2005',  1170,      460],
-          ['2006',  660,       1120],
-          ['2007',  1030,      540]
-        ]);
-
-        var options = {
-          title: 'Company Performance',
-          curveType: 'function',
-          legend: { position: 'bottom' }
-        };
-
-        var chart = new google.visualization.LineChart(document.getElementById('curve_chart66'));
-
-        chart.draw(data, options);
-      }
-    </script>
-				
- -->
 
 
-
-<!-- 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
 									<h4>회원 프로젝트 배정</h4>
-									
+										<%@ include file="../team/pmPageTeamlist.jsp" %>
 									
 								</div>
 							</div>
 						</div>
 					</div>
 					
-		 -->
 					
 					
 					
@@ -610,70 +568,7 @@
 
 
 
-
-
-
-
-
-
-			<!-- 
-				<div class="col-12 col-lg-4">
-
-					<div class="card">
-						<div class="card-body py-4 px-5">
-							<div class="d-flex align-items-center">
-								<div class="avatar avatar-xl">
-									<img src="assets/images/faces/1.jpg" alt="Face 1">
-								</div>
-								<div class="ms-3 name">
-									<h5 class="font-bold">John Duck</h5>
-									<h6 class="text-muted mb-0">@johnducky</h6>
-								</div>
-							</div>
-						</div>
-					</div>
-
-
-					<div class="card">
-						<div class="card-header">
-							<h4>Recent Messages</h4>
-						</div>
-						<div class="card-content pb-4">
-							<div class="recent-message d-flex px-4 py-3">
-								<div class="avatar avatar-lg">
-									<img src="assets/images/faces/4.jpg">
-								</div>
-								<div class="name ms-4">
-									<h5 class="mb-1">Hank Schrader</h5>
-									<h6 class="text-muted mb-0">@johnducky</h6>
-								</div>
-							</div>
-							<div class="px-4">
-								<button
-									class="btn btn-block btn-xl btn-light-primary font-bold mt-3">채팅
-									하러 가기</button>
-							</div>
-						</div>
-					</div>
-
-
-
-
-
-
-
-					<div class="card">
-						<div class="card-header">
-							<h4>Visitors Profile</h4>
-						</div>
-						<div class="card-body" style="position: relative;"></div>
-					</div>
-
-
-
-
-				</div>
-				-->
+				
 			</section>
 		</div>
 

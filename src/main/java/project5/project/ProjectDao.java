@@ -22,4 +22,8 @@ public interface ProjectDao {
 	public void update(ProjectVO vo);
 	public void progressUpdate(ProjectVO vo);
 	public void delete(int projectkey);
+	
+	public List<ProjectVO> progressCnt();
+	public List<ProjectVO> projectTeamCnt();
+	
 }

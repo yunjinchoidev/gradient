@@ -20,6 +20,8 @@ public class MemberVO {
 	private int cnt;
 	private int score;
 
+	private int count;
+
 	private List<String> emailList;
 
 	private MultipartFile[] uploadFile;
@@ -66,6 +68,31 @@ public class MemberVO {
 		this.email = email;
 		this.uploadFile = uploadFile;
 		this.fnames = fnames;
+	}
+
+	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
+			String email, int status, int pricing, int visitcnt, int cnt, int score, int count, List<String> emailList,
+			MultipartFile[] uploadFile, ArrayList<String> fnames, int fno, List<AuthVO> authList) {
+		super();
+		this.memberkey = memberkey;
+		this.id = id;
+		this.pass = pass;
+		this.name = name;
+		this.auth = auth;
+		this.projectkey = projectkey;
+		this.deptno = deptno;
+		this.email = email;
+		this.status = status;
+		this.pricing = pricing;
+		this.visitcnt = visitcnt;
+		this.cnt = cnt;
+		this.score = score;
+		this.count = count;
+		this.emailList = emailList;
+		this.uploadFile = uploadFile;
+		this.fnames = fnames;
+		this.fno = fno;
+		this.authList = authList;
 	}
 
 	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
@@ -165,21 +192,6 @@ public class MemberVO {
 		this.authList = authList;
 	}
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	public MemberVO(int memberkey, String id, String pass, String name, String auth, int projectkey, int deptno,
 			String email, int status, int pricing, int visitcnt, int cnt, int score, List<String> emailList,
 			MultipartFile[] uploadFile, ArrayList<String> fnames, int fno, List<AuthVO> authList) {
@@ -361,9 +373,13 @@ public class MemberVO {
 	public void setScore(int score) {
 		this.score = score;
 	}
-	
-	
-	
-	
+
+	public int getCount() {
+		return count;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
 
 }

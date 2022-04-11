@@ -212,20 +212,14 @@
 										</li>
 											</ul>
 										</div>
+											</form>
 									</div>
 								</div>
 							</div>
-					</form>
+				
 				</section>
 
 
-			</div>
 
-			<br>
-
-		</div>
-
-
-	</div>
 </body>
 </html>

@@ -272,4 +272,30 @@ public class MemberService {
 	public MemberVO apiLogin(MemberVO vo) {
 		return dao.apiLogin(vo);
 	}
+	
+	public int visitCount1() {
+		return dao.visitCount1();
+	}
+	
+	public int visitCount2() {
+		return dao.visitCount2();
+	}
+	
+	public int visitCount3() {
+		return dao.visitCount3();
+	}
+	
+	public int visitCount4() {
+		return dao.visitCount4();
+	}
+	
+	public List<MemberVO> authCount(){
+		return dao.authCount();
+	}
+	
+	
+	
+	
+	
+	
 }

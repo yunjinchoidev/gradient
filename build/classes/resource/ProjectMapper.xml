@@ -133,9 +133,16 @@
 	</delete>
 
 
+	<select id="progressCnt" resultType="project5.project.ProjectVO">
+		SELECT count(*) count,
+		progress from project GROUP BY progress
+	</select>
 
-
-
+	<select id="projectTeamCnt" resultType="project5.project.ProjectVO">
+		SELECT count(*) count, mp.projectkey FROM MEMBER_project mp, project p
+		WHERE mp.PROJECTKEY =p.PROJECTKEY GROUP BY mp.projectkey ORDER BY
+		projectkey
+	</select>
 
 
 

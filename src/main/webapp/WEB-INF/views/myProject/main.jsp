@@ -108,10 +108,6 @@ $(document).ready(function(){
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>나의 모든 프로젝트</h3>
-						<p class="text-subtitle text-muted">
-						내가 참여하고 있는 프로젝트 입니다.
-						</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -145,8 +141,8 @@ $(document).ready(function(){
 			<div class="page-title">
 				<div class="row">
 					<div class="col-12 col-md-6 order-md-1 order-last">
-						<h3>나의 프로젝트</h3>
-						<p class="text-subtitle text-muted" onclick="location.href='/project5/dashBoard.do?projectkey=1'">내가 참여중인 프로젝트가 여기 있습니다.</p>
+						<h1>나의 프로젝트</h1>
+						<p class="text-subtitle text-muted">내가 참여중인 프로젝트가 여기 있습니다.</p>
 					</div>
 					<div class="col-12 col-md-6 order-md-2 order-first">
 						<nav aria-label="breadcrumb"
@@ -263,14 +259,8 @@ $(document).ready(function(){
 		});
 		</script>
 
-
-
-
 			<section id="content-types" style="display: flex; flex-direction: row; flex-wrap: wrap;">
 			</section>
-
-
-
 
 		</div>
 	</div>

@@ -171,6 +171,12 @@ public List<ProjectVO> listWithPaging(ProjectSch sch){
 		dao.delete(projectkey);
 	}
 	
+	public List<ProjectVO> progressCnt(){
+		return dao.progressCnt();
+	}
 	
+	public List<ProjectVO> projectTeamCnt(){
+		return dao.projectTeamCnt();
+	}
 
 }
