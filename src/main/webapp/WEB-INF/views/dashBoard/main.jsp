@@ -543,6 +543,7 @@ $(document).ready(function(){
 					</div>
 			
 					<script type="text/javascript">
+					$(document).ready(function(){
 						 $.ajax({
 							 url : '/project5/TotalOutputCntByDayList.do',
 							 dataType:'json',
@@ -579,6 +580,7 @@ $(document).ready(function(){
 						
 						       chart.draw(dataTable, options);
 						   }
+					});
 						    </script>
 
 
@@ -606,6 +608,7 @@ $(document).ready(function(){
 										</div>
 
 					<script>
+					$(document).ready(function(){
 					$.ajax({
 						url : '/project5/outputEvaluationDayByDay.do',
 						type:'POST',
@@ -653,6 +656,8 @@ $(document).ready(function(){
 			             chart.draw(data, options);
 			           };
 			        };
+			        
+					})
 					</script>
 
 
@@ -707,6 +712,7 @@ $(document).ready(function(){
 					</div>
 					
 						<script type="text/javascript">
+						$(document).ready(function(){
 							  var no = parseInt("${project.projectkey}");
 							  var data = {no : no};
 							  console.log("no " +no);
@@ -755,6 +761,7 @@ $(document).ready(function(){
 						        var chart = new google.visualization.AreaChart(document.getElementById('chart_div3'));
 						        chart.draw(data, options);
 						      }
+						})
 						    </script>
 
 
@@ -792,7 +799,7 @@ $(document).ready(function(){
 						</div>
 					</div>
 					<script type="text/javascript">
-					
+					$(document).ready(function(){
 					
 									var projectkey = parseInt("${project.projectkey}");
 									var pvc = {projectkey : projectkey}
@@ -839,6 +846,8 @@ $(document).ready(function(){
 								
 								        chart.draw(data, options);
 								      }
+								      
+					})
 								    </script>
 
 
@@ -874,6 +883,7 @@ $(document).ready(function(){
 					</div>
 					
 					<script type="text/javascript">
+					$(document).ready(function(){
 									var projectkey;
 									var projectkeyRe = "${project.projectkey}";
 									
@@ -914,6 +924,7 @@ $(document).ready(function(){
 										          var chart = new google.visualization.PieChart(document.getElementById('piechart1'));
 										          chart.draw(data1, options);
 										        }
+					})
 							    </script>
 
 

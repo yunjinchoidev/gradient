@@ -109,9 +109,9 @@ $(document).ready(function(){
 						<div style="margin-bottom: 40px;">
 						<h2 style="display: inline-block;">  <spring:message code="multilang"/></h2>
 						<select class="form-control" id="selectLan" style="width: 30%; display: inline-block;">
+						<option value="chlange"><spring:message code="chlange"/></option>
 						  	<option value="korean" selected><spring:message code="korean"/></option>
 						  	<option value="english"><spring:message code="english"/></option>
-						  		<option value="chlange"><spring:message code="chlange"/></option>
 						  	<option value="japanese"><spring:message code="japanese"/></option>
 						  	<option value="chinese"><spring:message code="chinese"/></option>
 						  </select>

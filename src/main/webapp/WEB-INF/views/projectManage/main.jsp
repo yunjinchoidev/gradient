@@ -496,7 +496,7 @@
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
-									<h1>크롤링 서비스</h1>
+									<h1>뉴스 브리핑 서비스</h1>
 									<p>최신 뉴스를 한눈에</p>
 									<form>
 										<input type="date" class="form-control" id="basicInput"
@@ -513,20 +513,20 @@
 
 
 
-
+<!-- 
 					<div class="row">
 						<div class="col-12">
 							<div class="card">
 								<div class="card-header">
 									<h4>회원 프로젝트 배정</h4>
-										<%@ include file="../team/pmPageTeamlist.jsp" %>
+					
 									
 								</div>
 							</div>
 						</div>
 					</div>
 					
-					
+		 -->			
 					
 					
 					

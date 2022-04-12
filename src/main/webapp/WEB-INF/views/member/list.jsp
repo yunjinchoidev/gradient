@@ -69,9 +69,7 @@
 																		.push(this.value);
 																console
 																		.log(this.value);
-																alert(this.value);
 															})
-											alert(array);
 											location.href = "/project5/memberChkSendMail.do?arrayParam="
 													+ array;
 										})

@@ -436,14 +436,33 @@
                         <div class="card">
                             <div class="card-body py-4 px-5">
                                 <div class="d-flex align-items-center">
+                                    <!-- 
                                     <div class="avatar avatar-xl">
-                                        <img src="assets/images/faces/1.jpg" id="not" style="border : 1px solid black">
                                     </div>
+                                     -->
                                     <div class="ms-3 name">
-                                        <h5 class="font-bold"><sec:authentication property="name"/>
+                                    
+                                        <h5 class="font-bold">
                                          </h5>
                                         <h6 class="text-muted mb-0"></h6>
+                                    
+                                    <sec:authorize access="!isAuthenticated()">
+                                      <h3 class="font-bold">미 로그인 상태입니다</h3>
+	                                    <h6 class="text-muted mb-0"></h6>
+                                    </sec:authorize>
+                                    
+                                    
+                                   <sec:authorize access="hasAuthority('ROLE_USER')">
+                                        <h3 class="font-bold"><sec:authentication property="name"/>님, 안녕하세요?</h3>
+                                        <h6 class="text-muted mb-0"></h6>
+                                      </sec:authorize>  
+                                       
+                                    
                                     </div>
+                                    
+                                    
+                                    
+                                    
                                 </div>
                             </div>
                         </div>
@@ -467,7 +486,7 @@
 										console.log("result.chatRoomList")
 										var consultChatList = $("#chattingRoomList");
 										if(result.chatRoomList.length==0){
-											consultChatList.append("<h4 style='margin-left:30px; color:blue'>현재 참가중인 대화가 없습니다</h4>");
+											consultChatList.append("<h6 style='margin-left:30px;'>현재 참가중인 대화가 없습니다</h6>");
 										}else{
 										
 													

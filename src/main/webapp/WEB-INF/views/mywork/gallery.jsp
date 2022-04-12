@@ -81,7 +81,6 @@ body{
  });
  
  function downFile(fname){
-		//alert($(fname).text())
 		if(confirm("다운로드할 파일:"+$(fname).text())){
 			location.href="${path}/download.do?fname="+$(fname).text();
 		}

@@ -283,14 +283,14 @@
 
 
 
-								<!-- 유저만 보인다 -->
+								<!-- 유저만 보인다 / 의미가 없어서 지움
 								<sec:authorize access="hasAuthority('ROLE_USER')">
 										<li class="sidebar-item  ">
 											<a href="<c:url value='/member/main' />"  class='sidebar-link'>
 											<i class="bi bi-grid-fill"></i> <span style="color : red">	회원 메인 으로</span></a>
 										</li>
 								</sec:authorize>
-
+								-->
 
 
 

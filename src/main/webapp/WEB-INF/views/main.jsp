@@ -407,7 +407,14 @@
         			        console.log(result)
         			          console.log(result.myfaceData[0]); 
         			          console.log("파일 불러오기 완료")
-        					  showUploadResult2(result.myfaceData[0]);// 이곳에서 함수 호출 
+        			          
+        			          if(result.myfaceData[0].fname == 1){
+        			        	  console.log("눌입니다.")
+        			          }else{
+            					  showUploadResult2(result.myfaceData[0]);// 이곳에서 함수 호출         			        	
+        			          }
+        			          
+
         			      },
         			      error: function(result){
         			    	  console.log(memberkey)
@@ -437,11 +444,18 @@
                             <div class="card-body py-4 px-5">
                                 <div class="d-flex align-items-center">
                                     <div class="avatar avatar-xl">
-                                        <img src="assets/images/faces/1.jpg" id="not" style="border : 1px solid black">
+                                        <img src="/project5/resources/user.png" id="not" >
                                     </div>
                                     <div class="ms-3 name">
+                                    <c:if test="${empty  member.name}">
+	                                    <h5 class="font-bold">미 로그인 상태입니다</h5>
+	                                    <h6 class="text-muted mb-0"></h6>
+                                    </c:if>
+                                    
+                                    <c:if test="${not empty  member.name}">
                                         <h5 class="font-bold">${member.name }</h5>
                                         <h6 class="text-muted mb-0">${member.email }</h6>
+                                        </c:if>
                                     </div>
                                 </div>
                             </div>
@@ -515,9 +529,6 @@
                             </div>
                             
                         </div>
-                        
-                        
-                        
                         
                         
                         <div class="card">
