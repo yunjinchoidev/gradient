@@ -151,7 +151,7 @@
 		resultType="project5.dashBoard.TotalOutputCntByDayVO">
 		SELECT to_char(writedate,'yyyymmdd') writedate, count(*) count FROM
 		OUTPUT WHERE
-		projectkey=1 and
+		projectkey=30001 and
 		to_char(writedate,'yymmdd') IN
 		(SELECT
 		DISTINCT A.DD
