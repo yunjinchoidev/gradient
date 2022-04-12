@@ -1775,6 +1775,13 @@ create table authorities (
 	username varchar2(50) not null,
 	authority varchar2(50) not null
 );
+SELECT * FROM authorities;
+COMMIT;
 
+SELECT * FROM MEMBER WHERE email='cyj7157@naver.com';
+SELECT * FROM MEMBER WHERE email='yunjinchoidev@gmail.com';
+SELECT * FROM MEMBER WHERE email!='미입력';
+COMMIT;
 
-
+SELECT * FROM MEMBER;
+SELECT * FROM MEMBER WHERE id='yj9999';

@@ -366,7 +366,7 @@
 											        var data = google.visualization.arrayToDataTable(B);
 											
 											        var options = {
-											          title: 'Company Performance',
+											          title: '프로젝트 상태 별 프로젝트 수 차트',
 											          curveType: 'function',
 											          legend: { position: 'bottom' }
 											        };
