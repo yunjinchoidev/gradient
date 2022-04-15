@@ -1,3 +1,10 @@
+## Youtube 소개 영상
+https://www.youtube.com/watch?v=mYDVNNUPe6I
+
+## 소개 자료 [pdf]
+https://drive.google.com/file/d/1e261cdIq3NJveBo9ooKga28qG2D1P-lk/view?usp=sharing
+
+
 # project5
 ### 프로젝트 기술 안내
 * Spring MVC
