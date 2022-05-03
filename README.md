@@ -109,13 +109,6 @@ https://drive.google.com/file/d/1e261cdIq3NJveBo9ooKga28qG2D1P-lk/view?usp=shari
 * 예산 게시글 테이블의 데이터와 예산 상세정보 테이블의 데이터를 동시 삭제
 
 
-## 조달
-*
-
-## 회의
-*
-
-
 ## 채팅
 * 채팅 메시지 삽입
 * 채팅 방 불러오기
@@ -153,10 +146,10 @@ https://drive.google.com/file/d/1e261cdIq3NJveBo9ooKga28qG2D1P-lk/view?usp=shari
 ##
 ## 프로젝트 역할
 * 최윤진 - 회원/관리자/차트/칸반/간트/채팅
-* 마혜민 - 
-* 문재영 - 
-* 신지호 - 
-* 윤혜정 -
+* 마혜민 - 인력관리
+* 문재영 - 조달관리
+* 신지호 - 품질관리
+* 윤혜정 - 회의록
 * 장훈주 - 예산-ALL, 리스크-ALL, 품질-품질평가, 인증서 발급
 
 
